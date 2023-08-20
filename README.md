@@ -18,7 +18,7 @@ Software licensed under [the MIT License](https://spdx.org/licenses/MIT.html), n
 * [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html)
 * [Course GitHub page](https://github.com/UBC-CS/cpsc330-2023W1)
 * [Course Jupyter book]()
-* [Canvas](https://canvas.ubc.ca/courses/123439): You will find Panopto links in Canvas
+* [Canvas](https://canvas.ubc.ca/courses/123439): You will find the class recordings via Panopto in Canvas
 * [Piazza](https://piazza.com/ubc.ca/winterterm12023/cpsc3302023w1/home)
 * [iClicker Cloud]()
 * [Gradescope](https://www.gradescope.ca/courses/11525)
@@ -36,12 +36,12 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 | hw2 | Sept 18, 11:59 pm |   [Github repo](https://github.com/UBC-CS/cpsc330-2023W1/hw/) | [Gradescope](https://www.gradescope.ca/courses/11525)| 
 | hw3 | Oct 02, 11:59 pm |   [Github repo](https://github.com/UBC-CS/cpsc330-2023W1/hw/) | [Gradescope](https://www.gradescope.ca/courses/11525)|  
 | hw4 | Oct 10, 11:59 pm  |   [Github repo](https://github.com/UBC-CS/cpsc330-2023W1/hw/) | [Gradescope](https://www.gradescope.ca/courses/11525)|  
-| **Midterm** | Oct 26 6:00 pm to 7:20 pm  | [Canvas](https://canvas.ubc.ca/courses/123439) | [Canvas]
+| **Midterm** | Oct 26 6:00 pm to 7:20 pm  | [Canvas](https://canvas.ubc.ca/courses/123439) | [Canvas](https://canvas.ubc.ca/courses/123439)
 | hw5 | Oct 30, 11:59 pm |   [Github repo](https://github.com/UBC-CS/cpsc330-2023W1/hw/) | [Gradescope](https://www.gradescope.ca/courses/11525)|
 | hw6 | November 13, 11:59 pm |   [Github repo](https://github.com/UBC-CS/cpsc330-2023W1/hw/) | [Gradescope](https://www.gradescope.ca/courses/11525)|  
 | hw7 | November 20, 11:59 pm  |   [Github repo](https://github.com/UBC-CS/cpsc330-2023W1/hw/) | [Gradescope](https://www.gradescope.ca/courses/11525)|  
 | hw8 | November 27, 11:59 pm|   [Github repo](https://github.com/UBC-CS/cpsc330-2023W1/hw/) | [Gradescope](https://www.gradescope.ca/courses/11525)|  
-| hw9 | December 7, 11:59 pm|   [Github repo](hhttps://github.com/UBC-CS/cpsc330-2023W1/hw/) | [Gradescope](https://www.gradescope.ca/courses/11525)|  
+| hw9 | December 7, 11:59 pm|   [Github repo](https://github.com/UBC-CS/cpsc330-2023W1/hw/) | [Gradescope](https://www.gradescope.ca/courses/11525)|  
 | **Final exam** | TBA | [Canvas](https://canvas.ubc.ca/courses/123439) | [Canvas](https://canvas.ubc.ca/courses/123439) |
 
 
