@@ -1,6 +1,8 @@
 # Syllabus 
 
-[UBC course URL](https://www.cs.ubc.ca/course-section/cpsc-330-102-2022w)
+- [CPSC 330 101 2023W UBC course URL](https://www.cs.ubc.ca/course-section/cpsc-330-101-2023w)
+
+- [CPSC 330 102 2023W UBC course URL](https://www.cs.ubc.ca/course-section/cpsc-330-102-2023w)
 
 ## Course description
 
@@ -11,33 +13,31 @@ Application of machine learning tools, with an emphasis on solving practical pro
 
 **Lectures**:
 
-| Day  | Time   | Location |
-|----------|--------|------|
-| Tue/Thu  | 11:00-12:20  | DMP 310 |
+| Section | Day  | Time   | Location |
+|----------|----------|--------|------|
+| CPSC 330 101 | Tue/Thu  | 3:30 - 4:50 PM  | MCML 360 |
+| CPSC 330 102 | Tue/Thu  | 11:00 - 12:20 PM  | SWNG 221 |
 
 **Tutorials and office hours**:
-For tutorial and office hours time and locations check the [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html). The tutorials for this class will be run by the TAs and will be in office hours format. The tutorials are **optional**. That said, you will have more one-on-one time with the TAs and you are likely learn more about machine learning in general if take advantage of this. 
+
+To find tutorial schedules and office hours, please refer to the [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html). Tutorials for this course will be conducted by TAs and follow an office hours format. Attendance at tutorials is optional. However, participating will allow you to engage in more personalized discussions with TAs, providing you with valuable one-on-one time and an opportunity to deepen your understanding of machine learning concepts. 
 
 ## Teaching Team
 
-**Instructor**: [Varada Kolhatkar](https://kvarada.github.io/)
+**Instructors**: 
+- [Andrew Roth](https://www.bccrc.ca/dept/mo/people/andrew-roth)
+- [Varada Kolhatkar](https://kvarada.github.io/)
 
 **Teaching Assistants**:
-- Vedant Bahl
-- Wenkai Chen
-- Anubhav Garg
-- Lucas Jin
-- Siayue Lyu
-- Ben Norman
-
+- TBA
 
 ## Registration
 
 **Waitlists**:
 
-The general seats available in this class usually fill up very quickly. Once the general seats are taken, the only way to register for the course is to sign up for the waiting list. For questions about the waiting list policies, see [here](https://www.cs.ubc.ca/students/undergrad/courses/waitlists). You should sign up for the waiting list even if it is long; a lot of students tend to drop courses. Signing up for the waiting list also makes it more likely that we will open up extra sessions, expand class sizes, or offer additional courses on these topics. I have no control over the situation and I cannot help you bypass the waiting list.
+The general seats available in this class usually fill up very quickly. Once the general seats are taken, the only way to register for the course is to sign up for the waiting list. For questions about the waiting list policies, see [here](https://www.cs.ubc.ca/students/undergrad/courses/waitlists). You should sign up for the waiting list even if it is long; a lot of students tend to drop courses. Signing up for the waiting list also makes it more likely that we will open up extra sessions, expand class sizes, or offer additional courses on these topics. The instructors have no control over the situation and I cannot help you bypass the waiting list.
 
-**Prerequisites**: The official prerequisites can be found [here](https://courses.students.ubc.ca/cs/courseschedule?tname=subj-course&course=330&campuscd=UBC&dept=CPSC&pname=subjarea). If you do not meet the prerequisites, see [here](https://www.cs.ubc.ca/students/undergrad/courses-deadlines/prerequisites) and [here](https://www.cs.ubc.ca/students/undergrad/courses-deadlines/rules-about-cpsc-appeals-undergraduate-students). I was told that students should not visit the front desk in the CS main office about prerequisite issues, because the folks at the front desk do not have the authority to resolve prerequisite issues.
+**Prerequisites**: The official prerequisites can be found [here](https://courses.students.ubc.ca/cs/courseschedule?tname=subj-course&course=330&campuscd=UBC&dept=CPSC&pname=subjarea). If you do not meet the prerequisites, see [here](https://www.cs.ubc.ca/students/undergrad/courses-deadlines/prerequisites) and [here](https://www.cs.ubc.ca/students/undergrad/courses-deadlines/rules-about-cpsc-appeals-undergraduate-students). We were told that students should not visit the front desk in the CS main office about prerequisite issues, because the folks at the front desk do not have the authority to resolve prerequisite issues.
 
 In practice, the prerequisite is familiarity with Python programming.
 
@@ -49,16 +49,17 @@ The grading scheme for the course is as follows:
 
 | Component   | Weight          | Location   |
 |-------------|-----------------|------------|
-| Syllabus quiz |   1%          | [Canvas](https://canvas.ubc.ca/courses/101888) | 
-| iClicker participation |   2% | [iClicker Cloud](https://join.iclicker.com/3DP5H) | 
-| Assignments |     20%         | [Gradescope](https://www.gradescope.ca/courses/5032) |
-| Midterm     |     25%         | [Canvas](https://canvas.ubc.ca/courses/78046)     |
-| Final       |     52%         | [Canvas](https://canvas.ubc.ca/courses/78046)     |
+| Syllabus quiz |   1%          | [Canvas]() | 
+| iClicker participation |   2% | [iClicker Cloud]() | 
+| Worksheets |   2% | [iClicker Cloud]() | 
+| Assignments |     20%         | [Gradescope]() |
+| Midterm     |     25%         | [Canvas]()     |
+| Final       |     50%         | [Canvas]()     |
 
 
 ### iClicker 
 
-The iClicker participation grade will be primarily for participation and not for correctness. That said, these questions are designed for your learning and try to put some effort when you answer them. 
+The iClicker participation grade will mainly consider your engagement rather than the accuracy of your responses. Nevertheless, these questions are intended to facilitate your learning, so please make an earnest effort when providing your answers. 
 
 ### Assignments
 
@@ -69,17 +70,17 @@ For the full policy on grades, see [this document](grades.md). I understand that
 
 ### Midterm
 
-Check the [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html) for midterm date and time. The exam is likely to be open book, meaning you are allowed to consult course materials, the internet, etc. However, you are NOT allowed to communicate with anyone else in any way during the exam. **Also, all answers should be in your own words. Copy-pasting code snippets or sentences or long phrases from the lecture notes or the internet is considered plagiarism.** The exam will be on Canvas and you will have 75 minutes to complete it.
+Check the [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html) for midterm date and time. The exam will be on Canvas and you will have 75 minutes to complete it.
 
 **Missed midterm exam**. There is no makeup midterm exam. If you miss the midterm exam, or anticipate missing the midterm exam, please see the Academic concessions section above. In most cases, if you have missed the midterm exam for a justified reason, the weight of the midterm component of the course will be transferred to the final exam.
 
 ### Final exam
 
-The final exam will be held during the exam period. The exam is likely to be open book, meaning you are allowed to consult course materials, the internet, etc. However, you are NOT allowed to communicate with anyone else in any way during the exam. 
+The final exam is scheduled for the exam period and is likely to be comprehensive, covering the material taught over the course of the semester.
 
 ## Academic concessions
 
-UBC has a [policy on academic concession](https://senate.ubc.ca/sites/senate.ubc.ca/files/downloads/20190515_V_135_Academic_Concession-Approved.pdf) for cases in which a student may be unable to complete coursework. According to this policy, grounds for academic concession can be illness, conflicting responsibilities, or compassionate grounds. Examples of compassionate grounds, from the above policy, include "a traumatic event experienced by the student, a family member, or a close friend; an act of sexual assault or other sexual misconduct experienced by the student, a family member, or a close friend; a death in the family or of a close friend." If you would like to request an academic concession, please fill out the [academic concession form](https://github.com/UBC-CS/cpsc330/blob/master/docs/ConcessionForm.pdf), clearly specify what kind of concession are you asking for, and email it to the instructor as soon as possible. You may be asked for further documentation. The instructor will evaluate the situation and make a decision on whether to grant the concession and, if so, how to proceed.
+UBC has a [policy on academic concession](https://senate.ubc.ca/sites/senate.ubc.ca/files/downloads/20190515_V_135_Academic_Concession-Approved.pdf) for cases in which a student may be unable to complete coursework. According to this policy, grounds for academic concession can be illness, conflicting responsibilities, or compassionate grounds. Examples of compassionate grounds, from the above policy, include "a traumatic event experienced by the student, a family member, or a close friend; an act of sexual assault or other sexual misconduct experienced by the student, a family member, or a close friend; a death in the family or of a close friend." To request an academic concession, please complete [academic concession form](https://github.com/UBC-CS/cpsc330/blob/master/docs/ConcessionForm.pdf), clearly indicating the nature of the concession you are seeking, and send the form via email to the course coordinator, Michelle Pang (m.pang@ubc.ca), with your instructor copied in the email. Additional documentation might be requested. We will review your situation and determine whether to approve the concession, and if approved, the appropriate steps to follow.
 
 ## Code of conduct
 
@@ -107,27 +108,3 @@ Your precautions will help reduce risk and keep everyone safer. In this class, t
 - Most of the class activity will be video recorded and will be made available to you. 
 - Before each class, I'll also try to post some [videos on YouTube](https://www.youtube.com/watch?v=-1hTcS5ZE4w&list=PLHofvQE1VlGtZoAULxcHb7lOsMved0CuM) to facilitate hybrid learning. 
 - There will be at least a few office hours which will be held online. 
-
-We are working on this course during the global pandemic and everyone is struggling to some extent. If you tell me you are having trouble, I am not going to judge you or think less of you. I hope you will extend me the same grace!
-
-Here are some ground rules:
-
-- If you are unable to submit a deliverable on time, please reach out **before** the deliverable is due.
-- If you need extra support, the teaching team is here to work with you. Our goal is to help each of you succeed in the course.
-- If you are struggling with the material, the new hybrid teaching format, or anything else, please reach out. I will try to find time and listen to you empathetically.
-- If I am unable to help you, I might know someone who can. UBC has some [great student support resources](https://students.ubc.ca/support).
-
-
-## Land Acknowledgement
-
-UBC’s Point Grey Campus is located on the traditional, ancestral, and unceded territory of the xwməθkwəy̓əm (Musqueam) peple. The land it is situated on has always been a place of learning for the Musqueam people, who for millennia have passed on their culture, history, and traditions from one generation to the next on this site.
-
-It is important that this recognition of Musqueam territory and our relationship with the Musqueam people does not appear as just a formality. Take a moment to appreciate the meaning behind the words we use:
-
-**TRADITIONAL** recognizes lands traditionally used and/or occupied by the Musqueam people or other First Nations in other parts of the country.
-
-**ANCESTRAL** recognizes land that is handed down from generation to generation.
-
-**UNCEDED** refers to land that was not turned over to the Crown (government) by a treaty or other agreement.
-
-As you begin your journey at UBC, take some time to learn about the history of this land and to honour its original inhabitants.

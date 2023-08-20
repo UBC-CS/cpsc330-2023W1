@@ -2,9 +2,16 @@
 
 This is the course homepage for CPSC 330: Applied Machine Learning at the University of British Columbia. You are looking at the current version (Sep-Dec 2023).
 
-Instructors: 
-- Andrew Roth (Section 101: Tue Thu 13:30 to 17:00 MacMillan 360)
-- Varada Kolhatkar (Section 102: Tue Thu 11:00 to 12:30 West Mall Swing Space 221)
+## The teaching team  
+### Instructors
+- [Andrew Roth](andrew.roth@ubc.ca) (Section 101: Tue Thu 13:30 to 17:00 MacMillan 360)
+- [Varada Kolhatkar](kvarada@cs.ubc.ca) (Section 102: Tue Thu 11:00 to 12:30 West Mall Swing Space 221)
+
+### Course co-ordinator
+- Michelle Pang (m.pang@ubc.ca)
+
+### TAs
+- TBA
 
 
 ## License
@@ -23,7 +30,7 @@ Software licensed under [the MIT License](https://spdx.org/licenses/MIT.html), n
 * [iClicker Cloud]()
 * [Gradescope](https://www.gradescope.ca/courses/11525)
 * [Course videos YouTube channel](https://www.youtube.com/playlist?list=PLHofvQE1VlGtZoAULxcHb7lOsMved0CuM)
-* [Syllabus / administrative info](docs/course_info.md)
+* [Syllabus / administrative info](docs/syllabus.md)
 * [Other course documents](https://github.com/UBC-CS/cpsc330-2023W1/tree/main/docs)
 
 ## Deliverable due dates (tentative)
