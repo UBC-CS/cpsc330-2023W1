@@ -31,29 +31,29 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 
 |Assessment  | Due date |  Where to find? | Where to submit? | 
 |-------|-----------|-----------|-----------|
-| hw1 | Sept 13, 11:59 pm |  [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
-| Syllabus quiz | Sept 19, 11:59pm  | [Canvas](https://canvas.ubc.ca/courses/101888) | [Canvas](https://canvas.ubc.ca/courses/101888) | 
-| hw2 | Sept 19, 11:59 pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)| 
-| hw3 | Oct 03, 11:59 pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
-| hw4 | Oct 11, 11:59 pm  |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
-| **Midterm** | Oct 26 6 pm to 7:20p m | [Canvas](https://canvas.ubc.ca/courses/101888) | [Canvas]
-| hw5 | Oct 31, 11:59 pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
-(https://canvas.ubc.ca/courses/101888) | 
-| hw6 | November 10th |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
-| hw7 | November 22nd  |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
-| hw8 | November 29th|   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
-| hw9 | December 6th|   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
-| **Final exam** | December 15th | [Canvas](https://canvas.ubc.ca/courses/101888) | [Canvas](https://canvas.ubc.ca/courses/101888) |
+| hw1 | Sept 13, 11:59 pm |  [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/11525)|  
+| Syllabus quiz | Sept 19, 11:59pm  | [Canvas](https://canvas.ubc.ca/courses/123439) | [Canvas](https://canvas.ubc.ca/courses/123439) | 
+| hw2 | Sept 19, 11:59 pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/11525)| 
+| hw3 | Oct 03, 11:59 pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/11525)|  
+| hw4 | Oct 11, 11:59 pm  |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/11525)|  
+| **Midterm** | Oct 26 6 pm to 7:20p m | [Canvas](https://canvas.ubc.ca/courses/123439) | [Canvas]
+| hw5 | Oct 31, 11:59 pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/11525)|  
+(https://canvas.ubc.ca/courses/123439) | 
+| hw6 | November 10th |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/11525)|  
+| hw7 | November 22nd  |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/11525)|  
+| hw8 | November 29th|   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/11525)|  
+| hw9 | December 6th|   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/11525)|  
+| **Final exam** | December 15th | [Canvas](https://canvas.ubc.ca/courses/123439) | [Canvas](https://canvas.ubc.ca/courses/123439) |
 
 
 
 ## Lecture schedule (tentative)
 
-**Live lectures**: The lectures will be in-person in **[DMP 310](http://www.maps.ubc.ca/PROD/index.php) from 11am to 12:20pm**, as marked in [the Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html). The lectures will be live streamed. You can find the link of Panopto videos in Canvas. That said, consider the recordings a backup resource and do not completely rely on it. You will get a lot more out of the course if you show up in person. 
+**Live lectures**: The lectures will be in-person. The location can be found in [the Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html). The lectures will be recorded and will be made available after 5 pm on lecture days. You can find the link of Panopto videos in Canvas. That said, consider the recordings a backup resource and do not completely rely on it. You will get a lot more out of the course if you show up in person. 
 
-This course will be run in a semi flipped classroom format. There will be pre-watch videos for many lectures, at least in the first half of the course. All the videos are available on [YouTube](https://www.youtube.com/playlist?list=PLHofvQE1VlGtZoAULxcHb7lOsMved0CuM) and are posted in the schedule below. Try to watch the assigned videos before the corresponding lecture. During the lecture, I'll summarize the important points from the videos and focus on demos, iClickers, and Q&A. 
+This course will be run in a semi flipped classroom format. There will be pre-watch videos for many lectures, at least in the first half of the course. All the videos are available on [YouTube](https://www.youtube.com/playlist?list=PLHofvQE1VlGtZoAULxcHb7lOsMved0CuM) and are posted in the schedule below. Try to watch the assigned videos before the corresponding lecture. During the lecture, we'll summarize the important points from the videos and focus on demos, iClickers, worksheets, and Q&A. 
 
-I'll be developing lecture notes directly in this repository. So if you check them before the lecture, they might be in a draft form. Once they are finalized, I'll post them in the [Course Jupyter book](https://ubc-cs.github.io/cpsc330/README.html). 
+We'll be developing lecture notes directly in this repository. So if you check them before the lecture, they might be in a draft form. Once they are finalized, they will be posted in the [Course Jupyter book](). 
 
 | Date  | Topic |  Assigned videos | vs. CPSC 340 |
 |-------|-----------|-------------------------|------------------|
