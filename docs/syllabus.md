@@ -28,6 +28,9 @@ To find tutorial schedules and office hours, please refer to the [Calendar](http
 - [Andrew Roth](https://www.bccrc.ca/dept/mo/people/andrew-roth)
 - [Varada Kolhatkar](https://kvarada.github.io/)
 
+**Course co-ordinator**
+- Michelle Pang (m.pang@ubc.ca)
+
 **Teaching Assistants**:
 - TBA
 
