@@ -1,20 +1,19 @@
+# install with conda env create -f cpsc330env.yml 
 name: 'cpsc330'
 channels:
   - conda-forge
   - defaults
 dependencies:
   - ipykernel
-  - matplotlib>=3.2.2
-  - scikit-learn>=1.1.2
-  - pandas>=1.4.4
+  - python==3.10
+  - matplotlib>=3.7.2
+  - scikit-learn>=1.3.0
+  - pandas>=2.0.3
   - requests>=2.24.0
   - graphviz
   - python-graphviz
-  - lightgbm
   - jinja2
-  - pip>=20
-  - pandas-profiling>=3.2.0
-  - lifelines>=0.27.1
+  - pip>=23.2.1
+  - lifelines>=0.27.7
   - pip:
-    - mglearn
     - psutil>=5.7.2
