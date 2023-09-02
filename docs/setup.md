@@ -2,12 +2,12 @@
 
 ## Git 
 
-If you want to clone the class GitHub repository and run lecture notebooks locally, which is highly recommended, you will need `Git` on your computer. Check out the [git setup instructions](https://github.com/UBC-CS/cpsc330/blob/master/docs/git_installation.md). Also, most of our homework assignments will be done in JupyterLab. You don't have to do it but it might be easier for you to create a private GitHub repository for your homework assignments. 
+If you want to clone the class GitHub repository and run lecture notebooks locally, which is highly recommended, you will need `Git` on your computer. Check out the [git setup instructions](https://github.com/UBC-CS/cpsc330-2023W1/blob/master/docs/git_installation.md). Also, most of our homework assignments will be done in JupyterLab. You don't have to do it but it might be easier for you to create a private GitHub repository for your homework assignments. 
 
 Once you have `Git` go to the directory where you want to do CPSC 330 work, and clone the Course GitHub repository using the following command on your command line. 
 
 ```
-git clone https://github.com/UBC-CS/cpsc330.git
+git clone https://github.com/UBC-CS/cpsc330-2023W1.git
 ```
 
 When there are updates in the repository, you can update the local copy using the command below from the directory of the repository. 
@@ -16,10 +16,11 @@ When there are updates in the repository, you can update the local copy using th
 git pull
 ```
 
+Note: If you plan to take notes, try not to do it in this repository. If you do that, there are likely be merge conflicts and you won't be able to run the command above smoothly.  
 
 ## Python and Conda
 
-We will be using Python for this course because it is open source and widely used in machine learning and data science. We will use Python 3 (in particular 3.9 or 3.10). **Python 2 is not supported in this course.**
+We will be using Python for this course because it is open source and widely used in machine learning and data science. We will use Python 3 (in particular 3.10). **Python 2 is not supported in this course.**
 
 We recommend the Miniconda Python distribution because it comes bundled with a bunch of useful packages (NumPy, SciPy, scikit-learn, Jupyter notebook) pre-installed. You can [download Miniconda from their website](https://docs.conda.io/en/latest/miniconda.html) that is suitable for your operating system. For example, I downloaded [Miniconda3 MaxOSX 64-bit pkg](https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.pkg) on my macOS.  
 
@@ -42,7 +43,7 @@ conda --version
 which should return something like: 
 
 ```
-conda 4.12.0
+conda 23.7.2
 ```
 
 Now, type 
@@ -51,7 +52,7 @@ Now, type
 python --version
 ``` 
 
-which should return Python 3.9.7 or greater. 
+which should return Python 3.10 or greater. 
 
 
 ### Windows
@@ -68,7 +69,7 @@ Type the following to check that your Python installation is working:
 python --version
 ```
 
-which should return Python 3.9.7 or greater. 
+which should return Python 3.10 or greater. 
 
 _Note: If instead you see Python 2.7.X you installed the wrong version. Uninstall the Miniconda you just installed (which usually lives in the /opt directory), and try the installation again, selecting Python 3.9.7._
 
@@ -103,7 +104,7 @@ For other packages we need for the course, we will be creating a `conda` virtual
     conda env list
     ```
     You should see a list of environments as the output. If Miniconda is not installed, you can download Miniconda (a small, bootstrap version of Anaconda) from [here](https://docs.conda.io/en/latest/miniconda.html).  
-2. Download [cpsc330env.yml](https://github.com/UBC-CS/cpsc330/blob/master/docs/cpsc330env.yml) and put it in your working directory
+2. Download [cpsc330env.yml](https://github.com/UBC-CS/cpsc330-2023W1/blob/master/docs/cpsc330env.yml) and put it in your working directory
 3. Create an environment by 
     ```
     conda env create -f cpsc330env.yml
