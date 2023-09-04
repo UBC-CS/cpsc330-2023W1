@@ -66,10 +66,41 @@ The iClicker participation grade will mainly consider your engagement rather tha
 
 ### Assignments
 
-The plan is that most of the assignments will contribute equally towards the overall Assignments grade. However, this is not finalized yet. For example, the last assignment ends up particularly short or long due to timing. Furthermore, I will drop your lowest homework grade. **By default late submissions will not be accepted.** The rationale is that we will be posting the solutions shortly after the assignment deadline, and we cannot accept submissions after the solutions are posted. I do not like this, but I believe the overall policy is best for the class as a whole. See [this document](homework_instructions.md) for more detailed instructions on submitting homework assignments. 
+The plan is that most of the assignments will contribute equally towards the overall Assignments grade. However, this is not finalized yet. For example, the last assignment ends up particularly short or long due to timing. Furthermore, we will drop your lowest homework grade. 
+<!--**By default late submissions will not be accepted.** The rationale is that we will be posting the solutions shortly after the assignment deadline, and we cannot accept submissions after the solutions are posted. I do not like this, but I believe the overall policy is best for the class as a whole.--> 
+See [this document](homework_instructions.md) for more detailed instructions on submitting homework assignments.
 
-For the full policy on grades, see [this document](grades.md). I understand that grades are important for you for several reasons. But try not to focus too much on them. You will have a better learning experience and in general, you'll be happier in life if you focus more on learning the material well. For the grading scheme I wish we could use [this](https://youtu.be/HdHlfiOAJyE?t=3771).
+For the full policy on grades, see [this document](grades.md). We understand that grades are important for you for several reasons. But try not to focus too much on them. You will have a better learning experience and in general, you'll be happier in life if you focus more on learning the material well. For the grading scheme we wish we could use [this](https://youtu.be/HdHlfiOAJyE?t=3771).
 
+
+**Late policy**
+
+Assignments will be due 5 minutes before midnight on the due date.
+
+If you can't make it, you can use late classes:
+
+For example, if assignment is due on a Monday:
+- Handing it in Tuesday is 1 late class.
+- Handing it in Thursday is 2 late classes.
+
+There is no penalty for using "late classes", but you will get a mark of 0 on an assignment if you:
+- Use more than 2 late classes on the assignment.
+- Use more than 4 late classes across all assignments.
+
+If you are working in a pair, you both must have late classes remaining.
+
+We will posting solutions after the second late class has expired.
+
+### Use of AI in the course
+
+Use of AI-based content generation tools, or AI tools, is permitted for assignments and project work in CPSC 330. However, it is not allowed during the midterm and the final exams. 
+
+Additionally, students are required to disclose any use of AI tools for each assignment. This includes
+- Referencing the tool used
+- Including any prompts used to query
+- Including the output of the prompts and a discussion of if/how you modified the result
+
+Failure to follow this policy will be considered a violation of UBC’s academic policy. 
 
 ### Midterm
 
