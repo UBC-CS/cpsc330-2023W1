@@ -12,6 +12,7 @@ dependencies:
   - requests>=2.24.0
   - python-graphviz
   - jinja2
+  - lightgbm
   - pip>=23.2.1
   - lifelines>=0.27.7
   - pip:
