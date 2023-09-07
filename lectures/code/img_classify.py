@@ -13,7 +13,7 @@ vgg16 = models.vgg16(weights='DEFAULT')
 vgg16.eval()  # Set the model to evaluation mode
 
 # Define a function to classify an image
-def classify_image(image_path, class_labels_file):
+def classify_image(image_path, class_labels_file, topn=4):
     # Load and preprocess the image
     img = Image.open(image_path)
     preprocess = transforms.Compose([
@@ -32,8 +32,13 @@ def classify_image(image_path, class_labels_file):
     with open(class_labels_file, 'r') as f:
         class_labels = [line.strip() for line in f.readlines()]
 
-    # Get the class label with the highest probability
-    _, predicted_class_idx = torch.max(output, 1)
-    predicted_class = class_labels[predicted_class_idx]
+    # Get class probabilities 
+    _, indices = torch.sort(output, descending=True)    
+    probabilities = torch.nn.functional.softmax(output, dim=1)
 
-    return predicted_class
+    # Create a dataframe with topn class labels and their corresponding probabilities
+    d = {'Class': [class_labels[idx] for idx in indices[0][:topn]], 
+         'Probability score': [np.round(probabilities[0, idx].item(),3) for idx in indices[0][:topn]]}
+    df = pd.DataFrame(d, columns = ['Class','Probability score'])
+    return df
+    
