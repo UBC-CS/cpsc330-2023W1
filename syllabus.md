@@ -52,12 +52,21 @@ The grading scheme for the course is as follows:
 
 | Component   | Weight          | Location   |
 |-------------|-----------------|------------|
+<<<<<<< HEAD
+| Syllabus quiz |   1%          | [Canvas](https://canvas.ubc.ca/courses/123439) | 
+| iClicker participation |   2% | [iClicker Cloud](https://join.iclicker.com/SNBF) | 
+| Worksheets |   5% | [Gradescope](https://www.gradescope.ca/courses/11525) | 
+| Assignments |     20%         | [Gradescope](https://www.gradescope.ca/courses/11525) |
+| Midterm     |     22%         | [Canvas](https://canvas.ubc.ca/courses/123439)     |
+| Final       |     50%         | [Canvas](https://canvas.ubc.ca/courses/123439)     |
+=======
 | Syllabus quiz |   1%          | [Canvas]() | 
 | iClicker participation |   2% | [iClicker Cloud]() | 
 | Worksheets |   5% | [Gradescope]() | 
 | Assignments |     20%         | [Gradescope]() |
 | Midterm     |     22%         | [Canvas]()     |
 | Final       |     50%         | [Canvas]()     |
+>>>>>>> ca5cf0cbf98aad4abb24a2f1df57ff39184254c0
 
 
 ### iClicker 

@@ -3,11 +3,11 @@
 You will be submitting your homework assignments on Gradescope. Check out [Gradescope Student Guide](https://lthub.ubc.ca/guides/gradescope-student-guide/). 
 
 ## Accessing homework assignments
-Every homework assignment will be made available on the [course GitHub page](https://github.com/UBC-CS/cpsc330) under the `hw` folder. Once it's available, I'll make an announcement on Piazza. The assignment will generally consist of a Jupyter notebook along with necessary code and data or links to download the data. You will have to setup your computer so that you can work on these assignments locally. See this document for [setup instructions](setup.md).       
+Every homework assignment will be made available on the [course GitHub page](https://github.com/UBC-CS/cpsc330-2023W1) under the `hw` folder. Once it's available, I'll make an announcement on Piazza. The assignment will generally consist of a Jupyter notebook along with necessary code and data or links to download the data. You will have to setup your computer so that you can work on these assignments locally. See this document for [setup instructions](setup.md).       
 
 ## How to submit
 
-We anticipate that you will do `git pull` in your local course repository when the homework is made released. You may work on your homework locally or in a private GitHub repository, which provides you with a backup, version control for your work, a way to collaborate with others, to show unfinished work to instructors and ask for help, etc. To submit your homework you must **submit your final version of the notebook to [Gradescope](https://www.gradescope.ca/courses/5032)** where it will be graded. 
+We anticipate that you will do `git pull` in your local course repository when the homework is made released. You may work on your homework locally or in a private GitHub repository, which provides you with a backup, version control for your work, a way to collaborate with others, to show unfinished work to instructors and ask for help, etc. To submit your homework you must **submit your final version of the notebook to [Gradescope](https://www.gradescope.ca/courses/11525)** where it will be graded. 
 
 Once you submit to Gradescope, you should go there and ensure your assignment is there as expected and all the output and plots are rendered properly. **It is your responsibility to make sure your assignment is submitted properly and failure to do so will result in a deduction of marks.**
 
@@ -44,7 +44,7 @@ In most assignments, you will be asked to produce plots/figures. When including 
 ## Late submissions
 By default late submissions will not be accepted. The rationale is that we will be posting the solutions shortly after the assignment deadline, and we cannot accept submissions after the solutions are posted. I do not like this, but I believe the overall policy is best for the class as a whole.
 
-_In exceptional circumstances_ a late submission may be accepted with an academic concession - see [here](https://github.com/UBC-CS/cpsc330/blob/master/docs/course_info.md#academic-concessions) for more info.
+_In exceptional circumstances_ a late submission may be accepted with an academic concession - see [here](https://github.com/UBC-CS/cpsc330-2023W1/blob/main/syllabus.md#academic-concessions) for more info.
 
 ## Updates to assignments
 
