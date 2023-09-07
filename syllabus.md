@@ -15,7 +15,7 @@ Application of machine learning tools, with an emphasis on solving practical pro
 
 | Section | Day  | Time   | Location |
 |----------|----------|--------|------|
-| CPSC 330 101 | Tue/Thu  | 3:30 - 4:50 PM  | MCML 360 |
+| CPSC 330 101 | Tue/Thu  | 3:30 - 4:50 PM  | SWNG 121 |
 | CPSC 330 102 | Tue/Thu  | 11:00 - 12:20 PM  | SWNG 221 |
 
 **Tutorials and office hours**:
