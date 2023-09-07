@@ -350,7 +350,10 @@ document.write(`
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eva-s-questions">🤔 Eva’s questions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-workflow">Machine learning workflow</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-for-you">❓❓ Questions for you</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-for-you">❓❓ Questions for you</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-cloud-join-link-https-join-iclicker-com-snbf">iClicker cloud join link: https://join.iclicker.com/SNBF</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select-all-of-the-following-statements-which-are-true-iclicker">Select all of the following statements which are <strong>True</strong> (iClicker)</a></li>
 </ul>
 </li>
@@ -399,26 +402,17 @@ document.write(`
 <h2>Imports<a class="headerlink" href="#imports" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;code/.&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">),</span> <span class="s2">&quot;code&quot;</span><span class="p">))</span>
-<span class="kn">import</span> <span class="nn">graphviz</span>
-<span class="kn">import</span> <span class="nn">IPython</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">display</span>
-<span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span>
 <span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span><span class="p">,</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">make_pipeline</span>
-<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span><span class="p">,</span> <span class="n">DecisionTreeRegressor</span><span class="p">,</span> <span class="n">export_graphviz</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">16</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_colwidth&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
@@ -441,7 +435,7 @@ document.write(`
 <section id="characters-in-this-course">
 <h2>Characters in this course?<a class="headerlink" href="#characters-in-this-course" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>CPSC 330 teaching team (me and the TAs)</p></li>
+<li><p>CPSC 330 teaching team (instructors, our course coordinator, and the TAs)</p></li>
 <li><p>Eva (a fictitious enthusiastic student)</p></li>
 <li><p>And you all, of course 🙂!</p></li>
 </ul>
@@ -711,13 +705,7 @@ There is also <a class="reference external" href="https://docs.google.com/docume
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">],</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
 <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">],</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
-
-<span class="n">clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
-    <span class="p">[</span>
-        <span class="p">(</span><span class="s2">&quot;vect&quot;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">5000</span><span class="p">)),</span>
-        <span class="p">(</span><span class="s2">&quot;clf&quot;</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">5000</span><span class="p">)),</span>
-    <span class="p">]</span>
-<span class="p">)</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">5000</span><span class="p">),</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">5000</span><span class="p">))</span>
 <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -792,38 +780,38 @@ There is also <a class="reference external" href="https://docs.google.com/docume
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
-#T_ac9bb_row0_col0, #T_ac9bb_row0_col1, #T_ac9bb_row1_col0, #T_ac9bb_row1_col1, #T_ac9bb_row2_col0, #T_ac9bb_row2_col1, #T_ac9bb_row3_col0, #T_ac9bb_row3_col1 {
+#T_6ff6f_row0_col0, #T_6ff6f_row0_col1, #T_6ff6f_row1_col0, #T_6ff6f_row1_col1, #T_6ff6f_row2_col0, #T_6ff6f_row2_col1, #T_6ff6f_row3_col0, #T_6ff6f_row3_col1 {
   text-align: left;
 }
 </style>
-<table id="T_ac9bb">
+<table id="T_6ff6f">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_ac9bb_level0_col0" class="col_heading level0 col0" >sms</th>
-      <th id="T_ac9bb_level0_col1" class="col_heading level0 col1" >spam_predictions</th>
+      <th id="T_6ff6f_level0_col0" class="col_heading level0 col0" >sms</th>
+      <th id="T_6ff6f_level0_col1" class="col_heading level0 col1" >spam_predictions</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_ac9bb_level0_row0" class="row_heading level0 row0" >3245</th>
-      <td id="T_ac9bb_row0_col0" class="data row0 col0" >Funny fact Nobody teaches volcanoes 2 erupt, tsunamis 2 arise, hurricanes 2 sway aroundn no 1 teaches hw 2 choose a wife Natural disasters just happens</td>
-      <td id="T_ac9bb_row0_col1" class="data row0 col1" >ham</td>
+      <th id="T_6ff6f_level0_row0" class="row_heading level0 row0" >3245</th>
+      <td id="T_6ff6f_row0_col0" class="data row0 col0" >Funny fact Nobody teaches volcanoes 2 erupt, tsunamis 2 arise, hurricanes 2 sway aroundn no 1 teaches hw 2 choose a wife Natural disasters just happens</td>
+      <td id="T_6ff6f_row0_col1" class="data row0 col1" >ham</td>
     </tr>
     <tr>
-      <th id="T_ac9bb_level0_row1" class="row_heading level0 row1" >944</th>
-      <td id="T_ac9bb_row1_col0" class="data row1 col0" >I sent my scores to sophas and i had to do secondary application for a few schools. I think if you are thinking of applying, do a research on cost also. Contact joke ogunrinde, her school is one me the less expensive ones</td>
-      <td id="T_ac9bb_row1_col1" class="data row1 col1" >ham</td>
+      <th id="T_6ff6f_level0_row1" class="row_heading level0 row1" >944</th>
+      <td id="T_6ff6f_row1_col0" class="data row1 col0" >I sent my scores to sophas and i had to do secondary application for a few schools. I think if you are thinking of applying, do a research on cost also. Contact joke ogunrinde, her school is one me the less expensive ones</td>
+      <td id="T_6ff6f_row1_col1" class="data row1 col1" >ham</td>
     </tr>
     <tr>
-      <th id="T_ac9bb_level0_row2" class="row_heading level0 row2" >1044</th>
-      <td id="T_ac9bb_row2_col0" class="data row2 col0" >We know someone who you know that fancies you. Call 09058097218 to find out who. POBox 6, LS15HB 150p</td>
-      <td id="T_ac9bb_row2_col1" class="data row2 col1" >spam</td>
+      <th id="T_6ff6f_level0_row2" class="row_heading level0 row2" >1044</th>
+      <td id="T_6ff6f_row2_col0" class="data row2 col0" >We know someone who you know that fancies you. Call 09058097218 to find out who. POBox 6, LS15HB 150p</td>
+      <td id="T_6ff6f_row2_col1" class="data row2 col1" >spam</td>
     </tr>
     <tr>
-      <th id="T_ac9bb_level0_row3" class="row_heading level0 row3" >2484</th>
-      <td id="T_ac9bb_row3_col0" class="data row3 col0" >Only if you promise your getting out as SOON as you can. And you'll text me in the morning to let me know you made it in ok.</td>
-      <td id="T_ac9bb_row3_col1" class="data row3 col1" >ham</td>
+      <th id="T_6ff6f_level0_row3" class="row_heading level0 row3" >2484</th>
+      <td id="T_6ff6f_row3_col0" class="data row3 col0" >Only if you promise your getting out as SOON as you can. And you'll text me in the morning to let me know you made it in ok.</td>
+      <td id="T_6ff6f_row3_col1" class="data row3 col1" >ham</td>
     </tr>
   </tbody>
 </table>
@@ -1268,12 +1256,7 @@ Walker hound, Walker foxhound              0.582
 <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;review&quot;</span><span class="p">],</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
 <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;review&quot;</span><span class="p">],</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
 
-<span class="n">clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
-    <span class="p">[</span>
-        <span class="p">(</span><span class="s2">&quot;vect&quot;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">5000</span><span class="p">)),</span>
-        <span class="p">(</span><span class="s2">&quot;clf&quot;</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">5000</span><span class="p">)),</span>
-    <span class="p">]</span>
-<span class="p">)</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">5000</span><span class="p">),</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">5000</span><span class="p">))</span>
 <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -1293,38 +1276,38 @@ Walker hound, Walker foxhound              0.582
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
-#T_82bcc_row0_col0, #T_82bcc_row0_col1, #T_82bcc_row1_col0, #T_82bcc_row1_col1, #T_82bcc_row2_col0, #T_82bcc_row2_col1, #T_82bcc_row3_col0, #T_82bcc_row3_col1 {
+#T_81179_row0_col0, #T_81179_row0_col1, #T_81179_row1_col0, #T_81179_row1_col1, #T_81179_row2_col0, #T_81179_row2_col1, #T_81179_row3_col0, #T_81179_row3_col1 {
   text-align: left;
 }
 </style>
-<table id="T_82bcc">
+<table id="T_81179">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_82bcc_level0_col0" class="col_heading level0 col0" >reviews</th>
-      <th id="T_82bcc_level0_col1" class="col_heading level0 col1" >sentiment_predictions</th>
+      <th id="T_81179_level0_col0" class="col_heading level0 col0" >reviews</th>
+      <th id="T_81179_level0_col1" class="col_heading level0 col1" >sentiment_predictions</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_82bcc_level0_row0" class="row_heading level0 row0" >11872</th>
-      <td id="T_82bcc_row0_col0" class="data row0 col0" >You'll feel like you've experienced a vacation in Hell after you have sat down and watched this horrible TV movie. This movie is an exercise in over-acting (very bad over-acting) to situations that made out to be more than what they are. I won't give away the plot, but once you realize why the people in this film are running from the native man in the film you will demand the two wasted hours of your life back. The only plus is seeing Marcia Brady running around in a bikini!</td>
-      <td id="T_82bcc_row0_col1" class="data row0 col1" >neg</td>
+      <th id="T_81179_level0_row0" class="row_heading level0 row0" >11872</th>
+      <td id="T_81179_row0_col0" class="data row0 col0" >You'll feel like you've experienced a vacation in Hell after you have sat down and watched this horrible TV movie. This movie is an exercise in over-acting (very bad over-acting) to situations that made out to be more than what they are. I won't give away the plot, but once you realize why the people in this film are running from the native man in the film you will demand the two wasted hours of your life back. The only plus is seeing Marcia Brady running around in a bikini!</td>
+      <td id="T_81179_row0_col1" class="data row0 col1" >neg</td>
     </tr>
     <tr>
-      <th id="T_82bcc_level0_row1" class="row_heading level0 row1" >40828</th>
-      <td id="T_82bcc_row1_col0" class="data row1 col0" >Bela Lugosi gets to play one of his rare good guy roles in a serial based upon the long running radio hit (which was also the source of a feature film where Lugosi played the villain.) Lugosi cuts a fine dashing figure and its sad that he didn't get more roles where he could be the guy in command in a good way. Here Chandu returns from the East in order to help the Princess Nadji who is being hunted by the leaders of the cult of Ubasti who need her to bring back from the dead the high priestess of their cult. This is a good looking globe trotting serial that is a great deal of fun. To be certain the pacing is a bit slack, more akin to one of Principals (the producing studios) features then a rip roaring adventure, but it's still enjoyable. This plays better than the two feature films that were cut from it because it allows for things to happen at their own pace instead of feeling rushed or having a sense that "hey I missed something". One of the trilogy of three good serials Lugosi made, the others being SOS Coast Guard and Phantom Creeps</td>
-      <td id="T_82bcc_row1_col1" class="data row1 col1" >pos</td>
+      <th id="T_81179_level0_row1" class="row_heading level0 row1" >40828</th>
+      <td id="T_81179_row1_col0" class="data row1 col0" >Bela Lugosi gets to play one of his rare good guy roles in a serial based upon the long running radio hit (which was also the source of a feature film where Lugosi played the villain.) Lugosi cuts a fine dashing figure and its sad that he didn't get more roles where he could be the guy in command in a good way. Here Chandu returns from the East in order to help the Princess Nadji who is being hunted by the leaders of the cult of Ubasti who need her to bring back from the dead the high priestess of their cult. This is a good looking globe trotting serial that is a great deal of fun. To be certain the pacing is a bit slack, more akin to one of Principals (the producing studios) features then a rip roaring adventure, but it's still enjoyable. This plays better than the two feature films that were cut from it because it allows for things to happen at their own pace instead of feeling rushed or having a sense that "hey I missed something". One of the trilogy of three good serials Lugosi made, the others being SOS Coast Guard and Phantom Creeps</td>
+      <td id="T_81179_row1_col1" class="data row1 col1" >pos</td>
     </tr>
     <tr>
-      <th id="T_82bcc_level0_row2" class="row_heading level0 row2" >36400</th>
-      <td id="T_82bcc_row2_col0" class="data row2 col0" >When you wish for the dragon to eat every cast member, you know you're in for a bad ride.<br /><br />I went in with very, very low expectations, having read some of the other comments, and was not let down. Unlike some other cheap and failed movies, however, this one doesn't really remain hilariously (and unintentionally) funny throughout.<br /><br />-SPOILERS FOLLOW-<br /><br />First of all, plot it very inconsistent. Looking past the "small" mistakes, such as the dragon growing up in 3 hours, the whole idea it's based on is messed up. See, the movie wants us to believe that dragons came from outer space in the form of meteorites which really were dragon eggs. After explaining this, they show some peasant poking at one with his pitchfork and the dragon pops out. Later, the obligatory "crazy scientist" guy babbles on about how dragons outlived the dinosaurs. So apparently humans were around when dinosaurs were, or we just have a fine little plot hole here. The other major thing is that the lab is blown up with a force "half as strong" as what was used for Hiroshima. Then two guys later walk in to check everything out, and it's almost unscathed! There's even another dragon, which grew out of who knows what. All in all it's very predictable. As soon as the guy mentioned cloning, I guessed they'd clone a dragon. That means that our Mr. Smarty-pants security guy isn't so intuitive and smart as the movie would have you believe, if you ignore that I knew this film would be about, you know, dragons.<br /><br />Putting that aside, the second worst thing is the "special effects." Others have mentioned the fake rocks falling during the beginning, the CG helicopter, and the dragon. It looks a bit better than a blob, but it ruined whatever it had going for it when it trudged down the hall in the same manner time after time. To their credit, the flying dragons in the beginning looked OK from far away (although the one in the cave is probably the worst one in the whole movie.) These things are funny to watch, however. The scenes where a million different shots of the same person facing different ways are shown are not. Nor are the "introduction" screens with the vital stats.<br /><br />Coming to the actors, they weren't the greatest, but I guess at least they tried? They seemed more enthusiastic about what they were doing than many of the actors participating in the recent "BloodRayne," for example, and you've got to give them points for that. One thing I noticed though was that the woman who plays Meredith often had her face covered in make-up that was many tones lighter than the rest of her. She looked like she had a bad run-in with some white-face.<br /><br />The script is bad and cheesy. You don't really notice the music, but it's actually not too bad for the most part.<br /><br />The bottom line is don't watch it unless you want to see it because you hear it's bad (like I did), although the only funny things are the bad CG effects. Other than that, don't waste your time and money.</td>
-      <td id="T_82bcc_row2_col1" class="data row2 col1" >neg</td>
+      <th id="T_81179_level0_row2" class="row_heading level0 row2" >36400</th>
+      <td id="T_81179_row2_col0" class="data row2 col0" >When you wish for the dragon to eat every cast member, you know you're in for a bad ride.<br /><br />I went in with very, very low expectations, having read some of the other comments, and was not let down. Unlike some other cheap and failed movies, however, this one doesn't really remain hilariously (and unintentionally) funny throughout.<br /><br />-SPOILERS FOLLOW-<br /><br />First of all, plot it very inconsistent. Looking past the "small" mistakes, such as the dragon growing up in 3 hours, the whole idea it's based on is messed up. See, the movie wants us to believe that dragons came from outer space in the form of meteorites which really were dragon eggs. After explaining this, they show some peasant poking at one with his pitchfork and the dragon pops out. Later, the obligatory "crazy scientist" guy babbles on about how dragons outlived the dinosaurs. So apparently humans were around when dinosaurs were, or we just have a fine little plot hole here. The other major thing is that the lab is blown up with a force "half as strong" as what was used for Hiroshima. Then two guys later walk in to check everything out, and it's almost unscathed! There's even another dragon, which grew out of who knows what. All in all it's very predictable. As soon as the guy mentioned cloning, I guessed they'd clone a dragon. That means that our Mr. Smarty-pants security guy isn't so intuitive and smart as the movie would have you believe, if you ignore that I knew this film would be about, you know, dragons.<br /><br />Putting that aside, the second worst thing is the "special effects." Others have mentioned the fake rocks falling during the beginning, the CG helicopter, and the dragon. It looks a bit better than a blob, but it ruined whatever it had going for it when it trudged down the hall in the same manner time after time. To their credit, the flying dragons in the beginning looked OK from far away (although the one in the cave is probably the worst one in the whole movie.) These things are funny to watch, however. The scenes where a million different shots of the same person facing different ways are shown are not. Nor are the "introduction" screens with the vital stats.<br /><br />Coming to the actors, they weren't the greatest, but I guess at least they tried? They seemed more enthusiastic about what they were doing than many of the actors participating in the recent "BloodRayne," for example, and you've got to give them points for that. One thing I noticed though was that the woman who plays Meredith often had her face covered in make-up that was many tones lighter than the rest of her. She looked like she had a bad run-in with some white-face.<br /><br />The script is bad and cheesy. You don't really notice the music, but it's actually not too bad for the most part.<br /><br />The bottom line is don't watch it unless you want to see it because you hear it's bad (like I did), although the only funny things are the bad CG effects. Other than that, don't waste your time and money.</td>
+      <td id="T_81179_row2_col1" class="data row2 col1" >neg</td>
     </tr>
     <tr>
-      <th id="T_82bcc_level0_row3" class="row_heading level0 row3" >5166</th>
-      <td id="T_82bcc_row3_col0" class="data row3 col0" >Sorry, but Jacqueline Hyde (get it??? - Jack L and Hyde - Jekyll & Hyde) has some of the worst acting this side of hardcore porn, not to mention a script apparently written by a first-grader with undiagnosed learning disabilities.<br /><br />Jackie Hyde inherits an old mansion by a grandfather she never knew she had. Guess who? Yes, an inventor of the special formula that slowly takes over one's body and mind - yes, that Mr. Hyde! <br /><br />Despite some nice skin scenes, this film fails to register any feeling or emotion other than uncontrollable laughter.<br /><br />As much as poor Jackie tries she just can't stay away from granddaddy's special formula and the result is an hour and half of wasted time.</td>
-      <td id="T_82bcc_row3_col1" class="data row3 col1" >neg</td>
+      <th id="T_81179_level0_row3" class="row_heading level0 row3" >5166</th>
+      <td id="T_81179_row3_col0" class="data row3 col0" >Sorry, but Jacqueline Hyde (get it??? - Jack L and Hyde - Jekyll & Hyde) has some of the worst acting this side of hardcore porn, not to mention a script apparently written by a first-grader with undiagnosed learning disabilities.<br /><br />Jackie Hyde inherits an old mansion by a grandfather she never knew she had. Guess who? Yes, an inventor of the special formula that slowly takes over one's body and mind - yes, that Mr. Hyde! <br /><br />Despite some nice skin scenes, this film fails to register any feeling or emotion other than uncontrollable laughter.<br /><br />As much as poor Jackie tries she just can't stay away from granddaddy's special formula and the result is an hour and half of wasted time.</td>
+      <td id="T_81179_row3_col1" class="data row3 col1" >neg</td>
     </tr>
   </tbody>
 </table>
@@ -1497,19 +1480,8 @@ Walker hound, Walker foxhound              0.582
 <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]),</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
 <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]),</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">LGBMRegressor</span><span class="p">()</span>
-<span class="c1">#model = XGBRegressor()</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LGBMRegressor</span><span class="p">(</span><span class="n">verbose</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LightGBM] [Warning] Auto-choosing row-wise multi-threading, the overhead of testing was 0.002747 seconds.
-You can set `force_row_wise=true` to remove the overhead.
-And if memory is not enough, you can set `force_col_wise=true`.
-[LightGBM] [Info] Total Bins 2333
-[LightGBM] [Info] Number of data points in the train set: 17290, number of used features: 18
-[LightGBM] [Info] Start training from score 539762.702545
 </pre></div>
 </div>
 </div>
@@ -1668,7 +1640,9 @@ And if memory is not enough, you can set `force_col_wise=true`.
 </section>
 <section id="questions-for-you">
 <h3>❓❓ Questions for you<a class="headerlink" href="#questions-for-you" title="Permalink to this heading">#</a></h3>
-<p>iClicker cloud join link: https://join.iclicker.com/3DP5H</p>
+<section id="iclicker-cloud-join-link-https-join-iclicker-com-snbf">
+<h4>iClicker cloud join link: https://join.iclicker.com/SNBF<a class="headerlink" href="#iclicker-cloud-join-link-https-join-iclicker-com-snbf" title="Permalink to this heading">#</a></h4>
+</section>
 </section>
 <section id="select-all-of-the-following-statements-which-are-true-iclicker">
 <h3>Select all of the following statements which are <strong>True</strong> (iClicker)<a class="headerlink" href="#select-all-of-the-following-statements-which-are-true-iclicker" title="Permalink to this heading">#</a></h3>
@@ -1686,7 +1660,7 @@ And if memory is not enough, you can set `force_col_wise=true`.
 <section id="surveys-8-min">
 <h2>Surveys (~8 min)<a class="headerlink" href="#surveys-8-min" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Please complete the “Getting to know you” survey on <a class="reference external" href="https://canvas.ubc.ca/courses/101888/quizzes">Canvas</a>.</p></li>
+<li><p>Please complete the “Getting to know you” survey on <a class="reference external" href="https://canvas.ubc.ca/courses/123439/quizzes">Canvas</a>.</p></li>
 <li><p>Also, please complete the anonymous restaurant survey on Qualtrics <a class="reference external" href="https://ubc.ca1.qualtrics.com/jfe/form/SV_73VuZiuwM1eDVrw">here</a>.</p>
 <ul>
 <li><p>We will try to analyze this data set in the coming weeks.</p></li>
@@ -1867,13 +1841,13 @@ which explains the difference between two courses.</p>
 <ul class="simple">
 <li><p>Lots of code snippets in Jupyter.</p></li>
 <li><p>There will be some <a class="reference external" href="https://www.youtube.com/channel/UC40oUwJPrUmhsYdURk8OjqA">YouTube videos</a> to watch before the lecture.</p></li>
-<li><p>We will also try to work on some questions and exercises together during the class.</p></li>
-<li><p>All materials will be posted on the course website and <a class="reference external" href="https://ubc-cs.github.io/cpsc330-2023W1/README.html">this Jupyter book</a>.</p></li>
+<li><p>We will also try to work on some iClicker and Worksheets during the class.</p></li>
+<li><p>All materials will be posted on the course website and <a class="reference external" href="https://ubc-cs.github.io/cpsc330-2023W1">this Jupyter book</a>.</p></li>
 </ul>
 <section id="lecture-notes">
 <h4>Lecture notes<a class="headerlink" href="#lecture-notes" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>All the lectures from last year are already <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2023W1/">available on the course website</a>.</p></li>
+<li><p>All the lectures from last year are already <a class="reference external" href="https://github.com/UBC-CS/cpsc330">available on the course website</a>.</p></li>
 <li><p>I cannot promise anything will stay the same from last year to this year, so read them in advance at your own risk.</p></li>
 <li><p>A “finalized” version will be pushed to <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2023W1/">GitHub</a>.</p></li>
 </ul>
@@ -2061,7 +2035,10 @@ but you can find some useful Python resources <a class="reference external" href
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eva-s-questions">🤔 Eva’s questions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-workflow">Machine learning workflow</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-for-you">❓❓ Questions for you</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-for-you">❓❓ Questions for you</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-cloud-join-link-https-join-iclicker-com-snbf">iClicker cloud join link: https://join.iclicker.com/SNBF</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select-all-of-the-following-statements-which-are-true-iclicker">Select all of the following statements which are <strong>True</strong> (iClicker)</a></li>
 </ul>
 </li>
