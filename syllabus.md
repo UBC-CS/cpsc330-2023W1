@@ -54,7 +54,7 @@ The grading scheme for the course is as follows:
 |-------------|-----------------|------------|
 | Syllabus quiz |   1%          | [Canvas]() | 
 | iClicker participation |   2% | [iClicker Cloud]() | 
-| Worksheets |   5% | [iClicker Cloud]() | 
+| Worksheets |   5% | [Gradescope]() | 
 | Assignments |     20%         | [Gradescope]() |
 | Midterm     |     22%         | [Canvas]()     |
 | Final       |     50%         | [Canvas]()     |
