@@ -63,11 +63,9 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/01_intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/old_01_intro';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Attributions" href="../attribution.html" />
-    <link rel="prev" title="CPSC 330 Documents" href="../docs/README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -156,8 +154,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../docs/README.html">CPSC 330 Documents</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 1: Course Introduction</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_intro.html">Lecture 1: Course Introduction</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -217,7 +215,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/lectures/01_intro.ipynb" target="_blank"
+      <li><a href="../_sources/lectures/old_01_intro.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -312,7 +310,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes">Learning outcomes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#characters-in-this-course">Characters in this course?</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#meet-your-cpsc-330-instructors">Meet your CPSC 330 instructors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#meet-your-cpsc-330-instructor-section-101">Meet your CPSC 330 instructor (Section 101)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#meet-your-cpsc-330-instructor-section-102">Meet your CPSC 330 instructor (Section 102)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#course-co-ordinator">Course co-ordinator</a></li>
 </ul>
 </li>
@@ -409,7 +408,6 @@ document.write(`
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;code/.&quot;</span><span class="p">)</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">),</span> <span class="s2">&quot;code&quot;</span><span class="p">))</span>
 <span class="kn">import</span> <span class="nn">graphviz</span>
 <span class="kn">import</span> <span class="nn">IPython</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">display</span>
@@ -441,15 +439,18 @@ document.write(`
 <section id="characters-in-this-course">
 <h2>Characters in this course?<a class="headerlink" href="#characters-in-this-course" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>CPSC 330 teaching team (me and the TAs)</p></li>
+<li><p>CPSC 330 teaching team (instructors, our course coordinator, and the TAs)</p></li>
 <li><p>Eva (a fictitious enthusiastic student)</p></li>
 <li><p>And you all, of course 🙂!</p></li>
 </ul>
-<section id="meet-your-cpsc-330-instructors">
-<h3>Meet your CPSC 330 instructors<a class="headerlink" href="#meet-your-cpsc-330-instructors" title="Permalink to this heading">#</a></h3>
+<section id="meet-your-cpsc-330-instructor-section-101">
+<h3>Meet your CPSC 330 instructor (Section 101)<a class="headerlink" href="#meet-your-cpsc-330-instructor-section-101" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="meet-your-cpsc-330-instructor-section-102">
+<h3>Meet your CPSC 330 instructor (Section 102)<a class="headerlink" href="#meet-your-cpsc-330-instructor-section-102" title="Permalink to this heading">#</a></h3>
 <a class="reference internal image-reference" href="../_images/varada.png"><img alt="../_images/varada.png" src="../_images/varada.png" style="width: 150px; height: 150px;" /></a>
 <ul class="simple">
-<li><p>My name is Varada Kolhatkar [<a class="reference external" href="https://en.wikipedia.org/wiki/International_Phonetic_Alphabet">ʋəɾəda kɔːlɦəʈkər</a>]</p></li>
+<li><p>Varada Kolhatkar [<a class="reference external" href="https://en.wikipedia.org/wiki/International_Phonetic_Alphabet">ʋəɾəda kɔːlɦəʈkər</a>]</p></li>
 <li><p>You can call me Varada. If Varada is hard for you, you can call me <strong>V</strong> or <strong>Ada</strong>.</p></li>
 <li><p>I am an Assistant Professor of Teaching in Computer Science.</p></li>
 <li><p>I did my Ph.D. in Computational Linguistics at the University of Toronto.</p></li>
@@ -461,23 +462,6 @@ document.write(`
 <li><p>Office: ICCS 237</p></li>
 </ul>
 </li>
-</ul>
-<a class="reference internal image-reference" href="../_images/andy.jpg"><img alt="../_images/andy.jpg" src="../_images/andy.jpg" style="width: 150px; height: 150px;" /></a>
-<ul class="simple">
-<li><p>My name is Andrew Roth</p></li>
-<li><p>You can call me Andy.</p></li>
-<li><p>I am an Assistant Professor in Computer Science and Pathlogy &amp; Laboratory Medicine.</p></li>
-<li><p>I am also a Scientist at BC Cancer</p></li>
-<li><p>I did my Ph.D. in Bioinformatics at UBC.</p></li>
-<li><p>I primarily teach computational biology courses and now ML!</p></li>
-<li><p>This is my first time teaching this course.</p></li>
-<li><p>Contact information</p>
-<ul>
-<li><p>Email: aroth&#64;cs.ubc.ca</p></li>
-<li><p>Office: ICCS 339</p></li>
-</ul>
-</li>
-<li><p>My research uses ML and statistics to study cancer.</p></li>
 </ul>
 </section>
 <section id="course-co-ordinator">
@@ -533,13 +517,13 @@ document.write(`
 <li><p>Go to our course webpage:</p></li>
 </ul>
 <blockquote>
-<div><p>https://github.com/UBC-CS/cpsc330</p>
+<div><p>https://github.com/UBC-CS/cpsc330-2023W1</p>
 </div></blockquote>
 <ul class="simple">
 <li><p>Follow the link to Course Jupyter book</p></li>
 </ul>
 <blockquote>
-<div><p>https://ubc-cs.github.io/cpsc330</p>
+<div><p>https://ubc-cs.github.io/cpsc330-2023W1</p>
 </div></blockquote>
 <p>You’ll see the lecture notes rendered as an html there.</p>
 <div class="important admonition">
@@ -789,38 +773,38 @@ There is also <a class="reference external" href="https://docs.google.com/docume
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
-#T_8aec5_row0_col0, #T_8aec5_row0_col1, #T_8aec5_row1_col0, #T_8aec5_row1_col1, #T_8aec5_row2_col0, #T_8aec5_row2_col1, #T_8aec5_row3_col0, #T_8aec5_row3_col1 {
+#T_5b612_row0_col0, #T_5b612_row0_col1, #T_5b612_row1_col0, #T_5b612_row1_col1, #T_5b612_row2_col0, #T_5b612_row2_col1, #T_5b612_row3_col0, #T_5b612_row3_col1 {
   text-align: left;
 }
 </style>
-<table id="T_8aec5">
+<table id="T_5b612">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_8aec5_level0_col0" class="col_heading level0 col0" >sms</th>
-      <th id="T_8aec5_level0_col1" class="col_heading level0 col1" >spam_predictions</th>
+      <th id="T_5b612_level0_col0" class="col_heading level0 col0" >sms</th>
+      <th id="T_5b612_level0_col1" class="col_heading level0 col1" >spam_predictions</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_8aec5_level0_row0" class="row_heading level0 row0" >3245</th>
-      <td id="T_8aec5_row0_col0" class="data row0 col0" >Funny fact Nobody teaches volcanoes 2 erupt, tsunamis 2 arise, hurricanes 2 sway aroundn no 1 teaches hw 2 choose a wife Natural disasters just happens</td>
-      <td id="T_8aec5_row0_col1" class="data row0 col1" >ham</td>
+      <th id="T_5b612_level0_row0" class="row_heading level0 row0" >3245</th>
+      <td id="T_5b612_row0_col0" class="data row0 col0" >Funny fact Nobody teaches volcanoes 2 erupt, tsunamis 2 arise, hurricanes 2 sway aroundn no 1 teaches hw 2 choose a wife Natural disasters just happens</td>
+      <td id="T_5b612_row0_col1" class="data row0 col1" >ham</td>
     </tr>
     <tr>
-      <th id="T_8aec5_level0_row1" class="row_heading level0 row1" >944</th>
-      <td id="T_8aec5_row1_col0" class="data row1 col0" >I sent my scores to sophas and i had to do secondary application for a few schools. I think if you are thinking of applying, do a research on cost also. Contact joke ogunrinde, her school is one me the less expensive ones</td>
-      <td id="T_8aec5_row1_col1" class="data row1 col1" >ham</td>
+      <th id="T_5b612_level0_row1" class="row_heading level0 row1" >944</th>
+      <td id="T_5b612_row1_col0" class="data row1 col0" >I sent my scores to sophas and i had to do secondary application for a few schools. I think if you are thinking of applying, do a research on cost also. Contact joke ogunrinde, her school is one me the less expensive ones</td>
+      <td id="T_5b612_row1_col1" class="data row1 col1" >ham</td>
     </tr>
     <tr>
-      <th id="T_8aec5_level0_row2" class="row_heading level0 row2" >1044</th>
-      <td id="T_8aec5_row2_col0" class="data row2 col0" >We know someone who you know that fancies you. Call 09058097218 to find out who. POBox 6, LS15HB 150p</td>
-      <td id="T_8aec5_row2_col1" class="data row2 col1" >spam</td>
+      <th id="T_5b612_level0_row2" class="row_heading level0 row2" >1044</th>
+      <td id="T_5b612_row2_col0" class="data row2 col0" >We know someone who you know that fancies you. Call 09058097218 to find out who. POBox 6, LS15HB 150p</td>
+      <td id="T_5b612_row2_col1" class="data row2 col1" >spam</td>
     </tr>
     <tr>
-      <th id="T_8aec5_level0_row3" class="row_heading level0 row3" >2484</th>
-      <td id="T_8aec5_row3_col0" class="data row3 col0" >Only if you promise your getting out as SOON as you can. And you'll text me in the morning to let me know you made it in ok.</td>
-      <td id="T_8aec5_row3_col1" class="data row3 col1" >ham</td>
+      <th id="T_5b612_level0_row3" class="row_heading level0 row3" >2484</th>
+      <td id="T_5b612_row3_col0" class="data row3 col0" >Only if you promise your getting out as SOON as you can. And you'll text me in the morning to let me know you made it in ok.</td>
+      <td id="T_5b612_row3_col1" class="data row3 col1" >ham</td>
     </tr>
   </tbody>
 </table>
@@ -1136,9 +1120,9 @@ A field of study that gives computers the ability to learn without being explici
 <p>Suppose you want to predict the label of a given image using supervised machine learning. We are using a pre-trained model here to predict labels of new unseen images.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Assuming that you have successfully created cpsc330 <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment on your computer, you’ll have to install <code class="docutils literal notranslate"><span class="pre">torchvision</span></code> in cpsc330 <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment to run the following code. If you are unable to install <code class="docutils literal notranslate"><span class="pre">torchvision</span></code> on your laptop, please don’t worry at this point. It’s not crucial at this point.</p>
+<p>Assuming that you have successfully created cpsc330-2023W1 <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment on your computer, you’ll have to install <code class="docutils literal notranslate"><span class="pre">torchvision</span></code> in cpsc330-2023W1 <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment to run the following code. If you are unable to install <code class="docutils literal notranslate"><span class="pre">torchvision</span></code> on your laptop, please don’t worry at this point. It’s not crucial at this point.</p>
 <blockquote>
-<div><p>conda activate cpsc330
+<div><p>conda activate cpsc330-2023W1
 conda install -c pytorch torchvision</p>
 </div></blockquote>
 </div>
@@ -1164,6 +1148,12 @@ conda install -c pytorch torchvision</p>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter &#39;pretrained&#39; is deprecated since 0.13 and may be removed in the future, please use &#39;weights&#39; instead.
+  warnings.warn(
+/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for &#39;weights&#39; are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+</pre></div>
+</div>
 <img alt="../_images/8531251d4f7823eac8161ae3b2e6facdcaabd598a4e380c86abba4393e3fb0ff.png" src="../_images/8531251d4f7823eac8161ae3b2e6facdcaabd598a4e380c86abba4393e3fb0ff.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cheetah, chetah, Acinonyx jubatus
 --------------------------------------------------------------
@@ -1275,38 +1265,38 @@ conda install -c pytorch torchvision</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
-#T_499bd_row0_col0, #T_499bd_row0_col1, #T_499bd_row1_col0, #T_499bd_row1_col1, #T_499bd_row2_col0, #T_499bd_row2_col1, #T_499bd_row3_col0, #T_499bd_row3_col1 {
+#T_f377d_row0_col0, #T_f377d_row0_col1, #T_f377d_row1_col0, #T_f377d_row1_col1, #T_f377d_row2_col0, #T_f377d_row2_col1, #T_f377d_row3_col0, #T_f377d_row3_col1 {
   text-align: left;
 }
 </style>
-<table id="T_499bd">
+<table id="T_f377d">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_499bd_level0_col0" class="col_heading level0 col0" >reviews</th>
-      <th id="T_499bd_level0_col1" class="col_heading level0 col1" >sentiment_predictions</th>
+      <th id="T_f377d_level0_col0" class="col_heading level0 col0" >reviews</th>
+      <th id="T_f377d_level0_col1" class="col_heading level0 col1" >sentiment_predictions</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_499bd_level0_row0" class="row_heading level0 row0" >11872</th>
-      <td id="T_499bd_row0_col0" class="data row0 col0" >You'll feel like you've experienced a vacation in Hell after you have sat down and watched this horrible TV movie. This movie is an exercise in over-acting (very bad over-acting) to situations that made out to be more than what they are. I won't give away the plot, but once you realize why the people in this film are running from the native man in the film you will demand the two wasted hours of your life back. The only plus is seeing Marcia Brady running around in a bikini!</td>
-      <td id="T_499bd_row0_col1" class="data row0 col1" >neg</td>
+      <th id="T_f377d_level0_row0" class="row_heading level0 row0" >11872</th>
+      <td id="T_f377d_row0_col0" class="data row0 col0" >You'll feel like you've experienced a vacation in Hell after you have sat down and watched this horrible TV movie. This movie is an exercise in over-acting (very bad over-acting) to situations that made out to be more than what they are. I won't give away the plot, but once you realize why the people in this film are running from the native man in the film you will demand the two wasted hours of your life back. The only plus is seeing Marcia Brady running around in a bikini!</td>
+      <td id="T_f377d_row0_col1" class="data row0 col1" >neg</td>
     </tr>
     <tr>
-      <th id="T_499bd_level0_row1" class="row_heading level0 row1" >40828</th>
-      <td id="T_499bd_row1_col0" class="data row1 col0" >Bela Lugosi gets to play one of his rare good guy roles in a serial based upon the long running radio hit (which was also the source of a feature film where Lugosi played the villain.) Lugosi cuts a fine dashing figure and its sad that he didn't get more roles where he could be the guy in command in a good way. Here Chandu returns from the East in order to help the Princess Nadji who is being hunted by the leaders of the cult of Ubasti who need her to bring back from the dead the high priestess of their cult. This is a good looking globe trotting serial that is a great deal of fun. To be certain the pacing is a bit slack, more akin to one of Principals (the producing studios) features then a rip roaring adventure, but it's still enjoyable. This plays better than the two feature films that were cut from it because it allows for things to happen at their own pace instead of feeling rushed or having a sense that "hey I missed something". One of the trilogy of three good serials Lugosi made, the others being SOS Coast Guard and Phantom Creeps</td>
-      <td id="T_499bd_row1_col1" class="data row1 col1" >pos</td>
+      <th id="T_f377d_level0_row1" class="row_heading level0 row1" >40828</th>
+      <td id="T_f377d_row1_col0" class="data row1 col0" >Bela Lugosi gets to play one of his rare good guy roles in a serial based upon the long running radio hit (which was also the source of a feature film where Lugosi played the villain.) Lugosi cuts a fine dashing figure and its sad that he didn't get more roles where he could be the guy in command in a good way. Here Chandu returns from the East in order to help the Princess Nadji who is being hunted by the leaders of the cult of Ubasti who need her to bring back from the dead the high priestess of their cult. This is a good looking globe trotting serial that is a great deal of fun. To be certain the pacing is a bit slack, more akin to one of Principals (the producing studios) features then a rip roaring adventure, but it's still enjoyable. This plays better than the two feature films that were cut from it because it allows for things to happen at their own pace instead of feeling rushed or having a sense that "hey I missed something". One of the trilogy of three good serials Lugosi made, the others being SOS Coast Guard and Phantom Creeps</td>
+      <td id="T_f377d_row1_col1" class="data row1 col1" >pos</td>
     </tr>
     <tr>
-      <th id="T_499bd_level0_row2" class="row_heading level0 row2" >36400</th>
-      <td id="T_499bd_row2_col0" class="data row2 col0" >When you wish for the dragon to eat every cast member, you know you're in for a bad ride.<br /><br />I went in with very, very low expectations, having read some of the other comments, and was not let down. Unlike some other cheap and failed movies, however, this one doesn't really remain hilariously (and unintentionally) funny throughout.<br /><br />-SPOILERS FOLLOW-<br /><br />First of all, plot it very inconsistent. Looking past the "small" mistakes, such as the dragon growing up in 3 hours, the whole idea it's based on is messed up. See, the movie wants us to believe that dragons came from outer space in the form of meteorites which really were dragon eggs. After explaining this, they show some peasant poking at one with his pitchfork and the dragon pops out. Later, the obligatory "crazy scientist" guy babbles on about how dragons outlived the dinosaurs. So apparently humans were around when dinosaurs were, or we just have a fine little plot hole here. The other major thing is that the lab is blown up with a force "half as strong" as what was used for Hiroshima. Then two guys later walk in to check everything out, and it's almost unscathed! There's even another dragon, which grew out of who knows what. All in all it's very predictable. As soon as the guy mentioned cloning, I guessed they'd clone a dragon. That means that our Mr. Smarty-pants security guy isn't so intuitive and smart as the movie would have you believe, if you ignore that I knew this film would be about, you know, dragons.<br /><br />Putting that aside, the second worst thing is the "special effects." Others have mentioned the fake rocks falling during the beginning, the CG helicopter, and the dragon. It looks a bit better than a blob, but it ruined whatever it had going for it when it trudged down the hall in the same manner time after time. To their credit, the flying dragons in the beginning looked OK from far away (although the one in the cave is probably the worst one in the whole movie.) These things are funny to watch, however. The scenes where a million different shots of the same person facing different ways are shown are not. Nor are the "introduction" screens with the vital stats.<br /><br />Coming to the actors, they weren't the greatest, but I guess at least they tried? They seemed more enthusiastic about what they were doing than many of the actors participating in the recent "BloodRayne," for example, and you've got to give them points for that. One thing I noticed though was that the woman who plays Meredith often had her face covered in make-up that was many tones lighter than the rest of her. She looked like she had a bad run-in with some white-face.<br /><br />The script is bad and cheesy. You don't really notice the music, but it's actually not too bad for the most part.<br /><br />The bottom line is don't watch it unless you want to see it because you hear it's bad (like I did), although the only funny things are the bad CG effects. Other than that, don't waste your time and money.</td>
-      <td id="T_499bd_row2_col1" class="data row2 col1" >neg</td>
+      <th id="T_f377d_level0_row2" class="row_heading level0 row2" >36400</th>
+      <td id="T_f377d_row2_col0" class="data row2 col0" >When you wish for the dragon to eat every cast member, you know you're in for a bad ride.<br /><br />I went in with very, very low expectations, having read some of the other comments, and was not let down. Unlike some other cheap and failed movies, however, this one doesn't really remain hilariously (and unintentionally) funny throughout.<br /><br />-SPOILERS FOLLOW-<br /><br />First of all, plot it very inconsistent. Looking past the "small" mistakes, such as the dragon growing up in 3 hours, the whole idea it's based on is messed up. See, the movie wants us to believe that dragons came from outer space in the form of meteorites which really were dragon eggs. After explaining this, they show some peasant poking at one with his pitchfork and the dragon pops out. Later, the obligatory "crazy scientist" guy babbles on about how dragons outlived the dinosaurs. So apparently humans were around when dinosaurs were, or we just have a fine little plot hole here. The other major thing is that the lab is blown up with a force "half as strong" as what was used for Hiroshima. Then two guys later walk in to check everything out, and it's almost unscathed! There's even another dragon, which grew out of who knows what. All in all it's very predictable. As soon as the guy mentioned cloning, I guessed they'd clone a dragon. That means that our Mr. Smarty-pants security guy isn't so intuitive and smart as the movie would have you believe, if you ignore that I knew this film would be about, you know, dragons.<br /><br />Putting that aside, the second worst thing is the "special effects." Others have mentioned the fake rocks falling during the beginning, the CG helicopter, and the dragon. It looks a bit better than a blob, but it ruined whatever it had going for it when it trudged down the hall in the same manner time after time. To their credit, the flying dragons in the beginning looked OK from far away (although the one in the cave is probably the worst one in the whole movie.) These things are funny to watch, however. The scenes where a million different shots of the same person facing different ways are shown are not. Nor are the "introduction" screens with the vital stats.<br /><br />Coming to the actors, they weren't the greatest, but I guess at least they tried? They seemed more enthusiastic about what they were doing than many of the actors participating in the recent "BloodRayne," for example, and you've got to give them points for that. One thing I noticed though was that the woman who plays Meredith often had her face covered in make-up that was many tones lighter than the rest of her. She looked like she had a bad run-in with some white-face.<br /><br />The script is bad and cheesy. You don't really notice the music, but it's actually not too bad for the most part.<br /><br />The bottom line is don't watch it unless you want to see it because you hear it's bad (like I did), although the only funny things are the bad CG effects. Other than that, don't waste your time and money.</td>
+      <td id="T_f377d_row2_col1" class="data row2 col1" >neg</td>
     </tr>
     <tr>
-      <th id="T_499bd_level0_row3" class="row_heading level0 row3" >5166</th>
-      <td id="T_499bd_row3_col0" class="data row3 col0" >Sorry, but Jacqueline Hyde (get it??? - Jack L and Hyde - Jekyll & Hyde) has some of the worst acting this side of hardcore porn, not to mention a script apparently written by a first-grader with undiagnosed learning disabilities.<br /><br />Jackie Hyde inherits an old mansion by a grandfather she never knew she had. Guess who? Yes, an inventor of the special formula that slowly takes over one's body and mind - yes, that Mr. Hyde! <br /><br />Despite some nice skin scenes, this film fails to register any feeling or emotion other than uncontrollable laughter.<br /><br />As much as poor Jackie tries she just can't stay away from granddaddy's special formula and the result is an hour and half of wasted time.</td>
-      <td id="T_499bd_row3_col1" class="data row3 col1" >neg</td>
+      <th id="T_f377d_level0_row3" class="row_heading level0 row3" >5166</th>
+      <td id="T_f377d_row3_col0" class="data row3 col0" >Sorry, but Jacqueline Hyde (get it??? - Jack L and Hyde - Jekyll & Hyde) has some of the worst acting this side of hardcore porn, not to mention a script apparently written by a first-grader with undiagnosed learning disabilities.<br /><br />Jackie Hyde inherits an old mansion by a grandfather she never knew she had. Guess who? Yes, an inventor of the special formula that slowly takes over one's body and mind - yes, that Mr. Hyde! <br /><br />Despite some nice skin scenes, this film fails to register any feeling or emotion other than uncontrollable laughter.<br /><br />As much as poor Jackie tries she just can't stay away from granddaddy's special formula and the result is an hour and half of wasted time.</td>
+      <td id="T_f377d_row3_col1" class="data row3 col1" >neg</td>
     </tr>
   </tbody>
 </table>
@@ -1486,7 +1476,7 @@ conda install -c pytorch torchvision</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LightGBM] [Warning] Auto-choosing row-wise multi-threading, the overhead of testing was 0.001389 seconds.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LightGBM] [Warning] Auto-choosing row-wise multi-threading, the overhead of testing was 0.002626 seconds.
 You can set `force_row_wise=true` to remove the overhead.
 And if memory is not enough, you can set `force_col_wise=true`.
 [LightGBM] [Info] Total Bins 2333
@@ -1691,7 +1681,7 @@ And if memory is not enough, you can set `force_col_wise=true`.
 <h3>Course website<a class="headerlink" href="#course-website" title="Permalink to this heading">#</a></h3>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p><a class="github reference external" href="https://github.com/UBC-CS/cpsc330-2023W1/">UBC-CS/cpsc330-2023W1</a> is the most important link. Please read everything on this GitHub page!</p>
+<p><a class="github reference external" href="https://github.com/UBC-CS/cpsc330-2023W1">UBC-CS/cpsc330-2023W1</a> is the most important link. Please read everything on this GitHub page!</p>
 </div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
@@ -1715,7 +1705,7 @@ which explains the difference between two courses.</p>
 <h3>Registration, waitlist and prerequisites<a class="headerlink" href="#registration-waitlist-and-prerequisites" title="Permalink to this heading">#</a></h3>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Please go through <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2023W1//blob/master/docs/course_info.md#registration">this document</a> carefully before contacting me about these issues. Even then, I am very unlikely to be able to help with registration, waitlist or prerequisite issues.</p>
+<p>Please go through <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2023W1-2023W1/blob/master/docs/course_info.md#registration">this document</a> carefully before contacting me about these issues. Even then, I am very unlikely to be able to help with registration, waitlist or prerequisite issues.</p>
 </div>
 <ul class="simple">
 <li><p>This year, specifically:</p>
@@ -1752,7 +1742,7 @@ which explains the difference between two courses.</p>
 <section id="course-calendar">
 <h3>Course calendar<a class="headerlink" href="#course-calendar" title="Permalink to this heading">#</a></h3>
 <p>Here is our course Calendar. Make sure you check it on a regular basis:</p>
-<p>https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330-2023W1//blob/master/docs/calendar.html</p>
+<p>https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330-2023W1-2023W1/blob/master/docs/calendar.html</p>
 </section>
 <section id="course-structure">
 <h3>Course structure<a class="headerlink" href="#course-structure" title="Permalink to this heading">#</a></h3>
@@ -1783,11 +1773,11 @@ which explains the difference between two courses.</p>
 <section id="code-of-conduct">
 <h3>Code of conduct<a class="headerlink" href="#code-of-conduct" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Our main forum for getting help will be <a class="reference external" href="https://piazza.com/ubc.ca/winterterm12023/cpsc3302023w1">Piazza</a>.</p></li>
+<li><p>Our main forum for getting help will be <a class="reference external" href="https://piazza.com/ubc.ca/winterterm12023/cpsc330-2023W1">Piazza</a>.</p></li>
 </ul>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Please read <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2023W1//blob/master/docs/asking_for_help.md">this entire document about asking for help</a>.
+<p>Please read <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2023W1-2023W1/blob/master/docs/asking_for_help.md">this entire document about asking for help</a>.
 <strong>TLDR:</strong> Be nice.</p>
 </div>
 </section>
@@ -1855,17 +1845,17 @@ which explains the difference between two courses.</p>
 <section id="lecture-notes">
 <h4>Lecture notes<a class="headerlink" href="#lecture-notes" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>All the lectures from last year are already <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2023W1/">available on the course website</a>.</p></li>
+<li><p>All the lectures from last year are already <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2023W1-2023W1">available on the course website</a>.</p></li>
 <li><p>I cannot promise anything will stay the same from last year to this year, so read them in advance at your own risk.</p></li>
-<li><p>A “finalized” version will be pushed to <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2023W1/">GitHub</a>.</p></li>
+<li><p>A “finalized” version will be pushed to <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2023W1-2023W1">GitHub</a>.</p></li>
 </ul>
 </section>
 </section>
 <section id="grades">
 <h3>Grades<a class="headerlink" href="#grades" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>The grading breakdown is <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2023W1//blob/main/syllabus.md#grading-scheme">here</a>.</p></li>
-<li><p>The policy on challenging grades is <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2023W1//blob/master/docs/grades.md">here</a>.</p></li>
+<li><p>The grading breakdown is <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2023W1-2023W1/blob/main/syllabus.md#grading-scheme">here</a>.</p></li>
+<li><p>The policy on challenging grades is <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2023W1-2023W1/blob/master/docs/grades.md">here</a>.</p></li>
 </ul>
 </section>
 </section>
@@ -1880,7 +1870,7 @@ which explains the difference between two courses.</p>
 </ul>
 <p>In this course, we will primarily be using Python, git, GitHub, Canvas, Gradescope, and Piazza.</p>
 <ul class="simple">
-<li><p>Follow the setup instructions <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2023W1//blob/main/docs/setup.md">here</a> to create a course <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment on your computer.</p></li>
+<li><p>Follow the setup instructions <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2023W1-2023W1/blob/main/docs/setup.md">here</a> to create a course <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment on your computer.</p></li>
 <li><p>If you do not have your computer with you, you can partner up with someone and set up your own computer later.</p></li>
 </ul>
 </section>
@@ -1907,10 +1897,10 @@ but you can find some useful Python resources <a class="reference external" href
 <h3>Checklist for you before the next class<a class="headerlink" href="#checklist-for-you-before-the-next-class" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>[ ] Are you able to access course <a class="reference external" href="https://canvas.ubc.ca/courses/123439">Canvas</a> shell?</p></li>
-<li><p>[ ] Are you able to access <a class="reference external" href="https://piazza.com/ubc.ca/winterterm12023/cpsc3302023w1">course Piazza</a>?</p></li>
+<li><p>[ ] Are you able to access <a class="reference external" href="https://piazza.com/ubc.ca/winterterm12023/cpsc330-2023W1">course Piazza</a>?</p></li>
 <li><p>[ ] Are you able to access <a class="reference external" href="https://www.gradescope.ca/courses/11525">Gradescope</a>? (If not, refer to the <a class="reference external" href="https://lthub.ubc.ca/guides/gradescope-student-guide/">Gradescope Student Guide</a>.)</p></li>
 <li><p>[ ] Are you able to access <a class="reference external" href="https://join.iclicker.com/3DP5H">iClicker Cloud</a> for this course?</p></li>
-<li><p>[ ] Did you follow the setup instructions <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2023W1//blob/main/docs/cpsc330env.yml">here</a> to create a course conda environment on your computer?</p></li>
+<li><p>[ ] Did you follow the setup instructions <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2023W1-2023W1/blob/main/docs/cpsc330-env.yml">here</a> to create a course conda environment on your computer?</p></li>
 <li><p>[ ] Did you complete the “Getting to know you” survey on <a class="reference external" href="https://canvas.ubc.ca/courses/123439/quizzes/655087">Canvas</a>?</p></li>
 <li><p>[ ] Did you complete the anonymous <a class="reference external" href="https://ubc.ca1.qualtrics.com/jfe/form/SV_73VuZiuwM1eDVrw">restaurant survey on Qualtrics</a>?</p></li>
 <li><p>[ ] Did you complete the syllabus quiz on Canvas?</p></li>
@@ -1966,24 +1956,6 @@ but you can find some useful Python resources <a class="reference external" href
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="../docs/README.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">CPSC 330 Documents</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../attribution.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Attributions</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div></div>
   
 </div>
@@ -2005,7 +1977,8 @@ but you can find some useful Python resources <a class="reference external" href
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes">Learning outcomes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#characters-in-this-course">Characters in this course?</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#meet-your-cpsc-330-instructors">Meet your CPSC 330 instructors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#meet-your-cpsc-330-instructor-section-101">Meet your CPSC 330 instructor (Section 101)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#meet-your-cpsc-330-instructor-section-102">Meet your CPSC 330 instructor (Section 102)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#course-co-ordinator">Course co-ordinator</a></li>
 </ul>
 </li>

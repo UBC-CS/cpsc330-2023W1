@@ -1,0 +1,54 @@
+Traceback (most recent call last):
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import glob
+import os
+import re
+import sys
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+sys.path.append("../code/.")
+sys.path.append(os.path.join(os.path.abspath(""), "code"))
+import graphviz
+import IPython
+from IPython.display import HTML, display
+from sklearn.dummy import DummyClassifier
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.linear_model import LinearRegression, LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline, make_pipeline
+from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor, export_graphviz
+
+plt.rcParams["font.size"] = 16
+pd.set_option("display.max_colwidth", 200)
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[1], line 12[0m
+[1;32m     10[0m sys[38;5;241m.[39mpath[38;5;241m.[39mappend([38;5;124m"[39m[38;5;124m../code/.[39m[38;5;124m"[39m)
+[1;32m     11[0m sys[38;5;241m.[39mpath[38;5;241m.[39mappend(os[38;5;241m.[39mpath[38;5;241m.[39mjoin(os[38;5;241m.[39mpath[38;5;241m.[39mabspath([38;5;124m"[39m[38;5;124m"[39m), [38;5;124m"[39m[38;5;124mcode[39m[38;5;124m"[39m))
+[0;32m---> 12[0m [38;5;28;01mimport[39;00m [38;5;21;01mgraphviz[39;00m
+[1;32m     13[0m [38;5;28;01mimport[39;00m [38;5;21;01mIPython[39;00m
+[1;32m     14[0m [38;5;28;01mfrom[39;00m [38;5;21;01mIPython[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdisplay[39;00m [38;5;28;01mimport[39;00m HTML, display
+
+[0;31mModuleNotFoundError[0m: No module named 'graphviz'
+
