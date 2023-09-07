@@ -9,7 +9,7 @@ import pandas as pd
 import numpy as np
 
 # Load the VGG16 model pre-trained on ImageNet data
-vgg16 = models.vgg16(pretrained=True)
+vgg16 = models.vgg16(weights='DEFAULT')
 vgg16.eval()  # Set the model to evaluation mode
 
 # Define a function to classify an image
