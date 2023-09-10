@@ -8,6 +8,9 @@ from sklearn.model_selection import cross_validate, train_test_split
 from sklearn.svm import SVC
 from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.ensemble import RandomForestClassifier
+import graphviz
+import imageio
+
 
 def plot_tree_decision_boundary(
     model, X, y, x_label="x-axis", y_label="y-axis", eps=None, ax=None, title=None
@@ -28,7 +31,7 @@ def plot_tree_decision_boundary(
 
 
 def plot_tree_decision_boundary_and_tree(
-    model, X, y, height=6, width=16, x_label="x-axis", y_label="y-axis", eps=None
+    model, X, y, height=6, width=16, fontsize = 9, x_label="x-axis", y_label="y-axis", eps=None
 ):
     fig, ax = plt.subplots(
         1,
@@ -38,13 +41,15 @@ def plot_tree_decision_boundary_and_tree(
         gridspec_kw={"width_ratios": [1.5, 2]},
     )
     plot_tree_decision_boundary(model, X, y, x_label, y_label, eps, ax=ax[0])
-    ax[1].imshow(tree_image(X.columns, model))
+    custom_plot_tree(model, 
+                 feature_names=X.columns.tolist(), 
+                 class_names=['A+', 'not A+'],
+                 impurity=False,
+                 fontsize=fontsize, ax=ax[1])
     ax[1].set_axis_off()
     plt.show()
     
 def plot_fruit_tree(ax=None):
-    import graphviz
-
     if ax is None:
         ax = plt.gca()
     mygraph = graphviz.Digraph(
@@ -64,9 +69,8 @@ def plot_fruit_tree(ax=None):
     mygraph.edge("2", "5", label="True")
     mygraph.edge("2", "6", label="False")
     mygraph.render("tmp")
-    ax.imshow(imread("tmp.png"))
-    ax.set_axis_off()    
-    
+    ax.imshow(imageio.v2.imread("tmp.png"))
+    ax.set_axis_off()        
 
 def plot_knn_clf(X_train, y_train, X_test, n_neighbors=1, class_names=['class 0','class 1'], test_format='star'):
     # credit: This function is based on: https://github.com/amueller/mglearn/blob/master/mglearn/plot_knn_classification.py
