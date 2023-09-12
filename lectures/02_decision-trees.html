@@ -310,6 +310,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-plan">Lecture plan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports-announcements-los">Imports, Announcements, LOs</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#announcements">Announcements</a></li>
@@ -332,8 +333,8 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-for-you">❓❓ Questions for you</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-1-select-all-of-the-following-statements-which-are-examples-of-supervised-machine-learning">Exercise 2.1 Select all of the following statements which are examples of supervised machine learning</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-2-2">iClicker Exercise 2.2</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-2-3">iClicker Exercise 2.3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-2-2-supervised-vs-unsupervised">iClicker Exercise 2.2 Supervised vs unsupervised</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-2-3-classification-vs-regression">iClicker Exercise 2.3 Classification vs regression</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#baselines-video">Baselines [video]</a><ul class="nav section-nav flex-column">
@@ -375,7 +376,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">❓❓ Questions for you</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-2-5">iClicker Exercise 2.5</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-2-5-baselines-and-decision-trees">iClicker Exercise 2.5 Baselines and decision trees</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-terminology-video">More terminology [video]</a><ul class="nav section-nav flex-column">
@@ -419,6 +420,17 @@ document.write(`
 <h1>Lecture 2: Terminology, Baselines, Decision Trees<a class="headerlink" href="#lecture-2-terminology-baselines-decision-trees" title="Permalink to this heading">#</a></h1>
 <p>UBC 2023-24</p>
 <p>Instructor: Varada Kolhatkar and Andrew Roth</p>
+<section id="lecture-plan">
+<h2>Lecture plan<a class="headerlink" href="#lecture-plan" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Announcements (~2 mins)</p></li>
+<li><p>iClicker questions based on the videos (~20 mins)</p></li>
+<li><p>Revision of terminology and dummy models (~10 mins)</p></li>
+<li><p>Decision trees intuition (~13 mins)</p></li>
+<li><p>Break (~5 mins)</p></li>
+<li><p>Worksheet (~30 mins)</p></li>
+</ul>
+</section>
 <section id="imports-announcements-los">
 <h2>Imports, Announcements, LOs<a class="headerlink" href="#imports-announcements-los" title="Permalink to this heading">#</a></h2>
 <section id="imports">
@@ -1693,9 +1705,9 @@ Name: price, dtype: float64
 </ol>
 <p><br><br></p>
 </section>
-<section id="iclicker-exercise-2-2">
-<h3>iClicker Exercise 2.2<a class="headerlink" href="#iclicker-exercise-2-2" title="Permalink to this heading">#</a></h3>
-<p><strong>iClicker cloud join link: https://join.iclicker.com/3DP5H</strong></p>
+<section id="iclicker-exercise-2-2-supervised-vs-unsupervised">
+<h3>iClicker Exercise 2.2 Supervised vs unsupervised<a class="headerlink" href="#iclicker-exercise-2-2-supervised-vs-unsupervised" title="Permalink to this heading">#</a></h3>
+<p><strong>iClicker cloud join link: https://join.iclicker.com/SNBF</strong></p>
 <p><strong>Select all of the following statements which are examples of supervised machine learning</strong></p>
 <ul class="simple">
 <li><p>(A) Finding groups of similar properties in a real estate data set.</p></li>
@@ -1706,9 +1718,9 @@ Name: price, dtype: float64
 </ul>
 <p><br><br></p>
 </section>
-<section id="iclicker-exercise-2-3">
-<h3>iClicker Exercise 2.3<a class="headerlink" href="#iclicker-exercise-2-3" title="Permalink to this heading">#</a></h3>
-<p><strong>iClicker cloud join link: https://join.iclicker.com/3DP5H</strong></p>
+<section id="iclicker-exercise-2-3-classification-vs-regression">
+<h3>iClicker Exercise 2.3 Classification vs regression<a class="headerlink" href="#iclicker-exercise-2-3-classification-vs-regression" title="Permalink to this heading">#</a></h3>
+<p><strong>iClicker cloud join link: https://join.iclicker.com/SNBF</strong></p>
 <p><strong>Select all of the following statements which are examples of regression problems</strong></p>
 <ul class="simple">
 <li><p>(A) Predicting the price of a house based on features such as number of bedrooms and the year built.</p></li>
@@ -2404,7 +2416,7 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d4aaa0a78e5111fa261a6e3ea935ecb287b0e625836003cdecccac7e52dbb3fb.png" src="../_images/d4aaa0a78e5111fa261a6e3ea935ecb287b0e625836003cdecccac7e52dbb3fb.png" />
+<img alt="../_images/27b8fe0d4d62d25499c6ddda7f29a3ae46adc593094a627fade49043ae1aa3bc.png" src="../_images/27b8fe0d4d62d25499c6ddda7f29a3ae46adc593094a627fade49043ae1aa3bc.png" />
 </div>
 </div>
 </section>
@@ -2489,7 +2501,7 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d4aaa0a78e5111fa261a6e3ea935ecb287b0e625836003cdecccac7e52dbb3fb.png" src="../_images/d4aaa0a78e5111fa261a6e3ea935ecb287b0e625836003cdecccac7e52dbb3fb.png" />
+<img alt="../_images/27b8fe0d4d62d25499c6ddda7f29a3ae46adc593094a627fade49043ae1aa3bc.png" src="../_images/27b8fe0d4d62d25499c6ddda7f29a3ae46adc593094a627fade49043ae1aa3bc.png" />
 </div>
 </div>
 <p>What’s the prediction for the new example?</p>
@@ -2554,7 +2566,7 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7706aa971a24da0bb86591e7b1268dd5ec7edf96c9a1f53e1a72ab2616c38b95.png" src="../_images/7706aa971a24da0bb86591e7b1268dd5ec7edf96c9a1f53e1a72ab2616c38b95.png" />
+<img alt="../_images/4bef10c4a2b1809f9aabe2317539b84954f2adf24dfdac07bb910f17ff4dd227.png" src="../_images/4bef10c4a2b1809f9aabe2317539b84954f2adf24dfdac07bb910f17ff4dd227.png" />
 </div>
 </div>
 <div class="warning admonition">
@@ -2669,7 +2681,7 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ebce3d15501601d863c854d830acf31679b728332ebb5b1f4429b614dbf37844.png" src="../_images/ebce3d15501601d863c854d830acf31679b728332ebb5b1f4429b614dbf37844.png" />
+<img alt="../_images/75c52b6d058dca0b75e72c9f8a60da09d7123fb8ff668b59c743d0783ee7ee17.png" src="../_images/75c52b6d058dca0b75e72c9f8a60da09d7123fb8ff668b59c743d0783ee7ee17.png" />
 </div>
 </div>
 </section>
@@ -2903,9 +2915,9 @@ Name: quiz2, dtype: object
 </section>
 <section id="id3">
 <h2>❓❓ Questions for you<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
-<section id="iclicker-exercise-2-5">
-<h3>iClicker Exercise 2.5<a class="headerlink" href="#iclicker-exercise-2-5" title="Permalink to this heading">#</a></h3>
-<p><strong>iClicker cloud join link: https://join.iclicker.com/3DP5H</strong></p>
+<section id="iclicker-exercise-2-5-baselines-and-decision-trees">
+<h3>iClicker Exercise 2.5 Baselines and decision trees<a class="headerlink" href="#iclicker-exercise-2-5-baselines-and-decision-trees" title="Permalink to this heading">#</a></h3>
+<p><strong>iClicker cloud join link: https://join.iclicker.com/SNBF</strong></p>
 <p><strong>Select all of the following statements which are TRUE.</strong></p>
 <ul class="simple">
 <li><p>(A) Change in features (i.e., binarizing features above) would change <code class="docutils literal notranslate"><span class="pre">DummyClassifier</span></code> predictions.</p></li>
@@ -2961,7 +2973,7 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/86976ae94ccae41c06fb527547514f487c881d9cefefc8f2faab56f58a19a9ee.png" src="../_images/86976ae94ccae41c06fb527547514f487c881d9cefefc8f2faab56f58a19a9ee.png" />
+<img alt="../_images/18081c448175821ea02551060f2ec2bfd2a81f8e97a77c64918c49827554361c.png" src="../_images/18081c448175821ea02551060f2ec2bfd2a81f8e97a77c64918c49827554361c.png" />
 </div>
 </div>
 <ul class="simple">
@@ -3062,7 +3074,7 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/84f1c9742befdb49703fc3a4e40b437cc1053cf0ab39ff8e946684fc03c92c93.png" src="../_images/84f1c9742befdb49703fc3a4e40b437cc1053cf0ab39ff8e946684fc03c92c93.png" />
+<img alt="../_images/9096d8dba1465405d2b6708e41d56b925b19975c80233e1637f2f85e15a09d3e.png" src="../_images/9096d8dba1465405d2b6708e41d56b925b19975c80233e1637f2f85e15a09d3e.png" />
 </div>
 </div>
 </section>
@@ -3525,6 +3537,7 @@ terminology includes:</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-plan">Lecture plan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports-announcements-los">Imports, Announcements, LOs</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#announcements">Announcements</a></li>
@@ -3547,8 +3560,8 @@ terminology includes:</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-for-you">❓❓ Questions for you</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-1-select-all-of-the-following-statements-which-are-examples-of-supervised-machine-learning">Exercise 2.1 Select all of the following statements which are examples of supervised machine learning</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-2-2">iClicker Exercise 2.2</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-2-3">iClicker Exercise 2.3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-2-2-supervised-vs-unsupervised">iClicker Exercise 2.2 Supervised vs unsupervised</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-2-3-classification-vs-regression">iClicker Exercise 2.3 Classification vs regression</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#baselines-video">Baselines [video]</a><ul class="nav section-nav flex-column">
@@ -3590,7 +3603,7 @@ terminology includes:</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">❓❓ Questions for you</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-2-5">iClicker Exercise 2.5</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-2-5-baselines-and-decision-trees">iClicker Exercise 2.5 Baselines and decision trees</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-terminology-video">More terminology [video]</a><ul class="nav section-nav flex-column">
