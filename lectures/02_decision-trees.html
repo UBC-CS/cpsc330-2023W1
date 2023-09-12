@@ -425,11 +425,9 @@ document.write(`
 <h3>Imports<a class="headerlink" href="#imports" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">defaultdict</span>
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -442,10 +440,6 @@ document.write(`
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">display</span>
 <span class="kn">from</span> <span class="nn">plotting_functions</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span><span class="p">,</span> <span class="n">LogisticRegression</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">make_pipeline</span>
 <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span><span class="p">,</span> <span class="n">DecisionTreeRegressor</span><span class="p">,</span> <span class="n">export_graphviz</span>
 <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -461,17 +455,16 @@ document.write(`
 <ul class="simple">
 <li><p>Things due this week</p>
 <ul>
-<li><p>Homework 1 (hw1): Sept 13, 11:59pm</p></li>
+<li><p>Homework 1 (hw1): Sept 12, 11:59pm</p></li>
 </ul>
 </li>
-<li><p>Homework 2 (hw2) will been released later today (Due: Sept 19, 11:59pm)</p>
+<li><p>Homework 2 (hw2) will been released later today (Due: Sept 18, 11:59pm)</p>
 <ul>
 <li><p>You need to install <code class="docutils literal notranslate"><span class="pre">otter-grader</span></code> for this homework.</p></li>
 </ul>
 </li>
-<li><p>You can find the tentative due dates for all deliverables <a class="reference external" href="https://ubc-cs.github.io/cpsc330/README.html#deliverable-due-dates-tentative">here</a>.</p></li>
+<li><p>You can find the tentative due dates for all deliverables <a class="reference external" href="https://ubc-cs.github.io/cpsc330-2023W1/README.html#deliverable-due-dates-tentative">here</a>.</p></li>
 <li><p>Please monitor Piazza (especially pinned posts and instructor posts) for announcements.</p></li>
-<li><p>Sorry for the setup difficulties. That said, you are likely to go through this in future and figuring out these things on your own is a valuable skill.</p></li>
 </ul>
 <p><br><br></p>
 </section>
@@ -2411,7 +2404,7 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7b14952e90b60add9b653c6020a489e4026556cd0202a18db32c15afa530502e.png" src="../_images/7b14952e90b60add9b653c6020a489e4026556cd0202a18db32c15afa530502e.png" />
+<img alt="../_images/d4aaa0a78e5111fa261a6e3ea935ecb287b0e625836003cdecccac7e52dbb3fb.png" src="../_images/d4aaa0a78e5111fa261a6e3ea935ecb287b0e625836003cdecccac7e52dbb3fb.png" />
 </div>
 </div>
 </section>
@@ -2496,7 +2489,7 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7b14952e90b60add9b653c6020a489e4026556cd0202a18db32c15afa530502e.png" src="../_images/7b14952e90b60add9b653c6020a489e4026556cd0202a18db32c15afa530502e.png" />
+<img alt="../_images/d4aaa0a78e5111fa261a6e3ea935ecb287b0e625836003cdecccac7e52dbb3fb.png" src="../_images/d4aaa0a78e5111fa261a6e3ea935ecb287b0e625836003cdecccac7e52dbb3fb.png" />
 </div>
 </div>
 <p>What’s the prediction for the new example?</p>
@@ -2561,7 +2554,7 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/92d38b0cf0ba5958709f2bda96661db663ef0d583178fe7ceafd7949a86abc7d.png" src="../_images/92d38b0cf0ba5958709f2bda96661db663ef0d583178fe7ceafd7949a86abc7d.png" />
+<img alt="../_images/7706aa971a24da0bb86591e7b1268dd5ec7edf96c9a1f53e1a72ab2616c38b95.png" src="../_images/7706aa971a24da0bb86591e7b1268dd5ec7edf96c9a1f53e1a72ab2616c38b95.png" />
 </div>
 </div>
 <div class="warning admonition">
@@ -2676,7 +2669,7 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/23473e121b42811b3e2e20eead5795ea499f3d4b241f02793f86836f8f9d2fa6.png" src="../_images/23473e121b42811b3e2e20eead5795ea499f3d4b241f02793f86836f8f9d2fa6.png" />
+<img alt="../_images/ebce3d15501601d863c854d830acf31679b728332ebb5b1f4429b614dbf37844.png" src="../_images/ebce3d15501601d863c854d830acf31679b728332ebb5b1f4429b614dbf37844.png" />
 </div>
 </div>
 </section>
@@ -2968,7 +2961,7 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/75c52b6d058dca0b75e72c9f8a60da09d7123fb8ff668b59c743d0783ee7ee17.png" src="../_images/75c52b6d058dca0b75e72c9f8a60da09d7123fb8ff668b59c743d0783ee7ee17.png" />
+<img alt="../_images/86976ae94ccae41c06fb527547514f487c881d9cefefc8f2faab56f58a19a9ee.png" src="../_images/86976ae94ccae41c06fb527547514f487c881d9cefefc8f2faab56f58a19a9ee.png" />
 </div>
 </div>
 <ul class="simple">
@@ -3069,7 +3062,7 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/181557b806a40239a975da4c9436707bc7c1dc66df9aca603d31f1387fcf7e29.png" src="../_images/181557b806a40239a975da4c9436707bc7c1dc66df9aca603d31f1387fcf7e29.png" />
+<img alt="../_images/84f1c9742befdb49703fc3a4e40b437cc1053cf0ab39ff8e946684fc03c92c93.png" src="../_images/84f1c9742befdb49703fc3a4e40b437cc1053cf0ab39ff8e946684fc03c92c93.png" />
 </div>
 </div>
 </section>
