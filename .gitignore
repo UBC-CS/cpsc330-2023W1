@@ -1,0 +1,7 @@
+.DS_Store
+.OTTER_LOG
+*.csv
+.ipynb_checkpoints/*
+lectures/data/*
+deleted.ipynb
+*/catboost_info/*.
