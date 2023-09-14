@@ -66,6 +66,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/03_ml-fundamentals';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Attributions" href="../attribution.html" />
+    <link rel="prev" title="Lecture 2: Terminology, Baselines, Decision Trees" href="02_decision-trees.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -154,9 +156,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../docs/README.html">CPSC 330 Documents</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="01_intro.html">Lecture 1: Course Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_decision-trees.html">Lecture 2: Terminology, Baselines, Decision Trees</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 3: Machine Learning Fundamentals</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -308,6 +311,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-plan">Lecture plan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports-announcements-los">Imports, Announcements, LOs</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#announcements">Announcements</a></li>
@@ -393,8 +397,16 @@ document.write(`
   <p><img alt="" src="../_images/330-banner.png" /></p>
 <section class="tex2jax_ignore mathjax_ignore" id="lecture-3-machine-learning-fundamentals">
 <h1>Lecture 3: Machine Learning Fundamentals<a class="headerlink" href="#lecture-3-machine-learning-fundamentals" title="Permalink to this heading">#</a></h1>
-<p>UBC 2022-23</p>
-<p>Instructor: Varada Kolhatkar</p>
+<p>UBC 2023-24</p>
+<p>Instructor: Varada Kolhatkar and Andrew Roth</p>
+<section id="lecture-plan">
+<h2>Lecture plan<a class="headerlink" href="#lecture-plan" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Announcements</p></li>
+<li><p>Class demo: Housing price prediction</p></li>
+<li><p>iClicker questions</p></li>
+</ul>
+</section>
 <section id="imports-announcements-los">
 <h2>Imports, Announcements, LOs<a class="headerlink" href="#imports-announcements-los" title="Permalink to this heading">#</a></h2>
 <section id="imports">
@@ -426,31 +438,16 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">os</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">sys</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">graphviz</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">IPython</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;graphviz&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <p><br><br></p>
 </section>
 <section id="announcements">
 <h3>Announcements<a class="headerlink" href="#announcements" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>hw2 released. (Due next week Tuesday at 11:59pm.)</p>
+<li><p>hw2 released. (Due next week Monday at 11:59pm.)</p>
 <ul>
 <li><p>You are welcome to broadly discuss it with your classmates but final answers and submissions must be your own.</p></li>
-<li><p>Group submissions are not allowed for this assignment.</p></li>
-<li><p>Usually the deadlines will be on Mondays but I’ve changed it to Tuesday next week because Monday is <a class="reference external" href="https://broadcastemail.ubc.ca/2022/09/13/national-day-of-mourning-in-honour-of-queen-elizabeth-ii-on-september-19/">declared as a National day of mourning in honour of Queen Elizabeth II</a>.</p></li>
+<li><p>Group submissions are <strong>not</strong> allowed for this assignment.</p></li>
 </ul>
 </li>
 <li><p>Advice on keeping up with the material</p>
@@ -723,11 +720,11 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">depth</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="n">depth</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_subset</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_subset</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:   </span><span class="si">%0.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_subset</span><span class="p">,</span> <span class="n">y</span><span class="p">)))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_subset</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_subset</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:   </span><span class="si">%0.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_subset</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y</span><span class="p">)))</span>
 <span class="n">plot_tree_decision_boundary_and_tree</span><span class="p">(</span>
-    <span class="n">model</span><span class="p">,</span> <span class="n">X_subset</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x_label</span><span class="o">=</span><span class="s2">&quot;lab4&quot;</span><span class="p">,</span> <span class="n">y_label</span><span class="o">=</span><span class="s2">&quot;quiz1&quot;</span>
+    <span class="n">model</span><span class="p">,</span> <span class="n">X_subset</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x_label</span><span class="o">=</span><span class="s2">&quot;lab4&quot;</span><span class="p">,</span> <span class="n">y_label</span><span class="o">=</span><span class="s2">&quot;quiz1&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -736,11 +733,7 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error:   0.286
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:450: UserWarning: X does not have valid feature names, but DecisionTreeClassifier was fitted with feature names
-  warnings.warn(
-</pre></div>
-</div>
-<img alt="../_images/a95a9080c1b1abccbce4dbfb67a5b43fb9cb8ccee7b5be47c1c37d3efae2780d.png" src="../_images/a95a9080c1b1abccbce4dbfb67a5b43fb9cb8ccee7b5be47c1c37d3efae2780d.png" />
+<img alt="../_images/7c0efe42ca0390465b3489261383c7ff79b68bddf50ccb39ab1df22644cb6edd.png" src="../_images/7c0efe42ca0390465b3489261383c7ff79b68bddf50ccb39ab1df22644cb6edd.png" />
 </div>
 </div>
 <p>In the following model, this decision boundary is created by asking two questions.</p>
@@ -748,11 +741,11 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">depth</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="n">depth</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_subset</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_subset</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:   </span><span class="si">%0.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_subset</span><span class="p">,</span> <span class="n">y</span><span class="p">)))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_subset</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_subset</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:   </span><span class="si">%0.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_subset</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y</span><span class="p">)))</span>
 <span class="n">plot_tree_decision_boundary_and_tree</span><span class="p">(</span>
-    <span class="n">model</span><span class="p">,</span> <span class="n">X_subset</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x_label</span><span class="o">=</span><span class="s2">&quot;lab4&quot;</span><span class="p">,</span> <span class="n">y_label</span><span class="o">=</span><span class="s2">&quot;quiz1&quot;</span>
+    <span class="n">model</span><span class="p">,</span> <span class="n">X_subset</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x_label</span><span class="o">=</span><span class="s2">&quot;lab4&quot;</span><span class="p">,</span> <span class="n">y_label</span><span class="o">=</span><span class="s2">&quot;quiz1&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -761,11 +754,7 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error:   0.190
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:450: UserWarning: X does not have valid feature names, but DecisionTreeClassifier was fitted with feature names
-  warnings.warn(
-</pre></div>
-</div>
-<img alt="../_images/a69ddb64318ab3b1faaba69744006ba76c73974daca3d1980cc6bfdb4ae6f96d.png" src="../_images/a69ddb64318ab3b1faaba69744006ba76c73974daca3d1980cc6bfdb4ae6f96d.png" />
+<img alt="../_images/c3d056c7b23572613cb6b276afd5a0dbaa7c1a087fb0485253ebdf6b668d6f79.png" src="../_images/c3d056c7b23572613cb6b276afd5a0dbaa7c1a087fb0485253ebdf6b668d6f79.png" />
 </div>
 </div>
 <p>Let’s look at the decision boundary with depth = 4.</p>
@@ -773,9 +762,9 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">depth</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="n">depth</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_subset</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_subset</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:   </span><span class="si">%0.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_subset</span><span class="p">,</span> <span class="n">y</span><span class="p">)))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_subset</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_subset</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error:   </span><span class="si">%0.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_subset</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y</span><span class="p">)))</span>
 <span class="n">plot_tree_decision_boundary_and_tree</span><span class="p">(</span>
     <span class="n">model</span><span class="p">,</span> <span class="n">X_subset</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x_label</span><span class="o">=</span><span class="s2">&quot;lab4&quot;</span><span class="p">,</span> <span class="n">y_label</span><span class="o">=</span><span class="s2">&quot;quiz1&quot;</span>
 <span class="p">)</span>
@@ -786,11 +775,7 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error:   0.048
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:450: UserWarning: X does not have valid feature names, but DecisionTreeClassifier was fitted with feature names
-  warnings.warn(
-</pre></div>
-</div>
-<img alt="../_images/88ed5a4e5cbd231340565b7936484b38d749c88ade4f585a41d8fb29d727395f.png" src="../_images/88ed5a4e5cbd231340565b7936484b38d749c88ade4f585a41d8fb29d727395f.png" />
+<img alt="../_images/bbf3064bbd4967d87aeade795482706c80d59569bc6aab2009e230ea29b5d343.png" src="../_images/bbf3064bbd4967d87aeade795482706c80d59569bc6aab2009e230ea29b5d343.png" />
 </div>
 </div>
 <p>Let’s look at the decision boundary with depth = 6.</p>
@@ -811,11 +796,11 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error:   0.000
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:450: UserWarning: X does not have valid feature names, but DecisionTreeClassifier was fitted with feature names
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:464: UserWarning: X does not have valid feature names, but DecisionTreeClassifier was fitted with feature names
   warnings.warn(
 </pre></div>
 </div>
-<img alt="../_images/ae0f149c87580a38fde948441260a5eb4e8879521883d99527f801a7dd5406fd.png" src="../_images/ae0f149c87580a38fde948441260a5eb4e8879521883d99527f801a7dd5406fd.png" />
+<img alt="../_images/57dc05ecc1b3688a4a640e7da713b25b26bf8f2c5bd374ddadc6392e85a7ed5a.png" src="../_images/57dc05ecc1b3688a4a640e7da713b25b26bf8f2c5bd374ddadc6392e85a7ed5a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -834,7 +819,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c922506d4bfe1cf48c7a6e87609622b16cba384d36ee7e91d73712778fc7b229.png" src="../_images/c922506d4bfe1cf48c7a6e87609622b16cba384d36ee7e91d73712778fc7b229.png" />
+<img alt="../_images/d0cb721e7d5d738afdc093e1ddce9b3341148ff4566753b5c071d53cfdcb3e5a.png" src="../_images/d0cb721e7d5d738afdc093e1ddce9b3341148ff4566753b5c071d53cfdcb3e5a.png" />
 </div>
 </div>
 <ul class="simple">
@@ -862,7 +847,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/123d4ea1e4b86008876468ccc0218a6471f46148b9ad0871e9cca215b03f4506.png" src="../_images/123d4ea1e4b86008876468ccc0218a6471f46148b9ad0871e9cca215b03f4506.png" />
+<img alt="../_images/d6eb7c96d139e068ccc50be63808bf038689019a809ee47a420f0afac6eee468.png" src="../_images/d6eb7c96d139e068ccc50be63808bf038689019a809ee47a420f0afac6eee468.png" />
 </div>
 </div>
 </section>
@@ -951,7 +936,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/display.py:419: UserWarning: Consider using IPython.display.IFrame instead
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/display.py:431: UserWarning: Consider using IPython.display.IFrame instead
   warnings.warn(&quot;Consider using IPython.display.IFrame instead&quot;)
 </pre></div>
 </div>
@@ -1233,26 +1218,27 @@ Name: country, Length: 209, dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mglearn</span><span class="o">.</span><span class="n">discrete_scatter</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mglearn</span><span class="o">.</span><span class="n">discrete_scatter</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;longitude&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;latitude&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0ebae5ee2ff344460cbe442a7b6aeef86774af388a8912fe452ba839c5bb76b9.png" src="../_images/0ebae5ee2ff344460cbe442a7b6aeef86774af388a8912fe452ba839c5bb76b9.png" />
+<img alt="../_images/700bb50ed74bcdb4ab1dfc40f31e3c64cd09d6b21fbc3d3014a361a67c19002d.png" src="../_images/700bb50ed74bcdb4ab1dfc40f31e3c64cd09d6b21fbc3d3014a361a67c19002d.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="n">display_tree</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+<span class="n">custom_plot_tree</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">feature_names</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/70e6c01bb843029202e859d47dfbf31fa8dbf6080fa591cc77289dbb04c810b1.svg" src="../_images/70e6c01bb843029202e859d47dfbf31fa8dbf6080fa591cc77289dbb04c810b1.svg" /></div>
+<img alt="../_images/4f3e8f8d408d8f861ae4e94f8eadc171248334cc908c8788369883b4344c3c10.png" src="../_images/4f3e8f8d408d8f861ae4e94f8eadc171248334cc908c8788369883b4344c3c10.png" />
+</div>
 </div>
 <p>Let’s examine the train and test accuracies with the split now.</p>
 <div class="cell docutils container">
@@ -1271,16 +1257,16 @@ Test accuracy:   0.714
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_tree_decision_boundary_and_tree</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_tree_decision_boundary_and_tree</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:450: UserWarning: X does not have valid feature names, but DecisionTreeClassifier was fitted with feature names
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:464: UserWarning: X does not have valid feature names, but DecisionTreeClassifier was fitted with feature names
   warnings.warn(
 </pre></div>
 </div>
-<img alt="../_images/c7030f35d389da28c4995c506bb7e6bffd9150a179ff7ce04ed2cacea888191c.png" src="../_images/c7030f35d389da28c4995c506bb7e6bffd9150a179ff7ce04ed2cacea888191c.png" />
+<img alt="../_images/b11f34a7cf0e0a7265232cf031c9a4014a3d4249144378c111eda96eb82eef2a.png" src="../_images/b11f34a7cf0e0a7265232cf031c9a4014a3d4249144378c111eda96eb82eef2a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1310,13 +1296,13 @@ Test accuracy:   0.714
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:450: UserWarning: X does not have valid feature names, but DecisionTreeClassifier was fitted with feature names
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:464: UserWarning: X does not have valid feature names, but DecisionTreeClassifier was fitted with feature names
   warnings.warn(
-/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:450: UserWarning: X does not have valid feature names, but DecisionTreeClassifier was fitted with feature names
+/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:464: UserWarning: X does not have valid feature names, but DecisionTreeClassifier was fitted with feature names
   warnings.warn(
 </pre></div>
 </div>
-<img alt="../_images/fc5e083babd2d8aa69c03704d1541bfc9f6b0b42a0a9a7c591786c72ea7da9df.png" src="../_images/fc5e083babd2d8aa69c03704d1541bfc9f6b0b42a0a9a7c591786c72ea7da9df.png" />
+<img alt="../_images/60724433d8c5a6db289db09f8db81cf4c7e012ea0691e58f1685f2de21a7889f.png" src="../_images/60724433d8c5a6db289db09f8db81cf4c7e012ea0691e58f1685f2de21a7889f.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1433,14 +1419,14 @@ Test accuracy:   0.714
 <h2>❓❓ Questions for you<a class="headerlink" href="#questions-for-you" title="Permalink to this heading">#</a></h2>
 <section id="iclicker-exercise-3-1">
 <h3>iClicker Exercise 3.1<a class="headerlink" href="#iclicker-exercise-3-1" title="Permalink to this heading">#</a></h3>
-<p><strong>iClicker cloud join link: https://join.iclicker.com/3DP5H</strong></p>
+<p><strong>iClicker cloud join link: https://join.iclicker.com/SNBF</strong></p>
 <p><strong>Select all of the following statements which are TRUE.</strong></p>
 <ul class="simple">
-<li><p>(A) A decision tree model with no depth is likely to perform very well on the deployment data.</p></li>
+<li><p>(A) A decision tree model with no depth (the default <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> in <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>) is likely to perform very well on the deployment data.</p></li>
 <li><p>(B) Data splitting helps us assess how well our model would generalize.</p></li>
-<li><p>(C) Deployment data is used at the very end and only scored once.</p></li>
+<li><p>(C) Deployment data is only scored once.</p></li>
 <li><p>(D) Validation data could be used for hyperparameter optimization.</p></li>
-<li><p>(E) It’s recommended that data be shuffled before splitting it into <code class="docutils literal notranslate"><span class="pre">train</span></code> and <code class="docutils literal notranslate"><span class="pre">test</span></code> sets.</p></li>
+<li><p>(E) It’s recommended that data be shuffled before splitting it into <code class="docutils literal notranslate"><span class="pre">train</span></code> and <code class="docutils literal notranslate"><span class="pre">test</span></code> sets..</p></li>
 </ul>
 <p><br><br><br><br></p>
 </section>
@@ -1563,71 +1549,71 @@ Standard deviation of cross-validation score = 0.09
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001050</td>
-      <td>0.000387</td>
+      <td>0.001609</td>
+      <td>0.000711</td>
       <td>0.764706</td>
       <td>0.913333</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000559</td>
-      <td>0.000359</td>
+      <td>0.001011</td>
+      <td>0.000649</td>
       <td>0.823529</td>
       <td>0.906667</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000541</td>
-      <td>0.000349</td>
+      <td>0.000923</td>
+      <td>0.000614</td>
       <td>0.705882</td>
       <td>0.906667</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000530</td>
-      <td>0.000344</td>
+      <td>0.000899</td>
+      <td>0.000615</td>
       <td>0.941176</td>
       <td>0.900000</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000534</td>
-      <td>0.000345</td>
+      <td>0.000897</td>
+      <td>0.000611</td>
       <td>0.823529</td>
       <td>0.906667</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.000531</td>
-      <td>0.000338</td>
+      <td>0.000938</td>
+      <td>0.000610</td>
       <td>0.823529</td>
       <td>0.913333</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.000524</td>
-      <td>0.000333</td>
+      <td>0.000900</td>
+      <td>0.000638</td>
       <td>0.705882</td>
       <td>0.920000</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.000523</td>
-      <td>0.000337</td>
+      <td>0.000922</td>
+      <td>0.000604</td>
       <td>0.937500</td>
       <td>0.900662</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.000526</td>
-      <td>0.000332</td>
+      <td>0.000897</td>
+      <td>0.000603</td>
       <td>0.937500</td>
       <td>0.900662</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.000517</td>
-      <td>0.000406</td>
+      <td>0.000884</td>
+      <td>0.000601</td>
       <td>0.937500</td>
       <td>0.900662</td>
     </tr>
@@ -1666,11 +1652,11 @@ Standard deviation of cross-validation score = 0.09
   <tbody>
     <tr>
       <th>fit_time</th>
-      <td>0.000583</td>
+      <td>0.000988</td>
     </tr>
     <tr>
       <th>score_time</th>
-      <td>0.000353</td>
+      <td>0.000626</td>
     </tr>
     <tr>
       <th>test_score</th>
@@ -1699,7 +1685,7 @@ Standard deviation of cross-validation score = 0.09
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d0a399f1e11f10903601de0b10958f72acd182ec2b98b4fa5070b5996c5a4dfc.png" src="../_images/d0a399f1e11f10903601de0b10958f72acd182ec2b98b4fa5070b5996c5a4dfc.png" />
+<img alt="../_images/c41f87b0bf7914ab16092492fc6f484b83e4849020bf02575cd1c8da78c43a2c.png" src="../_images/c41f87b0bf7914ab16092492fc6f484b83e4849020bf02575cd1c8da78c43a2c.png" />
 </div>
 </div>
 </section>
@@ -1750,71 +1736,71 @@ Standard deviation of cross-validation score = 0.09
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001080</td>
-      <td>0.000446</td>
-      <td>0.937500</td>
+      <td>0.001208</td>
+      <td>0.000703</td>
+      <td>0.875000</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000629</td>
-      <td>0.000364</td>
+      <td>0.000981</td>
+      <td>0.000621</td>
       <td>0.875000</td>
       <td>0.992857</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000529</td>
-      <td>0.000334</td>
+      <td>0.000906</td>
+      <td>0.000593</td>
       <td>0.875000</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000525</td>
-      <td>0.000325</td>
+      <td>0.000916</td>
+      <td>0.000583</td>
       <td>0.750000</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000516</td>
-      <td>0.000336</td>
+      <td>0.000885</td>
+      <td>0.000580</td>
       <td>0.812500</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.000524</td>
-      <td>0.000334</td>
+      <td>0.000926</td>
+      <td>0.000620</td>
       <td>0.812500</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.000538</td>
-      <td>0.000332</td>
+      <td>0.000934</td>
+      <td>0.000601</td>
       <td>0.866667</td>
       <td>0.985816</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.000531</td>
-      <td>0.000335</td>
-      <td>0.600000</td>
+      <td>0.000908</td>
+      <td>0.000586</td>
+      <td>0.533333</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.000549</td>
-      <td>0.000338</td>
+      <td>0.000902</td>
+      <td>0.000583</td>
       <td>0.666667</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.000683</td>
-      <td>0.000367</td>
+      <td>0.000874</td>
+      <td>0.000580</td>
       <td>0.733333</td>
       <td>1.000000</td>
     </tr>
@@ -1853,6 +1839,10 @@ Standard deviation of cross-validation score = 0.09
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_1905/2246468746.py:12: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+  out_col.append((f&quot;%0.3f (+/- %0.3f)&quot; % (mean_scores[i], std_scores[i])))
+</pre></div>
+</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1881,9 +1871,9 @@ Standard deviation of cross-validation score = 0.09
     <tr>
       <th>Decision tree</th>
       <td>0.001 (+/- 0.000)</td>
-      <td>0.000 (+/- 0.000)</td>
+      <td>0.001 (+/- 0.000)</td>
       <td>0.769 (+/- 0.050)</td>
-      <td>0.992 (+/- 0.014)</td>
+      <td>0.994 (+/- 0.014)</td>
     </tr>
   </tbody>
 </table>
@@ -1946,7 +1936,7 @@ Validation error:   0.212
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train error:   0.000
-Validation error:   0.214
+Validation error:   0.220
 </pre></div>
 </div>
 </div>
@@ -1995,7 +1985,7 @@ Validation error:   0.214
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/23371713ccedf37b690899eadd18d6551bfeaa517dd0c22525714785bb7de0b3.png" src="../_images/23371713ccedf37b690899eadd18d6551bfeaa517dd0c22525714785bb7de0b3.png" />
+<img alt="../_images/1228b51cc60232830580a3605e3bb37a2a519b1ef24795f5d79e9a2f0da429f6.png" src="../_images/1228b51cc60232830580a3605e3bb37a2a519b1ef24795f5d79e9a2f0da429f6.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2138,64 +2128,64 @@ Validation error:   0.214
     <tr>
       <th>7</th>
       <td>0.044873</td>
-      <td>0.210417</td>
-      <td>0.089136</td>
+      <td>0.204167</td>
+      <td>0.088329</td>
       <td>0.009059</td>
     </tr>
     <tr>
       <th>8</th>
       <td>0.029909</td>
-      <td>0.222500</td>
-      <td>0.088353</td>
+      <td>0.216250</td>
+      <td>0.088397</td>
       <td>0.009422</td>
     </tr>
     <tr>
       <th>9</th>
       <td>0.020653</td>
-      <td>0.203333</td>
-      <td>0.095175</td>
+      <td>0.190833</td>
+      <td>0.096426</td>
       <td>0.010294</td>
     </tr>
     <tr>
       <th>10</th>
       <td>0.009260</td>
-      <td>0.228750</td>
-      <td>0.101387</td>
+      <td>0.215833</td>
+      <td>0.096372</td>
       <td>0.005563</td>
     </tr>
     <tr>
       <th>11</th>
       <td>0.005699</td>
-      <td>0.216667</td>
-      <td>0.098390</td>
+      <td>0.222500</td>
+      <td>0.097898</td>
       <td>0.004264</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>0.003561</td>
-      <td>0.248333</td>
-      <td>0.089485</td>
-      <td>0.004769</td>
+      <td>0.002143</td>
+      <td>0.235833</td>
+      <td>0.083836</td>
+      <td>0.003273</td>
     </tr>
     <tr>
       <th>13</th>
       <td>0.000000</td>
-      <td>0.235833</td>
-      <td>0.083836</td>
+      <td>0.242083</td>
+      <td>0.086932</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>14</th>
       <td>0.000000</td>
       <td>0.235833</td>
-      <td>0.083836</td>
+      <td>0.092687</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>15</th>
       <td>0.000000</td>
-      <td>0.229583</td>
-      <td>0.084870</td>
+      <td>0.242083</td>
+      <td>0.086932</td>
       <td>0.000000</td>
     </tr>
   </tbody>
@@ -2301,7 +2291,7 @@ Validation error:   0.214
 <h2>❓❓ Questions for you<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <section id="iclicker-exercise-3-2">
 <h3>iClicker Exercise 3.2<a class="headerlink" href="#iclicker-exercise-3-2" title="Permalink to this heading">#</a></h3>
-<p><strong>iClicker cloud join link: https://join.iclicker.com/3DP5H</strong></p>
+<p><strong>iClicker cloud join link: https://join.iclicker.com/SNBF</strong></p>
 <p><strong>Select all of the following statements which are TRUE.</strong></p>
 <ul class="simple">
 <li><p>(A) <span class="math notranslate nohighlight">\(k\)</span>-fold cross-validation calls fit <span class="math notranslate nohighlight">\(k\)</span> times.</p></li>
@@ -2334,7 +2324,7 @@ Validation error:   0.214
 </section>
 <section id="reflection">
 <h3>Reflection<a class="headerlink" href="#reflection" title="Permalink to this heading">#</a></h3>
-<p>Write your reflections (takeaways, struggle points, and general comments) on this material in <a class="reference external" href="https://docs.google.com/document/d/1b4HJqJfhfI2Cfb5aBEzH28FooQmZ7sMZDbbidVCFl9M/edit?usp=sharing">the reflection Google Document</a> so that I’ll try to address those points in the next lecture.</p>
+<p>Write your reflections (takeaways, struggle points, and general comments) on this material in <a class="reference external" href="https://docs.google.com/document/d/1LWiR7dzzNNwOJR72LWgC25priLXGdyxEq9FWBia3wmw/edit?usp=sharing">our reflection Google Document</a> so that I’ll try to address those points in the next lecture.</p>
 </section>
 <section id="coming-up">
 <h3>Coming up …<a class="headerlink" href="#coming-up" title="Permalink to this heading">#</a></h3>
@@ -2363,16 +2353,16 @@ Validation error:   0.214
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "conda-env-cpsc330-py"
+            mode: "cpsc330"
         },
         kernelOptions: {
-            name: "conda-env-cpsc330-py",
+            name: "cpsc330",
             path: "./lectures"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'conda-env-cpsc330-py'</script>
+    <script>kernelName = 'cpsc330'</script>
 
                 </article>
               
@@ -2385,6 +2375,24 @@ Validation error:   0.214
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="02_decision-trees.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lecture 2: Terminology, Baselines, Decision Trees</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../attribution.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Attributions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -2403,6 +2411,7 @@ Validation error:   0.214
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-plan">Lecture plan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports-announcements-los">Imports, Announcements, LOs</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#announcements">Announcements</a></li>
