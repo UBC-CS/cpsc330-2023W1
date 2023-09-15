@@ -1,6 +1,6 @@
 # CPSC 330 Documents
 
-* [Syllabus and administrative info](course_info.md)
+* [Syllabus and administrative info](../syllabus.md)
 * [CPSC 330 vs. CPSC 340](330_vs_340.md)
 * [Homework submission instructions](homework_instructions.md)
 * [Grading policies](grades.md)
