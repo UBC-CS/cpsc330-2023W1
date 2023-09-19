@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/03_ml-fundamentals';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Lecture 2: Class demo" href="class_demos/02_class-demo.html" />
+    <link rel="next" title="Lecture 4: \(k\)-Nearest Neighbours and SVM RBFs" href="04_kNNs-SVM-RBF.html" />
     <link rel="prev" title="Lecture 2: Terminology, Baselines, Decision Trees" href="02_decision-trees.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -160,10 +160,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="01_intro.html">Lecture 1: Course Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_decision-trees.html">Lecture 2: Terminology, Baselines, Decision Trees</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 3: Machine Learning Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_kNNs-SVM-RBF.html">Lecture 4: <span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbours and SVM RBFs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="class_demos/02_class-demo.html">Lecture 2: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/03_class-demo.html">Lecture 3: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/04_class-demo.html">Lecture 4: Class demo</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -1240,7 +1242,7 @@ Name: country, Length: 209, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6bccf5e95c67e33efdd91791eafd76be497f8e72d1dea045a3ed1d4d643c707e.png" src="../_images/6bccf5e95c67e33efdd91791eafd76be497f8e72d1dea045a3ed1d4d643c707e.png" />
+<img alt="../_images/df8275f42748bd6e2b5fe79954c3c79506f8d41ea5a97892f6887e40c9d799ba.png" src="../_images/df8275f42748bd6e2b5fe79954c3c79506f8d41ea5a97892f6887e40c9d799ba.png" />
 </div>
 </div>
 <p>Let’s examine the train and test accuracies with the split now.</p>
@@ -1269,7 +1271,7 @@ Test accuracy:   0.738
   warnings.warn(
 </pre></div>
 </div>
-<img alt="../_images/1b1a588566cbfdeb39702c65188e7b0ba389296e017fe7e3435134f0fb68d163.png" src="../_images/1b1a588566cbfdeb39702c65188e7b0ba389296e017fe7e3435134f0fb68d163.png" />
+<img alt="../_images/bf8150695134d1316dcd06b099efa1f37bb75f3a70f19860a36091306e6aa41f.png" src="../_images/bf8150695134d1316dcd06b099efa1f37bb75f3a70f19860a36091306e6aa41f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1305,7 +1307,7 @@ Test accuracy:   0.738
   warnings.warn(
 </pre></div>
 </div>
-<img alt="../_images/40923e0cf8c5a41677cc3efcf6e35e041801f154f16e97d8f58f6b0a90c4634c.png" src="../_images/40923e0cf8c5a41677cc3efcf6e35e041801f154f16e97d8f58f6b0a90c4634c.png" />
+<img alt="../_images/c3681ec9375787744dcd9f1512560fd92560ba7b85db53f0262e801836ea2ddd.png" src="../_images/c3681ec9375787744dcd9f1512560fd92560ba7b85db53f0262e801836ea2ddd.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1429,7 +1431,7 @@ Test accuracy:   0.738
 <li><p>(B) Data splitting helps us assess how well our model would generalize.</p></li>
 <li><p>(C) Deployment data is only scored once.</p></li>
 <li><p>(D) Validation data could be used for hyperparameter optimization.</p></li>
-<li><p>(E) It’s recommended that data be shuffled before splitting it into <code class="docutils literal notranslate"><span class="pre">train</span></code> and <code class="docutils literal notranslate"><span class="pre">test</span></code> sets..</p></li>
+<li><p>(E) It’s recommended that data be shuffled before splitting it into <code class="docutils literal notranslate"><span class="pre">train</span></code> and <code class="docutils literal notranslate"><span class="pre">test</span></code> sets.</p></li>
 </ul>
 <p><br><br><br><br></p>
 </section>
@@ -1552,71 +1554,71 @@ Standard deviation of cross-validation score = 0.09
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001218</td>
-      <td>0.000641</td>
+      <td>0.001504</td>
+      <td>0.000734</td>
       <td>0.764706</td>
       <td>0.913333</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000911</td>
-      <td>0.000610</td>
+      <td>0.000939</td>
+      <td>0.000627</td>
       <td>0.823529</td>
       <td>0.906667</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000897</td>
-      <td>0.000595</td>
+      <td>0.000906</td>
+      <td>0.000612</td>
       <td>0.705882</td>
       <td>0.906667</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000921</td>
-      <td>0.000596</td>
+      <td>0.000890</td>
+      <td>0.000604</td>
       <td>0.941176</td>
       <td>0.900000</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000903</td>
-      <td>0.000599</td>
+      <td>0.000886</td>
+      <td>0.000615</td>
       <td>0.823529</td>
       <td>0.906667</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.000869</td>
-      <td>0.000593</td>
+      <td>0.000896</td>
+      <td>0.000607</td>
       <td>0.823529</td>
       <td>0.913333</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.000892</td>
-      <td>0.000589</td>
+      <td>0.000985</td>
+      <td>0.000636</td>
       <td>0.705882</td>
       <td>0.920000</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.000860</td>
-      <td>0.000584</td>
+      <td>0.000912</td>
+      <td>0.000611</td>
       <td>0.937500</td>
       <td>0.900662</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.000898</td>
-      <td>0.000581</td>
+      <td>0.000900</td>
+      <td>0.000605</td>
       <td>0.937500</td>
       <td>0.900662</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.000853</td>
-      <td>0.000571</td>
+      <td>0.000885</td>
+      <td>0.000607</td>
       <td>0.937500</td>
       <td>0.900662</td>
     </tr>
@@ -1655,11 +1657,11 @@ Standard deviation of cross-validation score = 0.09
   <tbody>
     <tr>
       <th>fit_time</th>
-      <td>0.000922</td>
+      <td>0.000970</td>
     </tr>
     <tr>
       <th>score_time</th>
-      <td>0.000596</td>
+      <td>0.000626</td>
     </tr>
     <tr>
       <th>test_score</th>
@@ -1739,71 +1741,71 @@ Standard deviation of cross-validation score = 0.09
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001445</td>
-      <td>0.000755</td>
+      <td>0.001395</td>
+      <td>0.000793</td>
       <td>0.875000</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001017</td>
-      <td>0.000614</td>
+      <td>0.000953</td>
+      <td>0.000615</td>
       <td>0.875000</td>
       <td>0.992857</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000900</td>
-      <td>0.000590</td>
+      <td>0.000902</td>
+      <td>0.000598</td>
       <td>0.875000</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000905</td>
-      <td>0.000577</td>
-      <td>0.750000</td>
+      <td>0.000908</td>
+      <td>0.000590</td>
+      <td>0.687500</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000888</td>
-      <td>0.000678</td>
+      <td>0.000883</td>
+      <td>0.000599</td>
       <td>0.812500</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.000929</td>
-      <td>0.000597</td>
+      <td>0.000889</td>
+      <td>0.000685</td>
       <td>0.812500</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.000934</td>
-      <td>0.000588</td>
+      <td>0.000965</td>
+      <td>0.000612</td>
       <td>0.866667</td>
       <td>0.985816</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.000932</td>
+      <td>0.000911</td>
       <td>0.000599</td>
       <td>0.600000</td>
-      <td>0.992908</td>
+      <td>1.000000</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.000906</td>
-      <td>0.000581</td>
+      <td>0.000914</td>
+      <td>0.000590</td>
       <td>0.666667</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.000865</td>
-      <td>0.000578</td>
+      <td>0.000880</td>
+      <td>0.000587</td>
       <td>0.733333</td>
       <td>1.000000</td>
     </tr>
@@ -1842,7 +1844,7 @@ Standard deviation of cross-validation score = 0.09
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_18071/2246468746.py:12: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_5169/2246468746.py:12: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
   out_col.append((f&quot;%0.3f (+/- %0.3f)&quot; % (mean_scores[i], std_scores[i])))
 </pre></div>
 </div>
@@ -1875,7 +1877,7 @@ Standard deviation of cross-validation score = 0.09
       <th>Decision tree</th>
       <td>0.001 (+/- 0.000)</td>
       <td>0.001 (+/- 0.000)</td>
-      <td>0.769 (+/- 0.050)</td>
+      <td>0.762 (+/- 0.051)</td>
       <td>0.994 (+/- 0.014)</td>
     </tr>
   </tbody>
@@ -1939,7 +1941,7 @@ Validation error:   0.212
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train error:   0.000
-Validation error:   0.226
+Validation error:   0.220
 </pre></div>
 </div>
 </div>
@@ -1988,7 +1990,7 @@ Validation error:   0.226
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7f9ab7e5a7fcec90c81f391cf8e08af884ab9b17b2296b00224e5efb243694ce.png" src="../_images/7f9ab7e5a7fcec90c81f391cf8e08af884ab9b17b2296b00224e5efb243694ce.png" />
+<img alt="../_images/82175db43f3e42ab0cd50a4a7d5b8f1ca8ebe370c90788bca2af67f704b29b72.png" src="../_images/82175db43f3e42ab0cd50a4a7d5b8f1ca8ebe370c90788bca2af67f704b29b72.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2096,8 +2098,8 @@ Validation error:   0.226
     <tr>
       <th>2</th>
       <td>0.160258</td>
-      <td>0.217500</td>
-      <td>0.048940</td>
+      <td>0.223750</td>
+      <td>0.062723</td>
       <td>0.007316</td>
     </tr>
     <tr>
@@ -2123,58 +2125,58 @@ Validation error:   0.226
     </tr>
     <tr>
       <th>6</th>
-      <td>0.066251</td>
+      <td>0.066960</td>
       <td>0.197500</td>
       <td>0.074773</td>
-      <td>0.012019</td>
+      <td>0.012065</td>
     </tr>
     <tr>
       <th>7</th>
       <td>0.044873</td>
-      <td>0.210417</td>
-      <td>0.084641</td>
+      <td>0.204167</td>
+      <td>0.088329</td>
       <td>0.009059</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.029909</td>
-      <td>0.216250</td>
-      <td>0.096833</td>
-      <td>0.009422</td>
+      <td>0.030618</td>
+      <td>0.222500</td>
+      <td>0.092669</td>
+      <td>0.010547</td>
     </tr>
     <tr>
       <th>9</th>
       <td>0.020653</td>
-      <td>0.203333</td>
-      <td>0.090978</td>
+      <td>0.197083</td>
+      <td>0.093950</td>
       <td>0.010294</td>
     </tr>
     <tr>
       <th>10</th>
       <td>0.010679</td>
-      <td>0.235417</td>
-      <td>0.096990</td>
+      <td>0.228750</td>
+      <td>0.092204</td>
       <td>0.007938</td>
     </tr>
     <tr>
       <th>11</th>
       <td>0.005699</td>
-      <td>0.210000</td>
-      <td>0.101503</td>
+      <td>0.222500</td>
+      <td>0.105577</td>
       <td>0.004264</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>0.002143</td>
-      <td>0.229583</td>
-      <td>0.089354</td>
-      <td>0.003273</td>
+      <td>0.003561</td>
+      <td>0.235833</td>
+      <td>0.092687</td>
+      <td>0.004769</td>
     </tr>
     <tr>
       <th>13</th>
       <td>0.000000</td>
-      <td>0.235833</td>
-      <td>0.088373</td>
+      <td>0.242083</td>
+      <td>0.086932</td>
       <td>0.000000</td>
     </tr>
     <tr>
@@ -2187,8 +2189,8 @@ Validation error:   0.226
     <tr>
       <th>15</th>
       <td>0.000000</td>
-      <td>0.235833</td>
-      <td>0.083836</td>
+      <td>0.242083</td>
+      <td>0.086932</td>
       <td>0.000000</td>
     </tr>
   </tbody>
@@ -2304,7 +2306,7 @@ Validation error:   0.226
 <li><p>(E) A decision stump on a complicated classification problem is likely to underfit.</p></li>
 </ul>
 <p><br><br></p>
-<p>Link to the class demo: <a class="reference internal" href="class_demos/02_class-demo.html"><span class="doc std std-doc">class_demos/02_class-demo.ipynb</span></a></p>
+<p>Link to the class demo: <span class="xref myst">class_demos/02_class-demo.ipynb</span></p>
 </section>
 </section>
 <section id="summary-and-reflection">
@@ -2389,11 +2391,11 @@ Validation error:   0.226
       </div>
     </a>
     <a class="right-next"
-       href="class_demos/02_class-demo.html"
+       href="04_kNNs-SVM-RBF.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 2: Class demo</p>
+        <p class="prev-next-title">Lecture 4: <span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbours and SVM RBFs</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
