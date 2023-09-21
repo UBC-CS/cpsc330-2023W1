@@ -1,14 +1,4 @@
 north_america,eat_out_freq,age,n_people,price,food_type,noise_level,good_server,comments,restaurant_name,target
-Don't want to share,28.0,60,42.0,46.0,Thai,high,No,Magna rutrum elit eget convallis consequat integer eu est. Proin montes malesuada ligula scelerisque.,"Est posuere iaculis, volutpat velit est scelerisque et lectus lorem velit fringilla at nec vehicula.",dislike
-Don't want to share,29.0,46,96.0,93.0,Fusion,medium,Yes,Vivamus scelerisque tincidunt. Leo per. Accusamus dolor sapien! Et morbi. Primis.,"Quis. Integer sagittis, duis porta. Arcu donec nonummy dolorem diam facilisis.",dislike
-Yes,30.0,59,97.0,235.0,Chinese,no music,No,"Urna, dignissim est fermentum? Dolor tincidunt! Faucibus. Duis consequat! Diam pretium sapien atque.",Dolor? Laoreet! Platea orci temporibus sagittis. Dolor enim et mauris.,dislike
-Don't want to share,1.0,14,10.0,114.0,Other,low,Yes,Atque. Consectetuer diam consectetuer enim? Sit massa! Rhoncus porta est. Ligula montes eget pellentesque.,Vestibulum dui. Porta nunc urna et sodales? Dui nibh vivamus nullam phasellus.,dislike
-Yes,29.0,33,100.0,202.0,Thai,low,Yes,Elementum purus? Purus amet ut porta eu donec scelerisque consequat.,Purus posuere viverra ligula. Blandit iaculis? Egestas molestie luctus. Suspendisse.,dislike
-Yes,22.0,55,83.0,104.0,Indian,low,Yes,Porta sapien vivamus convallis! Posuere viverra sodales iaculis. Proin praesent odio dignissim molestie lectus suspendisse.,"Pharetra massa odio, diam tempor urna proin accumsan cursus erat? Elit, suspendisse.",dislike
-No,21.0,17,70.0,208.0,Indian,crazy loud,No,Fringilla? Ligula faucibus augue bibendum? Phasellus egestas erat. Suspendisse platea vulputate per sodales? Ipsum etiam.,Sagittis! Auctor tempora consequat dolorem wisi dolorem scelerisque urna consectetuer.,dislike
-No,2.0,49,98.0,111.0,Chinese,medium,Yes,"Sapien urna iaculis scelerisque montes sollicitudin euismod, sed velit pellentesque cras pellentesque.",Donec dolorem elementum malesuada faucibus auctor? Facilisis. Tellus rutrum purus.,dislike
-Yes,16.0,20,4.0,146.0,Indian,low,No,"Quis ultrices non quam? Egestas scelerisque, tempor! Praesent tincidunt duis consectetuer.","Ac magna facilisi imperdiet! Malesuada vestibulum primis, fusce. Eget magna.",dislike
-No,16.0,53,68.0,146.0,Other,low,No,Rutrum. Vestibulum urna eleifend. Placerat. Ut iaculis convallis ridiculus elit euismod at tincidunt euismod.,"Sollicitudin imperdiet fringilla maecenas pharetra mauris ante convallis fusce magnis malesuada. Phasellus maecenas, ultricies interdum.",dislike
 Yes,3.0,29,10.0,120.0,Italian,medium,Yes,Ambience,,dislike
 Yes,2.0,23,3.0,20.0,Canadian/American,no music,No,food tastes bad,,dislike
 Yes,2.0,21,20.0,15.0,Chinese,medium,Yes,bad food,,dislike
@@ -516,7 +506,6 @@ Yes,2.0,21,10.0,40.0,Other,low,Yes,good food,pear tree,like
 No,2.0,24,15.0,40.0,Other,medium,Yes,My love for Korean food,Dami,like
 Yes,5.0,23,20.0,10.0,Canadian/American,low,Yes,Good food,,like
 Yes,2.0,22,60.0,20.0,Chinese,medium,Yes,food tasted great!,,like
-Yes,2.0,23,10000000.0,1000000.0,Canadian/American,crazy loud,Yes,,CACTUS CLUB CAFE,like
 Yes,4.0,20,20.0,40.0,Chinese,high,Yes,,,like
 Yes,1.0,21,40.0,60.0,Italian,high,Yes,,Frankie’s,like
 No,2.0,20,50.0,45.0,Canadian/American,medium,Yes,"Steak was good, ambiance was nice and server was helpful.",Hy's steakhouse,like
@@ -564,7 +553,6 @@ No,2.0,22,30.0,40.0,Thai,low,No,the environment,don't remember,like
 No,1.0,22,30.0,25.0,Mexican,high,Yes,good company + really good food + nice ambiente,Lucky Taco,like
 Yes,1.0,22,10.0,15.0,Other,medium,Yes,Lighting,Guu ,like
 Yes,1.0,29,20.0,50.0,Other,low,Yes,The quality of the food was amazing!,It was a Japanese restaurant but I can't remember its name.,like
-Yes,4.0,28,50.0,250.0,Other,low,Yes,Good food and good service,Miku,like
 No,2.0,23,15.0,16.0,Thai,high,Yes,I love their pho so much,Linh,like
 No,2.0,26,20.0,30.0,Italian,medium,Yes,The food was delicious,La Notte,like
 No,1.0,10,30.0,20.0,Other,low,Yes,food tasted good,sancho,like
@@ -696,7 +684,6 @@ No,1.0,30,50.0,100.0,Italian,high,Yes,,Solvio Volpe,like
 Yes,2.0,28,,,,,,,,like
 Yes,2.0,22,,,,,,,,like
 Yes,1.0,22,12.0,23.0,Mexican,medium,Yes,,,like
-No,2.0,20,20.0,300.0,fusion,low,Yes,Bee pollen milk buns are the greatest thing ever,Published on Main,like
 Yes,4.0,26,30.0,50.0,Chinese,high,Yes,"With group of friends, tasty, fancy, exotic",Gyukaku,like
 Yes,2.0,24,15.0,15.0,Other,low,Yes,Was with friends,Marulilu Cafe,like
 Yes,1.0,32,50.0,100.0,Canadian/American,low,Yes,"Excellent, knowledgeable service; fantastic atmosphere; tableside service.",Hy's Steakhouse,like
@@ -740,7 +727,6 @@ Good alcohol
 No,3.0,21,20.0,5.0,Other,no music,No,"Tasty food, lot of Vegan options",Sun Sushi,like
 Yes,2.0,19,20.0,40.0,Indian,low,Yes,,,like
 Yes,2.0,29,80.0,30.0,Canadian/American,low,Yes,,Bin 4,like
-Yes,2.0,22,200.0,300.0,fusion,high,Yes,,ancora waterfront dining and patio,like
 Yes,1.0,21,10.0,15.0,Other,low,Yes,Great fresh food,,like
 Yes,3.0,20,50.0,30.0,Indian,high,No,,,like
 Yes,1.0,38,20.0,20.0,Other,medium,Yes,Taste,Chui Hong,like
@@ -958,7 +944,6 @@ Yes,1.0,20,10.0,10.0,Other,low,Yes,,Baoguette,like
 Yes,2.0,23,80.0,40.0,Other,low,Yes,The food was amazing and was extremely unique!,Chambar Restaurant,like
 No,2.0,23,70.0,40.0,Other,medium,Yes,"Fresh food, by the water",,like
 No,1.5,21,20.0,23.0,Other,medium,Yes,Good company to enjoy the food with,,like
-Yes,1.0,30,60.0,300.0,Chinese,medium,Yes,very good service,Dolar Shop,like
 Yes,2.0,25,10.0,20.0,Canadian/American,low,Yes,,,like
 Yes,1.0,22,60.0,80.0,Canadian/American,medium,Yes,good atmosphere,botanist,like
 Yes,1.0,23,20.0,30.0,Other,medium,Yes,Food was really good,,like
@@ -970,7 +955,6 @@ No,1.0,21,15.0,50.0,Other,low,Yes,Good price good portions.,Sura Korean BBQ,like
 Yes,2.0,21,60.0,15.0,Chinese,high,Yes,,,like
 No,1.0,23,15.0,25.0,Other,medium,Yes,Restaurant offers pricing that is friendly to families or friends or group ordering in general.,Nandos,like
 Yes,3.0,21,15.0,16.0,Thai,medium,Yes,,,like
-Yes,3.0,23,50.0,300.0,Chinese,medium,Yes,,,like
 Yes,4.0,21,30.0,30.0,Canadian/American,low,Yes,The building and the room gave a very comfy feeling. Immediately after sitting down it felt like we were right at home.,,like
 No,1.0,20,,,,,,,,like
 No,8.0,20,,,,,,,,like
