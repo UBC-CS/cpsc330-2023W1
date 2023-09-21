@@ -1,165 +1,1003 @@
 north_america,eat_out_freq,age,n_people,price,food_type,noise_level,good_server,comments,restaurant_name,target
-Yes,3.0,29,20,10,Other,no music,Yes,,,like
-Yes,2.0,23,10,20,Chinese,low,Yes,food tastes good,Midam,like
-Yes,2.0,21,10,40,Other,low,Yes,good food,pear tree,like
-No,2.0,24,15,40,Other,medium,Yes,My love for Korean food,Dami,like
-Yes,5.0,23,20,10,Canadian/American,low,Yes,Good food,,like
-Yes,2.0,22,60,20,Chinese,medium,Yes,food tasted great!,,like
-Yes,2.0,23,10000000,1000000,Canadian/American,crazy loud,Yes,,CACTUS CLUB CAFE,like
-Yes,4.0,20,20,40,Chinese,high,Yes,,,like
-Yes,1.0,21,40,60,Italian,high,Yes,,Frankie’s,like
-No,2.0,20,50,45,Canadian/American,medium,Yes,"Steak was good, ambiance was nice and server was helpful.",Hy's steakhouse,like
-No,3.0,23,1,20,Chinese,medium,Yes,,,like
-Yes,2.0,21,30,66,Chinese,medium,Yes,"food came on time, i was full",Dolar Shop,like
-No,5.0,20,30,35,Indian,medium,Yes,Tasty food,,like
-Yes,1.0,29,50,20,Canadian/American,medium,Yes,"Great menu, great atmosphere. ",Floyds,like
-Yes,2.0,23,45,25,Canadian/American,medium,Yes,"Good company, good food",,like
-Yes,2.0,19,25,14,Other,low,Yes,Food was very good,Dai Jang Gum,like
-No,0.5,21,15,30,fusion,low,Yes,,,like
-Yes,3.0,24,40,25,Other,low,Yes,"Food was really good, was on a date",Saku,like
-Yes,2.0,22,40,25,Canadian/American,medium,Yes,Ambience,OEB Breakfast,like
-Yes,1.0,20,40,20,Indian,low,Yes,,,like
-Yes,2.0,25,20,35,Other,medium,Yes,,Ta Bom,like
-Yes,1.0,21,30,16,Chinese,medium,Yes,,Deer Garden,like
-Yes,2.0,19,10,15,Indian,low,Yes,Server got to know us personally,Raga,like
-Yes,0.0,21,50,20,Canadian/American,low,Yes,,,like
-No,2.0,24,30,25,Other,low,Yes,"Taste, location, ",Raisu,like
-Yes,2.0,21,5,10,Canadian/American,low,Yes,The pizza was the best pizza I ever had ,,like
-Yes,3.0,20,10,70,Other,low,Yes,"good food, good decor",Kosoo,like
-No,3.0,22,15,20,Mexican,no music,Yes,,,like
-No,2.0,29,50,30,Canadian/American,low,Yes,They celebrated my girlfriends birthday.,,like
-Yes,5.0,20,25,100,Canadian/American,low,Yes,Nice waiters and I got to try food that I've never tried in the course menu and it tasted good so it was enjoyable,Five Sails,like
-No,2.0,22,30,15,Chinese,medium,Yes,"Tasty food, clean, good service",,like
-No,7.0,22,20,58,Other,high,Yes,Food tasted good,Nori,like
-Yes,1.0,19,50,40,Canadian/American,medium,Yes,"Good portions, clean, nice flavors",Nook,like
-Yes,2.0,22,20,30,Other,low,Yes,,,like
-No,7.0,20,4,4,Chinese,low,No,vds,vsd,like
-Yes,1.0,20,30,25,Other,high,Yes,Good food,Ta Bom Korean Cuisine,like
-Yes,3.0,22,0,13,Italian,low,Yes,Budget friendly and fud was really gud and tasy,Pasta Sauce,like
-Yes,2.0,22,40,25,Canadian/American,low,Yes,"Good company, nice decor, great sommelier.",The Botanist,like
-No,5.0,20,10,15,Other,medium,Yes,The atmosphere was amazing and food was served really quick. The servers spoke in Japanese in a Japanese restaurant.,Danbo Ramen,like
-No,4.0,22,35,20,Canadian/American,low,Yes,amazing food,Bin 4 Burger Lounge,like
-Yes,1.0,23,20,15,Canadian/American,low,Yes,The food was pretty good,,like
-Yes,2.0,22,0,0,Other,no music,Yes,don't remember ,don't remember ,like
-No,5.0,20,3,16,Indian,no music,Yes,The food was delicious!,Mirchi,like
-Don't want to share,4.0,20,50,30,Chinese,high,Yes,,Haidilao,like
-Yes,4.0,22,30,20,Canadian/American,high,Yes,,,like
-Yes,4.0,23,30,20,Other,medium,Yes,,,like
-Yes,1.0,20,80,25,Canadian/American,high,Yes,It was my birthday ,The point,like
-No,1.0,24,10,20,Indian,low,Yes,Food is amazing,,like
-No,3.0,21,20,16,Indian,medium,Yes,THE FOOD WAS AWESOME!!,Bombay Kitchen and Bar,like
-Yes,1.0,22,8,20,Canadian/American,low,Yes,Food tasted great,The Cannibal Cafe,like
-No,2.0,22,30,40,Thai,low,No,the environment,don't remember,like
-No,1.0,22,30,25,Mexican,high,Yes,good company + really good food + nice ambiente,Lucky Taco,like
-Yes,1.0,22,10,15,Other,medium,Yes,Lighting,Guu ,like
-Yes,1.0,29,20,50,Other,low,Yes,The quality of the food was amazing!,It was a Japanese restaurant but I can't remember its name.,like
-Yes,4.0,28,50,250,Other,low,Yes,Good food and good service,Miku,like
-No,2.0,23,15,16,Thai,high,Yes,I love their pho so much,Linh,like
-No,2.0,26,20,30,Italian,medium,Yes,The food was delicious,La Notte,like
-No,1.0,10,30,20,Other,low,Yes,food tasted good,sancho,like
-No,1.0,22,5,12,Mexican,low,Yes,"Fast Service, Great quality and taste",TacoFino,like
-Yes,4.0,23,10,15,Other,no music,Yes,Best Ramen,Marutama Gaiden,like
-Yes,1.0,23,15,150,Canadian/American,low,Yes,I think the service way amazing and the food was very good,Revolving restaurant Vancouver,like
-Yes,2.0,27,75,35,Canadian/American,medium,Yes,Great View beside the ocean. The nice attitude from the waitress. Great Food. ,Cactus Club,like
-Yes,2.0,24,40,60,Italian,low,No,the food was amazing ,lupo ,like
-Yes,0.5,23,50,30,Chinese,crazy loud,Yes,The food was good,,like
-Yes,2.0,31,40,100,Canadian/American,medium,Yes,"Great ambience, location, food.",The Boathouse Restaurant,like
-Yes,5.0,24,50,120,Other,medium,Yes,"quality of ingredients, attentive service, very tasty",Miku,like
-Yes,4.0,21,100,120,Canadian/American,low,Yes,"great atmosphere, right on the water, very good service, great seafood",Cardero's ,like
-Yes,2.5,27,40,25,Italian,low,Yes,Food and atmosphere was great. Guests were also very interesting. ,Anton's Pasta Bar,like
-Yes,0.5,24,15,19,Other,low,Yes,"Free dessert, nice washrooms",Do Chay,like
-Yes,3.0,22,20,35,Other,medium,Yes,"Delicious food! Really fresh ingredients, personalized experience.",Hello Nori,like
-Yes,2.0,32,70,35,Italian,low,Yes,Decor is nice,Savio Volpe,like
-Yes,2.0,21,70,100,Chinese,no music,Yes,The restaurant was clean. The ingredients were fresh. Taste is great :),Kirin,like
-Yes,0.0,25,20,30,Other,medium,Yes,Delicious food,Kingyo,like
-No,3.0,23,50,17,Canadian/American,medium,Yes,The people around me are my friends. Food is delicious,Fable diner,like
-No,0.0,22,0,0,Other,no music,No,dont have best cause i never eat out,dont have best cause i never eat out,like
-Yes,2.0,22,15,5,Canadian/American,low,No,,,like
-Yes,5.0,22,15,16,Other,medium,Yes,Quality of the food,Marutama Ramen,like
-Yes,5.0,22,15,50,Other,medium,Yes,,,like
-Yes,3.0,22,5,20,Chinese,low,Yes,,,like
-Yes,2.0,20,25,20,Other,low,Yes,"I love Middle Eastern food, so even if it isn't the best quality I will still love it.",Paramount Fine Foods,like
-No,2.0,21,80,130,Chinese,medium,Yes,I was in a landscape position with my friend. The food tasted good.,,like
-No,6.0,26,30,40,fusion,medium,Yes,Food quality,,like
-Yes,3.0,29,10,120,Italian,medium,Yes,Ambience,,dislike
-Yes,2.0,23,3,20,Canadian/American,no music,No,food tastes bad,,dislike
-Yes,2.0,21,20,15,Chinese,medium,Yes,bad food,,dislike
-No,2.0,24,14,18,Other,medium,No,Overall vibe on the restaurant,,dislike
-Yes,5.0,23,30,20,Chinese,medium,Yes,A bad day,,dislike
-Yes,2.0,22,40,16,Chinese,medium,No,food taste,,dislike
-Yes,2.0,23,20,10,Canadian/American,high,No,no,McDonald's,dislike
-Yes,4.0,20,3,20,Indian,low,No,,,dislike
-Yes,1.0,21,20,35,Canadian/American,medium,Yes,Food was terrible quality ,,dislike
-No,2.0,20,6,90,Canadian/American,low,No,I got food poisoning afterwards.,Tony's Fish & Oyster Cafe,dislike
-No,3.0,23,10,20,Chinese,medium,No,,,dislike
-Yes,2.0,21,30,30,Chinese,medium,Yes,food that didn't come,Happy Lamb,dislike
-No,5.0,20,20,40,Indian,medium,No,Slow service took forever ,,dislike
-Yes,1.0,29,20,30,Canadian/American,low,Yes,Could not accommodate my allergies. ,,dislike
-Yes,2.0,23,20,45,Italian,crazy loud,No,"Lack of sleep, poor company",,dislike
-Yes,2.0,19,50,13,Mexican,medium,Yes,,BierCraft,dislike
-No,0.5,21,8,20,Other,low,Yes,,,dislike
-Yes,3.0,24,10,10,Other,medium,No,"Missing items, lower quality than usual",Nori,dislike
-Yes,2.0,22,40,60,Other,crazy loud,No,Expensive,Shabusen Yakiniku House,dislike
-Yes,1.0,20,20,20,Chinese,medium,Yes,i dont like chinese food,,dislike
-Yes,2.0,25,20,35,Chinese,medium,No,,,dislike
-Yes,1.0,21,50,20,Chinese,low,No,,,dislike
-Yes,2.0,19,20,20,Indian,medium,No,How empty the restaurant was,,dislike
-Yes,0.0,21,20,15,Chinese,low,No,,,dislike
-No,2.0,24,2,15,Chinese,low,Yes,taste of the food,,dislike
-Yes,2.0,21,20,15,Other,medium,Yes,The amount of food was not enough for the price ,Pho Japolo ,dislike
-Yes,3.0,20,10,10,Fusion,crazy loud,No,"bad food, bad service, bad everything",,dislike
-No,3.0,22,10,22,Chinese,medium,No,,,dislike
-No,2.0,29,50,30,Canadian/American,low,No,Didn't get my happy hour discount.,White Spot,dislike
-Yes,5.0,20,10,30,Other,no music,Yes,Everything we ordered tasted bad some things seemed like it was heated up frozen food,Ongi,dislike
-No,2.0,22,30,10,Canadian/American,crazy loud,No,Server was rude,Schwartz's Deli,dislike
-No,7.0,22,6,40,Chinese,low,No,Food tasted bad,,dislike
-Yes,1.0,19,8,20,Canadian/American,low,No,"Dirty kitchen, milkshakes tasted like soap, steak undercooked",Rocko's Diner,dislike
-Yes,2.0,22,50,30,Chinese,high,No,Servers asked for more tip,,dislike
-No,7.0,20,0,17,Fusion,medium,Yes,"Bad Vibes, bad taste of food",The Eatery,dislike
-Yes,1.0,20,10,17,Canadian/American,low,Yes,Saw mice walking around,Boston Pizza,dislike
-Yes,3.0,22,30,25,Chinese,medium,No,Waitress was extremely rude and smashed the menu in front of us,Neptune Wonton Noodle,dislike
-Yes,2.0,22,15,15,Fusion,low,No,"Really slow service, basically ignored by our waiter. Seemed like the staff was stoned. ",Naam,dislike
-No,5.0,20,30,23,Other,medium,No,The table we were placed at was not quite nice either,Kokoro Ramen,dislike
-No,4.0,22,15,2,Chinese,no music,No,,Chef Hung Taiwanese Beef Noodle,dislike
-Yes,1.0,23,8,25,Chinese,medium,Yes,The food made my sister sick.,,dislike
-Yes,2.0,22,0,0,Other,no music,No,don't remember ,don't remember ,dislike
-No,5.0,20,50,15,Other,medium,No,"The chicken was horrible, and the service was not great either.",Running Chicken,dislike
-Don't want to share,4.0,20,12,13,Other,low,No,Food is bad,A korean restaurant in downtown robson,dislike
-Yes,4.0,22,5,15,Canadian/American,low,No,Bad ambiance and food,Not sure,dislike
-Yes,4.0,23,40,20,Other,medium,Yes,,,dislike
-Yes,1.0,20,0,15,Other,medium,Yes,Bad food and wait time,,dislike
-No,1.0,24,15,18,Other,low,Yes,Just the dishes,,dislike
-No,3.0,21,15,26,Other,medium,No,They gave us Rice+Ketchup+popcorn chicken and called it 'fried chicken bibimbap' -- THAT IS NOT BIBIMBAP!,Running Chicken (it was the worst place ever)!,dislike
-Yes,1.0,22,6,22,Canadian/American,no music,No,Food did not taste that great,the roost,dislike
-No,2.0,22,15,30,Fusion,low,No,no,Green Leaf Sushi,dislike
-No,1.0,22,50,50,Italian,medium,No,Food not that good for the prize,Italian Kitchen,dislike
-Yes,1.0,22,30,15,Other,medium,Yes,Mood of the restaurant,Guu Gastown,dislike
-Yes,1.0,29,50,20,Canadian/American,crazy loud,Yes,It also had poor lighting. ,Can't remember,dislike
-Yes,4.0,28,60,30,Fusion,medium,No,poor service,Glowbal,dislike
-No,2.0,23,5,18,Chinese,low,No,Their foods tasted awful.,,dislike
-No,2.0,26,40,20,Canadian/American,high,No,The food was cold,,dislike
-No,1.0,10,50,20,Fusion,crazy loud,No,food tasted bad,,dislike
-No,1.0,22,20,25,Italian,medium,Yes,Quality of food and presentation was subpar,,dislike
-Yes,4.0,23,30,20,Canadian/American,medium,Yes,Bad chicken wings,Taphouse,dislike
-Yes,1.0,23,15,18,Indian,medium,Yes,The food was boring and repetitive,East is East,dislike
-Yes,2.0,27,10,13,Other,no music,No,Poker Face waiter. ,Cazba,dislike
-Yes,2.0,24,20,30,Indian,high,Yes,bad taste,east is east,dislike
-Yes,0.5,23,10,20,Chinese,low,No,Newspaper cooked into the food,,dislike
-Yes,2.0,31,7,60,Chinese,medium,No,Food wasn't fresh/good,New Town Bakery & Restaurant,dislike
-Yes,5.0,24,3,25,Canadian/American,low,No,"very slow, extremely poor service",coppertank,dislike
-Yes,4.0,21,50,30,Canadian/American,high,No,waited over an hour for food and was almost late for class,the gallery ,dislike
-Yes,2.5,27,75,25,Mexican,low,Yes,"They had sold out of several items and my order kept getting modified. In addition, slow service overall. ",Can't recall ,dislike
-Yes,0.5,24,15,25,Indian,medium,Yes,"Bad food, no cutlery in our take out ",Naam,dislike
-Yes,3.0,22,30,20,Other,medium,Yes,Food wasn't memorable; not as good as other ramen I've had before,,dislike
-Yes,2.0,32,40,3,Canadian/American,high,Yes,Restaurant was dirty,Bon's Off Broadway,dislike
-Yes,2.0,21,20,20,Canadian/American,medium,No,The food was too expensive. Served cold. Long wait time to get in ,Sunshine Diner,dislike
-Yes,0.0,25,5,15,Other,low,Yes,"Went into the restaurant expecting authentic Japanese food, but was served something rather different",Ramen Koika,dislike
-No,3.0,23,5,25,Chinese,low,Yes,The food is not warm enough,Kirin at downtown,dislike
-No,0.0,22,0,0,Other,no music,,dont have worst cause i never eat out,dont have worst cause i never eat out,dislike
-Yes,2.0,22,-2,30,Canadian/American,low,Yes,,,dislike
-Yes,5.0,22,1,15,Canadian/American,low,Yes,,Vera's Burger Shack,dislike
-Yes,5.0,22,4,20,Canadian/American,low,Yes,,do not remember,dislike
-Yes,3.0,22,0,15,Chinese,no music,No,,,dislike
-Yes,2.0,20,10,20,Chinese,no music,Yes,,Tim Kee Kitchen,dislike
-No,2.0,21,30,22,Chinese,high,No,The environment was very not clean. The food tasted awful.,,dislike
-No,6.0,26,20,30,Fusion,low,No,,,dislike
+Don't want to share,28.0,60,42.0,46.0,Thai,high,No,Magna rutrum elit eget convallis consequat integer eu est. Proin montes malesuada ligula scelerisque.,"Est posuere iaculis, volutpat velit est scelerisque et lectus lorem velit fringilla at nec vehicula.",dislike
+Don't want to share,29.0,46,96.0,93.0,Fusion,medium,Yes,Vivamus scelerisque tincidunt. Leo per. Accusamus dolor sapien! Et morbi. Primis.,"Quis. Integer sagittis, duis porta. Arcu donec nonummy dolorem diam facilisis.",dislike
+Yes,30.0,59,97.0,235.0,Chinese,no music,No,"Urna, dignissim est fermentum? Dolor tincidunt! Faucibus. Duis consequat! Diam pretium sapien atque.",Dolor? Laoreet! Platea orci temporibus sagittis. Dolor enim et mauris.,dislike
+Don't want to share,1.0,14,10.0,114.0,Other,low,Yes,Atque. Consectetuer diam consectetuer enim? Sit massa! Rhoncus porta est. Ligula montes eget pellentesque.,Vestibulum dui. Porta nunc urna et sodales? Dui nibh vivamus nullam phasellus.,dislike
+Yes,29.0,33,100.0,202.0,Thai,low,Yes,Elementum purus? Purus amet ut porta eu donec scelerisque consequat.,Purus posuere viverra ligula. Blandit iaculis? Egestas molestie luctus. Suspendisse.,dislike
+Yes,22.0,55,83.0,104.0,Indian,low,Yes,Porta sapien vivamus convallis! Posuere viverra sodales iaculis. Proin praesent odio dignissim molestie lectus suspendisse.,"Pharetra massa odio, diam tempor urna proin accumsan cursus erat? Elit, suspendisse.",dislike
+No,21.0,17,70.0,208.0,Indian,crazy loud,No,Fringilla? Ligula faucibus augue bibendum? Phasellus egestas erat. Suspendisse platea vulputate per sodales? Ipsum etiam.,Sagittis! Auctor tempora consequat dolorem wisi dolorem scelerisque urna consectetuer.,dislike
+No,2.0,49,98.0,111.0,Chinese,medium,Yes,"Sapien urna iaculis scelerisque montes sollicitudin euismod, sed velit pellentesque cras pellentesque.",Donec dolorem elementum malesuada faucibus auctor? Facilisis. Tellus rutrum purus.,dislike
+Yes,16.0,20,4.0,146.0,Indian,low,No,"Quis ultrices non quam? Egestas scelerisque, tempor! Praesent tincidunt duis consectetuer.","Ac magna facilisi imperdiet! Malesuada vestibulum primis, fusce. Eget magna.",dislike
+No,16.0,53,68.0,146.0,Other,low,No,Rutrum. Vestibulum urna eleifend. Placerat. Ut iaculis convallis ridiculus elit euismod at tincidunt euismod.,"Sollicitudin imperdiet fringilla maecenas pharetra mauris ante convallis fusce magnis malesuada. Phasellus maecenas, ultricies interdum.",dislike
+Yes,3.0,29,10.0,120.0,Italian,medium,Yes,Ambience,,dislike
+Yes,2.0,23,3.0,20.0,Canadian/American,no music,No,food tastes bad,,dislike
+Yes,2.0,21,20.0,15.0,Chinese,medium,Yes,bad food,,dislike
+No,2.0,24,14.0,18.0,Other,medium,No,Overall vibe on the restaurant,,dislike
+Yes,5.0,23,30.0,20.0,Chinese,medium,Yes,A bad day,,dislike
+Yes,2.0,22,40.0,16.0,Chinese,medium,No,food taste,,dislike
+Yes,2.0,23,20.0,10.0,Canadian/American,high,No,no,McDonald's,dislike
+Yes,4.0,20,3.0,20.0,Indian,low,No,,,dislike
+Yes,1.0,21,20.0,35.0,Canadian/American,medium,Yes,Food was terrible quality ,,dislike
+No,2.0,20,6.0,90.0,Canadian/American,low,No,I got food poisoning afterwards.,Tony's Fish & Oyster Cafe,dislike
+No,3.0,23,10.0,20.0,Chinese,medium,No,,,dislike
+Yes,2.0,21,30.0,30.0,Chinese,medium,Yes,food that didn't come,Happy Lamb,dislike
+No,5.0,20,20.0,40.0,Indian,medium,No,Slow service took forever ,,dislike
+Yes,1.0,29,20.0,30.0,Canadian/American,low,Yes,Could not accommodate my allergies. ,,dislike
+Yes,2.0,23,20.0,45.0,Italian,crazy loud,No,"Lack of sleep, poor company",,dislike
+Yes,2.0,19,50.0,13.0,Mexican,medium,Yes,,,dislike
+No,0.5,21,8.0,20.0,Other,low,Yes,,,dislike
+Yes,3.0,24,10.0,10.0,Other,medium,No,"Missing items, lower quality than usual",Nori,dislike
+Yes,2.0,22,40.0,60.0,Other,crazy loud,No,Expensive,Shabusen Yakiniku House,dislike
+Yes,1.0,20,20.0,20.0,Chinese,medium,Yes,i dont like chinese food,,dislike
+Yes,2.0,25,20.0,35.0,Chinese,medium,No,,,dislike
+Yes,1.0,21,50.0,20.0,Chinese,low,No,,,dislike
+Yes,2.0,19,20.0,20.0,Indian,medium,No,How empty the restaurant was,,dislike
+Yes,0.0,21,20.0,15.0,Chinese,low,No,,,dislike
+No,2.0,24,2.0,15.0,Chinese,low,Yes,taste of the food,,dislike
+Yes,2.0,21,20.0,15.0,Other,medium,Yes,The amount of food was not enough for the price ,Pho Japolo ,dislike
+Yes,3.0,20,10.0,10.0,Fusion,crazy loud,No,"bad food, bad service, bad everything",,dislike
+No,3.0,22,10.0,22.0,Chinese,medium,No,,,dislike
+No,2.0,29,50.0,30.0,Canadian/American,low,No,Didn't get my happy hour discount.,White Spot,dislike
+Yes,5.0,20,10.0,30.0,Other,no music,Yes,Everything we ordered tasted bad some things seemed like it was heated up frozen food,Ongi,dislike
+No,2.0,22,30.0,10.0,Canadian/American,crazy loud,No,Server was rude,Schwartz's Deli,dislike
+No,7.0,22,6.0,40.0,Chinese,low,No,Food tasted bad,,dislike
+Yes,1.0,19,8.0,20.0,Canadian/American,low,No,"Dirty kitchen, milkshakes tasted like soap, steak undercooked",Rocko's Diner,dislike
+Yes,2.0,22,50.0,30.0,Chinese,high,No,Servers asked for more tip,,dislike
+No,7.0,20,0.0,17.0,Fusion,medium,Yes,"Bad Vibes, bad taste of food",The Eatery,dislike
+Yes,1.0,20,10.0,17.0,Canadian/American,low,Yes,Saw mice walking around,Boston Pizza,dislike
+Yes,3.0,22,30.0,25.0,Chinese,medium,No,Waitress was extremely rude and smashed the menu in front of us,Neptune Wonton Noodle,dislike
+Yes,2.0,22,15.0,15.0,Fusion,low,No,"Really slow service, basically ignored by our waiter. Seemed like the staff was stoned. ",Naam,dislike
+No,5.0,20,30.0,23.0,Other,medium,No,The table we were placed at was not quite nice either,Kokoro Ramen,dislike
+No,4.0,22,15.0,2.0,Chinese,no music,No,,Chef Hung Taiwanese Beef Noodle,dislike
+Yes,1.0,23,8.0,25.0,Chinese,medium,Yes,The food made my sister sick.,,dislike
+Yes,2.0,22,0.0,0.0,Other,no music,No,don't remember ,don't remember ,dislike
+No,5.0,20,50.0,15.0,Other,medium,No,"The chicken was horrible, and the service was not great either.","As mentioned before, Running Chicken ",dislike
+Don't want to share,4.0,20,12.0,13.0,Other,low,No,Food is bad,,dislike
+Yes,4.0,22,5.0,15.0,Canadian/American,low,No,Bad ambiance and food,,dislike
+Yes,4.0,23,40.0,20.0,Other,medium,Yes,,,dislike
+Yes,1.0,20,0.0,15.0,Other,medium,Yes,Bad food and wait time,,dislike
+No,1.0,24,15.0,18.0,Other,low,Yes,Just the dishes,,dislike
+No,3.0,21,15.0,26.0,Other,medium,No,They gave us Rice+Ketchup+popcorn chicken and called it 'fried chicken bibimbap' -- THAT IS NOT BIBIMBAP!,Running Chicken,dislike
+Yes,1.0,22,6.0,22.0,Canadian/American,no music,No,Food did not taste that great,the roost,dislike
+No,2.0,22,15.0,30.0,Fusion,low,No,no,Green leaf,dislike
+No,1.0,22,50.0,50.0,Italian,medium,No,Food not that good for the prize,Italian Kitchen,dislike
+Yes,1.0,22,30.0,15.0,Other,medium,Yes,Mood of the restaurant,Guu Gastown,dislike
+Yes,1.0,29,50.0,20.0,Canadian/American,crazy loud,Yes,It also had poor lighting. ,Can't remember,dislike
+Yes,4.0,28,60.0,30.0,Fusion,medium,No,poor service,Glowbal,dislike
+No,2.0,23,5.0,18.0,Chinese,low,No,Their foods tasted awful.,,dislike
+No,2.0,26,40.0,20.0,Canadian/American,high,No,The food was cold,,dislike
+No,1.0,10,50.0,20.0,Fusion,crazy loud,No,food tasted bad,,dislike
+No,1.0,22,20.0,25.0,Italian,medium,Yes,Quality of food and presentation was subpar,,dislike
+Yes,4.0,23,30.0,20.0,Canadian/American,medium,Yes,Bad chicken wings,Taphouse,dislike
+Yes,1.0,23,15.0,18.0,Indian,medium,Yes,The food was boring and repetitive,East is east,dislike
+Yes,2.0,27,10.0,13.0,Other,no music,No,Poker Face waiter. ,Cazba,dislike
+Yes,2.0,24,20.0,30.0,Indian,high,Yes,bad taste,east is east,dislike
+Yes,0.5,23,10.0,20.0,Chinese,low,No,Newspaper cooked into the food,,dislike
+Yes,2.0,31,7.0,60.0,Chinese,medium,No,Food wasn't fresh/good,New Town Bakery & Restaurant,dislike
+Yes,5.0,24,3.0,25.0,Canadian/American,low,No,"very slow, extremely poor service",coppertank,dislike
+Yes,4.0,21,50.0,30.0,Canadian/American,high,No,waited over an hour for food and was almost late for class,,dislike
+Yes,2.5,27,75.0,25.0,Mexican,low,Yes,"They had sold out of several items and my order kept getting modified. In addition, slow service overall. ",Don't recall,dislike
+Yes,0.5,24,15.0,25.0,Indian,medium,Yes,"Bad food, no cutlery in our take out ",Naam,dislike
+Yes,3.0,22,30.0,20.0,Other,medium,Yes,Food wasn't memorable; not as good as other ramen I've had before,,dislike
+Yes,2.0,32,40.0,3.0,Canadian/American,high,Yes,Restaurant was dirty,Bon's Off Broadway,dislike
+Yes,2.0,21,20.0,20.0,Canadian/American,medium,No,The food was too expensive. Served cold. Long wait time to get in ,Sunshine Diner,dislike
+Yes,0.0,25,5.0,15.0,Other,low,Yes,"Went into the restaurant expecting authentic Japanese food, but was served something rather different",Ramen Koika,dislike
+No,3.0,23,5.0,25.0,Chinese,low,Yes,The food is not warm enough,Kirin at downtown,dislike
+No,0.0,22,0.0,0.0,Other,no music,,dont have worst cause i never eat out,dont have worst cause i never eat out,dislike
+Yes,2.0,22,-2.0,30.0,Canadian/American,low,Yes,,,dislike
+Yes,5.0,22,1.0,15.0,Canadian/American,low,Yes,,,dislike
+Yes,5.0,22,4.0,20.0,Canadian/American,low,Yes,,,dislike
+Yes,3.0,22,0.0,15.0,Chinese,no music,No,,,dislike
+Yes,2.0,20,10.0,20.0,Chinese,no music,Yes,,,dislike
+No,2.0,21,30.0,22.0,Chinese,high,No,The environment was very not clean. The food tasted awful.,,dislike
+No,6.0,26,20.0,30.0,Fusion,low,No,,,dislike
+No,2.0,23,10.0,20.0,Chinese,medium,Yes,,,dislike
+No,3.0,22,,,,,,,,dislike
+Yes,6.0,23,,,,,,,,dislike
+Yes,1.0,20,,,,,,,,dislike
+Yes,3.0,22,,,,,,,,dislike
+Yes,3.0,26,,,,,,,,dislike
+Yes,1.0,27,4.0,25.0,Other,low,Yes,,,dislike
+Yes,3.0,22,0.0,20.0,Canadian/American,high,No,,mcomndalds ,dislike
+Yes,1.0,21,,,,,,,,dislike
+Yes,2.0,27,,,,,,,,dislike
+Yes,1.0,18,,,,,,,,dislike
+No,3.0,21,,,,,,,,dislike
+Yes,0.5,29,30.0,15.0,Chinese,high,Yes,Restaurant theme (Decoration),Memory Corner,dislike
+No,2.0,29,50.0,17.0,Other,no music,Yes,"It was just a personal thing, everyone was yelling",Gyu-Kaku,dislike
+No,1.0,26,40.0,30.0,Chinese,high,Yes,Mostly the food flavour.,"Hotpot something, Kitsalano",dislike
+Yes,2.0,26,25.0,35.0,Italian,high,No,"seated at a very crowded area, didn't take our orders until 20 min later ",,dislike
+No,7.0,24,3.0,14.0,Mexican,medium,No,,,dislike
+Yes,0.5,25,10.0,20.0,Chinese,low,Yes,,,dislike
+Yes,3.0,39,18.0,15.0,Indian,medium,No,,,dislike
+No,3.0,24,50.0,20.0,Other,low,No,,,dislike
+Yes,1.0,28,8.0,20.0,Chinese,low,No,"Paper plates, covid times, apathetic staff",Peaceful,dislike
+No,4.0,31,7.0,15.0,Chinese,medium,Yes,,,dislike
+No,1.0,28,0.0,20.0,Other,no music,Yes,The food was bad,,dislike
+No,2.0,37,5.0,10.0,Canadian/American,low,No,,,dislike
+No,3.0,27,10.0,15.0,Chinese,medium,Yes,Food wasn't great. ,,dislike
+Yes,1.0,32,0.0,35.0,Italian,high,No,staff,,dislike
+No,1.5,24,0.0,40.0,Other,medium,Yes,,Yah-Yah-Ya Ramen,dislike
+No,2.0,28,10.0,15.0,Chinese,high,No,,can't remember,dislike
+No,1.0,35,2.0,35.0,Indian,medium,Yes,ambience was gloomy,,dislike
+Yes,1.0,26,10.0,25.0,Italian,low,Yes,,tratoria,dislike
+Yes,3.0,26,20.0,30.0,Fusion,medium,No,,,dislike
+Yes,5.0,27,20.0,25.0,Other,low,No,The dishes are not tasty. ,Samurai Japanese Restaurant,dislike
+Yes,5.0,31,2.0,20.0,Canadian/American,low,No,,,dislike
+Yes,4.0,23,30.0,15.0,Other,crazy loud,No,,,dislike
+No,1.0,38,10.0,30.0,Fusion,low,No,Food quality did not seem too good,,dislike
+No,2.0,34,20.0,20.0,Indian,high,No,,,dislike
+No,2.0,22,20.0,40.0,Chinese,medium,Yes,Too expensive,,dislike
+No,2.0,23,9.0,12.0,Other,no music,No,,,dislike
+No,1.0,38,10.0,13.0,Chinese,medium,Yes,No,Sesame,dislike
+No,2.0,27,30.0,20.0,Mexican,medium,No,,,dislike
+No,1.0,36,7.0,99.0,Other,low,Yes,,,dislike
+Yes,1.0,28,30.0,10.0,Canadian/American,crazy loud,Yes,Way too expensive,Earls,dislike
+No,0.5,27,30.0,15.0,Chinese,medium,Yes,The food taste.,,dislike
+No,2.0,46,30.0,70.0,Chinese,medium,Yes,asking for tips,,dislike
+No,10.0,45,20.0,3.0,Canadian/American,low,No,There were a lot of people waiting at the food pick-up counter.,McDonald's,dislike
+No,1.0,23,25.0,15.0,Indian,medium,No,Food quality,Dosaka,dislike
+No,1.0,22,3.0,80.0,Thai,medium,No,,,dislike
+No,2.0,31,25.0,20.0,Fusion,high,Yes,,,dislike
+No,1.0,27,20.0,17.0,Indian,medium,Yes,,,dislike
+No,1.0,34,20.0,20.0,Canadian/American,high,Yes,Burgers are getting smaller everyday it seems!,Mcdonalds,dislike
+No,3.0,38,10.0,15.0,Canadian/American,medium,No,,,dislike
+No,2.0,24,50.0,100.0,Fusion,crazy loud,No,,,dislike
+No,2.0,46,15.0,20.0,Other,medium,Yes,The food itself,,dislike
+No,1.0,24,10.0,13.69,Indian,high,No,The taste of the food ,Bombay Masala,dislike
+Yes,2.0,28,5.0,20.0,Chinese,no music,No,,,dislike
+Yes,2.0,26,3.0,15.0,Canadian/American,high,No,Wait time for getting fast food,,dislike
+No,2.0,30,10.0,15.0,Indian,low,Yes,,,dislike
+No,2.0,28,4.0,11.0,Chinese,no music,Yes,,Camay Wok,dislike
+No,0.0,24,10.0,10.0,Italian,low,Yes,,,dislike
+No,12.0,23,3.0,13.0,Canadian/American,no music,Yes,,,dislike
+Yes,5.0,26,3.0,12.0,Other,medium,Yes,,,dislike
+No,4.0,24,6.0,20.0,Chinese,low,No,"The food is not fresh.
+The server never see me.",Yun Shang,dislike
+Yes,3.0,30,30.0,50.0,Chinese,medium,No,"taste of the food, waiting time for food",,dislike
+No,4.0,29,2.0,60.0,Indian,low,Yes,,,dislike
+No,2.0,34,20.0,20.0,Canadian/American,medium,Yes,,,dislike
+No,2.0,25,20.0,30.0,Canadian/American,medium,Yes,,,dislike
+Yes,5.0,35,15.0,40.0,Chinese,medium,Yes,,,dislike
+No,1.0,28,50.0,35.0,Chinese,high,Yes,People eat together,No,dislike
+Yes,0.0,29,4.0,15.0,Chinese,low,No,Terrible food,,dislike
+Yes,1.0,25,30.0,15.0,Other,medium,Yes,,,dislike
+No,2.0,26,3.0,30.0,Chinese,low,Yes,taste,hong,dislike
+No,1.0,24,3.0,6.0,Other,medium,Yes,The tip,I do not remember ,dislike
+No,10.0,27,,,,,,,,dislike
+No,5.0,22,,,,,,,,dislike
+No,0.01,27,,,,,,,,dislike
+Yes,1.0,24,20.0,20.0,Indian,high,,,,dislike
+No,1.0,21,,,,,,,,dislike
+No,4.0,29,8.0,20.0,Fusion,high,,,,dislike
+No,2.0,22,,,,,,,,dislike
+No,0.0,27,,,,,,,,dislike
+Yes,1.0,28,,,,,,,,dislike
+No,1.0,23,,,,,,,,dislike
+No,5.0,22,,,,,,,,dislike
+No,0.0,25,,,,,,,,dislike
+No,2.0,24,6.0,10.0,Indian,medium,Yes,no,bombay masala,dislike
+No,4.0,34,,,,,,,,dislike
+No,0.0,25,,,,,,,,dislike
+Yes,0.0,22,,,,,,,,dislike
+No,4.0,25,10.0,30.0,Indian,medium,No,-,Bombay Masala,dislike
+No,5.0,28,,,,,,,,dislike
+No,2.0,25,,,,,,,,dislike
+Don't want to share,1.0,25,20.0,25.0,Thai,no music,No,,,dislike
+Yes,1.0,24,1.0,7.0,Canadian/American,no music,No,I ordered and paid my food but even though I was the only person there the cashier forgot I ordered already so I was just standing around waiting until they asked me again if I ordered like 10 minutes later,,dislike
+No,7.0,23,,,,,,,,dislike
+Yes,4.0,24,,,,,,,,dislike
+No,2.0,35,20.0,100.0,Chinese,high,No,,,dislike
+Yes,3.0,21,9.0,13.0,Canadian/American,no music,Yes,,,dislike
+Yes,1.0,22,50.0,30.0,Other,medium,No,Wait time,Shabusen,dislike
+Yes,3.0,20,4.0,30.0,Chinese,low,Yes,Bad flavour,N/a,dislike
+Yes,0.2,21,60.0,26.0,Fusion,crazy loud,Yes,"Too ""extra,"" not good enough for the price I think.",The Eatery,dislike
+No,1.0,30,3.0,20.0,Italian,medium,Yes,Wrong order with bad customer experience,,dislike
+Yes,2.0,28,,,,,,,,dislike
+Yes,2.0,22,,,,,,,,dislike
+Yes,1.0,22,12.0,11.0,Canadian/American,medium,No,,,dislike
+No,2.0,20,30.0,30.0,Other,low,No,"Slow service, unappealing look of the food, waitress seemed like she didn't want to be there, people I don't like were also eating there",MeeT in Gastown,dislike
+Yes,4.0,26,16.0,25.0,Canadian/American,medium,Yes,"small portion, undercooked, gross, bad taste",lefty's,dislike
+Yes,2.0,24,30.0,10.0,Canadian/American,medium,No,I was drunk,McDonalds,dislike
+Yes,1.0,32,25.0,40.0,Canadian/American,medium,No,"Multiple out of stock menu items, server was unaware of what was out of stock so had to come back and tell us we had to change our order. Server dropped our meals on the floor.",,dislike
+Yes,2.0,20,1.0,14.0,Other,no music,No,food was bad,dont remember,dislike
+Yes,3.0,19,25.0,20.0,Other,high,Yes,no,Mr Bro,dislike
+No,2.0,21,100.0,30.0,Canadian/American,crazy loud,No,Seating was super packed and uncomfortable,,dislike
+No,1.0,21,30.0,30.0,Canadian/American,high,No,Small space,No,dislike
+Yes,2.0,19,5.0,50.0,Mexican,medium,No,,,dislike
+Yes,3.0,20,10.0,10.0,Canadian/American,low,Yes,,,dislike
+Yes,0.0,22,30.0,20.0,Other,crazy loud,No,,,dislike
+Yes,0.25,22,0.0,12.0,Other,low,No,They forgot about my order so I was just left sitting at my table for 20 or so minutes >:(,la maison,dislike
+No,3.0,25,20.0,20.0,Italian,low,No,,,dislike
+Yes,2.0,21,50.0,50.0,Italian,high,Yes,noise,,dislike
+Yes,5.0,19,40.0,70.0,Chinese,high,Yes,,,dislike
+Yes,1.0,30,100.0,20.0,Other,high,No,,,dislike
+No,5.0,22,15.0,13.0,Chinese,no music,No,No just the server,Dragon Fort,dislike
+Yes,3.0,25,40.0,30.0,Canadian/American,high,No,no,,dislike
+Yes,5.0,20,20.0,20.0,Thai,low,Yes,The food felt uncooked the noodles were very dry on top or very wet on the bottom ,,dislike
+Yes,2.0,21,5.0,6.0,Other,low,Yes,serving efficiency,can't remember,dislike
+Yes,2.0,22,,,,,,,,dislike
+Yes,5.0,20,,,,,,,,dislike
+Yes,4.0,19,,,,,,,,dislike
+Yes,0.5,25,,,,,,,,dislike
+No,0.3,23,,,,,,,,dislike
+Yes,3.0,21,30.0,18.0,Other,medium,Yes,Previous experiences eating good ramen outside of vancouver,Jinya Ramen,dislike
+No,0.0,20,,,,,,,,dislike
+No,2.0,19,,,,,,,,dislike
+Yes,1.0,25,,,,,,,,dislike
+Yes,2.5,21,,,,,,,,dislike
+Yes,0.0,21,,,,,,,,dislike
+Yes,2.0,20,15.0,10.0,Fusion,crazy loud,No,,,dislike
+Yes,1.0,21,,,,,,,,dislike
+No,2.0,24,,,,,,,,dislike
+No,7.0,23,,,,,,,,dislike
+Yes,5.0,22,12.0,30.0,Other,crazy loud,Yes,The decor,,dislike
+Yes,1.0,22,6.0,20.0,Italian,low,No,Food didn't include ingredients mentioned on the menu.,La Notte,dislike
+Yes,4.0,22,15.0,25.0,Canadian/American,low,No,"Hair in food, wrong orders, server was not an employee.
+Ordered ""deluxe pancakes"", got undressed pancakes and eggs I did not ask for.
+The eggs had hair in them.
+I told the server to replace the eggs, and they just removed the hair.
+When we tipped, the server said ""Don't tip, I don't actually work here, I am just helping a friend""",Ricky's Diner,dislike
+No,3.0,21,40.0,18.0,Canadian/American,medium,No,"The staff was racist, food did not have any spices or even salt",Naam Restaurent,dislike
+Yes,2.0,19,5.0,12.0,Other,medium,Yes,,,dislike
+Yes,2.0,29,50.0,50.0,Canadian/American,medium,No,,,dislike
+Yes,2.0,22,5.0,30.0,Italian,low,Yes,empty restaurant except they sat us by the only other table there,,dislike
+Yes,1.0,21,30.0,20.0,Fusion,high,No,Tipping was way too high,,dislike
+Yes,3.0,20,40.0,20.0,Canadian/American,medium,Yes,,,dislike
+Yes,1.0,38,3.0,15.0,Chinese,crazy loud,No,,,dislike
+Yes,3.0,22,10.0,15.0,Canadian/American,medium,Yes,Soggy food,White Spot,dislike
+Yes,2.0,22,8.0,40.0,Other,medium,No,Delay,,dislike
+Yes,2.5,20,50.0,30.0,Canadian/American,high,No,"Got the wrong food we ordered, overpriced and couldn't eat the food",,dislike
+No,1.0,20,15.0,15.0,Other,high,Yes,Outdoor seat on a cold day,,dislike
+Yes,2.0,22,12.0,20.0,Canadian/American,low,Yes,the company I was with,Dockside,dislike
+Yes,1.0,23,25.0,24.0,Canadian/American,medium,Yes,,Steam Works,dislike
+Yes,4.0,21,8.0,22.0,Indian,low,Yes,food quality bad,,dislike
+Yes,1.0,28,50.0,30.0,Canadian/American,high,Yes,Terrible taste of the food,Meet,dislike
+No,3.0,23,20.0,25.0,Chinese,medium,Yes,The food quality is not that good and i had higher expectation.,sip bowl,dislike
+No,2.0,24,15.0,20.0,Italian,low,No,,,dislike
+Yes,3.0,28,10.0,14.0,Other,no music,Yes,I got food poisoning,,dislike
+Yes,3.0,21,25.0,34.0,Canadian/American,medium,Yes,Overpriced,,dislike
+Yes,5.0,22,10.0,15.0,Fusion,medium,Yes,,,dislike
+No,0.5,21,50.0,20.0,Chinese,medium,No,,,dislike
+Yes,0.0,20,30.0,30.0,Canadian/American,medium,Yes,The food just sucks for the price,The Keg,dislike
+Yes,6.0,20,1.0,20.0,Thai,medium,No,"Despite no one being in the restaurant, it took 30+ minutes for our food to arrive which is frustrating and disappointing.",,dislike
+Yes,1.0,19,50.0,16.0,Canadian/American,medium,No,"Terrible service, cold food, expensive",Earls,dislike
+No,15.0,23,20.0,50.0,Chinese,medium,No,Forcing tips when the service is actually shitty.,Neptune Chinese Kitchen,dislike
+No,7.0,24,5.0,15.0,Other,low,No,,kintaro ramen,dislike
+No,3.0,21,20.0,50.0,Chinese,high,Yes,No,HaiDiLao,dislike
+No,2.0,21,20.0,40.0,Canadian/American,medium,Yes,terrible taste,,dislike
+Yes,2.0,22,30.0,20.0,Canadian/American,medium,No,Menu that didn't fit my dietary needs,Heirloom,dislike
+Yes,2.0,21,50.0,40.0,Other,medium,Yes,"It took a long time to get the food, to order, and some of the food wasn't available.",,dislike
+Yes,10.0,23,1.0,10.0,Canadian/American,no music,No,"Bad taste of food, bad pizza not good compared to China ",Pizza hut ,dislike
+No,2.0,22,10.0,110.0,Fusion,no music,No,Food is unfresh,sura,dislike
+Yes,1.0,20,50.0,25.0,Canadian/American,low,Yes,the person I was eating with,White Spot,dislike
+No,2.0,20,10.0,35.0,Other,no music,Yes,The portions were tiny,Nuba,dislike
+Yes,1.0,21,30.0,25.0,Canadian/American,high,No,,,dislike
+No,10.0,22,5.0,20.0,Other,high,No,taste,can't remember,dislike
+No,7.0,21,20.0,80.0,Chinese,medium,Yes,no,Liuyishou Hotpot,dislike
+Yes,1.0,20,20.0,40.0,Canadian/American,low,Yes,,Forage,dislike
+Yes,4.0,24,50.0,15.0,Other,low,No,Worst ramen in Vancouver.,Jinya Ramen,dislike
+No,1.0,21,20.0,70.0,Other,high,No,"taste, quality of food",Don't remember,dislike
+No,1.0,22,2.0,15.0,Chinese,low,Yes,Restaurant was empty besides my party and was quiet. Food was bland.,,dislike
+Yes,4.0,23,40.0,30.0,Chinese,high,No,The fact they took almost 1 hour to bring the food out. Was super rude and demanded tips (explicitly),Not sure anyone,dislike
+Yes,1.0,27,30.0,20.0,Other,low,Yes,Vegan food didn't taste that good,Kind Cafe (vegan),dislike
+Yes,5.0,22,15.0,17.0,Thai,medium,Yes,Food itself just wasn't tasty,Thai Basil,dislike
+No,3.0,25,50.0,20.0,Other,crazy loud,Yes,,,dislike
+Yes,3.0,22,25.0,40.0,Fusion,high,Yes,The food wasn't very good and they were strict about not sharing food,East is East,dislike
+Yes,1.0,22,50.0,40.0,Canadian/American,medium,Yes,,,dislike
+No,3.0,22,50.0,30.0,Thai,medium,No,I had an allergic reaction after eating the food.,Cactus Club Cafe,dislike
+Yes,1.0,20,4.0,20.0,Canadian/American,no music,Yes,Food wasn't good,Nandos,dislike
+Yes,3.0,28,30.0,120.0,Fusion,medium,No,the taste of the food,Maenam,dislike
+No,2.0,29,70.0,30.0,Fusion,medium,Yes,The food was tasteless!,Joey Burrard,dislike
+Yes,1.0,34,50.0,20.0,Thai,low,No,,,dislike
+No,1.0,20,10.0,100.0,Chinese,medium,Yes,,,dislike
+No,6.0,24,20.0,13.0,Chinese,medium,Yes,Food was bad,Grand Noodle Emporium,dislike
+No,3.0,22,2.0,20.0,Other,no music,No,Cleanliness of restaurant,,dislike
+No,1.0,20,20.0,30.0,Canadian/American,low,Yes,,Cactus,dislike
+Yes,3.0,22,25.0,35.0,Canadian/American,medium,No,,Elwoods,dislike
+No,2.0,21,,,,,,,,dislike
+No,1.0,22,,,,,,,,dislike
+No,1.0,25,,,,,,,,dislike
+No,5.0,22,,,,,,,,dislike
+Yes,0.0,21,,,,,,,,dislike
+No,5.0,23,,,,,,,,dislike
+Yes,4.0,25,25.0,30.0,Canadian/American,high,No,Live music was playing,Wolf and Hound,dislike
+Yes,1.0,20,,,,,,,,dislike
+No,7.0,24,,,,,,,,dislike
+No,5.0,24,,,,,,,,dislike
+Don't want to share,3.0,20,,,,,,,,dislike
+No,4.0,21,2.0,15.0,Chinese,low,No,Not tasty,,dislike
+No,0.5,23,,,,,,,,dislike
+No,0.0,22,,,,,,,,dislike
+No,3.0,22,,,,,,,,dislike
+No,0.0,29,,,,,,,,dislike
+Yes,5.0,20,,,,,,,,dislike
+No,1.0,23,,,,,,,,dislike
+No,4.0,29,,,,,,,,dislike
+Yes,3.0,27,,,,,,,,dislike
+No,8.0,21,,,,,,,,dislike
+Yes,1.0,24,,,,,,,,dislike
+Yes,1.0,33,30.0,30.0,Other,medium,No,Rude staff.,,dislike
+Yes,4.0,27,50.0,60.0,Other,medium,No,"Server was not only slow and inattentive in his service, but he spoke to us in a very condescending, racially charged tone throughout the dining experience. ",L'Abattoir,dislike
+Yes,2.0,21,,,,,,,,dislike
+No,8.0,27,,,,,,,,dislike
+No,1.0,40,6.0,80.0,Canadian/American,medium,No,The size of table was not spacious concerning the number of our team.,Keg,dislike
+No,1.0,27,20.0,30.0,Other,high,No,"Long wait time to order, no refills for water/tea",Sushi Garden,dislike
+No,1.0,43,10.0,20.0,Other,low,Yes,,,dislike
+No,1.0,36,15.0,20.0,Thai,medium,No,I didn't eat since the server was too busy and didn't pay any attention,Didn't recall in the 10 seconds since last question :D,dislike
+Yes,1.0,26,10.0,60.0,Other,low,Yes,Food quality and taste,Green Leaf Sushi,dislike
+No,1.0,31,2.0,30.0,Mexican,low,Yes,food not great,don't remember,dislike
+Yes,0.0,23,30.0,15.0,Chinese,medium,Yes,I just didn't like the dish ,,dislike
+No,7.0,28,4.0,30.0,Mexican,low,Yes,Food was awful ,Catrina,dislike
+No,1.0,38,15.0,30.0,Other,medium,Yes,Taste,Chef Hong,dislike
+No,2.0,26,4.0,14.0,Chinese,low,Yes,,,dislike
+No,1.0,40,2.0,25.0,Canadian/American,medium,No,,,dislike
+Yes,3.0,25,,,,,,,,dislike
+No,1.0,41,,,,,,,,dislike
+No,1.0,36,,,,,,,,dislike
+No,1.0,21,,,,,,,,dislike
+Yes,1.0,22,,,,,,,,dislike
+No,3.0,26,1.0,20.0,Canadian/American,medium,No,,,dislike
+Yes,5.0,22,,,,,,,,dislike
+No,1.0,25,,,,,,,,dislike
+Yes,1.0,23,,,,,,,,dislike
+No,3.0,32,3.0,120.0,Chinese,medium,Yes,Ordered too much food!,,dislike
+No,1.0,24,,,,,,,,dislike
+Yes,1.0,24,,,,,,,,dislike
+No,0.0,23,,,,,,,,dislike
+Yes,4.0,28,,,,,,,,dislike
+Yes,1.0,25,,,,,,,,dislike
+No,1.0,24,12.0,8.0,Other,medium,Yes,,,dislike
+No,1.0,23,50.0,24.0,Italian,medium,Yes,NO,,dislike
+No,6.0,21,20.0,10.0,Chinese,medium,No,"Server's attitude, expectation (tip) and serving time are horrible
+Food price is unreasonable",Seasame,dislike
+No,1.0,25,55.0,100.0,Indian,medium,Yes,good,,dislike
+Yes,2.0,20,20.0,25.0,Other,medium,Yes,,,dislike
+Yes,3.0,22,20.0,13.0,Chinese,low,Yes,,My Home Cuisine,dislike
+Don't want to share,3.0,22,3.0,40.0,Chinese,no music,No,bad food,,dislike
+No,2.0,25,,,,,,,,dislike
+No,0.0,22,,,,,,,,dislike
+Yes,1.0,26,50.0,30.0,Canadian/American,crazy loud,No,,,dislike
+Yes,2.0,24,15.0,30.0,Canadian/American,low,No,Quickness,Breakfast restauarant,dislike
+Yes,1.0,27,10.0,25.0,Other,low,No,Bad food,Green Lead Sushi,dislike
+Yes,2.0,19,20.0,150.0,Italian,low,No,poor service,,dislike
+No,3.0,22,30.0,50.0,Canadian/American,medium,Yes,,,dislike
+Yes,1.0,20,5.0,60.0,Other,medium,Yes,"They didn't give us the proper order and it gave us food poisoning because it was made improperly ~ however, the manager ended up calling us a couple days after and apologied and gave us a free meal, which ended up being much better!",Momo Sushi (dunbar),dislike
+No,5.0,21,20.0,30.0,Thai,medium,Yes,NO,Thai Basil,dislike
+No,1.0,28,2.0,30.0,Canadian/American,high,Yes,Their Korean and Japanese menu were not good.,Earls Kitchen + Bar,dislike
+Yes,2.0,21,12.0,13.0,Chinese,crazy loud,No,Dirty,,dislike
+No,3.0,22,20.0,20.0,Other,high,Yes,Price and size of food,Pho with us,dislike
+No,14.0,21,20.0,30.0,Chinese,no music,No,There is no service at all but they yield for tips over 18%,Fa Lun Gong,dislike
+No,2.0,23,50.0,30.0,Canadian/American,high,No,"Super slow service, fast food orders took 40mins to arrive",nope,dislike
+Yes,0.5,22,20.0,25.0,Canadian/American,crazy loud,No,,,dislike
+Yes,5.0,21,2.0,30.0,Canadian/American,high,No,Expensive,,dislike
+No,3.0,23,5.0,15.0,Other,no music,Yes,Pork not properly cooked,Nori,dislike
+Yes,4.0,22,6.0,20.0,Chinese,low,No,,,dislike
+Yes,1.0,26,2.0,25.0,Indian,medium,,,,dislike
+No,10.0,25,1.0,12.0,Other,no music,Yes,"the food smells bad, and taste bad. The server is polite and its not noisy.",mediterranean cuisine,dislike
+Yes,0.0,21,8.0,18.0,Other,low,Yes,I had an allergic reaction which resulted in me going to the hospital.,,dislike
+Don't want to share,0.0,20,,,,,,,,dislike
+Yes,3.0,33,,,,,,,,dislike
+Yes,3.0,21,,,,,,,,dislike
+Yes,0.0,29,,,,,,,,dislike
+No,4.0,22,,,,,,,,dislike
+Yes,1.0,21,,,,,,,,dislike
+No,3.0,22,,,,,,,,dislike
+Yes,3.0,27,10.0,40.0,Other,medium,No,food was really cold when it got to us,,dislike
+Yes,2.0,27,,,,,,,,dislike
+No,3.0,33,,,,,,,,dislike
+No,2.0,21,,,,,,,,dislike
+No,3.0,23,,,,,,,,dislike
+Yes,3.0,22,10.0,20.0,Other,low,Yes,Food tasted bad,Kinton,dislike
+Yes,2.0,22,,,,,,,,dislike
+Yes,2.0,20,,,,,,,,dislike
+Yes,5.0,20,,,,,,,,dislike
+Yes,4.0,22,,,,,,,,dislike
+Yes,1.0,20,,,,,,,,dislike
+Yes,6.0,20,,,,,,,,dislike
+Don't want to share,1.0,30,,,,,,,,dislike
+Yes,14.0,22,,,,,,,,dislike
+No,3.0,25,30.0,100.0,Italian,high,Yes,"Overly salted food, shells still in food",Robba di Matti,dislike
+No,10.0,29,6.0,60.0,Canadian/American,high,Yes,,white spot,dislike
+Yes,1.0,21,30.0,25.0,Canadian/American,no music,No,,,dislike
+No,2.0,25,20.0,0.0,Canadian/American,medium,No,"Sat down for 30 minutes, was not approached by anyone and left.",The Canadian Brewhouse & Grill,dislike
+No,3.0,24,50.0,80.0,Other,medium,Yes,"small portion, too expensive, food did not taste good, seated near door during winter so I experienced chilly gust of wind everything someone opened the door.",St. Lawrence,dislike
+No,1.0,25,30.0,25.0,Other,high,No,food was bad and overpriced,,dislike
+No,2.0,21,10.0,25.0,Indian,low,Yes,,,dislike
+Yes,2.0,24,12.0,20.0,Canadian/American,medium,Yes,Amazing food and atmosphere,Sunny Chibas,dislike
+Yes,3.0,22,200.0,30.0,Canadian/American,medium,No,inattentive server,Earls,dislike
+Yes,0.0,23,60.0,20.0,Canadian/American,high,Yes,The food was mostly out of stock and we had a few orders made wrong and the food wasn't completely cooked.,White Spot,dislike
+Yes,2.0,22,30.0,25.0,Other,high,Yes,temperature in the restaurant,Don't remember,dislike
+Yes,4.0,20,5.0,15.0,Canadian/American,low,No,,,dislike
+No,4.0,22,5.0,20.0,Other,medium,Yes,,,dislike
+Yes,1.0,24,2.0,30.0,Other,high,No,Bad company ,,dislike
+Yes,1.0,21,123.0,20.0,Other,high,Yes,no clue,no idea,dislike
+Yes,2.0,30,25.0,10.0,Chinese,no music,No,Got food poisoning,,dislike
+Yes,5.0,20,30.0,30.0,Canadian/American,medium,No,no,Elwoods,dislike
+No,1.0,22,5.0,10.0,Canadian/American,medium,No,,Subway,dislike
+Yes,0.0,22,0.0,23.0,Other,no music,No,"Ordered chicken, which came out raw",,dislike
+Yes,2.0,26,2.0,20.0,Other,low,Yes,"Food looked old and stale, furniture was falling apart",Mongolian BBQ,dislike
+Yes,3.0,26,15.0,22.0,Canadian/American,low,No,The food took forever to arrive and then the servers really struggled figuring out the bills.,Toby's,dislike
+Yes,0.0,21,50.0,30.0,Thai,medium,Yes,Dunno,Cactus Club Cafe,dislike
+No,1.0,22,3.0,20.0,Canadian/American,medium,No,no,no,dislike
+Yes,3.0,20,20.0,12.0,Fusion,high,Yes,,Sesame,dislike
+Yes,2.0,32,30.0,30.0,Canadian/American,no music,Yes,,,dislike
+No,1.0,27,4.0,20.0,Canadian/American,medium,No,,,dislike
+No,5.0,21,20.0,40.0,Indian,medium,Yes,x,Tasty Indian Bistro,dislike
+Yes,2.0,25,3.0,20.0,Other,high,No,,,dislike
+No,9.0,19,20.0,40.0,Italian,high,No,The food is cold and it took too long to wait for the food,no,dislike
+Yes,2.0,23,5.0,45.0,Other,low,No,"I have a peanut allergy, told the waiter this, yet the food was brought out with peanuts scattered across it",,dislike
+No,2.0,21,10.0,20.0,Other,low,No,Food was way too spicy. Genuinely caused physical pain to finish my plate,Harambe,dislike
+Yes,0.0,21,6.0,12.0,Other,low,Yes,,,dislike
+Yes,2.0,22,1.0,30.0,Other,low,Yes,,,dislike
+No,2.0,22,10.0,25.0,Other,no music,No,,,dislike
+Yes,2.0,22,8.0,18.0,Other,medium,Yes,"I've had much better vietnamese food elsewhere, my vietnamese boyfriend also disproved of it",pho with us,dislike
+Yes,1.0,20,1.0,18.0,Other,no music,Yes,The food was a bit lacking in quantity,,dislike
+No,4.0,21,25.0,20.0,Canadian/American,low,Yes,The food was really dry,The Galley,dislike
+No,0.3,30,20.0,25.0,Canadian/American,low,No,The bill was wrong,,dislike
+Yes,1.0,21,4.0,19.0,Fusion,no music,Yes,,Bread x Butter,dislike
+No,5.0,21,35.0,60.0,Other,high,No,"The service is too slow, so the BBQgets cold:(",Hongdae Pocha Korean BBQ,dislike
+No,14.0,22,13.0,40.0,Indian,medium,Yes,"They asked for 3 dollars extra charge for their performers who played for 5 minutes during my time there, and the food itself was very average curry for a very high price point.",East is East,dislike
+No,2.0,21,15.0,30.0,Other,low,Yes,Food quality and taste,,dislike
+Yes,3.0,26,2.0,50.0,Other,medium,No,"The food itself wasn't fantastic.   I've had plenty of Vietnamese cuisine in Vancouver, some authentic, some fusion, some cheap, some expensive.  This experience was just awful.  Tasted bad.  Drinks were bad.  Worst of all, it was on the pricier side.",Tang Vietnamese Restaurant & Bar,dislike
+Yes,2.0,21,40.0,80.0,Other,medium,No,"Food was overpriced for quality.
+Uni was unfresh and the waitress disregarded my feedback. 
+Was told to take a small bite from the uni next time to test if it's spoiled, which I thought was ridiculous for a dish that costs $65.",,dislike
+Yes,1.0,20,5.0,30.0,Other,low,No,The servers kept staring at me,,dislike
+No,2.0,21,10.0,45.0,Chinese,medium,No,I got offended by the unauthentic Chinese food there.,Jingle Bao,dislike
+No,4.0,24,10.0,15.0,Other,medium,Yes,Tacky crowd,,dislike
+No,4.0,20,10.0,25.0,Fusion,low,Yes,,,dislike
+Yes,1.0,21,80.0,15.0,Chinese,high,Yes,I did not like the food.,,dislike
+Yes,3.0,19,7.0,8.0,Canadian/American,medium,Yes,There was a rat and the cashier said they come because they like the cheese!,Uncle Fatih's,dislike
+No,5.0,20,20.0,23.0,Chinese,medium,Yes,The food,,dislike
+Yes,8.0,22,50.0,16.0,Canadian/American,medium,Yes,,,dislike
+Yes,4.0,22,5.0,30.0,Canadian/American,medium,Yes,,,dislike
+Yes,1.0,20,40.0,60.0,Italian,medium,Yes,Overpriced,,dislike
+Yes,2.0,23,5.0,10.0,Chinese,low,Yes,I personally did not enjoy the food- it tasted cold and bland.,Golden Oscar Cafe & Restaurant,dislike
+No,2.0,23,50.0,30.0,Canadian/American,medium,Yes,,,dislike
+No,1.5,21,50.0,25.0,Canadian/American,high,Yes,,,dislike
+Yes,1.0,30,25.0,125.0,Chinese,medium,No,portion toooooooo small,Dinesity,dislike
+Yes,2.0,25,15.0,30.0,Canadian/American,medium,Yes,There was a rat running arount the floor.,Brown's Social House,dislike
+Yes,1.0,22,20.0,18.0,Fusion,low,Yes,the food was bad,Old Bird,dislike
+Yes,1.0,23,16.0,25.0,Canadian/American,medium,Yes,The food was too greasy,,dislike
+Yes,1.0,20,50.0,15.0,Indian,low,No,Food came extremely late in a wet plate and was cold.,Saravanaa Bhavan,dislike
+Yes,0.0,22,7.0,30.0,Canadian/American,medium,Yes,waitress got upset about tip lmaoo,red robin,dislike
+Yes,4.0,29,30.0,50.0,Mexican,crazy loud,No,They were so quick to grab our plates even though we're not done eating yet. We felt rushed and it wasn't even close to their closing time,Cuchillo,dislike
+No,0.5,27,40.0,30.0,Canadian/American,crazy loud,No,The wait time was very long. The server did not explain the items on the menu. Most of the items on the menu were not available because it was long weekend,Howe Sound Brewing,dislike
+No,1.0,21,20.0,90.0,Other,crazy loud,Yes,"Too loud, overpriced food.",Suika,dislike
+Yes,2.0,21,50.0,50.0,Canadian/American,high,No,rude server. ,,dislike
+No,1.0,23,10.0,17.0,Other,low,Yes,No,N.A,dislike
+Yes,3.0,21,20.0,18.0,Other,medium,No,,,dislike
+Yes,3.0,23,15.0,30.0,Other,medium,No,,,dislike
+Yes,4.0,21,8.0,20.0,Chinese,low,No,"My friend was served food that had rocks in it. They spoke English really badly and I had to explain to them in Mandarin that my friend was served rocks. He still didn't understand, so we just paid and left.
+The server also kept arguing with the cook, which I think is his wife. Family owned.",Chef Hung Taiwanese Beef Noodle,dislike
+No,1.0,20,,,,,,,,dislike
+No,8.0,20,,,,,,,,dislike
+Yes,2.0,23,,,,,,,,dislike
+Yes,2.0,20,,,,,,,,dislike
+Yes,1.0,22,,,,,,,,dislike
+No,2.0,26,,,,,,,,dislike
+Yes,5.0,21,,,,,,,,dislike
+Yes,2.0,19,,,,,,,,dislike
+Yes,3.0,22,,,,,,,,dislike
+Yes,4.0,20,1.0,20.0,Chinese,low,No,,,dislike
+No,1.0,23,3.0,50.0,Other,low,Yes,,,dislike
+No,5.0,20,,,,,,,,dislike
+No,3.0,22,,,,,,,,dislike
+Yes,3.0,21,,,,,,,,dislike
+Yes,3.0,21,,,,,,,,dislike
+Yes,1.0,20,,,,,,,,dislike
+Yes,2.0,23,,,,,,,,dislike
+No,7.0,20,8.0,30.0,Canadian/American,medium,No,Racism,Garage Sports Bar,dislike
+No,0.0,26,,,,,,,,dislike
+Yes,4.0,21,,,,,,,,dislike
+Yes,1.0,22,,,,,,,,dislike
+No,3.0,22,,,,,,,,dislike
+No,3.0,20,,,,,,,,dislike
+No,10.0,20,,,,,,,,dislike
+No,10.0,22,,,,,,,,dislike
+Yes,1.0,20,,,,,,,,dislike
+No,1.0,22,5.0,18.0,Chinese,medium,No,Expected tip rate was far to high for the service that they were providing.,,dislike
+Yes,3.0,21,,,,,,,,dislike
+Yes,3.0,27,14.0,16.0,Other,medium,Yes,Cash only. Tasted watery and disappointing.,Pho Extreme Xe Lua,dislike
+Don't want to share,28.0,60,56.0,22.0,Italian,low,No,Vel fringilla lacus orci luctus vel. Nec nibh sed dui tempor mattis. Pede. Gravida wisi.,Aliquet! Vivamus dolor elementum rhoncus tempor suscipit. Nunc quam facilisi tempor.,like
+Don't want to share,29.0,46,90.0,97.0,Other,medium,Yes,Dignissim mattis euismod natoque. Eros duis? Platea metus ultricies. Fringilla.,"Tempor morbi velit ut. Proin duis tincidunt, ultricies lectus ridiculus, urna.",like
+Yes,30.0,59,45.0,40.0,Chinese,no music,No,Tincidunt mauris maecenas venenatis enim vulputate natoque. Tempora. Cras praesent wisi risus a viverra ut.,Venenatis sagittis quam eu vulputate proin? Sed non ridiculus temporibus.,like
+Don't want to share,1.0,14,56.0,40.0,Thai,medium,No,Nullam pede sem? Morbi aliquam ultricies! Fusce proin? Et orci convallis convallis nulla pede magna.,Aliquam? Mattis et. A arcu. Facilisis posuere ipsum! Tortor augue rhoncus.,like
+Yes,29.0,33,13.0,3.0,Italian,high,No,Est elementum gravida vehicula porta ridiculus. Potenti pharetra. Etiam vitae primis dui vestibulum.,"Lacus aliquam neque arcu nunc fringilla risus, felis iaculis velit.",like
+Yes,22.0,55,19.0,0.0,Chinese,medium,Yes,Cursus nullam iaculis. Nulla elit nec neque bibendum consectetuer facilisi faucibus sapien.,"Potenti laoreet enim pharetra luctus per? Elementum felis, consectetuer justo porttitor.",like
+No,21.0,17,21.0,51.0,Mexican,no music,No,Molestie nonummy! Pellentesque! Vivamus. Natoque magna nibh pellentesque nullam vestibulum neque.,Pede? Dignissim duis. Nonummy vivamus platea malesuada orci integer velit lectus viverra felis malesuada.,like
+No,2.0,49,79.0,21.0,Mexican,medium,Yes,Duis justo posuere aliquam blandit et sagittis iaculis dolor tortor elit integer tortor rhoncus.,Blandit vestibulum auctor sit? Per cursus rutrum ipsum vel ullamcorper. Bibendum? Sed.,like
+Yes,16.0,20,40.0,76.0,Mexican,medium,Yes,Sed a aenean! Consectetuer dui massa? Accumsan lectus volutpat. Dapibus porta massa! Mattis.,Phasellus morbi vestibulum. Consectetuer felis enim eros sed nulla facilisis phasellus. Cras? Magna porta a.,like
+No,16.0,53,79.0,86.0,Chinese,high,Yes,"Enim lorem fringilla aliquet! Praesent accumsan! Per vivamus etiam ligula! Phasellus! Rutrum, augue ultricies consequat.","Nibh aenean elementum tellus, tellus dolor felis primis primis vehicula. Ipsum tortor quis auctor eleifend.",like
+Yes,3.0,29,20.0,10.0,Other,no music,Yes,,,like
+Yes,2.0,23,10.0,20.0,Chinese,low,Yes,food tastes good,Midam,like
+Yes,2.0,21,10.0,40.0,Other,low,Yes,good food,pear tree,like
+No,2.0,24,15.0,40.0,Other,medium,Yes,My love for Korean food,Dami,like
+Yes,5.0,23,20.0,10.0,Canadian/American,low,Yes,Good food,,like
+Yes,2.0,22,60.0,20.0,Chinese,medium,Yes,food tasted great!,,like
+Yes,2.0,23,10000000.0,1000000.0,Canadian/American,crazy loud,Yes,,CACTUS CLUB CAFE,like
+Yes,4.0,20,20.0,40.0,Chinese,high,Yes,,,like
+Yes,1.0,21,40.0,60.0,Italian,high,Yes,,Frankie’s,like
+No,2.0,20,50.0,45.0,Canadian/American,medium,Yes,"Steak was good, ambiance was nice and server was helpful.",Hy's steakhouse,like
+No,3.0,23,1.0,20.0,Chinese,medium,Yes,,,like
+Yes,2.0,21,30.0,66.0,Chinese,medium,Yes,"food came on time, i was full",Dolar Shop,like
+No,5.0,20,30.0,35.0,Indian,medium,Yes,Tasty food,,like
+Yes,1.0,29,50.0,20.0,Canadian/American,medium,Yes,"Great menu, great atmosphere. ",Floyds,like
+Yes,2.0,23,45.0,25.0,Canadian/American,medium,Yes,"Good company, good food",,like
+Yes,2.0,19,25.0,14.0,Other,low,Yes,Food was very good,Dai Jang Gum,like
+No,0.5,21,15.0,30.0,fusion,low,Yes,,,like
+Yes,3.0,24,40.0,25.0,Other,low,Yes,"Food was really good, was on a date",Saku,like
+Yes,2.0,22,40.0,25.0,Canadian/American,medium,Yes,Ambience,OEB Breakfast,like
+Yes,1.0,20,40.0,20.0,Indian,low,Yes,,,like
+Yes,2.0,25,20.0,35.0,Other,medium,Yes,,Ta Bom,like
+Yes,1.0,21,30.0,16.0,Chinese,medium,Yes,,Deer Garden,like
+Yes,2.0,19,10.0,15.0,Indian,low,Yes,Server got to know us personally,Raga,like
+Yes,0.0,21,50.0,20.0,Canadian/American,low,Yes,,,like
+No,2.0,24,30.0,25.0,Other,low,Yes,"Taste, location, ",Raisu,like
+Yes,2.0,21,5.0,10.0,Canadian/American,low,Yes,The pizza was the best pizza I ever had ,,like
+Yes,3.0,20,10.0,70.0,Other,low,Yes,"good food, good decor",Kosoo,like
+No,3.0,22,15.0,20.0,Mexican,no music,Yes,,,like
+No,2.0,29,50.0,30.0,Canadian/American,low,Yes,They celebrated my girlfriends birthday.,,like
+Yes,5.0,20,25.0,100.0,Canadian/American,low,Yes,Nice waiters and I got to try food that I've never tried in the course menu and it tasted good so it was enjoyable,Five Sails,like
+No,2.0,22,30.0,15.0,Chinese,medium,Yes,"Tasty food, clean, good service",,like
+No,7.0,22,20.0,58.0,Other,high,Yes,Food tasted good,Nori,like
+Yes,1.0,19,50.0,40.0,Canadian/American,medium,Yes,"Good portions, clean, nice flavors",Nook,like
+Yes,2.0,22,20.0,30.0,Other,low,Yes,,,like
+No,7.0,20,4.0,4.0,Chinese,low,No,vds,vsd,like
+Yes,1.0,20,30.0,25.0,Other,high,Yes,Good food,Ta Bom Korean Cuisine,like
+Yes,3.0,22,0.0,13.0,Italian,low,Yes,Budget friendly and fud was really gud and tasy,Pasta Sauce,like
+Yes,2.0,22,40.0,25.0,Canadian/American,low,Yes,"Good company, nice decor, great sommelier.",The Botanist,like
+No,5.0,20,10.0,15.0,Other,medium,Yes,The atmosphere was amazing and food was served really quick. The servers spoke in Japanese in a Japanese restaurant.,Danbo Ramen,like
+No,4.0,22,35.0,20.0,Canadian/American,low,Yes,amazing food,Bin 4 Burger Lounge,like
+Yes,1.0,23,20.0,15.0,Canadian/American,low,Yes,The food was pretty good,,like
+Yes,2.0,22,0.0,0.0,Other,no music,Yes,don't remember ,don't remember ,like
+No,5.0,20,3.0,16.0,Indian,no music,Yes,The food was delicious!,Mirchi,like
+Don't want to share,4.0,20,50.0,30.0,Chinese,high,Yes,,Haidilao,like
+Yes,4.0,22,30.0,20.0,Canadian/American,high,Yes,,,like
+Yes,4.0,23,30.0,20.0,Other,medium,Yes,,,like
+Yes,1.0,20,80.0,25.0,Canadian/American,high,Yes,It was my birthday ,The point,like
+No,1.0,24,10.0,20.0,Indian,low,Yes,Food is amazing,,like
+No,3.0,21,20.0,16.0,Indian,medium,Yes,THE FOOD WAS AWESOME!!,Bombay Kitchen and Bar,like
+Yes,1.0,22,8.0,20.0,Canadian/American,low,Yes,Food tasted great,The Cannibal Cafe,like
+No,2.0,22,30.0,40.0,Thai,low,No,the environment,don't remember,like
+No,1.0,22,30.0,25.0,Mexican,high,Yes,good company + really good food + nice ambiente,Lucky Taco,like
+Yes,1.0,22,10.0,15.0,Other,medium,Yes,Lighting,Guu ,like
+Yes,1.0,29,20.0,50.0,Other,low,Yes,The quality of the food was amazing!,It was a Japanese restaurant but I can't remember its name.,like
+Yes,4.0,28,50.0,250.0,Other,low,Yes,Good food and good service,Miku,like
+No,2.0,23,15.0,16.0,Thai,high,Yes,I love their pho so much,Linh,like
+No,2.0,26,20.0,30.0,Italian,medium,Yes,The food was delicious,La Notte,like
+No,1.0,10,30.0,20.0,Other,low,Yes,food tasted good,sancho,like
+No,1.0,22,5.0,12.0,Mexican,low,Yes,"Fast Service, Great quality and taste",TacoFino,like
+Yes,4.0,23,10.0,15.0,Other,no music,Yes,Best Ramen,Marutama Gaiden,like
+Yes,1.0,23,15.0,150.0,Canadian/American,low,Yes,I think the service way amazing and the food was very good,Revolving restaurant Vancouver,like
+Yes,2.0,27,75.0,35.0,Canadian/American,medium,Yes,Great View beside the ocean. The nice attitude from the waitress. Great Food. ,Cactus Club,like
+Yes,2.0,24,40.0,60.0,Italian,low,No,the food was amazing ,lupo ,like
+Yes,0.5,23,50.0,30.0,Chinese,crazy loud,Yes,The food was good,,like
+Yes,2.0,31,40.0,100.0,Canadian/American,medium,Yes,"Great ambience, location, food.",The Boathouse Restaurant,like
+Yes,5.0,24,50.0,120.0,Other,medium,Yes,"quality of ingredients, attentive service, very tasty",Miku,like
+Yes,4.0,21,100.0,120.0,Canadian/American,low,Yes,"great atmosphere, right on the water, very good service, great seafood",Cardero's ,like
+Yes,2.5,27,40.0,25.0,Italian,low,Yes,Food and atmosphere was great. Guests were also very interesting. ,Anton's Pasta Bar,like
+Yes,0.5,24,15.0,19.0,Other,low,Yes,"Free dessert, nice washrooms",Do Chay,like
+Yes,3.0,22,20.0,35.0,Other,medium,Yes,"Delicious food! Really fresh ingredients, personalized experience.",Hello Nori,like
+Yes,2.0,32,70.0,35.0,Italian,low,Yes,Decor is nice,Savio Volpe,like
+Yes,2.0,21,70.0,100.0,Chinese,no music,Yes,The restaurant was clean. The ingredients were fresh. Taste is great :),Kirin,like
+Yes,0.0,25,20.0,30.0,Other,medium,Yes,Delicious food,Kingyo,like
+No,3.0,23,50.0,17.0,Canadian/American,medium,Yes,The people around me are my friends. Food is delicious,Fable diner,like
+No,0.0,22,0.0,0.0,Other,no music,No,dont have best cause i never eat out,dont have best cause i never eat out,like
+Yes,2.0,22,15.0,5.0,Canadian/American,low,No,,,like
+Yes,5.0,22,15.0,16.0,Other,medium,Yes,Quality of the food,Marutama Ramen,like
+Yes,5.0,22,15.0,50.0,Other,medium,Yes,,,like
+Yes,3.0,22,5.0,20.0,Chinese,low,Yes,,,like
+Yes,2.0,20,25.0,20.0,Other,low,Yes,"I love Middle Eastern food, so even if it isn't the best quality I will still love it.",Paramount Fine Foods,like
+No,2.0,21,80.0,130.0,Chinese,medium,Yes,I was in a landscape position with my friend. The food tasted good.,,like
+No,6.0,26,30.0,40.0,fusion,medium,Yes,Food quality,,like
+No,2.0,23,,,,,,,,like
+No,3.0,22,,,,,,,,like
+Yes,6.0,23,,,,,,,,like
+Yes,1.0,20,,,,,,,,like
+Yes,3.0,22,,,,,,,,like
+Yes,3.0,26,,,,,,,,like
+Yes,1.0,27,,,,,,,,like
+Yes,3.0,22,,,,,,,,like
+Yes,1.0,21,,,,,,,,like
+Yes,2.0,27,,,,,,,,like
+Yes,1.0,18,,,,,,,,like
+No,3.0,21,,,,,,,,like
+Yes,0.5,29,30.0,15.0,Chinese,high,Yes,Restaurant theme (decoration),Memory corner,like
+No,2.0,29,30.0,15.0,Indian,low,Yes,,East is East,like
+No,1.0,26,15.0,12.0,Chinese,high,Yes,,Bento something on Campus,like
+Yes,2.0,26,35.0,25.0,Other,medium,Yes,"great food, great company!",Phnom Penh,like
+No,7.0,24,8.0,20.0,Italian,low,Yes,Free starter and ice-cream offered ,,like
+Yes,0.5,25,20.0,60.0,Other,high,Yes,,,like
+Yes,3.0,39,25.0,30.0,Other,high,Yes,Great Wine!,Les Faux Borgeois,like
+No,3.0,24,15.0,20.0,Chinese,medium,Yes,,,like
+Yes,1.0,28,45.0,50.0,Other,medium,Yes,very fresh ingredients,Blue Water Cafe,like
+No,4.0,31,5.0,13.0,fusion,low,Yes,,,like
+No,1.0,28,30.0,50.0,Other,high,Yes,Food is excellent ,,like
+No,2.0,37,20.0,20.0,Canadian/American,medium,Yes,,,like
+No,3.0,27,40.0,35.0,Other,medium,Yes,They served cucumber water - fancy stuff. The food was amazing. Large seats. ,Anh and Chi,like
+Yes,1.0,32,40.0,35.0,Italian,low,Yes,staff,,like
+No,1.5,24,30.0,150.0,Italian,low,Yes,,,like
+No,2.0,28,20.0,25.0,Chinese,medium,Yes,,golden ocean,like
+No,1.0,35,35.0,35.0,Indian,low,Yes,food was good,bombay masala,like
+Yes,1.0,26,30.0,20.0,Canadian/American,high,Yes,food taste ,Downlow Chicken Shack,like
+Yes,3.0,26,30.0,20.0,Other,medium,Yes,,,like
+Yes,5.0,27,30.0,60.0,Other,low,Yes,The dishes are tasty. ,L'Abattoir,like
+Yes,5.0,31,20.0,40.0,Other,medium,Yes,Imported fresh raw fish from Japan ,Nori Sushi in Nanaimo ,like
+Yes,4.0,23,30.0,15.0,Thai,medium,Yes,,,like
+No,1.0,38,25.0,40.0,fusion,low,Yes,,,like
+No,2.0,34,30.0,25.0,Italian,medium,Yes,quality of food,Una Pizza,like
+No,2.0,22,20.0,30.0,Other,low,Yes,,Masa sushi,like
+No,2.0,23,30.0,15.0,Thai,low,Yes,,,like
+No,1.0,38,5.0,15.0,Mexican,medium,Yes,With friends,,like
+No,2.0,27,30.0,20.0,Italian,medium,Yes,,,like
+No,1.0,36,10.0,25.0,Canadian/American,medium,Yes,Lively environment,Down Low Chicken,like
+Yes,1.0,28,20.0,36.0,Canadian/American,medium,Yes,,Meet,like
+No,0.5,27,20.0,60.0,Chinese,medium,Yes,Food taste,,like
+No,2.0,46,30.0,150.0,Chinese,low,Yes,good food,,like
+No,10.0,45,30.0,120.0,Canadian/American,medium,Yes,The variety of seafood.,Fanny Bay Oyster Bar & Shellfish Market,like
+No,1.0,23,30.0,10.0,Other,medium,Yes,Food Taste and Quality,,like
+No,1.0,22,3.0,60.0,Chinese,medium,Yes,,,like
+No,2.0,31,10.0,10.0,Other,low,Yes,,,like
+No,1.0,27,10.0,8.0,Other,medium,Yes,food was good,Mr Shawarma,like
+No,1.0,34,6.0,40.0,Other,low,Yes,Good Food and Kebabs,Gilaneh Persian Grill,like
+No,3.0,38,20.0,15.0,Chinese,no music,Yes,,,like
+No,2.0,24,10.0,50.0,Other,low,Yes,,Sumi,like
+No,2.0,46,30.0,30.0,Chinese,medium,Yes,,,like
+No,1.0,24,15.0,10.0,Italian,low,Yes,No,Tim Hortons,like
+Yes,2.0,28,10.0,100.0,Other,low,Yes,,,like
+Yes,2.0,26,30.0,80.0,Canadian/American,medium,Yes,,Le Crocodile,like
+No,2.0,30,10.0,15.0,Indian,no music,Yes,,,like
+No,2.0,28,20.0,14.0,Chinese,low,Yes,,Wang's Taiwan Beef Noodle House,like
+No,0.0,24,10.0,8.0,Chinese,low,Yes,,,like
+No,12.0,23,8.0,35.0,Indian,low,Yes,,,like
+Yes,5.0,26,30.0,18.0,Canadian/American,high,Yes,Board games,Storm Crow Alehouse,like
+No,4.0,24,20.0,25.0,Other,medium,Yes,,,like
+Yes,3.0,30,40.0,25.0,Other,medium,Yes,"restaurant decoration and environment, taste of food",SAKU,like
+No,4.0,29,2.0,60.0,Indian,low,Yes,,,like
+No,2.0,34,20.0,40.0,Indian,medium,Yes,,,like
+No,2.0,25,10.0,20.0,Canadian/American,low,Yes,,,like
+Yes,5.0,35,30.0,50.0,Other,medium,Yes,,,like
+No,1.0,28,50.0,35.0,Chinese,high,Yes,People eat together,No,like
+Yes,0.0,29,10.0,15.0,Other,low,Yes,,,like
+Yes,1.0,25,30.0,30.0,Other,low,Yes,,,like
+No,2.0,26,50.0,50.0,Chinese,medium,Yes,taste,haidilao,like
+No,1.0,24,12.0,25.0,Other,medium,Yes,No,I do not remember,like
+No,10.0,27,,,,,,,,like
+No,5.0,22,,,,,,,,like
+No,0.01,27,,,,,,,,like
+Yes,1.0,24,,,,,,,,like
+No,1.0,21,,,,,,,,like
+No,4.0,29,,,,,,,,like
+No,2.0,22,,,,,,,,like
+No,0.0,27,,,,,,,,like
+Yes,1.0,28,,,,,,,,like
+No,1.0,23,,,,,,,,like
+No,5.0,22,,,,,,,,like
+No,0.0,25,,,,,,,,like
+No,2.0,24,,,,,,,,like
+No,4.0,34,,,,,,,,like
+No,0.0,25,,,,,,,,like
+Yes,0.0,22,,,,,,,,like
+No,4.0,25,,,,,,,,like
+No,5.0,28,,,,,,,,like
+No,2.0,25,,,,,,,,like
+Don't want to share,1.0,25,,,,,,,,like
+Yes,1.0,24,,,,,,,,like
+No,7.0,23,,,,,,,,like
+Yes,4.0,24,,,,,,,,like
+No,2.0,35,30.0,50.0,Italian,low,Yes,,,like
+Yes,3.0,21,40.0,30.0,Other,medium,Yes,,gyu kaku,like
+Yes,1.0,22,10.0,200.0,Other,low,Yes,It was paid for ;),Tojo's,like
+Yes,3.0,20,30.0,35.0,Other,medium,Yes,Very good food.,N/a,like
+Yes,0.2,21,50.0,26.0,Other,low,Yes,All you can eat is always great,Not sure,like
+No,1.0,30,50.0,100.0,Italian,high,Yes,,Solvio Volpe,like
+Yes,2.0,28,,,,,,,,like
+Yes,2.0,22,,,,,,,,like
+Yes,1.0,22,12.0,23.0,Mexican,medium,Yes,,,like
+No,2.0,20,20.0,300.0,fusion,low,Yes,Bee pollen milk buns are the greatest thing ever,Published on Main,like
+Yes,4.0,26,30.0,50.0,Chinese,high,Yes,"With group of friends, tasty, fancy, exotic",Gyukaku,like
+Yes,2.0,24,15.0,15.0,Other,low,Yes,Was with friends,Marulilu Cafe,like
+Yes,1.0,32,50.0,100.0,Canadian/American,low,Yes,"Excellent, knowledgeable service; fantastic atmosphere; tableside service.",Hy's Steakhouse,like
+Yes,2.0,20,25.0,22.0,Canadian/American,medium,Yes,,Cactus club,like
+Yes,3.0,19,40.0,25.0,Other,medium,Yes,no,Sura,like
+No,2.0,21,20.0,25.0,Canadian/American,medium,Yes,"Food was great, heaters and seatinng was very comfortable",,like
+No,1.0,21,10.0,40.0,Italian,low,Yes,"Great display of food, calm environment, thoughtful decoration, large space",No,like
+Yes,2.0,19,30.0,100.0,Canadian/American,medium,,,,like
+Yes,3.0,20,30.0,20.0,Mexican,low,Yes,,,like
+Yes,0.0,22,60.0,25.0,Indian,low,Yes,,,like
+Yes,0.25,22,40.0,12.0,Other,high,Yes,,,like
+No,3.0,25,20.0,15.0,Other,low,Yes,,,like
+Yes,2.0,21,150.0,90.0,Canadian/American,medium,Yes,view,sandbar,like
+Yes,5.0,19,2.0,20.0,Chinese,low,Yes,I was with my boyfriend,,like
+Yes,1.0,30,100.0,30.0,Indian,medium,Yes,,,like
+No,5.0,22,3.0,12.0,Other,no music,Yes,Tonkatsu number one,Nori,like
+Yes,3.0,25,15.0,10.0,Other,low,Yes,,,like
+Yes,5.0,20,,,,,,,,like
+Yes,2.0,21,,,,,,,,like
+Yes,2.0,22,,,,,,,,like
+Yes,5.0,20,,,,,,,,like
+Yes,4.0,19,,,,,,,,like
+Yes,0.5,25,,,,,,,,like
+No,0.3,23,,,,,,,,like
+Yes,3.0,21,,,,,,,,like
+No,0.0,20,,,,,,,,like
+No,2.0,19,,,,,,,,like
+Yes,1.0,25,,,,,,,,like
+Yes,2.5,21,,,,,,,,like
+Yes,0.0,21,,,,,,,,like
+Yes,2.0,20,,,,,,,,like
+Yes,1.0,21,,,,,,,,like
+No,2.0,24,,,,,,,,like
+No,7.0,23,,,,,,,,like
+Yes,5.0,22,15.0,50.0,Other,low,Yes,Decor,Sushi Hachi,like
+Yes,1.0,22,30.0,20.0,Other,medium,Yes,Great value (lots of food for a good price),Koi Sushi,like
+Yes,4.0,22,30.0,40.0,fusion,high,Yes,"The best tasting food ever. Super interactive, get to cook own kobe beef on a hot rock.
+House-made ginger ale.
+Good alcohol
+",Kingyo,like
+No,3.0,21,20.0,5.0,Other,no music,No,"Tasty food, lot of Vegan options",Sun Sushi,like
+Yes,2.0,19,20.0,40.0,Indian,low,Yes,,,like
+Yes,2.0,29,80.0,30.0,Canadian/American,low,Yes,,Bin 4,like
+Yes,2.0,22,200.0,300.0,fusion,high,Yes,,ancora waterfront dining and patio,like
+Yes,1.0,21,10.0,15.0,Other,low,Yes,Great fresh food,,like
+Yes,3.0,20,50.0,30.0,Indian,high,No,,,like
+Yes,1.0,38,20.0,20.0,Other,medium,Yes,Taste,Chui Hong,like
+Yes,3.0,22,10.0,25.0,Italian,low,Yes,Great food,Casareccio Foods,like
+Yes,2.0,22,40.0,130.0,Canadian/American,no music,Yes,Good seafood,Pier 7,like
+Yes,2.5,20,100.0,40.0,Canadian/American,medium,Yes,Cooked steak perfect amount,Cactus Club,like
+No,1.0,20,100.0,70.0,Chinese,medium,Yes,I was with family and friends,,like
+Yes,2.0,22,30.0,15.0,Other,medium,Yes,"ambience, people I was with",don't remember,like
+Yes,1.0,23,10.0,50.0,fusion,low,Yes,,Acorn,like
+Yes,4.0,21,0.0,15.0,Other,medium,Yes,,Steve's Poke Bar,like
+Yes,1.0,28,30.0,15.0,Indian,medium,Yes,The food tasted awesome and there was a big portion,House of Dosas,like
+No,3.0,23,30.0,50.0,Chinese,medium,Yes,,HaiDiLao,like
+No,2.0,24,40.0,20.0,Italian,medium,Yes,,,like
+Yes,3.0,28,40.0,20.0,Thai,medium,Yes,,Syphay,like
+Yes,3.0,21,20.0,20.0,Mexican,high,Yes,"Server was very warm and friendly, food felt very authentic",La Taqueria,like
+Yes,5.0,22,20.0,20.0,Mexican,high,Yes,,Antojitos Cantina,like
+No,0.5,21,20.0,50.0,Other,medium,Yes,,,like
+Yes,0.0,20,30.0,30.0,Italian,medium,Yes,"food tasted amazing, location was good, timing was great",Piva,like
+Yes,6.0,20,40.0,50.0,Other,medium,Yes,Quality of the food,Miku,like
+Yes,1.0,19,20.0,15.0,Chinese,low,Yes,,Mr Red's Cafe,like
+No,15.0,23,30.0,50.0,Chinese,medium,Yes,The food is just amazing,Northern Style Chinese Restaurant(大东方饺子王),like
+No,7.0,24,30.0,40.0,Other,medium,Yes,"good food, nice vibes",temaki sushi,like
+No,3.0,21,20.0,80.0,fusion,low,Yes,Taste good,Lynn Cafe,like
+No,2.0,21,40.0,40.0,Chinese,medium,Yes,,raisu,like
+Yes,2.0,22,20.0,20.0,Chinese,no music,Yes,A friend recommended the restaurant ,Longs Noodle House,like
+Yes,2.0,21,20.0,20.0,Other,low,Yes,The food was super good. The line was sort of long to enter though.,Ramen Dambo,like
+Yes,10.0,23,30.0,80.0,Other,low,Yes,Fresh sushi and sashimi. Saigo!!!! ,Octopus Garden,like
+No,2.0,22,30.0,70.0,Other,medium,Yes,Delicious food,zakkushi,like
+Yes,1.0,20,25.0,80.0,Other,low,Yes,the view,Miku,like
+No,2.0,20,20.0,45.0,Other,medium,Yes,The food tasted very good,Afghan Horsemen,like
+Yes,1.0,21,25.0,20.0,Chinese,low,Yes,,,like
+No,10.0,22,5.0,5.0,Mexican,low,Yes,cheap and delicious,Tacomio,like
+No,7.0,21,50.0,60.0,Other,medium,Yes,no,Gyu-Kaku Japanese BBQ,like
+Yes,1.0,20,20.0,20.0,Mexican,medium,Yes,beautiful decorations,Original's Cafe Mexicano,like
+Yes,4.0,24,10.0,15.0,Other,low,Yes,Best ramen in Vancouver.,Danbo Ramen,like
+No,1.0,21,15.0,180.0,Other,low,Yes,"Taste, Service, Quality of food",Octopus's Garden Restaurant,like
+No,1.0,22,15.0,25.0,Other,medium,Yes,Fresh ingredients.,Sushi Hachi,like
+Yes,4.0,23,5.0,20.0,Thai,medium,No,Their food was really good and the portion was big,Legato Cafe,like
+Yes,1.0,27,30.0,20.0,Canadian/American,medium,Yes,,The Regal Beagle Bar & Grille,like
+Yes,5.0,22,40.0,60.0,Other,medium,Yes,Food was fresh and tasty,Raisu,like
+No,3.0,25,10.0,25.0,Other,low,Yes,,,like
+Yes,3.0,22,6.0,20.0,Other,low,Yes,"Family owned restaurant, gave us free soup and tea and nice atmosphere with window view",Momo Sushi,like
+Yes,1.0,22,80.0,70.0,Indian,high,Yes,,,like
+No,3.0,22,25.0,30.0,Chinese,medium,Yes,High-quality food and a nice vibe in the restaurant.,Green Lettuce,like
+Yes,1.0,20,60.0,35.0,Canadian/American,medium,Yes,Food was really good. I was with friends.,The Pint Public house,like
+Yes,3.0,28,60.0,130.0,Canadian/American,low,Yes,taste of the food,blue water cafe,like
+No,2.0,29,30.0,30.0,Other,low,Yes,The food presentation was impeccable,Raisu,like
+Yes,1.0,34,50.0,80.0,Other,low,Yes,,Chambar,like
+No,1.0,20,10.0,120.0,Chinese,low,Yes,,,like
+No,6.0,24,40.0,30.0,Other,low,Yes,Food was good,Minerva's,like
+No,3.0,22,30.0,150.0,Other,no music,Yes,Good atmosphere,,like
+No,1.0,20,20.0,30.0,Canadian/American,low,Yes,Ambience,Cactus Club,like
+Yes,3.0,22,45.0,100.0,Italian,medium,Yes,Server was incredible.,Le Crocodile,like
+No,2.0,21,,,,,,,,like
+No,1.0,22,,,,,,,,like
+No,1.0,25,,,,,,,,like
+No,5.0,22,,,,,,,,like
+Yes,0.0,21,,,,,,,,like
+No,5.0,23,,,,,,,,like
+Yes,4.0,25,,,,,,,,like
+Yes,1.0,20,,,,,,,,like
+No,7.0,24,,,,,,,,like
+No,5.0,24,,,,,,,,like
+Don't want to share,3.0,20,,,,,,,,like
+No,4.0,21,,,,,,,,like
+No,0.5,23,,,,,,,,like
+No,0.0,22,,,,,,,,like
+No,3.0,22,,,,,,,,like
+No,0.0,29,,,,,,,,like
+Yes,5.0,20,,,,,,,,like
+No,1.0,23,,,,,,,,like
+No,4.0,29,,,,,,,,like
+Yes,3.0,27,,,,,,,,like
+No,8.0,21,,,,,,,,like
+Yes,1.0,24,,,,,,,,like
+Yes,1.0,33,20.0,20.0,Canadian/American,low,Yes,Great food.,,like
+Yes,4.0,27,150.0,200.0,Italian,high,Yes,"Not only was the food incredible, but the server was so friendly and charismatic. He provided us stellar food and wine recommendations and great conversation. It also helped that we were already in a good mood as we were celebrating a birthday.",Osterio Savio Volpe,like
+Yes,2.0,21,,,,,,,,like
+No,8.0,27,,,,,,,,like
+No,1.0,40,3.0,120.0,Chinese,medium,Yes,Every course step was having some surprising points.,I cannot remember it.,like
+No,1.0,27,30.0,30.0,Other,medium,Yes,"Food quality, portion size is descent ",La buche,like
+No,1.0,43,30.0,30.0,Other,medium,Yes,,,like
+No,1.0,36,6.0,16.0,Thai,medium,Yes,"Portion size was good and flavorful. Also, I was very hungry!",Thai Basil,like
+Yes,1.0,26,4.0,12.0,Other,no music,No,Food quality and taste,Gold Train Express,like
+No,1.0,31,7.0,35.0,Canadian/American,medium,Yes,food was great,don't remember,like
+Yes,0.0,23,30.0,15.0,Other,medium,Yes,Good food and close to campus ,,like
+No,7.0,28,7.0,23.0,Other,low,Yes,Good company,Tonkotsu,like
+No,1.0,38,6.0,30.0,Other,medium,Yes,"Quality of food, taste good",MOMO SUSHI BIDWELL,like
+No,2.0,26,6.0,14.0,Indian,no music,Yes,Taste,Tandoori Fusion,like
+No,1.0,40,3.0,25.0,Canadian/American,medium,No,,,like
+Yes,3.0,25,,,,,,,,like
+No,1.0,41,,,,,,,,like
+No,1.0,36,,,,,,,,like
+No,1.0,21,,,,,,,,like
+Yes,1.0,22,,,,,,,,like
+No,3.0,26,,,,,,,,like
+Yes,5.0,22,,,,,,,,like
+No,1.0,25,,,,,,,,like
+Yes,1.0,23,,,,,,,,like
+No,3.0,32,,,,,,,,like
+No,1.0,24,,,,,,,,like
+Yes,1.0,24,,,,,,,,like
+No,0.0,23,,,,,,,,like
+Yes,4.0,28,,,,,,,,like
+Yes,1.0,25,,,,,,,,like
+No,1.0,24,,,,,,,,like
+No,1.0,23,,,,,,,,like
+No,6.0,21,20.0,15.0,Other,medium,Yes,"The food is just very good
+The servers are friendly and give good recommendations based on my needs
+The price is somewhat reasonable
+The atmosphere reminds me of my home country
+The food is served fast and not in a box",Pho Goddess,like
+No,1.0,25,,,,,,,,like
+Yes,2.0,20,20.0,15.0,Chinese,low,Yes,,,like
+Yes,3.0,22,150.0,90.0,Other,medium,Yes,"Location, View, Presentation, Atmosphere",Miku,like
+Don't want to share,3.0,22,60.0,60.0,Chinese,no music,Yes,,,like
+No,2.0,25,,,,,,,,like
+No,0.0,22,,,,,,,,like
+Yes,1.0,26,50.0,20.0,Canadian/American,low,Yes,,,like
+Yes,2.0,24,15.0,20.0,Indian,low,Yes,Desire,Chakra,like
+Yes,1.0,27,2.0,25.0,Thai,no music,Yes,Good food,Unchai,like
+Yes,2.0,19,50.0,150.0,Italian,low,Yes,great food,savio volpe,like
+No,3.0,22,30.0,40.0,Other,medium,Yes,,,like
+Yes,1.0,20,40.0,60.0,Chinese,low,Yes,"the server was incredible, the food was delicious, and it was a great experience with friends too!",Happy Lamb Hot Pot (Broadway),like
+No,5.0,21,40.0,50.0,Chinese,medium,Yes,No,Haidilao,like
+No,1.0,28,2.0,30.0,Thai,low,Yes,Food was just really delicious.,Barn Nork Aharn Thai,like
+Yes,2.0,21,15.0,22.0,Italian,medium,Yes,"Clean restaurant, fast service.",,like
+No,3.0,22,50.0,80.0,Chinese,medium,Yes,Service,Haidilao,like
+No,14.0,21,30.0,18.0,Canadian/American,low,No,no,no,like
+No,2.0,23,30.0,180.0,Other,low,Yes,"Signature dishes, good service",L'abattoir,like
+Yes,0.5,22,20.0,20.0,Canadian/American,low,Yes,,,like
+Yes,5.0,21,15.0,25.0,Other,medium,Yes,Was yummy,,like
+No,3.0,23,25.0,35.0,Other,low,Yes,Good food and vibe,Chambar,like
+Yes,4.0,22,2.0,25.0,Chinese,medium,Yes,,Big Way Hot Pot,like
+Yes,1.0,26,2.0,15.0,Mexican,medium,,,,like
+No,10.0,25,5.0,18.0,Other,low,Yes,I quite like  japanese food,one more sushi,like
+Yes,0.0,21,8.0,18.0,Other,low,Yes,I only visit one restaurant because of my food allergies. This is because cross-contamination is a concern.,,like
+Don't want to share,0.0,20,,,,,,,,like
+Yes,3.0,33,,,,,,,,like
+Yes,3.0,21,,,,,,,,like
+Yes,0.0,29,,,,,,,,like
+No,4.0,22,,,,,,,,like
+Yes,1.0,21,,,,,,,,like
+No,3.0,22,,,,,,,,like
+Yes,3.0,27,,,,,,,,like
+Yes,2.0,27,,,,,,,,like
+No,3.0,33,,,,,,,,like
+No,2.0,21,,,,,,,,like
+No,3.0,23,,,,,,,,like
+Yes,3.0,22,,,,,,,,like
+Yes,2.0,22,,,,,,,,like
+Yes,2.0,20,,,,,,,,like
+Yes,5.0,20,,,,,,,,like
+Yes,4.0,22,,,,,,,,like
+Yes,1.0,20,,,,,,,,like
+Yes,6.0,20,,,,,,,,like
+Don't want to share,1.0,30,,,,,,,,like
+Yes,14.0,22,,,,,,,,like
+No,3.0,25,,,,,,,,like
+No,10.0,29,10.0,20.0,Chinese,medium,Yes,,刘姥姥砂锅麻辣烫,like
+Yes,1.0,21,45.0,20.0,Thai,low,Yes,Friends with me,,like
+No,2.0,25,2.0,60.0,Other,no music,Yes,"Extremely nice service.
+
+Sidenote: How do you not have Japanese as an option for type of food (Sushi...)",Taku Japanese Kitchen,like
+No,3.0,24,50.0,80.0,Canadian/American,no music,Yes,"food tasted amazing, never had food that tasted so good before.",Annalena,like
+No,1.0,25,5.0,20.0,Other,low,Yes,food was great,,like
+No,2.0,21,10.0,25.0,Indian,low,Yes,,Delhi 6,like
+Yes,2.0,24,5.0,10.0,Indian,low,Yes,Amazing food and service,Essence of India,like
+Yes,3.0,22,30.0,30.0,Mexican,medium,Yes,Live music,Guacamole Mexican Grill,like
+Yes,0.0,23,8.0,22.0,Other,low,Yes,I am celiac and the food was all gluten free so I could eat everything there.,Iki Japanese Bistro,like
+Yes,2.0,22,40.0,30.0,Other,high,Yes,Wasn't as hot and humid,,like
+Yes,4.0,20,100.0,40.0,Chinese,high,Yes,Server was very good,Haidilao,like
+No,4.0,22,20.0,15.0,Chinese,medium,Yes,I was really hungry at the time,HK BBQ Master,like
+Yes,1.0,24,2.0,30.0,Other,medium,Yes,With close friend,,like
+Yes,1.0,21,1.0,5.0,Other,low,Yes,no clue,no idea,like
+Yes,2.0,30,5.0,15.0,Other,no music,Yes,I was very hungry,,like
+Yes,5.0,20,20.0,30.0,Mexican,medium,Yes,tasty food,Lucky Taco,like
+No,1.0,22,32.0,19.0,Other,low,Yes,,Midam,like
+Yes,0.0,22,20.0,25.0,Other,medium,Yes,"Delicious food, beautiful interior, affordable price, and good service",Kingyo Izakaya,like
+Yes,2.0,26,45.0,35.0,Chinese,medium,Yes,"Fresh food, great taste, great service, great value for money",Hotpot on Broadway,like
+Yes,3.0,26,50.0,30.0,Canadian/American,medium,Yes,It was the first time I ate really good steak.,The Keg,like
+Yes,0.0,21,15.0,15.0,Indian,low,Yes,uwu,Dhosa Factory or something,like
+No,1.0,22,10.0,15.0,Chinese,medium,Yes,no,no,like
+Yes,3.0,20,80.0,60.0,Chinese,high,Yes,,Sea Fortune Restaurant,like
+Yes,2.0,32,30.0,30.0,fusion,medium,Yes,,,like
+No,1.0,27,20.0,60.0,Other,low,Yes,,,like
+No,5.0,21,50.0,35.0,Canadian/American,high,Yes,5,Joeys Shipyards,like
+Yes,2.0,25,30.0,50.0,Other,low,Yes,"Ambience, service, hygiene.",,like
+No,9.0,19,32.0,50.0,Chinese,low,Yes,The food taste good,no,like
+Yes,2.0,23,60.0,60.0,Other,medium,Yes,"Ate with friends, the server was friendly and told some good stories",,like
+No,2.0,21,30.0,25.0,Other,medium,Yes,Large portions,Saku,like
+Yes,0.0,21,30.0,40.0,Chinese,high,Yes,,,like
+Yes,2.0,22,12.0,120.0,Other,low,Yes,I was in a good mood,La Crocodile,like
+No,2.0,22,20.0,60.0,Other,low,Yes,It is a sushi place and I love sushi,Miku,like
+Yes,2.0,22,8.0,22.0,Other,medium,Yes,I was hungry,Four Olives,like
+Yes,1.0,20,14.0,18.0,Other,low,Yes,broth was flavorful and food was plenty for its price,Umami Ramen,like
+No,4.0,21,50.0,32.0,Other,low,Yes,"Unique way of eating, we had to grill out beef on a stone",Kingyo,like
+No,0.3,30,20.0,25.0,Chinese,low,Yes,Food is good,,like
+Yes,1.0,21,40.0,110.0,Other,low,Yes,,Elisa,like
+No,5.0,21,40.0,120.0,Chinese,medium,Yes,"palatable, service good.",South Silk Road Restuarant,like
+No,14.0,22,7.0,13.0,Other,low,Yes,Filling meal for a very affordable price with good service,,like
+No,2.0,21,20.0,40.0,Other,low,Yes,Food quality and taste.,Nostos Taverna,like
+Yes,3.0,26,2.0,40.0,Other,low,Yes,"Sticking to the Vietnamese theme, this place is delicious and my favourite place.  It may have been influenced by my sister introducing me to it.",Lotus,like
+Yes,2.0,21,30.0,30.0,Other,low,Yes,Food was the most authentic South East Asian Cuisine I've ever had in Vancouver,John 3:16,like
+Yes,1.0,20,20.0,20.0,Canadian/American,low,Yes,Delicious food,,like
+No,2.0,21,30.0,75.0,Thai,medium,Yes,Great Food!,Song (by Kin Kao),like
+No,4.0,24,30.0,30.0,Other,medium,No,Great atmosphere and friendly waiters,Trattoria Da Franco,like
+No,4.0,20,40.0,25.0,Canadian/American,medium,Yes,I was hungry,Chambar,like
+Yes,1.0,21,20.0,120.0,fusion,medium,Yes,The people I was with.,Burdock & Co,like
+Yes,3.0,19,80.0,50.0,Other,high,Yes,"Great service, good company, better food",Raisu,like
+No,5.0,20,20.0,15.0,Canadian/American,medium,Yes,The food,,like
+Yes,8.0,22,40.0,100.0,Canadian/American,medium,Yes,"nice atmosphere, more expensive restaurant but fantastic variety of dishes which all tasted amazing",Nightingale,like
+Yes,4.0,22,30.0,30.0,Chinese,medium,Yes,,,like
+Yes,1.0,20,10.0,10.0,Other,low,Yes,,Baoguette,like
+Yes,2.0,23,80.0,40.0,Other,low,Yes,The food was amazing and was extremely unique!,Chambar Restaurant,like
+No,2.0,23,70.0,40.0,Other,medium,Yes,"Fresh food, by the water",,like
+No,1.5,21,20.0,23.0,Other,medium,Yes,Good company to enjoy the food with,,like
+Yes,1.0,30,60.0,300.0,Chinese,medium,Yes,very good service,Dolar Shop,like
+Yes,2.0,25,10.0,20.0,Canadian/American,low,Yes,,,like
+Yes,1.0,22,60.0,80.0,Canadian/American,medium,Yes,good atmosphere,botanist,like
+Yes,1.0,23,20.0,30.0,Other,medium,Yes,Food was really good,,like
+Yes,1.0,20,100.0,20.0,Indian,medium,Yes,"Food came on time, was hot and tasty. The server was quite nice and the ambiance was pleasant. ",Tasty Indian Bistro,like
+Yes,0.0,22,6.0,40.0,Other,medium,Yes,food tasted good,sushi mura,like
+Yes,4.0,29,50.0,100.0,Canadian/American,low,Yes,Food was divine and service was good,Honey salt,like
+No,0.5,27,20.0,20.0,Italian,low,Yes,Price was reasonable. Servers were very nice. Gave me free food because one of the orders came a bit late,Captain Owen Pizza,like
+No,1.0,21,15.0,50.0,Other,low,Yes,Good price good portions.,Sura Korean BBQ,like
+Yes,2.0,21,60.0,15.0,Chinese,high,Yes,,,like
+No,1.0,23,15.0,25.0,Other,medium,Yes,Restaurant offers pricing that is friendly to families or friends or group ordering in general.,Nandos,like
+Yes,3.0,21,15.0,16.0,Thai,medium,Yes,,,like
+Yes,3.0,23,50.0,300.0,Chinese,medium,Yes,,,like
+Yes,4.0,21,30.0,30.0,Canadian/American,low,Yes,The building and the room gave a very comfy feeling. Immediately after sitting down it felt like we were right at home.,,like
+No,1.0,20,,,,,,,,like
+No,8.0,20,,,,,,,,like
+Yes,2.0,23,,,,,,,,like
+Yes,2.0,20,,,,,,,,like
+Yes,1.0,22,,,,,,,,like
+No,2.0,26,,,,,,,,like
+Yes,5.0,21,,,,,,,,like
+Yes,2.0,19,,,,,,,,like
+Yes,3.0,22,,,,,,,,like
+Yes,4.0,20,,,,,,,,like
+No,1.0,23,,,,,,,,like
+No,5.0,20,,,,,,,,like
+No,3.0,22,,,,,,,,like
+Yes,3.0,21,,,,,,,,like
+Yes,3.0,21,,,,,,,,like
+Yes,1.0,20,,,,,,,,like
+Yes,2.0,23,,,,,,,,like
+No,7.0,20,,,,,,,,like
+No,0.0,26,,,,,,,,like
+Yes,4.0,21,,,,,,,,like
+Yes,1.0,22,,,,,,,,like
+No,3.0,22,,,,,,,,like
+No,3.0,20,,,,,,,,like
+No,10.0,20,,,,,,,,like
+No,10.0,22,,,,,,,,like
+Yes,1.0,20,,,,,,,,like
+No,1.0,22,40.0,50.0,Chinese,medium,Yes,The self service sauce table is very clean and the sauces were always filled up. ,Haidilao,like
+Yes,3.0,21,,,,,,,,like
+Yes,3.0,27,20.0,22.0,Other,medium,Yes,Lots of meat that was very soft and tasty. Hearty and amazing broth. Good noodle thickness and consistency,Uno Beef Noodle,like
