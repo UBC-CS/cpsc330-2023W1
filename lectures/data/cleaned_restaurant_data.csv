@@ -96,7 +96,7 @@ No,3.0,21,,,,,,,,dislike
 Yes,0.5,29,30.0,15.0,Chinese,high,Yes,Restaurant theme (Decoration),Memory Corner,dislike
 No,2.0,29,50.0,17.0,Other,no music,Yes,"It was just a personal thing, everyone was yelling",Gyu-Kaku,dislike
 No,1.0,26,40.0,30.0,Chinese,high,Yes,Mostly the food flavour.,"Hotpot something, Kitsalano",dislike
-Yes,2.0,26,25.0,35.0,Italian,high,No,"seated at a very crowded area, didn't take our orders until 20 min later ",,dislike
+Yes,2.0,26,25.0,35.0,Italian,high,No,"seated at a very crowded area, didn't take our orders until 20 min later",,dislike
 No,7.0,24,3.0,14.0,Mexican,medium,No,,,dislike
 Yes,0.5,25,10.0,20.0,Chinese,low,Yes,,,dislike
 Yes,3.0,39,18.0,15.0,Indian,medium,No,,,dislike
@@ -490,22 +490,13 @@ Yes,1.0,20,,,,,,,,dislike
 No,1.0,22,5.0,18.0,Chinese,medium,No,Expected tip rate was far to high for the service that they were providing.,,dislike
 Yes,3.0,21,,,,,,,,dislike
 Yes,3.0,27,14.0,16.0,Other,medium,Yes,Cash only. Tasted watery and disappointing.,Pho Extreme Xe Lua,dislike
-Don't want to share,28.0,60,56.0,22.0,Italian,low,No,Vel fringilla lacus orci luctus vel. Nec nibh sed dui tempor mattis. Pede. Gravida wisi.,Aliquet! Vivamus dolor elementum rhoncus tempor suscipit. Nunc quam facilisi tempor.,like
-Don't want to share,29.0,46,90.0,97.0,Other,medium,Yes,Dignissim mattis euismod natoque. Eros duis? Platea metus ultricies. Fringilla.,"Tempor morbi velit ut. Proin duis tincidunt, ultricies lectus ridiculus, urna.",like
-Yes,30.0,59,45.0,40.0,Chinese,no music,No,Tincidunt mauris maecenas venenatis enim vulputate natoque. Tempora. Cras praesent wisi risus a viverra ut.,Venenatis sagittis quam eu vulputate proin? Sed non ridiculus temporibus.,like
-Don't want to share,1.0,14,56.0,40.0,Thai,medium,No,Nullam pede sem? Morbi aliquam ultricies! Fusce proin? Et orci convallis convallis nulla pede magna.,Aliquam? Mattis et. A arcu. Facilisis posuere ipsum! Tortor augue rhoncus.,like
-Yes,29.0,33,13.0,3.0,Italian,high,No,Est elementum gravida vehicula porta ridiculus. Potenti pharetra. Etiam vitae primis dui vestibulum.,"Lacus aliquam neque arcu nunc fringilla risus, felis iaculis velit.",like
-Yes,22.0,55,19.0,0.0,Chinese,medium,Yes,Cursus nullam iaculis. Nulla elit nec neque bibendum consectetuer facilisi faucibus sapien.,"Potenti laoreet enim pharetra luctus per? Elementum felis, consectetuer justo porttitor.",like
-No,21.0,17,21.0,51.0,Mexican,no music,No,Molestie nonummy! Pellentesque! Vivamus. Natoque magna nibh pellentesque nullam vestibulum neque.,Pede? Dignissim duis. Nonummy vivamus platea malesuada orci integer velit lectus viverra felis malesuada.,like
-No,2.0,49,79.0,21.0,Mexican,medium,Yes,Duis justo posuere aliquam blandit et sagittis iaculis dolor tortor elit integer tortor rhoncus.,Blandit vestibulum auctor sit? Per cursus rutrum ipsum vel ullamcorper. Bibendum? Sed.,like
-Yes,16.0,20,40.0,76.0,Mexican,medium,Yes,Sed a aenean! Consectetuer dui massa? Accumsan lectus volutpat. Dapibus porta massa! Mattis.,Phasellus morbi vestibulum. Consectetuer felis enim eros sed nulla facilisis phasellus. Cras? Magna porta a.,like
-No,16.0,53,79.0,86.0,Chinese,high,Yes,"Enim lorem fringilla aliquet! Praesent accumsan! Per vivamus etiam ligula! Phasellus! Rutrum, augue ultricies consequat.","Nibh aenean elementum tellus, tellus dolor felis primis primis vehicula. Ipsum tortor quis auctor eleifend.",like
 Yes,3.0,29,20.0,10.0,Other,no music,Yes,,,like
 Yes,2.0,23,10.0,20.0,Chinese,low,Yes,food tastes good,Midam,like
 Yes,2.0,21,10.0,40.0,Other,low,Yes,good food,pear tree,like
 No,2.0,24,15.0,40.0,Other,medium,Yes,My love for Korean food,Dami,like
 Yes,5.0,23,20.0,10.0,Canadian/American,low,Yes,Good food,,like
 Yes,2.0,22,60.0,20.0,Chinese,medium,Yes,food tasted great!,,like
+Yes,2.0,23,10000000.0,1000000.0,Canadian/American,crazy loud,Yes,,CACTUS CLUB CAFE,like
 Yes,4.0,20,20.0,40.0,Chinese,high,Yes,,,like
 Yes,1.0,21,40.0,60.0,Italian,high,Yes,,Frankie’s,like
 No,2.0,20,50.0,45.0,Canadian/American,medium,Yes,"Steak was good, ambiance was nice and server was helpful.",Hy's steakhouse,like
@@ -553,6 +544,7 @@ No,2.0,22,30.0,40.0,Thai,low,No,the environment,don't remember,like
 No,1.0,22,30.0,25.0,Mexican,high,Yes,good company + really good food + nice ambiente,Lucky Taco,like
 Yes,1.0,22,10.0,15.0,Other,medium,Yes,Lighting,Guu ,like
 Yes,1.0,29,20.0,50.0,Other,low,Yes,The quality of the food was amazing!,It was a Japanese restaurant but I can't remember its name.,like
+Yes,4.0,28,50.0,250.0,Other,low,Yes,Good food and good service,Miku,like
 No,2.0,23,15.0,16.0,Thai,high,Yes,I love their pho so much,Linh,like
 No,2.0,26,20.0,30.0,Italian,medium,Yes,The food was delicious,La Notte,like
 No,1.0,10,30.0,20.0,Other,low,Yes,food tasted good,sancho,like
@@ -684,6 +676,7 @@ No,1.0,30,50.0,100.0,Italian,high,Yes,,Solvio Volpe,like
 Yes,2.0,28,,,,,,,,like
 Yes,2.0,22,,,,,,,,like
 Yes,1.0,22,12.0,23.0,Mexican,medium,Yes,,,like
+No,2.0,20,20.0,300.0,fusion,low,Yes,Bee pollen milk buns are the greatest thing ever,Published on Main,like
 Yes,4.0,26,30.0,50.0,Chinese,high,Yes,"With group of friends, tasty, fancy, exotic",Gyukaku,like
 Yes,2.0,24,15.0,15.0,Other,low,Yes,Was with friends,Marulilu Cafe,like
 Yes,1.0,32,50.0,100.0,Canadian/American,low,Yes,"Excellent, knowledgeable service; fantastic atmosphere; tableside service.",Hy's Steakhouse,like
@@ -727,6 +720,7 @@ Good alcohol
 No,3.0,21,20.0,5.0,Other,no music,No,"Tasty food, lot of Vegan options",Sun Sushi,like
 Yes,2.0,19,20.0,40.0,Indian,low,Yes,,,like
 Yes,2.0,29,80.0,30.0,Canadian/American,low,Yes,,Bin 4,like
+Yes,2.0,22,200.0,300.0,fusion,high,Yes,,ancora waterfront dining and patio,like
 Yes,1.0,21,10.0,15.0,Other,low,Yes,Great fresh food,,like
 Yes,3.0,20,50.0,30.0,Indian,high,No,,,like
 Yes,1.0,38,20.0,20.0,Other,medium,Yes,Taste,Chui Hong,like
@@ -944,6 +938,7 @@ Yes,1.0,20,10.0,10.0,Other,low,Yes,,Baoguette,like
 Yes,2.0,23,80.0,40.0,Other,low,Yes,The food was amazing and was extremely unique!,Chambar Restaurant,like
 No,2.0,23,70.0,40.0,Other,medium,Yes,"Fresh food, by the water",,like
 No,1.5,21,20.0,23.0,Other,medium,Yes,Good company to enjoy the food with,,like
+Yes,1.0,30,60.0,300.0,Chinese,medium,Yes,very good service,Dolar Shop,like
 Yes,2.0,25,10.0,20.0,Canadian/American,low,Yes,,,like
 Yes,1.0,22,60.0,80.0,Canadian/American,medium,Yes,good atmosphere,botanist,like
 Yes,1.0,23,20.0,30.0,Other,medium,Yes,Food was really good,,like
@@ -955,6 +950,7 @@ No,1.0,21,15.0,50.0,Other,low,Yes,Good price good portions.,Sura Korean BBQ,like
 Yes,2.0,21,60.0,15.0,Chinese,high,Yes,,,like
 No,1.0,23,15.0,25.0,Other,medium,Yes,Restaurant offers pricing that is friendly to families or friends or group ordering in general.,Nandos,like
 Yes,3.0,21,15.0,16.0,Thai,medium,Yes,,,like
+Yes,3.0,23,50.0,300.0,Chinese,medium,Yes,,,like
 Yes,4.0,21,30.0,30.0,Canadian/American,low,Yes,The building and the room gave a very comfy feeling. Immediately after sitting down it felt like we were right at home.,,like
 No,1.0,20,,,,,,,,like
 No,8.0,20,,,,,,,,like
