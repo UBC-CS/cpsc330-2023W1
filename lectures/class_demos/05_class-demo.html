@@ -377,6 +377,204 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>north_america</th>
+      <th>eat_out_freq</th>
+      <th>age</th>
+      <th>n_people</th>
+      <th>price</th>
+      <th>food_type</th>
+      <th>noise_level</th>
+      <th>good_server</th>
+      <th>comments</th>
+      <th>restaurant_name</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Yes</td>
+      <td>3.0</td>
+      <td>29</td>
+      <td>10.0</td>
+      <td>120.0</td>
+      <td>Italian</td>
+      <td>medium</td>
+      <td>Yes</td>
+      <td>Ambience</td>
+      <td>NaN</td>
+      <td>dislike</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Yes</td>
+      <td>2.0</td>
+      <td>23</td>
+      <td>3.0</td>
+      <td>20.0</td>
+      <td>Canadian/American</td>
+      <td>no music</td>
+      <td>No</td>
+      <td>food tastes bad</td>
+      <td>NaN</td>
+      <td>dislike</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Yes</td>
+      <td>2.0</td>
+      <td>21</td>
+      <td>20.0</td>
+      <td>15.0</td>
+      <td>Chinese</td>
+      <td>medium</td>
+      <td>Yes</td>
+      <td>bad food</td>
+      <td>NaN</td>
+      <td>dislike</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>No</td>
+      <td>2.0</td>
+      <td>24</td>
+      <td>14.0</td>
+      <td>18.0</td>
+      <td>Other</td>
+      <td>medium</td>
+      <td>No</td>
+      <td>Overall vibe on the restaurant</td>
+      <td>NaN</td>
+      <td>dislike</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Yes</td>
+      <td>5.0</td>
+      <td>23</td>
+      <td>30.0</td>
+      <td>20.0</td>
+      <td>Chinese</td>
+      <td>medium</td>
+      <td>Yes</td>
+      <td>A bad day</td>
+      <td>NaN</td>
+      <td>dislike</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>959</th>
+      <td>No</td>
+      <td>10.0</td>
+      <td>22</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>960</th>
+      <td>Yes</td>
+      <td>1.0</td>
+      <td>20</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>961</th>
+      <td>No</td>
+      <td>1.0</td>
+      <td>22</td>
+      <td>40.0</td>
+      <td>50.0</td>
+      <td>Chinese</td>
+      <td>medium</td>
+      <td>Yes</td>
+      <td>The self service sauce table is very clean and the sauces were always filled up.</td>
+      <td>Haidilao</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>962</th>
+      <td>Yes</td>
+      <td>3.0</td>
+      <td>21</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>963</th>
+      <td>Yes</td>
+      <td>3.0</td>
+      <td>27</td>
+      <td>20.0</td>
+      <td>22.0</td>
+      <td>Other</td>
+      <td>medium</td>
+      <td>Yes</td>
+      <td>Lots of meat that was very soft and tasty. Hearty and amazing broth. Good noodle thickness and consistency</td>
+      <td>Uno Beef Noodle</td>
+      <td>like</td>
+    </tr>
+  </tbody>
+</table>
+<p>964 rows × 11 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -580,7 +778,7 @@ Let’s get rid of these outliers.</p>
 </section>
 <section id="data-splitting">
 <h3>Data splitting<a class="headerlink" href="#data-splitting" title="Permalink to this heading">#</a></h3>
-<p>We want to predict whether a restaurant is liked or disliked.</p>
+<p>We aim to predict whether a restaurant is liked or disliked.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Separate `X` and `y`. </span>
@@ -721,35 +919,35 @@ Name: count, dtype: int64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000729</td>
-      <td>0.000880</td>
+      <td>0.000689</td>
+      <td>0.000628</td>
       <td>0.516556</td>
       <td>0.514950</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000517</td>
-      <td>0.000353</td>
+      <td>0.000499</td>
+      <td>0.000343</td>
       <td>0.516556</td>
       <td>0.514950</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000452</td>
-      <td>0.000337</td>
+      <td>0.000444</td>
+      <td>0.000357</td>
       <td>0.516556</td>
       <td>0.514950</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000463</td>
-      <td>0.000357</td>
+      <td>0.000447</td>
+      <td>0.000338</td>
       <td>0.513333</td>
       <td>0.515755</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000442</td>
+      <td>0.000433</td>
       <td>0.000331</td>
       <td>0.513333</td>
       <td>0.515755</td>
@@ -768,6 +966,7 @@ Name: count, dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Preprocessing and pipeline</span>
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+
 <span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
 <span class="c1"># knn.fit(X_train, y_train)</span>
 </pre></div>
@@ -888,11 +1087,44 @@ Name: count, dtype: int64
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_feats</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># Continuous and quantitative features</span>
-<span class="n">categorical_feats</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># Discrete and qualitative features</span>
-<span class="n">binary_feats</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># Categorical features with only two possible values </span>
-<span class="n">ordinal_feats</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># Some natural ordering in the categories </span>
-<span class="n">noise_cats</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;north_america&#39;, &#39;eat_out_freq&#39;, &#39;age&#39;, &#39;n_people&#39;, &#39;price&#39;,
+       &#39;food_type&#39;, &#39;noise_level&#39;, &#39;good_server&#39;, &#39;comments&#39;,
+       &#39;restaurant_name&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;noise_level&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>noise_level
+medium        232
+low           186
+high           75
+no music       37
+crazy loud     18
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;n_people&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">]</span> <span class="c1"># Continuous and quantitative features</span>
+<span class="n">categorical_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;north_america&#39;</span><span class="p">,</span> <span class="s1">&#39;food_type&#39;</span><span class="p">]</span> <span class="c1"># Discrete and qualitative features</span>
+<span class="n">binary_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;good_server&#39;</span><span class="p">]</span> <span class="c1"># Categorical features with only two possible values </span>
+<span class="n">ordinal_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;noise_level&#39;</span><span class="p">]</span> <span class="c1"># Some natural ordering in the categories </span>
+<span class="n">noise_cats</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;no music&#39;</span><span class="p">,</span> <span class="s1">&#39;low&#39;</span><span class="p">,</span> <span class="s1">&#39;medium&#39;</span><span class="p">,</span> <span class="s1">&#39;high&#39;</span><span class="p">,</span> <span class="s1">&#39;crazy loud&#39;</span><span class="p">]</span>
 <span class="n">drop_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;comments&#39;</span><span class="p">,</span> <span class="s1">&#39;restaurant_name&#39;</span><span class="p">]</span> <span class="c1"># Let&#39;s drop them for now. </span>
 </pre></div>
 </div>
@@ -903,6 +1135,8 @@ Name: count, dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># knn.fit(X_train[numeric_feats], y_train)</span>
+<span class="n">X_train_num</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="n">numeric_feats</span><span class="p">]</span>
+<span class="n">X_test_num</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[</span><span class="n">numeric_feats</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -914,23 +1148,34 @@ Name: count, dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Impute numeric features using SimpleImputer</span>
-
 <span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+
+<span class="n">imputer</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">)</span>
+<span class="n">imputer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_num</span><span class="p">)</span>
+<span class="n">X_train_num_imp</span> <span class="o">=</span> <span class="n">imputer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train_num</span><span class="p">)</span>
+<span class="n">X_test_num_imp</span> <span class="o">=</span> <span class="n">imputer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_num</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># knn.fit(X_train_num_imp, y_train)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_num_imp</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KNeighborsClassifier()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">KNeighborsClassifier</label><div class="sk-toggleable__content"><pre>KNeighborsClassifier()</pre></div></div></div></div></div></div></div>
 </div>
 <p>No more errors. It worked! Let’s try cross validation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cross_val_score(knn, X_train_num_imp, y_train).mean()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">knn</span><span class="p">,</span> <span class="n">X_train_num_imp</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5418278145695364
 </pre></div>
 </div>
 </div>
@@ -970,45 +1215,81 @@ Name: count, dtype: int64
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>age</th>
+      <th>n_people</th>
+      <th>price</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>80</th>
+      <td>21</td>
+      <td>30.0</td>
+      <td>2200.0</td>
     </tr>
     <tr>
       <th>934</th>
+      <td>21</td>
+      <td>30.0</td>
+      <td>3000.0</td>
     </tr>
     <tr>
       <th>911</th>
+      <td>20</td>
+      <td>40.0</td>
+      <td>2500.0</td>
     </tr>
     <tr>
       <th>459</th>
+      <td>21</td>
+      <td>NaN</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>62</th>
+      <td>24</td>
+      <td>20.0</td>
+      <td>3000.0</td>
     </tr>
     <tr>
       <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>106</th>
+      <td>27</td>
+      <td>10.0</td>
+      <td>1500.0</td>
     </tr>
     <tr>
       <th>333</th>
+      <td>24</td>
+      <td>12.0</td>
+      <td>800.0</td>
     </tr>
     <tr>
       <th>393</th>
+      <td>20</td>
+      <td>5.0</td>
+      <td>1500.0</td>
     </tr>
     <tr>
       <th>376</th>
+      <td>20</td>
+      <td>NaN</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>525</th>
+      <td>20</td>
+      <td>50.0</td>
+      <td>3000.0</td>
     </tr>
   </tbody>
 </table>
-<p>753 rows × 0 columns</p>
+<p>753 rows × 3 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1016,6 +1297,10 @@ Name: count, dtype: int64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scale the imputed data </span>
 
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_num_imp</span><span class="p">)</span>
+<span class="n">X_train_num_imp_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train_num_imp</span><span class="p">)</span>
+<span class="n">X_test_num_imp_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_num_imp</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1039,7 +1324,12 @@ Name: count, dtype: int64
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cross_val_score(knn, X_train_num_imp_scaled, y_train)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">knn</span><span class="p">,</span> <span class="n">X_train_num_imp_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.55629139, 0.49006623, 0.56953642, 0.54      , 0.53333333])
 </pre></div>
 </div>
 </div>
@@ -1054,13 +1344,23 @@ Name: count, dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a pipeline </span>
+<span class="n">pipe_knn</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
+    <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="s2">&quot;median&quot;</span><span class="p">),</span>
+    <span class="n">StandardScaler</span><span class="p">(),</span>
+    <span class="n">KNeighborsClassifier</span><span class="p">()</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cross_val_score(pipe_knn, X_train[numeric_feats], y_train)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">pipe_knn</span><span class="p">,</span> <span class="n">X_train_num</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.56291391, 0.47019868, 0.52317881, 0.54      , 0.52666667])
 </pre></div>
 </div>
 </div>
@@ -1119,45 +1419,69 @@ Name: count, dtype: int64
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>north_america</th>
+      <th>food_type</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>80</th>
+      <td>No</td>
+      <td>Chinese</td>
     </tr>
     <tr>
       <th>934</th>
+      <td>Yes</td>
+      <td>Canadian/American</td>
     </tr>
     <tr>
       <th>911</th>
+      <td>No</td>
+      <td>Canadian/American</td>
     </tr>
     <tr>
       <th>459</th>
+      <td>Yes</td>
+      <td>Quebecois</td>
     </tr>
     <tr>
       <th>62</th>
+      <td>Yes</td>
+      <td>Indian</td>
     </tr>
     <tr>
       <th>...</th>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>106</th>
+      <td>No</td>
+      <td>Chinese</td>
     </tr>
     <tr>
       <th>333</th>
+      <td>No</td>
+      <td>Other</td>
     </tr>
     <tr>
       <th>393</th>
+      <td>Yes</td>
+      <td>Canadian/American</td>
     </tr>
     <tr>
       <th>376</th>
+      <td>Yes</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>525</th>
+      <td>Don't want to share</td>
+      <td>Chinese</td>
     </tr>
   </tbody>
 </table>
-<p>753 rows × 0 columns</p>
+<p>753 rows × 2 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1231,7 +1555,7 @@ Name: count, dtype: int64
 </div>
 <ul class="simple">
 <li><p>It’s a sparse matrix.</p></li>
-<li><p>Why? What would happen if we pass <code class="docutils literal notranslate"><span class="pre">sparse=False</span></code>? Why we might want to do that?</p></li>
+<li><p>Why? What would happen if we pass <code class="docutils literal notranslate"><span class="pre">sparse_output=False</span></code>? Why we might want to do that?</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
