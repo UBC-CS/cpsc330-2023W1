@@ -158,12 +158,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../03_ml-fundamentals.html">Lecture 3: Machine Learning Fundamentals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../04_kNNs-SVM-RBF.html">Lecture 4: <span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbours and SVM RBFs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../05_preprocessing-pipelines.html">Lecture 5: Preprocessing and <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_column-transformer-text-feats.html">Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="03_class-demo.html">Lecture 3: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_class-demo.html">Lecture 4: Class demo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_class-demo.html">Lecture 5: Class demo</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -331,6 +331,12 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bad-methodology-1-scaling-the-data-separately-for-class-discussion">Bad methodology 1: Scaling the data separately (for class discussion)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bad-methodology-2-scaling-the-data-together-for-class-discussion">Bad methodology 2: Scaling the data together (for class discussion)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#methodology-3-cross-validation-with-already-preprocessed-data-for-class-discussion">Methodology 3: Cross validation with already preprocessed data (for class discussion)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-mistakes">Preprocessing mistakes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bad-methodology-1-vectorizing-the-data-separately-for-class-discussion">Bad methodology 1: Vectorizing the data separately (for class discussion)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Bad methodology 2: Scaling the data together (for class discussion)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bad-methodology-3-cross-validation-with-already-preprocessed-data-for-class-discussion">Bad methodology 3: Cross validation with already preprocessed data (for class discussion)</a></li>
 </ul>
 </li>
 </ul>
@@ -724,36 +730,36 @@ Name: count, dtype: int64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000778</td>
-      <td>0.000416</td>
+      <td>0.000654</td>
+      <td>0.000427</td>
       <td>0.516556</td>
       <td>0.514950</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000464</td>
-      <td>0.000361</td>
+      <td>0.000459</td>
+      <td>0.000337</td>
       <td>0.516556</td>
       <td>0.514950</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000451</td>
-      <td>0.000332</td>
+      <td>0.000440</td>
+      <td>0.000340</td>
       <td>0.516556</td>
       <td>0.514950</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000442</td>
-      <td>0.000327</td>
+      <td>0.000443</td>
+      <td>0.000325</td>
       <td>0.513333</td>
       <td>0.515755</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000448</td>
-      <td>0.000327</td>
+      <td>0.000440</td>
+      <td>0.000324</td>
       <td>0.513333</td>
       <td>0.515755</td>
     </tr>
@@ -2164,6 +2170,350 @@ Test score: 0.55
 </div>
 </section>
 </section>
+<section id="preprocessing-mistakes">
+<h2>Preprocessing mistakes<a class="headerlink" href="#preprocessing-mistakes" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span><span class="p">,</span> <span class="n">make_classification</span>
+<span class="c1"># make synthetic data</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">cluster_std</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="c1"># split it into training and test sets</span>
+<span class="n">X_train_toy</span><span class="p">,</span> <span class="n">X_test_toy</span><span class="p">,</span> <span class="n">y_train_toy</span><span class="p">,</span> <span class="n">y_test_toy</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_train_toy</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_train_toy</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Training set&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">X_test_toy</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_test_toy</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">mglearn</span><span class="o">.</span><span class="n">cm2</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Test set&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">60</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x179c42f80&gt;
+</pre></div>
+</div>
+<img alt="../../_images/a9f9d0e70d0f5e6c0d8a38463b08c20c9c2cc69c14d0ecca973fb8e8cb4789bc.png" src="../../_images/a9f9d0e70d0f5e6c0d8a38463b08c20c9c2cc69c14d0ecca973fb8e8cb4789bc.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+
+<span class="n">toy_spam</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;spam&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Lol you are always so convincing.&quot;</span><span class="p">,</span> <span class="s2">&quot;non spam&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Nah I don&#39;t think he goes to usf, he lives around here though&quot;</span><span class="p">,</span> <span class="s2">&quot;non spam&quot;</span><span class="p">],</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;spam&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;spam&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Congrats! I can&#39;t wait to see you!!&quot;</span><span class="p">,</span> <span class="s2">&quot;non spam&quot;</span><span class="p">],</span>
+<span class="p">]</span>
+<span class="n">toy_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">toy_spam</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">])</span>
+<span class="n">toy_df</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">toy_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">toy_df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">X_train_toy</span><span class="p">,</span> <span class="n">X_test_toy</span><span class="p">,</span> <span class="n">y_train_toy</span><span class="p">,</span> <span class="n">y_test_toy</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="bad-methodology-1-vectorizing-the-data-separately-for-class-discussion">
+<h3>Bad methodology 1: Vectorizing the data separately (for class discussion)<a class="headerlink" href="#bad-methodology-1-vectorizing-the-data-separately-for-class-discussion" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DO NOT DO THIS! For illustration purposes only.</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+
+<span class="n">vec_train</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">vec_train</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_toy</span><span class="p">[</span><span class="s1">&#39;sms&#39;</span><span class="p">])</span>
+<span class="n">train_bow</span> <span class="o">=</span> <span class="n">vec_train</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train_toy</span><span class="p">[</span><span class="s1">&#39;sms&#39;</span><span class="p">])</span>
+
+<span class="n">vec_test</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># Creating a separate object for scaling test data</span>
+<span class="n">vec_test</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_test_toy</span><span class="p">)</span>  <span class="c1"># Calling fit on the test data</span>
+<span class="n">test_bow</span> <span class="o">=</span> <span class="n">vec_test</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
+    <span class="n">X_test_toy</span>
+<span class="p">)</span>  <span class="c1"># Transforming the test data using the scaler fit on test data</span>
+
+<span class="c1"># svm = SVC()</span>
+<span class="c1"># svm.fit(train_bow, y_train_toy)</span>
+<span class="c1"># print(f&quot;Training score: {svm.score(train_bow, y_train_toy):.2f}&quot;)</span>
+<span class="c1"># print(f&quot;Test score: {svm.score(test_bow, y_test_toy):.2f}&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_bow</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4x10 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
+	with 14 stored elements in Compressed Sparse Row format&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_original_scaled</span><span class="p">(</span>
+    <span class="n">X_train_toy</span><span class="p">,</span>
+    <span class="n">X_test_toy</span><span class="p">,</span>
+    <span class="n">train_scaled</span><span class="p">,</span>
+    <span class="n">test_scaled</span><span class="p">,</span>
+    <span class="n">title_transformed</span><span class="o">=</span><span class="s2">&quot;Improperly transformed&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ff74d3988bc98187d5543daf746c7bb6294fa3a16e308b3aae3b9155cd9291fe.png" src="../../_images/ff74d3988bc98187d5543daf746c7bb6294fa3a16e308b3aae3b9155cd9291fe.png" />
+</div>
+</div>
+</section>
+<section id="id1">
+<h3>Bad methodology 2: Scaling the data together (for class discussion)<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># join the train and test sets back together</span>
+<span class="n">XX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">X_train_toy</span><span class="p">,</span> <span class="n">X_test_toy</span><span class="p">))</span>
+<span class="n">XX</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(100, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">XX</span><span class="p">)</span>
+<span class="n">XX_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">XX</span><span class="p">)</span>
+<span class="n">XX_train</span> <span class="o">=</span> <span class="n">XX_scaled</span><span class="p">[:</span><span class="n">X_train_toy</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="n">XX_test</span> <span class="o">=</span> <span class="n">XX_scaled</span><span class="p">[</span><span class="n">X_train_toy</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
+<span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">XX_train</span><span class="p">,</span> <span class="n">y_train_toy</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Training score: </span><span class="si">{</span><span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">XX_train</span><span class="p">,</span><span class="w"> </span><span class="n">y_train_toy</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Misleading score</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test score: </span><span class="si">{</span><span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">XX_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_test_toy</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Misleading score</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training score: 0.63
+Test score: 0.55
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_original_scaled</span><span class="p">(</span>
+    <span class="n">X_train_toy</span><span class="p">,</span>
+    <span class="n">X_test_toy</span><span class="p">,</span>
+    <span class="n">XX_train</span><span class="p">,</span>
+    <span class="n">XX_test</span><span class="p">,</span>
+    <span class="n">title_transformed</span><span class="o">=</span><span class="s2">&quot;Improperly transformed&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6eddfcff0133c360f15be8edc9ca3977fba50e4e08669f66c9958792a4bbb694.png" src="../../_images/6eddfcff0133c360f15be8edc9ca3977fba50e4e08669f66c9958792a4bbb694.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">XX_scaled</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">XX_scaled</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-5.218048215738236e-16, 1.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">XX_train</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">XX_train</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.07799695717181604, 1.0501997049901186)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">XX_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">XX_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.11699543575772282, 0.9070874541507946)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="bad-methodology-3-cross-validation-with-already-preprocessed-data-for-class-discussion">
+<h3>Bad methodology 3: Cross validation with already preprocessed data (for class discussion)<a class="headerlink" href="#bad-methodology-3-cross-validation-with-already-preprocessed-data-for-class-discussion" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_toy</span><span class="p">)</span>
+<span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train_toy</span><span class="p">)</span>
+<span class="n">X_test_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_toy</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">knn</span><span class="p">,</span> <span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train_toy</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fit_time</th>
+      <th>score_time</th>
+      <th>test_score</th>
+      <th>train_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.000505</td>
+      <td>0.001228</td>
+      <td>0.250000</td>
+      <td>0.687500</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.000334</td>
+      <td>0.001098</td>
+      <td>0.500000</td>
+      <td>0.625000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.000276</td>
+      <td>0.000836</td>
+      <td>0.583333</td>
+      <td>0.541667</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.000282</td>
+      <td>0.000865</td>
+      <td>0.583333</td>
+      <td>0.604167</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.000251</td>
+      <td>0.000802</td>
+      <td>0.416667</td>
+      <td>0.604167</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_improper_processing</span><span class="p">(</span><span class="s2">&quot;kNN&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/61213a21459cc7e04d00eeeb3686159c4cac411e08601e97a844b478cdca7765.png" src="../../_images/61213a21459cc7e04d00eeeb3686159c4cac411e08601e97a844b478cdca7765.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">toy_spam</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;spam&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Lol you are always so convincing.&quot;</span><span class="p">,</span> <span class="s2">&quot;non spam&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Nah I don&#39;t think he goes to usf, he lives around here though&quot;</span><span class="p">,</span> <span class="s2">&quot;non spam&quot;</span><span class="p">],</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;spam&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;spam&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Congrats! I can&#39;t wait to see you!!&quot;</span><span class="p">,</span> <span class="s2">&quot;non spam&quot;</span><span class="p">],</span>
+<span class="p">]</span>
+<span class="n">toy_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">toy_spam</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="n">text_feat</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;comments&#39;</span><span class="p">]</span>
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">make_column_transformer</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">make_pipeline</span><span class="p">(</span><span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">),</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="n">numeric_feats</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">make_pipeline</span><span class="p">(</span><span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;most_frequent&quot;</span><span class="p">),</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="s2">&quot;if_binary&quot;</span><span class="p">)),</span> <span class="n">binary_feats</span><span class="p">),</span>    
+    <span class="p">(</span><span class="n">make_pipeline</span><span class="p">(</span><span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;most_frequent&quot;</span><span class="p">),</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">)),</span> <span class="n">categorical_feats</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">make_pipeline</span><span class="p">(</span><span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;missing&quot;</span><span class="p">),</span> <span class="n">reshape_for_countvectorizer</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s2">&quot;english&quot;</span><span class="p">)),</span> <span class="n">text_feat</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -2231,6 +2581,12 @@ Test score: 0.55
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bad-methodology-1-scaling-the-data-separately-for-class-discussion">Bad methodology 1: Scaling the data separately (for class discussion)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bad-methodology-2-scaling-the-data-together-for-class-discussion">Bad methodology 2: Scaling the data together (for class discussion)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#methodology-3-cross-validation-with-already-preprocessed-data-for-class-discussion">Methodology 3: Cross validation with already preprocessed data (for class discussion)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-mistakes">Preprocessing mistakes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bad-methodology-1-vectorizing-the-data-separately-for-class-discussion">Bad methodology 1: Vectorizing the data separately (for class discussion)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Bad methodology 2: Scaling the data together (for class discussion)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bad-methodology-3-cross-validation-with-already-preprocessed-data-for-class-discussion">Bad methodology 3: Cross validation with already preprocessed data (for class discussion)</a></li>
 </ul>
 </li>
 </ul>

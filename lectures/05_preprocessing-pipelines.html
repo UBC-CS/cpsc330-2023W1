@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/05_preprocessing-pipelines';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Lecture 3: Class demo" href="class_demos/03_class-demo.html" />
+    <link rel="next" title="Lecture 6: sklearn ColumnTransformer and Text Features" href="06_column-transformer-text-feats.html" />
     <link rel="prev" title="Lecture 4: \(k\)-Nearest Neighbours and SVM RBFs" href="04_kNNs-SVM-RBF.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -162,12 +162,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="03_ml-fundamentals.html">Lecture 3: Machine Learning Fundamentals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_kNNs-SVM-RBF.html">Lecture 4: <span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbours and SVM RBFs</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 5: Preprocessing and <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_column-transformer-text-feats.html">Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="class_demos/03_class-demo.html">Lecture 3: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="class_demos/04_class-demo.html">Lecture 4: Class demo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="class_demos/05_class-demo.html">Lecture 5: Class demo</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -575,35 +575,35 @@ document.write(`
     <tr>
       <th>0</th>
       <td>0.000570</td>
-      <td>0.000374</td>
+      <td>0.000322</td>
       <td>0.507740</td>
       <td>0.507752</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000364</td>
-      <td>0.000279</td>
+      <td>0.000343</td>
+      <td>0.000249</td>
       <td>0.507740</td>
       <td>0.507752</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000345</td>
-      <td>0.000263</td>
+      <td>0.000315</td>
+      <td>0.000244</td>
       <td>0.507740</td>
       <td>0.507752</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000346</td>
+      <td>0.000378</td>
       <td>0.000259</td>
       <td>0.506211</td>
       <td>0.508133</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000338</td>
-      <td>0.000255</td>
+      <td>0.000326</td>
+      <td>0.000245</td>
       <td>0.509317</td>
       <td>0.507359</td>
     </tr>
@@ -651,36 +651,36 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.003279</td>
-      <td>0.008590</td>
+      <td>0.001996</td>
+      <td>0.007741</td>
       <td>0.563467</td>
       <td>0.717829</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001769</td>
-      <td>0.007719</td>
+      <td>0.001433</td>
+      <td>0.007254</td>
       <td>0.535604</td>
       <td>0.721705</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.001580</td>
-      <td>0.007725</td>
+      <td>0.001394</td>
+      <td>0.007204</td>
       <td>0.529412</td>
       <td>0.708527</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.001961</td>
-      <td>0.008474</td>
+      <td>0.001378</td>
+      <td>0.007198</td>
       <td>0.537267</td>
       <td>0.721921</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001611</td>
-      <td>0.007551</td>
+      <td>0.001399</td>
+      <td>0.007176</td>
       <td>0.562112</td>
       <td>0.711077</td>
     </tr>
@@ -2017,7 +2017,7 @@ memory usage: 1.6+ MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_31383/4158382658.py:26: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_16422/4158382658.py:26: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
   out_col.append((f&quot;%0.3f (+/- %0.3f)&quot; % (mean_scores[i], std_scores[i])))
 </pre></div>
 </div>
@@ -2054,7 +2054,7 @@ memory usage: 1.6+ MB
   <tbody>
     <tr>
       <th>fit_time</th>
-      <td>0.001 (+/- 0.000)</td>
+      <td>0.001 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>score_time</th>
@@ -2756,36 +2756,36 @@ memory usage: 1.6+ MB
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.007495</td>
-      <td>0.139168</td>
+      <td>0.007710</td>
+      <td>0.136051</td>
       <td>0.696373</td>
       <td>0.794236</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.007550</td>
-      <td>0.123477</td>
+      <td>0.007353</td>
+      <td>0.121295</td>
       <td>0.684447</td>
       <td>0.791467</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.007338</td>
-      <td>0.134318</td>
+      <td>0.007275</td>
+      <td>0.131448</td>
       <td>0.695532</td>
       <td>0.789436</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.007508</td>
-      <td>0.137382</td>
+      <td>0.007285</td>
+      <td>0.133326</td>
       <td>0.679478</td>
       <td>0.793243</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.007551</td>
-      <td>0.084267</td>
+      <td>0.007246</td>
+      <td>0.083012</td>
       <td>0.680657</td>
       <td>0.794820</td>
     </tr>
@@ -2917,7 +2917,7 @@ memory usage: 1.6+ MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_31383/4158382658.py:26: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_16422/4158382658.py:26: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
   out_col.append((f&quot;%0.3f (+/- %0.3f)&quot; % (mean_scores[i], std_scores[i])))
 </pre></div>
 </div>
@@ -2948,15 +2948,15 @@ memory usage: 1.6+ MB
   <tbody>
     <tr>
       <th>dummy</th>
-      <td>0.001 (+/- 0.000)</td>
+      <td>0.001 (+/- 0.001)</td>
       <td>0.000 (+/- 0.000)</td>
       <td>-0.055 (+/- 0.012)</td>
       <td>-0.055 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>imp + scaling + knn</th>
-      <td>0.018 (+/- 0.000)</td>
-      <td>0.131 (+/- 0.012)</td>
+      <td>0.018 (+/- 0.001)</td>
+      <td>0.129 (+/- 0.012)</td>
       <td>0.693 (+/- 0.014)</td>
       <td>0.797 (+/- 0.015)</td>
     </tr>
@@ -3875,11 +3875,11 @@ You will often see people using <a class="reference external" href="https://pand
       </div>
     </a>
     <a class="right-next"
-       href="class_demos/03_class-demo.html"
+       href="06_column-transformer-text-feats.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 3: Class demo</p>
+        <p class="prev-next-title">Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

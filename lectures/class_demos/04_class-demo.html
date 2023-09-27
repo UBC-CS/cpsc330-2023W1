@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/class_demos/04_class-demo';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Lecture 5: Class demo" href="05_class-demo.html" />
+    <link rel="next" title="Attributions" href="../../attribution.html" />
     <link rel="prev" title="Lecture 3: Class demo" href="03_class-demo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -160,12 +160,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../03_ml-fundamentals.html">Lecture 3: Machine Learning Fundamentals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../04_kNNs-SVM-RBF.html">Lecture 4: <span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbours and SVM RBFs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../05_preprocessing-pipelines.html">Lecture 5: Preprocessing and <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_column-transformer-text-feats.html">Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="03_class-demo.html">Lecture 3: Class demo</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 4: Class demo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_class-demo.html">Lecture 5: Class demo</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -935,36 +935,36 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.003870</td>
-      <td>0.000460</td>
+      <td>0.004483</td>
+      <td>0.000526</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0.000181</td>
-      <td>0.000212</td>
+      <td>0.000221</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000158</td>
-      <td>0.000328</td>
+      <td>0.000168</td>
+      <td>0.000466</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000155</td>
-      <td>0.000199</td>
+      <td>0.000171</td>
+      <td>0.000208</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000151</td>
-      <td>0.000197</td>
+      <td>0.000150</td>
+      <td>0.000204</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
@@ -1013,36 +1013,36 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000718</td>
-      <td>0.095203</td>
+      <td>0.000724</td>
+      <td>0.083492</td>
       <td>0.933333</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000628</td>
-      <td>0.005113</td>
+      <td>0.000643</td>
+      <td>0.002698</td>
       <td>1.000000</td>
       <td>0.983333</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000372</td>
-      <td>0.001134</td>
+      <td>0.000359</td>
+      <td>0.001308</td>
       <td>0.900000</td>
       <td>0.983333</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000334</td>
-      <td>0.001101</td>
+      <td>0.000559</td>
+      <td>0.005709</td>
       <td>1.000000</td>
       <td>0.991667</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000328</td>
-      <td>0.001268</td>
+      <td>0.000335</td>
+      <td>0.001308</td>
       <td>1.000000</td>
       <td>0.975000</td>
     </tr>
@@ -1463,11 +1463,11 @@ C =  100.0
       </div>
     </a>
     <a class="right-next"
-       href="05_class-demo.html"
+       href="../../attribution.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 5: Class demo</p>
+        <p class="prev-next-title">Attributions</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
