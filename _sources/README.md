@@ -81,8 +81,8 @@ We'll be developing lecture notes directly in this repository. So if you check t
 | Sep 28 | Linear models | 📹  Pre-watch: [7.1](https://youtu.be/HXd1U2q4VFA), [7.2](https://youtu.be/56L5z_t22qE), [7.3](https://youtu.be/_OAK5KiGLg0) | less depth |
 | Oct 03 | Hyperparameter optimization, overfitting the validation set | 📹 Pre-watch: [8.1](https://youtu.be/lMWdHZSZMk8), [8.2](https://youtu.be/Z9a9XZ0vQv0) |   different|
 | Oct 05 | Evaluation metrics for classification  | 📹  Reference: [9.2](https://youtu.be/ZCuCErW5lI8), [9.3](https://youtu.be/XkCTUuoH23c),[9.4](https://youtu.be/jHaKRCFb6Qw) | more depth |
-| Oct 10 | No class. Monday classes moved to Tuesday. | | 
-| Oct 12 | Regression metrics |  📹 Pre-watch: [10.1](https://youtu.be/lgGTKLwNgkQ) |   more depth on metrics less depth on regression|
+| Oct 10 | Regression metrics |  📹 Pre-watch: [10.1](https://youtu.be/lgGTKLwNgkQ) |   more depth on metrics less depth on regression|
+| Oct 12 | No class. Monday classes moved to Thursday. | | 
 | Oct 17 | Ensembles|  📹 Pre-watch: [11.1](https://youtu.be/8litm1H7DLo), [11.2](https://youtu.be/EkFkY9QB2Hw) | similar |
 | Oct 19 | Feature importances, model interpretation | 📹 Pre-watch: [12.1](https://youtu.be/xfICsGL7DXE),[12.2](https://youtu.be/tiSN18OmZOo)| feature importances is new, feature engineering is new |
 | Oct 24 |   Feature engineering and feature selection | None | less depth |

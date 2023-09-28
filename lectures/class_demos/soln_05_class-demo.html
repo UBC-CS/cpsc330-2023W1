@@ -164,7 +164,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="03_class-demo.html">Lecture 3: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_class-demo.html">Lecture 4: Class demo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05-06_class-demo.html">Lecture 5: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-06_class-demo.html">Lectures 5 and 6: Class demo</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -731,36 +731,36 @@ Name: count, dtype: int64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000693</td>
-      <td>0.000468</td>
+      <td>0.000744</td>
+      <td>0.000465</td>
       <td>0.516556</td>
       <td>0.514950</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000493</td>
-      <td>0.000371</td>
+      <td>0.000483</td>
+      <td>0.000354</td>
       <td>0.516556</td>
       <td>0.514950</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000569</td>
-      <td>0.000393</td>
+      <td>0.000459</td>
+      <td>0.000346</td>
       <td>0.516556</td>
       <td>0.514950</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000492</td>
-      <td>0.000438</td>
+      <td>0.000458</td>
+      <td>0.000341</td>
       <td>0.513333</td>
       <td>0.515755</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000574</td>
-      <td>0.000384</td>
+      <td>0.000450</td>
+      <td>0.000350</td>
       <td>0.513333</td>
       <td>0.515755</td>
     </tr>
@@ -2509,6 +2509,73 @@ Test score: 0.55
     <span class="p">(</span><span class="n">make_pipeline</span><span class="p">(</span><span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;most_frequent&quot;</span><span class="p">),</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">)),</span> <span class="n">categorical_feats</span><span class="p">),</span>
     <span class="p">(</span><span class="n">make_pipeline</span><span class="p">(</span><span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;missing&quot;</span><span class="p">),</span> <span class="n">reshape_for_countvectorizer</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s2">&quot;english&quot;</span><span class="p">)),</span> <span class="n">text_feat</span><span class="p">)</span>
 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+
+<span class="c1"># Given data</span>
+<span class="n">hours_studied</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">])</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">&quot;fail&quot;</span><span class="p">,</span> <span class="s2">&quot;fail&quot;</span><span class="p">,</span> <span class="s2">&quot;pass&quot;</span><span class="p">,</span> <span class="s2">&quot;fail&quot;</span><span class="p">,</span> <span class="s2">&quot;pass&quot;</span><span class="p">,</span> <span class="s2">&quot;fail&quot;</span><span class="p">,</span> <span class="s2">&quot;pass&quot;</span><span class="p">,</span> <span class="s2">&quot;pass&quot;</span><span class="p">])</span>
+
+<span class="c1"># Convert target labels to binary (0 for fail, 1 for pass)</span>
+<span class="n">target_binary</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">target</span> <span class="o">==</span> <span class="s2">&quot;pass&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Reshape hours_studied into a 2D array</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">hours_studied</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Train a logistic regression model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">target_binary</span><span class="p">)</span>
+
+<span class="c1"># Generate prediction probabilities</span>
+<span class="n">x_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1"># Values for x-axis</span>
+<span class="n">y_values</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">x_values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))[:,</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># Probabilities for pass</span>
+
+<span class="c1"># Separate data points by class for coloring</span>
+<span class="n">pass_points</span> <span class="o">=</span> <span class="n">hours_studied</span><span class="p">[</span><span class="n">target_binary</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">fail_points</span> <span class="o">=</span> <span class="n">hours_studied</span><span class="p">[</span><span class="n">target_binary</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Plot the sigmoid curve and decision boundary</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">fail_points</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">fail_points</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Fail&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">pass_points</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">pass_points</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Pass&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;^&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_values</span><span class="p">,</span> <span class="n">y_values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sigmoid Curve&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">decision_boundary</span> <span class="o">=</span> <span class="o">-</span><span class="n">model</span><span class="o">.</span><span class="n">intercept_</span> <span class="o">/</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Calculate the decision boundary</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">decision_boundary</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Decision Boundary&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Hours Studied&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Class / Pass Probability&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Logistic Regression Sigmoid Curve with Decision Boundary&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/428f1e0b7597866c3f1f26e27de6976aab76e3bfb175f4645f9df6c82acc6421.png" src="../../_images/428f1e0b7597866c3f1f26e27de6976aab76e3bfb175f4645f9df6c82acc6421.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.85035069, 0.14964931],
+       [0.80075444, 0.19924556],
+       [0.66781975, 0.33218025],
+       [0.66781975, 0.33218025],
+       [0.41564598, 0.58435402],
+       [0.33469833, 0.66530167],
+       [0.15109678, 0.84890322],
+       [0.1118122 , 0.8881878 ]])
 </pre></div>
 </div>
 </div>

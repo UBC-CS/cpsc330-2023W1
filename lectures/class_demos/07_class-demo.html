@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Demo: Model interpretation of linear classifiers &#8212; CPSC 330 Applied Machine Learning 2023W1</title>
+    <title>Lectures 7: Class demo &#8212; CPSC 330 Applied Machine Learning 2023W1</title>
   
   
   
@@ -166,7 +166,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="03_class-demo.html">Lecture 3: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_class-demo.html">Lecture 4: Class demo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05-06_class-demo.html">Lecture 5: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-06_class-demo.html">Lectures 5 and 6: Class demo</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -308,7 +308,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Demo: Model interpretation of linear classifiers</h1>
+    <h1>Lectures 7: Class demo</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -318,20 +318,19 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Demo: Model interpretation of linear classifiers</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-the-vocabulary">Examining the vocabulary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-building-on-the-dataset">Model building on the dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-learned-coefficients">Examining learned coefficients</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#most-positive-review">Most positive review</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#most-negative-review">Most negative review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-model-interpretation-of-linear-classifiers">Demo: Model interpretation of linear classifiers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-the-vocabulary">Examining the vocabulary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-building-on-the-dataset">Model building on the dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-learned-coefficients">Examining learned coefficients</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#most-positive-review">Most positive review</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#most-negative-review">Most negative review</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-for-you">❓❓ Questions for you</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-for-you-to-ponder-on">Question for you to ponder on</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-for-you">❓❓ Questions for you</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-for-you-to-ponder-on">Question for you to ponder on</a></li>
 </ul>
 </li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -342,7 +341,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="cell docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="lectures-7-class-demo">
+<h1>Lectures 7: Class demo<a class="headerlink" href="#lectures-7-class-demo" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
@@ -350,20 +351,15 @@ document.write(`
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;../code/.&quot;</span><span class="p">)</span>
 
 <span class="kn">import</span> <span class="nn">IPython</span>
-<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">mglearn</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">display</span>
-<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">interactive</span>
 <span class="kn">from</span> <span class="nn">plotting_functions</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span><span class="p">,</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">cross_validate</span><span class="p">,</span> <span class="n">train_test_split</span>
 <span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span>
-<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
 <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -374,10 +370,10 @@ document.write(`
 </div>
 </div>
 <section id="demo-model-interpretation-of-linear-classifiers">
-<h1>Demo: Model interpretation of linear classifiers<a class="headerlink" href="#demo-model-interpretation-of-linear-classifiers" title="Permalink to this heading">#</a></h1>
+<h2>Demo: Model interpretation of linear classifiers<a class="headerlink" href="#demo-model-interpretation-of-linear-classifiers" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>One of the primary advantage of linear classifiers is their ability to interpret models.</p></li>
-<li><p>For example, with the sign and magnitude of learned coefficients we could answer questions such as which features are driving the prediction to which direction.</p></li>
+<li><p>One of the primary advantages of linear classifiers is their ability to interpret models.</p></li>
+<li><p>For instance, by analyzing the sign and magnitude of the learned coefficients, we can address questions regarding which features are influencing the prediction and in which direction.</p></li>
 </ul>
 <ul class="simple">
 <li><p>We’ll demonstrate this by training <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> on the famous <a class="reference external" href="https://www.kaggle.com/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews">IMDB movie review</a> dataset. The dataset is a bit large for demonstration purposes. So I am going to put a big portion of it in the test split to speed things up.</p></li>
@@ -449,7 +445,6 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
 
-
 <span class="k">def</span> <span class="nf">replace_tags</span><span class="p">(</span><span class="n">doc</span><span class="p">):</span>
     <span class="n">doc</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;br /&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
     <span class="n">doc</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;https://\S*&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">doc</span><span class="p">)</span>
@@ -469,6 +464,13 @@ document.write(`
 <p>Let’s split the data and create bag of words representation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># imdb_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">imdb_df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;review_pp&quot;</span><span class="p">],</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span>
 <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;review_pp&quot;</span><span class="p">],</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span>
@@ -484,7 +486,48 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s2">&quot;english&quot;</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>47278    Best animated movie ever made. This film explores not only the vast world of modern animation with absolutely boggling effects, but the branches of the human mind, soul, and philosophy. The story ...
+19664    This film does for Infantry what Das Boot did for Submariners. If you appreciated Das Boot then that is all you really need to know.  This is a well done piece of cinema. On a par with Das Boot. B...
+22648    New Yorkers contemporaneous with this film will recall how reflective of its time it is and how well cast and crew captured America, New York City of that era.  Norman Wexler&#39;s script delineates t...
+33662    Well, you might not actually SEE any women in love in this movie, but you&#39;ll certainly hear women TALKING about love, and men talking about love, and women talking about men, and men talking about...
+31230    Well I just gave away 95 minutes and 47 seconds that I&#39;ll never get back on this piece of trash. I heard someone online describe this movie&#39;s villains as &quot;subhuman cannibals&quot;, and I thought it was...
+                                                                                                          ...                                                                                                   
+7763     I actually went into this film with some expectations, not because I thought the film sounded particularly good, but because I&#39;m a fan of Italian exploitation flicks and with a cast that sees Fran...
+15377    SPOILER ALERT! Don&#39;t read on unless you&#39;re prepared for some spoilers.  I think this film had a lot beneath its shell. Besides the apparent connections with &quot;Oldboy&quot; (and Park-wook&#39;s other films),...
+17730    A stunning film which brought into the open so much about disability that generally makes people afraid. It showed how minds can be captured by less than willing bodies and how difficult it must b...
+28030    this film has its good points: hot chicks people die  the problem... the hot Chicks barley get nude and you don&#39;t get to see many of the people dieing, mostly just lots of fast movements and screa...
+15725    Run, don&#39;t walk, to rent this movie. It is re-released on an excellent DVD version. It is primo acting/directing/cinematography in the world of suspense/film noir. Tribute this to the blacklisted ...
+Name: review_pp, Length: 5000, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Is there any missing data?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>review       0
+label        0
+review_pp    0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>There is no missing data. We don’t need imputation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s try CountVectorizer</span>
+<span class="n">vec</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span> <span class="n">stop_words</span><span class="o">=</span><span class="s2">&quot;english&quot;</span><span class="p">)</span>
 <span class="n">bow</span> <span class="o">=</span> <span class="n">vec</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
 <span class="n">bow</span>
 </pre></div>
@@ -498,7 +541,7 @@ document.write(`
 </div>
 </div>
 <section id="examining-the-vocabulary">
-<h2>Examining the vocabulary<a class="headerlink" href="#examining-the-vocabulary" title="Permalink to this heading">#</a></h2>
+<h3>Examining the vocabulary<a class="headerlink" href="#examining-the-vocabulary" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>The vocabulary (mapping from feature indices to actual words) can be obtained using <code class="docutils literal notranslate"><span class="pre">get_feature_names()</span></code> on the <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code> object.</p></li>
 </ul>
@@ -553,89 +596,29 @@ document.write(`
 </div>
 </section>
 <section id="model-building-on-the-dataset">
-<h2>Model building on the dataset<a class="headerlink" href="#model-building-on-the-dataset" title="Permalink to this heading">#</a></h2>
+<h3>Model building on the dataset<a class="headerlink" href="#model-building-on-the-dataset" title="Permalink to this heading">#</a></h3>
 <p>First let’s try <code class="docutils literal notranslate"><span class="pre">DummyClassifier</span></code> on the dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dummy</span> <span class="o">=</span> <span class="n">DummyClassifier</span><span class="p">()</span>
-<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">dummy</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+<span class="n">cross_val_score</span><span class="p">(</span><span class="n">dummy</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>fit_time</th>
-      <th>score_time</th>
-      <th>test_score</th>
-      <th>train_score</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.001601</td>
-      <td>0.001315</td>
-      <td>0.505</td>
-      <td>0.505</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.001241</td>
-      <td>0.001070</td>
-      <td>0.505</td>
-      <td>0.505</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.001229</td>
-      <td>0.001067</td>
-      <td>0.505</td>
-      <td>0.505</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.001214</td>
-      <td>0.001082</td>
-      <td>0.505</td>
-      <td>0.505</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.001221</td>
-      <td>0.001118</td>
-      <td>0.505</td>
-      <td>0.505</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.505
+</pre></div>
+</div>
+</div>
 </div>
 <p>We have a balanced dataset. So the <code class="docutils literal notranslate"><span class="pre">DummyClassifier</span></code> score is around 0.5.</p>
 <p>Now let’s try logistic regression.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_lr</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
-    <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s2">&quot;english&quot;</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="mi">10000</span><span class="p">),</span>
-    <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">),</span>
-<span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a pipeline with CountVectorizer and LogisticRegression </span>
+<span class="n">pipe_lr</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span> <span class="n">stop_words</span><span class="o">=</span><span class="s2">&quot;english&quot;</span><span class="p">),</span>
+                        <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+                       <span class="p">)</span>
 <span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">pipe_lr</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
 </pre></div>
@@ -669,36 +652,36 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.496674</td>
-      <td>0.093065</td>
+      <td>0.546238</td>
+      <td>0.089562</td>
       <td>0.847</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.508524</td>
-      <td>0.089962</td>
+      <td>0.535363</td>
+      <td>0.090457</td>
       <td>0.832</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.504361</td>
-      <td>0.089589</td>
+      <td>0.547692</td>
+      <td>0.090233</td>
       <td>0.842</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.503544</td>
-      <td>0.087028</td>
+      <td>0.536966</td>
+      <td>0.086860</td>
       <td>0.853</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.639972</td>
-      <td>0.091038</td>
+      <td>0.542248</td>
+      <td>0.089033</td>
       <td>0.839</td>
       <td>1.0</td>
     </tr>
@@ -715,10 +698,9 @@ document.write(`
     <span class="s2">&quot;mean_cv_scores&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(),</span>
 <span class="p">}</span>
 <span class="k">for</span> <span class="n">C</span> <span class="ow">in</span> <span class="n">scores_dict</span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">]:</span>
-    <span class="n">pipe_lr</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
-        <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s2">&quot;english&quot;</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="mi">10000</span><span class="p">),</span>
-        <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="p">),</span>
-    <span class="p">)</span>
+    <span class="n">pipe_lr</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span> <span class="n">stop_words</span><span class="o">=</span><span class="s2">&quot;english&quot;</span><span class="p">),</span>
+                        <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="p">)</span>
+                       <span class="p">)</span>
     <span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">pipe_lr</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">scores_dict</span><span class="p">[</span><span class="s2">&quot;mean_train_scores&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s2">&quot;train_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
     <span class="n">scores_dict</span><span class="p">[</span><span class="s2">&quot;mean_cv_scores&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s2">&quot;test_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
@@ -815,10 +797,9 @@ document.write(`
 <p>Let’s train a model on the full training set with the optimized hyperparameter values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_lr</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
-    <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s2">&quot;english&quot;</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="mi">10000</span><span class="p">),</span>
-    <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">optimized_C</span><span class="p">),</span>
-<span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_lr</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">stop_words</span><span class="o">=</span><span class="s2">&quot;english&quot;</span><span class="p">),</span>
+                        <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="mf">0.10</span><span class="p">)</span>
+                       <span class="p">)</span>
 <span class="n">pipe_lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -834,7 +815,7 @@ document.write(`
 </div>
 </section>
 <section id="examining-learned-coefficients">
-<h2>Examining learned coefficients<a class="headerlink" href="#examining-learned-coefficients" title="Permalink to this heading">#</a></h2>
+<h3>Examining learned coefficients<a class="headerlink" href="#examining-learned-coefficients" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>The learned coefficients are exposed by the <code class="docutils literal notranslate"><span class="pre">coef_</span></code> attribute of <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">LogisticRegression</a> object.</p></li>
 </ul>
@@ -848,12 +829,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_names</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;00&#39;, &#39;000&#39;, &#39;01&#39;, ..., &#39;zorak&#39;, &#39;zorro&#39;, &#39;â½&#39;], dtype=object)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># feature_names</span>
 </pre></div>
 </div>
 </div>
@@ -1041,27 +1017,21 @@ document.write(`
 <p>Let’s explore prediction of the following new review.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fake_review</span> <span class="o">=</span> <span class="s2">&quot;It got a bit boring at times but the direction was excellent and the acting was flawless. Overall I enjoyed the movie and I highly recommend it!&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fake_review = &quot;It got a bit boring at times but the direction was excellent and the acting was flawless. Overall I enjoyed the movie and I highly recommend it!&quot;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feat_vec</span> <span class="o">=</span> <span class="n">pipe_lr</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;countvectorizer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">fake_review</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># feat_vec = pipe_lr.named_steps[&quot;countvectorizer&quot;].transform([fake_review])</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feat_vec</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;1x10000 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
-	with 13 stored elements in Compressed Sparse Row format&gt;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># feat_vec</span>
 </pre></div>
 </div>
 </div>
@@ -1069,24 +1039,14 @@ document.write(`
 <p>Let’s get prediction probability scores of the fake review.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">([</span><span class="n">fake_review</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.16423497, 0.83576503]])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pipe_lr.predict_proba([fake_review])</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_lr</span><span class="o">.</span><span class="n">classes_</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;neg&#39;, &#39;pos&#39;], dtype=object)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pipe_lr.classes_</span>
 </pre></div>
 </div>
 </div>
@@ -1094,12 +1054,7 @@ document.write(`
 <p>The model is 83.5% confident that it’s a positive review.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_lr</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">fake_review</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;pos&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pipe_lr.predict([fake_review])[0]</span>
 </pre></div>
 </div>
 </div>
@@ -1107,25 +1062,15 @@ document.write(`
 <p>We can find which of the vocabulary words are present in this review:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feat_vec</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False, False, ..., False, False, False])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># feat_vec.toarray().ravel().astype(bool)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">words_in_ex</span> <span class="o">=</span> <span class="n">feat_vec</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
-<span class="n">words_in_ex</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False, False, ..., False, False, False])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># words_in_ex = feat_vec.toarray().ravel().astype(bool)</span>
+<span class="c1"># words_in_ex</span>
 </pre></div>
 </div>
 </div>
@@ -1133,167 +1078,68 @@ document.write(`
 <p>How many of the words are in this review?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">words_in_ex</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># np.sum(words_in_ex)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">feature_names</span><span class="p">)[</span><span class="n">words_in_ex</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;acting&#39;, &#39;bit&#39;, &#39;boring&#39;, &#39;direction&#39;, &#39;enjoyed&#39;, &#39;excellent&#39;,
-       &#39;flawless&#39;, &#39;got&#39;, &#39;highly&#39;, &#39;movie&#39;, &#39;overall&#39;, &#39;recommend&#39;,
-       &#39;times&#39;], dtype=object)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># np.array(feature_names)[words_in_ex]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-    <span class="n">data</span><span class="o">=</span><span class="n">coeffs</span><span class="p">[</span><span class="n">words_in_ex</span><span class="p">],</span>
-    <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">feature_names</span><span class="p">)[</span><span class="n">words_in_ex</span><span class="p">],</span>
-    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Coefficient&quot;</span><span class="p">],</span>
-<span class="p">)</span>
-<span class="n">ex_df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ex_df = pd.DataFrame(</span>
+<span class="c1">#     data=coeffs[words_in_ex],</span>
+<span class="c1">#     index=np.array(feature_names)[words_in_ex],</span>
+<span class="c1">#     columns=[&quot;Coefficient&quot;],</span>
+<span class="c1"># )</span>
+<span class="c1"># ex_df</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+</div>
+<p>Let’s visualize how the words with positive and negative coefficients are driving the prediction.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mglearn.tools.visualize_coefficients(</span>
+<span class="c1">#     coeffs[words_in_ex], np.array(feature_names)[words_in_ex], n_top_features=6</span>
+<span class="c1"># )</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># def plot_coeff_example(feat_vect, coeffs, feature_names):</span>
+<span class="c1">#     words_in_ex = feat_vec.toarray().ravel().astype(bool)</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Coefficient</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>acting</th>
-      <td>-0.126498</td>
-    </tr>
-    <tr>
-      <th>bit</th>
-      <td>0.390053</td>
-    </tr>
-    <tr>
-      <th>boring</th>
-      <td>-0.701030</td>
-    </tr>
-    <tr>
-      <th>direction</th>
-      <td>-0.268316</td>
-    </tr>
-    <tr>
-      <th>enjoyed</th>
-      <td>0.578879</td>
-    </tr>
-    <tr>
-      <th>excellent</th>
-      <td>0.903484</td>
-    </tr>
-    <tr>
-      <th>flawless</th>
-      <td>0.113743</td>
-    </tr>
-    <tr>
-      <th>got</th>
-      <td>-0.122759</td>
-    </tr>
-    <tr>
-      <th>highly</th>
-      <td>0.582012</td>
-    </tr>
-    <tr>
-      <th>movie</th>
-      <td>-0.037942</td>
-    </tr>
-    <tr>
-      <th>overall</th>
-      <td>0.136288</td>
-    </tr>
-    <tr>
-      <th>recommend</th>
-      <td>0.054205</td>
-    </tr>
-    <tr>
-      <th>times</th>
-      <td>0.133895</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p>Let’s visualize how the words with positive and negative coefficients are driving the hard prediction.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mglearn</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">visualize_coefficients</span><span class="p">(</span>
-    <span class="n">coeffs</span><span class="p">[</span><span class="n">words_in_ex</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">feature_names</span><span class="p">)[</span><span class="n">words_in_ex</span><span class="p">],</span> <span class="n">n_top_features</span><span class="o">=</span><span class="mi">6</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/40bc40695128fcd04b8d7cd80a08077311bed24ac44d9645f372a64d81eea2b4.png" src="../../_images/40bc40695128fcd04b8d7cd80a08077311bed24ac44d9645f372a64d81eea2b4.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_coeff_example</span><span class="p">(</span><span class="n">feat_vect</span><span class="p">,</span> <span class="n">coeffs</span><span class="p">,</span> <span class="n">feature_names</span><span class="p">):</span>
-    <span class="n">words_in_ex</span> <span class="o">=</span> <span class="n">feat_vec</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
-
-    <span class="n">ex_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-        <span class="n">data</span><span class="o">=</span><span class="n">coeffs</span><span class="p">[</span><span class="n">words_in_ex</span><span class="p">],</span>
-        <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">feature_names</span><span class="p">)[</span><span class="n">words_in_ex</span><span class="p">],</span>
-        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Coefficient&quot;</span><span class="p">],</span>
-    <span class="p">)</span>
-    <span class="k">return</span> <span class="n">ex_df</span>
+<span class="c1">#     ex_df = pd.DataFrame(</span>
+<span class="c1">#         data=coeffs[words_in_ex],</span>
+<span class="c1">#         index=np.array(feature_names)[words_in_ex],</span>
+<span class="c1">#         columns=[&quot;Coefficient&quot;],</span>
+<span class="c1">#     )</span>
+<span class="c1">#     return ex_df</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="most-positive-review">
-<h2>Most positive review<a class="headerlink" href="#most-positive-review" title="Permalink to this heading">#</a></h2>
+<h3>Most positive review<a class="headerlink" href="#most-positive-review" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Remember that you can look at the probabilities (confidence) of the classifier’s prediction using the <code class="docutils literal notranslate"><span class="pre">model.predict_proba</span></code> method.</p></li>
 <li><p>Can we find the reviews where our classifier is most confident or least confident?</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pos_probs</span> <span class="o">=</span> <span class="n">pipe_lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_train</span><span class="p">)[</span>
-    <span class="p">:,</span> <span class="mi">1</span>
-<span class="p">]</span>  <span class="c1"># only get probabilities associated with pos class</span>
-<span class="n">pos_probs</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.95205899, 0.83301769, 0.9093526 , ..., 0.89247531, 0.05736279,
-       0.79360853])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pos_probs = pipe_lr.predict_proba(X_train)[</span>
+<span class="c1">#     :, 1</span>
+<span class="c1"># ]  # only get probabilities associated with pos class</span>
+<span class="c1"># pos_probs</span>
 </pre></div>
 </div>
 </div>
@@ -1301,37 +1147,23 @@ document.write(`
 <p>Let’s get the index of the example where the classifier is most confident (highest <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> score for positive).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">most_positive</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">pos_probs</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># most_positive = np.argmax(pos_probs)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">most_positive</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Moving beyond words is this heart breaking story of a divorce which results in a tragic custody battle over a seven year old boy.  One of &quot;Kramer v. Kramer\&#39;s&quot; great strengths is its screenwriter director Robert Benton, who has marvellously adapted Avery Corman\&#39;s novel to the big screen. He keeps things beautifully simple and most realistic, while delivering all the drama straight from the heart. His talent for telling emotional tales like this was to prove itself again with &quot;Places in the Heart&quot;, where he showed, as in &quot;Kramer v. Kramer&quot;, that he has a natural ability for working with children.  The picture\&#39;s other strong point is the splendid acting which deservedly received four of the film\&#39;s nine Academy Award nominations, two of them walking away winners. One of those was Dustin Hoffman (Best Actor), who is superb as frustrated business man Ted Kramer, a man who has forgotten that his wife is a person. As said wife Joanne, Meryl Streep claimed the supporting actress Oscar for a strong, sensitive portrayal of a woman who had lost herself in eight years of marriage. Also nominated was Jane Alexander for her fantastic turn as the Kramer\&#39;s good friend Margaret. Final word in the acting stakes must go to young Justin Henry, whose incredibly moving performance will find you choking back tears again and again, and a thoroughly deserved Oscar nomination came his way.  Brilliant also is Nestor Almendros\&#39; cinematography and Jerry Greenberg\&#39;s timely editing, while musically Henry Purcell\&#39;s classical piece is used to effect.  Truly this is a touching story of how a father and son come to depend on each other when their wife and mother leaves. They grow together, come to know each other and form an entirely new and wonderful relationship. Ted finds himself with new responsibilities and a new outlook on life, and slowly comes to realise why Joanne had to go.  Certainly if nothing else, &quot;Kramer v. Kramer&quot; demonstrates that nobody wins when it comes to a custody battle over a young child, especially not the child himself.  Saturday, June 10, 1995 - T.V.  Strong drama from Avery Corman\&#39;s novel about the heartache of a custody battle between estranged parents who both feel they have the child\&#39;s best interests at heart. Aside from a superb screenplay and amazingly controlled direction, both from Robert Benton, it\&#39;s the superlative cast that make this picture such a winner.  Hoffman is brilliant as Ted Kramer, the man torn between his toppling career and the son whom he desperately wants to keep. Excellent too is Streep as the woman lost in eight years of marriage who had to get out before she faded to nothing as a person. In support of these two is a very strong Jane Alexander as mutual friend Margaret, an outstanding Justin Henry as the boy caught in the middle, and a top cast of extras.  This highly emotional, heart rending drama more than deserved it\&#39;s 1979 Academy Awards for best film, best actor (Hoffman) and best supporting actress (Streep).  Wednesday, February 28, 1996 - T.V.&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># X_train.iloc[most_positive]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;True target: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">most_positive</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predicted target: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">pipe_lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="n">most_positive</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prediction probability: </span><span class="si">%0.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">pos_probs</span><span class="p">[</span><span class="n">most_positive</span><span class="p">]))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True target: pos
-
-Predicted target: pos
-
-Prediction probability: 1.0000
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print(&quot;True target: %s\n&quot; % (y_train.iloc[most_positive]))</span>
+<span class="c1"># print(&quot;Predicted target: %s\n&quot; % (pipe_lr.predict(X_train.iloc[[most_positive]])[0]))</span>
+<span class="c1"># print(&quot;Prediction probability: %0.4f&quot; % (pos_probs[most_positive]))</span>
 </pre></div>
 </div>
 </div>
@@ -1339,95 +1171,72 @@ Prediction probability: 1.0000
 <p>Let’s examine the features associated with the review.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feat_vec</span> <span class="o">=</span> <span class="n">pipe_lr</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;countvectorizer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
-    <span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="n">most_positive</span><span class="p">]]</span>
-<span class="p">)</span>
-<span class="n">words_in_ex</span> <span class="o">=</span> <span class="n">feat_vec</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
-<span class="n">mglearn</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">visualize_coefficients</span><span class="p">(</span>
-    <span class="n">coeffs</span><span class="p">[</span><span class="n">words_in_ex</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">feature_names</span><span class="p">)[</span><span class="n">words_in_ex</span><span class="p">],</span> <span class="n">n_top_features</span><span class="o">=</span><span class="mi">20</span>
-<span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># feat_vec = pipe_lr.named_steps[&quot;countvectorizer&quot;].transform(</span>
+<span class="c1">#     X_train.iloc[[most_positive]]</span>
+<span class="c1"># )</span>
+<span class="c1"># words_in_ex = feat_vec.toarray().ravel().astype(bool)</span>
+<span class="c1"># mglearn.tools.visualize_coefficients(</span>
+<span class="c1">#     coeffs[words_in_ex], np.array(feature_names)[words_in_ex], n_top_features=20</span>
+<span class="c1"># )</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/437b25a916232b48398ae7ba5bf0b017e696b7c7a626d87d360036e06a1381af.png" src="../../_images/437b25a916232b48398ae7ba5bf0b017e696b7c7a626d87d360036e06a1381af.png" />
 </div>
 </div>
 <p>The review has both positive and negative words but the words with <strong>positive</strong> coefficients win in this case!</p>
 </section>
 <section id="most-negative-review">
-<h2>Most negative review<a class="headerlink" href="#most-negative-review" title="Permalink to this heading">#</a></h2>
+<h3>Most negative review<a class="headerlink" href="#most-negative-review" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neg_probs</span> <span class="o">=</span> <span class="n">pipe_lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_train</span><span class="p">)[</span>
-    <span class="p">:,</span> <span class="mi">0</span>
-<span class="p">]</span>  <span class="c1"># only get probabilities associated with pos class</span>
-<span class="n">neg_probs</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.04794101, 0.16698231, 0.0906474 , ..., 0.10752469, 0.94263721,
-       0.20639147])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># neg_probs = pipe_lr.predict_proba(X_train)[</span>
+<span class="c1">#     :, 0</span>
+<span class="c1"># ]  # only get probabilities associated with pos class</span>
+<span class="c1"># neg_probs</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">most_negative</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">neg_probs</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># most_negative = np.argmax(neg_probs)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Review: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="n">most_negative</span><span class="p">]]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;True target: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">most_negative</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predicted target: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">pipe_lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="n">most_negative</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prediction probability: </span><span class="si">%0.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">pos_probs</span><span class="p">[</span><span class="n">most_negative</span><span class="p">]))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Review: 36555    I made the big mistake of actually watching this whole movie a few nights ago. God I&#39;m still trying to recover. This movie does not even deserve a 1.4 average. IMDb needs to have 0 vote ratings po...
-Name: review_pp, dtype: object
-
-True target: neg
-
-Predicted target: neg
-
-Prediction probability: 0.0000
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print(&quot;Review: %s\n&quot; % (X_train.iloc[[most_negative]]))</span>
+<span class="c1"># print(&quot;True target: %s\n&quot; % (y_train.iloc[most_negative]))</span>
+<span class="c1"># print(&quot;Predicted target: %s\n&quot; % (pipe_lr.predict(X_train.iloc[[most_negative]])[0]))</span>
+<span class="c1"># print(&quot;Prediction probability: %0.4f&quot; % (pos_probs[most_negative]))</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feat_vec</span> <span class="o">=</span> <span class="n">pipe_lr</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;countvectorizer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
-    <span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="n">most_negative</span><span class="p">]]</span>
-<span class="p">)</span>
-<span class="n">words_in_ex</span> <span class="o">=</span> <span class="n">feat_vec</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
-<span class="n">mglearn</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">visualize_coefficients</span><span class="p">(</span>
-    <span class="n">coeffs</span><span class="p">[</span><span class="n">words_in_ex</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">feature_names</span><span class="p">)[</span><span class="n">words_in_ex</span><span class="p">],</span> <span class="n">n_top_features</span><span class="o">=</span><span class="mi">20</span>
-<span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># feat_vec = pipe_lr.named_steps[&quot;countvectorizer&quot;].transform(</span>
+<span class="c1">#     X_train.iloc[[most_negative]]</span>
+<span class="c1"># )</span>
+<span class="c1"># words_in_ex = feat_vec.toarray().ravel().astype(bool)</span>
+<span class="c1"># mglearn.tools.visualize_coefficients(</span>
+<span class="c1">#     coeffs[words_in_ex], np.array(feature_names)[words_in_ex], n_top_features=20</span>
+<span class="c1"># )</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/0a8953cc1f7c1628544b48488bac881ae0d76ceceef621ddefbca5c9cad9b351.png" src="../../_images/0a8953cc1f7c1628544b48488bac881ae0d76ceceef621ddefbca5c9cad9b351.png" />
 </div>
 </div>
 <p>The review has both positive and negative words but the words with negative coefficients win in this case!</p>
 </section>
 </section>
 <section id="questions-for-you">
-<h1>❓❓ Questions for you<a class="headerlink" href="#questions-for-you" title="Permalink to this heading">#</a></h1>
+<h2>❓❓ Questions for you<a class="headerlink" href="#questions-for-you" title="Permalink to this heading">#</a></h2>
 <section id="question-for-you-to-ponder-on">
-<h2>Question for you to ponder on<a class="headerlink" href="#question-for-you-to-ponder-on" title="Permalink to this heading">#</a></h2>
+<h3>Question for you to ponder on<a class="headerlink" href="#question-for-you-to-ponder-on" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Is it possible to identify most important features using <span class="math notranslate nohighlight">\(k\)</span>-NNs? What about decision trees?</p></li>
 </ul>
+</section>
 </section>
 </section>
 
@@ -1480,20 +1289,19 @@ Prediction probability: 0.0000
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Demo: Model interpretation of linear classifiers</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-the-vocabulary">Examining the vocabulary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-building-on-the-dataset">Model building on the dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-learned-coefficients">Examining learned coefficients</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#most-positive-review">Most positive review</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#most-negative-review">Most negative review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-model-interpretation-of-linear-classifiers">Demo: Model interpretation of linear classifiers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-the-vocabulary">Examining the vocabulary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-building-on-the-dataset">Model building on the dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-learned-coefficients">Examining learned coefficients</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#most-positive-review">Most positive review</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#most-negative-review">Most negative review</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-for-you">❓❓ Questions for you</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-for-you-to-ponder-on">Question for you to ponder on</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-for-you">❓❓ Questions for you</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-for-you-to-ponder-on">Question for you to ponder on</a></li>
 </ul>
 </li>
 </ul>
-
   </nav></div>
 
 </div></div>
