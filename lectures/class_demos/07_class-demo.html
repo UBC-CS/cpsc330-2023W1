@@ -66,6 +66,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/class_demos/07_class-demo';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Attributions" href="../../attribution.html" />
+    <link rel="prev" title="Lectures 5 and 6: Class demo" href="05-06_class-demo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -163,10 +165,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../06_column-transformer-text-feats.html">Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="03_class-demo.html">Lecture 3: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_class-demo.html">Lecture 4: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05-06_class-demo.html">Lectures 5 and 6: Class demo</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lectures 7: Class demo</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -376,7 +379,7 @@ document.write(`
 <li><p>For instance, by analyzing the sign and magnitude of the learned coefficients, we can address questions regarding which features are influencing the prediction and in which direction.</p></li>
 </ul>
 <ul class="simple">
-<li><p>We’ll demonstrate this by training <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> on the famous <a class="reference external" href="https://www.kaggle.com/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews">IMDB movie review</a> dataset. The dataset is a bit large for demonstration purposes. So I am going to put a big portion of it in the test split to speed things up.</p></li>
+<li><p>We’ll demonstrate this by training <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> on the famous <a class="reference external" href="https://www.kaggle.com/datasets/uttam94/imdb-mastercsv">IMDB movie review</a> dataset. The dataset is a bit large for demonstration purposes. So I am going to put a big portion of it in the test split to speed things up.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -652,36 +655,36 @@ dtype: int64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.546238</td>
-      <td>0.089562</td>
+      <td>0.548664</td>
+      <td>0.087956</td>
       <td>0.847</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.535363</td>
-      <td>0.090457</td>
+      <td>0.540222</td>
+      <td>0.089406</td>
       <td>0.832</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.547692</td>
-      <td>0.090233</td>
+      <td>0.554701</td>
+      <td>0.088767</td>
       <td>0.842</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.536966</td>
-      <td>0.086860</td>
+      <td>0.538866</td>
+      <td>0.085236</td>
       <td>0.853</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.542248</td>
-      <td>0.089033</td>
+      <td>0.540472</td>
+      <td>0.087297</td>
       <td>0.839</td>
       <td>1.0</td>
     </tr>
@@ -1017,21 +1020,27 @@ dtype: int64
 <p>Let’s explore prediction of the following new review.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fake_review = &quot;It got a bit boring at times but the direction was excellent and the acting was flawless. Overall I enjoyed the movie and I highly recommend it!&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fake_review</span> <span class="o">=</span> <span class="s2">&quot;It got a bit boring at times but the direction was excellent and the acting was flawless. Overall I enjoyed the movie and I highly recommend it!&quot;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># feat_vec = pipe_lr.named_steps[&quot;countvectorizer&quot;].transform([fake_review])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feat_vec</span> <span class="o">=</span> <span class="n">pipe_lr</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;countvectorizer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">fake_review</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># feat_vec</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feat_vec</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;1x10000 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
+	with 13 stored elements in Compressed Sparse Row format&gt;
 </pre></div>
 </div>
 </div>
@@ -1039,14 +1048,24 @@ dtype: int64
 <p>Let’s get prediction probability scores of the fake review.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pipe_lr.predict_proba([fake_review])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">([</span><span class="n">fake_review</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.16423497, 0.83576503]])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pipe_lr.classes_</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_lr</span><span class="o">.</span><span class="n">classes_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;neg&#39;, &#39;pos&#39;], dtype=object)
 </pre></div>
 </div>
 </div>
@@ -1054,7 +1073,12 @@ dtype: int64
 <p>The model is 83.5% confident that it’s a positive review.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pipe_lr.predict([fake_review])[0]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_lr</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">fake_review</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;pos&#39;
 </pre></div>
 </div>
 </div>
@@ -1062,15 +1086,25 @@ dtype: int64
 <p>We can find which of the vocabulary words are present in this review:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># feat_vec.toarray().ravel().astype(bool)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feat_vec</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False, False, ..., False, False, False])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># words_in_ex = feat_vec.toarray().ravel().astype(bool)</span>
-<span class="c1"># words_in_ex</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">words_in_ex</span> <span class="o">=</span> <span class="n">feat_vec</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+<span class="n">words_in_ex</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False, False, ..., False, False, False])
 </pre></div>
 </div>
 </div>
@@ -1078,51 +1112,144 @@ dtype: int64
 <p>How many of the words are in this review?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># np.sum(words_in_ex)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">words_in_ex</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># np.array(feature_names)[words_in_ex]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">feature_names</span><span class="p">)[</span><span class="n">words_in_ex</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;acting&#39;, &#39;bit&#39;, &#39;boring&#39;, &#39;direction&#39;, &#39;enjoyed&#39;, &#39;excellent&#39;,
+       &#39;flawless&#39;, &#39;got&#39;, &#39;highly&#39;, &#39;movie&#39;, &#39;overall&#39;, &#39;recommend&#39;,
+       &#39;times&#39;], dtype=object)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ex_df = pd.DataFrame(</span>
-<span class="c1">#     data=coeffs[words_in_ex],</span>
-<span class="c1">#     index=np.array(feature_names)[words_in_ex],</span>
-<span class="c1">#     columns=[&quot;Coefficient&quot;],</span>
-<span class="c1"># )</span>
-<span class="c1"># ex_df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ex_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">coeffs</span><span class="p">[</span><span class="n">words_in_ex</span><span class="p">],</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">feature_names</span><span class="p">)[</span><span class="n">words_in_ex</span><span class="p">],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Coefficient&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">ex_df</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Coefficient</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>acting</th>
+      <td>-0.126498</td>
+    </tr>
+    <tr>
+      <th>bit</th>
+      <td>0.390053</td>
+    </tr>
+    <tr>
+      <th>boring</th>
+      <td>-0.701030</td>
+    </tr>
+    <tr>
+      <th>direction</th>
+      <td>-0.268316</td>
+    </tr>
+    <tr>
+      <th>enjoyed</th>
+      <td>0.578879</td>
+    </tr>
+    <tr>
+      <th>excellent</th>
+      <td>0.903484</td>
+    </tr>
+    <tr>
+      <th>flawless</th>
+      <td>0.113743</td>
+    </tr>
+    <tr>
+      <th>got</th>
+      <td>-0.122759</td>
+    </tr>
+    <tr>
+      <th>highly</th>
+      <td>0.582012</td>
+    </tr>
+    <tr>
+      <th>movie</th>
+      <td>-0.037942</td>
+    </tr>
+    <tr>
+      <th>overall</th>
+      <td>0.136288</td>
+    </tr>
+    <tr>
+      <th>recommend</th>
+      <td>0.054205</td>
+    </tr>
+    <tr>
+      <th>times</th>
+      <td>0.133895</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Let’s visualize how the words with positive and negative coefficients are driving the prediction.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mglearn.tools.visualize_coefficients(</span>
-<span class="c1">#     coeffs[words_in_ex], np.array(feature_names)[words_in_ex], n_top_features=6</span>
-<span class="c1"># )</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mglearn</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">visualize_coefficients</span><span class="p">(</span>
+    <span class="n">coeffs</span><span class="p">[</span><span class="n">words_in_ex</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">feature_names</span><span class="p">)[</span><span class="n">words_in_ex</span><span class="p">],</span> <span class="n">n_top_features</span><span class="o">=</span><span class="mi">6</span>
+<span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/40bc40695128fcd04b8d7cd80a08077311bed24ac44d9645f372a64d81eea2b4.png" src="../../_images/40bc40695128fcd04b8d7cd80a08077311bed24ac44d9645f372a64d81eea2b4.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># def plot_coeff_example(feat_vect, coeffs, feature_names):</span>
-<span class="c1">#     words_in_ex = feat_vec.toarray().ravel().astype(bool)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_coeff_example</span><span class="p">(</span><span class="n">feat_vect</span><span class="p">,</span> <span class="n">coeffs</span><span class="p">,</span> <span class="n">feature_names</span><span class="p">):</span>
+    <span class="n">words_in_ex</span> <span class="o">=</span> <span class="n">feat_vec</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
 
-<span class="c1">#     ex_df = pd.DataFrame(</span>
-<span class="c1">#         data=coeffs[words_in_ex],</span>
-<span class="c1">#         index=np.array(feature_names)[words_in_ex],</span>
-<span class="c1">#         columns=[&quot;Coefficient&quot;],</span>
-<span class="c1">#     )</span>
-<span class="c1">#     return ex_df</span>
+    <span class="n">ex_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">coeffs</span><span class="p">[</span><span class="n">words_in_ex</span><span class="p">],</span>
+        <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">feature_names</span><span class="p">)[</span><span class="n">words_in_ex</span><span class="p">],</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Coefficient&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">ex_df</span>
 </pre></div>
 </div>
 </div>
@@ -1136,10 +1263,16 @@ dtype: int64
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pos_probs = pipe_lr.predict_proba(X_train)[</span>
-<span class="c1">#     :, 1</span>
-<span class="c1"># ]  # only get probabilities associated with pos class</span>
-<span class="c1"># pos_probs</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pos_probs</span> <span class="o">=</span> <span class="n">pipe_lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_train</span><span class="p">)[</span>
+    <span class="p">:,</span> <span class="mi">1</span>
+<span class="p">]</span>  <span class="c1"># only get probabilities associated with pos class</span>
+<span class="n">pos_probs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.95205899, 0.83301769, 0.9093526 , ..., 0.89247531, 0.05736279,
+       0.79360853])
 </pre></div>
 </div>
 </div>
@@ -1147,23 +1280,37 @@ dtype: int64
 <p>Let’s get the index of the example where the classifier is most confident (highest <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> score for positive).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># most_positive = np.argmax(pos_probs)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">most_positive</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">pos_probs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># X_train.iloc[most_positive]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">most_positive</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Moving beyond words is this heart breaking story of a divorce which results in a tragic custody battle over a seven year old boy.  One of &quot;Kramer v. Kramer\&#39;s&quot; great strengths is its screenwriter director Robert Benton, who has marvellously adapted Avery Corman\&#39;s novel to the big screen. He keeps things beautifully simple and most realistic, while delivering all the drama straight from the heart. His talent for telling emotional tales like this was to prove itself again with &quot;Places in the Heart&quot;, where he showed, as in &quot;Kramer v. Kramer&quot;, that he has a natural ability for working with children.  The picture\&#39;s other strong point is the splendid acting which deservedly received four of the film\&#39;s nine Academy Award nominations, two of them walking away winners. One of those was Dustin Hoffman (Best Actor), who is superb as frustrated business man Ted Kramer, a man who has forgotten that his wife is a person. As said wife Joanne, Meryl Streep claimed the supporting actress Oscar for a strong, sensitive portrayal of a woman who had lost herself in eight years of marriage. Also nominated was Jane Alexander for her fantastic turn as the Kramer\&#39;s good friend Margaret. Final word in the acting stakes must go to young Justin Henry, whose incredibly moving performance will find you choking back tears again and again, and a thoroughly deserved Oscar nomination came his way.  Brilliant also is Nestor Almendros\&#39; cinematography and Jerry Greenberg\&#39;s timely editing, while musically Henry Purcell\&#39;s classical piece is used to effect.  Truly this is a touching story of how a father and son come to depend on each other when their wife and mother leaves. They grow together, come to know each other and form an entirely new and wonderful relationship. Ted finds himself with new responsibilities and a new outlook on life, and slowly comes to realise why Joanne had to go.  Certainly if nothing else, &quot;Kramer v. Kramer&quot; demonstrates that nobody wins when it comes to a custody battle over a young child, especially not the child himself.  Saturday, June 10, 1995 - T.V.  Strong drama from Avery Corman\&#39;s novel about the heartache of a custody battle between estranged parents who both feel they have the child\&#39;s best interests at heart. Aside from a superb screenplay and amazingly controlled direction, both from Robert Benton, it\&#39;s the superlative cast that make this picture such a winner.  Hoffman is brilliant as Ted Kramer, the man torn between his toppling career and the son whom he desperately wants to keep. Excellent too is Streep as the woman lost in eight years of marriage who had to get out before she faded to nothing as a person. In support of these two is a very strong Jane Alexander as mutual friend Margaret, an outstanding Justin Henry as the boy caught in the middle, and a top cast of extras.  This highly emotional, heart rending drama more than deserved it\&#39;s 1979 Academy Awards for best film, best actor (Hoffman) and best supporting actress (Streep).  Wednesday, February 28, 1996 - T.V.&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print(&quot;True target: %s\n&quot; % (y_train.iloc[most_positive]))</span>
-<span class="c1"># print(&quot;Predicted target: %s\n&quot; % (pipe_lr.predict(X_train.iloc[[most_positive]])[0]))</span>
-<span class="c1"># print(&quot;Prediction probability: %0.4f&quot; % (pos_probs[most_positive]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;True target: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">most_positive</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predicted target: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">pipe_lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="n">most_positive</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prediction probability: </span><span class="si">%0.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">pos_probs</span><span class="p">[</span><span class="n">most_positive</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True target: pos
+
+Predicted target: pos
+
+Prediction probability: 1.0000
 </pre></div>
 </div>
 </div>
@@ -1171,15 +1318,18 @@ dtype: int64
 <p>Let’s examine the features associated with the review.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># feat_vec = pipe_lr.named_steps[&quot;countvectorizer&quot;].transform(</span>
-<span class="c1">#     X_train.iloc[[most_positive]]</span>
-<span class="c1"># )</span>
-<span class="c1"># words_in_ex = feat_vec.toarray().ravel().astype(bool)</span>
-<span class="c1"># mglearn.tools.visualize_coefficients(</span>
-<span class="c1">#     coeffs[words_in_ex], np.array(feature_names)[words_in_ex], n_top_features=20</span>
-<span class="c1"># )</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feat_vec</span> <span class="o">=</span> <span class="n">pipe_lr</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;countvectorizer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
+    <span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="n">most_positive</span><span class="p">]]</span>
+<span class="p">)</span>
+<span class="n">words_in_ex</span> <span class="o">=</span> <span class="n">feat_vec</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+<span class="n">mglearn</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">visualize_coefficients</span><span class="p">(</span>
+    <span class="n">coeffs</span><span class="p">[</span><span class="n">words_in_ex</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">feature_names</span><span class="p">)[</span><span class="n">words_in_ex</span><span class="p">],</span> <span class="n">n_top_features</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/437b25a916232b48398ae7ba5bf0b017e696b7c7a626d87d360036e06a1381af.png" src="../../_images/437b25a916232b48398ae7ba5bf0b017e696b7c7a626d87d360036e06a1381af.png" />
 </div>
 </div>
 <p>The review has both positive and negative words but the words with <strong>positive</strong> coefficients win in this case!</p>
@@ -1188,42 +1338,63 @@ dtype: int64
 <h3>Most negative review<a class="headerlink" href="#most-negative-review" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># neg_probs = pipe_lr.predict_proba(X_train)[</span>
-<span class="c1">#     :, 0</span>
-<span class="c1"># ]  # only get probabilities associated with pos class</span>
-<span class="c1"># neg_probs</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neg_probs</span> <span class="o">=</span> <span class="n">pipe_lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_train</span><span class="p">)[</span>
+    <span class="p">:,</span> <span class="mi">0</span>
+<span class="p">]</span>  <span class="c1"># only get probabilities associated with pos class</span>
+<span class="n">neg_probs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.04794101, 0.16698231, 0.0906474 , ..., 0.10752469, 0.94263721,
+       0.20639147])
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># most_negative = np.argmax(neg_probs)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">most_negative</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">neg_probs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print(&quot;Review: %s\n&quot; % (X_train.iloc[[most_negative]]))</span>
-<span class="c1"># print(&quot;True target: %s\n&quot; % (y_train.iloc[most_negative]))</span>
-<span class="c1"># print(&quot;Predicted target: %s\n&quot; % (pipe_lr.predict(X_train.iloc[[most_negative]])[0]))</span>
-<span class="c1"># print(&quot;Prediction probability: %0.4f&quot; % (pos_probs[most_negative]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Review: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="n">most_negative</span><span class="p">]]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;True target: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">most_negative</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predicted target: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">pipe_lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="n">most_negative</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prediction probability: </span><span class="si">%0.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">pos_probs</span><span class="p">[</span><span class="n">most_negative</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Review: 36555    I made the big mistake of actually watching this whole movie a few nights ago. God I&#39;m still trying to recover. This movie does not even deserve a 1.4 average. IMDb needs to have 0 vote ratings po...
+Name: review_pp, dtype: object
+
+True target: neg
+
+Predicted target: neg
+
+Prediction probability: 0.0000
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># feat_vec = pipe_lr.named_steps[&quot;countvectorizer&quot;].transform(</span>
-<span class="c1">#     X_train.iloc[[most_negative]]</span>
-<span class="c1"># )</span>
-<span class="c1"># words_in_ex = feat_vec.toarray().ravel().astype(bool)</span>
-<span class="c1"># mglearn.tools.visualize_coefficients(</span>
-<span class="c1">#     coeffs[words_in_ex], np.array(feature_names)[words_in_ex], n_top_features=20</span>
-<span class="c1"># )</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feat_vec</span> <span class="o">=</span> <span class="n">pipe_lr</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;countvectorizer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
+    <span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="n">most_negative</span><span class="p">]]</span>
+<span class="p">)</span>
+<span class="n">words_in_ex</span> <span class="o">=</span> <span class="n">feat_vec</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+<span class="n">mglearn</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">visualize_coefficients</span><span class="p">(</span>
+    <span class="n">coeffs</span><span class="p">[</span><span class="n">words_in_ex</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">feature_names</span><span class="p">)[</span><span class="n">words_in_ex</span><span class="p">],</span> <span class="n">n_top_features</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/0a8953cc1f7c1628544b48488bac881ae0d76ceceef621ddefbca5c9cad9b351.png" src="../../_images/0a8953cc1f7c1628544b48488bac881ae0d76ceceef621ddefbca5c9cad9b351.png" />
 </div>
 </div>
 <p>The review has both positive and negative words but the words with negative coefficients win in this case!</p>
@@ -1271,6 +1442,24 @@ dtype: int64
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="05-06_class-demo.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lectures 5 and 6: Class demo</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../attribution.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Attributions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
