@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/06_column-transformer-text-feats';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Lecture 3: Class demo" href="class_demos/03_class-demo.html" />
+    <link rel="next" title="Lecture 7: Linear Models" href="07_linear-models.html" />
     <link rel="prev" title="Lecture 5: Preprocessing and sklearn pipelines" href="05_preprocessing-pipelines.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -163,12 +163,16 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="04_kNNs-SVM-RBF.html">Lecture 4: <span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbours and SVM RBFs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_preprocessing-pipelines.html">Lecture 5: Preprocessing and <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> pipelines</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_linear-models.html">Lecture 7: Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_hyperparameter-optimization.html">Lecture 8: Hyperparameter Optimization and Optimization Bias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_classification-metrics.html">Lecture 9: Classification metrics</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="class_demos/03_class-demo.html">Lecture 3: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="class_demos/04_class-demo.html">Lecture 4: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="class_demos/05-06_class-demo.html">Lectures 5 and 6: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/07_class-demo.html">Lectures 7: Class demo</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -3920,36 +3924,36 @@ ValueError: Found unknown categories [&#39;Biology&#39;] in column 0 during tran
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.005771</td>
-      <td>0.002429</td>
+      <td>0.005258</td>
+      <td>0.002193</td>
       <td>1.00</td>
       <td>0.937500</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.004566</td>
-      <td>0.002210</td>
+      <td>0.004140</td>
+      <td>0.002005</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.004423</td>
-      <td>0.002162</td>
+      <td>0.004065</td>
+      <td>0.001967</td>
       <td>0.50</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.004420</td>
-      <td>0.002123</td>
+      <td>0.004035</td>
+      <td>0.001955</td>
       <td>0.75</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.004433</td>
-      <td>0.007619</td>
+      <td>0.004071</td>
+      <td>0.007175</td>
       <td>NaN</td>
       <td>1.000000</td>
     </tr>
@@ -4103,36 +4107,36 @@ Name: count, dtype: int64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.006293</td>
-      <td>0.002810</td>
+      <td>0.004862</td>
+      <td>0.002108</td>
       <td>1.00</td>
       <td>0.937500</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.004614</td>
-      <td>0.002247</td>
+      <td>0.004072</td>
+      <td>0.001983</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.004707</td>
-      <td>0.002256</td>
+      <td>0.004089</td>
+      <td>0.002030</td>
       <td>0.50</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.004632</td>
-      <td>0.002313</td>
+      <td>0.003984</td>
+      <td>0.001948</td>
       <td>0.75</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.004478</td>
-      <td>0.002181</td>
+      <td>0.004017</td>
+      <td>0.001978</td>
       <td>0.75</td>
       <td>1.000000</td>
     </tr>
@@ -4406,36 +4410,36 @@ Name: enjoy_course, dtype: object
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.010862</td>
-      <td>0.003009</td>
+      <td>0.005680</td>
+      <td>0.002608</td>
       <td>1.00</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.005557</td>
-      <td>0.002622</td>
+      <td>0.004636</td>
+      <td>0.002355</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.005121</td>
-      <td>0.002732</td>
+      <td>0.004704</td>
+      <td>0.002341</td>
       <td>0.50</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.005085</td>
-      <td>0.002531</td>
+      <td>0.004659</td>
+      <td>0.002322</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.005194</td>
-      <td>0.002500</td>
+      <td>0.004562</td>
+      <td>0.002320</td>
       <td>0.75</td>
       <td>1.000000</td>
     </tr>
@@ -5512,8 +5516,8 @@ Name: count, dtype: int64
     </tr>
     <tr>
       <th>imp + scaling + ohe + KNN</th>
-      <td>0.026 (+/- 0.002)</td>
-      <td>0.194 (+/- 0.020)</td>
+      <td>0.023 (+/- 0.001)</td>
+      <td>0.185 (+/- 0.014)</td>
       <td>0.706 (+/- 0.015)</td>
       <td>0.806 (+/- 0.015)</td>
     </tr>
@@ -7074,7 +7078,7 @@ The value at cell 3,27 is: 1
 <h2>❓❓ Questions for you<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <section id="iclicker-exercise-6-2">
 <h3>(iClicker) Exercise 6.2<a class="headerlink" href="#iclicker-exercise-6-2" title="Permalink to this heading">#</a></h3>
-<p><strong>iClicker cloud join link: https://join.iclicker.com/</strong></p>
+<p><strong>iClicker cloud join link: https://join.iclicker.com/3DP5H</strong></p>
 <p><strong>Select all of the following statements which are TRUE.</strong></p>
 <ul class="simple">
 <li><p>(A) <code class="docutils literal notranslate"><span class="pre">handle_unknown=&quot;ignore&quot;</span></code> would treat all unknown categories equally.</p></li>
@@ -7154,11 +7158,11 @@ The value at cell 3,27 is: 1
       </div>
     </a>
     <a class="right-next"
-       href="class_demos/03_class-demo.html"
+       href="07_linear-models.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 3: Class demo</p>
+        <p class="prev-next-title">Lecture 7: Linear Models</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

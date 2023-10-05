@@ -159,12 +159,16 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../lectures/04_kNNs-SVM-RBF.html">Lecture 4: <span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbours and SVM RBFs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/05_preprocessing-pipelines.html">Lecture 5: Preprocessing and <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> pipelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/06_column-transformer-text-feats.html">Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/07_linear-models.html">Lecture 7: Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/08_hyperparameter-optimization.html">Lecture 8: Hyperparameter Optimization and Optimization Bias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/09_classification-metrics.html">Lecture 9: Classification metrics</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../lectures/class_demos/03_class-demo.html">Lecture 3: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/class_demos/04_class-demo.html">Lecture 4: Class demo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lectures/class_demos/05-06_class-demo.html">Lecture 5: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/class_demos/05-06_class-demo.html">Lectures 5 and 6: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/class_demos/07_class-demo.html">Lectures 7: Class demo</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -407,7 +411,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x167e4c550&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1680bc550&gt;]
 </pre></div>
 </div>
 <img alt="../_images/88e0d233c57445cd57e13a530416d997c94e725075c8317b3833642c8b798924.png" src="../_images/88e0d233c57445cd57e13a530416d997c94e725075c8317b3833642c8b798924.png" />
@@ -513,8 +517,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.62314443, 0.34870876, 0.50977128],
-       [0.00358955, 0.58091985, 0.97259151]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.10693488, 0.77942415, 0.89661872],
+       [0.20186042, 0.98224975, 0.92427631]])
 </pre></div>
 </div>
 </div>
@@ -526,7 +530,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.34870875987857086
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7794241482614123
 </pre></div>
 </div>
 </div>
