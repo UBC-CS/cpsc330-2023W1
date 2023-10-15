@@ -1,0 +1,2803 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Lecture 10: Regression metrics &#8212; CPSC 330 Applied Machine Learning 2023W1</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/10_regression-metrics';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lecture 3: Class demo" href="class_demos/03_class-demo.html" />
+    <link rel="prev" title="Lecture 9: Classification metrics" href="09_classification-metrics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/UBC-CS-logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/UBC-CS-logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Things you should know</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/README.html">CPSC 330 Documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../learning-objectives.html">Course Learning Objectives</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_intro.html">Lecture 1: Course Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_decision-trees.html">Lecture 2: Terminology, Baselines, Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_ml-fundamentals.html">Lecture 3: Machine Learning Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_kNNs-SVM-RBF.html">Lecture 4: <span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbours and SVM RBFs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_preprocessing-pipelines.html">Lecture 5: Preprocessing and <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_column-transformer-text-feats.html">Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_linear-models.html">Lecture 7: Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_hyperparameter-optimization.html">Lecture 8: Hyperparameter Optimization and Optimization Bias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_classification-metrics.html">Lecture 9: Classification metrics</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 10: Regression metrics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="class_demos/03_class-demo.html">Lecture 3: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/04_class-demo.html">Lecture 4: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/05-06_class-demo.html">Lectures 5 and 6: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/07_class-demo.html">Lectures 7: Class demo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../attribution.html">Attributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">LICENSE</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lectures/10_regression-metrics.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lecture 10: Regression metrics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#announcements">Announcements</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes">Learning outcomes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-comments-on-tackling-class-imbalance">More comments on tackling class imbalance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-video">Dataset [video]</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-separate-x-and-y">Let’s separate <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eda">EDA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-profiler"><code class="docutils literal notranslate"><span class="pre">pandas_profiler</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-types">Feature types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Feature types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-feature-transformations">Applying feature transformations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-the-preprocessed-data">Examining the preprocessed data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-possible-preprocessing">Other possible preprocessing?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-building">Model building</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dummyregressor"><code class="docutils literal notranslate"><span class="pre">DummyRegressor</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-try-a-linear-model-ridge">Let’s try a linear model: <code class="docutils literal notranslate"><span class="pre">Ridge</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-names-of-transformed-data">Feature names of transformed data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-alpha-hyperparameter-of-ridge">Tuning <code class="docutils literal notranslate"><span class="pre">alpha</span></code> hyperparameter of <code class="docutils literal notranslate"><span class="pre">Ridge</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ridgecv"><code class="docutils literal notranslate"><span class="pre">RidgeCV</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-for-you">❓❓ Questions for you</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-10-1">iClicker Exercise 10.1</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-scoring-functions">Regression scoring functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-squared-error-mse">Mean squared error (MSE)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#root-mean-squared-error-or-rmse">Root mean squared error or RMSE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-2-not-in-detail"><span class="math notranslate nohighlight">\(R^2\)</span> (not in detail)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mape">MAPE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transforming-the-targets">Transforming the targets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#different-scoring-functions-with-cross-validate">Different scoring functions with <code class="docutils literal notranslate"><span class="pre">cross_validate</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-multiple-metrics-in-gridsearchcv-or-randomizedsearchcv">Using multiple metrics in <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> or <code class="docutils literal notranslate"><span class="pre">RandomizedSearchCV</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-regression-metrics-with-scikit-learn">Using regression metrics with <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">❓❓ Questions for you</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-10-2">iClicker Exercise 10.2</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-did-we-learn-today">What did we learn today?</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p><img alt="" src="../_images/330-banner.png" /></p>
+<section class="tex2jax_ignore mathjax_ignore" id="lecture-10-regression-metrics">
+<h1>Lecture 10: Regression metrics<a class="headerlink" href="#lecture-10-regression-metrics" title="Permalink to this heading">#</a></h1>
+<p>UBC, 2023-24</p>
+<p>Instructor: Varada Kolhatkar and Andrew Roth</p>
+<section id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ColumnTransformer</span><span class="p">,</span>
+    <span class="n">TransformedTargetRegressor</span><span class="p">,</span>
+    <span class="n">make_column_transformer</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span><span class="p">,</span> <span class="n">RidgeCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">make_scorer</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GridSearchCV</span><span class="p">,</span>
+    <span class="n">cross_val_score</span><span class="p">,</span>
+    <span class="n">cross_validate</span><span class="p">,</span>
+    <span class="n">train_test_split</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">OrdinalEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="announcements">
+<h3>Announcements<a class="headerlink" href="#announcements" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>HW4 is due tonight.</p></li>
+<li><p>HW5 will be posted today. It is a project-type homework assignment and will be due after the midterm.</p></li>
+<li><p>Midterm: Thursday, October 26th, 2023 at 6:00pm (~75 mins long)</p>
+<ul>
+<li><p>Checkout the midterm information announcement on Piazza (&#64;407)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="learning-outcomes">
+<h2>Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this heading">#</a></h2>
+<p>From this lecture, students are expected to be able to:</p>
+<ul class="simple">
+<li><p>Carry out feature transformations on somewhat complicated dataset.</p></li>
+<li><p>Visualize transformed features as a dataframe.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> and <code class="docutils literal notranslate"><span class="pre">RidgeCV</span></code>.</p></li>
+<li><p>Explain how <code class="docutils literal notranslate"><span class="pre">alpha</span></code> hyperparameter of <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> relates to the fundamental tradeoff.</p></li>
+<li><p>Explain the effect of <code class="docutils literal notranslate"><span class="pre">alpha</span></code> on the magnitude of the learned coefficients.</p></li>
+<li><p>Examine coefficients of transformed features.</p></li>
+<li><p>Appropriately select a scoring metric given a regression problem.</p></li>
+<li><p>Interpret and communicate the meanings of different scoring metrics on regression problems.</p>
+<ul>
+<li><p>MSE, RMSE, <span class="math notranslate nohighlight">\(R^2\)</span>, MAPE</p></li>
+</ul>
+</li>
+<li><p>Apply log-transform on the target values in a regression problem with <code class="docutils literal notranslate"><span class="pre">TransformedTargetRegressor</span></code>.</p></li>
+</ul>
+<p>After carrying out preprocessing, why it’s useful to get feature names for transformed features?</p>
+<section id="more-comments-on-tackling-class-imbalance">
+<h3>More comments on tackling class imbalance<a class="headerlink" href="#more-comments-on-tackling-class-imbalance" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>In lecture 9 we talked about a few rather simple approaches to deal with class imbalance.</p></li>
+<li><p>If you have a problem such as fraud detection problem where you want to spot rare events, you can also think of this problem as anomaly detection problem and use different kinds of algorithms such as <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html">isolation forests</a>.</p></li>
+<li><p>If you are interested in this area, it might be worth checking out this book on this topic.
+<a class="reference external" href="https://www.amazon.com/dp/1118074629/ref=as_li_ss_tl?&amp;linkCode=sl1&amp;tag=inspiredalgor-20&amp;linkId=615e87a9105582e292ad2b7e2c7ea339&amp;language=en_US">Imbalanced Learning: Foundations, Algorithms, and Applications</a></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When you calculate precision, recall, f1 score, by default only the positive label is evaluated, assuming by default that the positive class is labeled 1. This is configurable through the <code class="docutils literal notranslate"><span class="pre">pos_label</span></code> parameter.</p>
+</div>
+</section>
+</section>
+<section id="dataset-video">
+<h2>Dataset [<a class="reference external" href="https://youtu.be/lgGTKLwNgkQ">video</a>]<a class="headerlink" href="#dataset-video" title="Permalink to this heading">#</a></h2>
+<p>In this lecture, we’ll be using <a class="reference external" href="https://www.kaggle.com/c/home-data-for-ml-course/">Kaggle House Prices dataset</a>. As usual, to run this notebook you’ll need to download the data. For this dataset, train and test have already been separated. We’ll be working with the train portion in this lecture.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/housing-kaggle/train.csv&quot;</span><span class="p">)</span>
+<span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">train_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Id</th>
+      <th>MSSubClass</th>
+      <th>MSZoning</th>
+      <th>LotFrontage</th>
+      <th>LotArea</th>
+      <th>Street</th>
+      <th>Alley</th>
+      <th>LotShape</th>
+      <th>LandContour</th>
+      <th>Utilities</th>
+      <th>...</th>
+      <th>PoolArea</th>
+      <th>PoolQC</th>
+      <th>Fence</th>
+      <th>MiscFeature</th>
+      <th>MiscVal</th>
+      <th>MoSold</th>
+      <th>YrSold</th>
+      <th>SaleType</th>
+      <th>SaleCondition</th>
+      <th>SalePrice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>302</th>
+      <td>303</td>
+      <td>20</td>
+      <td>RL</td>
+      <td>118.0</td>
+      <td>13704</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2006</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>205000</td>
+    </tr>
+    <tr>
+      <th>767</th>
+      <td>768</td>
+      <td>50</td>
+      <td>RL</td>
+      <td>75.0</td>
+      <td>12508</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Shed</td>
+      <td>1300</td>
+      <td>7</td>
+      <td>2008</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>160000</td>
+    </tr>
+    <tr>
+      <th>429</th>
+      <td>430</td>
+      <td>20</td>
+      <td>RL</td>
+      <td>130.0</td>
+      <td>11457</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>3</td>
+      <td>2009</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>175000</td>
+    </tr>
+    <tr>
+      <th>1139</th>
+      <td>1140</td>
+      <td>30</td>
+      <td>RL</td>
+      <td>98.0</td>
+      <td>8731</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>5</td>
+      <td>2007</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>144000</td>
+    </tr>
+    <tr>
+      <th>558</th>
+      <td>559</td>
+      <td>60</td>
+      <td>RL</td>
+      <td>57.0</td>
+      <td>21872</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR2</td>
+      <td>HLS</td>
+      <td>AllPub</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>8</td>
+      <td>2008</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>175000</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 81 columns</p>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>The supervised machine learning problem is predicting housing price given features associated with properties.</p></li>
+<li><p>Here, the target is <code class="docutils literal notranslate"><span class="pre">SalePrice</span></code>, which is continuous. So it’s a <strong>regression problem</strong> (as opposed to classification).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1314, 81)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="let-s-separate-x-and-y">
+<h3>Let’s separate <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code><a class="headerlink" href="#let-s-separate-x-and-y" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SalePrice&quot;</span><span class="p">])</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;SalePrice&quot;</span><span class="p">]</span>
+
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SalePrice&quot;</span><span class="p">])</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;SalePrice&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="eda">
+<h3>EDA<a class="headerlink" href="#eda" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Id</th>
+      <th>MSSubClass</th>
+      <th>LotFrontage</th>
+      <th>LotArea</th>
+      <th>OverallQual</th>
+      <th>OverallCond</th>
+      <th>YearBuilt</th>
+      <th>YearRemodAdd</th>
+      <th>MasVnrArea</th>
+      <th>BsmtFinSF1</th>
+      <th>...</th>
+      <th>WoodDeckSF</th>
+      <th>OpenPorchSF</th>
+      <th>EnclosedPorch</th>
+      <th>3SsnPorch</th>
+      <th>ScreenPorch</th>
+      <th>PoolArea</th>
+      <th>MiscVal</th>
+      <th>MoSold</th>
+      <th>YrSold</th>
+      <th>SalePrice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>1314.000000</td>
+      <td>1314.000000</td>
+      <td>1089.000000</td>
+      <td>1314.000000</td>
+      <td>1314.000000</td>
+      <td>1314.000000</td>
+      <td>1314.000000</td>
+      <td>1314.000000</td>
+      <td>1307.000000</td>
+      <td>1314.000000</td>
+      <td>...</td>
+      <td>1314.000000</td>
+      <td>1314.000000</td>
+      <td>1314.000000</td>
+      <td>1314.000000</td>
+      <td>1314.000000</td>
+      <td>1314.000000</td>
+      <td>1314.000000</td>
+      <td>1314.000000</td>
+      <td>1314.000000</td>
+      <td>1314.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>734.182648</td>
+      <td>56.472603</td>
+      <td>69.641873</td>
+      <td>10273.261035</td>
+      <td>6.076104</td>
+      <td>5.570015</td>
+      <td>1970.995434</td>
+      <td>1984.659056</td>
+      <td>102.514155</td>
+      <td>441.425419</td>
+      <td>...</td>
+      <td>94.281583</td>
+      <td>45.765601</td>
+      <td>21.726788</td>
+      <td>3.624049</td>
+      <td>13.987062</td>
+      <td>3.065449</td>
+      <td>46.951294</td>
+      <td>6.302131</td>
+      <td>2007.840183</td>
+      <td>179802.147641</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>422.224662</td>
+      <td>42.036646</td>
+      <td>23.031794</td>
+      <td>8997.895541</td>
+      <td>1.392612</td>
+      <td>1.112848</td>
+      <td>30.198127</td>
+      <td>20.639754</td>
+      <td>178.301563</td>
+      <td>459.276687</td>
+      <td>...</td>
+      <td>125.436492</td>
+      <td>65.757545</td>
+      <td>60.766423</td>
+      <td>30.320430</td>
+      <td>53.854129</td>
+      <td>42.341109</td>
+      <td>522.283421</td>
+      <td>2.698206</td>
+      <td>1.332824</td>
+      <td>79041.260572</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.000000</td>
+      <td>20.000000</td>
+      <td>21.000000</td>
+      <td>1300.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1872.000000</td>
+      <td>1950.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>2006.000000</td>
+      <td>34900.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>369.250000</td>
+      <td>20.000000</td>
+      <td>59.000000</td>
+      <td>7500.000000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>1953.000000</td>
+      <td>1966.250000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>5.000000</td>
+      <td>2007.000000</td>
+      <td>129600.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>735.500000</td>
+      <td>50.000000</td>
+      <td>69.000000</td>
+      <td>9391.000000</td>
+      <td>6.000000</td>
+      <td>5.000000</td>
+      <td>1972.000000</td>
+      <td>1993.000000</td>
+      <td>0.000000</td>
+      <td>376.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>24.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>6.000000</td>
+      <td>2008.000000</td>
+      <td>162000.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>1099.750000</td>
+      <td>70.000000</td>
+      <td>80.000000</td>
+      <td>11509.000000</td>
+      <td>7.000000</td>
+      <td>6.000000</td>
+      <td>2000.000000</td>
+      <td>2004.000000</td>
+      <td>165.500000</td>
+      <td>704.750000</td>
+      <td>...</td>
+      <td>168.000000</td>
+      <td>66.750000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>8.000000</td>
+      <td>2009.000000</td>
+      <td>212975.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1460.000000</td>
+      <td>190.000000</td>
+      <td>313.000000</td>
+      <td>215245.000000</td>
+      <td>10.000000</td>
+      <td>9.000000</td>
+      <td>2010.000000</td>
+      <td>2010.000000</td>
+      <td>1378.000000</td>
+      <td>5644.000000</td>
+      <td>...</td>
+      <td>857.000000</td>
+      <td>547.000000</td>
+      <td>552.000000</td>
+      <td>508.000000</td>
+      <td>480.000000</td>
+      <td>738.000000</td>
+      <td>15500.000000</td>
+      <td>12.000000</td>
+      <td>2010.000000</td>
+      <td>755000.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>8 rows × 38 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Index: 1314 entries, 302 to 1389
+Data columns (total 81 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   Id             1314 non-null   int64  
+ 1   MSSubClass     1314 non-null   int64  
+ 2   MSZoning       1314 non-null   object 
+ 3   LotFrontage    1089 non-null   float64
+ 4   LotArea        1314 non-null   int64  
+ 5   Street         1314 non-null   object 
+ 6   Alley          81 non-null     object 
+ 7   LotShape       1314 non-null   object 
+ 8   LandContour    1314 non-null   object 
+ 9   Utilities      1314 non-null   object 
+ 10  LotConfig      1314 non-null   object 
+ 11  LandSlope      1314 non-null   object 
+ 12  Neighborhood   1314 non-null   object 
+ 13  Condition1     1314 non-null   object 
+ 14  Condition2     1314 non-null   object 
+ 15  BldgType       1314 non-null   object 
+ 16  HouseStyle     1314 non-null   object 
+ 17  OverallQual    1314 non-null   int64  
+ 18  OverallCond    1314 non-null   int64  
+ 19  YearBuilt      1314 non-null   int64  
+ 20  YearRemodAdd   1314 non-null   int64  
+ 21  RoofStyle      1314 non-null   object 
+ 22  RoofMatl       1314 non-null   object 
+ 23  Exterior1st    1314 non-null   object 
+ 24  Exterior2nd    1314 non-null   object 
+ 25  MasVnrType     528 non-null    object 
+ 26  MasVnrArea     1307 non-null   float64
+ 27  ExterQual      1314 non-null   object 
+ 28  ExterCond      1314 non-null   object 
+ 29  Foundation     1314 non-null   object 
+ 30  BsmtQual       1280 non-null   object 
+ 31  BsmtCond       1280 non-null   object 
+ 32  BsmtExposure   1279 non-null   object 
+ 33  BsmtFinType1   1280 non-null   object 
+ 34  BsmtFinSF1     1314 non-null   int64  
+ 35  BsmtFinType2   1280 non-null   object 
+ 36  BsmtFinSF2     1314 non-null   int64  
+ 37  BsmtUnfSF      1314 non-null   int64  
+ 38  TotalBsmtSF    1314 non-null   int64  
+ 39  Heating        1314 non-null   object 
+ 40  HeatingQC      1314 non-null   object 
+ 41  CentralAir     1314 non-null   object 
+ 42  Electrical     1313 non-null   object 
+ 43  1stFlrSF       1314 non-null   int64  
+ 44  2ndFlrSF       1314 non-null   int64  
+ 45  LowQualFinSF   1314 non-null   int64  
+ 46  GrLivArea      1314 non-null   int64  
+ 47  BsmtFullBath   1314 non-null   int64  
+ 48  BsmtHalfBath   1314 non-null   int64  
+ 49  FullBath       1314 non-null   int64  
+ 50  HalfBath       1314 non-null   int64  
+ 51  BedroomAbvGr   1314 non-null   int64  
+ 52  KitchenAbvGr   1314 non-null   int64  
+ 53  KitchenQual    1314 non-null   object 
+ 54  TotRmsAbvGrd   1314 non-null   int64  
+ 55  Functional     1314 non-null   object 
+ 56  Fireplaces     1314 non-null   int64  
+ 57  FireplaceQu    687 non-null    object 
+ 58  GarageType     1241 non-null   object 
+ 59  GarageYrBlt    1241 non-null   float64
+ 60  GarageFinish   1241 non-null   object 
+ 61  GarageCars     1314 non-null   int64  
+ 62  GarageArea     1314 non-null   int64  
+ 63  GarageQual     1241 non-null   object 
+ 64  GarageCond     1241 non-null   object 
+ 65  PavedDrive     1314 non-null   object 
+ 66  WoodDeckSF     1314 non-null   int64  
+ 67  OpenPorchSF    1314 non-null   int64  
+ 68  EnclosedPorch  1314 non-null   int64  
+ 69  3SsnPorch      1314 non-null   int64  
+ 70  ScreenPorch    1314 non-null   int64  
+ 71  PoolArea       1314 non-null   int64  
+ 72  PoolQC         7 non-null      object 
+ 73  Fence          259 non-null    object 
+ 74  MiscFeature    50 non-null     object 
+ 75  MiscVal        1314 non-null   int64  
+ 76  MoSold         1314 non-null   int64  
+ 77  YrSold         1314 non-null   int64  
+ 78  SaleType       1314 non-null   object 
+ 79  SaleCondition  1314 non-null   object 
+ 80  SalePrice      1314 non-null   int64  
+dtypes: float64(3), int64(35), object(43)
+memory usage: 841.8+ KB
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pandas-profiler">
+<h3><code class="docutils literal notranslate"><span class="pre">pandas_profiler</span></code><a class="headerlink" href="#pandas-profiler" title="Permalink to this heading">#</a></h3>
+<p>We do not have <code class="docutils literal notranslate"><span class="pre">pandas_profiling</span></code> in our course environment. You will  have to install it in the environment on your own if you want to run the code below.</p>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">pandas-profiling</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)),</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">10</span><span class="p">))})</span>
+<span class="n">profile</span> <span class="o">=</span> <span class="n">ProfileReport</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Profiling Report&quot;</span><span class="p">)</span>
+<span class="n">profile</span><span class="o">.</span><span class="n">to_widgets</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)),</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">10</span><span class="p">))})</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">ProfileReport</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Profiling Report&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">profile</span><span class="o">.</span><span class="n">to_widgets</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;ProfileReport&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">ydata_profiling</span> <span class="kn">import</span> <span class="n">ProfileReport</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">profile</span> <span class="o">=</span> <span class="n">ProfileReport</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Profiling Report&quot;</span><span class="p">)</span>
+<span class="n">profile</span><span class="o">.</span><span class="n">to_widgets</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "0b1bae942ef54bf28081015adffc971c", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unexpected exception formatting exception. Falling back to standard exception
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/interactiveshell.py&quot;, line 3526, in run_code
+    exec(code_obj, self.user_global_ns, self.user_ns)
+  File &quot;/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_10768/2135232660.py&quot;, line 2, in &lt;module&gt;
+    profile.to_widgets()
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/profile_report.py&quot;, line 516, in to_widgets
+    display(self.widgets)
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/profile_report.py&quot;, line 289, in widgets
+    isinstance(self.description_set.table[&quot;n&quot;], list)
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/profile_report.py&quot;, line 253, in description_set
+    self._description_set = describe_df(
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/model/describe.py&quot;, line 130, in describe
+    scatter_matrix[x][y] = progress(
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/utils/progress_bar.py&quot;, line 11, in inner
+    ret = fn(*args, **kwargs)
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/model/pairwise.py&quot;, line 31, in get_scatter_plot
+    return scatter_pairwise(config, df_temp[x], df_temp[y], x, y)
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/contextlib.py&quot;, line 78, in inner
+    with self._recreate_cm():
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/contextlib.py&quot;, line 135, in __enter__
+    return next(self.gen)
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/visualisation/context.py&quot;, line 83, in manage_matplotlib_context
+    deregister_matplotlib_converters()  # revert to original unit registries
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/plotting/_misc.py&quot;, line 151, in deregister
+    &lt;AxesSubplot: xlabel=&#39;B&#39;, ylabel=&#39;C&#39;&gt;,
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/plotting/_core.py&quot;, line 1947, in _get_plot_backend
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/plotting/_core.py&quot;, line 1877, in _load_backend
+ImportError: matplotlib is required for plotting when the default backend &quot;matplotlib&quot; is selected.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/interactiveshell.py&quot;, line 2120, in showtraceback
+    stb = self.InteractiveTB.structured_traceback(
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 1435, in structured_traceback
+    return FormattedTB.structured_traceback(
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 1326, in structured_traceback
+    return VerboseTB.structured_traceback(
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 1173, in structured_traceback
+    formatted_exception = self.format_exception_as_a_whole(etype, evalue, etb, number_of_lines_of_context,
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 1088, in format_exception_as_a_whole
+    frames.append(self.format_record(record))
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 970, in format_record
+    frame_info.lines, Colors, self.has_colors, lvals
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 792, in lines
+    return self._sd.lines
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/utils.py&quot;, line 144, in cached_property_wrapper
+    value = obj.__dict__[self.func.__name__] = self.func(obj)
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/core.py&quot;, line 734, in lines
+    pieces = self.included_pieces
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/utils.py&quot;, line 144, in cached_property_wrapper
+    value = obj.__dict__[self.func.__name__] = self.func(obj)
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/core.py&quot;, line 681, in included_pieces
+    pos = scope_pieces.index(self.executing_piece)
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/utils.py&quot;, line 144, in cached_property_wrapper
+    value = obj.__dict__[self.func.__name__] = self.func(obj)
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/core.py&quot;, line 660, in executing_piece
+    return only(
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/executing/executing.py&quot;, line 190, in only
+    raise NotOneValueFound(&#39;Expected one value, found 0&#39;)
+executing.executing.NotOneValueFound: Expected one value, found 0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>acousticness</th>
+      <th>danceability</th>
+      <th>duration_ms</th>
+      <th>energy</th>
+      <th>instrumentalness</th>
+      <th>key</th>
+      <th>liveness</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+      <th>valence</th>
+      <th>target</th>
+      <th>song_title</th>
+      <th>artist</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.01020</td>
+      <td>0.833</td>
+      <td>204600</td>
+      <td>0.434</td>
+      <td>0.021900</td>
+      <td>2</td>
+      <td>0.1650</td>
+      <td>-8.795</td>
+      <td>1</td>
+      <td>0.4310</td>
+      <td>150.062</td>
+      <td>4.0</td>
+      <td>0.286</td>
+      <td>1</td>
+      <td>Mask Off</td>
+      <td>Future</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.19900</td>
+      <td>0.743</td>
+      <td>326933</td>
+      <td>0.359</td>
+      <td>0.006110</td>
+      <td>1</td>
+      <td>0.1370</td>
+      <td>-10.401</td>
+      <td>1</td>
+      <td>0.0794</td>
+      <td>160.083</td>
+      <td>4.0</td>
+      <td>0.588</td>
+      <td>1</td>
+      <td>Redbone</td>
+      <td>Childish Gambino</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.03440</td>
+      <td>0.838</td>
+      <td>185707</td>
+      <td>0.412</td>
+      <td>0.000234</td>
+      <td>2</td>
+      <td>0.1590</td>
+      <td>-7.148</td>
+      <td>1</td>
+      <td>0.2890</td>
+      <td>75.044</td>
+      <td>4.0</td>
+      <td>0.173</td>
+      <td>1</td>
+      <td>Xanny Family</td>
+      <td>Future</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.60400</td>
+      <td>0.494</td>
+      <td>199413</td>
+      <td>0.338</td>
+      <td>0.510000</td>
+      <td>5</td>
+      <td>0.0922</td>
+      <td>-15.236</td>
+      <td>1</td>
+      <td>0.0261</td>
+      <td>86.468</td>
+      <td>4.0</td>
+      <td>0.230</td>
+      <td>1</td>
+      <td>Master Of None</td>
+      <td>Beach House</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.18000</td>
+      <td>0.678</td>
+      <td>392893</td>
+      <td>0.561</td>
+      <td>0.512000</td>
+      <td>5</td>
+      <td>0.4390</td>
+      <td>-11.648</td>
+      <td>0</td>
+      <td>0.0694</td>
+      <td>174.004</td>
+      <td>4.0</td>
+      <td>0.904</td>
+      <td>1</td>
+      <td>Parallel Lines</td>
+      <td>Junior Boys</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2012</th>
+      <td>0.00106</td>
+      <td>0.584</td>
+      <td>274404</td>
+      <td>0.932</td>
+      <td>0.002690</td>
+      <td>1</td>
+      <td>0.1290</td>
+      <td>-3.501</td>
+      <td>1</td>
+      <td>0.3330</td>
+      <td>74.976</td>
+      <td>4.0</td>
+      <td>0.211</td>
+      <td>0</td>
+      <td>Like A Bitch - Kill The Noise Remix</td>
+      <td>Kill The Noise</td>
+    </tr>
+    <tr>
+      <th>2013</th>
+      <td>0.08770</td>
+      <td>0.894</td>
+      <td>182182</td>
+      <td>0.892</td>
+      <td>0.001670</td>
+      <td>1</td>
+      <td>0.0528</td>
+      <td>-2.663</td>
+      <td>1</td>
+      <td>0.1310</td>
+      <td>110.041</td>
+      <td>4.0</td>
+      <td>0.867</td>
+      <td>0</td>
+      <td>Candy</td>
+      <td>Dillon Francis</td>
+    </tr>
+    <tr>
+      <th>2014</th>
+      <td>0.00857</td>
+      <td>0.637</td>
+      <td>207200</td>
+      <td>0.935</td>
+      <td>0.003990</td>
+      <td>0</td>
+      <td>0.2140</td>
+      <td>-2.467</td>
+      <td>1</td>
+      <td>0.1070</td>
+      <td>150.082</td>
+      <td>4.0</td>
+      <td>0.470</td>
+      <td>0</td>
+      <td>Habit - Dack Janiels &amp; Wenzday Remix</td>
+      <td>Rain Man</td>
+    </tr>
+    <tr>
+      <th>2015</th>
+      <td>0.00164</td>
+      <td>0.557</td>
+      <td>185600</td>
+      <td>0.992</td>
+      <td>0.677000</td>
+      <td>1</td>
+      <td>0.0913</td>
+      <td>-2.735</td>
+      <td>1</td>
+      <td>0.1330</td>
+      <td>150.011</td>
+      <td>4.0</td>
+      <td>0.623</td>
+      <td>0</td>
+      <td>First Contact</td>
+      <td>Twin Moons</td>
+    </tr>
+    <tr>
+      <th>2016</th>
+      <td>0.00281</td>
+      <td>0.446</td>
+      <td>204520</td>
+      <td>0.915</td>
+      <td>0.000039</td>
+      <td>9</td>
+      <td>0.2180</td>
+      <td>-6.221</td>
+      <td>1</td>
+      <td>0.1410</td>
+      <td>190.013</td>
+      <td>4.0</td>
+      <td>0.402</td>
+      <td>0</td>
+      <td>I Wanna Get Better</td>
+      <td>Bleachers</td>
+    </tr>
+  </tbody>
+</table>
+<p>2017 rows × 16 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">ydata_profiling</span> <span class="kn">import</span> <span class="n">ProfileReport</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> 
+
+<span class="c1"># profile = ProfileReport(data, title=&quot;Pandas Profiling Report&quot;)  # , minimal=True)</span>
+<span class="n">profile</span> <span class="o">=</span> <span class="n">ProfileReport</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Pandas Profiling Report&quot;</span><span class="p">,</span> <span class="n">minimal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">profile</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;output_report.html&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "629c09268d7a481e9b6a7b0439eda6c7", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "9469433f46a24bcd80c9c7847e50dc69", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unexpected exception formatting exception. Falling back to standard exception
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/interactiveshell.py&quot;, line 3526, in run_code
+    exec(code_obj, self.user_global_ns, self.user_ns)
+  File &quot;/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_10768/3582944598.py&quot;, line 7, in &lt;module&gt;
+    profile.to_file(&quot;output_report.html&quot;)
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/profile_report.py&quot;, line 355, in to_file
+    data = self.to_html()
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/profile_report.py&quot;, line 470, in to_html
+    return self.html
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/profile_report.py&quot;, line 277, in html
+    self._html = self._render_html()
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/profile_report.py&quot;, line 385, in _render_html
+    report = self.report
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/profile_report.py&quot;, line 271, in report
+    self._report = get_report_structure(self.config, self.description_set)
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/report/structure/report.py&quot;, line 387, in get_report_structure
+    render_variables_section(config, summary),
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/report/structure/report.py&quot;, line 162, in render_variables_section
+    template_variables.update(render_map_type(config, template_variables))
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/report/structure/variables/render_real.py&quot;, line 133, in render_real
+    mini_histogram(config, *summary[&quot;histogram&quot;]),
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/contextlib.py&quot;, line 78, in inner
+    with self._recreate_cm():
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/contextlib.py&quot;, line 135, in __enter__
+    return next(self.gen)
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/visualisation/context.py&quot;, line 83, in manage_matplotlib_context
+    deregister_matplotlib_converters()  # revert to original unit registries
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/plotting/_misc.py&quot;, line 151, in deregister
+    &lt;AxesSubplot: xlabel=&#39;B&#39;, ylabel=&#39;C&#39;&gt;,
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/plotting/_core.py&quot;, line 1947, in _get_plot_backend
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/plotting/_core.py&quot;, line 1877, in _load_backend
+ImportError: matplotlib is required for plotting when the default backend &quot;matplotlib&quot; is selected.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/interactiveshell.py&quot;, line 2120, in showtraceback
+    stb = self.InteractiveTB.structured_traceback(
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 1435, in structured_traceback
+    return FormattedTB.structured_traceback(
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 1326, in structured_traceback
+    return VerboseTB.structured_traceback(
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 1173, in structured_traceback
+    formatted_exception = self.format_exception_as_a_whole(etype, evalue, etb, number_of_lines_of_context,
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 1088, in format_exception_as_a_whole
+    frames.append(self.format_record(record))
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 970, in format_record
+    frame_info.lines, Colors, self.has_colors, lvals
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 792, in lines
+    return self._sd.lines
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/utils.py&quot;, line 144, in cached_property_wrapper
+    value = obj.__dict__[self.func.__name__] = self.func(obj)
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/core.py&quot;, line 734, in lines
+    pieces = self.included_pieces
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/utils.py&quot;, line 144, in cached_property_wrapper
+    value = obj.__dict__[self.func.__name__] = self.func(obj)
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/core.py&quot;, line 681, in included_pieces
+    pos = scope_pieces.index(self.executing_piece)
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/utils.py&quot;, line 144, in cached_property_wrapper
+    value = obj.__dict__[self.func.__name__] = self.func(obj)
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/core.py&quot;, line 660, in executing_piece
+    return only(
+  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/executing/executing.py&quot;, line 190, in only
+    raise NotOneValueFound(&#39;Expected one value, found 0&#39;)
+executing.executing.NotOneValueFound: Expected one value, found 0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="feature-types">
+<h3>Feature types<a class="headerlink" href="#feature-types" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Do not blindly trust all the info given to you by automated tools.</p></li>
+<li><p>How does pandas profiling figure out the data type?</p>
+<ul>
+<li><p>You can look at the Python data type and say floats are numeric, strings are categorical.</p></li>
+<li><p>However, in doing so you would miss out on various subtleties such as some of the string features being ordinal rather than truly categorical.</p></li>
+<li><p>Also, it will think free text is categorical.</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>In addition to tools such as above, it’s important to go through data description to understand the data.</p></li>
+<li><p>The data description for our dataset is available <a class="reference external" href="https://www.kaggle.com/c/home-data-for-ml-course/data?select=data_description.txt">here</a>.</p></li>
+</ul>
+</section>
+<section id="id1">
+<h3>Feature types<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>We have mixed feature types and a bunch of missing values.</p></li>
+<li><p>Now, let’s identify feature types and transformations.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Let’s get the numeric-looking columns.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_looking_columns</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">numeric_looking_columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Not all numeric looking columns are necessarily numeric.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;MSSubClass&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>MSSubClass: Identifies the type of dwelling involved in the sale.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    20	1-STORY 1946 &amp; NEWER ALL STYLES
+    30	1-STORY 1945 &amp; OLDER
+    40	1-STORY W/FINISHED ATTIC ALL AGES
+    45	1-1/2 STORY - UNFINISHED ALL AGES
+    50	1-1/2 STORY FINISHED ALL AGES
+    60	2-STORY 1946 &amp; NEWER
+    70	2-STORY 1945 &amp; OLDER
+    75	2-1/2 STORY ALL AGES
+    80	SPLIT OR MULTI-LEVEL
+    85	SPLIT FOYER
+    90	DUPLEX - ALL STYLES AND AGES
+   120	1-STORY PUD (Planned Unit Development) - 1946 &amp; NEWER
+   150	1-1/2 STORY PUD - ALL AGES
+   160	2-STORY PUD - 1946 &amp; NEWER
+   180	PUD - MULTILEVEL - INCL SPLIT LEV/FOYER
+   190	2 FAMILY CONVERSION - ALL STYLES AND AGES
+</pre></div>
+</div>
+<p>Also, month sold is more of a categorical feature than a numeric feature.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;MoSold&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>  <span class="c1"># Month Sold</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">drop_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Id&quot;</span><span class="p">]</span>
+<span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;BedroomAbvGr&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;KitchenAbvGr&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LotFrontage&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LotArea&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;OverallQual&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;OverallCond&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;YearBuilt&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;YearRemodAdd&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MasVnrArea&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BsmtFinSF1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BsmtFinSF2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BsmtUnfSF&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TotalBsmtSF&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;1stFlrSF&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;2ndFlrSF&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LowQualFinSF&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GrLivArea&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BsmtFullBath&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BsmtHalfBath&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;FullBath&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HalfBath&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TotRmsAbvGrd&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Fireplaces&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GarageYrBlt&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GarageCars&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GarageArea&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;WoodDeckSF&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;OpenPorchSF&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EnclosedPorch&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;3SsnPorch&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ScreenPorch&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PoolArea&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MiscVal&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;YrSold&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I’ve not looked at all the features carefully. It might be appropriate to apply some other encoding on some of the numeric features above.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="n">numeric_looking_columns</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">numeric_features</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">drop_features</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll treat the above numeric-looking features as categorical features.</p>
+<ul class="simple">
+<li><p>There are a bunch of ordinal features in this dataset.</p></li>
+<li><p>Ordinal features with the same scale</p>
+<ul>
+<li><p>Poor (Po), Fair (Fa), Typical (TA), Good (Gd), Excellent (Ex)</p></li>
+<li><p>These we’ll be calling <code class="docutils literal notranslate"><span class="pre">ordinal_features_reg</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Ordinal features with different scales</p>
+<ul>
+<li><p>These we’ll be calling <code class="docutils literal notranslate"><span class="pre">ordinal_features_oth</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ordinal_features_reg</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;ExterQual&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ExterCond&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BsmtQual&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BsmtCond&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HeatingQC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;KitchenQual&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;FireplaceQu&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GarageQual&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GarageCond&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PoolQC&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">ordering</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Po&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Fa&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TA&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Gd&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ex&quot;</span><span class="p">,</span>
+<span class="p">]</span>  <span class="c1"># if N/A it will just impute something, per below</span>
+<span class="n">ordering_ordinal_reg</span> <span class="o">=</span> <span class="p">[</span><span class="n">ordering</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">ordinal_features_reg</span><span class="p">)</span>
+<span class="n">ordering_ordinal_reg</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll pass the above as categories in our <code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code>.</p>
+<ul class="simple">
+<li><p>There are a bunch more ordinal features using different scales.</p>
+<ul>
+<li><p>These we’ll be calling <code class="docutils literal notranslate"><span class="pre">ordinal_features_oth</span></code>.</p></li>
+<li><p>We are encoding them separately.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ordinal_features_oth</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;BsmtExposure&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BsmtFinType1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BsmtFinType2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Functional&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Fence&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">ordering_ordinal_oth</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span> <span class="s2">&quot;No&quot;</span><span class="p">,</span> <span class="s2">&quot;Mn&quot;</span><span class="p">,</span> <span class="s2">&quot;Av&quot;</span><span class="p">,</span> <span class="s2">&quot;Gd&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span> <span class="s2">&quot;Unf&quot;</span><span class="p">,</span> <span class="s2">&quot;LwQ&quot;</span><span class="p">,</span> <span class="s2">&quot;Rec&quot;</span><span class="p">,</span> <span class="s2">&quot;BLQ&quot;</span><span class="p">,</span> <span class="s2">&quot;ALQ&quot;</span><span class="p">,</span> <span class="s2">&quot;GLQ&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span> <span class="s2">&quot;Unf&quot;</span><span class="p">,</span> <span class="s2">&quot;LwQ&quot;</span><span class="p">,</span> <span class="s2">&quot;Rec&quot;</span><span class="p">,</span> <span class="s2">&quot;BLQ&quot;</span><span class="p">,</span> <span class="s2">&quot;ALQ&quot;</span><span class="p">,</span> <span class="s2">&quot;GLQ&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Sal&quot;</span><span class="p">,</span> <span class="s2">&quot;Sev&quot;</span><span class="p">,</span> <span class="s2">&quot;Maj2&quot;</span><span class="p">,</span> <span class="s2">&quot;Maj1&quot;</span><span class="p">,</span> <span class="s2">&quot;Mod&quot;</span><span class="p">,</span> <span class="s2">&quot;Min2&quot;</span><span class="p">,</span> <span class="s2">&quot;Min1&quot;</span><span class="p">,</span> <span class="s2">&quot;Typ&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span> <span class="s2">&quot;MnWw&quot;</span><span class="p">,</span> <span class="s2">&quot;GdWo&quot;</span><span class="p">,</span> <span class="s2">&quot;MnPrv&quot;</span><span class="p">,</span> <span class="s2">&quot;GdPrv&quot;</span><span class="p">],</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The remaining features are categorical features.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">categorical_features</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+    <span class="nb">set</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+    <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">numeric_features</span><span class="p">)</span>
+    <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">ordinal_features_reg</span><span class="p">)</span>
+    <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">ordinal_features_oth</span><span class="p">)</span>
+    <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">drop_features</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">categorical_features</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>We are not doing it here but we can engineer our own features too.</p></li>
+<li><p>Would price per square foot be a good feature to add in here?</p></li>
+</ul>
+</section>
+<section id="applying-feature-transformations">
+<h3>Applying feature transformations<a class="headerlink" href="#applying-feature-transformations" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Since we have mixed feature types, let’s use <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> to apply different transformations on different features types.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">make_column_transformer</span>
+
+<span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">),</span> <span class="n">StandardScaler</span><span class="p">())</span>
+<span class="n">ordinal_transformer_reg</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
+    <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;most_frequent&quot;</span><span class="p">),</span>
+    <span class="n">OrdinalEncoder</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="n">ordering_ordinal_reg</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">ordinal_transformer_oth</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
+    <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;most_frequent&quot;</span><span class="p">),</span>
+    <span class="n">OrdinalEncoder</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="n">ordering_ordinal_oth</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
+    <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;missing&quot;</span><span class="p">),</span>
+    <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">make_column_transformer</span><span class="p">(</span>
+    <span class="p">(</span><span class="s2">&quot;drop&quot;</span><span class="p">,</span> <span class="n">drop_features</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">numeric_features</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">ordinal_transformer_reg</span><span class="p">,</span> <span class="n">ordinal_features_reg</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">ordinal_transformer_oth</span><span class="p">,</span> <span class="n">ordinal_features_oth</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="examining-the-preprocessed-data">
+<h3>Examining the preprocessed data<a class="headerlink" href="#examining-the-preprocessed-data" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>  <span class="c1"># Calling fit to examine all the transformers.</span>
+<span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ohe_columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+    <span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;pipeline-4&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;onehotencoder&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">new_columns</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">numeric_features</span> <span class="o">+</span> <span class="n">ordinal_features_reg</span> <span class="o">+</span> <span class="n">ordinal_features_oth</span> <span class="o">+</span> <span class="n">ohe_columns</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_enc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">new_columns</span>
+<span class="p">)</span>
+<span class="n">X_train_enc</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_enc</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We went from 80 features to 263 features!!</p>
+</section>
+<section id="other-possible-preprocessing">
+<h3>Other possible preprocessing?<a class="headerlink" href="#other-possible-preprocessing" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>There is a lot of room for improvement …</p></li>
+<li><p>We’re just using <code class="docutils literal notranslate"><span class="pre">SimpleImputer</span></code>.</p>
+<ul>
+<li><p>In reality we’d want to go through this more carefully.</p></li>
+<li><p>We may also want to drop some columns that are almost entirely missing.</p></li>
+</ul>
+</li>
+<li><p>We could also check for outliers, and do other exploratory data analysis (EDA).</p></li>
+<li><p>But for now this is good enough …</p></li>
+</ul>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="model-building">
+<h2>Model building<a class="headerlink" href="#model-building" title="Permalink to this heading">#</a></h2>
+<section id="dummyregressor">
+<h3><code class="docutils literal notranslate"><span class="pre">DummyRegressor</span></code><a class="headerlink" href="#dummyregressor" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dummy</span> <span class="o">=</span> <span class="n">DummyRegressor</span><span class="p">()</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cross_validate</span><span class="p">(</span><span class="n">dummy</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="let-s-try-a-linear-model-ridge">
+<h3>Let’s try a linear model: <code class="docutils literal notranslate"><span class="pre">Ridge</span></code><a class="headerlink" href="#let-s-try-a-linear-model-ridge" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Recall that we are going to use <code class="docutils literal notranslate"><span class="pre">Ridge()</span></code> instead of <code class="docutils literal notranslate"><span class="pre">LinearRegression()</span></code> in this course.</p></li>
+<li><p>Similar to linear regression, ridge regression is also a linear model for regression.</p></li>
+<li><p>So the formula it uses to make predictions is the same one used for ordinary least squares.</p></li>
+<li><p>But it has a hyperparameter <code class="docutils literal notranslate"><span class="pre">alpha</span></code> which controls the fundamental tradeoff.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">())</span>
+<span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_preds</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">lr_preds</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_preds</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">lr_preds</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Smallest coefficient: &quot;</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;ridge&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Largest coefficient:&quot;</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;ridge&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s carry out cross-validation with <code class="docutils literal notranslate"><span class="pre">Ridge</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">())</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cross_validate</span><span class="p">(</span><span class="n">lr_pipe</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Quite a bit of variation in the test scores.</p></li>
+<li><p>Performing poorly in fold 8. Not sure why.</p>
+<ul>
+<li><p>Probably it contains the outliers in the data which we kind of ignored.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="feature-names-of-transformed-data">
+<h3>Feature names of transformed data<a class="headerlink" href="#feature-names-of-transformed-data" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>If you want to get the column names of newly created columns, you need to fit the transformer.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ohe_columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+    <span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;pipeline-4&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;onehotencoder&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">ohe_columns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_columns</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">numeric_features</span> <span class="o">+</span> <span class="n">ordinal_features_reg</span> <span class="o">+</span> <span class="n">ordinal_features_oth</span> <span class="o">+</span> <span class="n">ohe_columns</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tuning-alpha-hyperparameter-of-ridge">
+<h3>Tuning <code class="docutils literal notranslate"><span class="pre">alpha</span></code> hyperparameter of <code class="docutils literal notranslate"><span class="pre">Ridge</span></code><a class="headerlink" href="#tuning-alpha-hyperparameter-of-ridge" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Recall that <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> has a hyperparameter <code class="docutils literal notranslate"><span class="pre">alpha</span></code> that controls the fundamental tradeoff.</p></li>
+<li><p>This is like <code class="docutils literal notranslate"><span class="pre">C</span></code> in <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> but, annoyingly, <code class="docutils literal notranslate"><span class="pre">alpha</span></code> is the inverse of <code class="docutils literal notranslate"><span class="pre">C</span></code>.</p></li>
+<li><p>That is, large <code class="docutils literal notranslate"><span class="pre">C</span></code> is like small <code class="docutils literal notranslate"><span class="pre">alpha</span></code> and vice versa.</p></li>
+<li><p>Smaller <code class="docutils literal notranslate"><span class="pre">alpha</span></code>: lower training error (overfitting)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ridge__alpha&quot;</span><span class="p">:</span> <span class="mf">10.0</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)}</span>
+
+<span class="n">pipe_ridge</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">())</span>
+
+<span class="n">search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">pipe_ridge</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">train_scores</span> <span class="o">=</span> <span class="n">search</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">[</span><span class="s2">&quot;mean_train_score&quot;</span><span class="p">]</span>
+<span class="n">cv_scores</span> <span class="o">=</span> <span class="n">search</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">[</span><span class="s2">&quot;mean_test_score&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">param_grid</span><span class="p">[</span><span class="s2">&quot;ridge__alpha&quot;</span><span class="p">],</span> <span class="n">train_scores</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">param_grid</span><span class="p">[</span><span class="s2">&quot;ridge__alpha&quot;</span><span class="p">],</span> <span class="n">cv_scores</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;cv&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;alpha&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;score&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_alpha</span> <span class="o">=</span> <span class="n">search</span><span class="o">.</span><span class="n">best_params_</span>
+<span class="n">best_alpha</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search</span><span class="o">.</span><span class="n">best_score_</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>It seems alpha=100 is the best choice here.</p></li>
+</ul>
+<ul class="simple">
+<li><p>General intuition: larger <code class="docutils literal notranslate"><span class="pre">alpha</span></code> leads to smaller coefficients.</p></li>
+<li><p>Smaller coefficients mean the predictions are less sensitive to changes in the data. Hence less chance of overfitting.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_bigalpha</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1000</span><span class="p">))</span>
+<span class="n">pipe_bigalpha</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">bigalpha_coeffs</span> <span class="o">=</span> <span class="n">pipe_bigalpha</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;ridge&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">bigalpha_coeffs</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">new_columns</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Coefficients&quot;</span><span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Coefficients&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Smaller <code class="docutils literal notranslate"><span class="pre">alpha</span></code> leads to bigger coefficients.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_smallalpha</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">))</span>
+<span class="n">pipe_smallalpha</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">smallalpha_coeffs</span> <span class="o">=</span> <span class="n">pipe_smallalpha</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;ridge&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">smallalpha_coeffs</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">new_columns</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Coefficients&quot;</span><span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Coefficients&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With the best alpha found by the grid search, the coefficients are somewhere in between.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_bestalpha</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
+    <span class="n">preprocessor</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">search</span><span class="o">.</span><span class="n">best_params_</span><span class="p">[</span><span class="s2">&quot;ridge__alpha&quot;</span><span class="p">])</span>
+<span class="p">)</span>
+<span class="n">pipe_bestalpha</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">bestalpha_coeffs</span> <span class="o">=</span> <span class="n">pipe_bestalpha</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;ridge&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">bestalpha_coeffs</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">new_columns</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Coefficients&quot;</span><span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Coefficients&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To summarize:</p>
+<ul class="simple">
+<li><p>Higher values of <code class="docutils literal notranslate"><span class="pre">alpha</span></code> means a more restricted model.</p></li>
+<li><p>The values of coefficients are likely to be smaller for higher values of <code class="docutils literal notranslate"><span class="pre">alpha</span></code> compared to lower values of alpha.</p></li>
+</ul>
+</section>
+<section id="ridgecv">
+<h3><code class="docutils literal notranslate"><span class="pre">RidgeCV</span></code><a class="headerlink" href="#ridgecv" title="Permalink to this heading">#</a></h3>
+<p>Because it’s so common to want to tune <code class="docutils literal notranslate"><span class="pre">alpha</span></code> with <code class="docutils literal notranslate"><span class="pre">Ridge</span></code>, sklearn provides a class called <code class="docutils literal notranslate"><span class="pre">RidgeCV</span></code>, which automatically tunes <code class="docutils literal notranslate"><span class="pre">alpha</span></code> based on cross-validation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alphas</span> <span class="o">=</span> <span class="mf">10.0</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ridgecv_pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">RidgeCV</span><span class="p">(</span><span class="n">alphas</span><span class="o">=</span><span class="n">alphas</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">ridgecv_pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_alpha</span> <span class="o">=</span> <span class="n">ridgecv_pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;ridgecv&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">alpha_</span>
+
+<span class="n">best_alpha</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+<p>Let’s examine the tuned model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ridge_tuned</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">best_alpha</span><span class="p">))</span>
+<span class="n">ridge_tuned</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">ridge_preds</span> <span class="o">=</span> <span class="n">ridge_tuned</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">ridge_preds</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;coefficients&quot;</span><span class="p">:</span> <span class="n">ridge_tuned</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;ridge&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">new_columns</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;coefficients&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So according to this model:</p>
+<ul class="simple">
+<li><p>As <code class="docutils literal notranslate"><span class="pre">OverallQual</span></code> feature gets bigger the housing price will get bigger.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Neighborhood_Edwards</span></code> is associated with reducing the housing price.</p>
+<ul>
+<li><p>We’ll talk more about interpretation of different kinds of features next week.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ridge_preds</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">ridge_preds</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+</section>
+</section>
+<section id="questions-for-you">
+<h2>❓❓ Questions for you<a class="headerlink" href="#questions-for-you" title="Permalink to this heading">#</a></h2>
+<section id="iclicker-exercise-10-1">
+<h3>iClicker Exercise 10.1<a class="headerlink" href="#iclicker-exercise-10-1" title="Permalink to this heading">#</a></h3>
+<p><strong>iClicker cloud join link: https://join.iclicker.com/SNBF</strong></p>
+<p><strong>Select all of the following statements which are TRUE.</strong></p>
+<ul class="simple">
+<li><p>(A) Price per square foot would be a good feature to add in our <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p></li>
+<li><p>(B) The <code class="docutils literal notranslate"><span class="pre">alpha</span></code> hyperparameter of <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> has similar interpretation of <code class="docutils literal notranslate"><span class="pre">C</span></code> hyperparameter of <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code>; higher <code class="docutils literal notranslate"><span class="pre">alpha</span></code> means more complex model.</p></li>
+<li><p>(C) In <code class="docutils literal notranslate"><span class="pre">Ridge</span></code>, smaller alpha means bigger coefficients whereas bigger alpha means smaller coefficients.</p></li>
+</ul>
+<p>Can we use the metrics we looked at in the previous lecture for this problem? Why or why not?</p>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="regression-scoring-functions">
+<h2>Regression scoring functions<a class="headerlink" href="#regression-scoring-functions" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>We aren’t doing classification anymore, so we can’t just check for equality:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ridge_tuned</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span> <span class="o">==</span> <span class="n">y_train</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ridge_tuned</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We need a score that reflects how right/wrong each prediction is.</p>
+<p>There are a number of popular scoring functions for regression. We are going to look at some common metrics:</p>
+<ul class="simple">
+<li><p>mean squared error (MSE)</p></li>
+<li><p><span class="math notranslate nohighlight">\(R^2\)</span></p></li>
+<li><p>root mean squared error (RMSE)</p></li>
+<li><p>MAPE</p></li>
+</ul>
+<p>See <a class="reference external" href="https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics">sklearn documentation</a> for more details.</p>
+<section id="mean-squared-error-mse">
+<h3>Mean squared error (MSE)<a class="headerlink" href="#mean-squared-error-mse" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>A common metric is mean squared error:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preds</span> <span class="o">=</span> <span class="n">ridge_tuned</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y_train</span> <span class="o">-</span> <span class="n">preds</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Perfect predictions would have MSE=0.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y_train</span> <span class="o">-</span> <span class="n">y_train</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is also implemented in sklearn:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+
+<span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>MSE looks huge and unreasonable. There is an error of ~$1 Billion!</p></li>
+<li><p>Is this score good or bad?</p></li>
+</ul>
+<ul class="simple">
+<li><p>Unlike classification, with regression <strong>our target has units</strong>.</p></li>
+<li><p>The target is in dollars, the mean squared error is in <span class="math notranslate nohighlight">\(dollars^2\)</span></p></li>
+<li><p>The score also depends on the scale of the targets.</p></li>
+<li><p>If we were working in cents instead of dollars, our MSE would be <span class="math notranslate nohighlight">\(10,000 \times (100^2\)</span>) higher!</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y_train</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">-</span> <span class="n">preds</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="root-mean-squared-error-or-rmse">
+<h3>Root mean squared error or RMSE<a class="headerlink" href="#root-mean-squared-error-or-rmse" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The MSE above is in <span class="math notranslate nohighlight">\(dollars^2\)</span>.</p></li>
+<li><p>A more relatable metric would be the root mean squared error, or RMSE</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">ridge_tuned</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Error of $30,000 makes more sense.</p></li>
+<li><p>Let’s dig deeper.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">ridge_tuned</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y_train</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="s2">&quot;--k&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;true price&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;predicted price&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Here we can see a few cases where our prediction is way off.</p></li>
+<li><p>Is there something weird about those houses, perhaps? Outliers?</p></li>
+<li><p>Under the line means we’re under-predicting, over the line means we’re over-predicting.</p></li>
+</ul>
+</section>
+<section id="r-2-not-in-detail">
+<h3><span class="math notranslate nohighlight">\(R^2\)</span> (not in detail)<a class="headerlink" href="#r-2-not-in-detail" title="Permalink to this heading">#</a></h3>
+<p>A common score is the <span class="math notranslate nohighlight">\(R^2\)</span></p>
+<ul class="simple">
+<li><p>This is the score that <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> uses by default when you call score()</p></li>
+<li><p>You can <a class="reference external" href="https://en.wikipedia.org/wiki/Coefficient_of_determination">read about it</a> if interested.</p></li>
+<li><p><span class="math notranslate nohighlight">\(R^2\)</span> measures the proportion of variability in <span class="math notranslate nohighlight">\(y\)</span> that can be explained using <span class="math notranslate nohighlight">\(X\)</span>.</p></li>
+<li><p>Independent of the scale of <span class="math notranslate nohighlight">\(y\)</span>. So the max is 1.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[R^2(y, \hat{y}) = 1 - \frac{\sum_{i=1}^n (y_i - \hat{y_i})^2}{\sum_{i=1}^n (y_i - \bar{y})^2}\]</div>
+<ul class="simple">
+<li><p>The denominator measures the total variance in <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
+<li><p>The amount of variability that is left unexplained after performing regression.</p></li>
+</ul>
+<p>Key points:</p>
+<ul class="simple">
+<li><p>The maximum is 1 for perfect predictions</p></li>
+<li><p>Negative values are very bad: “worse than DummyRegressor” (very bad)</p></li>
+</ul>
+<p>(Optional) Warning: MSE is “reversible” but <span class="math notranslate nohighlight">\(R^2\)</span> is not:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r2_score</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>When you call <code class="docutils literal notranslate"><span class="pre">fit</span></code> it minimizes MSE / maximizes <span class="math notranslate nohighlight">\(R^2\)</span> (or something like that) by default.</p></li>
+<li><p>Just like in classification, this isn’t always what you want!!</p></li>
+</ul>
+</section>
+<section id="mape">
+<h3>MAPE<a class="headerlink" href="#mape" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>We got an RMSE of ~$30,000 before.</p></li>
+</ul>
+<p>Question: Is an error of $30,000 acceptable?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">ridge_tuned</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>For a house worth $600k, it seems reasonable! That’s 5% error.</p></li>
+<li><p>For a house worth $60k, that is terrible. It’s 50% error.</p></li>
+</ul>
+<p>We have both of these cases in our dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>How about looking at percent error?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_train</span> <span class="o">=</span> <span class="n">ridge_tuned</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">percent_errors</span> <span class="o">=</span> <span class="p">(</span><span class="n">pred_train</span> <span class="o">-</span> <span class="n">y_train</span><span class="p">)</span> <span class="o">/</span> <span class="n">y_train</span> <span class="o">*</span> <span class="mf">100.0</span>
+<span class="n">percent_errors</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>These are both positive (predict too high) and negative (predict too low).</p>
+<p>We can look at the absolute percent error:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">percent_errors</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And, like MSE, we can take the average over examples. This is called mean absolute percent error (MAPE).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_mape</span><span class="p">(</span><span class="n">true</span><span class="p">,</span> <span class="n">pred</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">pred</span> <span class="o">-</span> <span class="n">true</span><span class="p">)</span> <span class="o">/</span> <span class="n">true</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_mape</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">pred_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s use <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> to calculate MAPE.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_percentage_error</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">pred_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Ok, this is quite interpretable.</p></li>
+<li><p>On average, we have around 10% error.</p></li>
+</ul>
+</section>
+<section id="transforming-the-targets">
+<h3>Transforming the targets<a class="headerlink" href="#transforming-the-targets" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>When you have prices or count data, the target values are skewed.</p></li>
+<li><p>Let’s look at our target column.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>A common trick in such cases is applying a log transform on the target column to make it more normal and less skewed.</p></li>
+<li><p>That is, transform <span class="math notranslate nohighlight">\(y\rightarrow \log(y)\)</span>.</p></li>
+<li><p>Linear regression will usually work better on something that looks more normal.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">y_train</span><span class="p">),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can incorporate this in our pipeline using <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">TransformedTargetRegressor</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ttr</span> <span class="o">=</span> <span class="n">TransformedTargetRegressor</span><span class="p">(</span>
+    <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">best_alpha</span><span class="p">),</span> <span class="n">func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">,</span> <span class="n">inverse_func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">expm1</span>
+<span class="p">)</span> <span class="c1"># transformer for log transforming the target</span>
+<span class="n">ttr_pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">ttr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ttr_pipe</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Why can’t we incorporate preprocessing targets in our column transformer?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ttr_pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">);</span> <span class="c1"># y_train automatically transformed</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ttr_pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>  <span class="c1"># predictions automatically un-transformed</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">ttr_pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">ttr_pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We reduced MAPE from ~10% to ~8% with this trick!</p>
+<ul class="simple">
+<li><p>Does <code class="docutils literal notranslate"><span class="pre">.fit()</span></code> know we care about MAPE?</p></li>
+<li><p>No, it doesn’t. Why are we minimizing MSE (or something similar) if we care about MAPE??</p></li>
+<li><p>When minimizing MSE, the expensive houses will dominate because they have the biggest error.</p></li>
+</ul>
+</section>
+<section id="different-scoring-functions-with-cross-validate">
+<h3>Different scoring functions with <code class="docutils literal notranslate"><span class="pre">cross_validate</span></code><a class="headerlink" href="#different-scoring-functions-with-cross-validate" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Let’s try using MSE instead of the default <span class="math notranslate nohighlight">\(R^2\)</span> score.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">cross_validate</span><span class="p">(</span>
+        <span class="n">ridge_tuned</span><span class="p">,</span>
+        <span class="n">X_train</span><span class="p">,</span>
+        <span class="n">y_train</span><span class="p">,</span>
+        <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;neg_mean_squared_error&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a scorer function that we can pass into cross-validation</span>
+<span class="n">mape_scorer</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">my_mape</span><span class="p">,</span> <span class="n">greater_is_better</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">cross_validate</span><span class="p">(</span>
+        <span class="n">ridge_tuned</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">mape_scorer</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you are finding <code class="docutils literal notranslate"><span class="pre">greater_is_better=False</span></code> argument confusing, here is the documentation:</p>
+<blockquote>
+<div><p>greater_is_better(bool), default=True
+Whether score_func is a score function (default), meaning high is good, or a loss function, meaning low is good. In the latter case, the scorer object will sign-flip the outcome of the score_func.</p>
+</div></blockquote>
+<p>Since our custom scorer <code class="docutils literal notranslate"><span class="pre">mape</span></code> gives an error and not a score, I’m passing <code class="docutils literal notranslate"><span class="pre">False</span></code> to it and it’ll sign flip so that we can interpret bigger numbers as better performance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ?make_scorer</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scoring</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;r2&quot;</span><span class="p">:</span> <span class="s2">&quot;r2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mape_scorer&quot;</span><span class="p">:</span> <span class="n">mape_scorer</span><span class="p">,</span> <span class="c1"># just for demonstration for a custom scorer</span>
+    <span class="s2">&quot;sklearn MAPE&quot;</span><span class="p">:</span> <span class="s2">&quot;neg_mean_absolute_percentage_error&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;neg_root_mean_square_error&quot;</span><span class="p">:</span> <span class="s2">&quot;neg_root_mean_squared_error&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;neg_mean_squared_error&quot;</span><span class="p">:</span> <span class="s2">&quot;neg_mean_squared_error&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">cross_validate</span><span class="p">(</span>
+        <span class="n">ridge_tuned</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">scoring</span>
+    <span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Are we getting the same <code class="docutils literal notranslate"><span class="pre">alpha</span></code> with mape?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ridge__alpha&quot;</span><span class="p">:</span> <span class="mf">10.0</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">)}</span>
+
+<span class="n">pipe_ridge</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">())</span>
+
+<span class="n">search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span>
+    <span class="n">pipe_ridge</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">mape_scorer</span>
+<span class="p">)</span>
+<span class="n">search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best hyperparameter values: &quot;</span><span class="p">,</span> <span class="n">search</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best score: </span><span class="si">%0.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">search</span><span class="o">.</span><span class="n">best_score_</span><span class="p">))</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">search</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">)[</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;mean_train_score&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mean_test_score&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;param_ridge__alpha&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mean_fit_time&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;rank_test_score&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;rank_test_score&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-multiple-metrics-in-gridsearchcv-or-randomizedsearchcv">
+<h3>Using multiple metrics in <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> or <code class="docutils literal notranslate"><span class="pre">RandomizedSearchCV</span></code><a class="headerlink" href="#using-multiple-metrics-in-gridsearchcv-or-randomizedsearchcv" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>We could use multiple metrics with <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> or <code class="docutils literal notranslate"><span class="pre">RandomizedSearchCV</span></code>.</p></li>
+<li><p>But if you do so, you need to set <code class="docutils literal notranslate"><span class="pre">refit</span></code> to the metric (string) for which the <code class="docutils literal notranslate"><span class="pre">best_params_</span></code> will be found and used to build the <code class="docutils literal notranslate"><span class="pre">best_estimator_</span></code> on the whole dataset.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search_multi</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span>
+    <span class="n">pipe_ridge</span><span class="p">,</span>
+    <span class="n">param_grid</span><span class="p">,</span>
+    <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">scoring</span><span class="o">=</span><span class="n">scoring</span><span class="p">,</span>
+    <span class="n">refit</span><span class="o">=</span><span class="s2">&quot;sklearn MAPE&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">search_multi</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best hyperparameter values: &quot;</span><span class="p">,</span> <span class="n">search_multi</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best score: </span><span class="si">%0.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">search_multi</span><span class="o">.</span><span class="n">best_score_</span><span class="p">))</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">search_multi</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;rank_test_mape_scorer&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What’s the test score?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search_multi</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_mape</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">ridge_tuned</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-regression-metrics-with-scikit-learn">
+<h3>Using regression metrics with <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code><a class="headerlink" href="#using-regression-metrics-with-scikit-learn" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>In <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>, you will notice that it has negative version of the metrics above (e.g., <code class="docutils literal notranslate"><span class="pre">neg_mean_squared_error</span></code>, <code class="docutils literal notranslate"><span class="pre">neg_root_mean_squared_error</span></code>).</p></li>
+<li><p>The reason for this is that scores return a value to maximize, the higher the better.</p></li>
+</ul>
+</section>
+</section>
+<section id="id2">
+<h2>❓❓ Questions for you<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<section id="iclicker-exercise-10-2">
+<h3>iClicker Exercise 10.2<a class="headerlink" href="#iclicker-exercise-10-2" title="Permalink to this heading">#</a></h3>
+<p><strong>iClicker cloud join link: https://join.iclicker.com/SNBF</strong></p>
+<p><strong>Select all of the following statements which are TRUE.</strong></p>
+<ul class="simple">
+<li><p>(A) We can use still use precision and recall for regression problems but now we have other metrics we can use as well.</p></li>
+<li><p>(B) In <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> for regression problems, using <code class="docutils literal notranslate"><span class="pre">r2_score()</span></code> and <code class="docutils literal notranslate"><span class="pre">.score()</span></code> (with default values) will produce the same results.</p></li>
+<li><p>(C) RMSE is always going to be non-negative.</p></li>
+<li><p>(D) MSE does not directly provide the information about whether the model is underpredicting or overpredicting.</p></li>
+<li><p>(E) We can pass multiple scoring metrics to <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> or <code class="docutils literal notranslate"><span class="pre">RandomizedSearchCV</span></code> for regression as well as classification problems.</p></li>
+</ul>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="what-did-we-learn-today">
+<h2>What did we learn today?<a class="headerlink" href="#what-did-we-learn-today" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>House prices dataset target is price, which is numeric -&gt; regression rather than classification</p></li>
+<li><p>There are corresponding versions of all the tools we used:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">DummyClassifier</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">DummyRegressor</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Ridge</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Ridge</span></code> hyperparameter <code class="docutils literal notranslate"><span class="pre">alpha</span></code> is like <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> hyperparameter <code class="docutils literal notranslate"><span class="pre">C</span></code>, but opposite meaning</p></li>
+<li><p>We’ll avoid <code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code> in this course.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Scoring metrics</p></li>
+<li><p><span class="math notranslate nohighlight">\(R^2\)</span> is the default .score(), it is unitless, 0 is bad, 1 is best</p></li>
+<li><p>MSE (mean squared error) is in units of target squared, hard to interpret; 0 is best</p></li>
+<li><p>RMSE (root mean squared error) is in the same units as the target; 0 is best</p></li>
+<li><p>MAPE (mean absolute percent error) is unitless; 0 is best, 1 is bad</p></li>
+</ul>
+<p><img alt="" src="../_images/eva-seeyou.png" /></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "cpsc330"
+        },
+        kernelOptions: {
+            name: "cpsc330",
+            path: "./lectures"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'cpsc330'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="09_classification-metrics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lecture 9: Classification metrics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="class_demos/03_class-demo.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lecture 3: Class demo</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#announcements">Announcements</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes">Learning outcomes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#more-comments-on-tackling-class-imbalance">More comments on tackling class imbalance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-video">Dataset [video]</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-separate-x-and-y">Let’s separate <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eda">EDA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-profiler"><code class="docutils literal notranslate"><span class="pre">pandas_profiler</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-types">Feature types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Feature types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-feature-transformations">Applying feature transformations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-the-preprocessed-data">Examining the preprocessed data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-possible-preprocessing">Other possible preprocessing?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-building">Model building</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dummyregressor"><code class="docutils literal notranslate"><span class="pre">DummyRegressor</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-try-a-linear-model-ridge">Let’s try a linear model: <code class="docutils literal notranslate"><span class="pre">Ridge</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-names-of-transformed-data">Feature names of transformed data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuning-alpha-hyperparameter-of-ridge">Tuning <code class="docutils literal notranslate"><span class="pre">alpha</span></code> hyperparameter of <code class="docutils literal notranslate"><span class="pre">Ridge</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ridgecv"><code class="docutils literal notranslate"><span class="pre">RidgeCV</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-for-you">❓❓ Questions for you</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-10-1">iClicker Exercise 10.1</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-scoring-functions">Regression scoring functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-squared-error-mse">Mean squared error (MSE)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#root-mean-squared-error-or-rmse">Root mean squared error or RMSE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-2-not-in-detail"><span class="math notranslate nohighlight">\(R^2\)</span> (not in detail)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mape">MAPE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transforming-the-targets">Transforming the targets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#different-scoring-functions-with-cross-validate">Different scoring functions with <code class="docutils literal notranslate"><span class="pre">cross_validate</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-multiple-metrics-in-gridsearchcv-or-randomizedsearchcv">Using multiple metrics in <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> or <code class="docutils literal notranslate"><span class="pre">RandomizedSearchCV</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-regression-metrics-with-scikit-learn">Using regression metrics with <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">❓❓ Questions for you</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-10-2">iClicker Exercise 10.2</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-did-we-learn-today">What did we learn today?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Varada Kolhatkar
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
