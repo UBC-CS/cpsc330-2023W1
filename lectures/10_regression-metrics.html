@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/10_regression-metrics';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Lecture 3: Class demo" href="class_demos/03_class-demo.html" />
+    <link rel="next" title="Lecture 11: Ensembles" href="11_ensembles.html" />
     <link rel="prev" title="Lecture 9: Classification metrics" href="09_classification-metrics.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -168,6 +168,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="08_hyperparameter-optimization.html">Lecture 8: Hyperparameter Optimization and Optimization Bias</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_classification-metrics.html">Lecture 9: Classification metrics</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 10: Regression metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_ensembles.html">Lecture 11: Ensembles</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -1039,451 +1040,10 @@ memory usage: 841.8+ KB
 <p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">pandas-profiling</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)),</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">10</span><span class="p">))})</span>
-<span class="n">profile</span> <span class="o">=</span> <span class="n">ProfileReport</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Profiling Report&quot;</span><span class="p">)</span>
-<span class="n">profile</span><span class="o">.</span><span class="n">to_widgets</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)),</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">10</span><span class="p">))})</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">ProfileReport</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Profiling Report&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">profile</span><span class="o">.</span><span class="n">to_widgets</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from pandas_profiling import ProfileReport</span>
 
-<span class="ne">NameError</span>: name &#39;ProfileReport&#39; is not defined
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">ydata_profiling</span> <span class="kn">import</span> <span class="n">ProfileReport</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">profile</span> <span class="o">=</span> <span class="n">ProfileReport</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Profiling Report&quot;</span><span class="p">)</span>
-<span class="n">profile</span><span class="o">.</span><span class="n">to_widgets</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "0b1bae942ef54bf28081015adffc971c", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unexpected exception formatting exception. Falling back to standard exception
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/interactiveshell.py&quot;, line 3526, in run_code
-    exec(code_obj, self.user_global_ns, self.user_ns)
-  File &quot;/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_10768/2135232660.py&quot;, line 2, in &lt;module&gt;
-    profile.to_widgets()
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/profile_report.py&quot;, line 516, in to_widgets
-    display(self.widgets)
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/profile_report.py&quot;, line 289, in widgets
-    isinstance(self.description_set.table[&quot;n&quot;], list)
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/profile_report.py&quot;, line 253, in description_set
-    self._description_set = describe_df(
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/model/describe.py&quot;, line 130, in describe
-    scatter_matrix[x][y] = progress(
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/utils/progress_bar.py&quot;, line 11, in inner
-    ret = fn(*args, **kwargs)
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/model/pairwise.py&quot;, line 31, in get_scatter_plot
-    return scatter_pairwise(config, df_temp[x], df_temp[y], x, y)
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/contextlib.py&quot;, line 78, in inner
-    with self._recreate_cm():
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/contextlib.py&quot;, line 135, in __enter__
-    return next(self.gen)
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/visualisation/context.py&quot;, line 83, in manage_matplotlib_context
-    deregister_matplotlib_converters()  # revert to original unit registries
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/plotting/_misc.py&quot;, line 151, in deregister
-    &lt;AxesSubplot: xlabel=&#39;B&#39;, ylabel=&#39;C&#39;&gt;,
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/plotting/_core.py&quot;, line 1947, in _get_plot_backend
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/plotting/_core.py&quot;, line 1877, in _load_backend
-ImportError: matplotlib is required for plotting when the default backend &quot;matplotlib&quot; is selected.
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/interactiveshell.py&quot;, line 2120, in showtraceback
-    stb = self.InteractiveTB.structured_traceback(
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 1435, in structured_traceback
-    return FormattedTB.structured_traceback(
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 1326, in structured_traceback
-    return VerboseTB.structured_traceback(
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 1173, in structured_traceback
-    formatted_exception = self.format_exception_as_a_whole(etype, evalue, etb, number_of_lines_of_context,
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 1088, in format_exception_as_a_whole
-    frames.append(self.format_record(record))
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 970, in format_record
-    frame_info.lines, Colors, self.has_colors, lvals
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 792, in lines
-    return self._sd.lines
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/utils.py&quot;, line 144, in cached_property_wrapper
-    value = obj.__dict__[self.func.__name__] = self.func(obj)
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/core.py&quot;, line 734, in lines
-    pieces = self.included_pieces
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/utils.py&quot;, line 144, in cached_property_wrapper
-    value = obj.__dict__[self.func.__name__] = self.func(obj)
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/core.py&quot;, line 681, in included_pieces
-    pos = scope_pieces.index(self.executing_piece)
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/utils.py&quot;, line 144, in cached_property_wrapper
-    value = obj.__dict__[self.func.__name__] = self.func(obj)
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/core.py&quot;, line 660, in executing_piece
-    return only(
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/executing/executing.py&quot;, line 190, in only
-    raise NotOneValueFound(&#39;Expected one value, found 0&#39;)
-executing.executing.NotOneValueFound: Expected one value, found 0
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>acousticness</th>
-      <th>danceability</th>
-      <th>duration_ms</th>
-      <th>energy</th>
-      <th>instrumentalness</th>
-      <th>key</th>
-      <th>liveness</th>
-      <th>loudness</th>
-      <th>mode</th>
-      <th>speechiness</th>
-      <th>tempo</th>
-      <th>time_signature</th>
-      <th>valence</th>
-      <th>target</th>
-      <th>song_title</th>
-      <th>artist</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.01020</td>
-      <td>0.833</td>
-      <td>204600</td>
-      <td>0.434</td>
-      <td>0.021900</td>
-      <td>2</td>
-      <td>0.1650</td>
-      <td>-8.795</td>
-      <td>1</td>
-      <td>0.4310</td>
-      <td>150.062</td>
-      <td>4.0</td>
-      <td>0.286</td>
-      <td>1</td>
-      <td>Mask Off</td>
-      <td>Future</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.19900</td>
-      <td>0.743</td>
-      <td>326933</td>
-      <td>0.359</td>
-      <td>0.006110</td>
-      <td>1</td>
-      <td>0.1370</td>
-      <td>-10.401</td>
-      <td>1</td>
-      <td>0.0794</td>
-      <td>160.083</td>
-      <td>4.0</td>
-      <td>0.588</td>
-      <td>1</td>
-      <td>Redbone</td>
-      <td>Childish Gambino</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.03440</td>
-      <td>0.838</td>
-      <td>185707</td>
-      <td>0.412</td>
-      <td>0.000234</td>
-      <td>2</td>
-      <td>0.1590</td>
-      <td>-7.148</td>
-      <td>1</td>
-      <td>0.2890</td>
-      <td>75.044</td>
-      <td>4.0</td>
-      <td>0.173</td>
-      <td>1</td>
-      <td>Xanny Family</td>
-      <td>Future</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.60400</td>
-      <td>0.494</td>
-      <td>199413</td>
-      <td>0.338</td>
-      <td>0.510000</td>
-      <td>5</td>
-      <td>0.0922</td>
-      <td>-15.236</td>
-      <td>1</td>
-      <td>0.0261</td>
-      <td>86.468</td>
-      <td>4.0</td>
-      <td>0.230</td>
-      <td>1</td>
-      <td>Master Of None</td>
-      <td>Beach House</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.18000</td>
-      <td>0.678</td>
-      <td>392893</td>
-      <td>0.561</td>
-      <td>0.512000</td>
-      <td>5</td>
-      <td>0.4390</td>
-      <td>-11.648</td>
-      <td>0</td>
-      <td>0.0694</td>
-      <td>174.004</td>
-      <td>4.0</td>
-      <td>0.904</td>
-      <td>1</td>
-      <td>Parallel Lines</td>
-      <td>Junior Boys</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>2012</th>
-      <td>0.00106</td>
-      <td>0.584</td>
-      <td>274404</td>
-      <td>0.932</td>
-      <td>0.002690</td>
-      <td>1</td>
-      <td>0.1290</td>
-      <td>-3.501</td>
-      <td>1</td>
-      <td>0.3330</td>
-      <td>74.976</td>
-      <td>4.0</td>
-      <td>0.211</td>
-      <td>0</td>
-      <td>Like A Bitch - Kill The Noise Remix</td>
-      <td>Kill The Noise</td>
-    </tr>
-    <tr>
-      <th>2013</th>
-      <td>0.08770</td>
-      <td>0.894</td>
-      <td>182182</td>
-      <td>0.892</td>
-      <td>0.001670</td>
-      <td>1</td>
-      <td>0.0528</td>
-      <td>-2.663</td>
-      <td>1</td>
-      <td>0.1310</td>
-      <td>110.041</td>
-      <td>4.0</td>
-      <td>0.867</td>
-      <td>0</td>
-      <td>Candy</td>
-      <td>Dillon Francis</td>
-    </tr>
-    <tr>
-      <th>2014</th>
-      <td>0.00857</td>
-      <td>0.637</td>
-      <td>207200</td>
-      <td>0.935</td>
-      <td>0.003990</td>
-      <td>0</td>
-      <td>0.2140</td>
-      <td>-2.467</td>
-      <td>1</td>
-      <td>0.1070</td>
-      <td>150.082</td>
-      <td>4.0</td>
-      <td>0.470</td>
-      <td>0</td>
-      <td>Habit - Dack Janiels &amp; Wenzday Remix</td>
-      <td>Rain Man</td>
-    </tr>
-    <tr>
-      <th>2015</th>
-      <td>0.00164</td>
-      <td>0.557</td>
-      <td>185600</td>
-      <td>0.992</td>
-      <td>0.677000</td>
-      <td>1</td>
-      <td>0.0913</td>
-      <td>-2.735</td>
-      <td>1</td>
-      <td>0.1330</td>
-      <td>150.011</td>
-      <td>4.0</td>
-      <td>0.623</td>
-      <td>0</td>
-      <td>First Contact</td>
-      <td>Twin Moons</td>
-    </tr>
-    <tr>
-      <th>2016</th>
-      <td>0.00281</td>
-      <td>0.446</td>
-      <td>204520</td>
-      <td>0.915</td>
-      <td>0.000039</td>
-      <td>9</td>
-      <td>0.2180</td>
-      <td>-6.221</td>
-      <td>1</td>
-      <td>0.1410</td>
-      <td>190.013</td>
-      <td>4.0</td>
-      <td>0.402</td>
-      <td>0</td>
-      <td>I Wanna Get Better</td>
-      <td>Bleachers</td>
-    </tr>
-  </tbody>
-</table>
-<p>2017 rows × 16 columns</p>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">ydata_profiling</span> <span class="kn">import</span> <span class="n">ProfileReport</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span> 
-
-<span class="c1"># profile = ProfileReport(data, title=&quot;Pandas Profiling Report&quot;)  # , minimal=True)</span>
-<span class="n">profile</span> <span class="o">=</span> <span class="n">ProfileReport</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Pandas Profiling Report&quot;</span><span class="p">,</span> <span class="n">minimal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">profile</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="s2">&quot;output_report.html&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "629c09268d7a481e9b6a7b0439eda6c7", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "9469433f46a24bcd80c9c7847e50dc69", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unexpected exception formatting exception. Falling back to standard exception
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/interactiveshell.py&quot;, line 3526, in run_code
-    exec(code_obj, self.user_global_ns, self.user_ns)
-  File &quot;/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_10768/3582944598.py&quot;, line 7, in &lt;module&gt;
-    profile.to_file(&quot;output_report.html&quot;)
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/profile_report.py&quot;, line 355, in to_file
-    data = self.to_html()
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/profile_report.py&quot;, line 470, in to_html
-    return self.html
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/profile_report.py&quot;, line 277, in html
-    self._html = self._render_html()
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/profile_report.py&quot;, line 385, in _render_html
-    report = self.report
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/profile_report.py&quot;, line 271, in report
-    self._report = get_report_structure(self.config, self.description_set)
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/report/structure/report.py&quot;, line 387, in get_report_structure
-    render_variables_section(config, summary),
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/report/structure/report.py&quot;, line 162, in render_variables_section
-    template_variables.update(render_map_type(config, template_variables))
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/report/structure/variables/render_real.py&quot;, line 133, in render_real
-    mini_histogram(config, *summary[&quot;histogram&quot;]),
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/contextlib.py&quot;, line 78, in inner
-    with self._recreate_cm():
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/contextlib.py&quot;, line 135, in __enter__
-    return next(self.gen)
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/ydata_profiling/visualisation/context.py&quot;, line 83, in manage_matplotlib_context
-    deregister_matplotlib_converters()  # revert to original unit registries
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/plotting/_misc.py&quot;, line 151, in deregister
-    &lt;AxesSubplot: xlabel=&#39;B&#39;, ylabel=&#39;C&#39;&gt;,
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/plotting/_core.py&quot;, line 1947, in _get_plot_backend
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/plotting/_core.py&quot;, line 1877, in _load_backend
-ImportError: matplotlib is required for plotting when the default backend &quot;matplotlib&quot; is selected.
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/interactiveshell.py&quot;, line 2120, in showtraceback
-    stb = self.InteractiveTB.structured_traceback(
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 1435, in structured_traceback
-    return FormattedTB.structured_traceback(
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 1326, in structured_traceback
-    return VerboseTB.structured_traceback(
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 1173, in structured_traceback
-    formatted_exception = self.format_exception_as_a_whole(etype, evalue, etb, number_of_lines_of_context,
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 1088, in format_exception_as_a_whole
-    frames.append(self.format_record(record))
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 970, in format_record
-    frame_info.lines, Colors, self.has_colors, lvals
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/ultratb.py&quot;, line 792, in lines
-    return self._sd.lines
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/utils.py&quot;, line 144, in cached_property_wrapper
-    value = obj.__dict__[self.func.__name__] = self.func(obj)
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/core.py&quot;, line 734, in lines
-    pieces = self.included_pieces
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/utils.py&quot;, line 144, in cached_property_wrapper
-    value = obj.__dict__[self.func.__name__] = self.func(obj)
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/core.py&quot;, line 681, in included_pieces
-    pos = scope_pieces.index(self.executing_piece)
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/utils.py&quot;, line 144, in cached_property_wrapper
-    value = obj.__dict__[self.func.__name__] = self.func(obj)
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/stack_data/core.py&quot;, line 660, in executing_piece
-    return only(
-  File &quot;/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/executing/executing.py&quot;, line 190, in only
-    raise NotOneValueFound(&#39;Expected one value, found 0&#39;)
-executing.executing.NotOneValueFound: Expected one value, found 0
+<span class="c1"># profile = ProfileReport(train_df, title=&quot;Pandas Profiling Report&quot;)  # , minimal=True)</span>
+<span class="c1"># profile.to_notebook_iframe()</span>
 </pre></div>
 </div>
 </div>
@@ -1522,11 +1082,22 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Id&#39;, &#39;MSSubClass&#39;, &#39;LotFrontage&#39;, &#39;LotArea&#39;, &#39;OverallQual&#39;, &#39;OverallCond&#39;, &#39;YearBuilt&#39;, &#39;YearRemodAdd&#39;, &#39;MasVnrArea&#39;, &#39;BsmtFinSF1&#39;, &#39;BsmtFinSF2&#39;, &#39;BsmtUnfSF&#39;, &#39;TotalBsmtSF&#39;, &#39;1stFlrSF&#39;, &#39;2ndFlrSF&#39;, &#39;LowQualFinSF&#39;, &#39;GrLivArea&#39;, &#39;BsmtFullBath&#39;, &#39;BsmtHalfBath&#39;, &#39;FullBath&#39;, &#39;HalfBath&#39;, &#39;BedroomAbvGr&#39;, &#39;KitchenAbvGr&#39;, &#39;TotRmsAbvGrd&#39;, &#39;Fireplaces&#39;, &#39;GarageYrBlt&#39;, &#39;GarageCars&#39;, &#39;GarageArea&#39;, &#39;WoodDeckSF&#39;, &#39;OpenPorchSF&#39;, &#39;EnclosedPorch&#39;, &#39;3SsnPorch&#39;, &#39;ScreenPorch&#39;, &#39;PoolArea&#39;, &#39;MiscVal&#39;, &#39;MoSold&#39;, &#39;YrSold&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <p>Not all numeric looking columns are necessarily numeric.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;MSSubClass&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 20,  50,  30,  60, 160,  85,  90, 120, 180,  80,  70,  75, 190,
+        45,  40])
 </pre></div>
 </div>
 </div>
@@ -1554,6 +1125,11 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;MoSold&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>  <span class="c1"># Month Sold</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1,  7,  3,  5,  8, 10,  6,  9, 12,  2,  4, 11])
 </pre></div>
 </div>
 </div>
@@ -1611,6 +1187,11 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;MSSubClass&#39;, &#39;MoSold&#39;}
+</pre></div>
+</div>
+</div>
 </div>
 <p>We’ll treat the above numeric-looking features as categorical features.</p>
 <ul class="simple">
@@ -1650,6 +1231,20 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 <span class="p">]</span>  <span class="c1"># if N/A it will just impute something, per below</span>
 <span class="n">ordering_ordinal_reg</span> <span class="o">=</span> <span class="p">[</span><span class="n">ordering</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">ordinal_features_reg</span><span class="p">)</span>
 <span class="n">ordering_ordinal_reg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+ [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+ [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+ [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+ [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+ [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+ [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+ [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+ [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+ [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;]]
 </pre></div>
 </div>
 </div>
@@ -1694,6 +1289,40 @@ executing.executing.NotOneValueFound: Expected one value, found 0
     <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">drop_features</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="n">categorical_features</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Condition2&#39;,
+ &#39;GarageFinish&#39;,
+ &#39;Exterior2nd&#39;,
+ &#39;SaleType&#39;,
+ &#39;Neighborhood&#39;,
+ &#39;Alley&#39;,
+ &#39;Condition1&#39;,
+ &#39;Heating&#39;,
+ &#39;MSZoning&#39;,
+ &#39;BldgType&#39;,
+ &#39;Utilities&#39;,
+ &#39;HouseStyle&#39;,
+ &#39;GarageType&#39;,
+ &#39;Foundation&#39;,
+ &#39;PavedDrive&#39;,
+ &#39;RoofMatl&#39;,
+ &#39;Electrical&#39;,
+ &#39;SaleCondition&#39;,
+ &#39;MoSold&#39;,
+ &#39;MasVnrType&#39;,
+ &#39;Exterior1st&#39;,
+ &#39;CentralAir&#39;,
+ &#39;LotShape&#39;,
+ &#39;LandContour&#39;,
+ &#39;MiscFeature&#39;,
+ &#39;LotConfig&#39;,
+ &#39;Street&#39;,
+ &#39;MSSubClass&#39;,
+ &#39;LandSlope&#39;,
+ &#39;RoofStyle&#39;]
 </pre></div>
 </div>
 </div>
@@ -1749,6 +1378,40 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;drop&#39;: &#39;drop&#39;,
+ &#39;pipeline-1&#39;: Pipeline(steps=[(&#39;simpleimputer&#39;, SimpleImputer(strategy=&#39;median&#39;)),
+                 (&#39;standardscaler&#39;, StandardScaler())]),
+ &#39;pipeline-2&#39;: Pipeline(steps=[(&#39;simpleimputer&#39;, SimpleImputer(strategy=&#39;most_frequent&#39;)),
+                 (&#39;ordinalencoder&#39;,
+                  OrdinalEncoder(categories=[[&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+                                             [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+                                             [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+                                             [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+                                             [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+                                             [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+                                             [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+                                             [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+                                             [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+                                             [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;]]))]),
+ &#39;pipeline-3&#39;: Pipeline(steps=[(&#39;simpleimputer&#39;, SimpleImputer(strategy=&#39;most_frequent&#39;)),
+                 (&#39;ordinalencoder&#39;,
+                  OrdinalEncoder(categories=[[&#39;NA&#39;, &#39;No&#39;, &#39;Mn&#39;, &#39;Av&#39;, &#39;Gd&#39;],
+                                             [&#39;NA&#39;, &#39;Unf&#39;, &#39;LwQ&#39;, &#39;Rec&#39;, &#39;BLQ&#39;,
+                                              &#39;ALQ&#39;, &#39;GLQ&#39;],
+                                             [&#39;NA&#39;, &#39;Unf&#39;, &#39;LwQ&#39;, &#39;Rec&#39;, &#39;BLQ&#39;,
+                                              &#39;ALQ&#39;, &#39;GLQ&#39;],
+                                             [&#39;Sal&#39;, &#39;Sev&#39;, &#39;Maj2&#39;, &#39;Maj1&#39;,
+                                              &#39;Mod&#39;, &#39;Min2&#39;, &#39;Min1&#39;, &#39;Typ&#39;],
+                                             [&#39;NA&#39;, &#39;MnWw&#39;, &#39;GdWo&#39;, &#39;MnPrv&#39;,
+                                              &#39;GdPrv&#39;]]))]),
+ &#39;pipeline-4&#39;: Pipeline(steps=[(&#39;simpleimputer&#39;,
+                  SimpleImputer(fill_value=&#39;missing&#39;, strategy=&#39;constant&#39;)),
+                 (&#39;onehotencoder&#39;,
+                  OneHotEncoder(handle_unknown=&#39;ignore&#39;, sparse_output=False))])}
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1773,6 +1436,173 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>BedroomAbvGr</th>
+      <th>KitchenAbvGr</th>
+      <th>LotFrontage</th>
+      <th>LotArea</th>
+      <th>OverallQual</th>
+      <th>OverallCond</th>
+      <th>YearBuilt</th>
+      <th>YearRemodAdd</th>
+      <th>MasVnrArea</th>
+      <th>BsmtFinSF1</th>
+      <th>...</th>
+      <th>MSSubClass_190</th>
+      <th>LandSlope_Gtl</th>
+      <th>LandSlope_Mod</th>
+      <th>LandSlope_Sev</th>
+      <th>RoofStyle_Flat</th>
+      <th>RoofStyle_Gable</th>
+      <th>RoofStyle_Gambrel</th>
+      <th>RoofStyle_Hip</th>
+      <th>RoofStyle_Mansard</th>
+      <th>RoofStyle_Shed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>302</th>
+      <td>0.154795</td>
+      <td>-0.222647</td>
+      <td>2.312501</td>
+      <td>0.381428</td>
+      <td>0.663680</td>
+      <td>-0.512408</td>
+      <td>0.993969</td>
+      <td>0.840492</td>
+      <td>0.269972</td>
+      <td>-0.961498</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>767</th>
+      <td>1.372763</td>
+      <td>-0.222647</td>
+      <td>0.260890</td>
+      <td>0.248457</td>
+      <td>-0.054669</td>
+      <td>1.285467</td>
+      <td>-1.026793</td>
+      <td>0.016525</td>
+      <td>-0.573129</td>
+      <td>0.476092</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>429</th>
+      <td>0.154795</td>
+      <td>-0.222647</td>
+      <td>2.885044</td>
+      <td>0.131607</td>
+      <td>-0.054669</td>
+      <td>-0.512408</td>
+      <td>0.563314</td>
+      <td>0.161931</td>
+      <td>-0.573129</td>
+      <td>1.227559</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1139</th>
+      <td>0.154795</td>
+      <td>-0.222647</td>
+      <td>1.358264</td>
+      <td>-0.171468</td>
+      <td>-0.773017</td>
+      <td>-0.512408</td>
+      <td>-1.689338</td>
+      <td>-1.679877</td>
+      <td>-0.573129</td>
+      <td>0.443419</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>558</th>
+      <td>0.154795</td>
+      <td>-0.222647</td>
+      <td>-0.597924</td>
+      <td>1.289541</td>
+      <td>0.663680</td>
+      <td>-0.512408</td>
+      <td>0.828332</td>
+      <td>0.598149</td>
+      <td>-0.573129</td>
+      <td>0.354114</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 262 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1780,10 +1610,20 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1314, 80)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_enc</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1314, 262)
 </pre></div>
 </div>
 </div>
@@ -1817,6 +1657,105 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fit_time</th>
+      <th>score_time</th>
+      <th>test_score</th>
+      <th>train_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.001097</td>
+      <td>0.000276</td>
+      <td>-0.003547</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.000571</td>
+      <td>0.000219</td>
+      <td>-0.001266</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.000547</td>
+      <td>0.000313</td>
+      <td>-0.011767</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.000546</td>
+      <td>0.000207</td>
+      <td>-0.006744</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.000539</td>
+      <td>0.000208</td>
+      <td>-0.076533</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.000536</td>
+      <td>0.000209</td>
+      <td>-0.003133</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.000538</td>
+      <td>0.000204</td>
+      <td>-0.000397</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.000529</td>
+      <td>0.000203</td>
+      <td>-0.003785</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.000537</td>
+      <td>0.000204</td>
+      <td>-0.001740</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.000532</td>
+      <td>0.000202</td>
+      <td>-0.000117</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <section id="let-s-try-a-linear-model-ridge">
@@ -1842,10 +1781,22 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([224865.34161762,  65243.29045704, 133337.46729488, 250900.65424895,
+       128984.32127053, 205597.8361313 , 334576.71199006, 158982.72345029,
+       148343.09009799, 129257.94933723])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_preds</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">lr_preds</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(411412.67186503037, 38853.27502379054)
 </pre></div>
 </div>
 </div>
@@ -1854,6 +1805,12 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Smallest coefficient: &quot;</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;ridge&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Largest coefficient:&quot;</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;ridge&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Smallest coefficient:  -191169.07174468966
+Largest coefficient: 83603.01311996048
 </pre></div>
 </div>
 </div>
@@ -1866,6 +1823,105 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fit_time</th>
+      <th>score_time</th>
+      <th>test_score</th>
+      <th>train_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.029422</td>
+      <td>0.006395</td>
+      <td>0.862432</td>
+      <td>0.911846</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.025868</td>
+      <td>0.006144</td>
+      <td>0.812363</td>
+      <td>0.913849</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.027261</td>
+      <td>0.007227</td>
+      <td>0.775270</td>
+      <td>0.915952</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.028616</td>
+      <td>0.007262</td>
+      <td>0.874532</td>
+      <td>0.910843</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.026325</td>
+      <td>0.006057</td>
+      <td>0.852104</td>
+      <td>0.911615</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.026268</td>
+      <td>0.007144</td>
+      <td>0.826142</td>
+      <td>0.910174</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.027236</td>
+      <td>0.006988</td>
+      <td>0.825697</td>
+      <td>0.913767</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.025503</td>
+      <td>0.006012</td>
+      <td>0.873704</td>
+      <td>0.910018</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.026266</td>
+      <td>0.007146</td>
+      <td>0.196599</td>
+      <td>0.921438</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.026669</td>
+      <td>0.006043</td>
+      <td>0.890457</td>
+      <td>0.908215</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <ul class="simple">
 <li><p>Quite a bit of variation in the test scores.</p></li>
@@ -1887,6 +1943,62 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>ColumnTransformer(transformers=[(&#x27;drop&#x27;, &#x27;drop&#x27;, [&#x27;Id&#x27;]),
+                                (&#x27;pipeline-1&#x27;,
+                                 Pipeline(steps=[(&#x27;simpleimputer&#x27;,
+                                                  SimpleImputer(strategy=&#x27;median&#x27;)),
+                                                 (&#x27;standardscaler&#x27;,
+                                                  StandardScaler())]),
+                                 [&#x27;BedroomAbvGr&#x27;, &#x27;KitchenAbvGr&#x27;, &#x27;LotFrontage&#x27;,
+                                  &#x27;LotArea&#x27;, &#x27;OverallQual&#x27;, &#x27;OverallCond&#x27;,
+                                  &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;, &#x27;MasVnrArea&#x27;,
+                                  &#x27;BsmtFinSF1&#x27;, &#x27;BsmtFinSF2&#x27;, &#x27;BsmtUnfSF&#x27;,
+                                  &#x27;TotalBsmtSF&#x27;, &#x27;...
+                                 [&#x27;Condition2&#x27;, &#x27;GarageFinish&#x27;, &#x27;Exterior2nd&#x27;,
+                                  &#x27;SaleType&#x27;, &#x27;Neighborhood&#x27;, &#x27;Alley&#x27;,
+                                  &#x27;Condition1&#x27;, &#x27;Heating&#x27;, &#x27;MSZoning&#x27;,
+                                  &#x27;BldgType&#x27;, &#x27;Utilities&#x27;, &#x27;HouseStyle&#x27;,
+                                  &#x27;GarageType&#x27;, &#x27;Foundation&#x27;, &#x27;PavedDrive&#x27;,
+                                  &#x27;RoofMatl&#x27;, &#x27;Electrical&#x27;, &#x27;SaleCondition&#x27;,
+                                  &#x27;MoSold&#x27;, &#x27;MasVnrType&#x27;, &#x27;Exterior1st&#x27;,
+                                  &#x27;CentralAir&#x27;, &#x27;LotShape&#x27;, &#x27;LandContour&#x27;,
+                                  &#x27;MiscFeature&#x27;, &#x27;LotConfig&#x27;, &#x27;Street&#x27;,
+                                  &#x27;MSSubClass&#x27;, &#x27;LandSlope&#x27;, &#x27;RoofStyle&#x27;])])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[(&#x27;drop&#x27;, &#x27;drop&#x27;, [&#x27;Id&#x27;]),
+                                (&#x27;pipeline-1&#x27;,
+                                 Pipeline(steps=[(&#x27;simpleimputer&#x27;,
+                                                  SimpleImputer(strategy=&#x27;median&#x27;)),
+                                                 (&#x27;standardscaler&#x27;,
+                                                  StandardScaler())]),
+                                 [&#x27;BedroomAbvGr&#x27;, &#x27;KitchenAbvGr&#x27;, &#x27;LotFrontage&#x27;,
+                                  &#x27;LotArea&#x27;, &#x27;OverallQual&#x27;, &#x27;OverallCond&#x27;,
+                                  &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;, &#x27;MasVnrArea&#x27;,
+                                  &#x27;BsmtFinSF1&#x27;, &#x27;BsmtFinSF2&#x27;, &#x27;BsmtUnfSF&#x27;,
+                                  &#x27;TotalBsmtSF&#x27;, &#x27;...
+                                 [&#x27;Condition2&#x27;, &#x27;GarageFinish&#x27;, &#x27;Exterior2nd&#x27;,
+                                  &#x27;SaleType&#x27;, &#x27;Neighborhood&#x27;, &#x27;Alley&#x27;,
+                                  &#x27;Condition1&#x27;, &#x27;Heating&#x27;, &#x27;MSZoning&#x27;,
+                                  &#x27;BldgType&#x27;, &#x27;Utilities&#x27;, &#x27;HouseStyle&#x27;,
+                                  &#x27;GarageType&#x27;, &#x27;Foundation&#x27;, &#x27;PavedDrive&#x27;,
+                                  &#x27;RoofMatl&#x27;, &#x27;Electrical&#x27;, &#x27;SaleCondition&#x27;,
+                                  &#x27;MoSold&#x27;, &#x27;MasVnrType&#x27;, &#x27;Exterior1st&#x27;,
+                                  &#x27;CentralAir&#x27;, &#x27;LotShape&#x27;, &#x27;LandContour&#x27;,
+                                  &#x27;MiscFeature&#x27;, &#x27;LotConfig&#x27;, &#x27;Street&#x27;,
+                                  &#x27;MSSubClass&#x27;, &#x27;LandSlope&#x27;, &#x27;RoofStyle&#x27;])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>[&#x27;Id&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>drop</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-1</label><div class="sk-toggleable__content"><pre>[&#x27;BedroomAbvGr&#x27;, &#x27;KitchenAbvGr&#x27;, &#x27;LotFrontage&#x27;, &#x27;LotArea&#x27;, &#x27;OverallQual&#x27;, &#x27;OverallCond&#x27;, &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;, &#x27;MasVnrArea&#x27;, &#x27;BsmtFinSF1&#x27;, &#x27;BsmtFinSF2&#x27;, &#x27;BsmtUnfSF&#x27;, &#x27;TotalBsmtSF&#x27;, &#x27;1stFlrSF&#x27;, &#x27;2ndFlrSF&#x27;, &#x27;LowQualFinSF&#x27;, &#x27;GrLivArea&#x27;, &#x27;BsmtFullBath&#x27;, &#x27;BsmtHalfBath&#x27;, &#x27;FullBath&#x27;, &#x27;HalfBath&#x27;, &#x27;TotRmsAbvGrd&#x27;, &#x27;Fireplaces&#x27;, &#x27;GarageYrBlt&#x27;, &#x27;GarageCars&#x27;, &#x27;GarageArea&#x27;, &#x27;WoodDeckSF&#x27;, &#x27;OpenPorchSF&#x27;, &#x27;EnclosedPorch&#x27;, &#x27;3SsnPorch&#x27;, &#x27;ScreenPorch&#x27;, &#x27;PoolArea&#x27;, &#x27;MiscVal&#x27;, &#x27;YrSold&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;median&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-2</label><div class="sk-toggleable__content"><pre>[&#x27;ExterQual&#x27;, &#x27;ExterCond&#x27;, &#x27;BsmtQual&#x27;, &#x27;BsmtCond&#x27;, &#x27;HeatingQC&#x27;, &#x27;KitchenQual&#x27;, &#x27;FireplaceQu&#x27;, &#x27;GarageQual&#x27;, &#x27;GarageCond&#x27;, &#x27;PoolQC&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;most_frequent&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label sk-toggleable__label-arrow">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[[&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;]])</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox" ><label for="sk-estimator-id-10" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-3</label><div class="sk-toggleable__content"><pre>[&#x27;BsmtExposure&#x27;, &#x27;BsmtFinType1&#x27;, &#x27;BsmtFinType2&#x27;, &#x27;Functional&#x27;, &#x27;Fence&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-11" type="checkbox" ><label for="sk-estimator-id-11" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;most_frequent&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-12" type="checkbox" ><label for="sk-estimator-id-12" class="sk-toggleable__label sk-toggleable__label-arrow">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[[&#x27;NA&#x27;, &#x27;No&#x27;, &#x27;Mn&#x27;, &#x27;Av&#x27;, &#x27;Gd&#x27;],
+                           [&#x27;NA&#x27;, &#x27;Unf&#x27;, &#x27;LwQ&#x27;, &#x27;Rec&#x27;, &#x27;BLQ&#x27;, &#x27;ALQ&#x27;, &#x27;GLQ&#x27;],
+                           [&#x27;NA&#x27;, &#x27;Unf&#x27;, &#x27;LwQ&#x27;, &#x27;Rec&#x27;, &#x27;BLQ&#x27;, &#x27;ALQ&#x27;, &#x27;GLQ&#x27;],
+                           [&#x27;Sal&#x27;, &#x27;Sev&#x27;, &#x27;Maj2&#x27;, &#x27;Maj1&#x27;, &#x27;Mod&#x27;, &#x27;Min2&#x27;, &#x27;Min1&#x27;,
+                            &#x27;Typ&#x27;],
+                           [&#x27;NA&#x27;, &#x27;MnWw&#x27;, &#x27;GdWo&#x27;, &#x27;MnPrv&#x27;, &#x27;GdPrv&#x27;]])</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-13" type="checkbox" ><label for="sk-estimator-id-13" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-4</label><div class="sk-toggleable__content"><pre>[&#x27;Condition2&#x27;, &#x27;GarageFinish&#x27;, &#x27;Exterior2nd&#x27;, &#x27;SaleType&#x27;, &#x27;Neighborhood&#x27;, &#x27;Alley&#x27;, &#x27;Condition1&#x27;, &#x27;Heating&#x27;, &#x27;MSZoning&#x27;, &#x27;BldgType&#x27;, &#x27;Utilities&#x27;, &#x27;HouseStyle&#x27;, &#x27;GarageType&#x27;, &#x27;Foundation&#x27;, &#x27;PavedDrive&#x27;, &#x27;RoofMatl&#x27;, &#x27;Electrical&#x27;, &#x27;SaleCondition&#x27;, &#x27;MoSold&#x27;, &#x27;MasVnrType&#x27;, &#x27;Exterior1st&#x27;, &#x27;CentralAir&#x27;, &#x27;LotShape&#x27;, &#x27;LandContour&#x27;, &#x27;MiscFeature&#x27;, &#x27;LotConfig&#x27;, &#x27;Street&#x27;, &#x27;MSSubClass&#x27;, &#x27;LandSlope&#x27;, &#x27;RoofStyle&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-14" type="checkbox" ><label for="sk-estimator-id-14" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(fill_value=&#x27;missing&#x27;, strategy=&#x27;constant&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-15" type="checkbox" ><label for="sk-estimator-id-15" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown=&#x27;ignore&#x27;, sparse_output=False)</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1896,6 +2008,223 @@ executing.executing.NotOneValueFound: Expected one value, found 0
     <span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="n">ohe_columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Condition2_Artery&#39;,
+ &#39;Condition2_Feedr&#39;,
+ &#39;Condition2_Norm&#39;,
+ &#39;Condition2_PosA&#39;,
+ &#39;Condition2_PosN&#39;,
+ &#39;Condition2_RRAe&#39;,
+ &#39;Condition2_RRAn&#39;,
+ &#39;Condition2_RRNn&#39;,
+ &#39;GarageFinish_Fin&#39;,
+ &#39;GarageFinish_RFn&#39;,
+ &#39;GarageFinish_Unf&#39;,
+ &#39;GarageFinish_missing&#39;,
+ &#39;Exterior2nd_AsbShng&#39;,
+ &#39;Exterior2nd_AsphShn&#39;,
+ &#39;Exterior2nd_Brk Cmn&#39;,
+ &#39;Exterior2nd_BrkFace&#39;,
+ &#39;Exterior2nd_CBlock&#39;,
+ &#39;Exterior2nd_CmentBd&#39;,
+ &#39;Exterior2nd_HdBoard&#39;,
+ &#39;Exterior2nd_ImStucc&#39;,
+ &#39;Exterior2nd_MetalSd&#39;,
+ &#39;Exterior2nd_Other&#39;,
+ &#39;Exterior2nd_Plywood&#39;,
+ &#39;Exterior2nd_Stone&#39;,
+ &#39;Exterior2nd_Stucco&#39;,
+ &#39;Exterior2nd_VinylSd&#39;,
+ &#39;Exterior2nd_Wd Sdng&#39;,
+ &#39;Exterior2nd_Wd Shng&#39;,
+ &#39;SaleType_COD&#39;,
+ &#39;SaleType_CWD&#39;,
+ &#39;SaleType_Con&#39;,
+ &#39;SaleType_ConLD&#39;,
+ &#39;SaleType_ConLI&#39;,
+ &#39;SaleType_ConLw&#39;,
+ &#39;SaleType_New&#39;,
+ &#39;SaleType_Oth&#39;,
+ &#39;SaleType_WD&#39;,
+ &#39;Neighborhood_Blmngtn&#39;,
+ &#39;Neighborhood_Blueste&#39;,
+ &#39;Neighborhood_BrDale&#39;,
+ &#39;Neighborhood_BrkSide&#39;,
+ &#39;Neighborhood_ClearCr&#39;,
+ &#39;Neighborhood_CollgCr&#39;,
+ &#39;Neighborhood_Crawfor&#39;,
+ &#39;Neighborhood_Edwards&#39;,
+ &#39;Neighborhood_Gilbert&#39;,
+ &#39;Neighborhood_IDOTRR&#39;,
+ &#39;Neighborhood_MeadowV&#39;,
+ &#39;Neighborhood_Mitchel&#39;,
+ &#39;Neighborhood_NAmes&#39;,
+ &#39;Neighborhood_NPkVill&#39;,
+ &#39;Neighborhood_NWAmes&#39;,
+ &#39;Neighborhood_NoRidge&#39;,
+ &#39;Neighborhood_NridgHt&#39;,
+ &#39;Neighborhood_OldTown&#39;,
+ &#39;Neighborhood_SWISU&#39;,
+ &#39;Neighborhood_Sawyer&#39;,
+ &#39;Neighborhood_SawyerW&#39;,
+ &#39;Neighborhood_Somerst&#39;,
+ &#39;Neighborhood_StoneBr&#39;,
+ &#39;Neighborhood_Timber&#39;,
+ &#39;Neighborhood_Veenker&#39;,
+ &#39;Alley_Grvl&#39;,
+ &#39;Alley_Pave&#39;,
+ &#39;Alley_missing&#39;,
+ &#39;Condition1_Artery&#39;,
+ &#39;Condition1_Feedr&#39;,
+ &#39;Condition1_Norm&#39;,
+ &#39;Condition1_PosA&#39;,
+ &#39;Condition1_PosN&#39;,
+ &#39;Condition1_RRAe&#39;,
+ &#39;Condition1_RRAn&#39;,
+ &#39;Condition1_RRNe&#39;,
+ &#39;Condition1_RRNn&#39;,
+ &#39;Heating_Floor&#39;,
+ &#39;Heating_GasA&#39;,
+ &#39;Heating_GasW&#39;,
+ &#39;Heating_Grav&#39;,
+ &#39;Heating_OthW&#39;,
+ &#39;Heating_Wall&#39;,
+ &#39;MSZoning_C (all)&#39;,
+ &#39;MSZoning_FV&#39;,
+ &#39;MSZoning_RH&#39;,
+ &#39;MSZoning_RL&#39;,
+ &#39;MSZoning_RM&#39;,
+ &#39;BldgType_1Fam&#39;,
+ &#39;BldgType_2fmCon&#39;,
+ &#39;BldgType_Duplex&#39;,
+ &#39;BldgType_Twnhs&#39;,
+ &#39;BldgType_TwnhsE&#39;,
+ &#39;Utilities_AllPub&#39;,
+ &#39;Utilities_NoSeWa&#39;,
+ &#39;HouseStyle_1.5Fin&#39;,
+ &#39;HouseStyle_1.5Unf&#39;,
+ &#39;HouseStyle_1Story&#39;,
+ &#39;HouseStyle_2.5Fin&#39;,
+ &#39;HouseStyle_2.5Unf&#39;,
+ &#39;HouseStyle_2Story&#39;,
+ &#39;HouseStyle_SFoyer&#39;,
+ &#39;HouseStyle_SLvl&#39;,
+ &#39;GarageType_2Types&#39;,
+ &#39;GarageType_Attchd&#39;,
+ &#39;GarageType_Basment&#39;,
+ &#39;GarageType_BuiltIn&#39;,
+ &#39;GarageType_CarPort&#39;,
+ &#39;GarageType_Detchd&#39;,
+ &#39;GarageType_missing&#39;,
+ &#39;Foundation_BrkTil&#39;,
+ &#39;Foundation_CBlock&#39;,
+ &#39;Foundation_PConc&#39;,
+ &#39;Foundation_Slab&#39;,
+ &#39;Foundation_Stone&#39;,
+ &#39;Foundation_Wood&#39;,
+ &#39;PavedDrive_N&#39;,
+ &#39;PavedDrive_P&#39;,
+ &#39;PavedDrive_Y&#39;,
+ &#39;RoofMatl_ClyTile&#39;,
+ &#39;RoofMatl_CompShg&#39;,
+ &#39;RoofMatl_Membran&#39;,
+ &#39;RoofMatl_Metal&#39;,
+ &#39;RoofMatl_Roll&#39;,
+ &#39;RoofMatl_Tar&amp;Grv&#39;,
+ &#39;RoofMatl_WdShake&#39;,
+ &#39;RoofMatl_WdShngl&#39;,
+ &#39;Electrical_FuseA&#39;,
+ &#39;Electrical_FuseF&#39;,
+ &#39;Electrical_FuseP&#39;,
+ &#39;Electrical_Mix&#39;,
+ &#39;Electrical_SBrkr&#39;,
+ &#39;Electrical_missing&#39;,
+ &#39;SaleCondition_Abnorml&#39;,
+ &#39;SaleCondition_AdjLand&#39;,
+ &#39;SaleCondition_Alloca&#39;,
+ &#39;SaleCondition_Family&#39;,
+ &#39;SaleCondition_Normal&#39;,
+ &#39;SaleCondition_Partial&#39;,
+ &#39;MoSold_1&#39;,
+ &#39;MoSold_2&#39;,
+ &#39;MoSold_3&#39;,
+ &#39;MoSold_4&#39;,
+ &#39;MoSold_5&#39;,
+ &#39;MoSold_6&#39;,
+ &#39;MoSold_7&#39;,
+ &#39;MoSold_8&#39;,
+ &#39;MoSold_9&#39;,
+ &#39;MoSold_10&#39;,
+ &#39;MoSold_11&#39;,
+ &#39;MoSold_12&#39;,
+ &#39;MasVnrType_BrkCmn&#39;,
+ &#39;MasVnrType_BrkFace&#39;,
+ &#39;MasVnrType_Stone&#39;,
+ &#39;MasVnrType_missing&#39;,
+ &#39;Exterior1st_AsbShng&#39;,
+ &#39;Exterior1st_AsphShn&#39;,
+ &#39;Exterior1st_BrkComm&#39;,
+ &#39;Exterior1st_BrkFace&#39;,
+ &#39;Exterior1st_CBlock&#39;,
+ &#39;Exterior1st_CemntBd&#39;,
+ &#39;Exterior1st_HdBoard&#39;,
+ &#39;Exterior1st_ImStucc&#39;,
+ &#39;Exterior1st_MetalSd&#39;,
+ &#39;Exterior1st_Plywood&#39;,
+ &#39;Exterior1st_Stone&#39;,
+ &#39;Exterior1st_Stucco&#39;,
+ &#39;Exterior1st_VinylSd&#39;,
+ &#39;Exterior1st_Wd Sdng&#39;,
+ &#39;Exterior1st_WdShing&#39;,
+ &#39;CentralAir_N&#39;,
+ &#39;CentralAir_Y&#39;,
+ &#39;LotShape_IR1&#39;,
+ &#39;LotShape_IR2&#39;,
+ &#39;LotShape_IR3&#39;,
+ &#39;LotShape_Reg&#39;,
+ &#39;LandContour_Bnk&#39;,
+ &#39;LandContour_HLS&#39;,
+ &#39;LandContour_Low&#39;,
+ &#39;LandContour_Lvl&#39;,
+ &#39;MiscFeature_Gar2&#39;,
+ &#39;MiscFeature_Othr&#39;,
+ &#39;MiscFeature_Shed&#39;,
+ &#39;MiscFeature_TenC&#39;,
+ &#39;MiscFeature_missing&#39;,
+ &#39;LotConfig_Corner&#39;,
+ &#39;LotConfig_CulDSac&#39;,
+ &#39;LotConfig_FR2&#39;,
+ &#39;LotConfig_FR3&#39;,
+ &#39;LotConfig_Inside&#39;,
+ &#39;Street_Grvl&#39;,
+ &#39;Street_Pave&#39;,
+ &#39;MSSubClass_20&#39;,
+ &#39;MSSubClass_30&#39;,
+ &#39;MSSubClass_40&#39;,
+ &#39;MSSubClass_45&#39;,
+ &#39;MSSubClass_50&#39;,
+ &#39;MSSubClass_60&#39;,
+ &#39;MSSubClass_70&#39;,
+ &#39;MSSubClass_75&#39;,
+ &#39;MSSubClass_80&#39;,
+ &#39;MSSubClass_85&#39;,
+ &#39;MSSubClass_90&#39;,
+ &#39;MSSubClass_120&#39;,
+ &#39;MSSubClass_160&#39;,
+ &#39;MSSubClass_180&#39;,
+ &#39;MSSubClass_190&#39;,
+ &#39;LandSlope_Gtl&#39;,
+ &#39;LandSlope_Mod&#39;,
+ &#39;LandSlope_Sev&#39;,
+ &#39;RoofStyle_Flat&#39;,
+ &#39;RoofStyle_Gable&#39;,
+ &#39;RoofStyle_Gambrel&#39;,
+ &#39;RoofStyle_Hip&#39;,
+ &#39;RoofStyle_Mansard&#39;,
+ &#39;RoofStyle_Shed&#39;]
 </pre></div>
 </div>
 </div>
@@ -1942,6 +2271,9 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/af985011e12d1a13cd52fbd560cb70a0a7e228ed15acd1249e43fa90eec51059.png" src="../_images/af985011e12d1a13cd52fbd560cb70a0a7e228ed15acd1249e43fa90eec51059.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1950,10 +2282,20 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;ridge__alpha&#39;: 100.0}
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search</span><span class="o">.</span><span class="n">best_score_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7951559890417762
 </pre></div>
 </div>
 </div>
@@ -1976,6 +2318,77 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Coefficients</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>OverallQual</th>
+      <td>9691.378159</td>
+    </tr>
+    <tr>
+      <th>GrLivArea</th>
+      <td>7816.490033</td>
+    </tr>
+    <tr>
+      <th>1stFlrSF</th>
+      <td>5931.401623</td>
+    </tr>
+    <tr>
+      <th>TotRmsAbvGrd</th>
+      <td>5209.377032</td>
+    </tr>
+    <tr>
+      <th>GarageCars</th>
+      <td>5057.215412</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>SaleType_WD</th>
+      <td>-1214.532034</td>
+    </tr>
+    <tr>
+      <th>GarageFinish_Unf</th>
+      <td>-1281.596864</td>
+    </tr>
+    <tr>
+      <th>Foundation_CBlock</th>
+      <td>-1766.048889</td>
+    </tr>
+    <tr>
+      <th>RoofStyle_Gable</th>
+      <td>-1985.253914</td>
+    </tr>
+    <tr>
+      <th>KitchenAbvGr</th>
+      <td>-2623.509001</td>
+    </tr>
+  </tbody>
+</table>
+<p>262 rows × 1 columns</p>
+</div></div></div>
 </div>
 <ul class="simple">
 <li><p>Smaller <code class="docutils literal notranslate"><span class="pre">alpha</span></code> leads to bigger coefficients.</p></li>
@@ -1991,6 +2404,77 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Coefficients</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>RoofMatl_WdShngl</th>
+      <td>128384.117412</td>
+    </tr>
+    <tr>
+      <th>RoofMatl_Membran</th>
+      <td>127326.497787</td>
+    </tr>
+    <tr>
+      <th>RoofMatl_Metal</th>
+      <td>106023.481515</td>
+    </tr>
+    <tr>
+      <th>Condition2_PosA</th>
+      <td>83437.787574</td>
+    </tr>
+    <tr>
+      <th>RoofMatl_CompShg</th>
+      <td>70568.838951</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Exterior1st_ImStucc</th>
+      <td>-34441.626206</td>
+    </tr>
+    <tr>
+      <th>Heating_OthW</th>
+      <td>-34806.290424</td>
+    </tr>
+    <tr>
+      <th>Condition2_RRAe</th>
+      <td>-63362.335309</td>
+    </tr>
+    <tr>
+      <th>Condition2_PosN</th>
+      <td>-194985.470060</td>
+    </tr>
+    <tr>
+      <th>RoofMatl_ClyTile</th>
+      <td>-582469.424221</td>
+    </tr>
+  </tbody>
+</table>
+<p>262 rows × 1 columns</p>
+</div></div></div>
 </div>
 <p>With the best alpha found by the grid search, the coefficients are somewhere in between.</p>
 <div class="cell docutils container">
@@ -2006,6 +2490,77 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Coefficients</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>OverallQual</th>
+      <td>14485.526602</td>
+    </tr>
+    <tr>
+      <th>GrLivArea</th>
+      <td>11693.792577</td>
+    </tr>
+    <tr>
+      <th>Neighborhood_NridgHt</th>
+      <td>9661.926657</td>
+    </tr>
+    <tr>
+      <th>Neighborhood_NoRidge</th>
+      <td>9492.921850</td>
+    </tr>
+    <tr>
+      <th>BsmtQual</th>
+      <td>8076.988901</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>RoofMatl_ClyTile</th>
+      <td>-3991.413796</td>
+    </tr>
+    <tr>
+      <th>LandContour_Bnk</th>
+      <td>-5002.470666</td>
+    </tr>
+    <tr>
+      <th>Neighborhood_Gilbert</th>
+      <td>-5212.984664</td>
+    </tr>
+    <tr>
+      <th>Neighborhood_CollgCr</th>
+      <td>-5461.450739</td>
+    </tr>
+    <tr>
+      <th>Neighborhood_Edwards</th>
+      <td>-5789.889086</td>
+    </tr>
+  </tbody>
+</table>
+<p>262 rows × 1 columns</p>
+</div></div></div>
 </div>
 <p>To summarize:</p>
 <ul class="simple">
@@ -2033,6 +2588,11 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100.0
+</pre></div>
+</div>
+</div>
 </div>
 <p><br><br></p>
 <p>Let’s examine the tuned model.</p>
@@ -2042,6 +2602,13 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 <span class="n">ridge_tuned</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">ridge_preds</span> <span class="o">=</span> <span class="n">ridge_tuned</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 <span class="n">ridge_preds</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([228603.06797961, 104643.99931883, 155624.61029914, 246332.07245741,
+       127614.33726089, 243243.60429913, 304784.87844893, 145425.67512181,
+       157008.6526853 , 128528.91515735])
 </pre></div>
 </div>
 </div>
@@ -2061,6 +2628,77 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>coefficients</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>OverallQual</th>
+      <td>14485.526602</td>
+    </tr>
+    <tr>
+      <th>GrLivArea</th>
+      <td>11693.792577</td>
+    </tr>
+    <tr>
+      <th>Neighborhood_NridgHt</th>
+      <td>9661.926657</td>
+    </tr>
+    <tr>
+      <th>Neighborhood_NoRidge</th>
+      <td>9492.921850</td>
+    </tr>
+    <tr>
+      <th>BsmtQual</th>
+      <td>8076.988901</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>RoofMatl_ClyTile</th>
+      <td>-3991.413796</td>
+    </tr>
+    <tr>
+      <th>LandContour_Bnk</th>
+      <td>-5002.470666</td>
+    </tr>
+    <tr>
+      <th>Neighborhood_Gilbert</th>
+      <td>-5212.984664</td>
+    </tr>
+    <tr>
+      <th>Neighborhood_CollgCr</th>
+      <td>-5461.450739</td>
+    </tr>
+    <tr>
+      <th>Neighborhood_Edwards</th>
+      <td>-5789.889086</td>
+    </tr>
+  </tbody>
+</table>
+<p>262 rows × 1 columns</p>
+</div></div></div>
 </div>
 <p>So according to this model:</p>
 <ul class="simple">
@@ -2074,6 +2712,11 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ridge_preds</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">ridge_preds</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(390725.7472092075, 30815.28122025539)
 </pre></div>
 </div>
 </div>
@@ -2107,6 +2750,22 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>302     False
+767     False
+429     False
+1139    False
+558     False
+        ...  
+1041    False
+1122    False
+1346    False
+1406    False
+1389    False
+Name: SalePrice, Length: 1314, dtype: bool
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2114,10 +2773,21 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([205000, 160000, 175000, ..., 262500, 133000, 131000])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ridge_tuned</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([212870.41150573, 178494.22221895, 189981.34426571, ...,
+       245329.56804591, 129904.71327467, 135422.67672595])
 </pre></div>
 </div>
 </div>
@@ -2149,11 +2819,21 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>872961060.7986535
+</pre></div>
+</div>
+</div>
 </div>
 <p>Perfect predictions would have MSE=0.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y_train</span> <span class="o">-</span> <span class="n">y_train</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
 </pre></div>
 </div>
 </div>
@@ -2164,6 +2844,11 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
 
 <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>872961060.7986535
 </pre></div>
 </div>
 </div>
@@ -2184,6 +2869,11 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8729610607986.534
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="root-mean-squared-error-or-rmse">
@@ -2195,6 +2885,11 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">ridge_tuned</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>29545.91445189425
 </pre></div>
 </div>
 </div>
@@ -2212,6 +2907,9 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;predicted price&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/738403f3a6d0c3ed7da228aa17633295d26204a28fd48389a29333ee09676800.png" src="../_images/738403f3a6d0c3ed7da228aa17633295d26204a28fd48389a29333ee09676800.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2247,10 +2945,20 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>872961060.7986535
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>872961060.7986535
 </pre></div>
 </div>
 </div>
@@ -2261,10 +2969,20 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8601643854446084
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r2_score</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8280229354283186
 </pre></div>
 </div>
 </div>
@@ -2286,6 +3004,11 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>29545.91445189425
+</pre></div>
+</div>
+</div>
 </div>
 <ul class="simple">
 <li><p>For a house worth $600k, it seems reasonable! That’s 5% error.</p></li>
@@ -2298,6 +3021,9 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/e56842299e9f1a92dc78cdd0347c3fd2569c9f668812b1ada206316456632f26.png" src="../_images/e56842299e9f1a92dc78cdd0347c3fd2569c9f668812b1ada206316456632f26.png" />
+</div>
 </div>
 <p>How about looking at percent error?</p>
 <div class="cell docutils container">
@@ -2308,12 +3034,44 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>302      3.839225
+767     11.558889
+429      8.560768
+1139   -16.405650
+558     17.194710
+          ...    
+1041    -0.496213
+1122   -28.624615
+1346    -6.541117
+1406    -2.327283
+1389     3.376089
+Name: SalePrice, Length: 1314, dtype: float64
+</pre></div>
+</div>
+</div>
 </div>
 <p>These are both positive (predict too high) and negative (predict too low).</p>
 <p>We can look at the absolute percent error:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">percent_errors</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>302      3.839225
+767     11.558889
+429      8.560768
+1139    16.405650
+558     17.194710
+          ...    
+1041     0.496213
+1122    28.624615
+1346     6.541117
+1406     2.327283
+1389     3.376089
+Name: SalePrice, Length: 1314, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -2333,6 +3091,11 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.10092665203438769
+</pre></div>
+</div>
+</div>
 </div>
 <p>Let’s use <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> to calculate MAPE.</p>
 <div class="cell docutils container">
@@ -2345,6 +3108,11 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">pred_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.10092665203438769
 </pre></div>
 </div>
 </div>
@@ -2366,6 +3134,9 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/e56842299e9f1a92dc78cdd0347c3fd2569c9f668812b1ada206316456632f26.png" src="../_images/e56842299e9f1a92dc78cdd0347c3fd2569c9f668812b1ada206316456632f26.png" />
+</div>
 </div>
 <ul class="simple">
 <li><p>A common trick in such cases is applying a log transform on the target column to make it more normal and less skewed.</p></li>
@@ -2377,6 +3148,9 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">y_train</span><span class="p">),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/dac2122446d5c1370bd9883bcc7a49a15937541c1bd09619d505e73ecd94f07e.png" src="../_images/dac2122446d5c1370bd9883bcc7a49a15937541c1bd09619d505e73ecd94f07e.png" />
 </div>
 </div>
 <p>We can incorporate this in our pipeline using <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>.</p>
@@ -2403,6 +3177,97 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-2 {color: black;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;columntransformer&#x27;,
+                 ColumnTransformer(transformers=[(&#x27;drop&#x27;, &#x27;drop&#x27;, [&#x27;Id&#x27;]),
+                                                 (&#x27;pipeline-1&#x27;,
+                                                  Pipeline(steps=[(&#x27;simpleimputer&#x27;,
+                                                                   SimpleImputer(strategy=&#x27;median&#x27;)),
+                                                                  (&#x27;standardscaler&#x27;,
+                                                                   StandardScaler())]),
+                                                  [&#x27;BedroomAbvGr&#x27;,
+                                                   &#x27;KitchenAbvGr&#x27;,
+                                                   &#x27;LotFrontage&#x27;, &#x27;LotArea&#x27;,
+                                                   &#x27;OverallQual&#x27;, &#x27;OverallCond&#x27;,
+                                                   &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;,
+                                                   &#x27;MasVnrArea&#x27;, &#x27;BsmtFinSF1&#x27;,
+                                                   &#x27;Bs...
+                                                   &#x27;GarageType&#x27;, &#x27;Foundation&#x27;,
+                                                   &#x27;PavedDrive&#x27;, &#x27;RoofMatl&#x27;,
+                                                   &#x27;Electrical&#x27;,
+                                                   &#x27;SaleCondition&#x27;, &#x27;MoSold&#x27;,
+                                                   &#x27;MasVnrType&#x27;, &#x27;Exterior1st&#x27;,
+                                                   &#x27;CentralAir&#x27;, &#x27;LotShape&#x27;,
+                                                   &#x27;LandContour&#x27;, &#x27;MiscFeature&#x27;,
+                                                   &#x27;LotConfig&#x27;, &#x27;Street&#x27;,
+                                                   &#x27;MSSubClass&#x27;, &#x27;LandSlope&#x27;,
+                                                   &#x27;RoofStyle&#x27;])])),
+                (&#x27;transformedtargetregressor&#x27;,
+                 TransformedTargetRegressor(func=&lt;ufunc &#x27;log1p&#x27;&gt;,
+                                            inverse_func=&lt;ufunc &#x27;expm1&#x27;&gt;,
+                                            regressor=Ridge(alpha=100.0)))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-16" type="checkbox" ><label for="sk-estimator-id-16" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;columntransformer&#x27;,
+                 ColumnTransformer(transformers=[(&#x27;drop&#x27;, &#x27;drop&#x27;, [&#x27;Id&#x27;]),
+                                                 (&#x27;pipeline-1&#x27;,
+                                                  Pipeline(steps=[(&#x27;simpleimputer&#x27;,
+                                                                   SimpleImputer(strategy=&#x27;median&#x27;)),
+                                                                  (&#x27;standardscaler&#x27;,
+                                                                   StandardScaler())]),
+                                                  [&#x27;BedroomAbvGr&#x27;,
+                                                   &#x27;KitchenAbvGr&#x27;,
+                                                   &#x27;LotFrontage&#x27;, &#x27;LotArea&#x27;,
+                                                   &#x27;OverallQual&#x27;, &#x27;OverallCond&#x27;,
+                                                   &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;,
+                                                   &#x27;MasVnrArea&#x27;, &#x27;BsmtFinSF1&#x27;,
+                                                   &#x27;Bs...
+                                                   &#x27;GarageType&#x27;, &#x27;Foundation&#x27;,
+                                                   &#x27;PavedDrive&#x27;, &#x27;RoofMatl&#x27;,
+                                                   &#x27;Electrical&#x27;,
+                                                   &#x27;SaleCondition&#x27;, &#x27;MoSold&#x27;,
+                                                   &#x27;MasVnrType&#x27;, &#x27;Exterior1st&#x27;,
+                                                   &#x27;CentralAir&#x27;, &#x27;LotShape&#x27;,
+                                                   &#x27;LandContour&#x27;, &#x27;MiscFeature&#x27;,
+                                                   &#x27;LotConfig&#x27;, &#x27;Street&#x27;,
+                                                   &#x27;MSSubClass&#x27;, &#x27;LandSlope&#x27;,
+                                                   &#x27;RoofStyle&#x27;])])),
+                (&#x27;transformedtargetregressor&#x27;,
+                 TransformedTargetRegressor(func=&lt;ufunc &#x27;log1p&#x27;&gt;,
+                                            inverse_func=&lt;ufunc &#x27;expm1&#x27;&gt;,
+                                            regressor=Ridge(alpha=100.0)))])</pre></div></div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-17" type="checkbox" ><label for="sk-estimator-id-17" class="sk-toggleable__label sk-toggleable__label-arrow">columntransformer: ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[(&#x27;drop&#x27;, &#x27;drop&#x27;, [&#x27;Id&#x27;]),
+                                (&#x27;pipeline-1&#x27;,
+                                 Pipeline(steps=[(&#x27;simpleimputer&#x27;,
+                                                  SimpleImputer(strategy=&#x27;median&#x27;)),
+                                                 (&#x27;standardscaler&#x27;,
+                                                  StandardScaler())]),
+                                 [&#x27;BedroomAbvGr&#x27;, &#x27;KitchenAbvGr&#x27;, &#x27;LotFrontage&#x27;,
+                                  &#x27;LotArea&#x27;, &#x27;OverallQual&#x27;, &#x27;OverallCond&#x27;,
+                                  &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;, &#x27;MasVnrArea&#x27;,
+                                  &#x27;BsmtFinSF1&#x27;, &#x27;BsmtFinSF2&#x27;, &#x27;BsmtUnfSF&#x27;,
+                                  &#x27;TotalBsmtSF&#x27;, &#x27;...
+                                 [&#x27;Condition2&#x27;, &#x27;GarageFinish&#x27;, &#x27;Exterior2nd&#x27;,
+                                  &#x27;SaleType&#x27;, &#x27;Neighborhood&#x27;, &#x27;Alley&#x27;,
+                                  &#x27;Condition1&#x27;, &#x27;Heating&#x27;, &#x27;MSZoning&#x27;,
+                                  &#x27;BldgType&#x27;, &#x27;Utilities&#x27;, &#x27;HouseStyle&#x27;,
+                                  &#x27;GarageType&#x27;, &#x27;Foundation&#x27;, &#x27;PavedDrive&#x27;,
+                                  &#x27;RoofMatl&#x27;, &#x27;Electrical&#x27;, &#x27;SaleCondition&#x27;,
+                                  &#x27;MoSold&#x27;, &#x27;MasVnrType&#x27;, &#x27;Exterior1st&#x27;,
+                                  &#x27;CentralAir&#x27;, &#x27;LotShape&#x27;, &#x27;LandContour&#x27;,
+                                  &#x27;MiscFeature&#x27;, &#x27;LotConfig&#x27;, &#x27;Street&#x27;,
+                                  &#x27;MSSubClass&#x27;, &#x27;LandSlope&#x27;, &#x27;RoofStyle&#x27;])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-18" type="checkbox" ><label for="sk-estimator-id-18" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>[&#x27;Id&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-19" type="checkbox" ><label for="sk-estimator-id-19" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>drop</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-20" type="checkbox" ><label for="sk-estimator-id-20" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-1</label><div class="sk-toggleable__content"><pre>[&#x27;BedroomAbvGr&#x27;, &#x27;KitchenAbvGr&#x27;, &#x27;LotFrontage&#x27;, &#x27;LotArea&#x27;, &#x27;OverallQual&#x27;, &#x27;OverallCond&#x27;, &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;, &#x27;MasVnrArea&#x27;, &#x27;BsmtFinSF1&#x27;, &#x27;BsmtFinSF2&#x27;, &#x27;BsmtUnfSF&#x27;, &#x27;TotalBsmtSF&#x27;, &#x27;1stFlrSF&#x27;, &#x27;2ndFlrSF&#x27;, &#x27;LowQualFinSF&#x27;, &#x27;GrLivArea&#x27;, &#x27;BsmtFullBath&#x27;, &#x27;BsmtHalfBath&#x27;, &#x27;FullBath&#x27;, &#x27;HalfBath&#x27;, &#x27;TotRmsAbvGrd&#x27;, &#x27;Fireplaces&#x27;, &#x27;GarageYrBlt&#x27;, &#x27;GarageCars&#x27;, &#x27;GarageArea&#x27;, &#x27;WoodDeckSF&#x27;, &#x27;OpenPorchSF&#x27;, &#x27;EnclosedPorch&#x27;, &#x27;3SsnPorch&#x27;, &#x27;ScreenPorch&#x27;, &#x27;PoolArea&#x27;, &#x27;MiscVal&#x27;, &#x27;YrSold&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-21" type="checkbox" ><label for="sk-estimator-id-21" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;median&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-22" type="checkbox" ><label for="sk-estimator-id-22" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-23" type="checkbox" ><label for="sk-estimator-id-23" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-2</label><div class="sk-toggleable__content"><pre>[&#x27;ExterQual&#x27;, &#x27;ExterCond&#x27;, &#x27;BsmtQual&#x27;, &#x27;BsmtCond&#x27;, &#x27;HeatingQC&#x27;, &#x27;KitchenQual&#x27;, &#x27;FireplaceQu&#x27;, &#x27;GarageQual&#x27;, &#x27;GarageCond&#x27;, &#x27;PoolQC&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-24" type="checkbox" ><label for="sk-estimator-id-24" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;most_frequent&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-25" type="checkbox" ><label for="sk-estimator-id-25" class="sk-toggleable__label sk-toggleable__label-arrow">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[[&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;]])</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-26" type="checkbox" ><label for="sk-estimator-id-26" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-3</label><div class="sk-toggleable__content"><pre>[&#x27;BsmtExposure&#x27;, &#x27;BsmtFinType1&#x27;, &#x27;BsmtFinType2&#x27;, &#x27;Functional&#x27;, &#x27;Fence&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-27" type="checkbox" ><label for="sk-estimator-id-27" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;most_frequent&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-28" type="checkbox" ><label for="sk-estimator-id-28" class="sk-toggleable__label sk-toggleable__label-arrow">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[[&#x27;NA&#x27;, &#x27;No&#x27;, &#x27;Mn&#x27;, &#x27;Av&#x27;, &#x27;Gd&#x27;],
+                           [&#x27;NA&#x27;, &#x27;Unf&#x27;, &#x27;LwQ&#x27;, &#x27;Rec&#x27;, &#x27;BLQ&#x27;, &#x27;ALQ&#x27;, &#x27;GLQ&#x27;],
+                           [&#x27;NA&#x27;, &#x27;Unf&#x27;, &#x27;LwQ&#x27;, &#x27;Rec&#x27;, &#x27;BLQ&#x27;, &#x27;ALQ&#x27;, &#x27;GLQ&#x27;],
+                           [&#x27;Sal&#x27;, &#x27;Sev&#x27;, &#x27;Maj2&#x27;, &#x27;Maj1&#x27;, &#x27;Mod&#x27;, &#x27;Min2&#x27;, &#x27;Min1&#x27;,
+                            &#x27;Typ&#x27;],
+                           [&#x27;NA&#x27;, &#x27;MnWw&#x27;, &#x27;GdWo&#x27;, &#x27;MnPrv&#x27;, &#x27;GdPrv&#x27;]])</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-29" type="checkbox" ><label for="sk-estimator-id-29" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-4</label><div class="sk-toggleable__content"><pre>[&#x27;Condition2&#x27;, &#x27;GarageFinish&#x27;, &#x27;Exterior2nd&#x27;, &#x27;SaleType&#x27;, &#x27;Neighborhood&#x27;, &#x27;Alley&#x27;, &#x27;Condition1&#x27;, &#x27;Heating&#x27;, &#x27;MSZoning&#x27;, &#x27;BldgType&#x27;, &#x27;Utilities&#x27;, &#x27;HouseStyle&#x27;, &#x27;GarageType&#x27;, &#x27;Foundation&#x27;, &#x27;PavedDrive&#x27;, &#x27;RoofMatl&#x27;, &#x27;Electrical&#x27;, &#x27;SaleCondition&#x27;, &#x27;MoSold&#x27;, &#x27;MasVnrType&#x27;, &#x27;Exterior1st&#x27;, &#x27;CentralAir&#x27;, &#x27;LotShape&#x27;, &#x27;LandContour&#x27;, &#x27;MiscFeature&#x27;, &#x27;LotConfig&#x27;, &#x27;Street&#x27;, &#x27;MSSubClass&#x27;, &#x27;LandSlope&#x27;, &#x27;RoofStyle&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-30" type="checkbox" ><label for="sk-estimator-id-30" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(fill_value=&#x27;missing&#x27;, strategy=&#x27;constant&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-31" type="checkbox" ><label for="sk-estimator-id-31" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown=&#x27;ignore&#x27;, sparse_output=False)</pre></div></div></div></div></div></div></div></div></div></div><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-32" type="checkbox" ><label for="sk-estimator-id-32" class="sk-toggleable__label sk-toggleable__label-arrow">transformedtargetregressor: TransformedTargetRegressor</label><div class="sk-toggleable__content"><pre>TransformedTargetRegressor(func=&lt;ufunc &#x27;log1p&#x27;&gt;, inverse_func=&lt;ufunc &#x27;expm1&#x27;&gt;,
+                           regressor=Ridge(alpha=100.0))</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-33" type="checkbox" ><label for="sk-estimator-id-33" class="sk-toggleable__label sk-toggleable__label-arrow">regressor: Ridge</label><div class="sk-toggleable__content"><pre>Ridge(alpha=100.0)</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-34" type="checkbox" ><label for="sk-estimator-id-34" class="sk-toggleable__label sk-toggleable__label-arrow">Ridge</label><div class="sk-toggleable__content"><pre>Ridge(alpha=100.0)</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <p>Why can’t we incorporate preprocessing targets in our column transformer?</p>
 <div class="cell docutils container">
@@ -2418,10 +3283,9 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">ttr_pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">))</span>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([221329.43833466, 170670.12761659, 182639.31984311, ...,
+       248609.60023631, 132158.15026771, 133270.71866979])
 </pre></div>
 </div>
 </div>
@@ -2429,6 +3293,11 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">ttr_pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.07808506982896256
 </pre></div>
 </div>
 </div>
@@ -2459,6 +3328,70 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fit_time</th>
+      <th>score_time</th>
+      <th>test_score</th>
+      <th>train_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.025928</td>
+      <td>0.007366</td>
+      <td>-7.055915e+08</td>
+      <td>-9.379875e+08</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.024500</td>
+      <td>0.007089</td>
+      <td>-1.239944e+09</td>
+      <td>-8.264283e+08</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.024684</td>
+      <td>0.007141</td>
+      <td>-1.125440e+09</td>
+      <td>-8.758062e+08</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.025321</td>
+      <td>0.007049</td>
+      <td>-9.801219e+08</td>
+      <td>-8.849438e+08</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.024697</td>
+      <td>0.006984</td>
+      <td>-2.267612e+09</td>
+      <td>-7.395282e+08</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2473,6 +3406,70 @@ executing.executing.NotOneValueFound: Expected one value, found 0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fit_time</th>
+      <th>score_time</th>
+      <th>test_score</th>
+      <th>train_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.025200</td>
+      <td>0.007053</td>
+      <td>-0.096960</td>
+      <td>-0.104070</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.025281</td>
+      <td>0.007669</td>
+      <td>-0.107985</td>
+      <td>-0.099685</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.024725</td>
+      <td>0.007169</td>
+      <td>-0.118347</td>
+      <td>-0.101796</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.024865</td>
+      <td>0.006937</td>
+      <td>-0.107947</td>
+      <td>-0.102435</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.024516</td>
+      <td>0.006934</td>
+      <td>-0.121985</td>
+      <td>-0.098307</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>If you are finding <code class="docutils literal notranslate"><span class="pre">greater_is_better=False</span></code> argument confusing, here is the documentation:</p>
 <blockquote>
@@ -2505,6 +3502,132 @@ Whether score_func is a score function (default), meaning high is good, or a los
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>fit_time</th>
+      <td>2.573180e-02</td>
+      <td>2.622700e-02</td>
+      <td>2.510500e-02</td>
+      <td>2.471209e-02</td>
+      <td>2.480602e-02</td>
+    </tr>
+    <tr>
+      <th>score_time</th>
+      <td>8.592129e-03</td>
+      <td>8.613110e-03</td>
+      <td>8.801937e-03</td>
+      <td>8.424759e-03</td>
+      <td>7.677794e-03</td>
+    </tr>
+    <tr>
+      <th>test_r2</th>
+      <td>8.669805e-01</td>
+      <td>8.200326e-01</td>
+      <td>8.262156e-01</td>
+      <td>8.514598e-01</td>
+      <td>6.110915e-01</td>
+    </tr>
+    <tr>
+      <th>train_r2</th>
+      <td>8.551862e-01</td>
+      <td>8.636849e-01</td>
+      <td>8.580539e-01</td>
+      <td>8.561645e-01</td>
+      <td>8.834356e-01</td>
+    </tr>
+    <tr>
+      <th>test_mape_scorer</th>
+      <td>-9.696034e-02</td>
+      <td>-1.079852e-01</td>
+      <td>-1.183471e-01</td>
+      <td>-1.079471e-01</td>
+      <td>-1.219845e-01</td>
+    </tr>
+    <tr>
+      <th>train_mape_scorer</th>
+      <td>-1.040698e-01</td>
+      <td>-9.968514e-02</td>
+      <td>-1.017959e-01</td>
+      <td>-1.024351e-01</td>
+      <td>-9.830712e-02</td>
+    </tr>
+    <tr>
+      <th>test_sklearn MAPE</th>
+      <td>-9.696034e-02</td>
+      <td>-1.079852e-01</td>
+      <td>-1.183471e-01</td>
+      <td>-1.079471e-01</td>
+      <td>-1.219845e-01</td>
+    </tr>
+    <tr>
+      <th>train_sklearn MAPE</th>
+      <td>-1.040698e-01</td>
+      <td>-9.968514e-02</td>
+      <td>-1.017959e-01</td>
+      <td>-1.024351e-01</td>
+      <td>-9.830712e-02</td>
+    </tr>
+    <tr>
+      <th>test_neg_root_mean_square_error</th>
+      <td>-2.656297e+04</td>
+      <td>-3.521284e+04</td>
+      <td>-3.354759e+04</td>
+      <td>-3.130690e+04</td>
+      <td>-4.761945e+04</td>
+    </tr>
+    <tr>
+      <th>train_neg_root_mean_square_error</th>
+      <td>-3.062658e+04</td>
+      <td>-2.874767e+04</td>
+      <td>-2.959402e+04</td>
+      <td>-2.974801e+04</td>
+      <td>-2.719427e+04</td>
+    </tr>
+    <tr>
+      <th>test_neg_mean_squared_error</th>
+      <td>-7.055915e+08</td>
+      <td>-1.239944e+09</td>
+      <td>-1.125440e+09</td>
+      <td>-9.801219e+08</td>
+      <td>-2.267612e+09</td>
+    </tr>
+    <tr>
+      <th>train_neg_mean_squared_error</th>
+      <td>-9.379875e+08</td>
+      <td>-8.264283e+08</td>
+      <td>-8.758062e+08</td>
+      <td>-8.849438e+08</td>
+      <td>-7.395282e+08</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Are we getting the same <code class="docutils literal notranslate"><span class="pre">alpha</span></code> with mape?</p>
 <div class="cell docutils container">
@@ -2537,6 +3660,107 @@ Whether score_func is a score function (default), meaning high is good, or a los
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best hyperparameter values:  {&#39;ridge__alpha&#39;: 100.0}
+Best score: -0.111
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>rank_test_score</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>mean_train_score</th>
+      <td>-0.101259</td>
+      <td>-0.111543</td>
+      <td>-0.096462</td>
+      <td>-0.090785</td>
+      <td>-0.085698</td>
+      <td>-0.085508</td>
+      <td>-0.085546</td>
+      <td>-0.08555</td>
+      <td>-0.085551</td>
+      <td>-0.085551</td>
+      <td>-0.203421</td>
+      <td>-0.33213</td>
+    </tr>
+    <tr>
+      <th>mean_test_score</th>
+      <td>-0.110645</td>
+      <td>-0.115401</td>
+      <td>-0.116497</td>
+      <td>-0.122331</td>
+      <td>-0.125644</td>
+      <td>-0.127242</td>
+      <td>-0.127418</td>
+      <td>-0.127439</td>
+      <td>-0.127441</td>
+      <td>-0.127441</td>
+      <td>-0.204692</td>
+      <td>-0.33271</td>
+    </tr>
+    <tr>
+      <th>param_ridge__alpha</th>
+      <td>100.0</td>
+      <td>1000.0</td>
+      <td>10.0</td>
+      <td>1.0</td>
+      <td>0.1</td>
+      <td>0.01</td>
+      <td>0.001</td>
+      <td>0.0001</td>
+      <td>0.00001</td>
+      <td>0.000001</td>
+      <td>10000.0</td>
+      <td>100000.0</td>
+    </tr>
+    <tr>
+      <th>mean_fit_time</th>
+      <td>0.044563</td>
+      <td>0.040006</td>
+      <td>0.051108</td>
+      <td>0.045727</td>
+      <td>0.046411</td>
+      <td>0.049564</td>
+      <td>0.045672</td>
+      <td>0.039341</td>
+      <td>0.036981</td>
+      <td>0.037874</td>
+      <td>0.042804</td>
+      <td>0.036894</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <section id="using-multiple-metrics-in-gridsearchcv-or-randomizedsearchcv">
@@ -2568,6 +3792,369 @@ Whether score_func is a score function (default), meaning high is good, or a los
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best hyperparameter values:  {&#39;ridge__alpha&#39;: 100.0}
+Best score: -0.111
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean_fit_time</th>
+      <th>std_fit_time</th>
+      <th>mean_score_time</th>
+      <th>std_score_time</th>
+      <th>param_ridge__alpha</th>
+      <th>params</th>
+      <th>split0_test_r2</th>
+      <th>split1_test_r2</th>
+      <th>split2_test_r2</th>
+      <th>split3_test_r2</th>
+      <th>...</th>
+      <th>mean_test_neg_mean_squared_error</th>
+      <th>std_test_neg_mean_squared_error</th>
+      <th>rank_test_neg_mean_squared_error</th>
+      <th>split0_train_neg_mean_squared_error</th>
+      <th>split1_train_neg_mean_squared_error</th>
+      <th>split2_train_neg_mean_squared_error</th>
+      <th>split3_train_neg_mean_squared_error</th>
+      <th>split4_train_neg_mean_squared_error</th>
+      <th>mean_train_neg_mean_squared_error</th>
+      <th>std_train_neg_mean_squared_error</th>
+    </tr>
+    <tr>
+      <th>rank_test_mape_scorer</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0.043024</td>
+      <td>0.003658</td>
+      <td>0.012255</td>
+      <td>0.003905</td>
+      <td>100.0</td>
+      <td>{'ridge__alpha': 100.0}</td>
+      <td>0.866980</td>
+      <td>0.820033</td>
+      <td>0.826216</td>
+      <td>0.851460</td>
+      <td>...</td>
+      <td>-1.263742e+09</td>
+      <td>5.328077e+08</td>
+      <td>1</td>
+      <td>-9.379875e+08</td>
+      <td>-8.264283e+08</td>
+      <td>-8.758062e+08</td>
+      <td>-8.849438e+08</td>
+      <td>-7.395282e+08</td>
+      <td>-8.529388e+08</td>
+      <td>6.685103e+07</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.045517</td>
+      <td>0.001350</td>
+      <td>0.011995</td>
+      <td>0.002649</td>
+      <td>1000.0</td>
+      <td>{'ridge__alpha': 1000.0}</td>
+      <td>0.827261</td>
+      <td>0.786555</td>
+      <td>0.802902</td>
+      <td>0.812272</td>
+      <td>...</td>
+      <td>-1.362185e+09</td>
+      <td>3.262269e+08</td>
+      <td>3</td>
+      <td>-1.282021e+09</td>
+      <td>-1.156311e+09</td>
+      <td>-1.207814e+09</td>
+      <td>-1.225301e+09</td>
+      <td>-1.029950e+09</td>
+      <td>-1.180279e+09</td>
+      <td>8.521743e+07</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.040517</td>
+      <td>0.007656</td>
+      <td>0.009975</td>
+      <td>0.001325</td>
+      <td>10.0</td>
+      <td>{'ridge__alpha': 10.0}</td>
+      <td>0.859318</td>
+      <td>0.820564</td>
+      <td>0.832866</td>
+      <td>0.846650</td>
+      <td>...</td>
+      <td>-1.283119e+09</td>
+      <td>5.511620e+08</td>
+      <td>2</td>
+      <td>-7.034979e+08</td>
+      <td>-6.276943e+08</td>
+      <td>-6.910456e+08</td>
+      <td>-6.701186e+08</td>
+      <td>-5.915714e+08</td>
+      <td>-6.567856e+08</td>
+      <td>4.155178e+07</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.045587</td>
+      <td>0.013404</td>
+      <td>0.014913</td>
+      <td>0.008460</td>
+      <td>1.0</td>
+      <td>{'ridge__alpha': 1.0}</td>
+      <td>0.835749</td>
+      <td>0.810073</td>
+      <td>0.831611</td>
+      <td>0.843992</td>
+      <td>...</td>
+      <td>-1.386071e+09</td>
+      <td>6.378971e+08</td>
+      <td>4</td>
+      <td>-5.394113e+08</td>
+      <td>-4.898703e+08</td>
+      <td>-5.405227e+08</td>
+      <td>-5.290961e+08</td>
+      <td>-5.046193e+08</td>
+      <td>-5.207039e+08</td>
+      <td>2.011269e+07</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.046093</td>
+      <td>0.009429</td>
+      <td>0.013376</td>
+      <td>0.005582</td>
+      <td>0.1</td>
+      <td>{'ridge__alpha': 0.1}</td>
+      <td>0.821807</td>
+      <td>0.792828</td>
+      <td>0.805198</td>
+      <td>0.863941</td>
+      <td>...</td>
+      <td>-1.465279e+09</td>
+      <td>6.931439e+08</td>
+      <td>5</td>
+      <td>-4.579559e+08</td>
+      <td>-4.009514e+08</td>
+      <td>-4.345386e+08</td>
+      <td>-4.515351e+08</td>
+      <td>-4.846260e+08</td>
+      <td>-4.459214e+08</td>
+      <td>2.766317e+07</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.047155</td>
+      <td>0.011473</td>
+      <td>0.013437</td>
+      <td>0.004666</td>
+      <td>0.01</td>
+      <td>{'ridge__alpha': 0.01}</td>
+      <td>0.824884</td>
+      <td>0.782183</td>
+      <td>0.787933</td>
+      <td>0.868003</td>
+      <td>...</td>
+      <td>-1.501304e+09</td>
+      <td>7.090376e+08</td>
+      <td>6</td>
+      <td>-4.522563e+08</td>
+      <td>-3.926733e+08</td>
+      <td>-4.251158e+08</td>
+      <td>-4.446284e+08</td>
+      <td>-4.837022e+08</td>
+      <td>-4.396752e+08</td>
+      <td>3.014081e+07</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.047308</td>
+      <td>0.017942</td>
+      <td>0.012117</td>
+      <td>0.004231</td>
+      <td>0.001</td>
+      <td>{'ridge__alpha': 0.001}</td>
+      <td>0.826553</td>
+      <td>0.780497</td>
+      <td>0.785399</td>
+      <td>0.868281</td>
+      <td>...</td>
+      <td>-1.505592e+09</td>
+      <td>7.117899e+08</td>
+      <td>7</td>
+      <td>-4.521578e+08</td>
+      <td>-3.925288e+08</td>
+      <td>-4.249618e+08</td>
+      <td>-4.445124e+08</td>
+      <td>-4.836880e+08</td>
+      <td>-4.395697e+08</td>
+      <td>3.018459e+07</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.044560</td>
+      <td>0.005730</td>
+      <td>0.013658</td>
+      <td>0.005577</td>
+      <td>0.0001</td>
+      <td>{'ridge__alpha': 0.0001}</td>
+      <td>0.826739</td>
+      <td>0.780316</td>
+      <td>0.785134</td>
+      <td>0.868305</td>
+      <td>...</td>
+      <td>-1.506035e+09</td>
+      <td>7.120769e+08</td>
+      <td>8</td>
+      <td>-4.521567e+08</td>
+      <td>-3.925272e+08</td>
+      <td>-4.249601e+08</td>
+      <td>-4.445111e+08</td>
+      <td>-4.836878e+08</td>
+      <td>-4.395686e+08</td>
+      <td>3.018507e+07</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.036019</td>
+      <td>0.004839</td>
+      <td>0.011308</td>
+      <td>0.002892</td>
+      <td>0.00001</td>
+      <td>{'ridge__alpha': 1e-05}</td>
+      <td>0.826758</td>
+      <td>0.780298</td>
+      <td>0.785108</td>
+      <td>0.868308</td>
+      <td>...</td>
+      <td>-1.506079e+09</td>
+      <td>7.121056e+08</td>
+      <td>9</td>
+      <td>-4.521567e+08</td>
+      <td>-3.925272e+08</td>
+      <td>-4.249601e+08</td>
+      <td>-4.445111e+08</td>
+      <td>-4.836878e+08</td>
+      <td>-4.395686e+08</td>
+      <td>3.018507e+07</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.034466</td>
+      <td>0.003765</td>
+      <td>0.016527</td>
+      <td>0.001166</td>
+      <td>0.000001</td>
+      <td>{'ridge__alpha': 1e-06}</td>
+      <td>0.826760</td>
+      <td>0.780296</td>
+      <td>0.785105</td>
+      <td>0.868308</td>
+      <td>...</td>
+      <td>-1.506084e+09</td>
+      <td>7.121084e+08</td>
+      <td>10</td>
+      <td>-4.521567e+08</td>
+      <td>-3.925272e+08</td>
+      <td>-4.249601e+08</td>
+      <td>-4.445111e+08</td>
+      <td>-4.836878e+08</td>
+      <td>-4.395686e+08</td>
+      <td>3.018507e+07</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>0.043874</td>
+      <td>0.003860</td>
+      <td>0.012688</td>
+      <td>0.002863</td>
+      <td>10000.0</td>
+      <td>{'ridge__alpha': 10000.0}</td>
+      <td>0.593370</td>
+      <td>0.551975</td>
+      <td>0.568663</td>
+      <td>0.557739</td>
+      <td>...</td>
+      <td>-2.686348e+09</td>
+      <td>3.316395e+08</td>
+      <td>11</td>
+      <td>-2.762093e+09</td>
+      <td>-2.571901e+09</td>
+      <td>-2.662541e+09</td>
+      <td>-2.624450e+09</td>
+      <td>-2.595569e+09</td>
+      <td>-2.643311e+09</td>
+      <td>6.665351e+07</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>0.041000</td>
+      <td>0.002078</td>
+      <td>0.009602</td>
+      <td>0.001558</td>
+      <td>100000.0</td>
+      <td>{'ridge__alpha': 100000.0}</td>
+      <td>0.135384</td>
+      <td>0.113837</td>
+      <td>0.118874</td>
+      <td>0.123367</td>
+      <td>...</td>
+      <td>-5.442377e+09</td>
+      <td>5.531116e+08</td>
+      <td>12</td>
+      <td>-5.629792e+09</td>
+      <td>-5.271738e+09</td>
+      <td>-5.379416e+09</td>
+      <td>-5.342605e+09</td>
+      <td>-5.498133e+09</td>
+      <td>-5.424337e+09</td>
+      <td>1.262079e+08</td>
+    </tr>
+  </tbody>
+</table>
+<p>12 rows × 80 columns</p>
+</div></div></div>
 </div>
 <p>What’s the test score?</p>
 <div class="cell docutils container">
@@ -2576,10 +4163,20 @@ Whether score_func is a score function (default), meaning high is good, or a los
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.095034092462175
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_mape</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">ridge_tuned</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.095034092462175
 </pre></div>
 </div>
 </div>
@@ -2674,11 +4271,11 @@ Whether score_func is a score function (default), meaning high is good, or a los
       </div>
     </a>
     <a class="right-next"
-       href="class_demos/03_class-demo.html"
+       href="11_ensembles.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 3: Class demo</p>
+        <p class="prev-next-title">Lecture 11: Ensembles</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

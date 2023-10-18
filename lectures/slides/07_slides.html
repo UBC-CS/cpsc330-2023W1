@@ -152,6 +152,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../syllabus.html">Syllabus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../docs/README.html">CPSC 330 Documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../learning-objectives.html">Course Learning Objectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
 <ul class="nav bd-sidenav">
@@ -164,6 +165,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../07_linear-models.html">Lecture 7: Linear Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../08_hyperparameter-optimization.html">Lecture 8: Hyperparameter Optimization and Optimization Bias</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../09_classification-metrics.html">Lecture 9: Classification metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_regression-metrics.html">Lecture 10: Regression metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_ensembles.html">Lecture 11: Ensembles</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -404,14 +407,14 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">7</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;../code/.&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">IPython</span>
-<span class="ne">----&gt; </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
 <span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">import</span> <span class="nn">mglearn</span>
+<span class="ne">----&gt; </span><span class="mi">9</span> <span class="kn">import</span> <span class="nn">mglearn</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;ipywidgets&#39;
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;mglearn&#39;
 </pre></div>
 </div>
 </div>
@@ -709,64 +712,6 @@ $<span class="math notranslate nohighlight">\(\hat{y} = w_1x_1 + b\)</span>$</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Coefficients</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>MedInc</th>
-      <td>0.827039</td>
-    </tr>
-    <tr>
-      <th>HouseAge</th>
-      <td>0.117058</td>
-    </tr>
-    <tr>
-      <th>AveRooms</th>
-      <td>-0.265273</td>
-    </tr>
-    <tr>
-      <th>AveBedrms</th>
-      <td>0.307521</td>
-    </tr>
-    <tr>
-      <th>Population</th>
-      <td>-0.003194</td>
-    </tr>
-    <tr>
-      <th>AveOccup</th>
-      <td>-0.039498</td>
-    </tr>
-    <tr>
-      <th>Latitude</th>
-      <td>-0.895963</td>
-    </tr>
-    <tr>
-      <th>Longitude</th>
-      <td>-0.866110</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 </section>
 <section id="importance-of-scaling">
@@ -791,8 +736,8 @@ $<span class="math notranslate nohighlight">\(\hat{y} = w_1x_1 + b\)</span>$</p>
 </li>
 </ul>
 <p>So a linear classifier is a linear function of the input <code class="docutils literal notranslate"><span class="pre">X</span></code>, followed by a threshold.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d9de296e-5ea4-4c6a-8682-6d54f9301e68">
-<span class="eqno">()<a class="headerlink" href="#equation-d9de296e-5ea4-4c6a-8682-6d54f9301e68" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c3402736-9eb3-4d95-ad71-156939e0bfb4">
+<span class="eqno">()<a class="headerlink" href="#equation-c3402736-9eb3-4d95-ad71-156939e0bfb4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \begin{split}
 z =&amp; w_1x_1 + \dots + w_dx_d + b\\
 =&amp; w^Tx + b
@@ -811,7 +756,7 @@ z =&amp; w_1x_1 + \dots + w_dx_d + b\\
 <li><p>Bias (<span class="math notranslate nohighlight">\(b\)</span> or <span class="math notranslate nohighlight">\(w_0\)</span>) (can be used to offset your hyperplane)</p></li>
 <li><p>Threshold (<span class="math notranslate nohighlight">\(r\)</span>)</p></li>
 </ol>
-<p>In our example before, we assumed <span class="math notranslate nohighlight">\(r=0\)</span> and <span class="math notranslate nohighlight">\(b=0\)</span>.</p>
+<p>In logistic regression we typically assume <span class="math notranslate nohighlight">\(r=0\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cities_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/canada_usa_cities.csv&quot;</span><span class="p">)</span>
@@ -845,9 +790,6 @@ z =&amp; w_1x_1 + \dots + w_dx_d + b\\
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/bfc69f53ae1172853d5a7aed4a8c5aec68b73380fa64796f2c1639bda128615f.png" src="../../_images/bfc69f53ae1172853d5a7aed4a8c5aec68b73380fa64796f2c1639bda128615f.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -866,9 +808,6 @@ z =&amp; w_1x_1 + \dots + w_dx_d + b\\
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/44b4a44d4be7dafd1758077ab904c286247edfff38b09757aed1bb655581027e.png" src="../../_images/44b4a44d4be7dafd1758077ab904c286247edfff38b09757aed1bb655581027e.png" />
 </div>
 </div>
 </section>
@@ -899,11 +838,6 @@ z =&amp; w_1x_1 + \dots + w_dx_d + b\\
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-64.8001,  46.098 ])
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -913,20 +847,10 @@ z =&amp; w_1x_1 + \dots + w_dx_d + b\\
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Canada&#39;], dtype=object)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">([</span><span class="n">example</span><span class="p">])</span>  <span class="c1"># soft prediction</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.87848688, 0.12151312]])
 </pre></div>
 </div>
 </div>
@@ -972,9 +896,6 @@ $<span class="math notranslate nohighlight">\(\frac{1}{1+e^{-x}}\)</span>$</p></
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/6780219cd3d32f91773f0767bb4edd67c78e6208159a30323b1b27009307912f.png" src="../../_images/6780219cd3d32f91773f0767bb4edd67c78e6208159a30323b1b27009307912f.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -993,106 +914,6 @@ $<span class="math notranslate nohighlight">\(\frac{1}{1+e^{-x}}\)</span>$</p></
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>y</th>
-      <th>y_hat</th>
-      <th>probabilities</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Canada</td>
-      <td>Canada</td>
-      <td>[0.7046068097086481, 0.2953931902913519]</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Canada</td>
-      <td>Canada</td>
-      <td>[0.5630169062040135, 0.43698309379598654]</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Canada</td>
-      <td>Canada</td>
-      <td>[0.8389680973255862, 0.16103190267441386]</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Canada</td>
-      <td>Canada</td>
-      <td>[0.7964150775404333, 0.20358492245956678]</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Canada</td>
-      <td>Canada</td>
-      <td>[0.9010806652340971, 0.09891933476590285]</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Canada</td>
-      <td>Canada</td>
-      <td>[0.7753006388010791, 0.2246993611989209]</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>USA</td>
-      <td>USA</td>
-      <td>[0.030740704606528002, 0.969259295393472]</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>Canada</td>
-      <td>Canada</td>
-      <td>[0.6880304799160921, 0.3119695200839079]</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>Canada</td>
-      <td>Canada</td>
-      <td>[0.7891358587234145, 0.21086414127658554]</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>USA</td>
-      <td>USA</td>
-      <td>[0.006546969753885579, 0.9934530302461144]</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>USA</td>
-      <td>USA</td>
-      <td>[0.27874195848431016, 0.7212580415156898]</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Canada</td>
-      <td>Canada</td>
-      <td>[0.8388877146644937, 0.1611122853355063]</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 </section>
 </section>
@@ -1153,9 +974,6 @@ $<span class="math notranslate nohighlight">\(\frac{1}{1+e^{-x}}\)</span>$</p></
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Linear SVM&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/f9668c521d04d14a60c2ca7f2518086b49b64453db9e8b6d44fcb13c0b1e3abc.png" src="../../_images/f9668c521d04d14a60c2ca7f2518086b49b64453db9e8b6d44fcb13c0b1e3abc.png" />
 </div>
 </div>
 </section>
