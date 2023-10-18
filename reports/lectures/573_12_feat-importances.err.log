@@ -30,9 +30,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-for (name, model) in classifiers.items():
-    results[name] = mean_std_cross_val_scores(
-        model, X_train, y_train_num, return_train_score=True, scoring=scoring_metric
-    )
+['from sklearn.feature_selection import SequentialFeatureSelector', '', 'pipe_forward = make_pipeline(', '    preprocessor,', '    SequentialFeatureSelector(Ridge(), direction="forward"),']
+...
+[')', '', "# results['rf_forward_fs'] = mean_std_cross_val_scores(pipe_forward, X_train, y_train, return_train_score=True)", '', 'pipe_forward.fit(X_train, y_train)']
 -------------------
 
