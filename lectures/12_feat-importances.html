@@ -812,36 +812,36 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Alley&#39;,
- &#39;MasVnrType&#39;,
- &#39;GarageType&#39;,
- &#39;Street&#39;,
- &#39;SaleCondition&#39;,
- &#39;MSZoning&#39;,
- &#39;Heating&#39;,
- &#39;Condition1&#39;,
- &#39;Exterior2nd&#39;,
- &#39;LotShape&#39;,
- &#39;Utilities&#39;,
- &#39;LandContour&#39;,
- &#39;CentralAir&#39;,
- &#39;Foundation&#39;,
- &#39;SaleType&#39;,
- &#39;LotConfig&#39;,
- &#39;Exterior1st&#39;,
- &#39;HouseStyle&#39;,
- &#39;Neighborhood&#39;,
- &#39;Condition2&#39;,
- &#39;BldgType&#39;,
- &#39;MiscFeature&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;RoofStyle&#39;,
  &#39;Electrical&#39;,
- &#39;MoSold&#39;,
+ &#39;Alley&#39;,
+ &#39;HouseStyle&#39;,
+ &#39;LandContour&#39;,
+ &#39;GarageType&#39;,
+ &#39;RoofMatl&#39;,
  &#39;GarageFinish&#39;,
- &#39;RoofStyle&#39;,
- &#39;MSSubClass&#39;,
+ &#39;Exterior2nd&#39;,
+ &#39;MiscFeature&#39;,
+ &#39;Street&#39;,
+ &#39;MSZoning&#39;,
+ &#39;Neighborhood&#39;,
+ &#39;LotShape&#39;,
+ &#39;SaleType&#39;,
+ &#39;Foundation&#39;,
  &#39;LandSlope&#39;,
+ &#39;Condition2&#39;,
+ &#39;MasVnrType&#39;,
+ &#39;SaleCondition&#39;,
+ &#39;Condition1&#39;,
+ &#39;Exterior1st&#39;,
+ &#39;CentralAir&#39;,
+ &#39;BldgType&#39;,
+ &#39;MoSold&#39;,
+ &#39;LotConfig&#39;,
+ &#39;Utilities&#39;,
+ &#39;Heating&#39;,
  &#39;PavedDrive&#39;,
- &#39;RoofMatl&#39;]
+ &#39;MSSubClass&#39;]
 </pre></div>
 </div>
 </div>
@@ -973,16 +973,16 @@ document.write(`
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
-      <th>PavedDrive_P</th>
-      <th>PavedDrive_Y</th>
-      <th>RoofMatl_ClyTile</th>
-      <th>RoofMatl_CompShg</th>
-      <th>RoofMatl_Membran</th>
-      <th>RoofMatl_Metal</th>
-      <th>RoofMatl_Roll</th>
-      <th>RoofMatl_Tar&amp;Grv</th>
-      <th>RoofMatl_WdShake</th>
-      <th>RoofMatl_WdShngl</th>
+      <th>MSSubClass_60</th>
+      <th>MSSubClass_70</th>
+      <th>MSSubClass_75</th>
+      <th>MSSubClass_80</th>
+      <th>MSSubClass_85</th>
+      <th>MSSubClass_90</th>
+      <th>MSSubClass_120</th>
+      <th>MSSubClass_160</th>
+      <th>MSSubClass_180</th>
+      <th>MSSubClass_190</th>
     </tr>
   </thead>
   <tbody>
@@ -1000,9 +1000,9 @@ document.write(`
       <td>-0.961498</td>
       <td>...</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1024,9 +1024,9 @@ document.write(`
       <td>0.476092</td>
       <td>...</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1048,9 +1048,9 @@ document.write(`
       <td>1.227559</td>
       <td>...</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1072,9 +1072,9 @@ document.write(`
       <td>0.443419</td>
       <td>...</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1095,10 +1095,10 @@ document.write(`
       <td>-0.573129</td>
       <td>0.354114</td>
       <td>...</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1143,10 +1143,10 @@ document.write(`
       <td>0.843281</td>
       <td>-0.090231</td>
       <td>...</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1168,9 +1168,9 @@ document.write(`
       <td>-0.961498</td>
       <td>...</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1192,9 +1192,9 @@ document.write(`
       <td>-0.314582</td>
       <td>...</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1216,10 +1216,10 @@ document.write(`
       <td>0.467379</td>
       <td>...</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1240,9 +1240,9 @@ document.write(`
       <td>-0.144686</td>
       <td>...</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1302,32 +1302,32 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.029221</td>
-      <td>0.009313</td>
+      <td>0.037747</td>
+      <td>0.007820</td>
       <td>0.835749</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.028626</td>
-      <td>0.008801</td>
+      <td>0.027292</td>
+      <td>0.007691</td>
       <td>0.810073</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.027165</td>
-      <td>0.007553</td>
+      <td>0.040574</td>
+      <td>0.009068</td>
       <td>0.831611</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.027154</td>
-      <td>0.007771</td>
+      <td>0.033134</td>
+      <td>0.008301</td>
       <td>0.843992</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.026623</td>
-      <td>0.008215</td>
+      <td>0.043134</td>
+      <td>0.009558</td>
       <td>0.548831</td>
     </tr>
   </tbody>
@@ -1722,7 +1722,7 @@ Name: ExterQual, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Alley&#39;, &#39;MasVnrType&#39;, &#39;GarageType&#39;, &#39;Street&#39;, &#39;SaleCondition&#39;, &#39;MSZoning&#39;, &#39;Heating&#39;, &#39;Condition1&#39;, &#39;Exterior2nd&#39;, &#39;LotShape&#39;, &#39;Utilities&#39;, &#39;LandContour&#39;, &#39;CentralAir&#39;, &#39;Foundation&#39;, &#39;SaleType&#39;, &#39;LotConfig&#39;, &#39;Exterior1st&#39;, &#39;HouseStyle&#39;, &#39;Neighborhood&#39;, &#39;Condition2&#39;, &#39;BldgType&#39;, &#39;MiscFeature&#39;, &#39;Electrical&#39;, &#39;MoSold&#39;, &#39;GarageFinish&#39;, &#39;RoofStyle&#39;, &#39;MSSubClass&#39;, &#39;LandSlope&#39;, &#39;PavedDrive&#39;, &#39;RoofMatl&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;RoofStyle&#39;, &#39;Electrical&#39;, &#39;Alley&#39;, &#39;HouseStyle&#39;, &#39;LandContour&#39;, &#39;GarageType&#39;, &#39;RoofMatl&#39;, &#39;GarageFinish&#39;, &#39;Exterior2nd&#39;, &#39;MiscFeature&#39;, &#39;Street&#39;, &#39;MSZoning&#39;, &#39;Neighborhood&#39;, &#39;LotShape&#39;, &#39;SaleType&#39;, &#39;Foundation&#39;, &#39;LandSlope&#39;, &#39;Condition2&#39;, &#39;MasVnrType&#39;, &#39;SaleCondition&#39;, &#39;Condition1&#39;, &#39;Exterior1st&#39;, &#39;CentralAir&#39;, &#39;BldgType&#39;, &#39;MoSold&#39;, &#39;LotConfig&#39;, &#39;Utilities&#39;, &#39;Heating&#39;, &#39;PavedDrive&#39;, &#39;MSSubClass&#39;]
 </pre></div>
 </div>
 </div>
@@ -2061,7 +2061,7 @@ Name: ExterQual, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5118.035160726028
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5118.035160726021
 </pre></div>
 </div>
 </div>
@@ -2950,7 +2950,7 @@ Name: proportion, dtype: float64
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LightGBM] [Info] Number of positive: 5043, number of negative: 15795
-[LightGBM] [Warning] Auto-choosing row-wise multi-threading, the overhead of testing was 0.005912 seconds.
+[LightGBM] [Warning] Auto-choosing row-wise multi-threading, the overhead of testing was 0.004485 seconds.
 You can set `force_row_wise=true` to remove the overhead.
 And if memory is not enough, you can set `force_col_wise=true`.
 [LightGBM] [Info] Total Bins 450
@@ -2960,7 +2960,7 @@ And if memory is not enough, you can set `force_col_wise=true`.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LightGBM] [Info] Number of positive: 5043, number of negative: 15795
-[LightGBM] [Warning] Auto-choosing row-wise multi-threading, the overhead of testing was 0.003105 seconds.
+[LightGBM] [Warning] Auto-choosing row-wise multi-threading, the overhead of testing was 0.002449 seconds.
 You can set `force_row_wise=true` to remove the overhead.
 And if memory is not enough, you can set `force_col_wise=true`.
 [LightGBM] [Info] Total Bins 454
@@ -2970,7 +2970,7 @@ And if memory is not enough, you can set `force_col_wise=true`.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LightGBM] [Info] Number of positive: 5043, number of negative: 15795
-[LightGBM] [Warning] Auto-choosing row-wise multi-threading, the overhead of testing was 0.003630 seconds.
+[LightGBM] [Warning] Auto-choosing row-wise multi-threading, the overhead of testing was 0.004107 seconds.
 You can set `force_row_wise=true` to remove the overhead.
 And if memory is not enough, you can set `force_col_wise=true`.
 [LightGBM] [Info] Total Bins 451
@@ -2980,7 +2980,7 @@ And if memory is not enough, you can set `force_col_wise=true`.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LightGBM] [Info] Number of positive: 5044, number of negative: 15795
-[LightGBM] [Warning] Auto-choosing row-wise multi-threading, the overhead of testing was 0.003670 seconds.
+[LightGBM] [Warning] Auto-choosing row-wise multi-threading, the overhead of testing was 0.005254 seconds.
 You can set `force_row_wise=true` to remove the overhead.
 And if memory is not enough, you can set `force_col_wise=true`.
 [LightGBM] [Info] Total Bins 451
@@ -2990,7 +2990,7 @@ And if memory is not enough, you can set `force_col_wise=true`.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LightGBM] [Info] Number of positive: 5043, number of negative: 15796
-[LightGBM] [Warning] Auto-choosing row-wise multi-threading, the overhead of testing was 0.004116 seconds.
+[LightGBM] [Warning] Auto-choosing row-wise multi-threading, the overhead of testing was 0.010053 seconds.
 You can set `force_row_wise=true` to remove the overhead.
 And if memory is not enough, you can set `force_col_wise=true`.
 [LightGBM] [Info] Total Bins 451
@@ -3035,29 +3035,29 @@ And if memory is not enough, you can set `force_col_wise=true`.
   <tbody>
     <tr>
       <th>Dummy</th>
-      <td>0.007 (+/- 0.000)</td>
-      <td>0.006 (+/- 0.001)</td>
-      <td>0.638 (+/- 0.005)</td>
-      <td>0.635 (+/- 0.002)</td>
+      <td>0.008 (+/- 0.000)</td>
+      <td>0.007 (+/- 0.001)</td>
+      <td>0.630 (+/- 0.003)</td>
+      <td>0.634 (+/- 0.004)</td>
     </tr>
     <tr>
       <th>logistic regression</th>
-      <td>1.498 (+/- 0.164)</td>
-      <td>0.016 (+/- 0.000)</td>
+      <td>2.266 (+/- 0.384)</td>
+      <td>0.020 (+/- 0.004)</td>
       <td>0.849 (+/- 0.005)</td>
       <td>0.850 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>random forest</th>
-      <td>1.340 (+/- 0.015)</td>
-      <td>0.089 (+/- 0.003)</td>
+      <td>1.597 (+/- 0.158)</td>
+      <td>0.093 (+/- 0.002)</td>
       <td>0.848 (+/- 0.006)</td>
       <td>0.979 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>LightGBM</th>
-      <td>0.399 (+/- 0.032)</td>
-      <td>0.028 (+/- 0.002)</td>
+      <td>1.356 (+/- 0.828)</td>
+      <td>0.032 (+/- 0.003)</td>
       <td>0.872 (+/- 0.004)</td>
       <td>0.888 (+/- 0.000)</td>
     </tr>

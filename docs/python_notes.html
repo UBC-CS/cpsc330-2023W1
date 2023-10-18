@@ -150,6 +150,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Syllabus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="README.html">CPSC 330 Documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../learning-objectives.html">Course Learning Objectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
 <ul class="nav bd-sidenav">
@@ -162,6 +163,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../lectures/07_linear-models.html">Lecture 7: Linear Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/08_hyperparameter-optimization.html">Lecture 8: Hyperparameter Optimization and Optimization Bias</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/09_classification-metrics.html">Lecture 9: Classification metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/10_regression-metrics.html">Lecture 10: Regression metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/11_ensembles.html">Lecture 11: Ensembles</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -411,7 +414,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1680bc550&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x165b1add0&gt;]
 </pre></div>
 </div>
 <img alt="../_images/88e0d233c57445cd57e13a530416d997c94e725075c8317b3833642c8b798924.png" src="../_images/88e0d233c57445cd57e13a530416d997c94e725075c8317b3833642c8b798924.png" />
@@ -517,8 +520,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.10693488, 0.77942415, 0.89661872],
-       [0.20186042, 0.98224975, 0.92427631]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.25235589, 0.64607177, 0.23730898],
+       [0.06040252, 0.8082333 , 0.45016441]])
 </pre></div>
 </div>
 </div>
@@ -530,7 +533,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7794241482614123
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.646071773092439
 </pre></div>
 </div>
 </div>

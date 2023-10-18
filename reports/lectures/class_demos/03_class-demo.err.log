@@ -30,6 +30,6 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-plot_knn_decision_boundaries(X_train, y_train, k_values=[1, 11, 100])
+plot_tree(dt_final, feature_names = X_train.columns.tolist(), impurity=False, filled=True);
 -------------------
 

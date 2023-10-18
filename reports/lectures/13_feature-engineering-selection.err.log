@@ -30,6 +30,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-plot_knn_decision_boundaries(X_train, y_train, k_values=[1, 11, 100])
+['train_df = train_df.assign(n_words=train_df["OriginalTweet"].apply(get_length_in_words))', 'train_df = train_df.assign(vader_sentiment=train_df["OriginalTweet"].apply(get_sentiment))', 'train_df = train_df.assign(rel_char_len=train_df["OriginalTweet"].apply(get_relative_length))', '', 'test_df = test_df.assign(n_words=test_df["OriginalTweet"].apply(get_length_in_words))']
+...
+['', 'train_df = train_df.assign(has_emoji=train_df["OriginalTweet"].apply(has_emoji))', 'test_df = test_df.assign(has_emoji=test_df["OriginalTweet"].apply(has_emoji))', '', 'train_df.head()']
 -------------------
 

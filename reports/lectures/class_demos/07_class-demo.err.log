@@ -30,8 +30,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['import panel as pn', 'from panel import widgets', 'from panel.interact import interact', 'import matplotlib', '']
+['scores_dict = {', '    "C": 10.0 ** np.arange(-3, 3, 1),', '    "mean_train_scores": list(),', '    "mean_cv_scores": list(),', '}']
 ...
-['    return fig', '', "depth_selector = pn.widgets.IntSlider(name='depth', start=1, end=10, value=1)", 'pn.interact(plot_depth_regression, depth=depth_selector).embed(max_opts=5)', '#pn.interact(f, depth=depth_selector).embed(max_opts=10)']
+['    scores_dict["mean_train_scores"].append(scores["train_score"].mean())', '    scores_dict["mean_cv_scores"].append(scores["test_score"].mean())', '', 'results_df = pd.DataFrame(scores_dict)', 'results_df']
 -------------------
 

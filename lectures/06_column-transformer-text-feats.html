@@ -154,6 +154,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Syllabus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../docs/README.html">CPSC 330 Documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../learning-objectives.html">Course Learning Objectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
 <ul class="current nav bd-sidenav">
@@ -166,6 +167,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="07_linear-models.html">Lecture 7: Linear Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08_hyperparameter-optimization.html">Lecture 8: Hyperparameter Optimization and Optimization Bias</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_classification-metrics.html">Lecture 9: Classification metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_regression-metrics.html">Lecture 10: Regression metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_ensembles.html">Lecture 11: Ensembles</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -3924,36 +3927,36 @@ ValueError: Found unknown categories [&#39;Biology&#39;] in column 0 during tran
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.005258</td>
-      <td>0.002193</td>
+      <td>0.005440</td>
+      <td>0.002382</td>
       <td>1.00</td>
       <td>0.937500</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.004140</td>
-      <td>0.002005</td>
+      <td>0.004545</td>
+      <td>0.002267</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.004065</td>
-      <td>0.001967</td>
+      <td>0.004398</td>
+      <td>0.002286</td>
       <td>0.50</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.004035</td>
-      <td>0.001955</td>
+      <td>0.004396</td>
+      <td>0.002255</td>
       <td>0.75</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.004071</td>
-      <td>0.007175</td>
+      <td>0.004371</td>
+      <td>0.007241</td>
       <td>NaN</td>
       <td>1.000000</td>
     </tr>
@@ -4107,36 +4110,36 @@ Name: count, dtype: int64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.004862</td>
-      <td>0.002108</td>
+      <td>0.005633</td>
+      <td>0.002523</td>
       <td>1.00</td>
       <td>0.937500</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.004072</td>
-      <td>0.001983</td>
+      <td>0.004439</td>
+      <td>0.002290</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.004089</td>
-      <td>0.002030</td>
+      <td>0.004396</td>
+      <td>0.002257</td>
       <td>0.50</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.003984</td>
-      <td>0.001948</td>
+      <td>0.004389</td>
+      <td>0.002241</td>
       <td>0.75</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.004017</td>
-      <td>0.001978</td>
+      <td>0.004367</td>
+      <td>0.002268</td>
       <td>0.75</td>
       <td>1.000000</td>
     </tr>
@@ -4410,36 +4413,36 @@ Name: enjoy_course, dtype: object
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.005680</td>
-      <td>0.002608</td>
+      <td>0.006932</td>
+      <td>0.003320</td>
       <td>1.00</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.004636</td>
-      <td>0.002355</td>
+      <td>0.005210</td>
+      <td>0.002744</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.004704</td>
-      <td>0.002341</td>
+      <td>0.005375</td>
+      <td>0.002718</td>
       <td>0.50</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.004659</td>
-      <td>0.002322</td>
+      <td>0.005199</td>
+      <td>0.002892</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.004562</td>
-      <td>0.002320</td>
+      <td>0.005145</td>
+      <td>0.002733</td>
       <td>0.75</td>
       <td>1.000000</td>
     </tr>
@@ -5358,10 +5361,6 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/CS/2023-24/330/cpsc330-2023W1/lectures/code/./utils.py:86: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
-  out_col.append((f&quot;%0.3f (+/- %0.3f)&quot; % (mean_scores[i], std_scores[i])))
-</pre></div>
-</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -5468,12 +5467,6 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/CS/2023-24/330/cpsc330-2023W1/lectures/code/./utils.py:86: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
-  out_col.append((f&quot;%0.3f (+/- %0.3f)&quot; % (mean_scores[i], std_scores[i])))
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -5516,8 +5509,8 @@ Name: count, dtype: int64
     </tr>
     <tr>
       <th>imp + scaling + ohe + KNN</th>
-      <td>0.023 (+/- 0.001)</td>
-      <td>0.185 (+/- 0.014)</td>
+      <td>0.027 (+/- 0.002)</td>
+      <td>0.196 (+/- 0.014)</td>
       <td>0.706 (+/- 0.015)</td>
       <td>0.806 (+/- 0.015)</td>
     </tr>

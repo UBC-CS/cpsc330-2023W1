@@ -152,6 +152,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../syllabus.html">Syllabus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../docs/README.html">CPSC 330 Documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../learning-objectives.html">Course Learning Objectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
 <ul class="nav bd-sidenav">
@@ -164,6 +165,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../07_linear-models.html">Lecture 7: Linear Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../08_hyperparameter-optimization.html">Lecture 8: Hyperparameter Optimization and Optimization Bias</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../09_classification-metrics.html">Lecture 9: Classification metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_regression-metrics.html">Lecture 10: Regression metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_ensembles.html">Lecture 11: Ensembles</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="current nav bd-sidenav">
@@ -940,36 +943,36 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.004660</td>
-      <td>0.001047</td>
+      <td>0.008219</td>
+      <td>0.001037</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000189</td>
-      <td>0.000221</td>
+      <td>0.000416</td>
+      <td>0.000504</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000167</td>
-      <td>0.000215</td>
+      <td>0.000386</td>
+      <td>0.000503</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000159</td>
-      <td>0.000206</td>
+      <td>0.000366</td>
+      <td>0.000493</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000153</td>
-      <td>0.000206</td>
+      <td>0.000354</td>
+      <td>0.000504</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
@@ -1018,36 +1021,36 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001027</td>
-      <td>0.569761</td>
+      <td>0.000909</td>
+      <td>0.112028</td>
       <td>0.966667</td>
       <td>0.991667</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000502</td>
-      <td>0.002527</td>
+      <td>0.000677</td>
+      <td>0.010487</td>
       <td>1.000000</td>
       <td>0.991667</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000346</td>
-      <td>0.001113</td>
+      <td>0.000859</td>
+      <td>0.005920</td>
       <td>0.933333</td>
       <td>0.983333</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000338</td>
-      <td>0.001063</td>
+      <td>0.001039</td>
+      <td>0.006516</td>
       <td>0.933333</td>
       <td>0.991667</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000331</td>
-      <td>0.001082</td>
+      <td>0.000878</td>
+      <td>0.005333</td>
       <td>0.933333</td>
       <td>1.000000</td>
     </tr>
@@ -1279,7 +1282,9 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C =  0.1
 C =  1.0
 C =  10.0
-C =  100.0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C =  100.0
 </pre></div>
 </div>
 </div>

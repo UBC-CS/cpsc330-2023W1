@@ -154,6 +154,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Syllabus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../docs/README.html">CPSC 330 Documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../learning-objectives.html">Course Learning Objectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
 <ul class="current nav bd-sidenav">
@@ -166,6 +167,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="07_linear-models.html">Lecture 7: Linear Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08_hyperparameter-optimization.html">Lecture 8: Hyperparameter Optimization and Optimization Bias</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09_classification-metrics.html">Lecture 9: Classification metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_regression-metrics.html">Lecture 10: Regression metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_ensembles.html">Lecture 11: Ensembles</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -574,7 +577,7 @@ Follow the installation instructions <a class="reference external" href="https:/
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "cf0db279d66146aa9053d47bc47ba124"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "f145a8bb436f4044b7861391ec5056af"}</script></div>
 </div>
 </section>
 <section id="geometric-view-of-tabular-data-and-dimensions">
@@ -1593,36 +1596,36 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001220</td>
-      <td>0.002798</td>
+      <td>0.001188</td>
+      <td>0.002525</td>
       <td>0.710526</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000910</td>
-      <td>0.001873</td>
+      <td>0.000969</td>
+      <td>0.001940</td>
       <td>0.684211</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000844</td>
-      <td>0.001818</td>
+      <td>0.000902</td>
+      <td>0.001885</td>
       <td>0.842105</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000851</td>
-      <td>0.001837</td>
+      <td>0.000899</td>
+      <td>0.001851</td>
       <td>0.702703</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000834</td>
-      <td>0.001788</td>
+      <td>0.000999</td>
+      <td>0.001943</td>
       <td>0.837838</td>
       <td>1.0</td>
     </tr>
@@ -1667,36 +1670,36 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000910</td>
-      <td>0.004297</td>
+      <td>0.001057</td>
+      <td>0.004032</td>
       <td>NaN</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000813</td>
-      <td>0.000801</td>
+      <td>0.000861</td>
+      <td>0.000729</td>
       <td>NaN</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000746</td>
-      <td>0.000782</td>
+      <td>0.000818</td>
+      <td>0.000720</td>
       <td>NaN</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000733</td>
-      <td>0.000779</td>
+      <td>0.000802</td>
+      <td>0.000716</td>
       <td>NaN</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000725</td>
-      <td>0.000773</td>
+      <td>0.000797</td>
+      <td>0.000733</td>
       <td>NaN</td>
       <td>NaN</td>
     </tr>
@@ -1724,7 +1727,7 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "f05d2c406c9e44689012552af06ccb71"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "500af64fe3f743a99e8849cbd066f899"}</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1733,7 +1736,52 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/19c277ffc2e9db1d817c70b2848562fce6e11e0024405466d2e01ff62e5cbb02.png" src="../_images/19c277ffc2e9db1d817c70b2848562fce6e11e0024405466d2e01ff62e5cbb02.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/mglearn/plot_2d_separator.py:86,</span> in <span class="ni">plot_2d_separator</span><span class="nt">(classifier, X, fill, ax, eps, alpha, cm, linewidth, threshold, linestyle)</span>
+<span class="g g-Whitespace">     </span><span class="mi">85</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">86</span>     <span class="n">decision_values</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">X_grid</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">87</span>     <span class="n">levels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">threshold</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[</span><span class="n">threshold</span><span class="p">]</span>
+
+<span class="ne">AttributeError</span>: &#39;KNeighborsClassifier&#39; object has no attribute &#39;decision_function&#39;
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">31</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">plot_knn_decision_boundaries</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">k_values</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+
+<span class="nn">File ~/CS/2023-24/330/cpsc330-2023W1/lectures/code/./plotting_functions.py:105,</span> in <span class="ni">plot_knn_decision_boundaries</span><span class="nt">(X_train, y_train, k_values)</span>
+<span class="g g-Whitespace">    </span><span class="mi">103</span> <span class="n">mean_train_score</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="s2">&quot;train_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">105</span> <span class="n">mglearn</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">plot_2d_separator</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">106</span>     <span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span>
+<span class="g g-Whitespace">    </span><span class="mi">107</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">108</span> <span class="n">mglearn</span><span class="o">.</span><span class="n">discrete_scatter</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">109</span> <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;n_neighbors=</span><span class="si">{}</span><span class="se">\n</span><span class="s2"> train score=</span><span class="si">{}</span><span class="s2">, valid score=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">110</span>     <span class="n">n_neighbors</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">mean_train_score</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">mean_valid_score</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span> <span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/mglearn/plot_2d_separator.py:92,</span> in <span class="ni">plot_2d_separator</span><span class="nt">(classifier, X, fill, ax, eps, alpha, cm, linewidth, threshold, linestyle)</span>
+<span class="g g-Whitespace">     </span><span class="mi">88</span>     <span class="n">fill_levels</span> <span class="o">=</span> <span class="p">[</span><span class="n">decision_values</span><span class="o">.</span><span class="n">min</span><span class="p">()]</span> <span class="o">+</span> <span class="n">levels</span> <span class="o">+</span> <span class="p">[</span>
+<span class="g g-Whitespace">     </span><span class="mi">89</span>         <span class="n">decision_values</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span>
+<span class="g g-Whitespace">     </span><span class="mi">90</span> <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">91</span>     <span class="c1"># no decision_function</span>
+<span class="ne">---&gt; </span><span class="mi">92</span>     <span class="n">decision_values</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_grid</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">93</span>     <span class="n">levels</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.5</span><span class="p">]</span> <span class="k">if</span> <span class="n">threshold</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[</span><span class="n">threshold</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">94</span>     <span class="n">fill_levels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">levels</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/neighbors/_classification.py:375,</span> in <span class="ni">KNeighborsClassifier.predict_proba</span><span class="nt">(self, X)</span>
+<span class="g g-Whitespace">    </span><span class="mi">373</span> <span class="c1"># a simple &#39;:&#39; index doesn&#39;t work right</span>
+<span class="nn">    374 for i, idx</span> in <span class="ni">enumerate(pred_labels.T):  # loop is O</span><span class="nt">(n_neighbors)</span>
+<span class="ne">--&gt; </span><span class="mi">375</span>     <span class="n">proba_k</span><span class="p">[</span><span class="n">all_rows</span><span class="p">,</span> <span class="n">idx</span><span class="p">]</span> <span class="o">+=</span> <span class="n">weights</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">377</span> <span class="c1"># normalize &#39;votes&#39; into real [0,1] probabilities</span>
+<span class="g g-Whitespace">    </span><span class="mi">378</span> <span class="n">normalizer</span> <span class="o">=</span> <span class="n">proba_k</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+<img alt="../_images/e43934827770697259ea4ff966864afe877ae5d46dcb19ae961e1e3454f9d3ac.png" src="../_images/e43934827770697259ea4ff966864afe877ae5d46dcb19ae961e1e3454f9d3ac.png" />
 </div>
 </div>
 </section>
@@ -2087,122 +2135,122 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
     <tr>
       <th>0</th>
       <td>4</td>
-      <td>0.508125</td>
-      <td>0.945000</td>
+      <td>0.501875</td>
+      <td>0.946875</td>
     </tr>
     <tr>
       <th>1</th>
       <td>104</td>
-      <td>0.506875</td>
-      <td>0.745625</td>
+      <td>0.501875</td>
+      <td>0.769375</td>
     </tr>
     <tr>
       <th>2</th>
       <td>204</td>
-      <td>0.505625</td>
-      <td>0.651875</td>
+      <td>0.505000</td>
+      <td>0.653125</td>
     </tr>
     <tr>
       <th>3</th>
       <td>304</td>
-      <td>0.500000</td>
-      <td>0.600625</td>
+      <td>0.505000</td>
+      <td>0.633125</td>
     </tr>
     <tr>
       <th>4</th>
       <td>404</td>
-      <td>0.503750</td>
-      <td>0.615625</td>
+      <td>0.501250</td>
+      <td>0.682500</td>
     </tr>
     <tr>
       <th>5</th>
       <td>504</td>
-      <td>0.499375</td>
-      <td>0.665625</td>
+      <td>0.505625</td>
+      <td>0.620625</td>
     </tr>
     <tr>
       <th>6</th>
       <td>604</td>
       <td>0.502500</td>
-      <td>0.683750</td>
+      <td>0.662500</td>
     </tr>
     <tr>
       <th>7</th>
       <td>704</td>
-      <td>0.513750</td>
-      <td>0.582500</td>
+      <td>0.501250</td>
+      <td>0.636875</td>
     </tr>
     <tr>
       <th>8</th>
       <td>804</td>
-      <td>0.508125</td>
-      <td>0.631250</td>
+      <td>0.506250</td>
+      <td>0.579375</td>
     </tr>
     <tr>
       <th>9</th>
       <td>904</td>
-      <td>0.505000</td>
-      <td>0.598125</td>
+      <td>0.513750</td>
+      <td>0.590625</td>
     </tr>
     <tr>
       <th>10</th>
       <td>1004</td>
-      <td>0.516250</td>
-      <td>0.609375</td>
+      <td>0.503125</td>
+      <td>0.616875</td>
     </tr>
     <tr>
       <th>11</th>
       <td>1104</td>
-      <td>0.510000</td>
-      <td>0.567500</td>
+      <td>0.502500</td>
+      <td>0.617500</td>
     </tr>
     <tr>
       <th>12</th>
       <td>1204</td>
-      <td>0.516250</td>
-      <td>0.611875</td>
+      <td>0.510000</td>
+      <td>0.623125</td>
     </tr>
     <tr>
       <th>13</th>
       <td>1304</td>
-      <td>0.508125</td>
-      <td>0.607500</td>
+      <td>0.502500</td>
+      <td>0.635000</td>
     </tr>
     <tr>
       <th>14</th>
       <td>1404</td>
-      <td>0.503750</td>
-      <td>0.570000</td>
+      <td>0.504375</td>
+      <td>0.601875</td>
     </tr>
     <tr>
       <th>15</th>
       <td>1504</td>
-      <td>0.500000</td>
-      <td>0.612500</td>
+      <td>0.506250</td>
+      <td>0.588125</td>
     </tr>
     <tr>
       <th>16</th>
       <td>1604</td>
-      <td>0.502500</td>
-      <td>0.587500</td>
+      <td>0.506250</td>
+      <td>0.625625</td>
     </tr>
     <tr>
       <th>17</th>
       <td>1704</td>
-      <td>0.508125</td>
-      <td>0.571875</td>
+      <td>0.501250</td>
+      <td>0.572500</td>
     </tr>
     <tr>
       <th>18</th>
       <td>1804</td>
-      <td>0.500625</td>
-      <td>0.566875</td>
+      <td>0.508750</td>
+      <td>0.556250</td>
     </tr>
     <tr>
       <th>19</th>
       <td>1904</td>
-      <td>0.503750</td>
-      <td>0.556250</td>
+      <td>0.502500</td>
+      <td>0.590625</td>
     </tr>
   </tbody>
 </table>
@@ -2313,36 +2361,36 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001116</td>
-      <td>0.003043</td>
+      <td>0.001220</td>
+      <td>0.002158</td>
       <td>0.794118</td>
       <td>0.819549</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000863</td>
-      <td>0.001803</td>
+      <td>0.001207</td>
+      <td>0.002132</td>
       <td>0.764706</td>
       <td>0.819549</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000889</td>
-      <td>0.001849</td>
+      <td>0.001132</td>
+      <td>0.002036</td>
       <td>0.727273</td>
       <td>0.850746</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000877</td>
-      <td>0.001776</td>
+      <td>0.003419</td>
+      <td>0.002297</td>
       <td>0.787879</td>
       <td>0.828358</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000835</td>
-      <td>0.001761</td>
+      <td>0.001899</td>
+      <td>0.001910</td>
       <td>0.939394</td>
       <td>0.783582</td>
     </tr>
@@ -2392,36 +2440,36 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.003522</td>
-      <td>0.001255</td>
+      <td>0.005337</td>
+      <td>0.002172</td>
       <td>0.823529</td>
       <td>0.842105</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001248</td>
-      <td>0.000799</td>
+      <td>0.001399</td>
+      <td>0.000810</td>
       <td>0.823529</td>
       <td>0.842105</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.001163</td>
-      <td>0.000762</td>
+      <td>0.001210</td>
+      <td>0.000763</td>
       <td>0.727273</td>
       <td>0.858209</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.001177</td>
-      <td>0.000777</td>
+      <td>0.001253</td>
+      <td>0.000789</td>
       <td>0.787879</td>
       <td>0.843284</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001172</td>
-      <td>0.000780</td>
+      <td>0.001185</td>
+      <td>0.000767</td>
       <td>0.939394</td>
       <td>0.805970</td>
     </tr>
@@ -2553,6 +2601,9 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 <span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/872a32e201c389c73cb9c35d8e74b29a7ba4d2ae57658fdd5beeb957bc1709a3.png" src="../_images/872a32e201c389c73cb9c35d8e74b29a7ba4d2ae57658fdd5beeb957bc1709a3.png" />
 </div>
 </div>
 </section>
