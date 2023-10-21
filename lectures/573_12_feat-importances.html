@@ -820,36 +820,36 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;CentralAir&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;GarageType&#39;,
+ &#39;GarageFinish&#39;,
+ &#39;LotShape&#39;,
+ &#39;Neighborhood&#39;,
+ &#39;Utilities&#39;,
+ &#39;RoofMatl&#39;,
+ &#39;Foundation&#39;,
+ &#39;CentralAir&#39;,
+ &#39;SaleType&#39;,
+ &#39;LandSlope&#39;,
+ &#39;LotConfig&#39;,
+ &#39;Condition1&#39;,
+ &#39;MasVnrType&#39;,
+ &#39;Heating&#39;,
+ &#39;Street&#39;,
+ &#39;Condition2&#39;,
+ &#39;SaleCondition&#39;,
+ &#39;PavedDrive&#39;,
  &#39;HouseStyle&#39;,
  &#39;Exterior2nd&#39;,
- &#39;SaleCondition&#39;,
- &#39;MiscFeature&#39;,
- &#39;Neighborhood&#39;,
- &#39;LandSlope&#39;,
- &#39;LotShape&#39;,
- &#39;RoofStyle&#39;,
- &#39;LotConfig&#39;,
- &#39;Heating&#39;,
- &#39;RoofMatl&#39;,
- &#39;SaleType&#39;,
- &#39;Condition2&#39;,
- &#39;Condition1&#39;,
- &#39;LandContour&#39;,
- &#39;GarageType&#39;,
- &#39;BldgType&#39;,
- &#39;Foundation&#39;,
  &#39;Electrical&#39;,
- &#39;GarageFinish&#39;,
- &#39;MSSubClass&#39;,
- &#39;Street&#39;,
  &#39;MoSold&#39;,
- &#39;Alley&#39;,
- &#39;PavedDrive&#39;,
+ &#39;MiscFeature&#39;,
+ &#39;MSSubClass&#39;,
  &#39;MSZoning&#39;,
+ &#39;RoofStyle&#39;,
+ &#39;LandContour&#39;,
+ &#39;Alley&#39;,
  &#39;Exterior1st&#39;,
- &#39;Utilities&#39;,
- &#39;MasVnrType&#39;]
+ &#39;BldgType&#39;]
 </pre></div>
 </div>
 </div>
@@ -981,16 +981,16 @@ document.write(`
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
+      <th>Exterior1st_Stone</th>
       <th>Exterior1st_Stucco</th>
       <th>Exterior1st_VinylSd</th>
       <th>Exterior1st_Wd Sdng</th>
       <th>Exterior1st_WdShing</th>
-      <th>Utilities_AllPub</th>
-      <th>Utilities_NoSeWa</th>
-      <th>MasVnrType_BrkCmn</th>
-      <th>MasVnrType_BrkFace</th>
-      <th>MasVnrType_Stone</th>
-      <th>MasVnrType_missing</th>
+      <th>BldgType_1Fam</th>
+      <th>BldgType_2fmCon</th>
+      <th>BldgType_Duplex</th>
+      <th>BldgType_Twnhs</th>
+      <th>BldgType_TwnhsE</th>
     </tr>
   </thead>
   <tbody>
@@ -1008,13 +1008,13 @@ document.write(`
       <td>-0.961498</td>
       <td>...</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -1032,15 +1032,15 @@ document.write(`
       <td>0.476092</td>
       <td>...</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>429</th>
@@ -1059,12 +1059,12 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1139</th>
@@ -1079,16 +1079,16 @@ document.write(`
       <td>-0.573129</td>
       <td>0.443419</td>
       <td>...</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>558</th>
@@ -1107,12 +1107,12 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1155,10 +1155,10 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -1179,12 +1179,12 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1346</th>
@@ -1203,12 +1203,12 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1406</th>
@@ -1227,12 +1227,12 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1389</th>
@@ -1249,14 +1249,14 @@ document.write(`
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
   </tbody>
 </table>
@@ -1311,36 +1311,36 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.025980</td>
-      <td>0.007568</td>
+      <td>0.030300</td>
+      <td>0.007789</td>
       <td>0.835749</td>
       <td>0.916722</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.033881</td>
-      <td>0.007819</td>
+      <td>0.026809</td>
+      <td>0.007301</td>
       <td>0.810073</td>
       <td>0.919198</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.025419</td>
-      <td>0.007263</td>
+      <td>0.025009</td>
+      <td>0.007485</td>
       <td>0.831611</td>
       <td>0.912395</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.026905</td>
-      <td>0.007164</td>
+      <td>0.025228</td>
+      <td>0.007068</td>
       <td>0.843992</td>
       <td>0.914003</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.042979</td>
-      <td>0.007429</td>
+      <td>0.024789</td>
+      <td>0.007052</td>
       <td>0.548831</td>
       <td>0.920462</td>
     </tr>
@@ -1738,7 +1738,7 @@ Name: ExterQual, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;CentralAir&#39;, &#39;HouseStyle&#39;, &#39;Exterior2nd&#39;, &#39;SaleCondition&#39;, &#39;MiscFeature&#39;, &#39;Neighborhood&#39;, &#39;LandSlope&#39;, &#39;LotShape&#39;, &#39;RoofStyle&#39;, &#39;LotConfig&#39;, &#39;Heating&#39;, &#39;RoofMatl&#39;, &#39;SaleType&#39;, &#39;Condition2&#39;, &#39;Condition1&#39;, &#39;LandContour&#39;, &#39;GarageType&#39;, &#39;BldgType&#39;, &#39;Foundation&#39;, &#39;Electrical&#39;, &#39;GarageFinish&#39;, &#39;MSSubClass&#39;, &#39;Street&#39;, &#39;MoSold&#39;, &#39;Alley&#39;, &#39;PavedDrive&#39;, &#39;MSZoning&#39;, &#39;Exterior1st&#39;, &#39;Utilities&#39;, &#39;MasVnrType&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;GarageType&#39;, &#39;GarageFinish&#39;, &#39;LotShape&#39;, &#39;Neighborhood&#39;, &#39;Utilities&#39;, &#39;RoofMatl&#39;, &#39;Foundation&#39;, &#39;CentralAir&#39;, &#39;SaleType&#39;, &#39;LandSlope&#39;, &#39;LotConfig&#39;, &#39;Condition1&#39;, &#39;MasVnrType&#39;, &#39;Heating&#39;, &#39;Street&#39;, &#39;Condition2&#39;, &#39;SaleCondition&#39;, &#39;PavedDrive&#39;, &#39;HouseStyle&#39;, &#39;Exterior2nd&#39;, &#39;Electrical&#39;, &#39;MoSold&#39;, &#39;MiscFeature&#39;, &#39;MSSubClass&#39;, &#39;MSZoning&#39;, &#39;RoofStyle&#39;, &#39;LandContour&#39;, &#39;Alley&#39;, &#39;Exterior1st&#39;, &#39;BldgType&#39;]
 </pre></div>
 </div>
 </div>
@@ -2264,16 +2264,16 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
+      <th>Exterior1st_Stone</th>
       <th>Exterior1st_Stucco</th>
       <th>Exterior1st_VinylSd</th>
       <th>Exterior1st_Wd Sdng</th>
       <th>Exterior1st_WdShing</th>
-      <th>Utilities_AllPub</th>
-      <th>Utilities_NoSeWa</th>
-      <th>MasVnrType_BrkCmn</th>
-      <th>MasVnrType_BrkFace</th>
-      <th>MasVnrType_Stone</th>
-      <th>MasVnrType_missing</th>
+      <th>BldgType_1Fam</th>
+      <th>BldgType_2fmCon</th>
+      <th>BldgType_Duplex</th>
+      <th>BldgType_Twnhs</th>
+      <th>BldgType_TwnhsE</th>
     </tr>
   </thead>
   <tbody>
@@ -2291,13 +2291,13 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
       <td>-0.961498</td>
       <td>...</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -2361,16 +2361,16 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
+      <th>Exterior1st_Stone</th>
       <th>Exterior1st_Stucco</th>
       <th>Exterior1st_VinylSd</th>
       <th>Exterior1st_Wd Sdng</th>
       <th>Exterior1st_WdShing</th>
-      <th>Utilities_AllPub</th>
-      <th>Utilities_NoSeWa</th>
-      <th>MasVnrType_BrkCmn</th>
-      <th>MasVnrType_BrkFace</th>
-      <th>MasVnrType_Stone</th>
-      <th>MasVnrType_missing</th>
+      <th>BldgType_1Fam</th>
+      <th>BldgType_2fmCon</th>
+      <th>BldgType_Duplex</th>
+      <th>BldgType_Twnhs</th>
+      <th>BldgType_TwnhsE</th>
     </tr>
   </thead>
   <tbody>
@@ -2388,13 +2388,13 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
       <td>-0.961498</td>
       <td>...</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -2790,8 +2790,8 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
     </tr>
     <tr>
       <th>ridge</th>
-      <td>0.025 (+/- 0.000)</td>
-      <td>0.007 (+/- 0.000)</td>
+      <td>0.026 (+/- 0.001)</td>
+      <td>0.008 (+/- 0.001)</td>
       <td>0.774 (+/- 0.127)</td>
       <td>0.917 (+/- 0.003)</td>
     </tr>
@@ -2853,16 +2853,16 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
     </tr>
     <tr>
       <th>ridge</th>
-      <td>0.025 (+/- 0.000)</td>
-      <td>0.007 (+/- 0.000)</td>
+      <td>0.026 (+/- 0.001)</td>
+      <td>0.008 (+/- 0.001)</td>
       <td>0.774 (+/- 0.127)</td>
       <td>0.917 (+/- 0.003)</td>
     </tr>
     <tr>
       <th>rf</th>
-      <td>1.590 (+/- 0.010)</td>
+      <td>1.630 (+/- 0.020)</td>
       <td>0.012 (+/- 0.000)</td>
-      <td>0.860 (+/- 0.033)</td>
+      <td>0.858 (+/- 0.037)</td>
       <td>0.979 (+/- 0.001)</td>
     </tr>
   </tbody>
@@ -3023,23 +3023,23 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
 <div class="cell_output docutils container">
 <div class="output text_html">
 <style>
-  #altair-viz-de59a035ec7147339677e53462aaa767.vega-embed {
+  #altair-viz-1e41cd09b1cb457f9d6febe0e565a1d5.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-de59a035ec7147339677e53462aaa767.vega-embed details,
-  #altair-viz-de59a035ec7147339677e53462aaa767.vega-embed details summary {
+  #altair-viz-1e41cd09b1cb457f9d6febe0e565a1d5.vega-embed details,
+  #altair-viz-1e41cd09b1cb457f9d6febe0e565a1d5.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-de59a035ec7147339677e53462aaa767"></div>
+<div id="altair-viz-1e41cd09b1cb457f9d6febe0e565a1d5"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-de59a035ec7147339677e53462aaa767") {
-      outputDiv = document.getElementById("altair-viz-de59a035ec7147339677e53462aaa767");
+    if (outputDiv.id !== "altair-viz-1e41cd09b1cb457f9d6febe0e565a1d5") {
+      outputDiv = document.getElementById("altair-viz-1e41cd09b1cb457f9d6febe0e565a1d5");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -3085,7 +3085,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-4a3858e849d6199bdb5dd1e914ae2a69"}, "mark": {"type": "bar"}, "encoding": {"x": {"field": "coef", "type": "quantitative"}, "y": {"field": "variable", "sort": "x", "type": "nominal"}}, "title": "Ridge Coefficients", "$schema": "https://vega.github.io/schema/vega-lite/v5.14.1.json", "datasets": {"data-4a3858e849d6199bdb5dd1e914ae2a69": [{"variable": "RoofMatl_ClyTile", "coef": -191169.07174468937}, {"variable": "Condition2_PosN", "coef": -105656.86420532405}, {"variable": "Heating_OthW", "coef": -27263.22380446813}, {"variable": "MSZoning_C (all)", "coef": -22001.877389937275}, {"variable": "Exterior1st_ImStucc", "coef": -19422.77531068653}, {"variable": "LotShape_IR3", "coef": -19134.681693755825}, {"variable": "Condition1_RRAe", "coef": -18492.191140698196}, {"variable": "Neighborhood_Edwards", "coef": -17333.226634909908}, {"variable": "Utilities_NoSeWa", "coef": -15664.901413263287}, {"variable": "HouseStyle_2.5Fin", "coef": -15632.394596615417}, {"variable": "Foundation_Wood", "coef": -15431.385418714468}, {"variable": "Neighborhood_Gilbert", "coef": -15358.5119710165}, {"variable": "SaleType_COD", "coef": -14767.211521578178}, {"variable": "Neighborhood_Mitchel", "coef": -14645.980941310687}, {"variable": "LotConfig_FR3", "coef": -13943.472081149155}, {"variable": "Exterior2nd_Stucco", "coef": -13933.091064400323}, {"variable": "GarageType_2Types", "coef": -13080.143115391236}, {"variable": "MSSubClass_120", "coef": -12999.378925328738}, {"variable": "Neighborhood_NWAmes", "coef": -12651.723451516362}, {"variable": "Street_Grvl", "coef": -12137.880295201057}, {"variable": "BldgType_Twnhs", "coef": -12136.37089296863}, {"variable": "MSSubClass_160", "coef": -11458.332231414004}, {"variable": "Neighborhood_Timber", "coef": -11451.721201074408}, {"variable": "SaleType_WD", "coef": -11404.116781057142}, {"variable": "RoofStyle_Gable", "coef": -11308.000252935635}, {"variable": "Neighborhood_NAmes", "coef": -10901.237254068565}, {"variable": "Neighborhood_CollgCr", "coef": -10458.006269545838}, {"variable": "HouseStyle_2Story", "coef": -10266.343484700967}, {"variable": "SaleType_ConLw", "coef": -10210.889236022016}, {"variable": "MSSubClass_180", "coef": -9943.35096911623}, {"variable": "LandContour_Bnk", "coef": -9756.067751958155}, {"variable": "RoofStyle_Gambrel", "coef": -9396.76496937109}, {"variable": "Neighborhood_ClearCr", "coef": -9149.576575385667}, {"variable": "Condition2_RRAe", "coef": -9128.071271495852}, {"variable": "Exterior2nd_Other", "coef": -8803.885266821491}, {"variable": "MSSubClass_75", "coef": -8721.666588364298}, {"variable": "Neighborhood_MeadowV", "coef": -8663.530195297613}, {"variable": "Neighborhood_OldTown", "coef": -8541.933664781573}, {"variable": "MiscFeature_Gar2", "coef": -8418.815858798976}, {"variable": "HouseStyle_1.5Fin", "coef": -8072.756368878305}, {"variable": "LandSlope_Sev", "coef": -7887.561601881973}, {"variable": "Exterior1st_AsphShn", "coef": -7344.79978892851}, {"variable": "Exterior2nd_Wd Shng", "coef": -7324.553310378991}, {"variable": "BldgType_TwnhsE", "coef": -7087.115480056555}, {"variable": "RoofStyle_Hip", "coef": -7059.750562076991}, {"variable": "MSSubClass_190", "coef": -7009.200121065897}, {"variable": "MoSold_10", "coef": -6776.720245061211}, {"variable": "Exterior2nd_Stone", "coef": -6438.665484352403}, {"variable": "Electrical_SBrkr", "coef": -6084.386514770007}, {"variable": "Neighborhood_SWISU", "coef": -5960.366668586489}, {"variable": "SaleCondition_Family", "coef": -5896.99347188915}, {"variable": "SaleCondition_Partial", "coef": -5891.519110925689}, {"variable": "Neighborhood_IDOTRR", "coef": -5714.435176181746}, {"variable": "MasVnrType_BrkCmn", "coef": -5084.190591806972}, {"variable": "Neighborhood_Sawyer", "coef": -5017.714353355763}, {"variable": "Neighborhood_SawyerW", "coef": -4970.445911515895}, {"variable": "GarageFinish_RFn", "coef": -4833.359695772672}, {"variable": "LotConfig_FR2", "coef": -4805.624102913828}, {"variable": "KitchenAbvGr", "coef": -4552.332671399648}, {"variable": "SaleType_Oth", "coef": -4165.1442990290925}, {"variable": "BedroomAbvGr", "coef": -3717.542623593064}, {"variable": "Electrical_FuseF", "coef": -3617.288524516469}, {"variable": "ExterCond", "coef": -3566.589226869416}, {"variable": "Exterior2nd_MetalSd", "coef": -3401.839251652442}, {"variable": "Exterior1st_HdBoard", "coef": -3342.1927662727944}, {"variable": "MoSold_8", "coef": -3303.689172199584}, {"variable": "MoSold_2", "coef": -3250.9858693850138}, {"variable": "Condition1_RRNe", "coef": -3079.840857967432}, {"variable": "Condition1_Feedr", "coef": -2780.636629666208}, {"variable": "LandContour_Low", "coef": -2738.060001347823}, {"variable": "GarageType_BuiltIn", "coef": -2715.7787336454985}, {"variable": "Exterior2nd_AsphShn", "coef": -2604.3104790710495}, {"variable": "Electrical_FuseA", "coef": -2443.128079401002}, {"variable": "Neighborhood_Blmngtn", "coef": -2325.912729881657}, {"variable": "MasVnrType_BrkFace", "coef": -2283.314581621753}, {"variable": "Exterior1st_Wd Sdng", "coef": -2069.5055738257843}, {"variable": "Exterior1st_VinylSd", "coef": -2019.6413515123008}, {"variable": "Condition1_PosN", "coef": -1871.6906681808582}, {"variable": "Fence", "coef": -1853.6258038085425}, {"variable": "PavedDrive_P", "coef": -1760.1813804542908}, {"variable": "GarageFinish_Unf", "coef": -1753.8966378655937}, {"variable": "MoSold_12", "coef": -1739.2841631899316}, {"variable": "Condition1_Artery", "coef": -1716.348311006926}, {"variable": "Electrical_missing", "coef": -1649.8441693493182}, {"variable": "LotFrontage", "coef": -1582.7100311649137}, {"variable": "Alley_Grvl", "coef": -1544.016080814238}, {"variable": "MiscFeature_TenC", "coef": -1537.513669947381}, {"variable": "Foundation_BrkTil", "coef": -1501.774318269733}, {"variable": "Exterior1st_Plywood", "coef": -1389.3150349422442}, {"variable": "Exterior2nd_BrkFace", "coef": -1367.2334672598042}, {"variable": "GarageType_Attchd", "coef": -1274.468735113759}, {"variable": "BsmtUnfSF", "coef": -1273.0722430104342}, {"variable": "Exterior1st_Stucco", "coef": -1154.1716299814489}, {"variable": "Exterior2nd_Plywood", "coef": -995.3833132926486}, {"variable": "RoofStyle_Mansard", "coef": -963.030060397509}, {"variable": "Neighborhood_Blueste", "coef": -850.5489628182665}, {"variable": "Exterior2nd_Brk Cmn", "coef": -840.1178337137447}, {"variable": "Alley_missing", "coef": -635.6845117401602}, {"variable": "SaleCondition_Abnorml", "coef": -532.7611435396955}, {"variable": "GarageYrBlt", "coef": -523.327694806845}, {"variable": "LowQualFinSF", "coef": -447.62772203099445}, {"variable": "EnclosedPorch", "coef": -390.39593549326315}, {"variable": "YrSold", "coef": -382.00870708878693}, {"variable": "MSSubClass_40", "coef": -328.06469839124514}, {"variable": "Neighborhood_BrkSide", "coef": -302.7777115449803}, {"variable": "CentralAir_N", "coef": -301.5525357890371}, {"variable": "MiscFeature_missing", "coef": -138.41135318722053}, {"variable": "SaleCondition_Alloca", "coef": -14.618810131318368}, {"variable": "BsmtFinType2", "coef": -8.235386515741233}, {"variable": "GarageArea", "coef": 101.75628642813734}, {"variable": "HouseStyle_SFoyer", "coef": 106.18503688885744}, {"variable": "OpenPorchSF", "coef": 207.68502907128507}, {"variable": "MiscVal", "coef": 260.0956688814566}, {"variable": "BsmtCond", "coef": 264.21443131156894}, {"variable": "Exterior1st_BrkComm", "coef": 265.4593034693846}, {"variable": "CentralAir_Y", "coef": 301.55253578658255}, {"variable": "YearRemodAdd", "coef": 317.1851549746807}, {"variable": "MSSubClass_85", "coef": 395.90299655227227}, {"variable": "LandSlope_Gtl", "coef": 468.63816943345836}, {"variable": "PavedDrive_N", "coef": 474.7690757218013}, {"variable": "MoSold_6", "coef": 486.1409311442343}, {"variable": "Exterior2nd_AsbShng", "coef": 489.80834612822935}, {"variable": "BsmtHalfBath", "coef": 500.2158652099952}, {"variable": "GarageCond", "coef": 501.28800103277325}, {"variable": "SaleType_ConLI", "coef": 535.1173432912686}, {"variable": "BsmtFinSF2", "coef": 581.2379346817711}, {"variable": "HeatingQC", "coef": 635.093140236615}, {"variable": "MiscFeature_Shed", "coef": 700.4216559887133}, {"variable": "MoSold_9", "coef": 703.1977656582675}, {"variable": "FireplaceQu", "coef": 779.1923609660616}, {"variable": "GarageType_Detchd", "coef": 929.2682078377006}, {"variable": "BsmtFinType1", "coef": 1019.1201789036907}, {"variable": "MoSold_11", "coef": 1025.7001721962345}, {"variable": "WoodDeckSF", "coef": 1136.3155520227158}, {"variable": "PavedDrive_Y", "coef": 1285.412304734932}, {"variable": "LandContour_Lvl", "coef": 1451.6903649046394}, {"variable": "GarageType_CarPort", "coef": 1505.4434884541363}, {"variable": "Exterior2nd_HdBoard", "coef": 1511.2476422982531}, {"variable": "3SsnPorch", "coef": 1523.892444539871}, {"variable": "MoSold_1", "coef": 1612.3261835956303}, {"variable": "GarageFinish_Fin", "coef": 1647.2206552016528}, {"variable": "HalfBath", "coef": 1759.7788594420033}, {"variable": "ScreenPorch", "coef": 1794.8079036283466}, {"variable": "MoSold_4", "coef": 1815.4612960205977}, {"variable": "MSZoning_RM", "coef": 2012.9761510361664}, {"variable": "MSSubClass_45", "coef": 2157.16953655405}, {"variable": "Alley_Pave", "coef": 2179.7005925607064}, {"variable": "Exterior1st_WdShing", "coef": 2202.4485025061804}, {"variable": "Heating_Floor", "coef": 2205.7775811093297}, {"variable": "Exterior2nd_Wd Sdng", "coef": 2246.5913986748496}, {"variable": "Fireplaces", "coef": 2282.7833889801204}, {"variable": "BsmtFullBath", "coef": 2305.121599409854}, {"variable": "HouseStyle_SLvl", "coef": 2390.8255260600176}, {"variable": "Exterior1st_Stone", "coef": 2531.233822779772}, {"variable": "MoSold_3", "coef": 2544.1460911687736}, {"variable": "TotalBsmtSF", "coef": 2759.04331910487}, {"variable": "PoolArea", "coef": 2817.196384628682}, {"variable": "FullBath", "coef": 2836.0074335210543}, {"variable": "LotConfig_Inside", "coef": 2896.406849934311}, {"variable": "LotConfig_Corner", "coef": 3006.245631328531}, {"variable": "MasVnrType_Stone", "coef": 3209.094779139297}, {"variable": "MoSold_7", "coef": 3213.172502304815}, {"variable": "Foundation_CBlock", "coef": 3230.3373921501884}, {"variable": "Exterior2nd_CBlock", "coef": 3299.9007125296594}, {"variable": "Exterior1st_CBlock", "coef": 3299.900712529692}, {"variable": "LotShape_IR1", "coef": 3419.9085664716404}, {"variable": "Neighborhood_Somerst", "coef": 3614.0805841480824}, {"variable": "Exterior1st_CemntBd", "coef": 3629.5545063465847}, {"variable": "MoSold_5", "coef": 3670.5345077399065}, {"variable": "BsmtFinSF1", "coef": 3681.749118016064}, {"variable": "Foundation_PConc", "coef": 3769.817726836746}, {"variable": "BldgType_1Fam", "coef": 3944.7190521378207}, {"variable": "Condition1_RRNn", "coef": 4049.6612348361596}, {"variable": "Exterior2nd_VinylSd", "coef": 4105.279999192721}, {"variable": "MasVnrType_missing", "coef": 4158.410394288448}, {"variable": "MSSubClass_80", "coef": 4230.1490900737845}, {"variable": "YearBuilt", "coef": 4234.888066281096}, {"variable": "ExterQual", "coef": 4236.969652532438}, {"variable": "Electrical_Mix", "coef": 4293.724190773805}, {"variable": "Foundation_Stone", "coef": 4411.664021648177}, {"variable": "TotRmsAbvGrd", "coef": 4466.022287539247}, {"variable": "MSSubClass_90", "coef": 4516.19261980689}, {"variable": "BldgType_Duplex", "coef": 4516.192619808074}, {"variable": "GarageQual", "coef": 4633.751184788804}, {"variable": "HouseStyle_2.5Unf", "coef": 4648.208471241081}, {"variable": "SaleCondition_Normal", "coef": 4790.53877961838}, {"variable": "Heating_GasW", "coef": 4832.0856666569025}, {"variable": "Functional", "coef": 4853.693875516162}, {"variable": "OverallCond", "coef": 4854.438905726678}, {"variable": "GarageType_missing", "coef": 4940.035678487995}, {"variable": "GarageFinish_missing", "coef": 4940.035678489132}, {"variable": "LotArea", "coef": 5118.0351607260345}, {"variable": "Condition1_PosA", "coef": 5131.105534083548}, {"variable": "Exterior1st_AsbShng", "coef": 5136.446892921119}, {"variable": "LotShape_Reg", "coef": 5200.046701140284}, {"variable": "Heating_Grav", "coef": 5206.635745498389}, {"variable": "MasVnrArea", "coef": 5253.253432086253}, {"variable": "Foundation_Slab", "coef": 5521.340596344142}, {"variable": "BsmtExposure", "coef": 5602.786721939821}, {"variable": "Neighborhood_Veenker", "coef": 5786.179398938122}, {"variable": "MSSubClass_20", "coef": 5969.333248777638}, {"variable": "MSZoning_RL", "coef": 6047.9497616812505}, {"variable": "Heating_GasA", "coef": 6141.51846937147}, {"variable": "MSSubClass_60", "coef": 6231.346634226258}, {"variable": "MSSubClass_30", "coef": 6517.123432863834}, {"variable": "KitchenQual", "coef": 6626.334642134454}, {"variable": "1stFlrSF", "coef": 6744.462544573727}, {"variable": "MSZoning_RH", "coef": 6906.150927337716}, {"variable": "BsmtQual", "coef": 6945.0230172571655}, {"variable": "MSZoning_FV", "coef": 7034.800549903351}, {"variable": "Exterior1st_MetalSd", "coef": 7179.813186500382}, {"variable": "GarageCars", "coef": 7312.412513265131}, {"variable": "LandSlope_Mod", "coef": 7418.923432457452}, {"variable": "RoofMatl_Tar&Grv", "coef": 7472.836324371472}, {"variable": "SaleCondition_AdjLand", "coef": 7545.353756883433}, {"variable": "SaleType_CWD", "coef": 7651.8577511103595}, {"variable": "Neighborhood_Crawfor", "coef": 8563.055911597328}, {"variable": "MSSubClass_70", "coef": 8627.582447115909}, {"variable": "SaleType_Con", "coef": 8795.987714887664}, {"variable": "Heating_Wall", "coef": 8877.206341828396}, {"variable": "RoofMatl_Roll", "coef": 8950.826729115164}, {"variable": "Condition1_RRAn", "coef": 9165.683851249616}, {"variable": "Neighborhood_BrDale", "coef": 9193.411473026154}, {"variable": "MiscFeature_Othr", "coef": 9394.31922593954}, {"variable": "Electrical_FuseP", "coef": 9500.923097258408}, {"variable": "Condition1_Norm", "coef": 9594.256987355244}, {"variable": "GarageType_Basment", "coef": 9695.643209344833}, {"variable": "Exterior2nd_CmentBd", "coef": 9869.781912221935}, {"variable": "LotShape_IR2", "coef": 10514.726426153426}, {"variable": "BldgType_2fmCon", "coef": 10762.574701079793}, {"variable": "Neighborhood_NPkVill", "coef": 10774.639898712969}, {"variable": "LandContour_HLS", "coef": 11042.437388405428}, {"variable": "SaleType_ConLD", "coef": 11336.859010566093}, {"variable": "MSSubClass_50", "coef": 11815.193527708881}, {"variable": "Street_Pave", "coef": 12137.880295201046}, {"variable": "SaleType_New", "coef": 12227.540017831978}, {"variable": "Exterior1st_BrkFace", "coef": 12497.544529099481}, {"variable": "OverallQual", "coef": 12498.401830389652}, {"variable": "HouseStyle_1Story", "coef": 12815.860857745003}, {"variable": "LotConfig_CulDSac", "coef": 12846.443702807572}, {"variable": "Condition2_RRAn", "coef": 13010.791096792702}, {"variable": "RoofMatl_WdShake", "coef": 13300.600713644097}, {"variable": "2ndFlrSF", "coef": 13407.646049594625}, {"variable": "RoofStyle_Flat", "coef": 13634.261100409025}, {"variable": "HouseStyle_1.5Unf", "coef": 14010.414558266586}, {"variable": "Condition2_Norm", "coef": 14179.433146805706}, {"variable": "RoofStyle_Shed", "coef": 15093.284744367851}, {"variable": "Utilities_AllPub", "coef": 15664.901413263155}, {"variable": "GrLivArea", "coef": 15992.080694314076}, {"variable": "Condition2_RRNn", "coef": 16035.045246925887}, {"variable": "RoofMatl_Metal", "coef": 16781.61783767647}, {"variable": "Condition2_Feedr", "coef": 18355.584270252424}, {"variable": "Condition2_Artery", "coef": 21006.27203136177}, {"variable": "Exterior2nd_ImStucc", "coef": 24186.469459914937}, {"variable": "RoofMatl_Membran", "coef": 24534.983674355408}, {"variable": "Neighborhood_NoRidge", "coef": 28887.91391955981}, {"variable": "Condition2_PosA", "coef": 32197.809684683005}, {"variable": "PoolQC", "coef": 34182.04170390883}, {"variable": "RoofMatl_CompShg", "coef": 36525.193345564694}, {"variable": "Neighborhood_NridgHt", "coef": 37546.99676466176}, {"variable": "Neighborhood_StoneBr", "coef": 39931.37172213507}, {"variable": "RoofMatl_WdShngl", "coef": 83603.01311996042}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-668616aec8284084aa99f4f81b3ff275"}, "mark": {"type": "bar"}, "encoding": {"x": {"field": "coef", "type": "quantitative"}, "y": {"field": "variable", "sort": "x", "type": "nominal"}}, "title": "Ridge Coefficients", "$schema": "https://vega.github.io/schema/vega-lite/v5.14.1.json", "datasets": {"data-668616aec8284084aa99f4f81b3ff275": [{"variable": "RoofMatl_ClyTile", "coef": -191169.07174468983}, {"variable": "Condition2_PosN", "coef": -105656.86420532408}, {"variable": "Heating_OthW", "coef": -27263.223804468103}, {"variable": "MSZoning_C (all)", "coef": -22001.877389936733}, {"variable": "Exterior1st_ImStucc", "coef": -19422.775310686815}, {"variable": "LotShape_IR3", "coef": -19134.681693756535}, {"variable": "Condition1_RRAe", "coef": -18492.19114069843}, {"variable": "Neighborhood_Edwards", "coef": -17333.226634910003}, {"variable": "Utilities_NoSeWa", "coef": -15664.901413263233}, {"variable": "HouseStyle_2.5Fin", "coef": -15632.39459661555}, {"variable": "Foundation_Wood", "coef": -15431.385418713791}, {"variable": "Neighborhood_Gilbert", "coef": -15358.511971016624}, {"variable": "SaleType_COD", "coef": -14767.211521578205}, {"variable": "Neighborhood_Mitchel", "coef": -14645.98094131084}, {"variable": "LotConfig_FR3", "coef": -13943.472081149059}, {"variable": "Exterior2nd_Stucco", "coef": -13933.091064400143}, {"variable": "GarageType_2Types", "coef": -13080.143115388886}, {"variable": "MSSubClass_120", "coef": -12999.3789253294}, {"variable": "Neighborhood_NWAmes", "coef": -12651.723451516526}, {"variable": "Street_Grvl", "coef": -12137.880295200923}, {"variable": "BldgType_Twnhs", "coef": -12136.37089297016}, {"variable": "MSSubClass_160", "coef": -11458.33223141443}, {"variable": "Neighborhood_Timber", "coef": -11451.721201074499}, {"variable": "SaleType_WD", "coef": -11404.116781057159}, {"variable": "RoofStyle_Gable", "coef": -11308.000252936572}, {"variable": "Neighborhood_NAmes", "coef": -10901.237254068634}, {"variable": "Neighborhood_CollgCr", "coef": -10458.006269546046}, {"variable": "HouseStyle_2Story", "coef": -10266.34348470144}, {"variable": "SaleType_ConLw", "coef": -10210.889236022032}, {"variable": "MSSubClass_180", "coef": -9943.350969116913}, {"variable": "LandContour_Bnk", "coef": -9756.067751957564}, {"variable": "RoofStyle_Gambrel", "coef": -9396.76496937188}, {"variable": "Neighborhood_ClearCr", "coef": -9149.57657538579}, {"variable": "Condition2_RRAe", "coef": -9128.071271496117}, {"variable": "Exterior2nd_Other", "coef": -8803.885266821166}, {"variable": "MSSubClass_75", "coef": -8721.666588364373}, {"variable": "Neighborhood_MeadowV", "coef": -8663.530195297715}, {"variable": "Neighborhood_OldTown", "coef": -8541.933664781744}, {"variable": "MiscFeature_Gar2", "coef": -8418.815858799231}, {"variable": "HouseStyle_1.5Fin", "coef": -8072.75636887845}, {"variable": "LandSlope_Sev", "coef": -7887.561601882439}, {"variable": "Exterior1st_AsphShn", "coef": -7344.799788928826}, {"variable": "Exterior2nd_Wd Shng", "coef": -7324.55331037868}, {"variable": "BldgType_TwnhsE", "coef": -7087.115480058099}, {"variable": "RoofStyle_Hip", "coef": -7059.750562077944}, {"variable": "MSSubClass_190", "coef": -7009.2001210674625}, {"variable": "MoSold_10", "coef": -6776.720245060938}, {"variable": "Exterior2nd_Stone", "coef": -6438.665484352322}, {"variable": "Electrical_SBrkr", "coef": -6084.386514769683}, {"variable": "Neighborhood_SWISU", "coef": -5960.3666685865555}, {"variable": "SaleCondition_Family", "coef": -5896.993471887925}, {"variable": "SaleCondition_Partial", "coef": -5891.519110922998}, {"variable": "Neighborhood_IDOTRR", "coef": -5714.435176181851}, {"variable": "MasVnrType_BrkCmn", "coef": -5084.190591805818}, {"variable": "Neighborhood_Sawyer", "coef": -5017.714353355886}, {"variable": "Neighborhood_SawyerW", "coef": -4970.445911516107}, {"variable": "GarageFinish_RFn", "coef": -4833.359695787075}, {"variable": "LotConfig_FR2", "coef": -4805.624102913844}, {"variable": "KitchenAbvGr", "coef": -4552.332671399602}, {"variable": "SaleType_Oth", "coef": -4165.144299029192}, {"variable": "BedroomAbvGr", "coef": -3717.542623593056}, {"variable": "Electrical_FuseF", "coef": -3617.2885245161456}, {"variable": "ExterCond", "coef": -3566.5892268694174}, {"variable": "Exterior2nd_MetalSd", "coef": -3401.839251651842}, {"variable": "Exterior1st_HdBoard", "coef": -3342.1927662735216}, {"variable": "MoSold_8", "coef": -3303.6891721993265}, {"variable": "MoSold_2", "coef": -3250.9858693848137}, {"variable": "Condition1_RRNe", "coef": -3079.8408579676848}, {"variable": "Condition1_Feedr", "coef": -2780.6366296664787}, {"variable": "LandContour_Low", "coef": -2738.060001347162}, {"variable": "GarageType_BuiltIn", "coef": -2715.778733642388}, {"variable": "Exterior2nd_AsphShn", "coef": -2604.310479071059}, {"variable": "Electrical_FuseA", "coef": -2443.128079400671}, {"variable": "Neighborhood_Blmngtn", "coef": -2325.91272988179}, {"variable": "MasVnrType_BrkFace", "coef": -2283.3145816204938}, {"variable": "Exterior1st_Wd Sdng", "coef": -2069.5055738265146}, {"variable": "Exterior1st_VinylSd", "coef": -2019.6413515133963}, {"variable": "Condition1_PosN", "coef": -1871.690668181204}, {"variable": "Fence", "coef": -1853.6258038085625}, {"variable": "PavedDrive_P", "coef": -1760.1813804561018}, {"variable": "GarageFinish_Unf", "coef": -1753.8966378799437}, {"variable": "MoSold_12", "coef": -1739.2841631896779}, {"variable": "Condition1_Artery", "coef": -1716.3483110072818}, {"variable": "Electrical_missing", "coef": -1649.844169349088}, {"variable": "LotFrontage", "coef": -1582.7100311648992}, {"variable": "Alley_Grvl", "coef": -1544.0160808148619}, {"variable": "MiscFeature_TenC", "coef": -1537.513669947297}, {"variable": "Foundation_BrkTil", "coef": -1501.7743182688885}, {"variable": "Exterior1st_Plywood", "coef": -1389.315034942961}, {"variable": "Exterior2nd_BrkFace", "coef": -1367.2334672595866}, {"variable": "GarageType_Attchd", "coef": -1274.4687351107123}, {"variable": "BsmtUnfSF", "coef": -1273.0722430104672}, {"variable": "Exterior1st_Stucco", "coef": -1154.1716299820403}, {"variable": "Exterior2nd_Plywood", "coef": -995.383313292351}, {"variable": "RoofStyle_Mansard", "coef": -963.0300603982312}, {"variable": "Neighborhood_Blueste", "coef": -850.5489628182296}, {"variable": "Exterior2nd_Brk Cmn", "coef": -840.1178337136499}, {"variable": "Alley_missing", "coef": -635.684511740792}, {"variable": "SaleCondition_Abnorml", "coef": -532.7611435384562}, {"variable": "GarageYrBlt", "coef": -523.3276948068726}, {"variable": "LowQualFinSF", "coef": -447.6277220310076}, {"variable": "EnclosedPorch", "coef": -390.3959354932673}, {"variable": "YrSold", "coef": -382.00870708877886}, {"variable": "MSSubClass_40", "coef": -328.06469839129676}, {"variable": "Neighborhood_BrkSide", "coef": -302.77771154517944}, {"variable": "CentralAir_N", "coef": -301.552535789223}, {"variable": "MiscFeature_missing", "coef": -138.41135318653284}, {"variable": "SaleCondition_Alloca", "coef": -14.61881013012085}, {"variable": "BsmtFinType2", "coef": -8.235386515751845}, {"variable": "GarageArea", "coef": 101.75628642816328}, {"variable": "HouseStyle_SFoyer", "coef": 106.18503688859111}, {"variable": "OpenPorchSF", "coef": 207.68502907127623}, {"variable": "MiscVal", "coef": 260.095668881491}, {"variable": "BsmtCond", "coef": 264.2144313115591}, {"variable": "Exterior1st_BrkComm", "coef": 265.4593034690416}, {"variable": "CentralAir_Y", "coef": 301.552535786405}, {"variable": "YearRemodAdd", "coef": 317.18515497468184}, {"variable": "MSSubClass_85", "coef": 395.9029965521925}, {"variable": "LandSlope_Gtl", "coef": 468.6381694331784}, {"variable": "PavedDrive_N", "coef": 474.76907571990927}, {"variable": "MoSold_6", "coef": 486.1409311444875}, {"variable": "Exterior2nd_AsbShng", "coef": 489.8083461283861}, {"variable": "BsmtHalfBath", "coef": 500.2158652099991}, {"variable": "GarageCond", "coef": 501.2880010328541}, {"variable": "SaleType_ConLI", "coef": 535.1173432911357}, {"variable": "BsmtFinSF2", "coef": 581.2379346817726}, {"variable": "HeatingQC", "coef": 635.0931402366169}, {"variable": "MiscFeature_Shed", "coef": 700.4216559893871}, {"variable": "MoSold_9", "coef": 703.1977656585346}, {"variable": "FireplaceQu", "coef": 779.1923609660688}, {"variable": "GarageType_Detchd", "coef": 929.2682078407432}, {"variable": "BsmtFinType1", "coef": 1019.1201789036885}, {"variable": "MoSold_11", "coef": 1025.7001721964712}, {"variable": "WoodDeckSF", "coef": 1136.3155520227278}, {"variable": "PavedDrive_Y", "coef": 1285.4123047329126}, {"variable": "LandContour_Lvl", "coef": 1451.6903649052822}, {"variable": "GarageType_CarPort", "coef": 1505.4434884568104}, {"variable": "Exterior2nd_HdBoard", "coef": 1511.2476422985565}, {"variable": "3SsnPorch", "coef": 1523.892444539871}, {"variable": "MoSold_1", "coef": 1612.3261835958874}, {"variable": "GarageFinish_Fin", "coef": 1647.220655187036}, {"variable": "HalfBath", "coef": 1759.778859441992}, {"variable": "ScreenPorch", "coef": 1794.8079036283495}, {"variable": "MoSold_4", "coef": 1815.461296020852}, {"variable": "MSZoning_RM", "coef": 2012.9761510367948}, {"variable": "MSSubClass_45", "coef": 2157.1695365540845}, {"variable": "Alley_Pave", "coef": 2179.7005925600365}, {"variable": "Exterior1st_WdShing", "coef": 2202.448502505412}, {"variable": "Heating_Floor", "coef": 2205.7775811094875}, {"variable": "Exterior2nd_Wd Sdng", "coef": 2246.591398675128}, {"variable": "Fireplaces", "coef": 2282.783388980116}, {"variable": "BsmtFullBath", "coef": 2305.121599409851}, {"variable": "HouseStyle_SLvl", "coef": 2390.8255260597657}, {"variable": "Exterior1st_Stone", "coef": 2531.2338227794426}, {"variable": "MoSold_3", "coef": 2544.1460911690647}, {"variable": "TotalBsmtSF", "coef": 2759.0433191048814}, {"variable": "PoolArea", "coef": 2817.1963846286903}, {"variable": "FullBath", "coef": 2836.00743352105}, {"variable": "LotConfig_Inside", "coef": 2896.406849934316}, {"variable": "LotConfig_Corner", "coef": 3006.245631328558}, {"variable": "MasVnrType_Stone", "coef": 3209.0947791404924}, {"variable": "MoSold_7", "coef": 3213.1725023050717}, {"variable": "Foundation_CBlock", "coef": 3230.3373921510824}, {"variable": "Exterior1st_CBlock", "coef": 3299.9007125296607}, {"variable": "Exterior2nd_CBlock", "coef": 3299.900712529679}, {"variable": "LotShape_IR1", "coef": 3419.9085664709246}, {"variable": "Neighborhood_Somerst", "coef": 3614.0805841478295}, {"variable": "Exterior1st_CemntBd", "coef": 3629.5545063462137}, {"variable": "MoSold_5", "coef": 3670.5345077401716}, {"variable": "BsmtFinSF1", "coef": 3681.7491180160428}, {"variable": "Foundation_PConc", "coef": 3769.817726837674}, {"variable": "BldgType_1Fam", "coef": 3944.719052135667}, {"variable": "Condition1_RRNn", "coef": 4049.661234836103}, {"variable": "Exterior2nd_VinylSd", "coef": 4105.2799991933725}, {"variable": "MasVnrType_missing", "coef": 4158.410394289684}, {"variable": "MSSubClass_80", "coef": 4230.149090073648}, {"variable": "YearBuilt", "coef": 4234.888066281127}, {"variable": "ExterQual", "coef": 4236.96965253247}, {"variable": "Electrical_Mix", "coef": 4293.7241907739235}, {"variable": "Foundation_Stone", "coef": 4411.664021648898}, {"variable": "TotRmsAbvGrd", "coef": 4466.022287539251}, {"variable": "BldgType_Duplex", "coef": 4516.1926198054225}, {"variable": "MSSubClass_90", "coef": 4516.192619807067}, {"variable": "GarageQual", "coef": 4633.751184788737}, {"variable": "HouseStyle_2.5Unf", "coef": 4648.208471240836}, {"variable": "SaleCondition_Normal", "coef": 4790.538779619616}, {"variable": "Heating_GasW", "coef": 4832.085666656957}, {"variable": "Functional", "coef": 4853.69387551617}, {"variable": "OverallCond", "coef": 4854.438905726671}, {"variable": "GarageType_missing", "coef": 4940.035678482757}, {"variable": "GarageFinish_missing", "coef": 4940.035678483285}, {"variable": "LotArea", "coef": 5118.035160726029}, {"variable": "Condition1_PosA", "coef": 5131.105534083273}, {"variable": "Exterior1st_AsbShng", "coef": 5136.4468929206205}, {"variable": "LotShape_Reg", "coef": 5200.046701139543}, {"variable": "Heating_Grav", "coef": 5206.635745498498}, {"variable": "MasVnrArea", "coef": 5253.253432086253}, {"variable": "Foundation_Slab", "coef": 5521.340596344897}, {"variable": "BsmtExposure", "coef": 5602.786721939819}, {"variable": "Neighborhood_Veenker", "coef": 5786.179398938002}, {"variable": "MSSubClass_20", "coef": 5969.333248777459}, {"variable": "MSZoning_RL", "coef": 6047.949761681876}, {"variable": "Heating_GasA", "coef": 6141.518469371522}, {"variable": "MSSubClass_60", "coef": 6231.346634226495}, {"variable": "MSSubClass_30", "coef": 6517.123432863829}, {"variable": "KitchenQual", "coef": 6626.334642134442}, {"variable": "1stFlrSF", "coef": 6744.462544573747}, {"variable": "MSZoning_RH", "coef": 6906.150927338395}, {"variable": "BsmtQual", "coef": 6945.023017257185}, {"variable": "MSZoning_FV", "coef": 7034.800549904047}, {"variable": "Exterior1st_MetalSd", "coef": 7179.813186499359}, {"variable": "GarageCars", "coef": 7312.41251326517}, {"variable": "LandSlope_Mod", "coef": 7418.923432457184}, {"variable": "RoofMatl_Tar&Grv", "coef": 7472.836324371109}, {"variable": "SaleCondition_AdjLand", "coef": 7545.353756884005}, {"variable": "SaleType_CWD", "coef": 7651.857751110355}, {"variable": "Neighborhood_Crawfor", "coef": 8563.055911597261}, {"variable": "MSSubClass_70", "coef": 8627.582447116014}, {"variable": "SaleType_Con", "coef": 8795.987714887613}, {"variable": "Heating_Wall", "coef": 8877.20634182848}, {"variable": "RoofMatl_Roll", "coef": 8950.826729115175}, {"variable": "Condition1_RRAn", "coef": 9165.683851249407}, {"variable": "Neighborhood_BrDale", "coef": 9193.411473026008}, {"variable": "MiscFeature_Othr", "coef": 9394.31922594002}, {"variable": "Electrical_FuseP", "coef": 9500.923097258787}, {"variable": "Condition1_Norm", "coef": 9594.256987354967}, {"variable": "GarageType_Basment", "coef": 9695.643209347625}, {"variable": "Exterior2nd_CmentBd", "coef": 9869.781912221837}, {"variable": "LotShape_IR2", "coef": 10514.726426152742}, {"variable": "BldgType_2fmCon", "coef": 10762.574701079113}, {"variable": "Neighborhood_NPkVill", "coef": 10774.639898712896}, {"variable": "LandContour_HLS", "coef": 11042.437388406039}, {"variable": "SaleType_ConLD", "coef": 11336.859010565779}, {"variable": "MSSubClass_50", "coef": 11815.193527708683}, {"variable": "Street_Pave", "coef": 12137.880295200957}, {"variable": "SaleType_New", "coef": 12227.540017830564}, {"variable": "Exterior1st_BrkFace", "coef": 12497.544529098872}, {"variable": "OverallQual", "coef": 12498.401830389665}, {"variable": "HouseStyle_1Story", "coef": 12815.860857744747}, {"variable": "LotConfig_CulDSac", "coef": 12846.44370280755}, {"variable": "Condition2_RRAn", "coef": 13010.791096792618}, {"variable": "RoofMatl_WdShake", "coef": 13300.600713643667}, {"variable": "2ndFlrSF", "coef": 13407.646049594578}, {"variable": "RoofStyle_Flat", "coef": 13634.261100408037}, {"variable": "HouseStyle_1.5Unf", "coef": 14010.41455826622}, {"variable": "Condition2_Norm", "coef": 14179.433146805586}, {"variable": "RoofStyle_Shed", "coef": 15093.284744367442}, {"variable": "Utilities_AllPub", "coef": 15664.901413263107}, {"variable": "GrLivArea", "coef": 15992.080694314101}, {"variable": "Condition2_RRNn", "coef": 16035.045246925803}, {"variable": "RoofMatl_Metal", "coef": 16781.61783767643}, {"variable": "Condition2_Feedr", "coef": 18355.584270252275}, {"variable": "Condition2_Artery", "coef": 21006.272031361943}, {"variable": "Exterior2nd_ImStucc", "coef": 24186.46945991518}, {"variable": "RoofMatl_Membran", "coef": 24534.98367435535}, {"variable": "Neighborhood_NoRidge", "coef": 28887.913919559498}, {"variable": "Condition2_PosA", "coef": 32197.809684683078}, {"variable": "PoolQC", "coef": 34182.04170390881}, {"variable": "RoofMatl_CompShg", "coef": 36525.1933455644}, {"variable": "Neighborhood_NridgHt", "coef": 37546.99676466147}, {"variable": "Neighborhood_StoneBr", "coef": 39931.371722134856}, {"variable": "RoofMatl_WdShngl", "coef": 83603.01311995997}]}}, {"mode": "vega-lite"});
 </script></div></div>
 </div>
 <ul class="simple">
@@ -3174,24 +3174,24 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
     </tr>
     <tr>
       <th>ridge</th>
-      <td>0.025 (+/- 0.000)</td>
-      <td>0.007 (+/- 0.000)</td>
+      <td>0.026 (+/- 0.001)</td>
+      <td>0.008 (+/- 0.001)</td>
       <td>0.774 (+/- 0.127)</td>
       <td>0.917 (+/- 0.003)</td>
     </tr>
     <tr>
       <th>rf</th>
-      <td>1.590 (+/- 0.010)</td>
+      <td>1.630 (+/- 0.020)</td>
       <td>0.012 (+/- 0.000)</td>
-      <td>0.860 (+/- 0.033)</td>
+      <td>0.858 (+/- 0.037)</td>
       <td>0.979 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>model_based_fs + rf</th>
-      <td>0.705 (+/- 0.085)</td>
+      <td>0.714 (+/- 0.085)</td>
       <td>0.012 (+/- 0.000)</td>
-      <td>0.846 (+/- 0.036)</td>
-      <td>0.978 (+/- 0.002)</td>
+      <td>0.843 (+/- 0.037)</td>
+      <td>0.978 (+/- 0.001)</td>
     </tr>
   </tbody>
 </table>
@@ -3225,7 +3225,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4843.526785644417
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4843.526785651622
 </pre></div>
 </div>
 </div>
@@ -3250,7 +3250,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f8b1d5b96a88346c078d53fc3a4e370e1cbcadfa4f7a03f963e27f23d279d3be.png" src="../_images/f8b1d5b96a88346c078d53fc3a4e370e1cbcadfa4f7a03f963e27f23d279d3be.png" />
+<img alt="../_images/118f3cec7e5915e8d660d593c5b5c85eb9595d9731849242637a44adfc69920c.png" src="../_images/118f3cec7e5915e8d660d593c5b5c85eb9595d9731849242637a44adfc69920c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3414,24 +3414,24 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
     </tr>
     <tr>
       <th>ridge</th>
-      <td>0.025 (+/- 0.000)</td>
-      <td>0.007 (+/- 0.000)</td>
+      <td>0.026 (+/- 0.001)</td>
+      <td>0.008 (+/- 0.001)</td>
       <td>0.774 (+/- 0.127)</td>
       <td>0.917 (+/- 0.003)</td>
     </tr>
     <tr>
       <th>rf</th>
-      <td>1.590 (+/- 0.010)</td>
+      <td>1.630 (+/- 0.020)</td>
       <td>0.012 (+/- 0.000)</td>
-      <td>0.860 (+/- 0.033)</td>
+      <td>0.858 (+/- 0.037)</td>
       <td>0.979 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>model_based_fs + rf</th>
-      <td>0.705 (+/- 0.085)</td>
+      <td>0.714 (+/- 0.085)</td>
       <td>0.012 (+/- 0.000)</td>
-      <td>0.846 (+/- 0.036)</td>
-      <td>0.978 (+/- 0.002)</td>
+      <td>0.843 (+/- 0.037)</td>
+      <td>0.978 (+/- 0.001)</td>
     </tr>
   </tbody>
 </table>
@@ -3515,30 +3515,30 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
     </tr>
     <tr>
       <th>ridge</th>
-      <td>0.025 (+/- 0.000)</td>
-      <td>0.007 (+/- 0.000)</td>
+      <td>0.026 (+/- 0.001)</td>
+      <td>0.008 (+/- 0.001)</td>
       <td>0.774 (+/- 0.127)</td>
       <td>0.917 (+/- 0.003)</td>
     </tr>
     <tr>
       <th>rf</th>
-      <td>1.590 (+/- 0.010)</td>
+      <td>1.630 (+/- 0.020)</td>
       <td>0.012 (+/- 0.000)</td>
-      <td>0.860 (+/- 0.033)</td>
+      <td>0.858 (+/- 0.037)</td>
       <td>0.979 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>model_based_fs + rf</th>
-      <td>0.705 (+/- 0.085)</td>
+      <td>0.714 (+/- 0.085)</td>
       <td>0.012 (+/- 0.000)</td>
-      <td>0.846 (+/- 0.036)</td>
-      <td>0.978 (+/- 0.002)</td>
+      <td>0.843 (+/- 0.037)</td>
+      <td>0.978 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>rfe + rfe</th>
-      <td>1.090 (+/- 0.060)</td>
+      <td>1.105 (+/- 0.067)</td>
       <td>0.012 (+/- 0.000)</td>
-      <td>0.862 (+/- 0.034)</td>
+      <td>0.863 (+/- 0.034)</td>
       <td>0.980 (+/- 0.002)</td>
     </tr>
   </tbody>
@@ -3580,24 +3580,24 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 25,  19,  79,   1,   1,   1,   1, 132,   1,  37, 115,   1,   1,
          1,   1, 123,   1,  63, 122,  67,  85,  24,  58, 125,   1, 141,
         94, 138, 128,  81,  78,  53, 134, 130,   5,  52,   1, 136, 114,
-         1, 113,  35, 106,   1,   1,  95, 143,  12,  83, 126, 133,   1,
-         1,   1,   1,  44,   1, 140,  61, 131,  96, 101, 103,  48,   1,
-        89,   1,  22,   1, 102,   1,   1,  46,  50,   1, 116,   1, 142,
-         1,  30,  14,   1,  10, 107, 109, 139,  65,  91,   1, 135,   1,
-         1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,
-        27,   1,   1,  57,   1,   1,  40, 120,   1,   1,   7,   1,   1,
-         6,   1,   1,   1,   1, 112,   1,  73,   1,   1,   1,  72,  93,
-        31,  32,  33,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,
-         1,   1,   1,   1, 121,  18,   1,  54,  15,   1,   1,   1,   1,
-         1,   1,   1,   1,  60,  59,   1,   4,  62,   1,   1,  88,   1,
-         1,   1,   1,  75,   1,  68,   2,  55,  36, 108,   1,  64,   1,
-        39,   1,   1,  92,  17,  16,  21,  41,   1,  71,  66,   1,  34,
-        42,  77,   1,  49,  86,   1,   1,   1, 124,  82,   1,   1,   1,
-        45,   1, 129,  20,   1,   1,   1,   1,   1,   1, 104,   8,  80,
-       105,  69, 119,  70,   9, 118,   1, 117,  38, 110,  51, 111, 127,
-        43,  87,   1,   1,  28,  26,  84,  29,   1, 137,   1,  56,  11,
-        90,   1,  13,  97,  74, 100,  98,  99,  23,   1,   1,  47,  76,
-         3,   1])
+         1, 113,  35, 106,   1,   1,  95, 143,  12,  83,   1,  68,   2,
+        55,  36, 108,   1,   1,  49,  86,   1,   7,   1,   1,   6,  65,
+        91,   1, 135,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,
+         1,   1,   1,   1,  27,   1,   1,  57,   1,   1,  40,   1,   1,
+         1,   1,   1,   1,   1,   1,   1,   1,  92,  17,  16,  21,  41,
+         1, 126, 133,   1,   1,   1,   1, 121,  18,   1,  54,  15, 120,
+         1,   1,  73,   1,   1,   1,  72,  60,  59,   1,   4,  62,   1,
+         1,  88,   1,  47,  76,   3,   1,  93,  31,  32,  33,   1,   1,
+         1,   1,   1,   1,   1,   1,   1,   1,   1,   1, 116,   1, 142,
+         1,  30,  14, 127,  43,  87,   1,   1,   1,   1,  44,   1, 140,
+        61, 131,  96, 101, 103,  48,   1,  89,   1,  22,   1, 102,   1,
+         1,  46,  50,   1,  71,  66,   1,  34,  42,  77, 104,   8,  80,
+       105,  69, 119,  70,   9, 118,   1, 117,  38,   1,  10, 107, 109,
+       139,   1,   1, 124,  82,   1,   1,   1,  45,   1, 129,  39,   1,
+         1,   1,   1,   1,   1,  28,  26,  84,   1,   1,   1,   1, 112,
+         1,   1,   1,   1,  75, 110,  51, 111,  29,   1, 137,   1,  56,
+        11,  90,   1,  13,  97,  74, 100,  98,  99,  23,  64,   1,  20,
+         1,   1])
 </pre></div>
 </div>
 </div>
@@ -3611,7 +3611,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/76bf83d93671e59a75f0fedb443cfe8606cf6ef5317038fbba958c93c4babdf5.png" src="../_images/76bf83d93671e59a75f0fedb443cfe8606cf6ef5317038fbba958c93c4babdf5.png" />
+<img alt="../_images/6c336ab989dba4b3466554b2b322a3962dd8f6c97207f8bf42e8760e536249e1.png" src="../_images/6c336ab989dba4b3466554b2b322a3962dd8f6c97207f8bf42e8760e536249e1.png" />
 </div>
 </div>
 <ul class="simple">
@@ -3624,7 +3624,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f8b1d5b96a88346c078d53fc3a4e370e1cbcadfa4f7a03f963e27f23d279d3be.png" src="../_images/f8b1d5b96a88346c078d53fc3a4e370e1cbcadfa4f7a03f963e27f23d279d3be.png" />
+<img alt="../_images/118f3cec7e5915e8d660d593c5b5c85eb9595d9731849242637a44adfc69920c.png" src="../_images/118f3cec7e5915e8d660d593c5b5c85eb9595d9731849242637a44adfc69920c.png" />
 </div>
 </div>
 <p>It seems like there is some overlap between selected features between the two methods but they are not exactly the same.</p>
@@ -3733,17 +3733,17 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
                                                    &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;,
                                                    &#x27;MasVnrArea&#x27;, &#x27;BsmtFinSF1&#x27;,
                                                    &#x27;Bs...
-                                                   &#x27;LotConfig&#x27;, &#x27;Heating&#x27;,
-                                                   &#x27;RoofMatl&#x27;, &#x27;SaleType&#x27;,
-                                                   &#x27;Condition2&#x27;, &#x27;Condition1&#x27;,
-                                                   &#x27;LandContour&#x27;, &#x27;GarageType&#x27;,
-                                                   &#x27;BldgType&#x27;, &#x27;Foundation&#x27;,
-                                                   &#x27;Electrical&#x27;, &#x27;GarageFinish&#x27;,
-                                                   &#x27;MSSubClass&#x27;, &#x27;Street&#x27;,
-                                                   &#x27;MoSold&#x27;, &#x27;Alley&#x27;,
-                                                   &#x27;PavedDrive&#x27;, &#x27;MSZoning&#x27;,
-                                                   &#x27;Exterior1st&#x27;, &#x27;Utilities&#x27;,
-                                                   &#x27;MasVnrType&#x27;])])),
+                                                   &#x27;LotConfig&#x27;, &#x27;Condition1&#x27;,
+                                                   &#x27;MasVnrType&#x27;, &#x27;Heating&#x27;,
+                                                   &#x27;Street&#x27;, &#x27;Condition2&#x27;,
+                                                   &#x27;SaleCondition&#x27;,
+                                                   &#x27;PavedDrive&#x27;, &#x27;HouseStyle&#x27;,
+                                                   &#x27;Exterior2nd&#x27;, &#x27;Electrical&#x27;,
+                                                   &#x27;MoSold&#x27;, &#x27;MiscFeature&#x27;,
+                                                   &#x27;MSSubClass&#x27;, &#x27;MSZoning&#x27;,
+                                                   &#x27;RoofStyle&#x27;, &#x27;LandContour&#x27;,
+                                                   &#x27;Alley&#x27;, &#x27;Exterior1st&#x27;,
+                                                   &#x27;BldgType&#x27;])])),
                 (&#x27;rfecv&#x27;, RFECV(estimator=Ridge())),
                 (&#x27;randomforestregressor&#x27;,
                  RandomForestRegressor(random_state=42))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;columntransformer&#x27;,
@@ -3760,17 +3760,17 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
                                                    &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;,
                                                    &#x27;MasVnrArea&#x27;, &#x27;BsmtFinSF1&#x27;,
                                                    &#x27;Bs...
-                                                   &#x27;LotConfig&#x27;, &#x27;Heating&#x27;,
-                                                   &#x27;RoofMatl&#x27;, &#x27;SaleType&#x27;,
-                                                   &#x27;Condition2&#x27;, &#x27;Condition1&#x27;,
-                                                   &#x27;LandContour&#x27;, &#x27;GarageType&#x27;,
-                                                   &#x27;BldgType&#x27;, &#x27;Foundation&#x27;,
-                                                   &#x27;Electrical&#x27;, &#x27;GarageFinish&#x27;,
-                                                   &#x27;MSSubClass&#x27;, &#x27;Street&#x27;,
-                                                   &#x27;MoSold&#x27;, &#x27;Alley&#x27;,
-                                                   &#x27;PavedDrive&#x27;, &#x27;MSZoning&#x27;,
-                                                   &#x27;Exterior1st&#x27;, &#x27;Utilities&#x27;,
-                                                   &#x27;MasVnrType&#x27;])])),
+                                                   &#x27;LotConfig&#x27;, &#x27;Condition1&#x27;,
+                                                   &#x27;MasVnrType&#x27;, &#x27;Heating&#x27;,
+                                                   &#x27;Street&#x27;, &#x27;Condition2&#x27;,
+                                                   &#x27;SaleCondition&#x27;,
+                                                   &#x27;PavedDrive&#x27;, &#x27;HouseStyle&#x27;,
+                                                   &#x27;Exterior2nd&#x27;, &#x27;Electrical&#x27;,
+                                                   &#x27;MoSold&#x27;, &#x27;MiscFeature&#x27;,
+                                                   &#x27;MSSubClass&#x27;, &#x27;MSZoning&#x27;,
+                                                   &#x27;RoofStyle&#x27;, &#x27;LandContour&#x27;,
+                                                   &#x27;Alley&#x27;, &#x27;Exterior1st&#x27;,
+                                                   &#x27;BldgType&#x27;])])),
                 (&#x27;rfecv&#x27;, RFECV(estimator=Ridge())),
                 (&#x27;randomforestregressor&#x27;,
                  RandomForestRegressor(random_state=42))])</pre></div></div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">columntransformer: ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[(&#x27;drop&#x27;, &#x27;drop&#x27;, [&#x27;Id&#x27;]),
@@ -3784,16 +3784,16 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
                                   &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;, &#x27;MasVnrArea&#x27;,
                                   &#x27;BsmtFinSF1&#x27;, &#x27;BsmtFinSF2&#x27;, &#x27;BsmtUnfSF&#x27;,
                                   &#x27;TotalBsmtSF&#x27;, &#x27;...
-                                 [&#x27;CentralAir&#x27;, &#x27;HouseStyle&#x27;, &#x27;Exterior2nd&#x27;,
-                                  &#x27;SaleCondition&#x27;, &#x27;MiscFeature&#x27;,
-                                  &#x27;Neighborhood&#x27;, &#x27;LandSlope&#x27;, &#x27;LotShape&#x27;,
-                                  &#x27;RoofStyle&#x27;, &#x27;LotConfig&#x27;, &#x27;Heating&#x27;,
-                                  &#x27;RoofMatl&#x27;, &#x27;SaleType&#x27;, &#x27;Condition2&#x27;,
-                                  &#x27;Condition1&#x27;, &#x27;LandContour&#x27;, &#x27;GarageType&#x27;,
-                                  &#x27;BldgType&#x27;, &#x27;Foundation&#x27;, &#x27;Electrical&#x27;,
-                                  &#x27;GarageFinish&#x27;, &#x27;MSSubClass&#x27;, &#x27;Street&#x27;,
-                                  &#x27;MoSold&#x27;, &#x27;Alley&#x27;, &#x27;PavedDrive&#x27;, &#x27;MSZoning&#x27;,
-                                  &#x27;Exterior1st&#x27;, &#x27;Utilities&#x27;, &#x27;MasVnrType&#x27;])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>[&#x27;Id&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>drop</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-1</label><div class="sk-toggleable__content"><pre>[&#x27;BedroomAbvGr&#x27;, &#x27;KitchenAbvGr&#x27;, &#x27;LotFrontage&#x27;, &#x27;LotArea&#x27;, &#x27;OverallQual&#x27;, &#x27;OverallCond&#x27;, &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;, &#x27;MasVnrArea&#x27;, &#x27;BsmtFinSF1&#x27;, &#x27;BsmtFinSF2&#x27;, &#x27;BsmtUnfSF&#x27;, &#x27;TotalBsmtSF&#x27;, &#x27;1stFlrSF&#x27;, &#x27;2ndFlrSF&#x27;, &#x27;LowQualFinSF&#x27;, &#x27;GrLivArea&#x27;, &#x27;BsmtFullBath&#x27;, &#x27;BsmtHalfBath&#x27;, &#x27;FullBath&#x27;, &#x27;HalfBath&#x27;, &#x27;TotRmsAbvGrd&#x27;, &#x27;Fireplaces&#x27;, &#x27;GarageYrBlt&#x27;, &#x27;GarageCars&#x27;, &#x27;GarageArea&#x27;, &#x27;WoodDeckSF&#x27;, &#x27;OpenPorchSF&#x27;, &#x27;EnclosedPorch&#x27;, &#x27;3SsnPorch&#x27;, &#x27;ScreenPorch&#x27;, &#x27;PoolArea&#x27;, &#x27;MiscVal&#x27;, &#x27;YrSold&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;median&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-2</label><div class="sk-toggleable__content"><pre>[&#x27;ExterQual&#x27;, &#x27;ExterCond&#x27;, &#x27;BsmtQual&#x27;, &#x27;BsmtCond&#x27;, &#x27;HeatingQC&#x27;, &#x27;KitchenQual&#x27;, &#x27;FireplaceQu&#x27;, &#x27;GarageQual&#x27;, &#x27;GarageCond&#x27;, &#x27;PoolQC&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;most_frequent&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox" ><label for="sk-estimator-id-10" class="sk-toggleable__label sk-toggleable__label-arrow">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[[&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                                 [&#x27;GarageType&#x27;, &#x27;GarageFinish&#x27;, &#x27;LotShape&#x27;,
+                                  &#x27;Neighborhood&#x27;, &#x27;Utilities&#x27;, &#x27;RoofMatl&#x27;,
+                                  &#x27;Foundation&#x27;, &#x27;CentralAir&#x27;, &#x27;SaleType&#x27;,
+                                  &#x27;LandSlope&#x27;, &#x27;LotConfig&#x27;, &#x27;Condition1&#x27;,
+                                  &#x27;MasVnrType&#x27;, &#x27;Heating&#x27;, &#x27;Street&#x27;,
+                                  &#x27;Condition2&#x27;, &#x27;SaleCondition&#x27;, &#x27;PavedDrive&#x27;,
+                                  &#x27;HouseStyle&#x27;, &#x27;Exterior2nd&#x27;, &#x27;Electrical&#x27;,
+                                  &#x27;MoSold&#x27;, &#x27;MiscFeature&#x27;, &#x27;MSSubClass&#x27;,
+                                  &#x27;MSZoning&#x27;, &#x27;RoofStyle&#x27;, &#x27;LandContour&#x27;,
+                                  &#x27;Alley&#x27;, &#x27;Exterior1st&#x27;, &#x27;BldgType&#x27;])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>[&#x27;Id&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>drop</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-1</label><div class="sk-toggleable__content"><pre>[&#x27;BedroomAbvGr&#x27;, &#x27;KitchenAbvGr&#x27;, &#x27;LotFrontage&#x27;, &#x27;LotArea&#x27;, &#x27;OverallQual&#x27;, &#x27;OverallCond&#x27;, &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;, &#x27;MasVnrArea&#x27;, &#x27;BsmtFinSF1&#x27;, &#x27;BsmtFinSF2&#x27;, &#x27;BsmtUnfSF&#x27;, &#x27;TotalBsmtSF&#x27;, &#x27;1stFlrSF&#x27;, &#x27;2ndFlrSF&#x27;, &#x27;LowQualFinSF&#x27;, &#x27;GrLivArea&#x27;, &#x27;BsmtFullBath&#x27;, &#x27;BsmtHalfBath&#x27;, &#x27;FullBath&#x27;, &#x27;HalfBath&#x27;, &#x27;TotRmsAbvGrd&#x27;, &#x27;Fireplaces&#x27;, &#x27;GarageYrBlt&#x27;, &#x27;GarageCars&#x27;, &#x27;GarageArea&#x27;, &#x27;WoodDeckSF&#x27;, &#x27;OpenPorchSF&#x27;, &#x27;EnclosedPorch&#x27;, &#x27;3SsnPorch&#x27;, &#x27;ScreenPorch&#x27;, &#x27;PoolArea&#x27;, &#x27;MiscVal&#x27;, &#x27;YrSold&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;median&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-2</label><div class="sk-toggleable__content"><pre>[&#x27;ExterQual&#x27;, &#x27;ExterCond&#x27;, &#x27;BsmtQual&#x27;, &#x27;BsmtCond&#x27;, &#x27;HeatingQC&#x27;, &#x27;KitchenQual&#x27;, &#x27;FireplaceQu&#x27;, &#x27;GarageQual&#x27;, &#x27;GarageCond&#x27;, &#x27;PoolQC&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;most_frequent&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox" ><label for="sk-estimator-id-10" class="sk-toggleable__label sk-toggleable__label-arrow">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[[&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
                            [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
                            [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
                            [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
@@ -3807,7 +3807,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
                            [&#x27;NA&#x27;, &#x27;Unf&#x27;, &#x27;LwQ&#x27;, &#x27;Rec&#x27;, &#x27;BLQ&#x27;, &#x27;ALQ&#x27;, &#x27;GLQ&#x27;],
                            [&#x27;Sal&#x27;, &#x27;Sev&#x27;, &#x27;Maj2&#x27;, &#x27;Maj1&#x27;, &#x27;Mod&#x27;, &#x27;Min2&#x27;, &#x27;Min1&#x27;,
                             &#x27;Typ&#x27;],
-                           [&#x27;NA&#x27;, &#x27;MnWw&#x27;, &#x27;GdWo&#x27;, &#x27;MnPrv&#x27;, &#x27;GdPrv&#x27;]])</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-14" type="checkbox" ><label for="sk-estimator-id-14" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-4</label><div class="sk-toggleable__content"><pre>[&#x27;CentralAir&#x27;, &#x27;HouseStyle&#x27;, &#x27;Exterior2nd&#x27;, &#x27;SaleCondition&#x27;, &#x27;MiscFeature&#x27;, &#x27;Neighborhood&#x27;, &#x27;LandSlope&#x27;, &#x27;LotShape&#x27;, &#x27;RoofStyle&#x27;, &#x27;LotConfig&#x27;, &#x27;Heating&#x27;, &#x27;RoofMatl&#x27;, &#x27;SaleType&#x27;, &#x27;Condition2&#x27;, &#x27;Condition1&#x27;, &#x27;LandContour&#x27;, &#x27;GarageType&#x27;, &#x27;BldgType&#x27;, &#x27;Foundation&#x27;, &#x27;Electrical&#x27;, &#x27;GarageFinish&#x27;, &#x27;MSSubClass&#x27;, &#x27;Street&#x27;, &#x27;MoSold&#x27;, &#x27;Alley&#x27;, &#x27;PavedDrive&#x27;, &#x27;MSZoning&#x27;, &#x27;Exterior1st&#x27;, &#x27;Utilities&#x27;, &#x27;MasVnrType&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-15" type="checkbox" ><label for="sk-estimator-id-15" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(fill_value=&#x27;missing&#x27;, strategy=&#x27;constant&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-16" type="checkbox" ><label for="sk-estimator-id-16" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown=&#x27;ignore&#x27;, sparse=False)</pre></div></div></div></div></div></div></div></div></div></div><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-17" type="checkbox" ><label for="sk-estimator-id-17" class="sk-toggleable__label sk-toggleable__label-arrow">rfecv: RFECV</label><div class="sk-toggleable__content"><pre>RFECV(estimator=Ridge())</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-18" type="checkbox" ><label for="sk-estimator-id-18" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Ridge</label><div class="sk-toggleable__content"><pre>Ridge()</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-19" type="checkbox" ><label for="sk-estimator-id-19" class="sk-toggleable__label sk-toggleable__label-arrow">Ridge</label><div class="sk-toggleable__content"><pre>Ridge()</pre></div></div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-20" type="checkbox" ><label for="sk-estimator-id-20" class="sk-toggleable__label sk-toggleable__label-arrow">RandomForestRegressor</label><div class="sk-toggleable__content"><pre>RandomForestRegressor(random_state=42)</pre></div></div></div></div></div></div></div></div></div>
+                           [&#x27;NA&#x27;, &#x27;MnWw&#x27;, &#x27;GdWo&#x27;, &#x27;MnPrv&#x27;, &#x27;GdPrv&#x27;]])</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-14" type="checkbox" ><label for="sk-estimator-id-14" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-4</label><div class="sk-toggleable__content"><pre>[&#x27;GarageType&#x27;, &#x27;GarageFinish&#x27;, &#x27;LotShape&#x27;, &#x27;Neighborhood&#x27;, &#x27;Utilities&#x27;, &#x27;RoofMatl&#x27;, &#x27;Foundation&#x27;, &#x27;CentralAir&#x27;, &#x27;SaleType&#x27;, &#x27;LandSlope&#x27;, &#x27;LotConfig&#x27;, &#x27;Condition1&#x27;, &#x27;MasVnrType&#x27;, &#x27;Heating&#x27;, &#x27;Street&#x27;, &#x27;Condition2&#x27;, &#x27;SaleCondition&#x27;, &#x27;PavedDrive&#x27;, &#x27;HouseStyle&#x27;, &#x27;Exterior2nd&#x27;, &#x27;Electrical&#x27;, &#x27;MoSold&#x27;, &#x27;MiscFeature&#x27;, &#x27;MSSubClass&#x27;, &#x27;MSZoning&#x27;, &#x27;RoofStyle&#x27;, &#x27;LandContour&#x27;, &#x27;Alley&#x27;, &#x27;Exterior1st&#x27;, &#x27;BldgType&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-15" type="checkbox" ><label for="sk-estimator-id-15" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(fill_value=&#x27;missing&#x27;, strategy=&#x27;constant&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-16" type="checkbox" ><label for="sk-estimator-id-16" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown=&#x27;ignore&#x27;, sparse=False)</pre></div></div></div></div></div></div></div></div></div></div><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-17" type="checkbox" ><label for="sk-estimator-id-17" class="sk-toggleable__label sk-toggleable__label-arrow">rfecv: RFECV</label><div class="sk-toggleable__content"><pre>RFECV(estimator=Ridge())</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-18" type="checkbox" ><label for="sk-estimator-id-18" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Ridge</label><div class="sk-toggleable__content"><pre>Ridge()</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-19" type="checkbox" ><label for="sk-estimator-id-19" class="sk-toggleable__label sk-toggleable__label-arrow">Ridge</label><div class="sk-toggleable__content"><pre>Ridge()</pre></div></div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-20" type="checkbox" ><label for="sk-estimator-id-20" class="sk-toggleable__label sk-toggleable__label-arrow">RandomForestRegressor</label><div class="sk-toggleable__content"><pre>RandomForestRegressor(random_state=42)</pre></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3831,7 +3831,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9b99bf8f536c21f03e0c897d58b4a64f7264635799889084bca3273974a02b61.png" src="../_images/9b99bf8f536c21f03e0c897d58b4a64f7264635799889084bca3273974a02b61.png" />
+<img alt="../_images/fc74e62caf4e7e2971443e40e1089880ae90813ddbce35b45d3a80ea30cbcc8a.png" src="../_images/fc74e62caf4e7e2971443e40e1089880ae90813ddbce35b45d3a80ea30cbcc8a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3843,7 +3843,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/76bf83d93671e59a75f0fedb443cfe8606cf6ef5317038fbba958c93c4babdf5.png" src="../_images/76bf83d93671e59a75f0fedb443cfe8606cf6ef5317038fbba958c93c4babdf5.png" />
+<img alt="../_images/6c336ab989dba4b3466554b2b322a3962dd8f6c97207f8bf42e8760e536249e1.png" src="../_images/6c336ab989dba4b3466554b2b322a3962dd8f6c97207f8bf42e8760e536249e1.png" />
 </div>
 </div>
 <p>Are we improving the final scores with RFECV?</p>
@@ -3901,38 +3901,38 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
     </tr>
     <tr>
       <th>ridge</th>
-      <td>0.025 (+/- 0.000)</td>
-      <td>0.007 (+/- 0.000)</td>
+      <td>0.026 (+/- 0.001)</td>
+      <td>0.008 (+/- 0.001)</td>
       <td>0.774 (+/- 0.127)</td>
       <td>0.917 (+/- 0.003)</td>
     </tr>
     <tr>
       <th>rf</th>
-      <td>1.590 (+/- 0.010)</td>
+      <td>1.630 (+/- 0.020)</td>
       <td>0.012 (+/- 0.000)</td>
-      <td>0.860 (+/- 0.033)</td>
+      <td>0.858 (+/- 0.037)</td>
       <td>0.979 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>model_based_fs + rf</th>
-      <td>0.705 (+/- 0.085)</td>
+      <td>0.714 (+/- 0.085)</td>
       <td>0.012 (+/- 0.000)</td>
-      <td>0.846 (+/- 0.036)</td>
-      <td>0.978 (+/- 0.002)</td>
+      <td>0.843 (+/- 0.037)</td>
+      <td>0.978 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>rfe + rfe</th>
-      <td>1.090 (+/- 0.060)</td>
+      <td>1.105 (+/- 0.067)</td>
       <td>0.012 (+/- 0.000)</td>
-      <td>0.862 (+/- 0.034)</td>
+      <td>0.863 (+/- 0.034)</td>
       <td>0.980 (+/- 0.002)</td>
     </tr>
     <tr>
       <th>rf+rfecv</th>
-      <td>3.277 (+/- 0.328)</td>
-      <td>0.012 (+/- 0.000)</td>
+      <td>3.423 (+/- 0.292)</td>
+      <td>0.013 (+/- 0.001)</td>
       <td>0.845 (+/- 0.059)</td>
-      <td>0.976 (+/- 0.007)</td>
+      <td>0.975 (+/- 0.007)</td>
     </tr>
   </tbody>
 </table>
@@ -3968,7 +3968,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal number of features : 182
 </pre></div>
 </div>
-<img alt="../_images/2d62c83472af122db3c805f585583fdeaf2dfcae9512819a2705c9b9f06d3777.png" src="../_images/2d62c83472af122db3c805f585583fdeaf2dfcae9512819a2705c9b9f06d3777.png" />
+<img alt="../_images/94f09168e737bc1136806ce5a8d8e4a383486b51256d732cc7080cf87f1f61b5.png" src="../_images/94f09168e737bc1136806ce5a8d8e4a383486b51256d732cc7080cf87f1f61b5.png" />
 </div>
 </div>
 <ul class="simple">
@@ -4285,47 +4285,77 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
 <span class="g g-Whitespace">   </span><span class="mi">1141</span> <span class="p">)</span>
 <span class="ne">-&gt; </span><span class="mi">1142</span> <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">)</span>
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_ridge.py:860,</span> in <span class="ni">_BaseRidge.fit</span><span class="nt">(self, X, y, sample_weight)</span>
-<span class="g g-Whitespace">    </span><span class="mi">857</span>     <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">_check_sample_weight</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">859</span> <span class="c1"># when X is sparse we only remove offset from y</span>
-<span class="ne">--&gt; </span><span class="mi">860</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">X_offset</span><span class="p">,</span> <span class="n">y_offset</span><span class="p">,</span> <span class="n">X_scale</span> <span class="o">=</span> <span class="n">_preprocess_data</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">861</span>     <span class="n">X</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">862</span>     <span class="n">y</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">863</span>     <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">864</span>     <span class="n">copy</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">copy_X</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">865</span>     <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">866</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">868</span> <span class="k">if</span> <span class="n">solver</span> <span class="o">==</span> <span class="s2">&quot;sag&quot;</span> <span class="ow">and</span> <span class="n">sparse</span><span class="o">.</span><span class="n">issparse</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">869</span>     <span class="bp">self</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_iter_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">intercept_</span> <span class="o">=</span> <span class="n">_ridge_regression</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">870</span>         <span class="n">X</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">871</span>         <span class="n">y</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">881</span>         <span class="n">check_input</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">882</span>     <span class="p">)</span>
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_ridge.py:894,</span> in <span class="ni">_BaseRidge.fit</span><span class="nt">(self, X, y, sample_weight)</span>
+<span class="g g-Whitespace">    </span><span class="mi">890</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">891</span>         <span class="c1"># for dense matrices or when intercept is set to 0</span>
+<span class="g g-Whitespace">    </span><span class="mi">892</span>         <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="ne">--&gt; </span><span class="mi">894</span>     <span class="bp">self</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_iter_</span> <span class="o">=</span> <span class="n">_ridge_regression</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">895</span>         <span class="n">X</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">896</span>         <span class="n">y</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">897</span>         <span class="n">alpha</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">898</span>         <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">899</span>         <span class="n">max_iter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_iter</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">900</span>         <span class="n">tol</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tol</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">901</span>         <span class="n">solver</span><span class="o">=</span><span class="n">solver</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">902</span>         <span class="n">positive</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">positive</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">903</span>         <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">904</span>         <span class="n">return_n_iter</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">905</span>         <span class="n">return_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">906</span>         <span class="n">check_input</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">907</span>         <span class="n">fit_intercept</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">908</span>         <span class="o">**</span><span class="n">params</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">909</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">910</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_set_intercept</span><span class="p">(</span><span class="n">X_offset</span><span class="p">,</span> <span class="n">y_offset</span><span class="p">,</span> <span class="n">X_scale</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">912</span> <span class="k">return</span> <span class="bp">self</span>
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_base.py:239,</span> in <span class="ni">_preprocess_data</span><span class="nt">(X, y, fit_intercept, normalize, copy, copy_y, sample_weight, check_input)</span>
-<span class="g g-Whitespace">    </span><span class="mi">237</span> <span class="k">if</span> <span class="n">check_input</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">238</span>     <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;csr&quot;</span><span class="p">,</span> <span class="s2">&quot;csc&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">FLOAT_DTYPES</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">239</span>     <span class="n">y</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy_y</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">240</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">241</span>     <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy_y</span><span class="p">)</span>
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_ridge.py:704,</span> in <span class="ni">_ridge_regression</span><span class="nt">(X, y, alpha, sample_weight, solver, max_iter, tol, verbose, positive, random_state, return_n_iter, return_intercept, X_scale, X_offset, check_input, fit_intercept)</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">704</span>         <span class="n">coef</span> <span class="o">=</span> <span class="n">_solve_cholesky</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span>     <span class="k">except</span> <span class="n">linalg</span><span class="o">.</span><span class="n">LinAlgError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">706</span>         <span class="c1"># use SVD solver if matrix is singular</span>
+<span class="g g-Whitespace">    </span><span class="mi">707</span>         <span class="n">solver</span> <span class="o">=</span> <span class="s2">&quot;svd&quot;</span>
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/utils/validation.py:917,</span> in <span class="ni">check_array</span><span class="nt">(array, accept_sparse, accept_large_sparse, dtype, order, copy, force_all_finite, ensure_2d, allow_nd, ensure_min_samples, ensure_min_features, estimator, input_name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">915</span>         <span class="n">array</span> <span class="o">=</span> <span class="n">xp</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">916</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">917</span>         <span class="n">array</span> <span class="o">=</span> <span class="n">_asarray_with_order</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">xp</span><span class="o">=</span><span class="n">xp</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">918</span> <span class="k">except</span> <span class="n">ComplexWarning</span> <span class="k">as</span> <span class="n">complex_warning</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">919</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">920</span>         <span class="s2">&quot;Complex data not supported</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">921</span>     <span class="p">)</span> <span class="kn">from</span> <span class="nn">complex_warning</span>
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_ridge.py:211,</span> in <span class="ni">_solve_cholesky</span><span class="nt">(X, y, alpha)</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span> <span class="k">if</span> <span class="n">one_alpha</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>     <span class="n">A</span><span class="o">.</span><span class="n">flat</span><span class="p">[::</span> <span class="n">n_features</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">alpha</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">211</span>     <span class="k">return</span> <span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">Xy</span><span class="p">,</span> <span class="n">assume_a</span><span class="o">=</span><span class="s2">&quot;pos&quot;</span><span class="p">,</span> <span class="n">overwrite_a</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="g g-Whitespace">    </span><span class="mi">212</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">213</span>     <span class="n">coefs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">n_targets</span><span class="p">,</span> <span class="n">n_features</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/utils/_array_api.py:380,</span> in <span class="ni">_asarray_with_order</span><span class="nt">(array, dtype, order, copy, xp)</span>
-<span class="g g-Whitespace">    </span><span class="mi">378</span>     <span class="n">array</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">379</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">380</span>     <span class="n">array</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">382</span> <span class="c1"># At this point array is a NumPy ndarray. We convert it to an array</span>
-<span class="g g-Whitespace">    </span><span class="mi">383</span> <span class="c1"># container that is consistent with the input&#39;s namespace.</span>
-<span class="g g-Whitespace">    </span><span class="mi">384</span> <span class="k">return</span> <span class="n">xp</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/scipy/linalg/_basic.py:148,</span> in <span class="ni">solve</span><span class="nt">(a, b, lower, overwrite_a, overwrite_b, check_finite, assume_a, transposed)</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span> <span class="c1"># Flags for 1-D or N-D right-hand side</span>
+<span class="g g-Whitespace">    </span><span class="mi">146</span> <span class="n">b_is_1D</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="ne">--&gt; </span><span class="mi">148</span> <span class="n">a1</span> <span class="o">=</span> <span class="n">atleast_2d</span><span class="p">(</span><span class="n">_asarray_validated</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">check_finite</span><span class="o">=</span><span class="n">check_finite</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span> <span class="n">b1</span> <span class="o">=</span> <span class="n">atleast_1d</span><span class="p">(</span><span class="n">_asarray_validated</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">check_finite</span><span class="o">=</span><span class="n">check_finite</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">150</span> <span class="n">n</span> <span class="o">=</span> <span class="n">a1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/scipy/_lib/_util.py:240,</span> in <span class="ni">_asarray_validated</span><span class="nt">(a, check_finite, sparse_ok, objects_ok, mask_ok, as_inexact)</span>
+<span class="g g-Whitespace">    </span><span class="mi">238</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;masked arrays are not supported&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">239</span> <span class="n">toarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray_chkfinite</span> <span class="k">if</span> <span class="n">check_finite</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span>
+<span class="ne">--&gt; </span><span class="mi">240</span> <span class="n">a</span> <span class="o">=</span> <span class="n">toarray</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">241</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">objects_ok</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">242</span>     <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">dtype</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">):</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/numpy/lib/function_base.py:629,</span> in <span class="ni">asarray_chkfinite</span><span class="nt">(a, dtype, order)</span>
+<span class="g g-Whitespace">    </span><span class="mi">566</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Convert the input to an array, checking for NaNs or Infs.</span>
+<span class="g g-Whitespace">    </span><span class="mi">567</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">568</span><span class="sd"> Parameters</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">626</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">627</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">628</span> <span class="n">a</span> <span class="o">=</span> <span class="n">asarray</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">629</span> <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">char</span> <span class="ow">in</span> <span class="n">typecodes</span><span class="p">[</span><span class="s1">&#39;AllFloat&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">630</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">631</span>         <span class="s2">&quot;array must not contain infs or NaNs&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">632</span> <span class="k">return</span> <span class="n">a</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/numpy/core/_methods.py:64,</span> in <span class="ni">_all</span><span class="nt">(a, axis, dtype, out, keepdims, where)</span>
+<span class="g g-Whitespace">     </span><span class="mi">61</span> <span class="k">def</span> <span class="nf">_all</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">62</span>     <span class="c1"># Parsing keyword arguments is currently fairly slow, so avoid it for now</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span>     <span class="k">if</span> <span class="n">where</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">64</span>         <span class="k">return</span> <span class="n">umr_all</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span>     <span class="k">return</span> <span class="n">umr_all</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">where</span><span class="p">)</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>

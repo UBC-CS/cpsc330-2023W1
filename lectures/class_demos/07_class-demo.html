@@ -661,36 +661,36 @@ dtype: int64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.856316</td>
-      <td>0.098190</td>
+      <td>0.523427</td>
+      <td>0.092958</td>
       <td>0.847</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.840702</td>
-      <td>0.095421</td>
+      <td>0.526829</td>
+      <td>0.089493</td>
       <td>0.832</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.859535</td>
-      <td>0.094879</td>
+      <td>0.539485</td>
+      <td>0.089439</td>
       <td>0.842</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.827356</td>
-      <td>0.091346</td>
+      <td>0.533660</td>
+      <td>0.086257</td>
       <td>0.853</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.728146</td>
-      <td>0.093704</td>
+      <td>0.527436</td>
+      <td>0.093828</td>
       <td>0.839</td>
       <td>1.0</td>
     </tr>
@@ -720,190 +720,69 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">for</span> <span class="n">C</span> <span class="ow">in</span> <span class="n">scores_dict</span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">]:</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">pipe_lr</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span> <span class="n">stop_words</span><span class="o">=</span><span class="s2">&quot;english&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>                         <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span>                        <span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">10</span>     <span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">pipe_lr</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="n">scores_dict</span><span class="p">[</span><span class="s2">&quot;mean_train_scores&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s2">&quot;train_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="n">scores_dict</span><span class="p">[</span><span class="s2">&quot;mean_cv_scores&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s2">&quot;test_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/utils/_param_validation.py:211,</span> in <span class="ni">validate_params.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">205</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">207</span>         <span class="n">skip_parameter_validation</span><span class="o">=</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">208</span>             <span class="n">prefer_skip_nested_validation</span> <span class="ow">or</span> <span class="n">global_skip_validation</span>
-<span class="g g-Whitespace">    </span><span class="mi">209</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span>     <span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">211</span>         <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">212</span> <span class="k">except</span> <span class="n">InvalidParameterError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">213</span>     <span class="c1"># When the function is just a wrapper around an estimator, we allow</span>
-<span class="g g-Whitespace">    </span><span class="mi">214</span>     <span class="c1"># the function to delegate validation to the estimator, but we replace</span>
-<span class="g g-Whitespace">    </span><span class="mi">215</span>     <span class="c1"># the name of the estimator by the name of the function in the error</span>
-<span class="g g-Whitespace">    </span><span class="mi">216</span>     <span class="c1"># message to avoid confusion.</span>
-<span class="g g-Whitespace">    </span><span class="mi">217</span>     <span class="n">msg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">218</span>         <span class="sa">r</span><span class="s2">&quot;parameter of \w+ must be&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">219</span>         <span class="sa">f</span><span class="s2">&quot;parameter of </span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__qualname__</span><span class="si">}</span><span class="s2"> must be&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">220</span>         <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">221</span>     <span class="p">)</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/model_selection/_validation.py:309,</span> in <span class="ni">cross_validate</span><span class="nt">(estimator, X, y, groups, scoring, cv, n_jobs, verbose, fit_params, pre_dispatch, return_train_score, return_estimator, return_indices, error_score)</span>
-<span class="g g-Whitespace">    </span><span class="mi">306</span> <span class="c1"># We clone the estimator to make sure that all the folds are</span>
-<span class="g g-Whitespace">    </span><span class="mi">307</span> <span class="c1"># independent, and that it is pickle-able.</span>
-<span class="g g-Whitespace">    </span><span class="mi">308</span> <span class="n">parallel</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="n">pre_dispatch</span><span class="o">=</span><span class="n">pre_dispatch</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">309</span> <span class="n">results</span> <span class="o">=</span> <span class="n">parallel</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span>     <span class="n">delayed</span><span class="p">(</span><span class="n">_fit_and_score</span><span class="p">)(</span>
-<span class="g g-Whitespace">    </span><span class="mi">311</span>         <span class="n">clone</span><span class="p">(</span><span class="n">estimator</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">312</span>         <span class="n">X</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="n">y</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">314</span>         <span class="n">scorers</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">315</span>         <span class="n">train</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">316</span>         <span class="n">test</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">317</span>         <span class="n">verbose</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">318</span>         <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">319</span>         <span class="n">fit_params</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">320</span>         <span class="n">return_train_score</span><span class="o">=</span><span class="n">return_train_score</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">321</span>         <span class="n">return_times</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">322</span>         <span class="n">return_estimator</span><span class="o">=</span><span class="n">return_estimator</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">323</span>         <span class="n">error_score</span><span class="o">=</span><span class="n">error_score</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">324</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">325</span>     <span class="k">for</span> <span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="ow">in</span> <span class="n">indices</span>
-<span class="g g-Whitespace">    </span><span class="mi">326</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">328</span> <span class="n">_warn_or_raise_about_fit_failures</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">error_score</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">330</span> <span class="c1"># For callable scoring, the return type is only know after calling. If the</span>
-<span class="g g-Whitespace">    </span><span class="mi">331</span> <span class="c1"># return type is a dictionary, the error scores can now be inserted with</span>
-<span class="g g-Whitespace">    </span><span class="mi">332</span> <span class="c1"># the correct key.</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/utils/parallel.py:65,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="n">config</span> <span class="o">=</span> <span class="n">get_config</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span> <span class="n">iterable_with_config</span> <span class="o">=</span> <span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span>     <span class="p">(</span><span class="n">_with_config</span><span class="p">(</span><span class="n">delayed_func</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span>     <span class="k">for</span> <span class="n">delayed_func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="n">iterable</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span> <span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">65</span> <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="n">iterable_with_config</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:1863,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1861</span>     <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sequential_output</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1862</span>     <span class="nb">next</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1863</span>     <span class="k">return</span> <span class="n">output</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_generator</span> <span class="k">else</span> <span class="nb">list</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1865</span> <span class="c1"># Let&#39;s create an ID that uniquely identifies the current call. If the</span>
-<span class="g g-Whitespace">   </span><span class="mi">1866</span> <span class="c1"># call is interrupted early and that the same instance is immediately</span>
-<span class="g g-Whitespace">   </span><span class="mi">1867</span> <span class="c1"># re-used, this id will be used to prevent workers that were</span>
-<span class="g g-Whitespace">   </span><span class="mi">1868</span> <span class="c1"># concurrently finalizing a task from the previous call to run the</span>
-<span class="g g-Whitespace">   </span><span class="mi">1869</span> <span class="c1"># callback.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1870</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:1792,</span> in <span class="ni">Parallel._get_sequential_output</span><span class="nt">(self, iterable)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1790</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_dispatched_batches</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">   </span><span class="mi">1791</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_dispatched_tasks</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="ne">-&gt; </span><span class="mi">1792</span> <span class="n">res</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1793</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_completed_tasks</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">   </span><span class="mi">1794</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_progress</span><span class="p">()</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/utils/parallel.py:127,</span> in <span class="ni">_FuncWrapper.__call__</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">125</span>     <span class="n">config</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="g g-Whitespace">    </span><span class="mi">126</span> <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">127</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/model_selection/_validation.py:732,</span> in <span class="ni">_fit_and_score</span><span class="nt">(estimator, X, y, scorer, train, test, verbose, parameters, fit_params, return_train_score, return_parameters, return_n_test_samples, return_times, return_estimator, split_progress, candidate_progress, error_score)</span>
-<span class="g g-Whitespace">    </span><span class="mi">730</span>         <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">731</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">732</span>         <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">734</span> <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">735</span>     <span class="c1"># Note fit time as time until error</span>
-<span class="g g-Whitespace">    </span><span class="mi">736</span>     <span class="n">fit_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:1151,</span> in <span class="ni">_fit_context.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(estimator, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1144</span>     <span class="n">estimator</span><span class="o">.</span><span class="n">_validate_params</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1146</span> <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1147</span>     <span class="n">skip_parameter_validation</span><span class="o">=</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1148</span>         <span class="n">prefer_skip_nested_validation</span> <span class="ow">or</span> <span class="n">global_skip_validation</span>
-<span class="g g-Whitespace">   </span><span class="mi">1149</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1150</span> <span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1151</span>     <span class="k">return</span> <span class="n">fit_method</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/pipeline.py:416,</span> in <span class="ni">Pipeline.fit</span><span class="nt">(self, X, y, **fit_params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">390</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Fit the model.</span>
-<span class="g g-Whitespace">    </span><span class="mi">391</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">392</span><span class="sd"> Fit all the transformers one after the other and transform the</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">413</span><span class="sd">     Pipeline with fitted steps.</span>
-<span class="g g-Whitespace">    </span><span class="mi">414</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">415</span> <span class="n">fit_params_steps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_fit_params</span><span class="p">(</span><span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">416</span> <span class="n">Xt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params_steps</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">417</span> <span class="k">with</span> <span class="n">_print_elapsed_time</span><span class="p">(</span><span class="s2">&quot;Pipeline&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log_message</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)):</span>
-<span class="g g-Whitespace">    </span><span class="mi">418</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_final_estimator</span> <span class="o">!=</span> <span class="s2">&quot;passthrough&quot;</span><span class="p">:</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/pipeline.py:370,</span> in <span class="ni">Pipeline._fit</span><span class="nt">(self, X, y, **fit_params_steps)</span>
-<span class="g g-Whitespace">    </span><span class="mi">368</span>     <span class="n">cloned_transformer</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="n">transformer</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">369</span> <span class="c1"># Fit or load from cache the current transformer</span>
-<span class="ne">--&gt; </span><span class="mi">370</span> <span class="n">X</span><span class="p">,</span> <span class="n">fitted_transformer</span> <span class="o">=</span> <span class="n">fit_transform_one_cached</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">371</span>     <span class="n">cloned_transformer</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">372</span>     <span class="n">X</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">373</span>     <span class="n">y</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">374</span>     <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">375</span>     <span class="n">message_clsname</span><span class="o">=</span><span class="s2">&quot;Pipeline&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">376</span>     <span class="n">message</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_log_message</span><span class="p">(</span><span class="n">step_idx</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">377</span>     <span class="o">**</span><span class="n">fit_params_steps</span><span class="p">[</span><span class="n">name</span><span class="p">],</span>
-<span class="g g-Whitespace">    </span><span class="mi">378</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">379</span> <span class="c1"># Replace the transformer of the step with the fitted</span>
-<span class="g g-Whitespace">    </span><span class="mi">380</span> <span class="c1"># transformer. This is necessary when loading the transformer</span>
-<span class="g g-Whitespace">    </span><span class="mi">381</span> <span class="c1"># from the cache.</span>
-<span class="g g-Whitespace">    </span><span class="mi">382</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">[</span><span class="n">step_idx</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">fitted_transformer</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/memory.py:353,</span> in <span class="ni">NotMemorizedFunc.__call__</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">352</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">353</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/pipeline.py:950,</span> in <span class="ni">_fit_transform_one</span><span class="nt">(transformer, X, y, weight, message_clsname, message, **fit_params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">948</span> <span class="k">with</span> <span class="n">_print_elapsed_time</span><span class="p">(</span><span class="n">message_clsname</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">949</span>     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">transformer</span><span class="p">,</span> <span class="s2">&quot;fit_transform&quot;</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">950</span>         <span class="n">res</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">951</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">952</span>         <span class="n">res</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:1151,</span> in <span class="ni">_fit_context.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(estimator, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1144</span>     <span class="n">estimator</span><span class="o">.</span><span class="n">_validate_params</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1146</span> <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1147</span>     <span class="n">skip_parameter_validation</span><span class="o">=</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1148</span>         <span class="n">prefer_skip_nested_validation</span> <span class="ow">or</span> <span class="n">global_skip_validation</span>
-<span class="g g-Whitespace">   </span><span class="mi">1149</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1150</span> <span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1151</span>     <span class="k">return</span> <span class="n">fit_method</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/feature_extraction/text.py:1383,</span> in <span class="ni">CountVectorizer.fit_transform</span><span class="nt">(self, raw_documents, y)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1375</span>             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1376</span>                 <span class="s2">&quot;Upper case characters found in&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1377</span>                 <span class="s2">&quot; vocabulary while &#39;lowercase&#39;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1378</span>                 <span class="s2">&quot; is True. These entries will not&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1379</span>                 <span class="s2">&quot; be matched with any documents&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1380</span>             <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1381</span>             <span class="k">break</span>
-<span class="ne">-&gt; </span><span class="mi">1383</span> <span class="n">vocabulary</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_count_vocab</span><span class="p">(</span><span class="n">raw_documents</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed_vocabulary_</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1385</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">binary</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1386</span>     <span class="n">X</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/feature_extraction/text.py:1270,</span> in <span class="ni">CountVectorizer._count_vocab</span><span class="nt">(self, raw_documents, fixed_vocab)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1268</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">raw_documents</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1269</span>     <span class="n">feature_counter</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="ne">-&gt; </span><span class="mi">1270</span>     <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">analyze</span><span class="p">(</span><span class="n">doc</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1271</span>         <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1272</span>             <span class="n">feature_idx</span> <span class="o">=</span> <span class="n">vocabulary</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/feature_extraction/text.py:112,</span> in <span class="ni">_analyze</span><span class="nt">(doc, analyzer, tokenizer, ngrams, preprocessor, decoder, stop_words)</span>
-<span class="g g-Whitespace">    </span><span class="mi">110</span>     <span class="n">doc</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span> <span class="k">if</span> <span class="n">tokenizer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">112</span>     <span class="n">doc</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">113</span> <span class="k">if</span> <span class="n">ngrams</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">114</span>     <span class="k">if</span> <span class="n">stop_words</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
-</pre></div>
-</div>
-</div>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>C</th>
+      <th>mean_train_scores</th>
+      <th>mean_cv_scores</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.001</td>
+      <td>0.83470</td>
+      <td>0.7964</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.010</td>
+      <td>0.92265</td>
+      <td>0.8456</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.100</td>
+      <td>0.98585</td>
+      <td>0.8520</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.000</td>
+      <td>1.00000</td>
+      <td>0.8426</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>10.000</td>
+      <td>1.00000</td>
+      <td>0.8376</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>100.000</td>
+      <td>1.00000</td>
+      <td>0.8350</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

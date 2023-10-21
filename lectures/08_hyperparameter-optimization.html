@@ -761,7 +761,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7309385996961713
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.72845989654443
 </pre></div>
 </div>
 </div>
@@ -833,8 +833,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.051709
-score_time     0.014561
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.046747
+score_time     0.012106
 test_score     0.734011
 train_score    0.828891
 dtype: float64
@@ -1025,7 +1025,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PolyCollection at 0x178a32d40&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PolyCollection at 0x175eeee00&gt;
 </pre></div>
 </div>
 <img alt="../_images/fce0ec594e610cf4eb5a7a0a75a42611ddc1d17681a2be051acb2d3df7b5a911.png" src="../_images/fce0ec594e610cf4eb5a7a0a75a42611ddc1d17681a2be051acb2d3df7b5a911.png" />
@@ -1188,109 +1188,102 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">24</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Carry out the search </span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">gs</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:1151,</span> in <span class="ni">_fit_context.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(estimator, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1144</span>     <span class="n">estimator</span><span class="o">.</span><span class="n">_validate_params</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1146</span> <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1147</span>     <span class="n">skip_parameter_validation</span><span class="o">=</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1148</span>         <span class="n">prefer_skip_nested_validation</span> <span class="ow">or</span> <span class="n">global_skip_validation</span>
-<span class="g g-Whitespace">   </span><span class="mi">1149</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1150</span> <span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1151</span>     <span class="k">return</span> <span class="n">fit_method</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/model_selection/_search.py:898,</span> in <span class="ni">BaseSearchCV.fit</span><span class="nt">(self, X, y, groups, **fit_params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">892</span>     <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_results</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">893</span>         <span class="n">all_candidate_params</span><span class="p">,</span> <span class="n">n_splits</span><span class="p">,</span> <span class="n">all_out</span><span class="p">,</span> <span class="n">all_more_results</span>
-<span class="g g-Whitespace">    </span><span class="mi">894</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">896</span>     <span class="k">return</span> <span class="n">results</span>
-<span class="ne">--&gt; </span><span class="mi">898</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_search</span><span class="p">(</span><span class="n">evaluate_candidates</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">900</span> <span class="c1"># multimetric is determined here because in the case of a callable</span>
-<span class="g g-Whitespace">    </span><span class="mi">901</span> <span class="c1"># self.scoring the return type is only known after calling</span>
-<span class="g g-Whitespace">    </span><span class="mi">902</span> <span class="n">first_test_score</span> <span class="o">=</span> <span class="n">all_out</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;test_scores&quot;</span><span class="p">]</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/model_selection/_search.py:1419,</span> in <span class="ni">GridSearchCV._run_search</span><span class="nt">(self, evaluate_candidates)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1417</span> <span class="k">def</span> <span class="nf">_run_search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evaluate_candidates</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1418</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Search all candidates in param_grid&quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1419</span>     <span class="n">evaluate_candidates</span><span class="p">(</span><span class="n">ParameterGrid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">param_grid</span><span class="p">))</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/model_selection/_search.py:845,</span> in <span class="ni">BaseSearchCV.fit.&lt;locals&gt;.evaluate_candidates</span><span class="nt">(candidate_params, cv, more_results)</span>
-<span class="g g-Whitespace">    </span><span class="mi">837</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">838</span>     <span class="nb">print</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">839</span>         <span class="s2">&quot;Fitting </span><span class="si">{0}</span><span class="s2"> folds for each of </span><span class="si">{1}</span><span class="s2"> candidates,&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">840</span>         <span class="s2">&quot; totalling </span><span class="si">{2}</span><span class="s2"> fits&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">841</span>             <span class="n">n_splits</span><span class="p">,</span> <span class="n">n_candidates</span><span class="p">,</span> <span class="n">n_candidates</span> <span class="o">*</span> <span class="n">n_splits</span>
-<span class="g g-Whitespace">    </span><span class="mi">842</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">843</span>     <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">845</span> <span class="n">out</span> <span class="o">=</span> <span class="n">parallel</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">846</span>     <span class="n">delayed</span><span class="p">(</span><span class="n">_fit_and_score</span><span class="p">)(</span>
-<span class="g g-Whitespace">    </span><span class="mi">847</span>         <span class="n">clone</span><span class="p">(</span><span class="n">base_estimator</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">848</span>         <span class="n">X</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">849</span>         <span class="n">y</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">850</span>         <span class="n">train</span><span class="o">=</span><span class="n">train</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">851</span>         <span class="n">test</span><span class="o">=</span><span class="n">test</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">852</span>         <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">853</span>         <span class="n">split_progress</span><span class="o">=</span><span class="p">(</span><span class="n">split_idx</span><span class="p">,</span> <span class="n">n_splits</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">854</span>         <span class="n">candidate_progress</span><span class="o">=</span><span class="p">(</span><span class="n">cand_idx</span><span class="p">,</span> <span class="n">n_candidates</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">855</span>         <span class="o">**</span><span class="n">fit_and_score_kwargs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">856</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">857</span>     <span class="k">for</span> <span class="p">(</span><span class="n">cand_idx</span><span class="p">,</span> <span class="n">parameters</span><span class="p">),</span> <span class="p">(</span><span class="n">split_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">))</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">858</span>         <span class="nb">enumerate</span><span class="p">(</span><span class="n">candidate_params</span><span class="p">),</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">859</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">860</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">862</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">863</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">864</span>         <span class="s2">&quot;No fits were performed. &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">865</span>         <span class="s2">&quot;Was the CV iterator empty? &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">866</span>         <span class="s2">&quot;Were there no candidates?&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">867</span>     <span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/utils/parallel.py:65,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="n">config</span> <span class="o">=</span> <span class="n">get_config</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span> <span class="n">iterable_with_config</span> <span class="o">=</span> <span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span>     <span class="p">(</span><span class="n">_with_config</span><span class="p">(</span><span class="n">delayed_func</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span>     <span class="k">for</span> <span class="n">delayed_func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="n">iterable</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span> <span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">65</span> <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="n">iterable_with_config</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:1952,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1946</span> <span class="c1"># The first item from the output is blank, but it makes the interpreter</span>
-<span class="g g-Whitespace">   </span><span class="mi">1947</span> <span class="c1"># progress until it enters the Try/Except block of the generator and</span>
-<span class="g g-Whitespace">   </span><span class="mi">1948</span> <span class="c1"># reach the first `yield` statement. This starts the aynchronous</span>
-<span class="g g-Whitespace">   </span><span class="mi">1949</span> <span class="c1"># dispatch of the tasks to the workers.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1950</span> <span class="nb">next</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1952</span> <span class="k">return</span> <span class="n">output</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_generator</span> <span class="k">else</span> <span class="nb">list</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:1595,</span> in <span class="ni">Parallel._get_outputs</span><span class="nt">(self, iterator, pre_dispatch)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1592</span>     <span class="k">yield</span>
-<span class="g g-Whitespace">   </span><span class="mi">1594</span>     <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">retrieval_context</span><span class="p">():</span>
-<span class="ne">-&gt; </span><span class="mi">1595</span>         <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retrieve</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1597</span> <span class="k">except</span> <span class="ne">GeneratorExit</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1598</span>     <span class="c1"># The generator has been garbage collected before being fully</span>
-<span class="g g-Whitespace">   </span><span class="mi">1599</span>     <span class="c1"># consumed. This aborts the remaining tasks if possible and warn</span>
-<span class="g g-Whitespace">   </span><span class="mi">1600</span>     <span class="c1"># the user if necessary.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1601</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exception</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:1707,</span> in <span class="ni">Parallel._retrieve</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1702</span> <span class="c1"># If the next job is not ready for retrieval yet, we just wait for</span>
-<span class="g g-Whitespace">   </span><span class="mi">1703</span> <span class="c1"># async callbacks to progress.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1704</span> <span class="k">if</span> <span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span>
-<span class="g g-Whitespace">   </span><span class="mi">1705</span>     <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_status</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1706</span>         <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">)</span> <span class="o">==</span> <span class="n">TASK_PENDING</span><span class="p">)):</span>
-<span class="ne">-&gt; </span><span class="mi">1707</span>     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1708</span>     <span class="k">continue</span>
-<span class="g g-Whitespace">   </span><span class="mi">1710</span> <span class="c1"># We need to be careful: the job list can be filling up as</span>
-<span class="g g-Whitespace">   </span><span class="mi">1711</span> <span class="c1"># we empty it and Python list are not thread-safe by</span>
-<span class="g g-Whitespace">   </span><span class="mi">1712</span> <span class="c1"># default hence the use of the lock</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
-</pre></div>
-</div>
-</div>
+<div class="output text_html"><style>#sk-container-id-3 {color: black;}#sk-container-id-3 pre{padding: 0;}#sk-container-id-3 div.sk-toggleable {background-color: white;}#sk-container-id-3 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-3 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-3 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-3 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-3 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-3 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-3 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-3 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-3 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-3 div.sk-item {position: relative;z-index: 1;}#sk-container-id-3 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-3 div.sk-item::before, #sk-container-id-3 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-3 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-3 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-3 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-3 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-3 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-3 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-3 div.sk-label-container {text-align: center;}#sk-container-id-3 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-3 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(estimator=Pipeline(steps=[(&#x27;columntransformer&#x27;,
+                                        ColumnTransformer(transformers=[(&#x27;standardscaler&#x27;,
+                                                                         StandardScaler(),
+                                                                         [&#x27;acousticness&#x27;,
+                                                                          &#x27;danceability&#x27;,
+                                                                          &#x27;energy&#x27;,
+                                                                          &#x27;instrumentalness&#x27;,
+                                                                          &#x27;liveness&#x27;,
+                                                                          &#x27;loudness&#x27;,
+                                                                          &#x27;speechiness&#x27;,
+                                                                          &#x27;tempo&#x27;,
+                                                                          &#x27;valence&#x27;]),
+                                                                        (&#x27;onehotencoder&#x27;,
+                                                                         OneHotEncoder(handle_unknown=&#x27;ignore&#x27;),
+                                                                         [&#x27;time_signature&#x27;,
+                                                                          &#x27;key&#x27;]),
+                                                                        (&#x27;passthrough&#x27;,
+                                                                         &#x27;passthrough&#x27;,
+                                                                         [&#x27;mode&#x27;]),
+                                                                        (&#x27;countvectorizer&#x27;,
+                                                                         CountVectorizer(max_features=100,
+                                                                                         stop_words=&#x27;english&#x27;),
+                                                                         &#x27;song_title&#x27;)])),
+                                       (&#x27;svc&#x27;, SVC())]),
+             n_jobs=-1,
+             param_grid={&#x27;columntransformer__countvectorizer__max_features&#x27;: [100,
+                                                                              200,
+                                                                              400,
+                                                                              800,
+                                                                              1000,
+                                                                              2000],
+                         &#x27;svc__C&#x27;: [0.001, 0.01, 0.1, 1.0, 10, 100],
+                         &#x27;svc__gamma&#x27;: [0.001, 0.01, 0.1, 1.0, 10, 100]},
+             return_train_score=True)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-23" type="checkbox" ><label for="sk-estimator-id-23" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(estimator=Pipeline(steps=[(&#x27;columntransformer&#x27;,
+                                        ColumnTransformer(transformers=[(&#x27;standardscaler&#x27;,
+                                                                         StandardScaler(),
+                                                                         [&#x27;acousticness&#x27;,
+                                                                          &#x27;danceability&#x27;,
+                                                                          &#x27;energy&#x27;,
+                                                                          &#x27;instrumentalness&#x27;,
+                                                                          &#x27;liveness&#x27;,
+                                                                          &#x27;loudness&#x27;,
+                                                                          &#x27;speechiness&#x27;,
+                                                                          &#x27;tempo&#x27;,
+                                                                          &#x27;valence&#x27;]),
+                                                                        (&#x27;onehotencoder&#x27;,
+                                                                         OneHotEncoder(handle_unknown=&#x27;ignore&#x27;),
+                                                                         [&#x27;time_signature&#x27;,
+                                                                          &#x27;key&#x27;]),
+                                                                        (&#x27;passthrough&#x27;,
+                                                                         &#x27;passthrough&#x27;,
+                                                                         [&#x27;mode&#x27;]),
+                                                                        (&#x27;countvectorizer&#x27;,
+                                                                         CountVectorizer(max_features=100,
+                                                                                         stop_words=&#x27;english&#x27;),
+                                                                         &#x27;song_title&#x27;)])),
+                                       (&#x27;svc&#x27;, SVC())]),
+             n_jobs=-1,
+             param_grid={&#x27;columntransformer__countvectorizer__max_features&#x27;: [100,
+                                                                              200,
+                                                                              400,
+                                                                              800,
+                                                                              1000,
+                                                                              2000],
+                         &#x27;svc__C&#x27;: [0.001, 0.01, 0.1, 1.0, 10, 100],
+                         &#x27;svc__gamma&#x27;: [0.001, 0.01, 0.1, 1.0, 10, 100]},
+             return_train_score=True)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-24" type="checkbox" ><label for="sk-estimator-id-24" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;columntransformer&#x27;,
+                 ColumnTransformer(transformers=[(&#x27;standardscaler&#x27;,
+                                                  StandardScaler(),
+                                                  [&#x27;acousticness&#x27;,
+                                                   &#x27;danceability&#x27;, &#x27;energy&#x27;,
+                                                   &#x27;instrumentalness&#x27;,
+                                                   &#x27;liveness&#x27;, &#x27;loudness&#x27;,
+                                                   &#x27;speechiness&#x27;, &#x27;tempo&#x27;,
+                                                   &#x27;valence&#x27;]),
+                                                 (&#x27;onehotencoder&#x27;,
+                                                  OneHotEncoder(handle_unknown=&#x27;ignore&#x27;),
+                                                  [&#x27;time_signature&#x27;, &#x27;key&#x27;]),
+                                                 (&#x27;passthrough&#x27;, &#x27;passthrough&#x27;,
+                                                  [&#x27;mode&#x27;]),
+                                                 (&#x27;countvectorizer&#x27;,
+                                                  CountVectorizer(max_features=100,
+                                                                  stop_words=&#x27;english&#x27;),
+                                                  &#x27;song_title&#x27;)])),
+                (&#x27;svc&#x27;, SVC())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-25" type="checkbox" ><label for="sk-estimator-id-25" class="sk-toggleable__label sk-toggleable__label-arrow">columntransformer: ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[(&#x27;standardscaler&#x27;, StandardScaler(),
+                                 [&#x27;acousticness&#x27;, &#x27;danceability&#x27;, &#x27;energy&#x27;,
+                                  &#x27;instrumentalness&#x27;, &#x27;liveness&#x27;, &#x27;loudness&#x27;,
+                                  &#x27;speechiness&#x27;, &#x27;tempo&#x27;, &#x27;valence&#x27;]),
+                                (&#x27;onehotencoder&#x27;,
+                                 OneHotEncoder(handle_unknown=&#x27;ignore&#x27;),
+                                 [&#x27;time_signature&#x27;, &#x27;key&#x27;]),
+                                (&#x27;passthrough&#x27;, &#x27;passthrough&#x27;, [&#x27;mode&#x27;]),
+                                (&#x27;countvectorizer&#x27;,
+                                 CountVectorizer(max_features=100,
+                                                 stop_words=&#x27;english&#x27;),
+                                 &#x27;song_title&#x27;)])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-26" type="checkbox" ><label for="sk-estimator-id-26" class="sk-toggleable__label sk-toggleable__label-arrow">standardscaler</label><div class="sk-toggleable__content"><pre>[&#x27;acousticness&#x27;, &#x27;danceability&#x27;, &#x27;energy&#x27;, &#x27;instrumentalness&#x27;, &#x27;liveness&#x27;, &#x27;loudness&#x27;, &#x27;speechiness&#x27;, &#x27;tempo&#x27;, &#x27;valence&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-27" type="checkbox" ><label for="sk-estimator-id-27" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-28" type="checkbox" ><label for="sk-estimator-id-28" class="sk-toggleable__label sk-toggleable__label-arrow">onehotencoder</label><div class="sk-toggleable__content"><pre>[&#x27;time_signature&#x27;, &#x27;key&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-29" type="checkbox" ><label for="sk-estimator-id-29" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown=&#x27;ignore&#x27;)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-30" type="checkbox" ><label for="sk-estimator-id-30" class="sk-toggleable__label sk-toggleable__label-arrow">passthrough</label><div class="sk-toggleable__content"><pre>[&#x27;mode&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-31" type="checkbox" ><label for="sk-estimator-id-31" class="sk-toggleable__label sk-toggleable__label-arrow">passthrough</label><div class="sk-toggleable__content"><pre>passthrough</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-32" type="checkbox" ><label for="sk-estimator-id-32" class="sk-toggleable__label sk-toggleable__label-arrow">countvectorizer</label><div class="sk-toggleable__content"><pre>song_title</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-33" type="checkbox" ><label for="sk-estimator-id-33" class="sk-toggleable__label sk-toggleable__label-arrow">CountVectorizer</label><div class="sk-toggleable__content"><pre>CountVectorizer(max_features=100, stop_words=&#x27;english&#x27;)</pre></div></div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-34" type="checkbox" ><label for="sk-estimator-id-34" class="sk-toggleable__label sk-toggleable__label-arrow">SVC</label><div class="sk-toggleable__content"><pre>SVC()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <p>Fitting the <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> object</p>
 <ul class="simple">
@@ -1381,99 +1374,99 @@ dtype: float64
   <tbody>
     <tr>
       <th>mean_fit_time</th>
-      <td>0.09362</td>
-      <td>0.090496</td>
-      <td>0.093034</td>
-      <td>0.081402</td>
-      <td>0.083386</td>
-      <td>0.079499</td>
-      <td>0.088536</td>
-      <td>0.097821</td>
-      <td>0.088655</td>
-      <td>0.086925</td>
+      <td>0.093623</td>
+      <td>0.095198</td>
+      <td>0.090481</td>
+      <td>0.087168</td>
+      <td>0.085249</td>
+      <td>0.079782</td>
+      <td>0.088268</td>
+      <td>0.099752</td>
+      <td>0.136562</td>
+      <td>0.083104</td>
       <td>...</td>
-      <td>0.138336</td>
-      <td>0.124506</td>
-      <td>0.126638</td>
-      <td>0.116394</td>
-      <td>0.092997</td>
-      <td>0.160912</td>
-      <td>0.12998</td>
-      <td>0.11663</td>
-      <td>0.134479</td>
-      <td>0.114185</td>
+      <td>0.122705</td>
+      <td>0.108784</td>
+      <td>0.124568</td>
+      <td>0.103405</td>
+      <td>0.091689</td>
+      <td>0.144875</td>
+      <td>0.121038</td>
+      <td>0.118523</td>
+      <td>0.117585</td>
+      <td>0.104637</td>
     </tr>
     <tr>
       <th>std_fit_time</th>
-      <td>0.002245</td>
-      <td>0.007851</td>
-      <td>0.003061</td>
-      <td>0.006539</td>
-      <td>0.005313</td>
-      <td>0.008247</td>
-      <td>0.016187</td>
-      <td>0.012647</td>
-      <td>0.00674</td>
-      <td>0.009408</td>
+      <td>0.015566</td>
+      <td>0.009127</td>
+      <td>0.00985</td>
+      <td>0.010476</td>
+      <td>0.004238</td>
+      <td>0.002778</td>
+      <td>0.012833</td>
+      <td>0.018789</td>
+      <td>0.034763</td>
+      <td>0.011388</td>
       <td>...</td>
-      <td>0.019875</td>
-      <td>0.007316</td>
-      <td>0.00394</td>
-      <td>0.005157</td>
-      <td>0.006984</td>
-      <td>0.007498</td>
-      <td>0.005194</td>
-      <td>0.003368</td>
-      <td>0.027403</td>
-      <td>0.009475</td>
+      <td>0.021246</td>
+      <td>0.006443</td>
+      <td>0.008618</td>
+      <td>0.002482</td>
+      <td>0.00103</td>
+      <td>0.004761</td>
+      <td>0.006954</td>
+      <td>0.021949</td>
+      <td>0.003182</td>
+      <td>0.002586</td>
     </tr>
     <tr>
       <th>mean_score_time</th>
-      <td>0.026274</td>
-      <td>0.022236</td>
-      <td>0.023867</td>
-      <td>0.020585</td>
-      <td>0.021553</td>
-      <td>0.024314</td>
-      <td>0.026362</td>
-      <td>0.020904</td>
-      <td>0.018969</td>
-      <td>0.020618</td>
+      <td>0.02153</td>
+      <td>0.022459</td>
+      <td>0.020082</td>
+      <td>0.025126</td>
+      <td>0.023323</td>
+      <td>0.023653</td>
+      <td>0.021673</td>
+      <td>0.028477</td>
+      <td>0.04396</td>
+      <td>0.022267</td>
       <td>...</td>
-      <td>0.022381</td>
-      <td>0.024938</td>
-      <td>0.025389</td>
-      <td>0.027556</td>
-      <td>0.025549</td>
-      <td>0.020927</td>
-      <td>0.022487</td>
-      <td>0.033786</td>
-      <td>0.027255</td>
-      <td>0.024416</td>
+      <td>0.024554</td>
+      <td>0.027396</td>
+      <td>0.025263</td>
+      <td>0.024279</td>
+      <td>0.019862</td>
+      <td>0.020865</td>
+      <td>0.021673</td>
+      <td>0.028568</td>
+      <td>0.02404</td>
+      <td>0.021924</td>
     </tr>
     <tr>
       <th>std_score_time</th>
-      <td>0.00278</td>
-      <td>0.001885</td>
-      <td>0.006274</td>
-      <td>0.004214</td>
-      <td>0.002736</td>
-      <td>0.003899</td>
-      <td>0.009461</td>
-      <td>0.004083</td>
-      <td>0.00275</td>
-      <td>0.003466</td>
+      <td>0.002617</td>
+      <td>0.00501</td>
+      <td>0.002902</td>
+      <td>0.005239</td>
+      <td>0.004191</td>
+      <td>0.003323</td>
+      <td>0.00029</td>
+      <td>0.011077</td>
+      <td>0.02704</td>
+      <td>0.002062</td>
       <td>...</td>
-      <td>0.003687</td>
-      <td>0.004545</td>
-      <td>0.001204</td>
-      <td>0.004307</td>
-      <td>0.004743</td>
-      <td>0.00318</td>
-      <td>0.00124</td>
-      <td>0.009491</td>
-      <td>0.004045</td>
-      <td>0.005211</td>
+      <td>0.00309</td>
+      <td>0.005803</td>
+      <td>0.006584</td>
+      <td>0.001875</td>
+      <td>0.002032</td>
+      <td>0.000685</td>
+      <td>0.000529</td>
+      <td>0.007088</td>
+      <td>0.003587</td>
+      <td>0.002647</td>
     </tr>
     <tr>
       <th>param_columntransformer__countvectorizer__max_features</th>
@@ -1990,99 +1983,99 @@ dtype: float64
   <tbody>
     <tr>
       <th>mean_fit_time</th>
-      <td>0.082239</td>
-      <td>0.091365</td>
-      <td>0.075905</td>
-      <td>0.079365</td>
-      <td>0.074667</td>
-      <td>0.071952</td>
-      <td>0.114204</td>
-      <td>0.120616</td>
-      <td>0.138336</td>
-      <td>0.111872</td>
+      <td>0.081982</td>
+      <td>0.088367</td>
+      <td>0.075593</td>
+      <td>0.084231</td>
+      <td>0.075603</td>
+      <td>0.074696</td>
+      <td>0.117506</td>
+      <td>0.121933</td>
+      <td>0.122705</td>
+      <td>0.113828</td>
       <td>...</td>
-      <td>0.095529</td>
-      <td>0.094435</td>
-      <td>0.086811</td>
-      <td>0.084239</td>
-      <td>0.084668</td>
-      <td>0.114835</td>
-      <td>0.133654</td>
-      <td>0.100802</td>
-      <td>0.084321</td>
-      <td>0.09362</td>
+      <td>0.094521</td>
+      <td>0.089097</td>
+      <td>0.09234</td>
+      <td>0.085849</td>
+      <td>0.08421</td>
+      <td>0.086325</td>
+      <td>0.091372</td>
+      <td>0.092634</td>
+      <td>0.084102</td>
+      <td>0.093623</td>
     </tr>
     <tr>
       <th>std_fit_time</th>
-      <td>0.017929</td>
-      <td>0.009019</td>
-      <td>0.001863</td>
-      <td>0.002799</td>
-      <td>0.005709</td>
-      <td>0.012657</td>
-      <td>0.004517</td>
-      <td>0.013534</td>
-      <td>0.019875</td>
-      <td>0.004554</td>
+      <td>0.001132</td>
+      <td>0.002186</td>
+      <td>0.005881</td>
+      <td>0.006674</td>
+      <td>0.003286</td>
+      <td>0.012068</td>
+      <td>0.005311</td>
+      <td>0.003647</td>
+      <td>0.021246</td>
+      <td>0.003255</td>
       <td>...</td>
-      <td>0.008126</td>
-      <td>0.005758</td>
-      <td>0.001365</td>
-      <td>0.001992</td>
-      <td>0.002249</td>
-      <td>0.030487</td>
-      <td>0.010186</td>
-      <td>0.01529</td>
-      <td>0.006017</td>
-      <td>0.002245</td>
+      <td>0.00386</td>
+      <td>0.003264</td>
+      <td>0.003651</td>
+      <td>0.006254</td>
+      <td>0.003692</td>
+      <td>0.004225</td>
+      <td>0.014013</td>
+      <td>0.025618</td>
+      <td>0.006</td>
+      <td>0.015566</td>
     </tr>
     <tr>
       <th>mean_score_time</th>
-      <td>0.02044</td>
-      <td>0.023177</td>
-      <td>0.020847</td>
-      <td>0.019106</td>
-      <td>0.016048</td>
-      <td>0.016085</td>
-      <td>0.019604</td>
-      <td>0.021965</td>
-      <td>0.022381</td>
-      <td>0.016905</td>
+      <td>0.021958</td>
+      <td>0.021758</td>
+      <td>0.019087</td>
+      <td>0.02041</td>
+      <td>0.017048</td>
+      <td>0.014598</td>
+      <td>0.019451</td>
+      <td>0.020498</td>
+      <td>0.024554</td>
+      <td>0.018474</td>
       <td>...</td>
-      <td>0.025864</td>
-      <td>0.022135</td>
-      <td>0.022843</td>
-      <td>0.022825</td>
-      <td>0.024425</td>
-      <td>0.022338</td>
-      <td>0.027007</td>
-      <td>0.021059</td>
-      <td>0.020835</td>
-      <td>0.026274</td>
+      <td>0.022678</td>
+      <td>0.024569</td>
+      <td>0.024717</td>
+      <td>0.023363</td>
+      <td>0.021145</td>
+      <td>0.02149</td>
+      <td>0.022661</td>
+      <td>0.022571</td>
+      <td>0.020284</td>
+      <td>0.02153</td>
     </tr>
     <tr>
       <th>std_score_time</th>
-      <td>0.00605</td>
-      <td>0.003086</td>
-      <td>0.005943</td>
-      <td>0.000669</td>
-      <td>0.002716</td>
-      <td>0.003923</td>
-      <td>0.00054</td>
-      <td>0.004778</td>
-      <td>0.003687</td>
-      <td>0.001155</td>
+      <td>0.00332</td>
+      <td>0.000429</td>
+      <td>0.002982</td>
+      <td>0.000947</td>
+      <td>0.002225</td>
+      <td>0.002642</td>
+      <td>0.00152</td>
+      <td>0.000658</td>
+      <td>0.00309</td>
+      <td>0.001914</td>
       <td>...</td>
-      <td>0.007156</td>
-      <td>0.00148</td>
-      <td>0.004053</td>
-      <td>0.001528</td>
-      <td>0.001748</td>
-      <td>0.003598</td>
-      <td>0.001511</td>
-      <td>0.004258</td>
-      <td>0.003631</td>
-      <td>0.00278</td>
+      <td>0.001204</td>
+      <td>0.004585</td>
+      <td>0.001735</td>
+      <td>0.002446</td>
+      <td>0.002116</td>
+      <td>0.000277</td>
+      <td>0.003295</td>
+      <td>0.005684</td>
+      <td>0.003709</td>
+      <td>0.002617</td>
     </tr>
     <tr>
       <th>param_columntransformer__countvectorizer__max_features</th>
@@ -2678,27 +2671,27 @@ dtype: float64
     </tr>
     <tr>
       <th>mean_fit_time</th>
-      <td>0.082239</td>
-      <td>0.091365</td>
-      <td>0.075905</td>
-      <td>0.079365</td>
-      <td>0.074667</td>
-      <td>0.071952</td>
-      <td>0.114204</td>
-      <td>0.120616</td>
-      <td>0.138336</td>
-      <td>0.111872</td>
+      <td>0.081982</td>
+      <td>0.088367</td>
+      <td>0.075593</td>
+      <td>0.084231</td>
+      <td>0.075603</td>
+      <td>0.074696</td>
+      <td>0.117506</td>
+      <td>0.121933</td>
+      <td>0.122705</td>
+      <td>0.113828</td>
       <td>...</td>
-      <td>0.095529</td>
-      <td>0.094435</td>
-      <td>0.086811</td>
-      <td>0.084239</td>
-      <td>0.084668</td>
-      <td>0.114835</td>
-      <td>0.133654</td>
-      <td>0.100802</td>
-      <td>0.084321</td>
-      <td>0.09362</td>
+      <td>0.094521</td>
+      <td>0.089097</td>
+      <td>0.09234</td>
+      <td>0.085849</td>
+      <td>0.08421</td>
+      <td>0.086325</td>
+      <td>0.091372</td>
+      <td>0.092634</td>
+      <td>0.084102</td>
+      <td>0.093623</td>
     </tr>
   </tbody>
 </table>
@@ -3176,36 +3169,36 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>4</th>
       <th>5</th>
       <th>6</th>
-      <th>7</th>
-      <th>7</th>
-      <th>9</th>
+      <th>6</th>
+      <th>8</th>
+      <th>8</th>
       <th>10</th>
       <th>...</th>
-      <th>86</th>
-      <th>86</th>
-      <th>86</th>
-      <th>86</th>
-      <th>86</th>
-      <th>86</th>
-      <th>86</th>
-      <th>86</th>
-      <th>86</th>
-      <th>86</th>
+      <th>78</th>
+      <th>78</th>
+      <th>78</th>
+      <th>78</th>
+      <th>78</th>
+      <th>78</th>
+      <th>78</th>
+      <th>78</th>
+      <th>78</th>
+      <th>78</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>mean_test_score</th>
-      <td>0.744565</td>
-      <td>0.743324</td>
+      <td>0.745801</td>
       <td>0.743323</td>
+      <td>0.742709</td>
       <td>0.742088</td>
-      <td>0.742086</td>
+      <td>0.742084</td>
       <td>0.741465</td>
+      <td>0.741465</td>
+      <td>0.741463</td>
+      <td>0.741463</td>
       <td>0.740844</td>
-      <td>0.740844</td>
-      <td>0.740842</td>
-      <td>0.738984</td>
       <td>...</td>
       <td>0.508371</td>
       <td>0.508371</td>
@@ -3220,27 +3213,27 @@ For example, in the context of <code class="docutils literal notranslate"><span 
     </tr>
     <tr>
       <th>param_columntransformer__countvectorizer__max_features</th>
-      <td>400</td>
+      <td>100</td>
+      <td>200</td>
+      <td>2000</td>
+      <td>2000</td>
       <td>800</td>
+      <td>800</td>
+      <td>400</td>
+      <td>1000</td>
+      <td>1000</td>
+      <td>200</td>
+      <td>...</td>
+      <td>2000</td>
+      <td>200</td>
+      <td>100</td>
       <td>100</td>
       <td>400</td>
       <td>1000</td>
-      <td>400</td>
-      <td>800</td>
-      <td>200</td>
-      <td>200</td>
-      <td>200</td>
-      <td>...</td>
+      <td>100</td>
       <td>1000</td>
       <td>400</td>
       <td>2000</td>
-      <td>100</td>
-      <td>200</td>
-      <td>1000</td>
-      <td>400</td>
-      <td>100</td>
-      <td>100</td>
-      <td>800</td>
     </tr>
     <tr>
       <th>param_svc__gamma</th>
@@ -3268,51 +3261,51 @@ For example, in the context of <code class="docutils literal notranslate"><span 
     </tr>
     <tr>
       <th>param_svc__C</th>
-      <td>3.0</td>
+      <td>2.8</td>
       <td>2.6</td>
-      <td>2.6</td>
+      <td>2.8</td>
       <td>2.6</td>
       <td>2.8</td>
       <td>2.4</td>
-      <td>3.0</td>
       <td>2.4</td>
       <td>3.0</td>
-      <td>2.8</td>
+      <td>2.6</td>
+      <td>2.4</td>
       <td>...</td>
       <td>2.0</td>
-      <td>2.0</td>
       <td>3.0</td>
-      <td>2.4</td>
-      <td>2.6</td>
-      <td>3.0</td>
-      <td>2.6</td>
-      <td>3.0</td>
+      <td>2.8</td>
       <td>2.2</td>
       <td>2.0</td>
+      <td>2.6</td>
+      <td>2.0</td>
+      <td>2.2</td>
+      <td>2.6</td>
+      <td>3.0</td>
     </tr>
     <tr>
       <th>mean_fit_time</th>
-      <td>0.0904</td>
-      <td>0.093338</td>
-      <td>0.073276</td>
-      <td>0.095493</td>
-      <td>0.105559</td>
-      <td>0.089195</td>
-      <td>0.102287</td>
-      <td>0.094115</td>
-      <td>0.093518</td>
-      <td>0.081567</td>
+      <td>0.082753</td>
+      <td>0.074317</td>
+      <td>0.11377</td>
+      <td>0.11607</td>
+      <td>0.104094</td>
+      <td>0.086416</td>
+      <td>0.104397</td>
+      <td>0.102322</td>
+      <td>0.108067</td>
+      <td>0.080169</td>
       <td>...</td>
-      <td>0.10582</td>
-      <td>0.119814</td>
-      <td>0.108882</td>
-      <td>0.101262</td>
-      <td>0.09743</td>
-      <td>0.109406</td>
-      <td>0.112171</td>
-      <td>0.096542</td>
-      <td>0.113092</td>
-      <td>0.198402</td>
+      <td>0.110815</td>
+      <td>0.102093</td>
+      <td>0.09937</td>
+      <td>0.100385</td>
+      <td>0.100445</td>
+      <td>0.113745</td>
+      <td>0.11062</td>
+      <td>0.103645</td>
+      <td>0.110889</td>
+      <td>0.112655</td>
     </tr>
   </tbody>
 </table>
@@ -3493,9 +3486,9 @@ For example, in the context of <code class="docutils literal notranslate"><span 
                                                                               (&#x27;passthrough&#x27;,
                                                                                &#x27;pass...
                    n_iter=100, n_jobs=-1,
-                   param_distributions={&#x27;columntransformer__countvectorizer__max_features&#x27;: &lt;scipy.stats._distn_infrastructure.rv_discrete_frozen object at 0x17a779450&gt;,
-                                        &#x27;svc__C&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x17ab11fc0&gt;,
-                                        &#x27;svc__gamma&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x17acdec20&gt;},
+                   param_distributions={&#x27;columntransformer__countvectorizer__max_features&#x27;: &lt;scipy.stats._distn_infrastructure.rv_discrete_frozen object at 0x17625a500&gt;,
+                                        &#x27;svc__C&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x176467370&gt;,
+                                        &#x27;svc__gamma&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x176432740&gt;},
                    return_train_score=True)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-69" type="checkbox" ><label for="sk-estimator-id-69" class="sk-toggleable__label sk-toggleable__label-arrow">RandomizedSearchCV</label><div class="sk-toggleable__content"><pre>RandomizedSearchCV(estimator=Pipeline(steps=[(&#x27;columntransformer&#x27;,
                                               ColumnTransformer(transformers=[(&#x27;standardscaler&#x27;,
                                                                                StandardScaler(),
@@ -3515,9 +3508,9 @@ For example, in the context of <code class="docutils literal notranslate"><span 
                                                                               (&#x27;passthrough&#x27;,
                                                                                &#x27;pass...
                    n_iter=100, n_jobs=-1,
-                   param_distributions={&#x27;columntransformer__countvectorizer__max_features&#x27;: &lt;scipy.stats._distn_infrastructure.rv_discrete_frozen object at 0x17a779450&gt;,
-                                        &#x27;svc__C&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x17ab11fc0&gt;,
-                                        &#x27;svc__gamma&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x17acdec20&gt;},
+                   param_distributions={&#x27;columntransformer__countvectorizer__max_features&#x27;: &lt;scipy.stats._distn_infrastructure.rv_discrete_frozen object at 0x17625a500&gt;,
+                                        &#x27;svc__C&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x176467370&gt;,
+                                        &#x27;svc__gamma&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x176432740&gt;},
                    return_train_score=True)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-70" type="checkbox" ><label for="sk-estimator-id-70" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;columntransformer&#x27;,
                  ColumnTransformer(transformers=[(&#x27;standardscaler&#x27;,
                                                   StandardScaler(),
@@ -3717,27 +3710,27 @@ For example, in the context of <code class="docutils literal notranslate"><span 
     </tr>
     <tr>
       <th>mean_fit_time</th>
-      <td>0.126102</td>
-      <td>0.176774</td>
-      <td>0.107119</td>
-      <td>0.130691</td>
-      <td>0.46922</td>
-      <td>0.122202</td>
-      <td>0.100362</td>
-      <td>0.246759</td>
-      <td>0.151667</td>
-      <td>0.173214</td>
+      <td>0.124422</td>
+      <td>0.137543</td>
+      <td>0.119875</td>
+      <td>0.135904</td>
+      <td>0.509347</td>
+      <td>0.171674</td>
+      <td>0.094111</td>
+      <td>0.257832</td>
+      <td>0.147446</td>
+      <td>0.172324</td>
       <td>...</td>
-      <td>0.157089</td>
-      <td>0.123943</td>
-      <td>0.146099</td>
-      <td>0.112194</td>
-      <td>0.169945</td>
-      <td>0.104168</td>
-      <td>0.107437</td>
-      <td>0.11166</td>
-      <td>0.100139</td>
-      <td>0.11174</td>
+      <td>0.141655</td>
+      <td>0.117307</td>
+      <td>0.124463</td>
+      <td>0.114372</td>
+      <td>0.126111</td>
+      <td>0.10898</td>
+      <td>0.105633</td>
+      <td>0.106618</td>
+      <td>0.110316</td>
+      <td>0.117225</td>
     </tr>
   </tbody>
 </table>
@@ -3813,9 +3806,9 @@ For example, in the context of <code class="docutils literal notranslate"><span 
                                                                                   &#x27;p...
                                                 (&#x27;svc&#x27;, SVC())]),
                       factor=2,
-                      param_distributions={&#x27;columntransformer__countvectorizer__max_features&#x27;: &lt;scipy.stats._distn_infrastructure.rv_discrete_frozen object at 0x17a779450&gt;,
-                                           &#x27;svc__C&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x17ab11fc0&gt;,
-                                           &#x27;svc__gamma&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x17acdec20&gt;},
+                      param_distributions={&#x27;columntransformer__countvectorizer__max_features&#x27;: &lt;scipy.stats._distn_infrastructure.rv_discrete_frozen object at 0x17625a500&gt;,
+                                           &#x27;svc__C&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x176467370&gt;,
+                                           &#x27;svc__gamma&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x176432740&gt;},
                       random_state=123)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-81" type="checkbox" ><label for="sk-estimator-id-81" class="sk-toggleable__label sk-toggleable__label-arrow">HalvingRandomSearchCV</label><div class="sk-toggleable__content"><pre>HalvingRandomSearchCV(estimator=Pipeline(steps=[(&#x27;columntransformer&#x27;,
                                                  ColumnTransformer(transformers=[(&#x27;standardscaler&#x27;,
                                                                                   StandardScaler(),
@@ -3836,9 +3829,9 @@ For example, in the context of <code class="docutils literal notranslate"><span 
                                                                                   &#x27;p...
                                                 (&#x27;svc&#x27;, SVC())]),
                       factor=2,
-                      param_distributions={&#x27;columntransformer__countvectorizer__max_features&#x27;: &lt;scipy.stats._distn_infrastructure.rv_discrete_frozen object at 0x17a779450&gt;,
-                                           &#x27;svc__C&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x17ab11fc0&gt;,
-                                           &#x27;svc__gamma&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x17acdec20&gt;},
+                      param_distributions={&#x27;columntransformer__countvectorizer__max_features&#x27;: &lt;scipy.stats._distn_infrastructure.rv_discrete_frozen object at 0x17625a500&gt;,
+                                           &#x27;svc__C&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x176467370&gt;,
+                                           &#x27;svc__gamma&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x176432740&gt;},
                       random_state=123)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-82" type="checkbox" ><label for="sk-estimator-id-82" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;columntransformer&#x27;,
                  ColumnTransformer(transformers=[(&#x27;standardscaler&#x27;,
                                                   StandardScaler(),
@@ -3926,10 +3919,10 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>0</th>
       <td>0</td>
       <td>20</td>
-      <td>0.008637</td>
-      <td>0.005436</td>
-      <td>0.003918</td>
-      <td>0.001374</td>
+      <td>0.005064</td>
+      <td>0.000305</td>
+      <td>0.002673</td>
+      <td>0.000120</td>
       <td>1634</td>
       <td>7129.653205</td>
       <td>0.026777</td>
@@ -3950,10 +3943,10 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>1</th>
       <td>0</td>
       <td>20</td>
-      <td>0.005105</td>
-      <td>0.000809</td>
-      <td>0.003716</td>
-      <td>0.001752</td>
+      <td>0.004576</td>
+      <td>0.000330</td>
+      <td>0.002497</td>
+      <td>0.000255</td>
       <td>1222</td>
       <td>5513.247691</td>
       <td>5.698385</td>
@@ -3974,10 +3967,10 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>2</th>
       <td>0</td>
       <td>20</td>
-      <td>0.004306</td>
-      <td>0.000287</td>
-      <td>0.002255</td>
-      <td>0.000225</td>
+      <td>0.004560</td>
+      <td>0.000332</td>
+      <td>0.002500</td>
+      <td>0.000266</td>
       <td>1247</td>
       <td>7800.377619</td>
       <td>0.019382</td>
@@ -3998,10 +3991,10 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>3</th>
       <td>0</td>
       <td>20</td>
-      <td>0.004415</td>
-      <td>0.000277</td>
-      <td>0.002346</td>
-      <td>0.000282</td>
+      <td>0.004541</td>
+      <td>0.000310</td>
+      <td>0.002498</td>
+      <td>0.000254</td>
       <td>213</td>
       <td>4809.419015</td>
       <td>0.013707</td>
@@ -4022,10 +4015,10 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>4</th>
       <td>0</td>
       <td>20</td>
-      <td>0.004316</td>
-      <td>0.000297</td>
-      <td>0.002292</td>
-      <td>0.000241</td>
+      <td>0.004628</td>
+      <td>0.000322</td>
+      <td>0.002551</td>
+      <td>0.000212</td>
       <td>1042</td>
       <td>6273.270093</td>
       <td>0.003919</td>
@@ -4070,10 +4063,10 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>155</th>
       <td>5</td>
       <td>640</td>
-      <td>0.018303</td>
-      <td>0.000372</td>
-      <td>0.004555</td>
-      <td>0.000103</td>
+      <td>0.018546</td>
+      <td>0.000193</td>
+      <td>0.004822</td>
+      <td>0.000059</td>
       <td>729</td>
       <td>4943.40065</td>
       <td>0.092454</td>
@@ -4094,10 +4087,10 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>156</th>
       <td>5</td>
       <td>640</td>
-      <td>0.017674</td>
-      <td>0.000300</td>
-      <td>0.004712</td>
-      <td>0.000077</td>
+      <td>0.017900</td>
+      <td>0.000230</td>
+      <td>0.005015</td>
+      <td>0.000091</td>
       <td>1383</td>
       <td>2705.246646</td>
       <td>0.173979</td>
@@ -4118,9 +4111,9 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>157</th>
       <td>5</td>
       <td>640</td>
-      <td>0.016892</td>
-      <td>0.000119</td>
-      <td>0.004425</td>
+      <td>0.017335</td>
+      <td>0.000176</td>
+      <td>0.004746</td>
       <td>0.000041</td>
       <td>440</td>
       <td>5315.613738</td>
@@ -4142,10 +4135,10 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>158</th>
       <td>6</td>
       <td>1280</td>
-      <td>0.057485</td>
-      <td>0.000514</td>
-      <td>0.009248</td>
-      <td>0.000634</td>
+      <td>0.056633</td>
+      <td>0.000658</td>
+      <td>0.009243</td>
+      <td>0.000149</td>
       <td>729</td>
       <td>4943.40065</td>
       <td>0.092454</td>
@@ -4166,10 +4159,10 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>159</th>
       <td>6</td>
       <td>1280</td>
-      <td>0.052716</td>
-      <td>0.000821</td>
-      <td>0.010648</td>
-      <td>0.000210</td>
+      <td>0.053081</td>
+      <td>0.000899</td>
+      <td>0.011028</td>
+      <td>0.000193</td>
       <td>1383</td>
       <td>2705.246646</td>
       <td>0.173979</td>
@@ -4324,8 +4317,12 @@ For example, in the context of <code class="docutils literal notranslate"><span 
 The expected grade among the best of 2 tests is : 0.33
 The expected grade among the best of 10 tests is : 0.47
 The expected grade among the best of 100 tests is : 0.62
-The expected grade among the best of 1000 tests is : 0.73
-The expected grade among the best of 10000 tests is : 0.83
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 1000 tests is : 0.73
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 10000 tests is : 0.83
 </pre></div>
 </div>
 </div>
@@ -4374,9 +4371,15 @@ The expected grade among the best of 10000 tests is : 0.83
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 1 tests is : 0.25
 The expected grade among the best of 2 tests is : 0.27
 The expected grade among the best of 10 tests is : 0.32
-The expected grade among the best of 100 tests is : 0.36
-The expected grade among the best of 1000 tests is : 0.40
-The expected grade among the best of 10000 tests is : 0.43
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 100 tests is : 0.36
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 1000 tests is : 0.40
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 10000 tests is : 0.43
 </pre></div>
 </div>
 </div>
@@ -4713,27 +4716,27 @@ The expected grade among the best of 10000 tests is : 0.43
     </tr>
     <tr>
       <th>mean_fit_time</th>
-      <td>0.021886</td>
-      <td>0.008879</td>
-      <td>0.008858</td>
-      <td>0.008777</td>
-      <td>0.011115</td>
-      <td>0.008113</td>
-      <td>0.008049</td>
-      <td>0.005042</td>
-      <td>0.007631</td>
-      <td>0.010351</td>
+      <td>0.015035</td>
+      <td>0.006144</td>
+      <td>0.006448</td>
+      <td>0.00978</td>
+      <td>0.00829</td>
+      <td>0.00725</td>
+      <td>0.007857</td>
+      <td>0.007904</td>
+      <td>0.009768</td>
+      <td>0.007194</td>
       <td>...</td>
-      <td>0.006752</td>
-      <td>0.00634</td>
-      <td>0.008893</td>
-      <td>0.006381</td>
-      <td>0.010268</td>
-      <td>0.011497</td>
-      <td>0.009724</td>
-      <td>0.005913</td>
-      <td>0.009408</td>
-      <td>0.006215</td>
+      <td>0.008891</td>
+      <td>0.007852</td>
+      <td>0.006139</td>
+      <td>0.008476</td>
+      <td>0.010215</td>
+      <td>0.00904</td>
+      <td>0.007162</td>
+      <td>0.00999</td>
+      <td>0.007845</td>
+      <td>0.00699</td>
     </tr>
   </tbody>
 </table>
