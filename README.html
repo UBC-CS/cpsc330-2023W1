@@ -169,7 +169,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="lectures/10_regression-metrics.html">Lecture 10: Regression metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lectures/11_ensembles.html">Lecture 11: Ensembles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lectures/12_feat-importances.html">Lecture 12: Feature importances and model transparency</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lectures/midterm-review-guiding-questions.html">Midterm review guiding questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/13_feature-engineering-selection.html">Lecture 13: Feature engineering and feature selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/14_K-Means.html">Lecture 14: K-Means Clustering</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -177,6 +178,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="lectures/class_demos/04_class-demo.html">Lecture 4: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lectures/class_demos/05-06_class-demo.html">Lectures 5 and 6: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lectures/class_demos/07_class-demo.html">Lectures 7: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/class_demos/09_class-demo.html">Exploring classification metrics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="lectures/class_demos/14_class-demo.html">Let’s cluster images!!</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -446,7 +450,7 @@ document.write(`
 </tr>
 <tr class="row-odd"><td><p><strong>Midterm</strong></p></td>
 <td><p>Oct 26 6:00 pm to 7:20 pm</p></td>
-<td><p>In person on <a class="reference external" href="https://canvas.ubc.ca/courses/123439">Canvas</a> ESB 1012 + CIRS 1250</p></td>
+<td><p>In person on <a class="reference external" href="https://canvas.ubc.ca/courses/123439">Canvas</a> ESB 1013 + CIRS 1250</p></td>
 <td><p><a class="reference external" href="https://canvas.ubc.ca/courses/123439">Canvas</a></p></td>
 </tr>
 <tr class="row-even"><td><p>hw5</p></td>
@@ -596,42 +600,47 @@ document.write(`
 <td><p></p></td>
 <td><p>less depth</p></td>
 </tr>
-<tr class="row-even"><td><p>Nov 14</p></td>
-<td><p><em>Midterm break - no class</em></p></td>
-<td><p></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p>Nov 16</p></td>
+<tr class="row-even"><td><p>Nov 09</p></td>
 <td><p>Text data, embeddings, topic modeling</p></td>
 <td><p>📹 Pre-watch: <a class="reference external" href="https://youtu.be/GTC_iLPCjdY">16.1</a>, <a class="reference external" href="https://youtu.be/7W5Q8gzNPBc">16.2</a></p></td>
 <td><p>new</p></td>
 </tr>
-<tr class="row-even"><td><p>Nov 21</p></td>
+<tr class="row-odd"><td><p>Nov 14</p></td>
+<td><p><em>Midterm break - no class</em></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Nov 16</p></td>
 <td><p>Neural networks and computer vision</p></td>
 <td><p></p></td>
 <td><p>less depth</p></td>
 </tr>
-<tr class="row-odd"><td><p>Nov 23</p></td>
+<tr class="row-odd"><td><p>Nov 21</p></td>
 <td><p>Time series data</p></td>
 <td><p>(Optional) <a class="reference external" href="https://www.youtube.com/watch?v=-5wpm-gesOY">Humour: The Problem with Time &amp; Timezones</a></p></td>
 <td><p>new</p></td>
 </tr>
-<tr class="row-even"><td><p>Nov 28</p></td>
+<tr class="row-even"><td><p>Nov 23</p></td>
 <td><p>Survival analysis</p></td>
 <td><p>📹 (Optional but highly recommended)<a class="reference external" href="https://www.youtube.com/watch?v=ITWQ5psx9Sw">Calling Bullshit 4.1: Right Censoring</a></p></td>
 <td><p>new</p></td>
 </tr>
-<tr class="row-odd"><td><p>Nov 30</p></td>
-<td><p>Ethics</p></td>
-<td><p>📹 (Optional but highly recommended) <li><a class="reference external" href="https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS">Calling BS videos</a> Chapter 5 (6 short videos, 50 min total)</li> <li><a class="reference external" href="http://jtleek.com/ads2020/week-15.html">The ethics of data science</a></li></p></td>
-<td><p>new</p></td>
-</tr>
-<tr class="row-even"><td><p>Dec 05</p></td>
+<tr class="row-odd"><td><p>Nov 28</p></td>
 <td><p>Communication</p></td>
 <td><p>📹 (Optional but highly recommended) <li><a class="reference external" href="https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS">Calling BS videos</a> Chapter 6 (6 short videos, 47 min total)</li> <li><a class="reference external" href="https://www.youtube.com/watch?v=vbDObzI-CTc">Can you read graphs? Because I can’t.</a> by Sabrina (7 min)</li></p></td>
 <td><p>new</p></td>
 </tr>
-<tr class="row-odd"><td><p>Dec 07</p></td>
+<tr class="row-even"><td><p>Nov 30</p></td>
+<td><p>Ethics</p></td>
+<td><p>📹 (Optional but highly recommended) <li><a class="reference external" href="https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS">Calling BS videos</a> Chapter 5 (6 short videos, 50 min total)</li> <li><a class="reference external" href="http://jtleek.com/ads2020/week-15.html">The ethics of data science</a></li></p></td>
+<td><p>new</p></td>
+</tr>
+<tr class="row-odd"><td><p>Nov 05</p></td>
+<td><p>Fun with LLMs</p></td>
+<td><p></p></td>
+<td><p>new</p></td>
+</tr>
+<tr class="row-even"><td><p>Dec 07</p></td>
 <td><p>Model deployment and conclusion</p></td>
 <td><p></p></td>
 <td><p>new</p></td>

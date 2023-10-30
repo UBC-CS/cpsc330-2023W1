@@ -1,0 +1,1660 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Lecture 15: Class demo &#8212; CPSC 330 Applied Machine Learning 2023W1</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/class_demos/15_class-demo';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../README.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/UBC-CS-logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/UBC-CS-logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Things you should know</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../syllabus.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/README.html">CPSC 330 Documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../learning-objectives.html">Course Learning Objectives</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01_intro.html">Lecture 1: Course Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_decision-trees.html">Lecture 2: Terminology, Baselines, Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_ml-fundamentals.html">Lecture 3: Machine Learning Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_kNNs-SVM-RBF.html">Lecture 4: <span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbours and SVM RBFs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_preprocessing-pipelines.html">Lecture 5: Preprocessing and <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_column-transformer-text-feats.html">Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07_linear-models.html">Lecture 7: Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08_hyperparameter-optimization.html">Lecture 8: Hyperparameter Optimization and Optimization Bias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09_classification-metrics.html">Lecture 9: Classification metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_regression-metrics.html">Lecture 10: Regression metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11_ensembles.html">Lecture 11: Ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../12_feat-importances.html">Lecture 12: Feature importances and model transparency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../13_feature-engineering-selection.html">Lecture 13: Feature engineering and feature selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../14_K-Means.html">Lecture 14: K-Means Clustering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="03_class-demo.html">Lecture 3: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_class-demo.html">Lecture 4: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-06_class-demo.html">Lectures 5 and 6: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_class-demo.html">Lectures 7: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_class-demo.html">Exploring classification metrics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="14_class-demo.html">Let’s cluster images!!</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../attribution.html">Attributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">LICENSE</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/lectures/class_demos/15_class-demo.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lecture 15: Class demo</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-cluster-images">Let’s cluster images!!</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-faces-with-dbscan">Clustering faces with DBSCAN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hierarchical-clustering">Hierarchical clustering</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-15-class-demo">
+<h1>Lecture 15: Class demo<a class="headerlink" href="#lecture-15-class-demo" title="Permalink to this heading">#</a></h1>
+<section id="let-s-cluster-images">
+<h2>Let’s cluster images!!<a class="headerlink" href="#let-s-cluster-images" title="Permalink to this heading">#</a></h2>
+<p><img alt="" src="../../_images/eva-fun-times.png" /></p>
+<p>For this demo, I’m going to use the following image dataset:</p>
+<ol class="arabic simple">
+<li><p>A tiny subset of <a class="reference external" href="https://www.kaggle.com/datasets/kmader/food41?select=food_c101_n10099_r32x32x1.h5">Food-101</a> from last lecture
+(available <a class="reference external" href="https://github.ubc.ca/mds-2021-22/datasets/blob/master/data/food.zip">here</a>).</p></li>
+<li><p>A small subset of <a class="reference external" href="https://www.kaggle.com/datasets/ashwingupta3012/human-faces">Human Faces dataset</a> (available <a class="reference external" href="https://ubcca-my.sharepoint.com/:u:/g/personal/varada_kolhatkar_ubc_ca/EYDqm7QJLfdGh1A0dyqh76kB6PH9ohca-lVrJGATrEh3CQ?e=msqcPM">here</a>).</p></li>
+</ol>
+<p>To run the code below, you need to install pytorch and torchvision in the course conda environment.</p>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">pytorch</span> <span class="pre">torchvision</span> <span class="pre">-c</span> <span class="pre">pytorch</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">transforms</span><span class="p">,</span> <span class="n">utils</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">transforms</span>
+<span class="kn">from</span> <span class="nn">torchvision.models</span> <span class="kn">import</span> <span class="n">vgg16</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torchvision</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s start with  small subset of birds dataset. You can experiment with a bigger dataset if you like.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda:0&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">):</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="nn">Cell In[4], line 4,</span> in <span class="ni">set_seed</span><span class="nt">(seed)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;random&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
+<span class="n">IMAGE_SIZE</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="k">def</span> <span class="nf">read_img_dataset</span><span class="p">(</span><span class="n">data_dir</span><span class="p">):</span>     
+    <span class="n">data_transforms</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">((</span><span class="n">IMAGE_SIZE</span><span class="p">,</span> <span class="n">IMAGE_SIZE</span><span class="p">)),</span>     
+            <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+            <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]),</span>            
+        <span class="p">])</span>
+               
+    <span class="n">image_dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ImageFolder</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">data_transforms</span><span class="p">)</span>
+    <span class="n">dataloader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
+         <span class="n">image_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span>
+    <span class="p">)</span>
+    <span class="n">dataset_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">image_dataset</span><span class="p">)</span>
+    <span class="n">class_names</span> <span class="o">=</span> <span class="n">image_dataset</span><span class="o">.</span><span class="n">classes</span>
+    <span class="n">inputs</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">dataloader</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">classes</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_sample_imgs</span><span class="p">(</span><span class="n">inputs</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">70</span><span class="p">));</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Sample Training Images&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">utils</span><span class="o">.</span><span class="n">make_grid</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)));</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_features</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract output of densenet model&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>  <span class="c1"># turn off computational graph stuff</span>
+        <span class="n">Z_train</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span>  <span class="c1"># Initialize empty tensors</span>
+        <span class="n">y_train</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">0</span><span class="p">))</span>
+        <span class="n">Z_train</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">Z_train</span><span class="p">,</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Z_train</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">densenet</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">densenet121</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="s2">&quot;DenseNet121_Weights.IMAGENET1K_V1&quot;</span><span class="p">)</span>
+<span class="n">densenet</span><span class="o">.</span><span class="n">classifier</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span>  <span class="c1"># remove that last &quot;classification&quot; layer</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_dir</span> <span class="o">=</span> <span class="s2">&quot;data/food&quot;</span>
+<span class="n">file_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">image_file</span> <span class="k">for</span> <span class="n">image_file</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">data_dir</span> <span class="o">+</span> <span class="s2">&quot;/*/*.jpg&quot;</span><span class="p">)]</span>
+<span class="n">n_images</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">file_names</span><span class="p">)</span>
+<span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="n">n_images</span>  <span class="c1"># because our dataset is quite small</span>
+<span class="n">food_inputs</span><span class="p">,</span> <span class="n">food_classes</span> <span class="o">=</span> <span class="n">read_img_dataset</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
+<span class="n">n_images</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>350
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_food</span> <span class="o">=</span> <span class="n">food_inputs</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_sample_imgs</span><span class="p">(</span><span class="n">food_inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">24</span><span class="p">,:,:,:])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/d3dedc75bb2d632f54982f5704a25333180f88cbe271d4f4fdadda58d490f390.png" src="../../_images/d3dedc75bb2d632f54982f5704a25333180f88cbe271d4f4fdadda58d490f390.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Z_food</span> <span class="o">=</span> <span class="n">get_features</span><span class="p">(</span>
+    <span class="n">densenet</span><span class="p">,</span> <span class="n">food_inputs</span><span class="p">,</span> 
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Z_food</span> <span class="o">=</span> <span class="n">Z_food</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Z_food</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(350, 1024)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">km</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">km</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Z_food</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {color: black;background-color: white;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KMeans(n_clusters=7, n_init=&#x27;auto&#x27;, random_state=123)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">KMeans</label><div class="sk-toggleable__content"><pre>KMeans(n_clusters=7, n_init=&#x27;auto&#x27;, random_state=123)</pre></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+    <span class="n">get_cluster_images</span><span class="p">(</span><span class="n">km</span><span class="p">,</span> <span class="n">Z_food</span><span class="p">,</span> <span class="n">X_food</span><span class="p">,</span> <span class="n">cluster</span><span class="p">,</span> <span class="n">n_img</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [329  60 322   0 236 235]
+</pre></div>
+</div>
+<img alt="../../_images/690b49548cdaad2c81e83f6aae381efb56ae26cd1745bb6e6606c82895aa73ab.png" src="../../_images/690b49548cdaad2c81e83f6aae381efb56ae26cd1745bb6e6606c82895aa73ab.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [315 204 176 253  83 167]
+</pre></div>
+</div>
+<img alt="../../_images/054921012df3424eed0d202a72f02ddb152206d3f8e2239a30b87b5b74fe3c6e.png" src="../../_images/054921012df3424eed0d202a72f02ddb152206d3f8e2239a30b87b5b74fe3c6e.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [ 51  23 306 298 161  24]
+</pre></div>
+</div>
+<img alt="../../_images/a92c6ea662caf7f10f3a57222aa2500f7f9b0d7caa29ae0587f7963190a91cb4.png" src="../../_images/a92c6ea662caf7f10f3a57222aa2500f7f9b0d7caa29ae0587f7963190a91cb4.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [139  41 185  26  61   4]
+</pre></div>
+</div>
+<img alt="../../_images/f214bccce5c2132ae38898c58c1317d635c813f5e2f4b06ef67a9e424621f63c.png" src="../../_images/f214bccce5c2132ae38898c58c1317d635c813f5e2f4b06ef67a9e424621f63c.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [111  94  65 101 230  90]
+</pre></div>
+</div>
+<img alt="../../_images/3d701061979fd60d7b911b165fb03e375fceddf03712bd24b9ad16e7472fc5d6.png" src="../../_images/3d701061979fd60d7b911b165fb03e375fceddf03712bd24b9ad16e7472fc5d6.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [206  14 280 273  11 314]
+</pre></div>
+</div>
+<img alt="../../_images/02a7d480356703af4400b5d871b94c4e882375b92f7f0a30483723d006bcf7df.png" src="../../_images/02a7d480356703af4400b5d871b94c4e882375b92f7f0a30483723d006bcf7df.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [169 163 341 159 125  50]
+</pre></div>
+</div>
+<img alt="../../_images/5cede037de8cfb591031da0ec126b099d476fc4eead4c2f4ffacbe8e8f2a33a5.png" src="../../_images/5cede037de8cfb591031da0ec126b099d476fc4eead4c2f4ffacbe8e8f2a33a5.png" />
+</div>
+</div>
+<p>Let’s try DBSCAN.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dbscan</span> <span class="o">=</span> <span class="n">DBSCAN</span><span class="p">()</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="n">dbscan</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">Z_food</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unique labels: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unique labels: [-1]
+</pre></div>
+</div>
+</div>
+</div>
+<p>It identified all points as noise points. Let’s explore the distances between points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">euclidean_distances</span>
+
+<span class="n">dists</span> <span class="o">=</span> <span class="n">euclidean_distances</span><span class="p">(</span><span class="n">Z_food</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">dists</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+<span class="n">dists_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dists</span><span class="p">)</span>
+<span class="n">dists_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>340</th>
+      <th>341</th>
+      <th>342</th>
+      <th>343</th>
+      <th>344</th>
+      <th>345</th>
+      <th>346</th>
+      <th>347</th>
+      <th>348</th>
+      <th>349</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>inf</td>
+      <td>32.147507</td>
+      <td>27.293831</td>
+      <td>27.228497</td>
+      <td>28.002232</td>
+      <td>25.899265</td>
+      <td>28.408920</td>
+      <td>27.280912</td>
+      <td>27.052334</td>
+      <td>29.723883</td>
+      <td>...</td>
+      <td>30.619820</td>
+      <td>26.685843</td>
+      <td>27.280912</td>
+      <td>28.299599</td>
+      <td>26.645281</td>
+      <td>29.363770</td>
+      <td>25.194073</td>
+      <td>29.676983</td>
+      <td>25.055792</td>
+      <td>28.578655</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>32.147507</td>
+      <td>inf</td>
+      <td>28.417624</td>
+      <td>29.153109</td>
+      <td>29.487787</td>
+      <td>27.944752</td>
+      <td>33.295006</td>
+      <td>30.007055</td>
+      <td>28.700245</td>
+      <td>31.242245</td>
+      <td>...</td>
+      <td>32.983677</td>
+      <td>25.921301</td>
+      <td>30.007055</td>
+      <td>27.803499</td>
+      <td>27.711092</td>
+      <td>23.072115</td>
+      <td>28.968361</td>
+      <td>28.748524</td>
+      <td>30.015015</td>
+      <td>29.989883</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>27.293831</td>
+      <td>28.417624</td>
+      <td>inf</td>
+      <td>25.105978</td>
+      <td>26.080637</td>
+      <td>23.332731</td>
+      <td>29.075375</td>
+      <td>23.967255</td>
+      <td>24.418520</td>
+      <td>27.964073</td>
+      <td>...</td>
+      <td>29.649349</td>
+      <td>23.770691</td>
+      <td>23.967255</td>
+      <td>24.438934</td>
+      <td>23.309681</td>
+      <td>27.047318</td>
+      <td>23.099041</td>
+      <td>28.084009</td>
+      <td>24.450035</td>
+      <td>26.737730</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>27.228497</td>
+      <td>29.153109</td>
+      <td>25.105978</td>
+      <td>inf</td>
+      <td>26.403458</td>
+      <td>24.154203</td>
+      <td>29.044271</td>
+      <td>25.256765</td>
+      <td>24.477415</td>
+      <td>30.358431</td>
+      <td>...</td>
+      <td>30.267469</td>
+      <td>25.320311</td>
+      <td>25.256765</td>
+      <td>26.022858</td>
+      <td>25.235279</td>
+      <td>24.920464</td>
+      <td>24.401587</td>
+      <td>28.650534</td>
+      <td>24.779493</td>
+      <td>28.330040</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>28.002232</td>
+      <td>29.487787</td>
+      <td>26.080637</td>
+      <td>26.403458</td>
+      <td>inf</td>
+      <td>26.376062</td>
+      <td>29.740612</td>
+      <td>23.752069</td>
+      <td>27.671799</td>
+      <td>29.673315</td>
+      <td>...</td>
+      <td>29.915533</td>
+      <td>26.918478</td>
+      <td>23.752069</td>
+      <td>28.714851</td>
+      <td>21.844633</td>
+      <td>28.958271</td>
+      <td>25.997410</td>
+      <td>29.331301</td>
+      <td>26.072651</td>
+      <td>27.712309</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>345</th>
+      <td>29.363770</td>
+      <td>23.072115</td>
+      <td>27.047318</td>
+      <td>24.920464</td>
+      <td>28.958271</td>
+      <td>25.537451</td>
+      <td>30.930262</td>
+      <td>27.877060</td>
+      <td>26.664751</td>
+      <td>30.233982</td>
+      <td>...</td>
+      <td>32.033962</td>
+      <td>22.248459</td>
+      <td>27.877060</td>
+      <td>26.538082</td>
+      <td>26.385565</td>
+      <td>inf</td>
+      <td>26.398273</td>
+      <td>26.667959</td>
+      <td>28.297689</td>
+      <td>29.880806</td>
+    </tr>
+    <tr>
+      <th>346</th>
+      <td>25.194073</td>
+      <td>28.968361</td>
+      <td>23.099041</td>
+      <td>24.401587</td>
+      <td>25.997410</td>
+      <td>23.918730</td>
+      <td>28.036942</td>
+      <td>24.335499</td>
+      <td>23.950077</td>
+      <td>29.108568</td>
+      <td>...</td>
+      <td>30.474297</td>
+      <td>22.630152</td>
+      <td>24.335499</td>
+      <td>25.289833</td>
+      <td>23.234587</td>
+      <td>26.398273</td>
+      <td>inf</td>
+      <td>27.363422</td>
+      <td>23.769556</td>
+      <td>26.326014</td>
+    </tr>
+    <tr>
+      <th>347</th>
+      <td>29.676983</td>
+      <td>28.748524</td>
+      <td>28.084009</td>
+      <td>28.650534</td>
+      <td>29.331301</td>
+      <td>26.841032</td>
+      <td>30.766617</td>
+      <td>27.668751</td>
+      <td>28.311584</td>
+      <td>31.257399</td>
+      <td>...</td>
+      <td>31.201294</td>
+      <td>23.483141</td>
+      <td>27.668751</td>
+      <td>28.502274</td>
+      <td>28.211889</td>
+      <td>26.667959</td>
+      <td>27.363422</td>
+      <td>inf</td>
+      <td>26.248280</td>
+      <td>29.626690</td>
+    </tr>
+    <tr>
+      <th>348</th>
+      <td>25.055792</td>
+      <td>30.015015</td>
+      <td>24.450035</td>
+      <td>24.779493</td>
+      <td>26.072651</td>
+      <td>24.271902</td>
+      <td>28.861692</td>
+      <td>25.313517</td>
+      <td>25.136566</td>
+      <td>29.360746</td>
+      <td>...</td>
+      <td>30.514103</td>
+      <td>24.522303</td>
+      <td>25.313517</td>
+      <td>25.476812</td>
+      <td>24.582825</td>
+      <td>28.297689</td>
+      <td>23.769556</td>
+      <td>26.248280</td>
+      <td>inf</td>
+      <td>26.861782</td>
+    </tr>
+    <tr>
+      <th>349</th>
+      <td>28.578655</td>
+      <td>29.989883</td>
+      <td>26.737730</td>
+      <td>28.330040</td>
+      <td>27.712309</td>
+      <td>26.029510</td>
+      <td>30.483013</td>
+      <td>26.569021</td>
+      <td>28.320126</td>
+      <td>30.227654</td>
+      <td>...</td>
+      <td>30.936708</td>
+      <td>26.853268</td>
+      <td>26.569021</td>
+      <td>28.326153</td>
+      <td>26.244240</td>
+      <td>29.880806</td>
+      <td>26.326014</td>
+      <td>29.626690</td>
+      <td>26.861782</td>
+      <td>inf</td>
+    </tr>
+  </tbody>
+</table>
+<p>350 rows × 350 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dists</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">dists</span><span class="p">[</span><span class="n">dists</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dists</span><span class="p">[</span><span class="n">dists</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 39.980446, 27.851997)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">eps</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">30</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">eps=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">eps</span><span class="p">))</span>
+    <span class="n">dbscan</span> <span class="o">=</span> <span class="n">DBSCAN</span><span class="p">(</span><span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">,</span> <span class="n">min_samples</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">dbscan</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">Z_food</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of clusters: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">))))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cluster sizes: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">labels</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eps=16
+Number of clusters: 1
+Cluster sizes: [350]
+
+eps=17
+Number of clusters: 3
+Cluster sizes: [342   5   3]
+
+eps=18
+Number of clusters: 4
+Cluster sizes: [331   3  13   3]
+
+eps=19
+Number of clusters: 2
+Cluster sizes: [309  41]
+
+eps=20
+Number of clusters: 4
+Cluster sizes: [275  69   3   3]
+
+eps=21
+Number of clusters: 4
+Cluster sizes: [230 114   3   3]
+
+eps=22
+Number of clusters: 2
+Cluster sizes: [181 169]
+
+eps=23
+Number of clusters: 2
+Cluster sizes: [131 219]
+
+eps=24
+Number of clusters: 2
+Cluster sizes: [ 81 269]
+
+eps=25
+Number of clusters: 2
+Cluster sizes: [ 53 297]
+
+eps=26
+Number of clusters: 2
+Cluster sizes: [ 29 321]
+
+eps=27
+Number of clusters: 2
+Cluster sizes: [ 17 333]
+
+eps=28
+Number of clusters: 2
+Cluster sizes: [  4 346]
+
+eps=29
+Number of clusters: 2
+Cluster sizes: [  1 349]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dbscan</span> <span class="o">=</span> <span class="n">DBSCAN</span><span class="p">(</span><span class="n">eps</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">min_samples</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">dbscan_labels</span> <span class="o">=</span> <span class="n">dbscan</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">Z_food</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of clusters: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">dbscan_labels</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cluster sizes: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">dbscan_labels</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unique labels: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">dbscan_labels</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of clusters: 4
+Cluster sizes: [331   3  13   3]
+Unique labels: [-1  0  1  2]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_dbscan_clusters</span><span class="p">(</span><span class="n">Z_food</span><span class="p">,</span> <span class="n">food_inputs</span><span class="p">,</span> <span class="n">dbscan_labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/c8698f21b81b0a2e574d9d381edc43bf72ba3ff5a6c62643fd31ddec26d80bd4.png" src="../../_images/c8698f21b81b0a2e574d9d381edc43bf72ba3ff5a6c62643fd31ddec26d80bd4.png" />
+<img alt="../../_images/688560813faa31bf939f65cca4476b84493b939e1ecf64008f7bf0c03d407a6c.png" src="../../_images/688560813faa31bf939f65cca4476b84493b939e1ecf64008f7bf0c03d407a6c.png" />
+<img alt="../../_images/481ea0741b040d345aa255a9e99857a808e4eaf6d80984a127634df0e1566548.png" src="../../_images/481ea0741b040d345aa255a9e99857a808e4eaf6d80984a127634df0e1566548.png" />
+</div>
+</div>
+<p>Let’s examine noise points identified by DBSCAN.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_dbscan_noise_images</span><span class="p">(</span><span class="n">Z_food</span><span class="p">,</span> <span class="n">food_inputs</span><span class="p">,</span> <span class="n">dbscan_labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/20dfdc60dc096b58e38f3f8d425e9de2ebb39762bef7408075c956496b92f079.png" src="../../_images/20dfdc60dc096b58e38f3f8d425e9de2ebb39762bef7408075c956496b92f079.png" />
+</div>
+</div>
+<p><br><br></p>
+<p>Now let’s try another dataset with human faces, a small subset of <a class="reference external" href="https://www.kaggle.com/datasets/ashwingupta3012/human-faces">Human Faces dataset</a> (available <a class="reference external" href="https://ubcca-my.sharepoint.com/:u:/g/personal/varada_kolhatkar_ubc_ca/EYDqm7QJLfdGh1A0dyqh76kB6PH9ohca-lVrJGATrEh3CQ?e=msqcPM">here</a>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_dir</span> <span class="o">=</span> <span class="s2">&quot;data/test&quot;</span>
+<span class="n">file_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">image_file</span> <span class="k">for</span> <span class="n">image_file</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">data_dir</span> <span class="o">+</span> <span class="s2">&quot;/*/*.jpg&quot;</span><span class="p">)]</span>
+<span class="n">n_images</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">file_names</span><span class="p">)</span>
+<span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="n">n_images</span>  <span class="c1"># because our dataset is quite small</span>
+<span class="n">faces_inputs</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="n">read_img_dataset</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_faces</span> <span class="o">=</span> <span class="n">faces_inputs</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+<span class="n">X_faces</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(367, 3, 200, 200)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_sample_imgs</span><span class="p">(</span><span class="n">faces_inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">24</span><span class="p">,:,:,:])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/0f8e8cd08b8537283551ab3bee3010a9b425b48c0fde9d4fc5666828c67a479b.png" src="../../_images/0f8e8cd08b8537283551ab3bee3010a9b425b48c0fde9d4fc5666828c67a479b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Z_faces</span> <span class="o">=</span> <span class="n">get_features</span><span class="p">(</span>
+    <span class="n">densenet</span><span class="p">,</span> <span class="n">faces_inputs</span><span class="p">,</span> 
+<span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Z_faces</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(367, 1024)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">km</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">km</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Z_faces</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-2 {color: black;background-color: white;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KMeans(n_clusters=7, n_init=&#x27;auto&#x27;, random_state=123)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">KMeans</label><div class="sk-toggleable__content"><pre>KMeans(n_clusters=7, n_init=&#x27;auto&#x27;, random_state=123)</pre></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">km</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(7, 1024)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+    <span class="n">get_cluster_images</span><span class="p">(</span><span class="n">km</span><span class="p">,</span> <span class="n">Z_faces</span><span class="p">,</span> <span class="n">X_faces</span><span class="p">,</span> <span class="n">cluster</span><span class="p">,</span> <span class="n">n_img</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [331 288 365  41 301 163]
+</pre></div>
+</div>
+<img alt="../../_images/a5445d4584c5ee4cbaf372b632c225e140e28ba583af93188d4fd9be5e2a1c69.png" src="../../_images/a5445d4584c5ee4cbaf372b632c225e140e28ba583af93188d4fd9be5e2a1c69.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [104 325  54 279 324  76]
+</pre></div>
+</div>
+<img alt="../../_images/1f85b52629c14f3d2737c4c1d04aa950439fdc5021a5b6a653014b56ad1e2e4b.png" src="../../_images/1f85b52629c14f3d2737c4c1d04aa950439fdc5021a5b6a653014b56ad1e2e4b.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [312 260 253  60  68 103]
+</pre></div>
+</div>
+<img alt="../../_images/f153ea6e593e8e9fb87839eff81d556896adc98b770051eb6f73cd946f53a82a.png" src="../../_images/f153ea6e593e8e9fb87839eff81d556896adc98b770051eb6f73cd946f53a82a.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [218 256   1  75  39 117]
+</pre></div>
+</div>
+<img alt="../../_images/9953eb487f7ce95a8c4fd8755192926ee510d07ff9c362370731ecbdf9feb316.png" src="../../_images/9953eb487f7ce95a8c4fd8755192926ee510d07ff9c362370731ecbdf9feb316.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [124  87  32 213 126 193]
+</pre></div>
+</div>
+<img alt="../../_images/9f42438001f4c373542091c60215a521bf409b73b8b685804bd3f9e9f570bf8e.png" src="../../_images/9f42438001f4c373542091c60215a521bf409b73b8b685804bd3f9e9f570bf8e.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [134 290 146 139   2 137]
+</pre></div>
+</div>
+<img alt="../../_images/72d7442f3d87c5ccc5f5caf9da8e4a7dd66668f5521590cd0e01ef8006783e4d.png" src="../../_images/72d7442f3d87c5ccc5f5caf9da8e4a7dd66668f5521590cd0e01ef8006783e4d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [217 175 251  58  38 240]
+</pre></div>
+</div>
+<img alt="../../_images/bafebae5a9a187deb5a019f5e84699ec4d1216ef4de3b4cce500d2f67c57f6b9.png" src="../../_images/bafebae5a9a187deb5a019f5e84699ec4d1216ef4de3b4cce500d2f67c57f6b9.png" />
+</div>
+</div>
+<p><br><br></p>
+<section id="clustering-faces-with-dbscan">
+<h3>Clustering faces with DBSCAN<a class="headerlink" href="#clustering-faces-with-dbscan" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dbscan</span> <span class="o">=</span> <span class="n">DBSCAN</span><span class="p">()</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">dbscan</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">Z_faces</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unique labels: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unique labels: [-1]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dists</span> <span class="o">=</span> <span class="n">euclidean_distances</span><span class="p">(</span><span class="n">Z_faces</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">dists</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+
+<span class="n">dist_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">dists</span>
+<span class="p">)</span>
+
+<span class="n">dist_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">:</span><span class="mi">20</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+      <th>13</th>
+      <th>14</th>
+      <th>15</th>
+      <th>16</th>
+      <th>17</th>
+      <th>18</th>
+      <th>19</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>10</th>
+      <td>inf</td>
+      <td>22.202929</td>
+      <td>29.026991</td>
+      <td>24.808342</td>
+      <td>21.978931</td>
+      <td>24.947178</td>
+      <td>28.091995</td>
+      <td>30.958427</td>
+      <td>27.249847</td>
+      <td>27.493883</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>22.202929</td>
+      <td>inf</td>
+      <td>27.759134</td>
+      <td>22.445309</td>
+      <td>19.480604</td>
+      <td>26.359818</td>
+      <td>26.749269</td>
+      <td>31.003994</td>
+      <td>27.764196</td>
+      <td>27.993914</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>29.026991</td>
+      <td>27.759134</td>
+      <td>inf</td>
+      <td>27.697313</td>
+      <td>28.461094</td>
+      <td>27.779404</td>
+      <td>26.923357</td>
+      <td>29.524551</td>
+      <td>29.882502</td>
+      <td>25.790760</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>24.808342</td>
+      <td>22.445309</td>
+      <td>27.697313</td>
+      <td>inf</td>
+      <td>22.186646</td>
+      <td>24.881973</td>
+      <td>25.663059</td>
+      <td>29.471386</td>
+      <td>27.232708</td>
+      <td>26.758585</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>21.978931</td>
+      <td>19.480604</td>
+      <td>28.461094</td>
+      <td>22.186646</td>
+      <td>inf</td>
+      <td>25.943062</td>
+      <td>27.916592</td>
+      <td>29.635603</td>
+      <td>28.413771</td>
+      <td>27.993795</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>24.947178</td>
+      <td>26.359818</td>
+      <td>27.779404</td>
+      <td>24.881973</td>
+      <td>25.943062</td>
+      <td>inf</td>
+      <td>27.601255</td>
+      <td>26.791264</td>
+      <td>28.904617</td>
+      <td>26.097111</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>28.091995</td>
+      <td>26.749269</td>
+      <td>26.923357</td>
+      <td>25.663059</td>
+      <td>27.916592</td>
+      <td>27.601255</td>
+      <td>inf</td>
+      <td>29.306686</td>
+      <td>28.942295</td>
+      <td>26.934277</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>30.958427</td>
+      <td>31.003994</td>
+      <td>29.524551</td>
+      <td>29.471386</td>
+      <td>29.635603</td>
+      <td>26.791264</td>
+      <td>29.306686</td>
+      <td>inf</td>
+      <td>33.235977</td>
+      <td>29.950184</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>27.249847</td>
+      <td>27.764196</td>
+      <td>29.882502</td>
+      <td>27.232708</td>
+      <td>28.413771</td>
+      <td>28.904617</td>
+      <td>28.942295</td>
+      <td>33.235977</td>
+      <td>inf</td>
+      <td>29.398325</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>27.493883</td>
+      <td>27.993914</td>
+      <td>25.790760</td>
+      <td>26.758585</td>
+      <td>27.993795</td>
+      <td>26.097111</td>
+      <td>26.934277</td>
+      <td>29.950184</td>
+      <td>29.398325</td>
+      <td>inf</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dists</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">dists</span><span class="p">[</span><span class="n">dists</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dists</span><span class="p">[</span><span class="n">dists</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 36.339535, 25.942497)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">eps</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">24</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">eps=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">eps</span><span class="p">))</span>
+    <span class="n">dbscan</span> <span class="o">=</span> <span class="n">DBSCAN</span><span class="p">(</span><span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">,</span> <span class="n">min_samples</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">dbscan</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">Z_faces</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of clusters: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">))))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cluster sizes: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">labels</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eps=16
+Number of clusters: 8
+Cluster sizes: [345   3   3   3   3   4   3   3]
+
+eps=17
+Number of clusters: 12
+Cluster sizes: [322   4   3   3   3   3   6   5   8   4   3   3]
+
+eps=18
+Number of clusters: 11
+Cluster sizes: [305  30   3   3   3   3   7   3   4   3   3]
+
+eps=19
+Number of clusters: 9
+Cluster sizes: [262  82   3   3   4   4   3   3   3]
+
+eps=20
+Number of clusters: 7
+Cluster sizes: [211 140   3   4   3   3   3]
+
+eps=21
+Number of clusters: 5
+Cluster sizes: [157 199   3   5   3]
+
+eps=22
+Number of clusters: 4
+Cluster sizes: [102 259   3   3]
+
+eps=24
+Number of clusters: 2
+Cluster sizes: [ 25 342]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dbscan</span> <span class="o">=</span> <span class="n">DBSCAN</span><span class="p">(</span><span class="n">eps</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span> <span class="n">min_samples</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">dbscan_labels</span> <span class="o">=</span> <span class="n">dbscan</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">Z_faces</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of clusters: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">dbscan_labels</span><span class="p">))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cluster sizes: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">dbscan_labels</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Unique labels: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">dbscan_labels</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of clusters: 12
+Cluster sizes: [322   4   3   3   3   3   6   5   8   4   3   3]
+Unique labels: [-1  0  1  2  3  4  5  6  7  8  9 10]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_dbscan_clusters</span><span class="p">(</span><span class="n">Z_faces</span><span class="p">,</span> <span class="n">faces_inputs</span><span class="p">,</span> <span class="n">dbscan_labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f75e791c2f607d799b367612abbb660966fe40b2c4c678e3354fbcee7a25190b.png" src="../../_images/f75e791c2f607d799b367612abbb660966fe40b2c4c678e3354fbcee7a25190b.png" />
+<img alt="../../_images/47e8e66f7d9935d08b96193abb25525bdbc945f00c9eb51b84ca2bf9fa8d54ad.png" src="../../_images/47e8e66f7d9935d08b96193abb25525bdbc945f00c9eb51b84ca2bf9fa8d54ad.png" />
+<img alt="../../_images/2cc6d799cd3ecf166bf14447d56d95800d608db27a436e6b4c692a5145801e5d.png" src="../../_images/2cc6d799cd3ecf166bf14447d56d95800d608db27a436e6b4c692a5145801e5d.png" />
+<img alt="../../_images/684a7016722a89d161556d01311b2064a667e775f7d4aa1002994a5c5c83292f.png" src="../../_images/684a7016722a89d161556d01311b2064a667e775f7d4aa1002994a5c5c83292f.png" />
+<img alt="../../_images/4b1dd0503d9db02eaa2eb6fcbcd439ba359dee0069c88574bca6479b1e9df15b.png" src="../../_images/4b1dd0503d9db02eaa2eb6fcbcd439ba359dee0069c88574bca6479b1e9df15b.png" />
+<img alt="../../_images/cab18618d95f0584f57b449496077a948b781a3dde79d95379b0e376698846a2.png" src="../../_images/cab18618d95f0584f57b449496077a948b781a3dde79d95379b0e376698846a2.png" />
+<img alt="../../_images/9b92662b2472b45a9bf03435d3b16869bf37e127161f20a56aaa585c8caa32dc.png" src="../../_images/9b92662b2472b45a9bf03435d3b16869bf37e127161f20a56aaa585c8caa32dc.png" />
+<img alt="../../_images/a64ecea794258e856a4370cf644c35b2e330885d82166adfb69ce2724bb196bb.png" src="../../_images/a64ecea794258e856a4370cf644c35b2e330885d82166adfb69ce2724bb196bb.png" />
+<img alt="../../_images/a9dac9f751212fc0b28e4c0463b172c049325ba4d3be4946c9365d78427350ae.png" src="../../_images/a9dac9f751212fc0b28e4c0463b172c049325ba4d3be4946c9365d78427350ae.png" />
+<img alt="../../_images/cc93372b054d3e710a980ad7be012f7dfcade07f4358ca0a4215ae134568086e.png" src="../../_images/cc93372b054d3e710a980ad7be012f7dfcade07f4358ca0a4215ae134568086e.png" />
+<img alt="../../_images/4eb29f67d54b578a8e0be030bad3049fb02976eecbea26fbf4618bff69415612.png" src="../../_images/4eb29f67d54b578a8e0be030bad3049fb02976eecbea26fbf4618bff69415612.png" />
+</div>
+</div>
+<p>Let’s examine noise images identified by DBSCAN.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_dbscan_noise_images</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">faces_inputs</span><span class="p">,</span> <span class="n">dbscan_labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/35a9076e61f1565e63d30e72ef90fe928989493b01f6128045abb23cf239a385.png" src="../../_images/35a9076e61f1565e63d30e72ef90fe928989493b01f6128045abb23cf239a385.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>We can guess why these images are noise images. There are odd angles, cropping, sun glasses, hands near faces etc.</p></li>
+</ul>
+</section>
+<section id="hierarchical-clustering">
+<h3>Hierarchical clustering<a class="headerlink" href="#hierarchical-clustering" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+<span class="n">Z_hrch</span> <span class="o">=</span> <span class="n">ward</span><span class="p">(</span><span class="n">Z_faces</span><span class="p">)</span>
+<span class="n">dendrogram</span><span class="p">(</span><span class="n">Z_hrch</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">truncate_mode</span><span class="o">=</span><span class="s2">&quot;level&quot;</span><span class="p">,</span> <span class="n">no_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Sample index&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cluster distance&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/000711dfc87fea8d7cf936845dbd74f10326e2089557bf1e0c909d5a737f4dd7.png" src="../../_images/000711dfc87fea8d7cf936845dbd74f10326e2089557bf1e0c909d5a737f4dd7.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">fcluster</span><span class="p">(</span><span class="n">Z_hrch</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s2">&quot;maxclust&quot;</span><span class="p">)</span>  <span class="c1"># let&#39;s get flat clusters</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#hand_picked_clusters = np.arange(2, 30)</span>
+<span class="n">hand_picked_clusters</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">28</span><span class="p">]</span>
+<span class="n">print_hierarchical_clusters</span><span class="p">(</span>
+    <span class="n">faces_inputs</span><span class="p">,</span> <span class="n">Z_faces</span><span class="p">,</span> <span class="n">cluster_labels</span><span class="p">,</span> <span class="n">hand_picked_clusters</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/88b36f271692e4e84db8bf1e9ed371b3cba83d42f3b6759230be04eb37696aad.png" src="../../_images/88b36f271692e4e84db8bf1e9ed371b3cba83d42f3b6759230be04eb37696aad.png" />
+<img alt="../../_images/e4d38b6b6f0672a6253377c766a761afdd9c510a72be980a2710d3bcfcb0bcc1.png" src="../../_images/e4d38b6b6f0672a6253377c766a761afdd9c510a72be980a2710d3bcfcb0bcc1.png" />
+<img alt="../../_images/a3ccdcea0782c0282b822ee7391efe672b5751f51dd0f009fd5d2902c924da88.png" src="../../_images/a3ccdcea0782c0282b822ee7391efe672b5751f51dd0f009fd5d2902c924da88.png" />
+<img alt="../../_images/742c474433a6f4d551097d9864d3367bcb0469b3e46f543d086523d5e49a6cf3.png" src="../../_images/742c474433a6f4d551097d9864d3367bcb0469b3e46f543d086523d5e49a6cf3.png" />
+<img alt="../../_images/21170d5e4208c2a91d5b2ffcc355b09493da25848ee502da6831b3061f66c17a.png" src="../../_images/21170d5e4208c2a91d5b2ffcc355b09493da25848ee502da6831b3061f66c17a.png" />
+<img alt="../../_images/9d207dd5e19ac77ed04eb84aa4fb32671bc475bcfc5931bf3e5185b05acdb814.png" src="../../_images/9d207dd5e19ac77ed04eb84aa4fb32671bc475bcfc5931bf3e5185b05acdb814.png" />
+<img alt="../../_images/d41a195dd84e2e1f7159588e99d96428b49d791e8037ff800406f172ec1e198e.png" src="../../_images/d41a195dd84e2e1f7159588e99d96428b49d791e8037ff800406f172ec1e198e.png" />
+<img alt="../../_images/a7a5fd8ddbbeede0642a3ff040ebfdb7f4cdfbdc6aac0bab3da1a647bc9ca0ce.png" src="../../_images/a7a5fd8ddbbeede0642a3ff040ebfdb7f4cdfbdc6aac0bab3da1a647bc9ca0ce.png" />
+<img alt="../../_images/5a746bc9559807fddb84bbafaac81284cec5c8f6b5cdb5b5fd2951d4c8ee02c0.png" src="../../_images/5a746bc9559807fddb84bbafaac81284cec5c8f6b5cdb5b5fd2951d4c8ee02c0.png" />
+<img alt="../../_images/504a23585c46d4de4e9437e247527586a42365e22ad549bf9c1736a35446f222.png" src="../../_images/504a23585c46d4de4e9437e247527586a42365e22ad549bf9c1736a35446f222.png" />
+<img alt="../../_images/2e467e05f31486ef25b5fe84f3dff9d6e18c431998329a97cdf065cbd2ac2e25.png" src="../../_images/2e467e05f31486ef25b5fe84f3dff9d6e18c431998329a97cdf065cbd2ac2e25.png" />
+<img alt="../../_images/25045aaf65edaf35e95fcb183f0967ebed0789927fe5ec55a1277bc9dc7525a8.png" src="../../_images/25045aaf65edaf35e95fcb183f0967ebed0789927fe5ec55a1277bc9dc7525a8.png" />
+<img alt="../../_images/9ebf52bd742cf7e39098a33623af5a52859e12a6603c8f44665bf1348a0aed00.png" src="../../_images/9ebf52bd742cf7e39098a33623af5a52859e12a6603c8f44665bf1348a0aed00.png" />
+<img alt="../../_images/2096380be31ed4f233582957578b0c9649b48d87c2e320ac032c6c4dbcd09cfc.png" src="../../_images/2096380be31ed4f233582957578b0c9649b48d87c2e320ac032c6c4dbcd09cfc.png" />
+<img alt="../../_images/375f864d4f4abfb0850dec21d776a9896abac9bd5f23c23c8b12a81652f0d50b.png" src="../../_images/375f864d4f4abfb0850dec21d776a9896abac9bd5f23c23c8b12a81652f0d50b.png" />
+<img alt="../../_images/37e949f53dcd2287624ee996f9a0da3907f5a34af8961658b09244072f18f72a.png" src="../../_images/37e949f53dcd2287624ee996f9a0da3907f5a34af8961658b09244072f18f72a.png" />
+<img alt="../../_images/5215cccb8123e2436280fd9ecc09e6dc1606581d41e914cada3ad23d0c9875e6.png" src="../../_images/5215cccb8123e2436280fd9ecc09e6dc1606581d41e914cada3ad23d0c9875e6.png" />
+<img alt="../../_images/271688137f6d674d8e3ec603951015d00009bc022a4e94ab9d43d79ed8ccef21.png" src="../../_images/271688137f6d674d8e3ec603951015d00009bc022a4e94ab9d43d79ed8ccef21.png" />
+<img alt="../../_images/4bfa6988048d520d365145ecab2ebfb1c04ff468f7f6e624b1fdd24455616c7c.png" src="../../_images/4bfa6988048d520d365145ecab2ebfb1c04ff468f7f6e624b1fdd24455616c7c.png" />
+<img alt="../../_images/147312c053d8e960038bb4a9f953e60d3bda5d2a531e44ef3bb426ddc56547a7.png" src="../../_images/147312c053d8e960038bb4a9f953e60d3bda5d2a531e44ef3bb426ddc56547a7.png" />
+<img alt="../../_images/c0323558a9ede3069a34f20aa105cd37ec4d8c95a75e36257b2ed715a355df1f.png" src="../../_images/c0323558a9ede3069a34f20aa105cd37ec4d8c95a75e36257b2ed715a355df1f.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Some clusters correspond to people with distinct faces, age, facial expressions, hair colour and hair style, lighting and skin tone.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "cpsc330"
+        },
+        kernelOptions: {
+            name: "cpsc330",
+            path: "./lectures/class_demos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'cpsc330'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-cluster-images">Let’s cluster images!!</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-faces-with-dbscan">Clustering faces with DBSCAN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hierarchical-clustering">Hierarchical clustering</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Varada Kolhatkar
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

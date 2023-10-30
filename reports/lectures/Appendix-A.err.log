@@ -1,0 +1,39 @@
+Traceback (most recent call last):
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from sklearn.feature_extraction.text import CountVectorizer
+
+X = [
+    "URGENT!! As a valued network customer you have been selected to receive a $900 prize reward!",
+    "Lol you are always so convincing.",
+    "URGENT!! Call right away!!",
+]
+vec = CountVectorizer(ngram_range=(1, 3))
+X_counts = vec.fit_transform(X)
+bow_df = pd.DataFrame(X_counts.toarray(), columns=vec.get_feature_names_out().tolist(), index=X)
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[1], line 10[0m
+[1;32m      8[0m vec [38;5;241m=[39m CountVectorizer(ngram_range[38;5;241m=[39m([38;5;241m1[39m, [38;5;241m3[39m))
+[1;32m      9[0m X_counts [38;5;241m=[39m vec[38;5;241m.[39mfit_transform(X)
+[0;32m---> 10[0m bow_df [38;5;241m=[39m [43mpd[49m[38;5;241m.[39mDataFrame(X_counts[38;5;241m.[39mtoarray(), columns[38;5;241m=[39mvec[38;5;241m.[39mget_feature_names_out()[38;5;241m.[39mtolist(), index[38;5;241m=[39mX)
+
+[0;31mNameError[0m: name 'pd' is not defined
+

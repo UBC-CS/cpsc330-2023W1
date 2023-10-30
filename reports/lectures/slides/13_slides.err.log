@@ -15,17 +15,45 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import spacy
+import os
+import sys
 
-# !python -m spacy download en_core_web_md
+import matplotlib.pyplot as plt
+import numpy as np
+import numpy.random as npr
+import pandas as pd
+import seaborn as sb
+
+from sklearn.compose import (
+    ColumnTransformer,
+    TransformedTargetRegressor,
+    make_column_transformer,
+)
+from sklearn.dummy import DummyClassifier, DummyRegressor
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.impute import SimpleImputer
+from sklearn.linear_model import LinearRegression, LogisticRegression, Ridge, RidgeCV
+from sklearn.metrics import make_scorer, mean_squared_error, r2_score
+from sklearn.model_selection import cross_val_score, cross_validate, train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.pipeline import Pipeline, make_pipeline
+from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, StandardScaler
+from sklearn.svm import SVC
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[13], line 1[0m
-[0;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01mspacy[39;00m
-[1;32m      3[0m [38;5;66;03m# !python -m spacy download en_core_web_md[39;00m
+Cell [0;32mIn[1], line 8[0m
+[1;32m      6[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mrandom[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnpr[39;00m
+[1;32m      7[0m [38;5;28;01mimport[39;00m [38;5;21;01mpandas[39;00m [38;5;28;01mas[39;00m [38;5;21;01mpd[39;00m
+[0;32m----> 8[0m [38;5;28;01mimport[39;00m [38;5;21;01mseaborn[39;00m [38;5;28;01mas[39;00m [38;5;21;01msb[39;00m
+[1;32m     10[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mcompose[39;00m [38;5;28;01mimport[39;00m (
+[1;32m     11[0m     ColumnTransformer,
+[1;32m     12[0m     TransformedTargetRegressor,
+[1;32m     13[0m     make_column_transformer,
+[1;32m     14[0m )
+[1;32m     15[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdummy[39;00m [38;5;28;01mimport[39;00m DummyClassifier, DummyRegressor
 
-[0;31mModuleNotFoundError[0m: No module named 'spacy'
+[0;31mModuleNotFoundError[0m: No module named 'seaborn'
 

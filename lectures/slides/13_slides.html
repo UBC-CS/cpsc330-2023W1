@@ -168,7 +168,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../10_regression-metrics.html">Lecture 10: Regression metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../11_ensembles.html">Lecture 11: Ensembles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../12_feat-importances.html">Lecture 12: Feature importances and model transparency</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../midterm-review-guiding-questions.html">Lecture 14: Midterm review guiding questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../13_feature-engineering-selection.html">Lecture 13: Feature engineering and feature selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../14_K-Means.html">Lecture 14: K-Means Clustering</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -176,6 +177,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../class_demos/04_class-demo.html">Lecture 4: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../class_demos/05-06_class-demo.html">Lectures 5 and 6: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../class_demos/07_class-demo.html">Lectures 7: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../class_demos/09_class-demo.html">Exploring classification metrics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../class_demos/14_class-demo.html">Let’s cluster images!!</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -330,43 +334,29 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#announcements">Announcements</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes">Learning outcomes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering-motivation">Feature engineering: Motivation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-13-1">iClicker Exercise 13.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#garbage-in-garbage-out">Garbage in, garbage out.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activity-how-can-you-measure-quality-of-the-data-3-mins">Activity: How can you measure quality of the data? (~3 mins)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-feature-engineering">What is feature engineering?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-quotes-on-feature-engineering">Some quotes on feature engineering</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#better-features-usually-help-more-than-a-better-model">Better features usually help more than a better model.</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-best-features-may-be-dependent-on-the-model-you-use">The best features may be dependent on the model you use.</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-specific-transformations">Domain-specific transformations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Domain-specific transformations</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering-for-text-data">Feature engineering for text data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-interactions-and-feature-crosses">Feature interactions and feature crosses</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-crosses-for-one-hot-encoded-features">Feature crosses for one-hot encoded features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-of-feature-engineering-with-numeric-features">Demo of feature engineering with numeric features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-of-feature-engineering-for-text-data">Demo of feature engineering for text data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#baseline">Baseline</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bag-of-words-model">Bag-of-words model</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#is-it-possible-to-further-improve-the-scores">Is it possible to further improve the scores?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spacy">spaCy</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-from-a-project">An example from a project</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-feature-engineering-for-our-problem">Simple feature engineering for our problem.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-from-a-project">An example from a project</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-feature-engineering-for-our-problem">Simple feature engineering for our problem.</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-features-used-in-text-classification">Common features used in text classification</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bag-of-words">Bag of words</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-label-personalized-important-e-mails">Example: Label “Personalized” Important E-mails:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-learning-behind-gmail-priority-inbox">The Learning Behind Gmail Priority Inbox</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering-examples-automatically-identifying-good-conversations-online">Feature engineering examples: Automatically Identifying Good Conversations Online</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-term-weighing-tf-idf">(Optional) Term weighing (TF-IDF)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n-grams">N-grams</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aside-google-n-gram-viewer">ASIDE: Google n-gram viewer</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Aside: Google n-gram viewer</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Aside: Google n-gram viewer</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-of-speech-features">Part-of-speech features</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#part-of-speech-pos-in-english">Part-of-speech (POS) in English</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-of-speech-pos-features">Part-of-speech (POS) features</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">An example from a project</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penn-treebank-part-of-speech-tags-bonus">Penn Treebank part-of-speech tags (bonus)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interim-summary">Interim summary</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering">Feature engineering</a></li>
 </ul>
@@ -375,25 +365,33 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-feature-selection">What is feature selection?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-feature-selection">Why feature selection?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-carry-out-feature-selection">How do we carry out feature selection?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-models-recap">Linear models recap</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression-l2-penalty">Ridge regression (L2 penalty)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso-regression-l1-penalty">Lasso regression (L1 penalty)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression-l1-and-l2">Logistic regression (L1 and L2)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#l1-vs-l2-penalty-summary">L1 vs L2 penalty summary</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-based-selection">Model-based selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-13-2">(iClicker) Exercise 13.2</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursive-feature-elimination-rfe">Recursive feature elimination (RFE)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rfe-algorithm">RFE algorithm</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#search-and-score">Search and score</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-search-and-score">(Optional) Search and score</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-idea-of-search-and-score-methods">General idea of search and score methods</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-or-backward-selection">Forward or backward selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-forward-or-backward-selection">(Optional) Forward or backward selection</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-ways-to-search">Other ways to search</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#warnings-about-feature-selection">Warnings about feature selection</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-13-1">(iClicker) Exercise 13.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-13-3">(iClicker) Exercise 13.3</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-problems-with-feature-selection">(Optional) Problems with feature selection</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-is-relevance-clearly-defined">Example: Is “Relevance” clearly defined?</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#is-relevance-clearly-defined">Is “Relevance” clearly defined?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Is “Relevance” clearly defined?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Is “Relevance” clearly defined?</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Is “Relevance” clearly defined?</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Is “Relevance” clearly defined?</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Is “Relevance” clearly defined?</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Is “Relevance” clearly defined?</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Is “Relevance” clearly defined?</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Is “Relevance” clearly defined?</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Warnings about feature selection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Warnings about feature selection</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#relevant-resources">Relevant resources</a></li>
 </ul>
 </li>
@@ -419,6 +417,8 @@ document.write(`
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">npr</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sb</span>
+
 <span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">ColumnTransformer</span><span class="p">,</span>
     <span class="n">TransformedTargetRegressor</span><span class="p">,</span>
@@ -430,9 +430,28 @@ document.write(`
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">,</span> <span class="n">RidgeCV</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">make_scorer</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">cross_validate</span><span class="p">,</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
 <span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">make_pipeline</span>
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">OrdinalEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span>
 <span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">8</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">npr</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="ne">----&gt; </span><span class="mi">8</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sb</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="n">ColumnTransformer</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="n">TransformedTargetRegressor</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="n">make_column_transformer</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span><span class="p">,</span> <span class="n">DummyRegressor</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;seaborn&#39;
 </pre></div>
 </div>
 </div>
@@ -491,15 +510,51 @@ document.write(`
 <h2>Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this heading">#</a></h2>
 <p>From this lecture, students are expected to be able to:</p>
 <ul class="simple">
-<li><p>Explain what feature engineering is and the importance of feature engineering in building machine learning models.</p></li>
-<li><p>Carry out preliminary feature engineering on text data.</p></li>
+<li><p>Explain what feature engineering is and the importance of feature engineering in building machine learning models.  - Carry out preliminary feature engineering on numeric and text data.</p></li>
 <li><p>Explain the general concept of feature selection.</p></li>
 <li><p>Discuss and compare different feature selection methods at a high level.</p></li>
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>’s implementation of recursive feature elimination (<code class="docutils literal notranslate"><span class="pre">RFE</span></code>) and forward and backward selection (<code class="docutils literal notranslate"><span class="pre">SequentialFeatureSelector</span></code>).</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>’s implementation of model-based selection and recursive feature elimination (<code class="docutils literal notranslate"><span class="pre">RFE</span></code>)</p></li>
 </ul>
 </section>
 <section id="feature-engineering-motivation">
 <h2>Feature engineering: Motivation<a class="headerlink" href="#feature-engineering-motivation" title="Permalink to this heading">#</a></h2>
+<section id="iclicker-exercise-13-1">
+<h3>iClicker Exercise 13.1<a class="headerlink" href="#iclicker-exercise-13-1" title="Permalink to this heading">#</a></h3>
+<p><strong>iClicker cloud join link: https://join.iclicker.com/SNBF</strong></p>
+<p><strong>Select the most accurate option below.</strong></p>
+<p>Suppose you are working on a machine learning project. If you have to prioritize one of the following in your project which of the following would it be?</p>
+<ul class="simple">
+<li><p>(A) The quality and size of the data</p></li>
+<li><p>(B) Most recent deep neural network model</p></li>
+<li><p>(C) Most recent optimization algorithm</p></li>
+<li><p>(D) Domain expertise</p></li>
+</ul>
+<p><strong>Discussion question</strong></p>
+<ul class="simple">
+<li><p>Suppose we want to predict whether a flight will arrive on time or be delayed. We have a dataset with the following information about flights:</p>
+<ul>
+<li><p>Departure Time</p></li>
+<li><p>Expected Duration of Flight (in minutes)</p></li>
+</ul>
+</li>
+</ul>
+<p>Upon analyzing the data, you notice a pattern: flights tend to be delayed more often during the evening rush hours. What feature could be valuable to add for this prediction task?
+<br><br><br><br></p>
+</section>
+<section id="garbage-in-garbage-out">
+<h3>Garbage in, garbage out.<a class="headerlink" href="#garbage-in-garbage-out" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Model building is interesting. But in your machine learning projects, you’ll be spending more than half of your time on data preparation, feature engineering, and transformations.</p></li>
+<li><p>The <em>quality</em> of the data is important. Your model is only as good as your data.</p></li>
+</ul>
+</section>
+<section id="activity-how-can-you-measure-quality-of-the-data-3-mins">
+<h3>Activity: How can you measure quality of the data? (~3 mins)<a class="headerlink" href="#activity-how-can-you-measure-quality-of-the-data-3-mins" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Write some attributes of good- and bad-quality data in
+<a class="reference external" href="https://docs.google.com/document/d/1uRBW0woUJ4KYo-feChK4F6hmjKA7HywYmaYdOe9la60/edit?usp=sharing">this Google Document</a>.</p></li>
+</ul>
+</section>
 <section id="what-is-feature-engineering">
 <h3>What is feature engineering?<a class="headerlink" href="#what-is-feature-engineering" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
@@ -564,16 +619,1345 @@ Coming up with features is difficult, time-consuming, requires expert knowledge.
 <li><p>Spectrograms (sound data)</p></li>
 <li><p>Wavelets (image data)</p></li>
 <li><p>Convolutions</p></li>
+<li><p>Read counts (genomics)</p></li>
 </ul>
 <p><img alt="" src="../../_images/spectogram.png" /></p>
-<!-- <img src="img/spectogram.png" width="800" height="800"> -->
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Spectrogram">Source</a></p>
-<p>In this lecture, I’ll show you an example of feature engineering on text data.</p>
+</section>
+<section id="id1">
+<h4>Domain-specific transformations<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<p><img alt="" src="../../_images/genomics_snv_counts.svg" /></p>
 </section>
 </section>
+<section id="feature-interactions-and-feature-crosses">
+<h3>Feature interactions and feature crosses<a class="headerlink" href="#feature-interactions-and-feature-crosses" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>A <strong>feature cross</strong> is a synthetic feature formed by multiplying or crossing two or more features.</p></li>
+<li><p>Example:
+Is the following dataset (XOR function) linearly separable?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">]),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X1</th>
+      <th>X2</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-1</td>
+      <td>-1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>-1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">sb</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;X1&#39;, ylabel=&#39;X2&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/da78d023810181d5dc0b6d415892383af2f078601d31ef6ae73b748c4b3c10cb.png" src="../../_images/da78d023810181d5dc0b6d415892383af2f078601d31ef6ae73b748c4b3c10cb.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>For XOR like problems, if we create a feature cross <span class="math notranslate nohighlight">\(x1x2\)</span>, the data becomes linearly separable.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;X1X2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;X1&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;X2&quot;</span><span class="p">]</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>X1</th>
+      <th>X2</th>
+      <th>target</th>
+      <th>X1X2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-1</td>
+      <td>-1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">sb</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;X1X2&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;X2&#39;, ylabel=&#39;X1X2&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/ad0952f14194cc063b5cfd3d8f2a299f14377e8afc74dd70fd9b291c590021e5.png" src="../../_images/ad0952f14194cc063b5cfd3d8f2a299f14377e8afc74dd70fd9b291c590021e5.png" />
+</div>
+</div>
+<p>Let’s look at an example with more data points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># xx, yy = np.meshgrid(np.linspace(-3, 3, 50), np.linspace(-3, 3, 50))</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_xor</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">]),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">sb</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;X1&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;X2&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;X1&#39;, ylabel=&#39;X2&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/ee879a7d1a18e50b2e7ce79269430e33054994ba55c6fbc1e6239d936b2ed8c1.png" src="../../_images/ee879a7d1a18e50b2e7ce79269430e33054994ba55c6fbc1e6239d936b2ed8c1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LogisticRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.535
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+
+<span class="n">pipe_xor</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
+    <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">interaction_only</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="n">pipe_xor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.995
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_names</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">pipe_xor</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;polynomialfeatures&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">pipe_xor</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;logisticregression&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">feature_names</span><span class="p">,</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Feature coefficient&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Feature coefficient</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>-0.001828</td>
+    </tr>
+    <tr>
+      <th>x0</th>
+      <td>-0.028418</td>
+    </tr>
+    <tr>
+      <th>x1</th>
+      <td>0.130472</td>
+    </tr>
+    <tr>
+      <th>x0 x1</th>
+      <td>-5.085936</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The interaction feature has the biggest coefficient!</p>
 </section>
-<section id="feature-engineering-for-text-data">
-<h2>Feature engineering for text data<a class="headerlink" href="#feature-engineering-for-text-data" title="Permalink to this heading">#</a></h2>
+<section id="feature-crosses-for-one-hot-encoded-features">
+<h3>Feature crosses for one-hot encoded features<a class="headerlink" href="#feature-crosses-for-one-hot-encoded-features" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>You can think of feature crosses of one-hot-features as logical conjunctions</p></li>
+<li><p>Suppose you want to predict whether you will find parking or not based on two features:</p>
+<ul>
+<li><p>area (possible categories: UBC campus and Rogers Arena)</p></li>
+<li><p>time of the day (possible categories: 9am and 7pm)</p></li>
+</ul>
+</li>
+<li><p>A feature cross in this case would create four new features:</p>
+<ul>
+<li><p>UBC campus and 9am</p></li>
+<li><p>UBC campus and 7pm</p></li>
+<li><p>Rogers Arena and 9am</p></li>
+<li><p>Rogers Arena and 7pm.</p></li>
+</ul>
+</li>
+<li><p>The features UBC campus and 9am on their own are not that informative but the newly created feature UBC campus and 9am or Rogers Arena and 7pm would be quite informative.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Coming up with the right combination of features requires some domain knowledge or careful examination of the data.</p></li>
+<li><p>There is no easy way to support feature crosses in sklearn.</p></li>
+</ul>
+</section>
+<section id="demo-of-feature-engineering-with-numeric-features">
+<h3>Demo of feature engineering with numeric features<a class="headerlink" href="#demo-of-feature-engineering-with-numeric-features" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Remember the <a class="reference external" href="https://www.kaggle.com/datasets/camnugent/california-housing-prices">California housing dataset</a> we used earlier in the course?</p></li>
+<li><p>The prediction task is predicting <code class="docutils literal notranslate"><span class="pre">median_house_value</span></code> for a given property.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">housing_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/california_housing.csv&quot;</span><span class="p">)</span>
+<span class="n">housing_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>longitude</th>
+      <th>latitude</th>
+      <th>housing_median_age</th>
+      <th>total_rooms</th>
+      <th>total_bedrooms</th>
+      <th>population</th>
+      <th>households</th>
+      <th>median_income</th>
+      <th>median_house_value</th>
+      <th>ocean_proximity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-122.23</td>
+      <td>37.88</td>
+      <td>41.0</td>
+      <td>880.0</td>
+      <td>129.0</td>
+      <td>322.0</td>
+      <td>126.0</td>
+      <td>8.3252</td>
+      <td>452600.0</td>
+      <td>NEAR BAY</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-122.22</td>
+      <td>37.86</td>
+      <td>21.0</td>
+      <td>7099.0</td>
+      <td>1106.0</td>
+      <td>2401.0</td>
+      <td>1138.0</td>
+      <td>8.3014</td>
+      <td>358500.0</td>
+      <td>NEAR BAY</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-122.24</td>
+      <td>37.85</td>
+      <td>52.0</td>
+      <td>1467.0</td>
+      <td>190.0</td>
+      <td>496.0</td>
+      <td>177.0</td>
+      <td>7.2574</td>
+      <td>352100.0</td>
+      <td>NEAR BAY</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-122.25</td>
+      <td>37.85</td>
+      <td>52.0</td>
+      <td>1274.0</td>
+      <td>235.0</td>
+      <td>558.0</td>
+      <td>219.0</td>
+      <td>5.6431</td>
+      <td>341300.0</td>
+      <td>NEAR BAY</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-122.25</td>
+      <td>37.85</td>
+      <td>52.0</td>
+      <td>1627.0</td>
+      <td>280.0</td>
+      <td>565.0</td>
+      <td>259.0</td>
+      <td>3.8462</td>
+      <td>342200.0</td>
+      <td>NEAR BAY</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">housing_df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 20640 entries, 0 to 20639
+Data columns (total 10 columns):
+ #   Column              Non-Null Count  Dtype  
+---  ------              --------------  -----  
+ 0   longitude           20640 non-null  float64
+ 1   latitude            20640 non-null  float64
+ 2   housing_median_age  20640 non-null  float64
+ 3   total_rooms         20640 non-null  float64
+ 4   total_bedrooms      20433 non-null  float64
+ 5   population          20640 non-null  float64
+ 6   households          20640 non-null  float64
+ 7   median_income       20640 non-null  float64
+ 8   median_house_value  20640 non-null  float64
+ 9   ocean_proximity     20640 non-null  object 
+dtypes: float64(9), object(1)
+memory usage: 1.6+ MB
+</pre></div>
+</div>
+</div>
+</div>
+<p>Suppose we decide to train <code class="docutils literal notranslate"><span class="pre">ridge</span></code> model on this dataset.</p>
+<ul class="simple">
+<li><p>What would happen if you train a model without applying any transformation on the categorical features ocean_proximity?</p>
+<ul>
+<li><p>Error!! A linear model requires all features in a numeric form.</p></li>
+</ul>
+</li>
+<li><p>What would happen if we apply OHE on <code class="docutils literal notranslate"><span class="pre">ocean_proximity</span></code> but we do not scale the features?</p>
+<ul>
+<li><p>No syntax error. But the model results are likely to be poor.</p></li>
+</ul>
+</li>
+<li><p>Do we need to apply any other transformations on this data?</p></li>
+</ul>
+<p>In this section, we will look into some common ways to do feature engineering for numeric or categorical features.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">housing_df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We have total rooms and the number of households in the neighbourhood. How about creating rooms_per_household feature using this information?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+    <span class="n">rooms_per_household</span><span class="o">=</span><span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;total_rooms&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;households&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">test_df</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+    <span class="n">rooms_per_household</span><span class="o">=</span><span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;total_rooms&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;households&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>longitude</th>
+      <th>latitude</th>
+      <th>housing_median_age</th>
+      <th>total_rooms</th>
+      <th>total_bedrooms</th>
+      <th>population</th>
+      <th>households</th>
+      <th>median_income</th>
+      <th>median_house_value</th>
+      <th>ocean_proximity</th>
+      <th>rooms_per_household</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9950</th>
+      <td>-122.33</td>
+      <td>38.38</td>
+      <td>28.0</td>
+      <td>1020.0</td>
+      <td>169.0</td>
+      <td>504.0</td>
+      <td>164.0</td>
+      <td>4.5694</td>
+      <td>287500.0</td>
+      <td>INLAND</td>
+      <td>6.219512</td>
+    </tr>
+    <tr>
+      <th>3547</th>
+      <td>-118.60</td>
+      <td>34.26</td>
+      <td>18.0</td>
+      <td>6154.0</td>
+      <td>1070.0</td>
+      <td>3010.0</td>
+      <td>1034.0</td>
+      <td>5.6392</td>
+      <td>271500.0</td>
+      <td>&lt;1H OCEAN</td>
+      <td>5.951644</td>
+    </tr>
+    <tr>
+      <th>4448</th>
+      <td>-118.21</td>
+      <td>34.07</td>
+      <td>47.0</td>
+      <td>1346.0</td>
+      <td>383.0</td>
+      <td>1452.0</td>
+      <td>371.0</td>
+      <td>1.7292</td>
+      <td>191700.0</td>
+      <td>&lt;1H OCEAN</td>
+      <td>3.628032</td>
+    </tr>
+    <tr>
+      <th>6984</th>
+      <td>-118.02</td>
+      <td>33.96</td>
+      <td>36.0</td>
+      <td>2071.0</td>
+      <td>398.0</td>
+      <td>988.0</td>
+      <td>404.0</td>
+      <td>4.6226</td>
+      <td>219700.0</td>
+      <td>&lt;1H OCEAN</td>
+      <td>5.126238</td>
+    </tr>
+    <tr>
+      <th>4432</th>
+      <td>-118.20</td>
+      <td>34.08</td>
+      <td>49.0</td>
+      <td>1320.0</td>
+      <td>309.0</td>
+      <td>1405.0</td>
+      <td>328.0</td>
+      <td>2.4375</td>
+      <td>114000.0</td>
+      <td>&lt;1H OCEAN</td>
+      <td>4.024390</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s start simple. Imagine that we only three features: <code class="docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="docutils literal notranslate"><span class="pre">latitude</span></code>, and our newly created <code class="docutils literal notranslate"><span class="pre">rooms_per_household</span></code> feature.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_housing</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[[</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="s2">&quot;rooms_per_household&quot;</span><span class="p">]]</span>
+<span class="n">y_train_housing</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;median_house_value&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">make_column_transformer</span>
+
+<span class="n">numeric_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="s2">&quot;rooms_per_household&quot;</span><span class="p">]</span>
+
+<span class="n">preprocessor1</span> <span class="o">=</span> <span class="n">make_column_transformer</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">make_pipeline</span><span class="p">(</span><span class="n">SimpleImputer</span><span class="p">(),</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="n">numeric_feats</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_1</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor1</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">())</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">cross_validate</span><span class="p">(</span><span class="n">lr_1</span><span class="p">,</span> <span class="n">X_train_housing</span><span class="p">,</span> <span class="n">y_train_housing</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fit_time</th>
+      <th>score_time</th>
+      <th>test_score</th>
+      <th>train_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.007676</td>
+      <td>0.002997</td>
+      <td>0.280028</td>
+      <td>0.311769</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.015419</td>
+      <td>0.006034</td>
+      <td>0.325319</td>
+      <td>0.300464</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.020705</td>
+      <td>0.006861</td>
+      <td>0.317277</td>
+      <td>0.301952</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.017801</td>
+      <td>0.007906</td>
+      <td>0.316798</td>
+      <td>0.303004</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.019558</td>
+      <td>0.007068</td>
+      <td>0.260258</td>
+      <td>0.314840</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>The scores are not great.</p></li>
+<li><p>Let’s look at the distribution of the longitude and latitude features.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribution of latitude feature&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a3be8fbe0e50023a11369d3f05350587b5d31cba073973fd5cb067479b2d70d2.png" src="../../_images/a3be8fbe0e50023a11369d3f05350587b5d31cba073973fd5cb067479b2d70d2.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Suppose you are planning to build a linear model for housing price prediction.</p></li>
+<li><p>If we think longitude is a good feature for prediction, does it makes sense to use the floating point representation of this feature that’s given to us?</p></li>
+<li><p>Remember that linear models can capture only linear relationships.</p></li>
+</ul>
+<ul class="simple">
+<li><p>How about discretizing latitude and longitude features and putting them into buckets?</p></li>
+<li><p>This process of transforming numeric features into categorical features is called bucketing or binning.</p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> you can do this using <code class="docutils literal notranslate"><span class="pre">KBinsDiscretizer</span></code> transformer.</p></li>
+<li><p>Let’s examine whether we get better results with binning.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">KBinsDiscretizer</span>
+
+<span class="n">discretization_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;longitude&quot;</span><span class="p">]</span>
+<span class="n">numeric_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;rooms_per_household&quot;</span><span class="p">]</span>
+
+<span class="n">preprocessor2</span> <span class="o">=</span> <span class="n">make_column_transformer</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">KBinsDiscretizer</span><span class="p">(</span><span class="n">n_bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">encode</span><span class="o">=</span><span class="s2">&quot;onehot&quot;</span><span class="p">),</span> <span class="n">discretization_feats</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">make_pipeline</span><span class="p">(</span><span class="n">SimpleImputer</span><span class="p">(),</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="n">numeric_feats</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_2</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor2</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">())</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">cross_validate</span><span class="p">(</span><span class="n">lr_2</span><span class="p">,</span> <span class="n">X_train_housing</span><span class="p">,</span> <span class="n">y_train_housing</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fit_time</th>
+      <th>score_time</th>
+      <th>test_score</th>
+      <th>train_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.041103</td>
+      <td>0.010614</td>
+      <td>0.441445</td>
+      <td>0.456419</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.042370</td>
+      <td>0.015185</td>
+      <td>0.469571</td>
+      <td>0.446216</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.058692</td>
+      <td>0.015512</td>
+      <td>0.479132</td>
+      <td>0.446869</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.058763</td>
+      <td>0.015724</td>
+      <td>0.450822</td>
+      <td>0.453367</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.089928</td>
+      <td>0.016405</td>
+      <td>0.388169</td>
+      <td>0.467628</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The results are better with binned features. Let’s examine how do these binned features look like.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">preprocessor2</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train_housing</span><span class="p">)</span><span class="o">.</span><span class="n">todense</span><span class="p">(),</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">preprocessor2</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">(),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>kbinsdiscretizer__latitude_0.0</th>
+      <th>kbinsdiscretizer__latitude_1.0</th>
+      <th>kbinsdiscretizer__latitude_2.0</th>
+      <th>kbinsdiscretizer__latitude_3.0</th>
+      <th>kbinsdiscretizer__latitude_4.0</th>
+      <th>kbinsdiscretizer__latitude_5.0</th>
+      <th>kbinsdiscretizer__latitude_6.0</th>
+      <th>kbinsdiscretizer__latitude_7.0</th>
+      <th>kbinsdiscretizer__latitude_8.0</th>
+      <th>kbinsdiscretizer__latitude_9.0</th>
+      <th>...</th>
+      <th>kbinsdiscretizer__longitude_11.0</th>
+      <th>kbinsdiscretizer__longitude_12.0</th>
+      <th>kbinsdiscretizer__longitude_13.0</th>
+      <th>kbinsdiscretizer__longitude_14.0</th>
+      <th>kbinsdiscretizer__longitude_15.0</th>
+      <th>kbinsdiscretizer__longitude_16.0</th>
+      <th>kbinsdiscretizer__longitude_17.0</th>
+      <th>kbinsdiscretizer__longitude_18.0</th>
+      <th>kbinsdiscretizer__longitude_19.0</th>
+      <th>pipeline__rooms_per_household</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.316164</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.209903</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.711852</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.117528</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.554621</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>16507</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.064307</td>
+    </tr>
+    <tr>
+      <th>16508</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.235706</td>
+    </tr>
+    <tr>
+      <th>16509</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.212581</td>
+    </tr>
+    <tr>
+      <th>16510</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-0.271037</td>
+    </tr>
+    <tr>
+      <th>16511</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.027321</td>
+    </tr>
+  </tbody>
+</table>
+<p>16512 rows × 41 columns</p>
+</div></div></div>
+</div>
+<p>How about discretizing all three features?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">KBinsDiscretizer</span>
+
+<span class="n">discretization_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="s2">&quot;rooms_per_household&quot;</span><span class="p">]</span>
+
+<span class="n">preprocessor3</span> <span class="o">=</span> <span class="n">make_column_transformer</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">KBinsDiscretizer</span><span class="p">(</span><span class="n">n_bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">encode</span><span class="o">=</span><span class="s2">&quot;onehot&quot;</span><span class="p">),</span> <span class="n">discretization_feats</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_3</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor3</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">())</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">cross_validate</span><span class="p">(</span><span class="n">lr_3</span><span class="p">,</span> <span class="n">X_train_housing</span><span class="p">,</span> <span class="n">y_train_housing</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fit_time</th>
+      <th>score_time</th>
+      <th>test_score</th>
+      <th>train_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.026809</td>
+      <td>0.007828</td>
+      <td>0.590618</td>
+      <td>0.571969</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.044908</td>
+      <td>0.010527</td>
+      <td>0.575907</td>
+      <td>0.570473</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.061209</td>
+      <td>0.011243</td>
+      <td>0.579091</td>
+      <td>0.573542</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.056894</td>
+      <td>0.011553</td>
+      <td>0.571500</td>
+      <td>0.574260</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.051862</td>
+      <td>0.011770</td>
+      <td>0.541488</td>
+      <td>0.581687</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>The results have improved further!!</p></li>
+<li><p>Let’s examine the coefficients</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_3</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_housing</span><span class="p">,</span> <span class="n">y_train_housing</span><span class="p">)</span>
+<span class="n">feature_names</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">lr_3</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;columntransformer&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;kbinsdiscretizer&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coefs_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">lr_3</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;ridge&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">feature_names</span><span class="p">,</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;coefficient&quot;</span><span class="p">],</span>
+<span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;coefficient&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">coefs_df</span><span class="o">.</span><span class="n">head</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;bound method NDFrame.head of                             coefficient
+longitude_1.0             211343.036136
+latitude_1.0              205059.296601
+latitude_0.0              201862.534342
+longitude_0.0             190319.721818
+longitude_2.0             160282.191204
+longitude_3.0             157234.920305
+latitude_2.0              154105.963689
+rooms_per_household_19.0  138503.477291
+latitude_8.0              135299.516394
+longitude_4.0             132292.924485
+latitude_7.0              124982.236174
+latitude_3.0              118563.786115
+longitude_5.0             116145.526596
+rooms_per_household_18.0  102044.252042
+longitude_6.0              96554.525554
+latitude_4.0               92809.389349
+latitude_6.0               90982.951669
+latitude_9.0               71096.652487
+rooms_per_household_17.0   70472.564483
+latitude_5.0               69411.023366
+longitude_10.0             52398.892961
+rooms_per_household_16.0   44311.362553
+rooms_per_household_15.0   31454.877046
+longitude_7.0              25658.862997
+latitude_10.0              20311.784573
+rooms_per_household_14.0   16460.273962
+rooms_per_household_13.0    9351.210272
+longitude_8.0               6322.652986
+rooms_per_household_12.0    1858.970683
+rooms_per_household_11.0  -12178.614567
+longitude_9.0             -14579.657675
+rooms_per_household_10.0  -16630.535622
+rooms_per_household_9.0   -19591.810098
+longitude_11.0            -22741.635200
+rooms_per_household_8.0   -26919.381190
+rooms_per_household_7.0   -30573.540359
+rooms_per_household_6.0   -32734.570739
+rooms_per_household_4.0   -40689.197649
+rooms_per_household_3.0   -42060.071975
+rooms_per_household_5.0   -43445.134061
+rooms_per_household_2.0   -47606.596151
+rooms_per_household_0.0   -50884.444297
+rooms_per_household_1.0   -51143.091625
+latitude_13.0             -57510.779271
+longitude_14.0            -70978.802502
+longitude_13.0            -89270.957075
+longitude_12.0            -90669.093228
+latitude_11.0            -100275.316426
+longitude_15.0           -105080.071654
+latitude_12.0            -111438.823543
+latitude_14.0            -114836.305674
+latitude_15.0            -116443.256437
+longitude_16.0           -119570.316230
+latitude_16.0            -140185.299164
+longitude_17.0           -174766.515848
+latitude_18.0            -185868.754874
+latitude_17.0            -195564.951574
+longitude_18.0           -205144.956966
+longitude_19.0           -255751.248664
+latitude_19.0            -262361.647795&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Does it make sense to take feature crosses in this context?</p></li>
+<li><p>What information would they encode?</p></li>
+</ul>
+</section>
+<section id="demo-of-feature-engineering-for-text-data">
+<h3>Demo of feature engineering for text data<a class="headerlink" href="#demo-of-feature-engineering-for-text-data" title="Permalink to this heading">#</a></h3>
 <p>We will be using <a class="reference external" href="https://www.kaggle.com/code/kerneler/starter-covid-19-nlp-text-d3a3baa6-e/data">Covid tweets</a> dataset for this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -583,12 +1967,13 @@ Coming up with features is difficult, time-consuming, requires expert knowledge.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Negative              1041
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sentiment
+Negative              1041
 Positive               947
 Neutral                619
 Extremely Positive     599
 Extremely Negative     592
-Name: Sentiment, dtype: int64
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -690,7 +2075,8 @@ Name: Sentiment, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>United States                     63
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Location
+United States                     63
 London, England                   37
 Los Angeles, CA                   30
 New York, NY                      29
@@ -701,7 +2087,7 @@ philippines                        1
 Dont ask for freedom, take it.     1
 Windsor Heights, IA                1
 St James&#39; Park, Newcastle          1
-Name: Location, Length: 1441, dtype: int64
+Name: count, Length: 1441, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -721,12 +2107,13 @@ Name: Location, Length: 1441, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Negative              852
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sentiment
+Negative              852
 Positive              743
 Neutral               501
 Extremely Negative    472
 Extremely Positive    470
-Name: Sentiment, dtype: int64
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -738,6 +2125,7 @@ Name: Sentiment, dtype: int64
 </div>
 </div>
 </div>
+</section>
 <section id="baseline">
 <h3>Baseline<a class="headerlink" href="#baseline" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -785,8 +2173,8 @@ Name: Sentiment, dtype: int64
   <tbody>
     <tr>
       <th>dummy</th>
+      <td>0.002 (+/- 0.000)</td>
       <td>0.001 (+/- 0.000)</td>
-      <td>0.000 (+/- 0.000)</td>
       <td>0.280 (+/- 0.001)</td>
       <td>0.280 (+/- 0.000)</td>
     </tr>
@@ -839,15 +2227,15 @@ Name: Sentiment, dtype: int64
   <tbody>
     <tr>
       <th>dummy</th>
+      <td>0.002 (+/- 0.000)</td>
       <td>0.001 (+/- 0.000)</td>
-      <td>0.000 (+/- 0.000)</td>
       <td>0.280 (+/- 0.001)</td>
       <td>0.280 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>logistic regression</th>
-      <td>0.437 (+/- 0.018)</td>
-      <td>0.010 (+/- 0.000)</td>
+      <td>1.914 (+/- 0.119)</td>
+      <td>0.074 (+/- 0.004)</td>
       <td>0.413 (+/- 0.011)</td>
       <td>0.999 (+/- 0.000)</td>
     </tr>
@@ -891,17 +2279,6 @@ Name: Sentiment, dtype: int64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">spacy</span>
 
 <span class="c1"># !python -m spacy download en_core_web_md</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">spacy</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># !python -m spacy download en_core_web_md</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;spacy&#39;
 </pre></div>
 </div>
 </div>
@@ -1216,9 +2593,8 @@ DATE means:  Absolute or relative dates or periods
 </div>
 </div>
 </div>
-</section>
 <section id="simple-feature-engineering-for-our-problem">
-<h3>Simple feature engineering for our problem.<a class="headerlink" href="#simple-feature-engineering-for-our-problem" title="Permalink to this heading">#</a></h3>
+<h4>Simple feature engineering for our problem.<a class="headerlink" href="#simple-feature-engineering-for-our-problem" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">en_core_web_md</span>
@@ -1524,22 +2900,22 @@ DATE means:  Absolute or relative dates or periods
   <tbody>
     <tr>
       <th>dummy</th>
-      <td>0.001 (+/- 0.000)</td>
+      <td>0.002 (+/- 0.000)</td>
       <td>0.001 (+/- 0.000)</td>
       <td>0.280 (+/- 0.001)</td>
       <td>0.280 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>logistic regression</th>
-      <td>1.433 (+/- 0.159)</td>
-      <td>0.053 (+/- 0.001)</td>
+      <td>1.914 (+/- 0.119)</td>
+      <td>0.074 (+/- 0.004)</td>
       <td>0.413 (+/- 0.011)</td>
       <td>0.999 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>LR (more feats)</th>
-      <td>1.998 (+/- 0.280)</td>
-      <td>0.071 (+/- 0.009)</td>
+      <td>2.081 (+/- 0.077)</td>
+      <td>0.090 (+/- 0.001)</td>
       <td>0.689 (+/- 0.007)</td>
       <td>0.998 (+/- 0.001)</td>
     </tr>
@@ -1550,50 +2926,10 @@ DATE means:  Absolute or relative dates or periods
 <p>We get some improvements with our engineered features!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;columntransformer&#x27;,
-                 ColumnTransformer(transformers=[(&#x27;standardscaler&#x27;,
-                                                  StandardScaler(),
-                                                  [&#x27;vader_sentiment&#x27;,
-                                                   &#x27;rel_char_len&#x27;,
-                                                   &#x27;average_word_length&#x27;]),
-                                                 (&#x27;passthrough&#x27;, &#x27;passthrough&#x27;,
-                                                  [&#x27;all_caps&#x27;, &#x27;has_emoji&#x27;]),
-                                                 (&#x27;countvectorizer&#x27;,
-                                                  CountVectorizer(stop_words=&#x27;english&#x27;),
-                                                  &#x27;OriginalTweet&#x27;),
-                                                 (&#x27;drop&#x27;, &#x27;drop&#x27;,
-                                                  [&#x27;UserName&#x27;, &#x27;ScreenName&#x27;,
-                                                   &#x27;Location&#x27;, &#x27;TweetAt&#x27;])])),
-                (&#x27;logisticregression&#x27;, LogisticRegression(max_iter=1000))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;columntransformer&#x27;,
-                 ColumnTransformer(transformers=[(&#x27;standardscaler&#x27;,
-                                                  StandardScaler(),
-                                                  [&#x27;vader_sentiment&#x27;,
-                                                   &#x27;rel_char_len&#x27;,
-                                                   &#x27;average_word_length&#x27;]),
-                                                 (&#x27;passthrough&#x27;, &#x27;passthrough&#x27;,
-                                                  [&#x27;all_caps&#x27;, &#x27;has_emoji&#x27;]),
-                                                 (&#x27;countvectorizer&#x27;,
-                                                  CountVectorizer(stop_words=&#x27;english&#x27;),
-                                                  &#x27;OriginalTweet&#x27;),
-                                                 (&#x27;drop&#x27;, &#x27;drop&#x27;,
-                                                  [&#x27;UserName&#x27;, &#x27;ScreenName&#x27;,
-                                                   &#x27;Location&#x27;, &#x27;TweetAt&#x27;])])),
-                (&#x27;logisticregression&#x27;, LogisticRegression(max_iter=1000))])</pre></div></div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">columntransformer: ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[(&#x27;standardscaler&#x27;, StandardScaler(),
-                                 [&#x27;vader_sentiment&#x27;, &#x27;rel_char_len&#x27;,
-                                  &#x27;average_word_length&#x27;]),
-                                (&#x27;passthrough&#x27;, &#x27;passthrough&#x27;,
-                                 [&#x27;all_caps&#x27;, &#x27;has_emoji&#x27;]),
-                                (&#x27;countvectorizer&#x27;,
-                                 CountVectorizer(stop_words=&#x27;english&#x27;),
-                                 &#x27;OriginalTweet&#x27;),
-                                (&#x27;drop&#x27;, &#x27;drop&#x27;,
-                                 [&#x27;UserName&#x27;, &#x27;ScreenName&#x27;, &#x27;Location&#x27;,
-                                  &#x27;TweetAt&#x27;])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">standardscaler</label><div class="sk-toggleable__content"><pre>[&#x27;vader_sentiment&#x27;, &#x27;rel_char_len&#x27;, &#x27;average_word_length&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">passthrough</label><div class="sk-toggleable__content"><pre>[&#x27;all_caps&#x27;, &#x27;has_emoji&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label sk-toggleable__label-arrow">passthrough</label><div class="sk-toggleable__content"><pre>passthrough</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label sk-toggleable__label-arrow">countvectorizer</label><div class="sk-toggleable__content"><pre>OriginalTweet</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label sk-toggleable__label-arrow">CountVectorizer</label><div class="sk-toggleable__content"><pre>CountVectorizer(stop_words=&#x27;english&#x27;)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>[&#x27;UserName&#x27;, &#x27;ScreenName&#x27;, &#x27;Location&#x27;, &#x27;TweetAt&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox" ><label for="sk-estimator-id-10" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>drop</pre></div></div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-11" type="checkbox" ><label for="sk-estimator-id-11" class="sk-toggleable__label sk-toggleable__label-arrow">LogisticRegression</label><div class="sk-toggleable__content"><pre>LogisticRegression(max_iter=1000)</pre></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1712,327 +3048,9 @@ DATE means:  Absolute or relative dates or periods
 <p>11664 rows × 2 columns</p>
 </div></div></div>
 </div>
+<p>Check <a class="reference internal" href="../Appendix-A.html"><span class="doc std std-doc">Appendix-A</span></a> for commonly used features in text classification.</p>
 </section>
 </section>
-<section id="common-features-used-in-text-classification">
-<h2>Common features used in text classification<a class="headerlink" href="#common-features-used-in-text-classification" title="Permalink to this heading">#</a></h2>
-<section id="bag-of-words">
-<h3>Bag of words<a class="headerlink" href="#bag-of-words" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>So far for text data we have been using bag of word features.</p></li>
-<li><p>They are good enough for many tasks. But …</p></li>
-<li><p>This encoding throws out a lot of things we know about language</p></li>
-<li><p>It assumes that word order is not that important.</p></li>
-<li><p>So if you want to improve the scores further on text classification tasks you carry out <strong>feature engineering</strong>.</p></li>
-</ul>
-</section>
-<section id="example-label-personalized-important-e-mails">
-<h3>Example: Label “Personalized” Important E-mails:<a class="headerlink" href="#example-label-personalized-important-e-mails" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p><a class="reference external" href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/36955.pdf">The Learning Behind Gmail Priority Inbox</a></p></li>
-<li><p>Features: bag of words, trigrams, regular expressions, and so on.</p></li>
-<li><p>There might be some “globally” important messages:</p>
-<ul>
-<li><p>“This is your mother, something terrible happened, give me a call ASAP.”</p></li>
-</ul>
-</li>
-<li><p>But your “important” message may be unimportant to others.</p>
-<ul>
-<li><p>Similar for spam: “spam” for one user could be “not spam” for another.</p></li>
-</ul>
-</li>
-</ul>
-<ul class="simple">
-<li><p>Social features (e.g., percentage of sender emails that is read by the recipient)</p></li>
-<li><p>Content features (e.g., recent terms the user has been using in emails)</p></li>
-<li><p>Thread features (e.g., whether the user has started the thread)</p></li>
-<li><p>…</p></li>
-</ul>
-</section>
-<section id="the-learning-behind-gmail-priority-inbox">
-<h3><a class="reference external" href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/36955.pdf">The Learning Behind Gmail Priority Inbox</a><a class="headerlink" href="#the-learning-behind-gmail-priority-inbox" title="Permalink to this heading">#</a></h3>
-<p><img alt="" src="../../_images/gmail_priority_inbox.png" /></p>
-<!-- <img src="img/gmail_priority_inbox.png" width="1000" height="1000"> --><section id="feature-engineering-examples-automatically-identifying-good-conversations-online">
-<h4>Feature engineering examples: <a class="reference external" href="http://www.courtneynapoles.com/res/icwsm17-automatically.pdf">Automatically Identifying Good Conversations Online</a><a class="headerlink" href="#feature-engineering-examples-automatically-identifying-good-conversations-online" title="Permalink to this heading">#</a></h4>
-<p><img alt="" src="../../_images/classifying_good_conversations_online.png" /></p>
-<!-- <img src="img/classifying_good_conversations_online.png" width="800" height="800"> -->
-</section>
-</section>
-<section id="optional-term-weighing-tf-idf">
-<h3>(Optional) Term weighing (TF-IDF)<a class="headerlink" href="#optional-term-weighing-tf-idf" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>A measure of relatedness between words and documents</p></li>
-<li><p>Intuition: Meaningful words may occur repeatedly in related documents, but functional words (e.g., <em>make</em>, <em>the</em>) may be distributed evenly over all documents</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[tf.idf(w_i,d_j) = (1+log(tf_{ij})) log\frac{D}{df_i}\]</div>
-<p>where,</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(tf_{ij}\)</span> → number of occurrences of the term <span class="math notranslate nohighlight">\(w_i\)</span> in document <span class="math notranslate nohighlight">\(d_j\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(D\)</span> → number of documents</p></li>
-<li><p><span class="math notranslate nohighlight">\(df_i\)</span> → number of documents in which <span class="math notranslate nohighlight">\(w_i\)</span> occurs</p></li>
-</ul>
-<p>Check <code class="docutils literal notranslate"><span class="pre">TfidfVectorizer</span></code> from <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>.</p>
-</section>
-<section id="n-grams">
-<h3>N-grams<a class="headerlink" href="#n-grams" title="Permalink to this heading">#</a></h3>
-<ul>
-<li><p>Incorporating more context</p></li>
-<li><p>A contiguous sequence of <em>n</em> items (characters, tokens) in text.</p>
-  <blockquote>
-      CPSC330 students are hard-working .
-  </blockquote>    
-</li>
-<li><p>2-grams (bigrams): a contiguous sequence of two words</p>
-<ul class="simple">
-<li><p><em>CPSC330 students, students are, are hard-working, hard-working .</em></p></li>
-</ul>
-</li>
-<li><p>3-grams (trigrams): a contiguous sequence of three words</p>
-<ul class="simple">
-<li><p><em>CPSC330 students are, students are hard-working, are hard-working .</em></p></li>
-</ul>
-</li>
-</ul>
-<p>You can extract ngram features using <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code> by passing <code class="docutils literal notranslate"><span class="pre">ngram_range</span></code>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
-
-<span class="n">X</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;URGENT!! As a valued network customer you have been selected to receive a $900 prize reward!&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Lol you are always so convincing.&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;URGENT!! Call right away!!&quot;</span><span class="p">,</span>
-<span class="p">]</span>
-<span class="n">vec</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">X_counts</span> <span class="o">=</span> <span class="n">vec</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">bow_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_counts</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">vec</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="p">)</span>
-<span class="n">bow_df</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>900</th>
-      <th>900 prize</th>
-      <th>900 prize reward</th>
-      <th>always</th>
-      <th>always so</th>
-      <th>always so convincing</th>
-      <th>are</th>
-      <th>are always</th>
-      <th>are always so</th>
-      <th>as</th>
-      <th>...</th>
-      <th>urgent call</th>
-      <th>urgent call right</th>
-      <th>valued</th>
-      <th>valued network</th>
-      <th>valued network customer</th>
-      <th>you</th>
-      <th>you are</th>
-      <th>you are always</th>
-      <th>you have</th>
-      <th>you have been</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>URGENT!! As a valued network customer you have been selected to receive a $900 prize reward!</th>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>Lol you are always so convincing.</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>URGENT!! Call right away!!</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-<p>3 rows × 61 columns</p>
-</div></div></div>
-</div>
-</section>
-<section id="aside-google-n-gram-viewer">
-<h3>ASIDE: <a class="reference external" href="https://books.google.com/ngrams">Google n-gram viewer</a><a class="headerlink" href="#aside-google-n-gram-viewer" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>All Our N-gram are Belong to You</p>
-<ul>
-<li><p>https://ai.googleblog.com/2006/08/all-our-n-gram-are-belong-toyou.html</p></li>
-</ul>
-</li>
-</ul>
-<blockquote>
-Here at Google Research we have been using word n-gram models for a variety
-of R&D projects, such as statistical machine translation, speech recognition,
-spelling correction, entity detection, information extraction, and others.
-That's why we decided to share this enormous dataset with everyone. We
-processed 1,024,908,267,229 words of running text and are publishing the
-counts for all 1,176,470,663 five-word sequences that appear at least 40
-times. There are 13,588,391 unique words, after discarding words that appear
-less than 200 times.”
-</blockquote><div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://books.google.com/ngrams/&quot;</span>
-<span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;&lt;iframe src=</span><span class="si">%s</span><span class="s2"> width=1000 height=800&gt;&lt;/iframe&gt;&quot;</span> <span class="o">%</span> <span class="n">url</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/andrew/.install/opt/mamba/envs/cpsc330/lib/python3.10/site-packages/IPython/core/display.py:431: UserWarning: Consider using IPython.display.IFrame instead
-  warnings.warn(&quot;Consider using IPython.display.IFrame instead&quot;)
-</pre></div>
-</div>
-<div class="output text_html"><iframe src=https://books.google.com/ngrams/ width=1000 height=800></iframe></div></div>
-</div>
-</section>
-<section id="id1">
-<h3>Aside: <a class="reference external" href="https://books.google.com/ngrams">Google n-gram viewer</a><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Count the occurrences of the bigram <em>smart women</em> in the corpus from 1800 to 2000</p></li>
-</ul>
-<p><img alt="" src="../../_images/ngram_viewer_smart_woman.png" /></p>
-<!-- <img src="img/ngram_viewer_smart_woman.png" width="800" height="800"> --></section>
-<section id="id2">
-<h3>Aside: <a class="reference external" href="https://books.google.com/ngrams">Google n-gram viewer</a><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Trends in the word <em>challenge</em> used as a noun vs. verb</p></li>
-</ul>
-<p><img alt="" src="../../_images/ngram_viewer_challenge_NN_VB.png" /></p>
-<!-- <img src="img/ngram_viewer_challenge_NN_VB.png" width="800" height="800"> --></section>
-<section id="part-of-speech-features">
-<h3>Part-of-speech features<a class="headerlink" href="#part-of-speech-features" title="Permalink to this heading">#</a></h3>
-<section id="part-of-speech-pos-in-english">
-<h4>Part-of-speech (POS) in English<a class="headerlink" href="#part-of-speech-pos-in-english" title="Permalink to this heading">#</a></h4>
-<ul class="simple">
-<li><p>Part-of-speech: A kind of syntactic category that tells you some of the grammatical properties of a word.</p>
-<ul>
-<li><p>Noun → water, sun, cat</p></li>
-<li><p>Verb → run, eat, teach</p></li>
-</ul>
-</li>
-</ul>
-<blockquote>
-The ____ was running. 
-</blockquote>    
-<ul class="simple">
-<li><p>Only a noun fits here.</p></li>
-</ul>
-</section>
-</section>
-<section id="part-of-speech-pos-features">
-<h3>Part-of-speech (POS) features<a class="headerlink" href="#part-of-speech-pos-features" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>POS features use POS information for the words in text.</p></li>
-</ul>
-<blockquote>
-    CPSC330/<span style="color:green">PROPER_NOUN</span> students/<span style="color:green">NOUN</span> are/<span style="color:green">VERB</span> hard-working/<span style="color:green">ADJECTIVE</span>
-</blockquote>    
-</section>
-<section id="id3">
-<h3>An example from a project<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Data: a bunch of documents</p></li>
-<li><p>Task: identify texts with <em>permissions</em> and identify who is giving permission to whom.</p></li>
-</ul>
-<blockquote>
-<b>You</b> may <b>disclose</b> Google confidential information when compelled to do so by law if <b>you</b> provide <b>us</b> reasonable prior notice, unless a court orders that <b>we</b> not receive notice.
-</blockquote>
-<ul class="simple">
-<li><p>A very simple solution</p>
-<ul>
-<li><p>Look for pronouns and verbs.</p></li>
-<li><p>Add POS tags as features in your model.</p></li>
-<li><p>Maybe look up words similar to <strong>disclose</strong>.</p></li>
-</ul>
-</li>
-</ul>
-</section>
-<section id="penn-treebank-part-of-speech-tags-bonus">
-<h3>Penn Treebank part-of-speech tags (bonus)<a class="headerlink" href="#penn-treebank-part-of-speech-tags-bonus" title="Permalink to this heading">#</a></h3>
-<p><img alt="" src="../../_images/PTB_POS.png" /></p>
-<!-- <img src="img/PTB_POS.png" width="900" height="900"/> --></section>
 <section id="interim-summary">
 <h3>Interim summary<a class="headerlink" href="#interim-summary" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
@@ -2098,7 +3116,7 @@ The ____ was running.
 <ul class="simple">
 <li><p>There are a number of ways.</p></li>
 <li><p>You could use domain knowledge to discard features.</p></li>
-<li><p>We are briefly going to look at two automatic feature selection methods from <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>:</p>
+<li><p>We are briefly going to look at some automatic feature selection methods from <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>:</p>
 <ul>
 <li><p>Model-based selection</p></li>
 <li><p>Recursive feature elimination</p></li>
@@ -2111,10 +3129,190 @@ The ____ was running.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_breast_cancer</span>
 
-<span class="n">cancer</span> <span class="o">=</span> <span class="n">load_breast_cancer</span><span class="p">()</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
-    <span class="n">cancer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">cancer</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">load_breast_cancer</span><span class="p">(</span><span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s2">&quot;frame&quot;</span><span class="p">]</span>
+<span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span>
 <span class="p">)</span>
+<span class="n">train_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean radius</th>
+      <th>mean texture</th>
+      <th>mean perimeter</th>
+      <th>mean area</th>
+      <th>mean smoothness</th>
+      <th>mean compactness</th>
+      <th>mean concavity</th>
+      <th>mean concave points</th>
+      <th>mean symmetry</th>
+      <th>mean fractal dimension</th>
+      <th>...</th>
+      <th>worst texture</th>
+      <th>worst perimeter</th>
+      <th>worst area</th>
+      <th>worst smoothness</th>
+      <th>worst compactness</th>
+      <th>worst concavity</th>
+      <th>worst concave points</th>
+      <th>worst symmetry</th>
+      <th>worst fractal dimension</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>395</th>
+      <td>14.06</td>
+      <td>17.18</td>
+      <td>89.75</td>
+      <td>609.1</td>
+      <td>0.08045</td>
+      <td>0.05361</td>
+      <td>0.02681</td>
+      <td>0.03251</td>
+      <td>0.1641</td>
+      <td>0.05764</td>
+      <td>...</td>
+      <td>25.34</td>
+      <td>96.42</td>
+      <td>684.5</td>
+      <td>0.1066</td>
+      <td>0.1231</td>
+      <td>0.0846</td>
+      <td>0.07911</td>
+      <td>0.2523</td>
+      <td>0.06609</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>393</th>
+      <td>21.61</td>
+      <td>22.28</td>
+      <td>144.40</td>
+      <td>1407.0</td>
+      <td>0.11670</td>
+      <td>0.20870</td>
+      <td>0.28100</td>
+      <td>0.15620</td>
+      <td>0.2162</td>
+      <td>0.06606</td>
+      <td>...</td>
+      <td>28.74</td>
+      <td>172.00</td>
+      <td>2081.0</td>
+      <td>0.1502</td>
+      <td>0.5717</td>
+      <td>0.7053</td>
+      <td>0.24220</td>
+      <td>0.3828</td>
+      <td>0.10070</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>381</th>
+      <td>11.04</td>
+      <td>14.93</td>
+      <td>70.67</td>
+      <td>372.7</td>
+      <td>0.07987</td>
+      <td>0.07079</td>
+      <td>0.03546</td>
+      <td>0.02074</td>
+      <td>0.2003</td>
+      <td>0.06246</td>
+      <td>...</td>
+      <td>20.83</td>
+      <td>79.73</td>
+      <td>447.1</td>
+      <td>0.1095</td>
+      <td>0.1982</td>
+      <td>0.1553</td>
+      <td>0.06754</td>
+      <td>0.3202</td>
+      <td>0.07287</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>198</th>
+      <td>19.18</td>
+      <td>22.49</td>
+      <td>127.50</td>
+      <td>1148.0</td>
+      <td>0.08523</td>
+      <td>0.14280</td>
+      <td>0.11140</td>
+      <td>0.06772</td>
+      <td>0.1767</td>
+      <td>0.05529</td>
+      <td>...</td>
+      <td>32.06</td>
+      <td>166.40</td>
+      <td>1688.0</td>
+      <td>0.1322</td>
+      <td>0.5601</td>
+      <td>0.3865</td>
+      <td>0.17080</td>
+      <td>0.3193</td>
+      <td>0.09221</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>11.90</td>
+      <td>14.65</td>
+      <td>78.11</td>
+      <td>432.8</td>
+      <td>0.11520</td>
+      <td>0.12960</td>
+      <td>0.03710</td>
+      <td>0.03003</td>
+      <td>0.1995</td>
+      <td>0.07839</td>
+      <td>...</td>
+      <td>16.51</td>
+      <td>86.26</td>
+      <td>509.6</td>
+      <td>0.1424</td>
+      <td>0.2517</td>
+      <td>0.0942</td>
+      <td>0.06042</td>
+      <td>0.2727</td>
+      <td>0.10360</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 31 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">])</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
+
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">])</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
+
 <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
@@ -2127,17 +3325,14 @@ The ____ was running.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_lr_all_feats</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">))</span>
-<span class="n">pipe_lr_all_feats</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-    <span class="n">cross_validate</span><span class="p">(</span><span class="n">pipe_lr_all_feats</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_l2_pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">))</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cross_validate</span><span class="p">(</span><span class="n">lr_l2_pipe</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.005214
-score_time     0.000817
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.007631
+score_time     0.001830
 test_score     0.968233
 train_score    0.987681
 dtype: float64
@@ -2145,6 +3340,209 @@ dtype: float64
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_l2_pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">lr_l2_pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;logisticregression&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mean radius               -0.219333
+mean texture              -0.543376
+mean perimeter            -0.215956
+mean area                 -0.293937
+mean smoothness           -0.065450
+mean compactness           0.192030
+mean concavity            -0.655450
+mean concave points       -0.850999
+mean symmetry             -0.446818
+mean fractal dimension     0.095681
+radius error              -1.314711
+texture error             -0.027409
+perimeter error           -0.857302
+area error                -0.756209
+smoothness error           0.329308
+compactness error          0.836200
+concavity error            0.020990
+concave points error      -0.306175
+symmetry error             0.135889
+fractal dimension error    0.875058
+worst radius              -0.799151
+worst texture             -0.688446
+worst perimeter           -0.626146
+worst area                -0.689233
+worst smoothness          -0.384255
+worst compactness         -0.047503
+worst concavity           -0.860896
+worst concave points      -1.091686
+worst symmetry            -0.357159
+worst fractal dimension   -0.436556
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="linear-models-recap">
+<h3>Linear models recap<a class="headerlink" href="#linear-models-recap" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Recall that in linear regression our predictons are given by
+$<span class="math notranslate nohighlight">\(\hat{y_i} = \sum_j w_j x_{i j} + b\)</span>$</p></li>
+<li><p>To estimate the coefficients <span class="math notranslate nohighlight">\(w_j\)</span>, linear regression tries to minimize the following equation
+$<span class="math notranslate nohighlight">\( \sum_i |\hat{y_i} - y_i|^2\)</span>$
+that is the squared error between predicted and observed values.</p></li>
+</ul>
+<section id="ridge-regression-l2-penalty">
+<h4>Ridge regression (L2 penalty)<a class="headerlink" href="#ridge-regression-l2-penalty" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>In this course we have said to use Ridge instead of LinearRegression to avoid overfitting the coefficients</p></li>
+<li><p>In Ridge regression we still predict values using <span class="math notranslate nohighlight">\(\hat{y_i} = \sum_j w_j x_{i j} + b\)</span></p></li>
+<li><p>But to estimate the coefficients we <strong>minimize</strong> a different equation
+<br>
+$<span class="math notranslate nohighlight">\( \sum_i |\hat{y_i} - y_i|^2 + \alpha \sum_j |w_j|^2 \)</span>$</p></li>
+<li><p>The term <span class="math notranslate nohighlight">\(\sum_j |w_j|^2\)</span> is a penalty which discourages large coefficients.</p></li>
+<li><p>The strength of the penalty is controlled by <span class="math notranslate nohighlight">\(\alpha\)</span> which we have seen can be tuned using cross-validation.</p></li>
+</ul>
+</section>
+<section id="lasso-regression-l1-penalty">
+<h4>Lasso regression (L1 penalty)<a class="headerlink" href="#lasso-regression-l1-penalty" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>We can consider other penalties instead of <span class="math notranslate nohighlight">\(\sum_j |w_j|^2\)</span>.</p>
+<ul>
+<li><p>But we still predict values using <span class="math notranslate nohighlight">\(\hat{y_i} = \sum_j w_j x_{i j} + b\)</span></p></li>
+</ul>
+</li>
+<li><p>A very common choice of penalty to use the absolute value <span class="math notranslate nohighlight">\(\sum_j |w_j|\)</span></p>
+<ul>
+<li><p>This called the L1 norm because the absolute value is to the power 1</p></li>
+</ul>
+</li>
+<li><p>To estimate the coefficients we <strong>minimize</strong>
+<br>
+$<span class="math notranslate nohighlight">\( \sum_i |\hat{y_i} - y_i|^2 + \alpha \sum_j |w_j| \)</span>$</p></li>
+<li><p>This is callled Lasso regression and is implemented in the <code class="docutils literal notranslate"><span class="pre">sklearn.linear_model.Lasso</span></code> class</p></li>
+<li><p>An interesting feature of using the L1 penalty is that it will often set coefficients to zero!</p>
+<ul>
+<li><p>This can be considered a form of feature selection.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="logistic-regression-l1-and-l2">
+<h4>Logistic regression (L1 and L2)<a class="headerlink" href="#logistic-regression-l1-and-l2" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>We have focused on linear regression so far, but the same ideas apply to LogisticRegression.</p></li>
+<li><p>The two main differences:</p>
+<ol class="arabic simple">
+<li><p>We use a sigmoid for predicting i.e. <span class="math notranslate nohighlight">\(\hat{y_i} = \sigma(\sum_j w_j x_{i j} + b)\)</span>
+<br></p></li>
+<li><p>We replace <span class="math notranslate nohighlight">\(|\hat{y_i} - y_i|^2\)</span> with a different equation appropriate for classification.</p></li>
+</ol>
+</li>
+<li><p>By default scikit-learn uses an L2 penalty for LogisticRegression.</p>
+<ul>
+<li><p>You can change this using the <code class="docutils literal notranslate"><span class="pre">penalty</span></code> argument.</p></li>
+<li><p>You may have to also change the <code class="docutils literal notranslate"><span class="pre">solver</span></code> argument.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_l1_pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
+    <span class="n">StandardScaler</span><span class="p">(),</span>
+    <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">penalty</span><span class="o">=</span><span class="s2">&quot;l1&quot;</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s2">&quot;liblinear&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cross_validate</span><span class="p">(</span><span class="n">lr_l1_pipe</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.004590
+score_time     0.001571
+test_score     0.968296
+train_score    0.986803
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_l1_pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">lr_l1_pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;logisticregression&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mean radius                0.000000
+mean texture              -0.171052
+mean perimeter             0.000000
+mean area                  0.000000
+mean smoothness            0.000000
+mean compactness           0.000000
+mean concavity             0.000000
+mean concave points       -0.437340
+mean symmetry             -0.366957
+mean fractal dimension     0.000000
+radius error              -2.899951
+texture error              0.000000
+perimeter error            0.000000
+area error                 0.000000
+smoothness error           0.000000
+compactness error          0.605914
+concavity error            0.000000
+concave points error       0.000000
+symmetry error             0.000000
+fractal dimension error    0.765894
+worst radius              -2.237705
+worst texture             -1.020974
+worst perimeter            0.000000
+worst area                 0.000000
+worst smoothness           0.000000
+worst compactness          0.000000
+worst concavity           -1.256502
+worst concave points      -2.353609
+worst symmetry            -0.065019
+worst fractal dimension    0.000000
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;L1 logistic regression uses </span><span class="si">{}</span><span class="s2"> features&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">lr_l1_pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;logisticregression&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;L2 logistic regression uses </span><span class="si">{}</span><span class="s2"> features&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">lr_l2_pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;logisticregression&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>L1 logistic regression uses 11 features
+L2 logistic regression uses 30 features
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="l1-vs-l2-penalty-summary">
+<h4>L1 vs L2 penalty summary<a class="headerlink" href="#l1-vs-l2-penalty-summary" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>The L1 penalty will usually set some coefficients to zero</p></li>
+<li><p>The L2 penalty will make coefficients smaller but rarely set them to zero</p></li>
+<li><p>When correlated variables are present:</p>
+<ul>
+<li><p>L1 will usually keep one and set the other coefficients to zero</p></li>
+<li><p>L2 will usually shrink the coefficient of all of them</p></li>
+</ul>
+</li>
+<li><p>L1 and L2 penalties can be combined!</p>
+<ul>
+<li><p>This is called the <strong>elastic net</strong> penalty and is available in sklearn.</p></li>
+</ul>
+</li>
+</ul>
+</section>
 </section>
 <section id="model-based-selection">
 <h3>Model-based selection<a class="headerlink" href="#model-based-selection" title="Permalink to this heading">#</a></h3>
@@ -2187,8 +3585,8 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.139829
-score_time     0.008677
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.187817
+score_time     0.011451
 test_score     0.950564
 train_score    0.974480
 dtype: float64
@@ -2196,6 +3594,7 @@ dtype: float64
 </div>
 </div>
 </div>
+<p>Note that RandomForest is doing the feature selction and LogisticRegression is doing the classification with the reduced set of features.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_lr_model_based</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
@@ -2204,12 +3603,70 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/andrew/.install/opt/mamba/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:458: UserWarning: X has feature names, but SelectFromModel was fitted without feature names
+  warnings.warn(
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(284, 15)
 </pre></div>
 </div>
 </div>
 </div>
-<p>Similar results with only 15 features instead of 30 features.</p>
+<ul class="simple">
+<li><p>Similar results with only 15 features instead of 30 features.</p></li>
+<li><p>Interestingly L1 regularization does better with fewer features here but that will vary on other data.</p></li>
+</ul>
+<p>Can we use KNN to select features?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">select_knn</span> <span class="o">=</span> <span class="n">SelectFromModel</span><span class="p">(</span>
+    <span class="n">KNeighborsClassifier</span><span class="p">(),</span> 
+    <span class="n">threshold</span><span class="o">=</span><span class="s2">&quot;median&quot;</span>
+<span class="p">)</span>
+
+<span class="n">pipe_lr_model_based</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
+    <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">select_knn</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1">#pd.DataFrame(</span>
+<span class="c1">#    cross_validate(pipe_lr_model_based, X_train, y_train, return_train_score=True)#</span>
+<span class="c1">#).mean()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>No</strong> KNN won’t work since it does not report feature importances.</p>
+<p>What about SVC?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">select_svc</span> <span class="o">=</span> <span class="n">SelectFromModel</span><span class="p">(</span>
+    <span class="n">SVC</span><span class="p">(),</span> <span class="n">threshold</span><span class="o">=</span><span class="s2">&quot;median&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># pipe_lr_model_based = make_pipeline(</span>
+<span class="c1">#     StandardScaler(), select_svc, LogisticRegression(max_iter=1000)</span>
+<span class="c1"># )</span>
+
+<span class="c1"># pd.DataFrame(</span>
+<span class="c1">#    cross_validate(pipe_lr_model_based, X_train, y_train, return_train_score=True)</span>
+<span class="c1"># ).mean()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Only with a linear kernel but not with RBF kernel</p>
+</section>
+<section id="iclicker-exercise-13-2">
+<h3>(iClicker) Exercise 13.2<a class="headerlink" href="#iclicker-exercise-13-2" title="Permalink to this heading">#</a></h3>
+<p><strong>iClicker cloud join link: https://join.iclicker.com/SNBF</strong></p>
+<p><strong>Select all of the following statements which are TRUE.</strong></p>
+<ul class="simple">
+<li><p>(A) L2 regularized logistic regression sets correlated coefficients to zero</p></li>
+<li><p>(B) Lasso regression predicts values using <span class="math notranslate nohighlight">\(\hat{y_i} = \sum_j w_j x_{i j} + b\)</span></p></li>
+<li><p>(C) Lasso and Ridge regression optimize different measures of difference between predicted and observe target values</p></li>
+<li><p>(D) KNN and SVM RBF can be used with SelectFromModel</p></li>
+<li><p>(E) I saw way to much math today!</p></li>
+</ul>
 </section>
 <section id="recursive-feature-elimination-rfe">
 <h3>Recursive feature elimination (RFE)<a class="headerlink" href="#recursive-feature-elimination-rfe" title="Permalink to this heading">#</a></h3>
@@ -2273,13 +3730,14 @@ dtype: float64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;selected features: &quot;</span><span class="p">,</span> <span class="n">cancer</span><span class="o">.</span><span class="n">feature_names</span><span class="p">[</span><span class="n">rfe</span><span class="o">.</span><span class="n">support_</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;selected features: &quot;</span><span class="p">,</span> <span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">rfe</span><span class="o">.</span><span class="n">support_</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>selected features:  [&#39;mean concave points&#39; &#39;worst radius&#39; &#39;worst texture&#39; &#39;worst perimeter&#39;
- &#39;worst concave points&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>selected features:  Index([&#39;mean concave points&#39;, &#39;worst radius&#39;, &#39;worst texture&#39;,
+       &#39;worst perimeter&#39;, &#39;worst concave points&#39;],
+      dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
@@ -2298,7 +3756,7 @@ dtype: float64
 <span class="n">rfe_cv</span> <span class="o">=</span> <span class="n">RFECV</span><span class="p">(</span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">2000</span><span class="p">),</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">rfe_cv</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">rfe_cv</span><span class="o">.</span><span class="n">support_</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">cancer</span><span class="o">.</span><span class="n">feature_names</span><span class="p">[</span><span class="n">rfe_cv</span><span class="o">.</span><span class="n">support_</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">rfe_cv</span><span class="o">.</span><span class="n">support_</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2306,11 +3764,12 @@ dtype: float64
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[False  True False  True False False  True  True  True False  True False
   True  True False  True False False False  True  True  True  True  True
  False False  True  True False  True]
-[&#39;mean texture&#39; &#39;mean area&#39; &#39;mean concavity&#39; &#39;mean concave points&#39;
- &#39;mean symmetry&#39; &#39;radius error&#39; &#39;perimeter error&#39; &#39;area error&#39;
- &#39;compactness error&#39; &#39;fractal dimension error&#39; &#39;worst radius&#39;
- &#39;worst texture&#39; &#39;worst perimeter&#39; &#39;worst area&#39; &#39;worst concavity&#39;
- &#39;worst concave points&#39; &#39;worst fractal dimension&#39;]
+Index([&#39;mean texture&#39;, &#39;mean area&#39;, &#39;mean concavity&#39;, &#39;mean concave points&#39;,
+       &#39;mean symmetry&#39;, &#39;radius error&#39;, &#39;perimeter error&#39;, &#39;area error&#39;,
+       &#39;compactness error&#39;, &#39;fractal dimension error&#39;, &#39;worst radius&#39;,
+       &#39;worst texture&#39;, &#39;worst perimeter&#39;, &#39;worst area&#39;, &#39;worst concavity&#39;,
+       &#39;worst concave points&#39;, &#39;worst fractal dimension&#39;],
+      dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
@@ -2329,8 +3788,8 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       1.056696
-score_time     0.005414
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       1.430083
+score_time     0.008701
 test_score     0.943609
 train_score    1.000000
 dtype: float64
@@ -2343,8 +3802,8 @@ dtype: float64
 <li><p>Not a big improvement in scores compared to all features on this toy case</p></li>
 </ul>
 </section>
-<section id="search-and-score">
-<h3>Search and score<a class="headerlink" href="#search-and-score" title="Permalink to this heading">#</a></h3>
+<section id="optional-search-and-score">
+<h3>(Optional) Search and score<a class="headerlink" href="#optional-search-and-score" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Define a <strong>scoring function</strong> <span class="math notranslate nohighlight">\(f(S)\)</span> that measures the quality of the set of features <span class="math notranslate nohighlight">\(S\)</span>.</p></li>
 <li><p>Now <strong>search</strong> for the set of features <span class="math notranslate nohighlight">\(S\)</span> with the best score.</p></li>
@@ -2366,11 +3825,11 @@ dtype: float64
 </ul>
 </li>
 <li><p>Return <span class="math notranslate nohighlight">\(S\)</span> with the best score.</p></li>
-<li><p>How many distinct combinations we have to try out?</p></li>
+<li><p>How many distinct combinations do we have to try out?</p></li>
 </ul>
 </section>
-<section id="forward-or-backward-selection">
-<h3>Forward or backward selection<a class="headerlink" href="#forward-or-backward-selection" title="Permalink to this heading">#</a></h3>
+<section id="optional-forward-or-backward-selection">
+<h3>(Optional) Forward or backward selection<a class="headerlink" href="#optional-forward-or-backward-selection" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Also called wrapper methods</p></li>
 <li><p>Shrink or grow feature set by removing or adding one feature at a time</p></li>
@@ -2396,8 +3855,8 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       5.210608
-score_time     0.005859
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       6.934771
+score_time     0.008274
 test_score     0.933020
 train_score    1.000000
 dtype: float64
@@ -2417,13 +3876,13 @@ dtype: float64
 <span class="p">)</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
     <span class="n">cross_validate</span><span class="p">(</span><span class="n">pipe_forward</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       6.480040
-score_time     0.005952
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       8.221132
+score_time     0.008003
 test_score     0.950627
 train_score    1.000000
 dtype: float64
@@ -2462,8 +3921,8 @@ dtype: float64
 </li>
 </ul>
 </section>
-<section id="iclicker-exercise-13-1">
-<h3>(iClicker) Exercise 13.1<a class="headerlink" href="#iclicker-exercise-13-1" title="Permalink to this heading">#</a></h3>
+<section id="iclicker-exercise-13-3">
+<h3>(iClicker) Exercise 13.3<a class="headerlink" href="#iclicker-exercise-13-3" title="Permalink to this heading">#</a></h3>
 <p><strong>iClicker cloud join link: https://join.iclicker.com/3DP5H</strong></p>
 <p><strong>Select all of the following statements which are TRUE.</strong></p>
 <ul class="simple">
@@ -2471,6 +3930,7 @@ dtype: float64
 <li><p>(B) You can carry out feature selection using linear models by pruning the features which have very small weights (i.e., coefficients less than a threshold).</p></li>
 <li><p>(C) Forward search is guaranteed to find the best feature set.</p></li>
 <li><p>(D) The order of features removed given by <code class="docutils literal notranslate"><span class="pre">rfe.ranking_</span></code> is the same as the order of original feature importances given by the model.</p></li>
+<li><p>(E) If you remove 10 features in a single step based on feature importance, the same 10 features would be removed if we performed sequential removal calculating feature importance after removing each feature.</p></li>
 </ul>
 </section>
 <section id="optional-problems-with-feature-selection">
@@ -2502,8 +3962,8 @@ dtype: float64
 </ul>
 <a class="reference internal image-reference" href="../../_images/SNP.png"><img alt="../../_images/SNP.png" src="../../_images/SNP.png" style="width: 400px; height: 400px;" /></a>
 </section>
-<section id="id4">
-<h4>Is “Relevance” clearly defined?<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h4>
+<section id="id2">
+<h4>Is “Relevance” clearly defined?<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>What if “mom” feature is repeated?</p></li>
 <li><p>Should we pick both? Should we pick one of them because it predicts the other?</p></li>
@@ -2515,8 +3975,8 @@ dtype: float64
 </ul>
 <a class="reference internal image-reference" href="../../_images/sex_mom_mom2_dad.png"><img alt="../../_images/sex_mom_mom2_dad.png" src="../../_images/sex_mom_mom2_dad.png" style="width: 600px; height: 600px;" /></a>
 </section>
-<section id="id5">
-<h4>Is “Relevance” clearly defined?<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h4>
+<section id="id3">
+<h4>Is “Relevance” clearly defined?<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>What if we add (maternal) “grandma” feature?</p></li>
 <li><p>Is it relevant?</p>
@@ -2533,8 +3993,8 @@ dtype: float64
 </ul>
 <a class="reference internal image-reference" href="../../_images/sex_mom_dad_grandma.png"><img alt="../../_images/sex_mom_dad_grandma.png" src="../../_images/sex_mom_dad_grandma.png" style="width: 600px; height: 600px;" /></a>
 </section>
-<section id="id6">
-<h4>Is “Relevance” clearly defined?<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h4>
+<section id="id4">
+<h4>Is “Relevance” clearly defined?<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>What if we do not know biological mom feature and we just have grandma feature</p></li>
 <li><p>It becomes relevant now.</p>
@@ -2550,8 +4010,8 @@ dtype: float64
 </ul>
 <a class="reference internal image-reference" href="../../_images/sex_dad_grandma.png"><img alt="../../_images/sex_dad_grandma.png" src="../../_images/sex_dad_grandma.png" style="width: 600px; height: 600px;" /></a>
 </section>
-<section id="id7">
-<h4>Is “Relevance” clearly defined?<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h4>
+<section id="id5">
+<h4>Is “Relevance” clearly defined?<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Are there any relevant features now?</p></li>
 <li><p>They may have some common maternal ancestor.</p></li>
@@ -2564,8 +4024,8 @@ dtype: float64
 </ul>
 <a class="reference internal image-reference" href="../../_images/sex_dad.png"><img alt="../../_images/sex_dad.png" src="../../_images/sex_dad.png" style="width: 600px; height: 600px;" /></a>
 </section>
-<section id="id8">
-<h4>Is “Relevance” clearly defined?<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h4>
+<section id="id6">
+<h4>Is “Relevance” clearly defined?<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Now what if we have “sibling” feature?</p></li>
 <li><p>The feature is relevant in predicting SNP but not the cause of SNP.</p></li>
@@ -2577,8 +4037,8 @@ dtype: float64
 </ul>
 <a class="reference internal image-reference" href="../../_images/sex_dad_sibling.png"><img alt="../../_images/sex_dad_sibling.png" src="../../_images/sex_dad_sibling.png" style="width: 600px; height: 600px;" /></a>
 </section>
-<section id="id9">
-<h4>Is “Relevance” clearly defined?<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h4>
+<section id="id7">
+<h4>Is “Relevance” clearly defined?<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>What if you are given “baby” feature?</p></li>
 <li><p>Now the sex feature becomes relevant.</p>
@@ -2594,8 +4054,8 @@ dtype: float64
 </ul>
 <a class="reference internal image-reference" href="../../_images/sex_dad_baby.png"><img alt="../../_images/sex_dad_baby.png" src="../../_images/sex_dad_baby.png" style="width: 600px; height: 600px;" /></a>
 </section>
-<section id="id10">
-<h4>Warnings about feature selection<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h4>
+<section id="id8">
+<h4>Warnings about feature selection<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>A feature is only relevant in the context of other features.</p>
 <ul>
@@ -2676,43 +4136,29 @@ dtype: float64
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#announcements">Announcements</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes">Learning outcomes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering-motivation">Feature engineering: Motivation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-13-1">iClicker Exercise 13.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#garbage-in-garbage-out">Garbage in, garbage out.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activity-how-can-you-measure-quality-of-the-data-3-mins">Activity: How can you measure quality of the data? (~3 mins)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-feature-engineering">What is feature engineering?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-quotes-on-feature-engineering">Some quotes on feature engineering</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#better-features-usually-help-more-than-a-better-model">Better features usually help more than a better model.</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-best-features-may-be-dependent-on-the-model-you-use">The best features may be dependent on the model you use.</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-specific-transformations">Domain-specific transformations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Domain-specific transformations</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering-for-text-data">Feature engineering for text data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-interactions-and-feature-crosses">Feature interactions and feature crosses</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-crosses-for-one-hot-encoded-features">Feature crosses for one-hot encoded features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-of-feature-engineering-with-numeric-features">Demo of feature engineering with numeric features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-of-feature-engineering-for-text-data">Demo of feature engineering for text data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#baseline">Baseline</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bag-of-words-model">Bag-of-words model</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#is-it-possible-to-further-improve-the-scores">Is it possible to further improve the scores?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spacy">spaCy</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-from-a-project">An example from a project</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-feature-engineering-for-our-problem">Simple feature engineering for our problem.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-from-a-project">An example from a project</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-feature-engineering-for-our-problem">Simple feature engineering for our problem.</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-features-used-in-text-classification">Common features used in text classification</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bag-of-words">Bag of words</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-label-personalized-important-e-mails">Example: Label “Personalized” Important E-mails:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-learning-behind-gmail-priority-inbox">The Learning Behind Gmail Priority Inbox</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering-examples-automatically-identifying-good-conversations-online">Feature engineering examples: Automatically Identifying Good Conversations Online</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-term-weighing-tf-idf">(Optional) Term weighing (TF-IDF)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n-grams">N-grams</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aside-google-n-gram-viewer">ASIDE: Google n-gram viewer</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Aside: Google n-gram viewer</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Aside: Google n-gram viewer</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-of-speech-features">Part-of-speech features</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#part-of-speech-pos-in-english">Part-of-speech (POS) in English</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-of-speech-pos-features">Part-of-speech (POS) features</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">An example from a project</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penn-treebank-part-of-speech-tags-bonus">Penn Treebank part-of-speech tags (bonus)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interim-summary">Interim summary</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering">Feature engineering</a></li>
 </ul>
@@ -2721,25 +4167,33 @@ dtype: float64
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-feature-selection">What is feature selection?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-feature-selection">Why feature selection?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-carry-out-feature-selection">How do we carry out feature selection?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-models-recap">Linear models recap</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression-l2-penalty">Ridge regression (L2 penalty)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso-regression-l1-penalty">Lasso regression (L1 penalty)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression-l1-and-l2">Logistic regression (L1 and L2)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#l1-vs-l2-penalty-summary">L1 vs L2 penalty summary</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-based-selection">Model-based selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-13-2">(iClicker) Exercise 13.2</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursive-feature-elimination-rfe">Recursive feature elimination (RFE)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rfe-algorithm">RFE algorithm</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#search-and-score">Search and score</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-search-and-score">(Optional) Search and score</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-idea-of-search-and-score-methods">General idea of search and score methods</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-or-backward-selection">Forward or backward selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-forward-or-backward-selection">(Optional) Forward or backward selection</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-ways-to-search">Other ways to search</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#warnings-about-feature-selection">Warnings about feature selection</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-13-1">(iClicker) Exercise 13.1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-13-3">(iClicker) Exercise 13.3</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-problems-with-feature-selection">(Optional) Problems with feature selection</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-is-relevance-clearly-defined">Example: Is “Relevance” clearly defined?</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#is-relevance-clearly-defined">Is “Relevance” clearly defined?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Is “Relevance” clearly defined?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Is “Relevance” clearly defined?</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Is “Relevance” clearly defined?</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Is “Relevance” clearly defined?</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Is “Relevance” clearly defined?</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Is “Relevance” clearly defined?</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Is “Relevance” clearly defined?</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Is “Relevance” clearly defined?</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Warnings about feature selection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Warnings about feature selection</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#relevant-resources">Relevant resources</a></li>
 </ul>
 </li>

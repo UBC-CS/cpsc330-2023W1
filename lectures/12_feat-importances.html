@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/12_feat-importances';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Lecture 14: Midterm review guiding questions" href="midterm-review-guiding-questions.html" />
+    <link rel="next" title="Lecture 13: Feature engineering and feature selection" href="13_feature-engineering-selection.html" />
     <link rel="prev" title="Lecture 11: Ensembles" href="11_ensembles.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -170,7 +170,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="10_regression-metrics.html">Lecture 10: Regression metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_ensembles.html">Lecture 11: Ensembles</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 12: Feature importances and model transparency</a></li>
-<li class="toctree-l1"><a class="reference internal" href="midterm-review-guiding-questions.html">Lecture 14: Midterm review guiding questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_feature-engineering-selection.html">Lecture 13: Feature engineering and feature selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_K-Means.html">Lecture 14: K-Means Clustering</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -178,6 +179,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="class_demos/04_class-demo.html">Lecture 4: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="class_demos/05-06_class-demo.html">Lectures 5 and 6: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="class_demos/07_class-demo.html">Lectures 7: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/09_class-demo.html">Exploring classification metrics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="class_demos/14_class-demo.html">Let’s cluster images!!</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -486,6 +490,7 @@ document.write(`
 </ul>
 </li>
 <li><p>HW5 is available.</p></li>
+<li><p>My OH on Thursday has been cancelled. I’ll hold OH on Tuesday instead.</p></li>
 </ul>
 <p><br><br></p>
 <p>I’m using <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> in this lecture for easy heatmap plotting, which is not in the course environment. You can install it as follows.</p>
@@ -833,36 +838,36 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;SaleCondition&#39;,
- &#39;SaleType&#39;,
- &#39;Exterior2nd&#39;,
- &#39;Neighborhood&#39;,
- &#39;Exterior1st&#39;,
- &#39;Utilities&#39;,
- &#39;Street&#39;,
- &#39;LotShape&#39;,
- &#39;MSZoning&#39;,
- &#39;LandSlope&#39;,
- &#39;GarageType&#39;,
- &#39;Condition1&#39;,
- &#39;MiscFeature&#39;,
- &#39;RoofStyle&#39;,
- &#39;BldgType&#39;,
- &#39;RoofMatl&#39;,
- &#39;HouseStyle&#39;,
- &#39;MasVnrType&#39;,
- &#39;Electrical&#39;,
- &#39;Heating&#39;,
- &#39;GarageFinish&#39;,
- &#39;PavedDrive&#39;,
- &#39;Alley&#39;,
- &#39;LotConfig&#39;,
- &#39;MoSold&#39;,
- &#39;MSSubClass&#39;,
- &#39;Condition2&#39;,
- &#39;CentralAir&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Electrical&#39;,
  &#39;LandContour&#39;,
- &#39;Foundation&#39;]
+ &#39;MoSold&#39;,
+ &#39;Utilities&#39;,
+ &#39;LandSlope&#39;,
+ &#39;BldgType&#39;,
+ &#39;Neighborhood&#39;,
+ &#39;Heating&#39;,
+ &#39;Exterior1st&#39;,
+ &#39;Condition1&#39;,
+ &#39;RoofStyle&#39;,
+ &#39;GarageType&#39;,
+ &#39;Condition2&#39;,
+ &#39;Foundation&#39;,
+ &#39;MiscFeature&#39;,
+ &#39;LotShape&#39;,
+ &#39;GarageFinish&#39;,
+ &#39;RoofMatl&#39;,
+ &#39;SaleType&#39;,
+ &#39;Street&#39;,
+ &#39;MasVnrType&#39;,
+ &#39;Exterior2nd&#39;,
+ &#39;Alley&#39;,
+ &#39;CentralAir&#39;,
+ &#39;LotConfig&#39;,
+ &#39;PavedDrive&#39;,
+ &#39;HouseStyle&#39;,
+ &#39;SaleCondition&#39;,
+ &#39;MSZoning&#39;,
+ &#39;MSSubClass&#39;]
 </pre></div>
 </div>
 </div>
@@ -994,16 +999,16 @@ document.write(`
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
-      <th>LandContour_Bnk</th>
-      <th>LandContour_HLS</th>
-      <th>LandContour_Low</th>
-      <th>LandContour_Lvl</th>
-      <th>Foundation_BrkTil</th>
-      <th>Foundation_CBlock</th>
-      <th>Foundation_PConc</th>
-      <th>Foundation_Slab</th>
-      <th>Foundation_Stone</th>
-      <th>Foundation_Wood</th>
+      <th>MSSubClass_60</th>
+      <th>MSSubClass_70</th>
+      <th>MSSubClass_75</th>
+      <th>MSSubClass_80</th>
+      <th>MSSubClass_85</th>
+      <th>MSSubClass_90</th>
+      <th>MSSubClass_120</th>
+      <th>MSSubClass_160</th>
+      <th>MSSubClass_180</th>
+      <th>MSSubClass_190</th>
     </tr>
   </thead>
   <tbody>
@@ -1023,10 +1028,10 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1047,9 +1052,9 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1071,9 +1076,9 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1095,8 +1100,8 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1116,13 +1121,13 @@ document.write(`
       <td>-0.573129</td>
       <td>0.354114</td>
       <td>...</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1164,12 +1169,12 @@ document.write(`
       <td>0.843281</td>
       <td>-0.090231</td>
       <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1191,9 +1196,9 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1215,9 +1220,9 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1239,9 +1244,9 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1263,8 +1268,8 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1324,36 +1329,36 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.028316</td>
-      <td>0.007604</td>
+      <td>0.028701</td>
+      <td>0.007415</td>
       <td>0.835749</td>
       <td>0.916722</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.025045</td>
-      <td>0.007424</td>
+      <td>0.025724</td>
+      <td>0.007239</td>
       <td>0.810073</td>
       <td>0.919198</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.024229</td>
-      <td>0.008667</td>
+      <td>0.025072</td>
+      <td>0.007163</td>
       <td>0.831611</td>
       <td>0.912395</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.025223</td>
-      <td>0.007149</td>
+      <td>0.026379</td>
+      <td>0.007941</td>
       <td>0.843992</td>
       <td>0.914003</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.024150</td>
-      <td>0.007340</td>
+      <td>0.026878</td>
+      <td>0.007587</td>
       <td>0.548831</td>
       <td>0.920462</td>
     </tr>
@@ -1751,7 +1756,7 @@ Name: ExterQual, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;SaleCondition&#39;, &#39;SaleType&#39;, &#39;Exterior2nd&#39;, &#39;Neighborhood&#39;, &#39;Exterior1st&#39;, &#39;Utilities&#39;, &#39;Street&#39;, &#39;LotShape&#39;, &#39;MSZoning&#39;, &#39;LandSlope&#39;, &#39;GarageType&#39;, &#39;Condition1&#39;, &#39;MiscFeature&#39;, &#39;RoofStyle&#39;, &#39;BldgType&#39;, &#39;RoofMatl&#39;, &#39;HouseStyle&#39;, &#39;MasVnrType&#39;, &#39;Electrical&#39;, &#39;Heating&#39;, &#39;GarageFinish&#39;, &#39;PavedDrive&#39;, &#39;Alley&#39;, &#39;LotConfig&#39;, &#39;MoSold&#39;, &#39;MSSubClass&#39;, &#39;Condition2&#39;, &#39;CentralAir&#39;, &#39;LandContour&#39;, &#39;Foundation&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Electrical&#39;, &#39;LandContour&#39;, &#39;MoSold&#39;, &#39;Utilities&#39;, &#39;LandSlope&#39;, &#39;BldgType&#39;, &#39;Neighborhood&#39;, &#39;Heating&#39;, &#39;Exterior1st&#39;, &#39;Condition1&#39;, &#39;RoofStyle&#39;, &#39;GarageType&#39;, &#39;Condition2&#39;, &#39;Foundation&#39;, &#39;MiscFeature&#39;, &#39;LotShape&#39;, &#39;GarageFinish&#39;, &#39;RoofMatl&#39;, &#39;SaleType&#39;, &#39;Street&#39;, &#39;MasVnrType&#39;, &#39;Exterior2nd&#39;, &#39;Alley&#39;, &#39;CentralAir&#39;, &#39;LotConfig&#39;, &#39;PavedDrive&#39;, &#39;HouseStyle&#39;, &#39;SaleCondition&#39;, &#39;MSZoning&#39;, &#39;MSSubClass&#39;]
 </pre></div>
 </div>
 </div>
@@ -2277,16 +2282,16 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
-      <th>LandContour_Bnk</th>
-      <th>LandContour_HLS</th>
-      <th>LandContour_Low</th>
-      <th>LandContour_Lvl</th>
-      <th>Foundation_BrkTil</th>
-      <th>Foundation_CBlock</th>
-      <th>Foundation_PConc</th>
-      <th>Foundation_Slab</th>
-      <th>Foundation_Stone</th>
-      <th>Foundation_Wood</th>
+      <th>MSSubClass_60</th>
+      <th>MSSubClass_70</th>
+      <th>MSSubClass_75</th>
+      <th>MSSubClass_80</th>
+      <th>MSSubClass_85</th>
+      <th>MSSubClass_90</th>
+      <th>MSSubClass_120</th>
+      <th>MSSubClass_160</th>
+      <th>MSSubClass_180</th>
+      <th>MSSubClass_190</th>
     </tr>
   </thead>
   <tbody>
@@ -2303,13 +2308,13 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
       <td>0.438592</td>
       <td>-0.961498</td>
       <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -2374,16 +2379,16 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
-      <th>LandContour_Bnk</th>
-      <th>LandContour_HLS</th>
-      <th>LandContour_Low</th>
-      <th>LandContour_Lvl</th>
-      <th>Foundation_BrkTil</th>
-      <th>Foundation_CBlock</th>
-      <th>Foundation_PConc</th>
-      <th>Foundation_Slab</th>
-      <th>Foundation_Stone</th>
-      <th>Foundation_Wood</th>
+      <th>MSSubClass_60</th>
+      <th>MSSubClass_70</th>
+      <th>MSSubClass_75</th>
+      <th>MSSubClass_80</th>
+      <th>MSSubClass_85</th>
+      <th>MSSubClass_90</th>
+      <th>MSSubClass_120</th>
+      <th>MSSubClass_160</th>
+      <th>MSSubClass_180</th>
+      <th>MSSubClass_190</th>
     </tr>
   </thead>
   <tbody>
@@ -2400,13 +2405,13 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
       <td>0.438592</td>
       <td>-0.961498</td>
       <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -3351,36 +3356,36 @@ Name: proportion, dtype: float64
   <tbody>
     <tr>
       <th>Dummy</th>
-      <td>0.004 (+/- 0.002)</td>
-      <td>0.002 (+/- 0.003)</td>
+      <td>0.002 (+/- 0.001)</td>
+      <td>0.000 (+/- 0.000)</td>
       <td>0.758 (+/- 0.000)</td>
       <td>0.758 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>logistic regression</th>
-      <td>0.666 (+/- 0.032)</td>
+      <td>0.669 (+/- 0.026)</td>
       <td>0.011 (+/- 0.000)</td>
       <td>0.849 (+/- 0.005)</td>
       <td>0.850 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>random forest</th>
-      <td>6.857 (+/- 0.049)</td>
-      <td>0.081 (+/- 0.001)</td>
+      <td>7.110 (+/- 0.238)</td>
+      <td>0.086 (+/- 0.006)</td>
       <td>0.847 (+/- 0.006)</td>
       <td>0.979 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>XGBoost</th>
-      <td>0.605 (+/- 0.029)</td>
-      <td>0.016 (+/- 0.000)</td>
+      <td>0.510 (+/- 0.015)</td>
+      <td>0.017 (+/- 0.001)</td>
       <td>0.870 (+/- 0.004)</td>
       <td>0.898 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>LightGBM</th>
-      <td>0.272 (+/- 0.203)</td>
-      <td>0.022 (+/- 0.001)</td>
+      <td>0.217 (+/- 0.046)</td>
+      <td>0.025 (+/- 0.003)</td>
       <td>0.872 (+/- 0.004)</td>
       <td>0.888 (+/- 0.000)</td>
     </tr>
@@ -3612,6 +3617,11 @@ Name: proportion, dtype: float64
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;workclass_missing&#39;, &#39;marital.status_Married-civ-spouse&#39;, &#39;occupation_missing&#39;, &#39;relationship_Husband&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <p>Seems like there are some columns which are highly correlated.</p>
 <div class="cell docutils container">
@@ -3620,10 +3630,20 @@ Name: proportion, dtype: float64
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9977957422135846
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr_df</span><span class="p">[</span><span class="s1">&#39;marital.status_Married-civ-spouse&#39;</span><span class="p">][</span><span class="s1">&#39;relationship_Husband&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8937442459553657
 </pre></div>
 </div>
 </div>
@@ -3773,6 +3793,9 @@ Name: proportion, dtype: float64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_permutation_importance</span><span class="p">(</span><span class="n">pipe_dt</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/77d114e0e0d6415f447bb4d7ce9cb6fa9271a93bdb30219f2fcb5fbda9270000.png" src="../_images/77d114e0e0d6415f447bb4d7ce9cb6fa9271a93bdb30219f2fcb5fbda9270000.png" />
 </div>
 </div>
 <p>Decision tree is primarily making all decisions based on three features: marital.status, education, and capital.gain.</p>
@@ -4725,7 +4748,7 @@ the prediction towards lower score.</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/400c9216dfda06db0c8b3470f77e5b1027283b9ea6247feaeccbaf8a634ee99b.png" src="../_images/400c9216dfda06db0c8b3470f77e5b1027283b9ea6247feaeccbaf8a634ee99b.png" />
+<img alt="../_images/d5c39997af4c41ff735ec0175474e78c34a608855effcdebb75617a8ce65cef5.png" src="../_images/d5c39997af4c41ff735ec0175474e78c34a608855effcdebb75617a8ce65cef5.png" />
 </div>
 </div>
 <p>The plot above shows effect of <code class="docutils literal notranslate"><span class="pre">age</span></code> feature on the prediction.</p>
@@ -4748,7 +4771,7 @@ the prediction towards lower score.</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/646c7616317c1867767dbfdc1ca8c518fa6871c9be3ad845045b9b6dbfa49f57.png" src="../_images/646c7616317c1867767dbfdc1ca8c518fa6871c9be3ad845045b9b6dbfa49f57.png" />
+<img alt="../_images/fc30dbfd58d84622794d0b6dc456ccc86f4abc371eaaff2f100b8c3175be4814.png" src="../_images/fc30dbfd58d84622794d0b6dc456ccc86f4abc371eaaff2f100b8c3175be4814.png" />
 </div>
 </div>
 <p>The plot shows the most important features for predicting the class. It also shows the direction of how it’s going to drive the prediction.</p>
@@ -4761,6 +4784,9 @@ the prediction towards lower score.</p></li>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shap</span><span class="o">.</span><span class="n">summary_plot</span><span class="p">(</span><span class="n">train_lgbm_shap_values</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">X_train_enc</span><span class="p">,</span> <span class="n">plot_type</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6efd534630e39609cc37dfbfa5214e3cc45f3a25879b119aa32aed6208efe9fa.png" src="../_images/6efd534630e39609cc37dfbfa5214e3cc45f3a25879b119aa32aed6208efe9fa.png" />
 </div>
 </div>
 <p>You can think of this as global feature importances.</p>
@@ -4866,11 +4892,11 @@ the prediction towards lower score.</p></li>
       </div>
     </a>
     <a class="right-next"
-       href="midterm-review-guiding-questions.html"
+       href="13_feature-engineering-selection.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 14: Midterm review guiding questions</p>
+        <p class="prev-next-title">Lecture 13: Feature engineering and feature selection</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
