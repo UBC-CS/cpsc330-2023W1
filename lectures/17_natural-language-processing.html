@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Lecture 18: Introduction to natural language processing &#8212; CPSC 330 Applied Machine Learning 2023W1</title>
+    <title>Lecture 17: Introduction to natural language processing &#8212; CPSC 330 Applied Machine Learning 2023W1</title>
   
   
   
@@ -173,7 +173,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="14_K-Means.html">Lecture 14: K-Means Clustering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="15_DBSCAN-hierarchical.html">Lecture 15: More Clustering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="16_recommender-systems.html">Lecture 16: Recommender Systems</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 18: Introduction to natural language processing</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 17: Introduction to natural language processing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -185,6 +185,11 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l1"><a class="reference internal" href="class_demos/14_class-demo.html">Lecture 14: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="class_demos/15_class-demo.html">Lecture 15: Class demo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Appendix-A.html">Appendix A</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Appendix-B.html">Appendix-B</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -326,7 +331,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Lecture 18: Introduction to natural language processing</h1>
+    <h1>Lecture 17: Introduction to natural language processing</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -451,8 +456,8 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <p><img alt="" src="../_images/330-banner.png" /></p>
-<section class="tex2jax_ignore mathjax_ignore" id="lecture-18-introduction-to-natural-language-processing">
-<h1>Lecture 18: Introduction to natural language processing<a class="headerlink" href="#lecture-18-introduction-to-natural-language-processing" title="Permalink to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="lecture-17-introduction-to-natural-language-processing">
+<h1>Lecture 17: Introduction to natural language processing<a class="headerlink" href="#lecture-17-introduction-to-natural-language-processing" title="Permalink to this heading">#</a></h1>
 <p>UBC 2023-24</p>
 <p>Instructor: Varada Kolhatkar and Andrew Roth</p>
 <div class="cell docutils container">
@@ -488,7 +493,7 @@ document.write(`
 Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 </pre></div>
 </div>
-<img alt="../_images/2b81634618a4083b65b9a1744664cb44e1033c9251da0dca7d4e201ef80f00fa.png" src="../_images/2b81634618a4083b65b9a1744664cb44e1033c9251da0dca7d4e201ef80f00fa.png" />
+<img alt="../_images/f77bdd450ddf6df65138a8b7619408c309446b6ed83996e653f501c5692d8d1f.png" src="../_images/f77bdd450ddf6df65138a8b7619408c309446b6ed83996e653f501c5692d8d1f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -696,14 +701,21 @@ MILK DRINKERS ARE TURNING TO POWDER
 <span class="g g-Whitespace">   </span><span class="mi">1944</span> <span class="n">start</span> <span class="o">=</span> <span class="n">i_vector</span> <span class="o">+</span> <span class="n">bytes_per_vector</span>
 <span class="g g-Whitespace">   </span><span class="mi">1945</span> <span class="n">processed_words</span> <span class="o">+=</span> <span class="mi">1</span>
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/gensim/models/keyedvectors.py:1911,</span> in <span class="ni">_add_word_to_kv</span><span class="nt">(kv, counts, word, weights, vocab_size)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1909</span>     <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;duplicate word &#39;</span><span class="si">%s</span><span class="s2">&#39; in word2vec file, ignoring all but first&quot;</span><span class="p">,</span> <span class="n">word</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1910</span>     <span class="k">return</span>
-<span class="ne">-&gt; </span><span class="mi">1911</span> <span class="n">word_id</span> <span class="o">=</span> <span class="n">kv</span><span class="o">.</span><span class="n">add_vector</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1913</span> <span class="k">if</span> <span class="n">counts</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1914</span>     <span class="c1"># Most common scenario: no vocab file given. Just make up some bogus counts, in descending order.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1915</span>     <span class="c1"># TODO (someday): make this faking optional, include more realistic (Zipf-based) fake numbers.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1916</span>     <span class="n">word_count</span> <span class="o">=</span> <span class="n">vocab_size</span> <span class="o">-</span> <span class="n">word_id</span>
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/gensim/models/keyedvectors.py:1923,</span> in <span class="ni">_add_word_to_kv</span><span class="nt">(kv, counts, word, weights, vocab_size)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1921</span>     <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;vocabulary file is incomplete: &#39;</span><span class="si">%s</span><span class="s2">&#39; is missing&quot;</span><span class="p">,</span> <span class="n">word</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1922</span>     <span class="n">word_count</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1923</span> <span class="n">kv</span><span class="o">.</span><span class="n">set_vecattr</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="n">word_count</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/gensim/models/keyedvectors.py:354,</span> in <span class="ni">KeyedVectors.set_vecattr</span><span class="nt">(self, key, attr, val)</span>
+<span class="g g-Whitespace">    </span><span class="mi">335</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Set attribute associated with the given key to value.</span>
+<span class="g g-Whitespace">    </span><span class="mi">336</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">337</span><span class="sd"> Parameters</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">351</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">352</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">353</span> <span class="bp">self</span><span class="o">.</span><span class="n">allocate_vecattrs</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">[</span><span class="n">attr</span><span class="p">],</span> <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">)])</span>
+<span class="ne">--&gt; </span><span class="mi">354</span> <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">355</span> <span class="bp">self</span><span class="o">.</span><span class="n">expandos</span><span class="p">[</span><span class="n">attr</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
