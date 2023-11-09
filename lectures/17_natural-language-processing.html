@@ -493,7 +493,7 @@ document.write(`
 Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 </pre></div>
 </div>
-<img alt="../_images/f77bdd450ddf6df65138a8b7619408c309446b6ed83996e653f501c5692d8d1f.png" src="../_images/f77bdd450ddf6df65138a8b7619408c309446b6ed83996e653f501c5692d8d1f.png" />
+<img alt="../_images/a0846f5705b83be554ac0acd0f08d117ecc19813128a64ef426f5cf67f80143c.png" src="../_images/a0846f5705b83be554ac0acd0f08d117ecc19813128a64ef426f5cf67f80143c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -706,16 +706,17 @@ MILK DRINKERS ARE TURNING TO POWDER
 <span class="g g-Whitespace">   </span><span class="mi">1922</span>     <span class="n">word_count</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="ne">-&gt; </span><span class="mi">1923</span> <span class="n">kv</span><span class="o">.</span><span class="n">set_vecattr</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="n">word_count</span><span class="p">)</span>
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/gensim/models/keyedvectors.py:354,</span> in <span class="ni">KeyedVectors.set_vecattr</span><span class="nt">(self, key, attr, val)</span>
-<span class="g g-Whitespace">    </span><span class="mi">335</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Set attribute associated with the given key to value.</span>
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/gensim/models/keyedvectors.py:353,</span> in <span class="ni">KeyedVectors.set_vecattr</span><span class="nt">(self, key, attr, val)</span>
+<span class="g g-Whitespace">    </span><span class="mi">334</span> <span class="k">def</span> <span class="nf">set_vecattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">335</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Set attribute associated with the given key to value.</span>
 <span class="g g-Whitespace">    </span><span class="mi">336</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">337</span><span class="sd"> Parameters</span>
+<span class="g g-Whitespace">    </span><span class="mi">337</span><span class="sd">     Parameters</span>
 <span class="sd">   (...)</span>
 <span class="g g-Whitespace">    </span><span class="mi">351</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">352</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">353</span> <span class="bp">self</span><span class="o">.</span><span class="n">allocate_vecattrs</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">[</span><span class="n">attr</span><span class="p">],</span> <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">)])</span>
-<span class="ne">--&gt; </span><span class="mi">354</span> <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">355</span> <span class="bp">self</span><span class="o">.</span><span class="n">expandos</span><span class="p">[</span><span class="n">attr</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+<span class="g g-Whitespace">    </span><span class="mi">352</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">353</span>     <span class="bp">self</span><span class="o">.</span><span class="n">allocate_vecattrs</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">[</span><span class="n">attr</span><span class="p">],</span> <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">)])</span>
+<span class="g g-Whitespace">    </span><span class="mi">354</span>     <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">355</span>     <span class="bp">self</span><span class="o">.</span><span class="n">expandos</span><span class="p">[</span><span class="n">attr</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
