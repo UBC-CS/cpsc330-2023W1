@@ -64,6 +64,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/class_demos/15_class-demo';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Attributions" href="../../attribution.html" />
+    <link rel="prev" title="Lecture 14: Class demo" href="14_class-demo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -150,7 +152,6 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../syllabus.html">Syllabus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../docs/README.html">CPSC 330 Documents</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../learning-objectives.html">Course Learning Objectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
 <ul class="nav bd-sidenav">
@@ -168,17 +169,20 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../12_feat-importances.html">Lecture 12: Feature importances and model transparency</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../13_feature-engineering-selection.html">Lecture 13: Feature engineering and feature selection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../14_K-Means.html">Lecture 14: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../15_DBSCAN-hierarchical.html">Lecture 15: More Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../16_recommender-systems.html">Lecture 16: Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../17_natural-language-processing.html">Lecture 18: Introduction to natural language processing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="03_class-demo.html">Lecture 3: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_class-demo.html">Lecture 4: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05-06_class-demo.html">Lectures 5 and 6: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_class-demo.html">Lectures 7: Class demo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09_class-demo.html">Lecture 9: Class demo</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="09_class-demo.html">Exploring classification metrics</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="14_class-demo.html">Lecture 14: Class demo</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 15: Class demo</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -346,7 +350,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="lecture-15-class-demo">
 <h1>Lecture 15: Class demo<a class="headerlink" href="#lecture-15-class-demo" title="Permalink to this heading">#</a></h1>
 <p>Let’s cluster images!!</p>
-<p><img alt="" src="../../_images/eva-fun-times.png" /></p>
+<p><img alt="" src="lectures/img/eva-fun-times.png" /></p>
 <p>For this demo, I’m going to use the following image dataset:</p>
 <ol class="arabic simple">
 <li><p>A tiny subset of <a class="reference external" href="https://www.kaggle.com/datasets/kmader/food41?select=food_c101_n10099_r32x32x1.h5">Food-101</a> from last lecture
@@ -357,9 +361,25 @@ document.write(`
 <p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">pytorch</span> <span class="pre">torchvision</span> <span class="pre">-c</span> <span class="pre">pytorch</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">),</span> <span class="s2">&quot;code&quot;</span><span class="p">))</span>
+<span class="kn">from</span> <span class="nn">plotting_functions_unsup</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+</pre></div>
+</div>
+<img alt="../../_images/51a8a05fcb37111faccaa10ee168ab8a666b8bdf5a8712c570667a979984e481.png" src="../../_images/51a8a05fcb37111faccaa10ee168ab8a666b8bdf5a8712c570667a979984e481.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">transforms</span><span class="p">,</span> <span class="n">utils</span>
 <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
@@ -398,21 +418,6 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-
-<span class="nn">Cell In[4], line 4,</span> in <span class="ni">set_seed</span><span class="nt">(seed)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;random&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -473,7 +478,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_dir</span> <span class="o">=</span> <span class="s2">&quot;data/food&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_dir</span> <span class="o">=</span> <span class="s2">&quot;../data/food&quot;</span>
 <span class="n">file_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">image_file</span> <span class="k">for</span> <span class="n">image_file</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">data_dir</span> <span class="o">+</span> <span class="s2">&quot;/*/*.jpg&quot;</span><span class="p">)]</span>
 <span class="n">n_images</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">file_names</span><span class="p">)</span>
 <span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="n">n_images</span>  <span class="c1"># because our dataset is quite small</span>
@@ -483,7 +488,78 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>350
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">n_images</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">file_names</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="n">n_images</span>  <span class="c1"># because our dataset is quite small</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">food_inputs</span><span class="p">,</span> <span class="n">food_classes</span> <span class="o">=</span> <span class="n">read_img_dataset</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">n_images</span>
+
+<span class="nn">Cell In[7], line 11,</span> in <span class="ni">read_img_dataset</span><span class="nt">(data_dir)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">def</span> <span class="nf">read_img_dataset</span><span class="p">(</span><span class="n">data_dir</span><span class="p">):</span>     
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">data_transforms</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>         <span class="p">[</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>             <span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">((</span><span class="n">IMAGE_SIZE</span><span class="p">,</span> <span class="n">IMAGE_SIZE</span><span class="p">)),</span>     
+<span class="g g-Whitespace">      </span><span class="mi">7</span>             <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>             <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]),</span>            
+<span class="g g-Whitespace">      </span><span class="mi">9</span>         <span class="p">])</span>
+<span class="ne">---&gt; </span><span class="mi">11</span>     <span class="n">image_dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ImageFolder</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">data_transforms</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="n">dataloader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span>          <span class="n">image_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span>     <span class="n">dataset_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">image_dataset</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/torchvision/datasets/folder.py:309,</span> in <span class="ni">ImageFolder.__init__</span><span class="nt">(self, root, transform, target_transform, loader, is_valid_file)</span>
+<span class="g g-Whitespace">    </span><span class="mi">301</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">302</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">303</span>     <span class="n">root</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">307</span>     <span class="n">is_valid_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">308</span> <span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">309</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span>         <span class="n">root</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">311</span>         <span class="n">loader</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span>         <span class="n">IMG_EXTENSIONS</span> <span class="k">if</span> <span class="n">is_valid_file</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">314</span>         <span class="n">target_transform</span><span class="o">=</span><span class="n">target_transform</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">315</span>         <span class="n">is_valid_file</span><span class="o">=</span><span class="n">is_valid_file</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">316</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">317</span>     <span class="bp">self</span><span class="o">.</span><span class="n">imgs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/torchvision/datasets/folder.py:144,</span> in <span class="ni">DatasetFolder.__init__</span><span class="nt">(self, root, loader, extensions, transform, target_transform, is_valid_file)</span>
+<span class="g g-Whitespace">    </span><span class="mi">134</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">135</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span>     <span class="n">root</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span>     <span class="n">is_valid_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span> <span class="n">target_transform</span><span class="o">=</span><span class="n">target_transform</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">144</span>     <span class="n">classes</span><span class="p">,</span> <span class="n">class_to_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_classes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span>     <span class="n">samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_dataset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">class_to_idx</span><span class="p">,</span> <span class="n">extensions</span><span class="p">,</span> <span class="n">is_valid_file</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span>     <span class="bp">self</span><span class="o">.</span><span class="n">loader</span> <span class="o">=</span> <span class="n">loader</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/torchvision/datasets/folder.py:218,</span> in <span class="ni">DatasetFolder.find_classes</span><span class="nt">(self, directory)</span>
+<span class="g g-Whitespace">    </span><span class="mi">191</span> <span class="k">def</span> <span class="nf">find_classes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
+<span class="g g-Whitespace">    </span><span class="mi">192</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Find the class folders in a dataset structured as follows::</span>
+<span class="g g-Whitespace">    </span><span class="mi">193</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">194</span><span class="sd">         directory/</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">216</span><span class="sd">         (Tuple[List[str], Dict[str, int]]): List of all classes and dictionary mapping each class to an index.</span>
+<span class="g g-Whitespace">    </span><span class="mi">217</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">218</span>     <span class="k">return</span> <span class="n">find_classes</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/torchvision/datasets/folder.py:40,</span> in <span class="ni">find_classes</span><span class="nt">(directory)</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span> <span class="k">def</span> <span class="nf">find_classes</span><span class="p">(</span><span class="n">directory</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Finds the class folders in a dataset.</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span><span class="sd">     See :class:`DatasetFolder` for details.</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="nn">---&gt; 40     classes = sorted(entry.name for entry</span> in <span class="ni">os.scandir(directory) if entry.is_dir</span><span class="nt">())</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">classes</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span>         <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Couldn&#39;t find any class folder in </span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;../data/food&#39;
 </pre></div>
 </div>
 </div>
@@ -502,7 +578,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/d3dedc75bb2d632f54982f5704a25333180f88cbe271d4f4fdadda58d490f390.png" src="../../_images/d3dedc75bb2d632f54982f5704a25333180f88cbe271d4f4fdadda58d490f390.png" />
+<img alt="../../_images/3d9788bb666fcee15edcc7d7ed5279d3ace204c3e0ec646158619a0bf11abc6c.png" src="../../_images/3d9788bb666fcee15edcc7d7ed5279d3ace204c3e0ec646158619a0bf11abc6c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -544,7 +620,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-1 {color: black;background-color: white;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KMeans(n_clusters=7, n_init=&#x27;auto&#x27;, random_state=123)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">KMeans</label><div class="sk-toggleable__content"><pre>KMeans(n_clusters=7, n_init=&#x27;auto&#x27;, random_state=123)</pre></div></div></div></div></div></div></div>
+<div class="output text_html"><style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KMeans(n_clusters=7, n_init=&#x27;auto&#x27;, random_state=123)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">KMeans</label><div class="sk-toggleable__content"><pre>KMeans(n_clusters=7, n_init=&#x27;auto&#x27;, random_state=123)</pre></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -554,34 +630,34 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [329  60 322   0 236 235]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [ 82  58 168 114 122  44]
 </pre></div>
 </div>
-<img alt="../../_images/690b49548cdaad2c81e83f6aae381efb56ae26cd1745bb6e6606c82895aa73ab.png" src="../../_images/690b49548cdaad2c81e83f6aae381efb56ae26cd1745bb6e6606c82895aa73ab.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [315 204 176 253  83 167]
+<img alt="../../_images/ddff267146084890d23371fda27f9fe85df18f2770c3b171957af57155e72cc4.png" src="../../_images/ddff267146084890d23371fda27f9fe85df18f2770c3b171957af57155e72cc4.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [ 89 209  67 330 141 166]
 </pre></div>
 </div>
-<img alt="../../_images/054921012df3424eed0d202a72f02ddb152206d3f8e2239a30b87b5b74fe3c6e.png" src="../../_images/054921012df3424eed0d202a72f02ddb152206d3f8e2239a30b87b5b74fe3c6e.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [ 51  23 306 298 161  24]
+<img alt="../../_images/e5bafcb51655380b0cd5c3075c2d2dc31373261985b8ffac2e0e034c0ddfae23.png" src="../../_images/e5bafcb51655380b0cd5c3075c2d2dc31373261985b8ffac2e0e034c0ddfae23.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [249 327 331  30 236 267]
 </pre></div>
 </div>
-<img alt="../../_images/a92c6ea662caf7f10f3a57222aa2500f7f9b0d7caa29ae0587f7963190a91cb4.png" src="../../_images/a92c6ea662caf7f10f3a57222aa2500f7f9b0d7caa29ae0587f7963190a91cb4.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [139  41 185  26  61   4]
+<img alt="../../_images/8b5b70b34c4f0d895547d10392fa3ac6b1d1c852a55353b67e94adead3cc9db0.png" src="../../_images/8b5b70b34c4f0d895547d10392fa3ac6b1d1c852a55353b67e94adead3cc9db0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [ 76  90  29 240 237 238]
 </pre></div>
 </div>
-<img alt="../../_images/f214bccce5c2132ae38898c58c1317d635c813f5e2f4b06ef67a9e424621f63c.png" src="../../_images/f214bccce5c2132ae38898c58c1317d635c813f5e2f4b06ef67a9e424621f63c.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [111  94  65 101 230  90]
+<img alt="../../_images/21276e95e2fa8b0db9f536bb9eb71e0bd86f62be4f96be88c1aea94ea0dad1ff.png" src="../../_images/21276e95e2fa8b0db9f536bb9eb71e0bd86f62be4f96be88c1aea94ea0dad1ff.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [223 136 124 304  13 137]
 </pre></div>
 </div>
-<img alt="../../_images/3d701061979fd60d7b911b165fb03e375fceddf03712bd24b9ad16e7472fc5d6.png" src="../../_images/3d701061979fd60d7b911b165fb03e375fceddf03712bd24b9ad16e7472fc5d6.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [206  14 280 273  11 314]
+<img alt="../../_images/2e1451c964a31679b17449e4f7398eb7dc1cd460edd63416c907197b7c04632c.png" src="../../_images/2e1451c964a31679b17449e4f7398eb7dc1cd460edd63416c907197b7c04632c.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [190 132  73 140   6 149]
 </pre></div>
 </div>
-<img alt="../../_images/02a7d480356703af4400b5d871b94c4e882375b92f7f0a30483723d006bcf7df.png" src="../../_images/02a7d480356703af4400b5d871b94c4e882375b92f7f0a30483723d006bcf7df.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [169 163 341 159 125  50]
+<img alt="../../_images/7618a86e5aa172bdf5d43d28404637758fa0d336d297d2a7bf3534633d0e9792.png" src="../../_images/7618a86e5aa172bdf5d43d28404637758fa0d336d297d2a7bf3534633d0e9792.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [ 65 238 237 236 235 234]
 </pre></div>
 </div>
-<img alt="../../_images/5cede037de8cfb591031da0ec126b099d476fc4eead4c2f4ffacbe8e8f2a33a5.png" src="../../_images/5cede037de8cfb591031da0ec126b099d476fc4eead4c2f4ffacbe8e8f2a33a5.png" />
+<img alt="../../_images/9f49300d86bffd1739f61acd71123690c831957339d2f3524457da244a393ba4.png" src="../../_images/9f49300d86bffd1739f61acd71123690c831957339d2f3524457da244a393ba4.png" />
 </div>
 </div>
 <p>Let’s try DBSCAN.</p>
@@ -658,122 +734,122 @@ document.write(`
     <tr>
       <th>0</th>
       <td>inf</td>
-      <td>32.147507</td>
-      <td>27.293831</td>
-      <td>27.228497</td>
-      <td>28.002232</td>
-      <td>25.899265</td>
-      <td>28.408920</td>
-      <td>27.280912</td>
-      <td>27.052334</td>
-      <td>29.723883</td>
+      <td>27.838209</td>
+      <td>24.272423</td>
+      <td>28.557386</td>
+      <td>25.911512</td>
+      <td>26.729088</td>
+      <td>28.535007</td>
+      <td>27.919943</td>
+      <td>29.910038</td>
+      <td>24.831701</td>
       <td>...</td>
-      <td>30.619820</td>
-      <td>26.685843</td>
-      <td>27.280912</td>
-      <td>28.299599</td>
-      <td>26.645281</td>
-      <td>29.363770</td>
-      <td>25.194073</td>
-      <td>29.676983</td>
-      <td>25.055792</td>
-      <td>28.578655</td>
+      <td>25.821581</td>
+      <td>27.069433</td>
+      <td>27.836058</td>
+      <td>27.045502</td>
+      <td>28.334972</td>
+      <td>28.312830</td>
+      <td>30.730888</td>
+      <td>26.483530</td>
+      <td>26.518341</td>
+      <td>27.012949</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>32.147507</td>
+      <td>27.838209</td>
       <td>inf</td>
-      <td>28.417624</td>
-      <td>29.153109</td>
-      <td>29.487787</td>
-      <td>27.944752</td>
-      <td>33.295006</td>
-      <td>30.007055</td>
-      <td>28.700245</td>
-      <td>31.242245</td>
+      <td>25.690664</td>
+      <td>26.808674</td>
+      <td>28.380119</td>
+      <td>26.499969</td>
+      <td>25.269186</td>
+      <td>27.080601</td>
+      <td>24.174231</td>
+      <td>26.724173</td>
       <td>...</td>
-      <td>32.983677</td>
-      <td>25.921301</td>
-      <td>30.007055</td>
-      <td>27.803499</td>
-      <td>27.711092</td>
-      <td>23.072115</td>
-      <td>28.968361</td>
-      <td>28.748524</td>
-      <td>30.015015</td>
-      <td>29.989883</td>
+      <td>25.517481</td>
+      <td>22.425566</td>
+      <td>24.153849</td>
+      <td>26.348946</td>
+      <td>28.451920</td>
+      <td>27.344963</td>
+      <td>26.383554</td>
+      <td>24.948429</td>
+      <td>23.117655</td>
+      <td>25.012907</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>27.293831</td>
-      <td>28.417624</td>
+      <td>24.272423</td>
+      <td>25.690664</td>
       <td>inf</td>
-      <td>25.105978</td>
-      <td>26.080637</td>
-      <td>23.332731</td>
-      <td>29.075375</td>
-      <td>23.967255</td>
-      <td>24.418520</td>
-      <td>27.964073</td>
+      <td>26.241850</td>
+      <td>26.272598</td>
+      <td>24.983030</td>
+      <td>25.745886</td>
+      <td>26.138418</td>
+      <td>27.259501</td>
+      <td>23.387449</td>
       <td>...</td>
-      <td>29.649349</td>
-      <td>23.770691</td>
-      <td>23.967255</td>
-      <td>24.438934</td>
-      <td>23.309681</td>
-      <td>27.047318</td>
-      <td>23.099041</td>
-      <td>28.084009</td>
-      <td>24.450035</td>
-      <td>26.737730</td>
+      <td>24.976543</td>
+      <td>24.755798</td>
+      <td>26.489601</td>
+      <td>26.757547</td>
+      <td>23.980059</td>
+      <td>25.965456</td>
+      <td>29.195887</td>
+      <td>25.397800</td>
+      <td>23.607014</td>
+      <td>23.029932</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>27.228497</td>
-      <td>29.153109</td>
-      <td>25.105978</td>
+      <td>28.557386</td>
+      <td>26.808674</td>
+      <td>26.241850</td>
       <td>inf</td>
-      <td>26.403458</td>
-      <td>24.154203</td>
-      <td>29.044271</td>
-      <td>25.256765</td>
-      <td>24.477415</td>
-      <td>30.358431</td>
+      <td>28.488819</td>
+      <td>26.426289</td>
+      <td>28.817778</td>
+      <td>29.362293</td>
+      <td>27.543203</td>
+      <td>22.214371</td>
       <td>...</td>
-      <td>30.267469</td>
-      <td>25.320311</td>
-      <td>25.256765</td>
-      <td>26.022858</td>
-      <td>25.235279</td>
-      <td>24.920464</td>
-      <td>24.401587</td>
-      <td>28.650534</td>
-      <td>24.779493</td>
-      <td>28.330040</td>
+      <td>24.433807</td>
+      <td>26.525894</td>
+      <td>26.772890</td>
+      <td>28.805965</td>
+      <td>26.740297</td>
+      <td>24.505461</td>
+      <td>29.599627</td>
+      <td>27.887571</td>
+      <td>26.735687</td>
+      <td>26.722355</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>28.002232</td>
-      <td>29.487787</td>
-      <td>26.080637</td>
-      <td>26.403458</td>
+      <td>25.911512</td>
+      <td>28.380119</td>
+      <td>26.272598</td>
+      <td>28.488819</td>
       <td>inf</td>
-      <td>26.376062</td>
-      <td>29.740612</td>
-      <td>23.752069</td>
-      <td>27.671799</td>
-      <td>29.673315</td>
+      <td>25.054052</td>
+      <td>28.763035</td>
+      <td>28.249685</td>
+      <td>29.294979</td>
+      <td>24.665562</td>
       <td>...</td>
-      <td>29.915533</td>
-      <td>26.918478</td>
-      <td>23.752069</td>
-      <td>28.714851</td>
-      <td>21.844633</td>
-      <td>28.958271</td>
-      <td>25.997410</td>
-      <td>29.331301</td>
-      <td>26.072651</td>
-      <td>27.712309</td>
+      <td>25.088818</td>
+      <td>26.409763</td>
+      <td>27.046513</td>
+      <td>26.512915</td>
+      <td>28.122980</td>
+      <td>26.731318</td>
+      <td>29.328199</td>
+      <td>26.524778</td>
+      <td>26.566645</td>
+      <td>26.233059</td>
     </tr>
     <tr>
       <th>...</th>
@@ -801,122 +877,122 @@ document.write(`
     </tr>
     <tr>
       <th>345</th>
-      <td>29.363770</td>
-      <td>23.072115</td>
-      <td>27.047318</td>
-      <td>24.920464</td>
-      <td>28.958271</td>
-      <td>25.537451</td>
-      <td>30.930262</td>
-      <td>27.877060</td>
-      <td>26.664751</td>
-      <td>30.233982</td>
+      <td>28.312830</td>
+      <td>27.344963</td>
+      <td>25.965456</td>
+      <td>24.505461</td>
+      <td>26.731318</td>
+      <td>27.732960</td>
+      <td>28.961937</td>
+      <td>28.021688</td>
+      <td>28.355204</td>
+      <td>24.388792</td>
       <td>...</td>
-      <td>32.033962</td>
-      <td>22.248459</td>
-      <td>27.877060</td>
-      <td>26.538082</td>
-      <td>26.385565</td>
+      <td>23.226387</td>
+      <td>25.771818</td>
+      <td>26.816877</td>
+      <td>29.633665</td>
+      <td>27.816105</td>
       <td>inf</td>
-      <td>26.398273</td>
-      <td>26.667959</td>
-      <td>28.297689</td>
-      <td>29.880806</td>
+      <td>29.698130</td>
+      <td>26.911955</td>
+      <td>25.400141</td>
+      <td>26.690134</td>
     </tr>
     <tr>
       <th>346</th>
-      <td>25.194073</td>
-      <td>28.968361</td>
-      <td>23.099041</td>
-      <td>24.401587</td>
-      <td>25.997410</td>
-      <td>23.918730</td>
-      <td>28.036942</td>
-      <td>24.335499</td>
-      <td>23.950077</td>
-      <td>29.108568</td>
+      <td>30.730888</td>
+      <td>26.383554</td>
+      <td>29.195887</td>
+      <td>29.599627</td>
+      <td>29.328199</td>
+      <td>27.754042</td>
+      <td>30.597506</td>
+      <td>31.449287</td>
+      <td>29.049765</td>
+      <td>26.228279</td>
       <td>...</td>
-      <td>30.474297</td>
-      <td>22.630152</td>
-      <td>24.335499</td>
-      <td>25.289833</td>
-      <td>23.234587</td>
-      <td>26.398273</td>
+      <td>26.203318</td>
+      <td>26.634016</td>
+      <td>25.843769</td>
+      <td>28.824900</td>
+      <td>31.539536</td>
+      <td>29.698130</td>
       <td>inf</td>
-      <td>27.363422</td>
-      <td>23.769556</td>
-      <td>26.326014</td>
+      <td>28.891027</td>
+      <td>29.559868</td>
+      <td>28.736403</td>
     </tr>
     <tr>
       <th>347</th>
-      <td>29.676983</td>
-      <td>28.748524</td>
-      <td>28.084009</td>
-      <td>28.650534</td>
-      <td>29.331301</td>
-      <td>26.841032</td>
-      <td>30.766617</td>
-      <td>27.668751</td>
-      <td>28.311584</td>
-      <td>31.257399</td>
+      <td>26.483530</td>
+      <td>24.948429</td>
+      <td>25.397800</td>
+      <td>27.887571</td>
+      <td>26.524778</td>
+      <td>25.069878</td>
+      <td>26.720396</td>
+      <td>27.640726</td>
+      <td>28.087231</td>
+      <td>24.709068</td>
       <td>...</td>
-      <td>31.201294</td>
-      <td>23.483141</td>
-      <td>27.668751</td>
-      <td>28.502274</td>
-      <td>28.211889</td>
-      <td>26.667959</td>
-      <td>27.363422</td>
+      <td>24.990519</td>
+      <td>25.950739</td>
+      <td>26.422796</td>
+      <td>23.982191</td>
+      <td>27.307524</td>
+      <td>26.911955</td>
+      <td>28.891027</td>
       <td>inf</td>
-      <td>26.248280</td>
-      <td>29.626690</td>
+      <td>24.929638</td>
+      <td>22.822123</td>
     </tr>
     <tr>
       <th>348</th>
-      <td>25.055792</td>
-      <td>30.015015</td>
-      <td>24.450035</td>
-      <td>24.779493</td>
-      <td>26.072651</td>
-      <td>24.271902</td>
-      <td>28.861692</td>
-      <td>25.313517</td>
-      <td>25.136566</td>
-      <td>29.360746</td>
+      <td>26.518341</td>
+      <td>23.117655</td>
+      <td>23.607014</td>
+      <td>26.735687</td>
+      <td>26.566645</td>
+      <td>23.524864</td>
+      <td>23.816399</td>
+      <td>25.144579</td>
+      <td>25.315739</td>
+      <td>25.252844</td>
       <td>...</td>
-      <td>30.514103</td>
-      <td>24.522303</td>
-      <td>25.313517</td>
-      <td>25.476812</td>
-      <td>24.582825</td>
-      <td>28.297689</td>
-      <td>23.769556</td>
-      <td>26.248280</td>
+      <td>25.219345</td>
+      <td>23.628778</td>
+      <td>24.586554</td>
+      <td>24.797318</td>
+      <td>25.021420</td>
+      <td>25.400141</td>
+      <td>29.559868</td>
+      <td>24.929638</td>
       <td>inf</td>
-      <td>26.861782</td>
+      <td>24.156252</td>
     </tr>
     <tr>
       <th>349</th>
-      <td>28.578655</td>
-      <td>29.989883</td>
-      <td>26.737730</td>
-      <td>28.330040</td>
-      <td>27.712309</td>
-      <td>26.029510</td>
-      <td>30.483013</td>
-      <td>26.569021</td>
-      <td>28.320126</td>
-      <td>30.227654</td>
+      <td>27.012949</td>
+      <td>25.012907</td>
+      <td>23.029932</td>
+      <td>26.722355</td>
+      <td>26.233059</td>
+      <td>25.000036</td>
+      <td>24.752766</td>
+      <td>26.942122</td>
+      <td>27.648315</td>
+      <td>25.040714</td>
       <td>...</td>
-      <td>30.936708</td>
-      <td>26.853268</td>
-      <td>26.569021</td>
-      <td>28.326153</td>
-      <td>26.244240</td>
-      <td>29.880806</td>
-      <td>26.326014</td>
-      <td>29.626690</td>
-      <td>26.861782</td>
+      <td>24.330954</td>
+      <td>25.934887</td>
+      <td>26.133183</td>
+      <td>24.376286</td>
+      <td>26.258141</td>
+      <td>26.690134</td>
+      <td>28.736403</td>
+      <td>22.822123</td>
+      <td>24.156252</td>
       <td>inf</td>
     </tr>
   </tbody>
@@ -931,7 +1007,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 39.980446, 27.851997)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(14.918853, 39.791836, 27.870182)
 </pre></div>
 </div>
 </div>
@@ -954,31 +1030,31 @@ Cluster sizes: [350]
 
 eps=17
 Number of clusters: 3
-Cluster sizes: [342   5   3]
+Cluster sizes: [341   5   4]
 
 eps=18
-Number of clusters: 4
-Cluster sizes: [331   3  13   3]
+Number of clusters: 3
+Cluster sizes: [334  13   3]
 
 eps=19
-Number of clusters: 2
-Cluster sizes: [309  41]
+Number of clusters: 3
+Cluster sizes: [311  35   4]
 
 eps=20
 Number of clusters: 4
-Cluster sizes: [275  69   3   3]
+Cluster sizes: [274  70   3   3]
 
 eps=21
-Number of clusters: 4
-Cluster sizes: [230 114   3   3]
+Number of clusters: 2
+Cluster sizes: [234 116]
 
 eps=22
 Number of clusters: 2
-Cluster sizes: [181 169]
+Cluster sizes: [182 168]
 
 eps=23
 Number of clusters: 2
-Cluster sizes: [131 219]
+Cluster sizes: [132 218]
 
 eps=24
 Number of clusters: 2
@@ -986,11 +1062,11 @@ Cluster sizes: [ 81 269]
 
 eps=25
 Number of clusters: 2
-Cluster sizes: [ 53 297]
+Cluster sizes: [ 52 298]
 
 eps=26
 Number of clusters: 2
-Cluster sizes: [ 29 321]
+Cluster sizes: [ 30 320]
 
 eps=27
 Number of clusters: 2
@@ -998,11 +1074,11 @@ Cluster sizes: [ 17 333]
 
 eps=28
 Number of clusters: 2
-Cluster sizes: [  4 346]
+Cluster sizes: [  5 345]
 
 eps=29
 Number of clusters: 2
-Cluster sizes: [  1 349]
+Cluster sizes: [  2 348]
 </pre></div>
 </div>
 </div>
@@ -1018,9 +1094,9 @@ Cluster sizes: [  1 349]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of clusters: 4
-Cluster sizes: [331   3  13   3]
-Unique labels: [-1  0  1  2]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of clusters: 3
+Cluster sizes: [334  13   3]
+Unique labels: [-1  0  1]
 </pre></div>
 </div>
 </div>
@@ -1032,9 +1108,8 @@ Unique labels: [-1  0  1  2]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/c8698f21b81b0a2e574d9d381edc43bf72ba3ff5a6c62643fd31ddec26d80bd4.png" src="../../_images/c8698f21b81b0a2e574d9d381edc43bf72ba3ff5a6c62643fd31ddec26d80bd4.png" />
-<img alt="../../_images/688560813faa31bf939f65cca4476b84493b939e1ecf64008f7bf0c03d407a6c.png" src="../../_images/688560813faa31bf939f65cca4476b84493b939e1ecf64008f7bf0c03d407a6c.png" />
-<img alt="../../_images/481ea0741b040d345aa255a9e99857a808e4eaf6d80984a127634df0e1566548.png" src="../../_images/481ea0741b040d345aa255a9e99857a808e4eaf6d80984a127634df0e1566548.png" />
+<img alt="../../_images/f7ce228abbeb5321ec2f92a22334513a056ef21e0176f8d776a603ba47d26b0f.png" src="../../_images/f7ce228abbeb5321ec2f92a22334513a056ef21e0176f8d776a603ba47d26b0f.png" />
+<img alt="../../_images/9bf5476b380f16646fb3b6cdbedf17c1e6c45726a75c10d0454f6240c312bd3e.png" src="../../_images/9bf5476b380f16646fb3b6cdbedf17c1e6c45726a75c10d0454f6240c312bd3e.png" />
 </div>
 </div>
 <p>Let’s examine noise points identified by DBSCAN.</p>
@@ -1045,14 +1120,14 @@ Unique labels: [-1  0  1  2]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/20dfdc60dc096b58e38f3f8d425e9de2ebb39762bef7408075c956496b92f079.png" src="../../_images/20dfdc60dc096b58e38f3f8d425e9de2ebb39762bef7408075c956496b92f079.png" />
+<img alt="../../_images/d12fcc42f23ef2665aa90e5940718e03c0e4e6ed1379d3513016b18e2fbd6294.png" src="../../_images/d12fcc42f23ef2665aa90e5940718e03c0e4e6ed1379d3513016b18e2fbd6294.png" />
 </div>
 </div>
 <p><br><br></p>
 <p>Now let’s try another dataset with human faces, a small subset of <a class="reference external" href="https://www.kaggle.com/datasets/ashwingupta3012/human-faces">Human Faces dataset</a> (available <a class="reference external" href="https://ubcca-my.sharepoint.com/:u:/g/personal/varada_kolhatkar_ubc_ca/EYDqm7QJLfdGh1A0dyqh76kB6PH9ohca-lVrJGATrEh3CQ?e=msqcPM">here</a>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_dir</span> <span class="o">=</span> <span class="s2">&quot;data/test&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_dir</span> <span class="o">=</span> <span class="s2">&quot;../data/test&quot;</span>
 <span class="n">file_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">image_file</span> <span class="k">for</span> <span class="n">image_file</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">data_dir</span> <span class="o">+</span> <span class="s2">&quot;/*/*.jpg&quot;</span><span class="p">)]</span>
 <span class="n">n_images</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">file_names</span><span class="p">)</span>
 <span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="n">n_images</span>  <span class="c1"># because our dataset is quite small</span>
@@ -1081,7 +1156,7 @@ Unique labels: [-1  0  1  2]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0f8e8cd08b8537283551ab3bee3010a9b425b48c0fde9d4fc5666828c67a479b.png" src="../../_images/0f8e8cd08b8537283551ab3bee3010a9b425b48c0fde9d4fc5666828c67a479b.png" />
+<img alt="../../_images/2e7c870cf480453532a413d87d1194d8aa64d143678276230f87790ba1f663e0.png" src="../../_images/2e7c870cf480453532a413d87d1194d8aa64d143678276230f87790ba1f663e0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1116,7 +1191,7 @@ Unique labels: [-1  0  1  2]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-2 {color: black;background-color: white;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KMeans(n_clusters=7, n_init=&#x27;auto&#x27;, random_state=123)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">KMeans</label><div class="sk-toggleable__content"><pre>KMeans(n_clusters=7, n_init=&#x27;auto&#x27;, random_state=123)</pre></div></div></div></div></div></div></div>
+<div class="output text_html"><style>#sk-container-id-2 {color: black;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KMeans(n_clusters=7, n_init=&#x27;auto&#x27;, random_state=123)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">KMeans</label><div class="sk-toggleable__content"><pre>KMeans(n_clusters=7, n_init=&#x27;auto&#x27;, random_state=123)</pre></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1138,34 +1213,34 @@ Unique labels: [-1  0  1  2]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [331 288 365  41 301 163]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [136 175 355 285  56 346]
 </pre></div>
 </div>
-<img alt="../../_images/a5445d4584c5ee4cbaf372b632c225e140e28ba583af93188d4fd9be5e2a1c69.png" src="../../_images/a5445d4584c5ee4cbaf372b632c225e140e28ba583af93188d4fd9be5e2a1c69.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [104 325  54 279 324  76]
+<img alt="../../_images/25948529123e2d7b9b5ab834f7cde4678ba7b076c2bb5a74a6154ea18cd34803.png" src="../../_images/25948529123e2d7b9b5ab834f7cde4678ba7b076c2bb5a74a6154ea18cd34803.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [117 320 208 216 186  59]
 </pre></div>
 </div>
-<img alt="../../_images/1f85b52629c14f3d2737c4c1d04aa950439fdc5021a5b6a653014b56ad1e2e4b.png" src="../../_images/1f85b52629c14f3d2737c4c1d04aa950439fdc5021a5b6a653014b56ad1e2e4b.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [312 260 253  60  68 103]
+<img alt="../../_images/aee7df4f127229fe2b790d7e1839326741b22421b260e034d9559b96cd9afe05.png" src="../../_images/aee7df4f127229fe2b790d7e1839326741b22421b260e034d9559b96cd9afe05.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [103 353 359 295  68  60]
 </pre></div>
 </div>
-<img alt="../../_images/f153ea6e593e8e9fb87839eff81d556896adc98b770051eb6f73cd946f53a82a.png" src="../../_images/f153ea6e593e8e9fb87839eff81d556896adc98b770051eb6f73cd946f53a82a.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [218 256   1  75  39 117]
+<img alt="../../_images/84bf34766ed86f2383d2e539dc19e3f1f934cd7ed19cf5bb855caf96c5ba0439.png" src="../../_images/84bf34766ed86f2383d2e539dc19e3f1f934cd7ed19cf5bb855caf96c5ba0439.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [ 39 357 332 256 218   1]
 </pre></div>
 </div>
-<img alt="../../_images/9953eb487f7ce95a8c4fd8755192926ee510d07ff9c362370731ecbdf9feb316.png" src="../../_images/9953eb487f7ce95a8c4fd8755192926ee510d07ff9c362370731ecbdf9feb316.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [124  87  32 213 126 193]
+<img alt="../../_images/9b55ce2f73a82bcf20d380e1cefe22f4178072990d1df1ee285ce4e1836f16a1.png" src="../../_images/9b55ce2f73a82bcf20d380e1cefe22f4178072990d1df1ee285ce4e1836f16a1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [317 168 267   0 248 247]
 </pre></div>
 </div>
-<img alt="../../_images/9f42438001f4c373542091c60215a521bf409b73b8b685804bd3f9e9f570bf8e.png" src="../../_images/9f42438001f4c373542091c60215a521bf409b73b8b685804bd3f9e9f570bf8e.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [134 290 146 139   2 137]
+<img alt="../../_images/17ac8a43c53228fd6c016d207d7808579baa8a9472afb61db79595f4c9069de1.png" src="../../_images/17ac8a43c53228fd6c016d207d7808579baa8a9472afb61db79595f4c9069de1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [290 124 271  83 139 146]
 </pre></div>
 </div>
-<img alt="../../_images/72d7442f3d87c5ccc5f5caf9da8e4a7dd66668f5521590cd0e01ef8006783e4d.png" src="../../_images/72d7442f3d87c5ccc5f5caf9da8e4a7dd66668f5521590cd0e01ef8006783e4d.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [217 175 251  58  38 240]
+<img alt="../../_images/ea686eeb95d9f4054c5f83142401014533ddc1851fcfca5f85e9fac3bffa11fb.png" src="../../_images/ea686eeb95d9f4054c5f83142401014533ddc1851fcfca5f85e9fac3bffa11fb.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [312 260 329 127  40 348]
 </pre></div>
 </div>
-<img alt="../../_images/bafebae5a9a187deb5a019f5e84699ec4d1216ef4de3b4cce500d2f67c57f6b9.png" src="../../_images/bafebae5a9a187deb5a019f5e84699ec4d1216ef4de3b4cce500d2f67c57f6b9.png" />
+<img alt="../../_images/2ed04edbbc338764ac49a70b7b7ab33e0b252553dcfae61b699cc454949ac1d0.png" src="../../_images/2ed04edbbc338764ac49a70b7b7ab33e0b252553dcfae61b699cc454949ac1d0.png" />
 </div>
 </div>
 <p><br><br></p>
@@ -1233,131 +1308,131 @@ Unique labels: [-1  0  1  2]
     <tr>
       <th>10</th>
       <td>inf</td>
-      <td>22.202929</td>
-      <td>29.026991</td>
-      <td>24.808342</td>
-      <td>21.978931</td>
-      <td>24.947178</td>
-      <td>28.091995</td>
-      <td>30.958427</td>
-      <td>27.249847</td>
-      <td>27.493883</td>
+      <td>22.212444</td>
+      <td>29.023613</td>
+      <td>24.863905</td>
+      <td>22.001663</td>
+      <td>24.938940</td>
+      <td>28.098724</td>
+      <td>30.955692</td>
+      <td>27.270945</td>
+      <td>27.389570</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>22.202929</td>
+      <td>22.212444</td>
       <td>inf</td>
-      <td>27.759134</td>
-      <td>22.445309</td>
-      <td>19.480604</td>
-      <td>26.359818</td>
-      <td>26.749269</td>
-      <td>31.003994</td>
-      <td>27.764196</td>
-      <td>27.993914</td>
+      <td>27.826571</td>
+      <td>22.514793</td>
+      <td>19.561979</td>
+      <td>26.348663</td>
+      <td>26.740641</td>
+      <td>31.028826</td>
+      <td>27.770222</td>
+      <td>27.892704</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>29.026991</td>
-      <td>27.759134</td>
+      <td>29.023613</td>
+      <td>27.826571</td>
       <td>inf</td>
-      <td>27.697313</td>
-      <td>28.461094</td>
-      <td>27.779404</td>
-      <td>26.923357</td>
-      <td>29.524551</td>
-      <td>29.882502</td>
-      <td>25.790760</td>
+      <td>27.719786</td>
+      <td>28.463976</td>
+      <td>27.759411</td>
+      <td>26.995085</td>
+      <td>29.543497</td>
+      <td>29.854399</td>
+      <td>25.650290</td>
     </tr>
     <tr>
       <th>13</th>
-      <td>24.808342</td>
-      <td>22.445309</td>
-      <td>27.697313</td>
+      <td>24.863905</td>
+      <td>22.514793</td>
+      <td>27.719786</td>
       <td>inf</td>
-      <td>22.186646</td>
-      <td>24.881973</td>
-      <td>25.663059</td>
-      <td>29.471386</td>
-      <td>27.232708</td>
-      <td>26.758585</td>
+      <td>22.240793</td>
+      <td>24.963823</td>
+      <td>25.705948</td>
+      <td>29.509878</td>
+      <td>27.242216</td>
+      <td>26.694988</td>
     </tr>
     <tr>
       <th>14</th>
-      <td>21.978931</td>
-      <td>19.480604</td>
-      <td>28.461094</td>
-      <td>22.186646</td>
+      <td>22.001663</td>
+      <td>19.561979</td>
+      <td>28.463976</td>
+      <td>22.240793</td>
       <td>inf</td>
-      <td>25.943062</td>
-      <td>27.916592</td>
-      <td>29.635603</td>
-      <td>28.413771</td>
-      <td>27.993795</td>
+      <td>25.906570</td>
+      <td>27.872011</td>
+      <td>29.647667</td>
+      <td>28.404259</td>
+      <td>27.862476</td>
     </tr>
     <tr>
       <th>15</th>
-      <td>24.947178</td>
-      <td>26.359818</td>
-      <td>27.779404</td>
-      <td>24.881973</td>
-      <td>25.943062</td>
+      <td>24.938940</td>
+      <td>26.348663</td>
+      <td>27.759411</td>
+      <td>24.963823</td>
+      <td>25.906570</td>
       <td>inf</td>
-      <td>27.601255</td>
-      <td>26.791264</td>
-      <td>28.904617</td>
-      <td>26.097111</td>
+      <td>27.595673</td>
+      <td>26.784702</td>
+      <td>28.887432</td>
+      <td>25.958988</td>
     </tr>
     <tr>
       <th>16</th>
-      <td>28.091995</td>
-      <td>26.749269</td>
-      <td>26.923357</td>
-      <td>25.663059</td>
-      <td>27.916592</td>
-      <td>27.601255</td>
+      <td>28.098724</td>
+      <td>26.740641</td>
+      <td>26.995085</td>
+      <td>25.705948</td>
+      <td>27.872011</td>
+      <td>27.595673</td>
       <td>inf</td>
-      <td>29.306686</td>
-      <td>28.942295</td>
-      <td>26.934277</td>
+      <td>29.354176</td>
+      <td>28.925968</td>
+      <td>26.882242</td>
     </tr>
     <tr>
       <th>17</th>
-      <td>30.958427</td>
-      <td>31.003994</td>
-      <td>29.524551</td>
-      <td>29.471386</td>
-      <td>29.635603</td>
-      <td>26.791264</td>
-      <td>29.306686</td>
+      <td>30.955692</td>
+      <td>31.028826</td>
+      <td>29.543497</td>
+      <td>29.509878</td>
+      <td>29.647667</td>
+      <td>26.784702</td>
+      <td>29.354176</td>
       <td>inf</td>
-      <td>33.235977</td>
-      <td>29.950184</td>
+      <td>33.242348</td>
+      <td>29.911688</td>
     </tr>
     <tr>
       <th>18</th>
-      <td>27.249847</td>
-      <td>27.764196</td>
-      <td>29.882502</td>
-      <td>27.232708</td>
-      <td>28.413771</td>
-      <td>28.904617</td>
-      <td>28.942295</td>
-      <td>33.235977</td>
+      <td>27.270945</td>
+      <td>27.770222</td>
+      <td>29.854399</td>
+      <td>27.242216</td>
+      <td>28.404259</td>
+      <td>28.887432</td>
+      <td>28.925968</td>
+      <td>33.242348</td>
       <td>inf</td>
-      <td>29.398325</td>
+      <td>29.257753</td>
     </tr>
     <tr>
       <th>19</th>
-      <td>27.493883</td>
-      <td>27.993914</td>
-      <td>25.790760</td>
-      <td>26.758585</td>
-      <td>27.993795</td>
-      <td>26.097111</td>
-      <td>26.934277</td>
-      <td>29.950184</td>
-      <td>29.398325</td>
+      <td>27.389570</td>
+      <td>27.892704</td>
+      <td>25.650290</td>
+      <td>26.694988</td>
+      <td>27.862476</td>
+      <td>25.958988</td>
+      <td>26.882242</td>
+      <td>29.911688</td>
+      <td>29.257753</td>
       <td>inf</td>
     </tr>
   </tbody>
@@ -1371,7 +1446,7 @@ Unique labels: [-1  0  1  2]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 36.339535, 25.942497)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 36.27959, 25.94334)
 </pre></div>
 </div>
 </div>
@@ -1394,15 +1469,15 @@ Cluster sizes: [345   3   3   3   3   4   3   3]
 
 eps=17
 Number of clusters: 12
-Cluster sizes: [322   4   3   3   3   3   6   5   8   4   3   3]
+Cluster sizes: [325   4   3   3   3   3   6   7   4   3   3   3]
 
 eps=18
-Number of clusters: 11
-Cluster sizes: [305  30   3   3   3   3   7   3   4   3   3]
+Number of clusters: 10
+Cluster sizes: [305  33   3   3   3   7   3   4   3   3]
 
 eps=19
 Number of clusters: 9
-Cluster sizes: [262  82   3   3   4   4   3   3   3]
+Cluster sizes: [261  84   3   3   3   4   3   3   3]
 
 eps=20
 Number of clusters: 7
@@ -1410,11 +1485,11 @@ Cluster sizes: [211 140   3   4   3   3   3]
 
 eps=21
 Number of clusters: 5
-Cluster sizes: [157 199   3   5   3]
+Cluster sizes: [159 197   3   5   3]
 
 eps=22
 Number of clusters: 4
-Cluster sizes: [102 259   3   3]
+Cluster sizes: [100 261   3   3]
 
 eps=24
 Number of clusters: 2
@@ -1435,7 +1510,7 @@ Cluster sizes: [ 25 342]
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of clusters: 12
-Cluster sizes: [322   4   3   3   3   3   6   5   8   4   3   3]
+Cluster sizes: [325   4   3   3   3   3   6   7   4   3   3   3]
 Unique labels: [-1  0  1  2  3  4  5  6  7  8  9 10]
 </pre></div>
 </div>
@@ -1448,28 +1523,28 @@ Unique labels: [-1  0  1  2  3  4  5  6  7  8  9 10]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f75e791c2f607d799b367612abbb660966fe40b2c4c678e3354fbcee7a25190b.png" src="../../_images/f75e791c2f607d799b367612abbb660966fe40b2c4c678e3354fbcee7a25190b.png" />
-<img alt="../../_images/47e8e66f7d9935d08b96193abb25525bdbc945f00c9eb51b84ca2bf9fa8d54ad.png" src="../../_images/47e8e66f7d9935d08b96193abb25525bdbc945f00c9eb51b84ca2bf9fa8d54ad.png" />
-<img alt="../../_images/2cc6d799cd3ecf166bf14447d56d95800d608db27a436e6b4c692a5145801e5d.png" src="../../_images/2cc6d799cd3ecf166bf14447d56d95800d608db27a436e6b4c692a5145801e5d.png" />
-<img alt="../../_images/684a7016722a89d161556d01311b2064a667e775f7d4aa1002994a5c5c83292f.png" src="../../_images/684a7016722a89d161556d01311b2064a667e775f7d4aa1002994a5c5c83292f.png" />
-<img alt="../../_images/4b1dd0503d9db02eaa2eb6fcbcd439ba359dee0069c88574bca6479b1e9df15b.png" src="../../_images/4b1dd0503d9db02eaa2eb6fcbcd439ba359dee0069c88574bca6479b1e9df15b.png" />
-<img alt="../../_images/cab18618d95f0584f57b449496077a948b781a3dde79d95379b0e376698846a2.png" src="../../_images/cab18618d95f0584f57b449496077a948b781a3dde79d95379b0e376698846a2.png" />
-<img alt="../../_images/9b92662b2472b45a9bf03435d3b16869bf37e127161f20a56aaa585c8caa32dc.png" src="../../_images/9b92662b2472b45a9bf03435d3b16869bf37e127161f20a56aaa585c8caa32dc.png" />
-<img alt="../../_images/a64ecea794258e856a4370cf644c35b2e330885d82166adfb69ce2724bb196bb.png" src="../../_images/a64ecea794258e856a4370cf644c35b2e330885d82166adfb69ce2724bb196bb.png" />
-<img alt="../../_images/a9dac9f751212fc0b28e4c0463b172c049325ba4d3be4946c9365d78427350ae.png" src="../../_images/a9dac9f751212fc0b28e4c0463b172c049325ba4d3be4946c9365d78427350ae.png" />
-<img alt="../../_images/cc93372b054d3e710a980ad7be012f7dfcade07f4358ca0a4215ae134568086e.png" src="../../_images/cc93372b054d3e710a980ad7be012f7dfcade07f4358ca0a4215ae134568086e.png" />
-<img alt="../../_images/4eb29f67d54b578a8e0be030bad3049fb02976eecbea26fbf4618bff69415612.png" src="../../_images/4eb29f67d54b578a8e0be030bad3049fb02976eecbea26fbf4618bff69415612.png" />
+<img alt="../../_images/1fb34a7741f5765f21abb533127b0b7bdd6c7a2a4c768950b70f3b9a9a91bea5.png" src="../../_images/1fb34a7741f5765f21abb533127b0b7bdd6c7a2a4c768950b70f3b9a9a91bea5.png" />
+<img alt="../../_images/b210856f880b692a6054b99fe7d45af20ffc023b99a8ec95a2f9a0a993b98b82.png" src="../../_images/b210856f880b692a6054b99fe7d45af20ffc023b99a8ec95a2f9a0a993b98b82.png" />
+<img alt="../../_images/8fad06a379efd42ff4ffd0508eb2e3694be0acf32361f8f3a856957d0eb47ae1.png" src="../../_images/8fad06a379efd42ff4ffd0508eb2e3694be0acf32361f8f3a856957d0eb47ae1.png" />
+<img alt="../../_images/343fa131c3528f4283d23fc2b429584fcdd146970622858937c95972f7af2739.png" src="../../_images/343fa131c3528f4283d23fc2b429584fcdd146970622858937c95972f7af2739.png" />
+<img alt="../../_images/95a397877980b4c7edec22e8b69208fa7578556d5354ebc6f6e6977b95310b61.png" src="../../_images/95a397877980b4c7edec22e8b69208fa7578556d5354ebc6f6e6977b95310b61.png" />
+<img alt="../../_images/6e808b83fd15e182ae3c42b5162a07f529621e63feec490e41e59d6b933d37c9.png" src="../../_images/6e808b83fd15e182ae3c42b5162a07f529621e63feec490e41e59d6b933d37c9.png" />
+<img alt="../../_images/b9d457608df5fe4145b2eece68426c28192a02173b9870982e1aff6ca230e02d.png" src="../../_images/b9d457608df5fe4145b2eece68426c28192a02173b9870982e1aff6ca230e02d.png" />
+<img alt="../../_images/c192c641a62740febb1c59a6f3d99b45a2dd2dfe5832706323a4b3b97c6d872a.png" src="../../_images/c192c641a62740febb1c59a6f3d99b45a2dd2dfe5832706323a4b3b97c6d872a.png" />
+<img alt="../../_images/b8d48a8f77c44f91bfcf0c621154310528128a813d64951df309eefff5ad2195.png" src="../../_images/b8d48a8f77c44f91bfcf0c621154310528128a813d64951df309eefff5ad2195.png" />
+<img alt="../../_images/12ed613d8009573f4c57262c90ce1360cd5923006f40464e619f17b7af6e817a.png" src="../../_images/12ed613d8009573f4c57262c90ce1360cd5923006f40464e619f17b7af6e817a.png" />
+<img alt="../../_images/1371381782bbd52b25505567f2aae27758c8bb9fba3f8a51e01e201df07f3e4d.png" src="../../_images/1371381782bbd52b25505567f2aae27758c8bb9fba3f8a51e01e201df07f3e4d.png" />
 </div>
 </div>
 <p>Let’s examine noise images identified by DBSCAN.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_dbscan_noise_images</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">faces_inputs</span><span class="p">,</span> <span class="n">dbscan_labels</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_dbscan_noise_images</span><span class="p">(</span><span class="n">Z_faces</span><span class="p">,</span> <span class="n">faces_inputs</span><span class="p">,</span> <span class="n">dbscan_labels</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/35a9076e61f1565e63d30e72ef90fe928989493b01f6128045abb23cf239a385.png" src="../../_images/35a9076e61f1565e63d30e72ef90fe928989493b01f6128045abb23cf239a385.png" />
+<img alt="../../_images/acb1676cbdff1c981be119b839bcfd37677866dfcdb5756cde12a54c2fea5180.png" src="../../_images/acb1676cbdff1c981be119b839bcfd37677866dfcdb5756cde12a54c2fea5180.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1496,7 +1571,7 @@ Unique labels: [-1  0  1  2  3  4  5  6  7  8  9 10]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/000711dfc87fea8d7cf936845dbd74f10326e2089557bf1e0c909d5a737f4dd7.png" src="../../_images/000711dfc87fea8d7cf936845dbd74f10326e2089557bf1e0c909d5a737f4dd7.png" />
+<img alt="../../_images/bbbb9c232e529d20705709b5cba85ccff08c282e0b5d151d7b3904a46ba4b4b5.png" src="../../_images/bbbb9c232e529d20705709b5cba85ccff08c282e0b5d151d7b3904a46ba4b4b5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1517,27 +1592,32 @@ Unique labels: [-1  0  1  2  3  4  5  6  7  8  9 10]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/88b36f271692e4e84db8bf1e9ed371b3cba83d42f3b6759230be04eb37696aad.png" src="../../_images/88b36f271692e4e84db8bf1e9ed371b3cba83d42f3b6759230be04eb37696aad.png" />
-<img alt="../../_images/e4d38b6b6f0672a6253377c766a761afdd9c510a72be980a2710d3bcfcb0bcc1.png" src="../../_images/e4d38b6b6f0672a6253377c766a761afdd9c510a72be980a2710d3bcfcb0bcc1.png" />
-<img alt="../../_images/a3ccdcea0782c0282b822ee7391efe672b5751f51dd0f009fd5d2902c924da88.png" src="../../_images/a3ccdcea0782c0282b822ee7391efe672b5751f51dd0f009fd5d2902c924da88.png" />
-<img alt="../../_images/742c474433a6f4d551097d9864d3367bcb0469b3e46f543d086523d5e49a6cf3.png" src="../../_images/742c474433a6f4d551097d9864d3367bcb0469b3e46f543d086523d5e49a6cf3.png" />
-<img alt="../../_images/21170d5e4208c2a91d5b2ffcc355b09493da25848ee502da6831b3061f66c17a.png" src="../../_images/21170d5e4208c2a91d5b2ffcc355b09493da25848ee502da6831b3061f66c17a.png" />
-<img alt="../../_images/9d207dd5e19ac77ed04eb84aa4fb32671bc475bcfc5931bf3e5185b05acdb814.png" src="../../_images/9d207dd5e19ac77ed04eb84aa4fb32671bc475bcfc5931bf3e5185b05acdb814.png" />
-<img alt="../../_images/d41a195dd84e2e1f7159588e99d96428b49d791e8037ff800406f172ec1e198e.png" src="../../_images/d41a195dd84e2e1f7159588e99d96428b49d791e8037ff800406f172ec1e198e.png" />
-<img alt="../../_images/a7a5fd8ddbbeede0642a3ff040ebfdb7f4cdfbdc6aac0bab3da1a647bc9ca0ce.png" src="../../_images/a7a5fd8ddbbeede0642a3ff040ebfdb7f4cdfbdc6aac0bab3da1a647bc9ca0ce.png" />
-<img alt="../../_images/5a746bc9559807fddb84bbafaac81284cec5c8f6b5cdb5b5fd2951d4c8ee02c0.png" src="../../_images/5a746bc9559807fddb84bbafaac81284cec5c8f6b5cdb5b5fd2951d4c8ee02c0.png" />
-<img alt="../../_images/504a23585c46d4de4e9437e247527586a42365e22ad549bf9c1736a35446f222.png" src="../../_images/504a23585c46d4de4e9437e247527586a42365e22ad549bf9c1736a35446f222.png" />
-<img alt="../../_images/2e467e05f31486ef25b5fe84f3dff9d6e18c431998329a97cdf065cbd2ac2e25.png" src="../../_images/2e467e05f31486ef25b5fe84f3dff9d6e18c431998329a97cdf065cbd2ac2e25.png" />
-<img alt="../../_images/25045aaf65edaf35e95fcb183f0967ebed0789927fe5ec55a1277bc9dc7525a8.png" src="../../_images/25045aaf65edaf35e95fcb183f0967ebed0789927fe5ec55a1277bc9dc7525a8.png" />
-<img alt="../../_images/9ebf52bd742cf7e39098a33623af5a52859e12a6603c8f44665bf1348a0aed00.png" src="../../_images/9ebf52bd742cf7e39098a33623af5a52859e12a6603c8f44665bf1348a0aed00.png" />
-<img alt="../../_images/2096380be31ed4f233582957578b0c9649b48d87c2e320ac032c6c4dbcd09cfc.png" src="../../_images/2096380be31ed4f233582957578b0c9649b48d87c2e320ac032c6c4dbcd09cfc.png" />
-<img alt="../../_images/375f864d4f4abfb0850dec21d776a9896abac9bd5f23c23c8b12a81652f0d50b.png" src="../../_images/375f864d4f4abfb0850dec21d776a9896abac9bd5f23c23c8b12a81652f0d50b.png" />
-<img alt="../../_images/37e949f53dcd2287624ee996f9a0da3907f5a34af8961658b09244072f18f72a.png" src="../../_images/37e949f53dcd2287624ee996f9a0da3907f5a34af8961658b09244072f18f72a.png" />
-<img alt="../../_images/5215cccb8123e2436280fd9ecc09e6dc1606581d41e914cada3ad23d0c9875e6.png" src="../../_images/5215cccb8123e2436280fd9ecc09e6dc1606581d41e914cada3ad23d0c9875e6.png" />
-<img alt="../../_images/271688137f6d674d8e3ec603951015d00009bc022a4e94ab9d43d79ed8ccef21.png" src="../../_images/271688137f6d674d8e3ec603951015d00009bc022a4e94ab9d43d79ed8ccef21.png" />
-<img alt="../../_images/4bfa6988048d520d365145ecab2ebfb1c04ff468f7f6e624b1fdd24455616c7c.png" src="../../_images/4bfa6988048d520d365145ecab2ebfb1c04ff468f7f6e624b1fdd24455616c7c.png" />
-<img alt="../../_images/147312c053d8e960038bb4a9f953e60d3bda5d2a531e44ef3bb426ddc56547a7.png" src="../../_images/147312c053d8e960038bb4a9f953e60d3bda5d2a531e44ef3bb426ddc56547a7.png" />
-<img alt="../../_images/c0323558a9ede3069a34f20aa105cd37ec4d8c95a75e36257b2ed715a355df1f.png" src="../../_images/c0323558a9ede3069a34f20aa105cd37ec4d8c95a75e36257b2ed715a355df1f.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/CS/2023-24/330/cpsc330-2023W1/lectures/code/plotting_functions_unsup.py:1500: RuntimeWarning:
+
+More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`). Consider using `matplotlib.pyplot.close()`.
+</pre></div>
+</div>
+<img alt="../../_images/5d172394335f8607ffd1f444c3b29df010a638449d31de50e67152068d869f68.png" src="../../_images/5d172394335f8607ffd1f444c3b29df010a638449d31de50e67152068d869f68.png" />
+<img alt="../../_images/9b762576376b65a80603045b0a13303e432799c3350b446f86543a3f03bf83c1.png" src="../../_images/9b762576376b65a80603045b0a13303e432799c3350b446f86543a3f03bf83c1.png" />
+<img alt="../../_images/8019e6277287c8f8c7bbc7fb2296084ab846e372535ba4eac3f20ea13624340b.png" src="../../_images/8019e6277287c8f8c7bbc7fb2296084ab846e372535ba4eac3f20ea13624340b.png" />
+<img alt="../../_images/0bee896d76fd37c053382d7bf235c3aae8bae3ff3dfb01165e9c7fa76db281fe.png" src="../../_images/0bee896d76fd37c053382d7bf235c3aae8bae3ff3dfb01165e9c7fa76db281fe.png" />
+<img alt="../../_images/1cd3e5832e048d63bdaf86d28c2542752f5017f7af3de84ed90b22803bbcf9c0.png" src="../../_images/1cd3e5832e048d63bdaf86d28c2542752f5017f7af3de84ed90b22803bbcf9c0.png" />
+<img alt="../../_images/fabec369ce6c27d5ab1633d5065951c8d4fe589150446072776e688d25c10ab3.png" src="../../_images/fabec369ce6c27d5ab1633d5065951c8d4fe589150446072776e688d25c10ab3.png" />
+<img alt="../../_images/ae6865d2707b6e92934b213ef16baae638c5496bcbd66936fa36c846cc64b492.png" src="../../_images/ae6865d2707b6e92934b213ef16baae638c5496bcbd66936fa36c846cc64b492.png" />
+<img alt="../../_images/e0bf1d31a79d26aae6e9737f89f9a6470d62b699fdfa3affece9dbec673ccbc4.png" src="../../_images/e0bf1d31a79d26aae6e9737f89f9a6470d62b699fdfa3affece9dbec673ccbc4.png" />
+<img alt="../../_images/ed926dc8b2bb9de61d5211b8cce9c5e20908ce8340169bba6127a2ba5c1b4ada.png" src="../../_images/ed926dc8b2bb9de61d5211b8cce9c5e20908ce8340169bba6127a2ba5c1b4ada.png" />
+<img alt="../../_images/781d4d1777d7ef863b28f95906222202bd1d4b5ccd346d73168fed87823ea61f.png" src="../../_images/781d4d1777d7ef863b28f95906222202bd1d4b5ccd346d73168fed87823ea61f.png" />
+<img alt="../../_images/21e30e7e7aefcb08297ddf77bb26f04a720dac1940f00bad637e31b0103003c8.png" src="../../_images/21e30e7e7aefcb08297ddf77bb26f04a720dac1940f00bad637e31b0103003c8.png" />
+<img alt="../../_images/45af0c98c690ff162e4d874cf2f05ad947859c968b7ce11a334416ff0fb62748.png" src="../../_images/45af0c98c690ff162e4d874cf2f05ad947859c968b7ce11a334416ff0fb62748.png" />
+<img alt="../../_images/59e099dfe39e7f7f85a5630f1eea133ecf9ecf6ba3c634b0a5fbe981105b54c1.png" src="../../_images/59e099dfe39e7f7f85a5630f1eea133ecf9ecf6ba3c634b0a5fbe981105b54c1.png" />
+<img alt="../../_images/398f57f2e89e01bb5775fd05c0db0d7a1a20fea563d9b0f9ce90f4c921a97fac.png" src="../../_images/398f57f2e89e01bb5775fd05c0db0d7a1a20fea563d9b0f9ce90f4c921a97fac.png" />
+<img alt="../../_images/ccec592f6448395b6e759d8d958872fe0bc41a1f89696ebbc1659eea58a4e532.png" src="../../_images/ccec592f6448395b6e759d8d958872fe0bc41a1f89696ebbc1659eea58a4e532.png" />
+<img alt="../../_images/db4aff48e969bcc6a84174459527b4519a85c988bbad51d30e2639c56c0936c6.png" src="../../_images/db4aff48e969bcc6a84174459527b4519a85c988bbad51d30e2639c56c0936c6.png" />
+<img alt="../../_images/1e7058704ac3aa96990c266eb2216ef01bf9b04db7766517214abd1647c07c27.png" src="../../_images/1e7058704ac3aa96990c266eb2216ef01bf9b04db7766517214abd1647c07c27.png" />
+<img alt="../../_images/2b8f044dd639240b7f771ae602028083d6309e762962f2ccb5074f808db8e0a9.png" src="../../_images/2b8f044dd639240b7f771ae602028083d6309e762962f2ccb5074f808db8e0a9.png" />
+<img alt="../../_images/1625c287c2c79b2e1d9829b7f335c11bb4f5d034f8cf9db6f88283eb9b32f743.png" src="../../_images/1625c287c2c79b2e1d9829b7f335c11bb4f5d034f8cf9db6f88283eb9b32f743.png" />
+<img alt="../../_images/d2df768d38dcfe3556e0696deda0832a44d4f917000ac6128009e2ec5600dfcb.png" src="../../_images/d2df768d38dcfe3556e0696deda0832a44d4f917000ac6128009e2ec5600dfcb.png" />
+<img alt="../../_images/5f28cc311222ef9a8cd7635e4d5845bbbf0d3859ca97fc3fa49191c75891ba9f.png" src="../../_images/5f28cc311222ef9a8cd7635e4d5845bbbf0d3859ca97fc3fa49191c75891ba9f.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1577,6 +1657,24 @@ Unique labels: [-1  0  1  2  3  4  5  6  7  8  9 10]
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="14_class-demo.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lecture 14: Class demo</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../attribution.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Attributions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>

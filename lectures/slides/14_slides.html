@@ -152,7 +152,6 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../syllabus.html">Syllabus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../docs/README.html">CPSC 330 Documents</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../learning-objectives.html">Course Learning Objectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
 <ul class="nav bd-sidenav">
@@ -170,6 +169,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../12_feat-importances.html">Lecture 12: Feature importances and model transparency</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../13_feature-engineering-selection.html">Lecture 13: Feature engineering and feature selection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../14_K-Means.html">Lecture 14: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../15_DBSCAN-hierarchical.html">Lecture 15: More Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../16_recommender-systems.html">Lecture 16: Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../17_natural-language-processing.html">Lecture 18: Introduction to natural language processing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -177,10 +179,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../class_demos/04_class-demo.html">Lecture 4: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../class_demos/05-06_class-demo.html">Lectures 5 and 6: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../class_demos/07_class-demo.html">Lectures 7: Class demo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../class_demos/09_class-demo.html">Lecture 9: Class demo</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="../class_demos/09_class-demo.html">Exploring classification metrics</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="../class_demos/14_class-demo.html">Lecture 14: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../class_demos/15_class-demo.html">Lecture 15: Class demo</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -334,6 +336,17 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#announcements">Announcements</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-plan">Lecture plan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes">Learning outcomes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-midterm-poll">(iClicker) Midterm poll</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-unsupervised-learning">Introduction to unsupervised learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-machine-learning">Types of machine learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-learning">Supervised learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-learning">Unsupervised learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#can-we-learn-without-targets">Can we learn without targets?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#labeled-vs-unlabeled-data">Labeled vs. Unlabeled data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-supervised-vs-unsupervised-learning">Example: Supervised vs unsupervised learning</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-activity-5-mins">Clustering Activity (~5 mins)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-clustering">What is clustering?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-input-and-possible-output">Clustering: Input and (possible) output</a><ul class="nav section-nav flex-column">
@@ -346,6 +359,8 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#document-clustering">Document clustering</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-cell-types-in-tumours">Finding cell types in tumours</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-mutations-in-cancer-genomes">Finding mutations in cancer genomes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-applications">Other applications</a></li>
 </ul>
 </li>
@@ -375,13 +390,16 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-silhouette-scores-to-select-the-number-of-clusters">Using Silhouette scores to select the number of clusters</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-look-for-in-these-plots">What to look for in these plots?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">14.3 Select all of the following statements which are <strong>True</strong> (iClicker)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-gaussian-mixture-models-high-level">Introduction to Gaussian mixture models (high-level)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-comments-summary-and-reflection">Final comments, summary, and reflection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-points-to-remember">Important points to remember</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#everything-after-this-is-optional">Everything after this is optional!</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-introduction-to-gaussian-mixture-models-high-level">(Optional) Introduction to Gaussian mixture models (high-level)</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-it-work-high-level">How does it work? (high-level)</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">14.4 Select all of the following statements which are <strong>True</strong> (iClicker)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-comments-summary-and-reflection">Final comments, summary, and reflection</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-points-to-remember">Important points to remember</a></li>
 </ul>
 </li>
 </ul>
@@ -450,7 +468,8 @@ document.write(`
 <section id="lecture-plan">
 <h2>Lecture plan<a class="headerlink" href="#lecture-plan" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Clustering activity (~10 mins)</p></li>
+<li><p>Intro to unsupervised learning (~5 mins)</p></li>
+<li><p>Clustering activity (~5 mins)</p></li>
 <li><p>Summary of the following pre-watch videos (~15 mins)</p>
 <ul>
 <li><p>Clustering motivation (<a class="reference external" href="https://youtu.be/caAuUAXwpb8">video</a>)</p></li>
@@ -460,10 +479,248 @@ document.write(`
 </li>
 <li><p>iClicker questions (~10 mins)</p></li>
 <li><p>Break (~5 mins)</p></li>
-<li><p>Introduction to GMMs (~15 mins)</p></li>
 <li><p>Demo: Clustering images (~15 mins)</p></li>
 <li><p>Final comments and summary (~5 mins)</p></li>
 </ul>
+</section>
+<section id="learning-outcomes">
+<h2>Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this heading">#</a></h2>
+<p>From this lecture, students are expected to be able to:</p>
+<ul class="simple">
+<li><p>Explain the unsupervised paradigm.</p></li>
+<li><p>Explain the motivation and potential applications of clustering.</p></li>
+<li><p>Define the clustering problem.</p></li>
+<li><p>Broadly explain the K-Means algorithm apply <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>’s <code class="docutils literal notranslate"><span class="pre">KMeans</span></code> algorithm.</p></li>
+<li><p>Point out pros and cons of K-Means and the difficulties associated with choosing the right number of clusters.</p></li>
+<li><p>Create the Elbow plot and Silhouette plots for a given dataset.</p></li>
+<li><p>Broadly explain the difference between soft cluster assignment vs. hard cluster assignment.</p></li>
+<li><p>Use clustering for the problem of image clustering and interpret clusters.</p></li>
+<li><p>Demonstrate how input data representation can influence clustering results.</p></li>
+</ul>
+</section>
+<section id="iclicker-midterm-poll">
+<h2>(iClicker) Midterm poll<a class="headerlink" href="#iclicker-midterm-poll" title="Permalink to this heading">#</a></h2>
+<p><strong>iClicker cloud join link: https://join.iclicker.com/SNBF</strong></p>
+<p><strong>Select all of the following statements which are TRUE.</strong></p>
+<ul class="simple">
+<li><p>(A) The midterm was way easier than expected.</p></li>
+<li><p>(B) The midterm was fair.</p></li>
+<li><p>(C) The midterm was hard and my morale is low :(.</p></li>
+</ul>
+<p><br><br><br><br></p>
+</section>
+<section id="introduction-to-unsupervised-learning">
+<h2>Introduction to unsupervised learning<a class="headerlink" href="#introduction-to-unsupervised-learning" title="Permalink to this heading">#</a></h2>
+<section id="types-of-machine-learning">
+<h3>Types of machine learning<a class="headerlink" href="#types-of-machine-learning" title="Permalink to this heading">#</a></h3>
+<p>Recall the typical learning problems we discussed in the first lecture.</p>
+<ul class="simple">
+<li><p><strong>Supervised learning</strong> (<a class="reference external" href="https://support.google.com/a/answer/2368132?hl=en">Gmail spam filtering</a>)</p>
+<ul>
+<li><p>Training a model from input data and its corresponding targets to predict targets for new examples.</p></li>
+</ul>
+</li>
+<li><p><strong>Unsupervised learning</strong> (this course) (<a class="reference external" href="https://news.google.com/">Google News</a>)</p>
+<ul>
+<li><p>Training a model to find patterns in a dataset, typically an unlabeled dataset.</p></li>
+</ul>
+</li>
+<li><p>Reinforcement learning (<a class="reference external" href="https://deepmind.com/research/case-studies/alphago-the-story-so-far">AlphaGo</a>)</p>
+<ul>
+<li><p>A family of algorithms for finding suitable actions to take in a given situation in order to maximize a reward.</p></li>
+</ul>
+</li>
+<li><p><strong>Recommendation systems</strong> (<a class="reference external" href="https://www.cs.umd.edu/~samir/498/Amazon-Recommendations.pdf">Amazon item recommendation system</a>)</p>
+<ul>
+<li><p>Predict the “rating” or “preference” a user would give to an item.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="supervised-learning">
+<h3>Supervised learning<a class="headerlink" href="#supervised-learning" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Training data comprises a set of observations (<span class="math notranslate nohighlight">\(X\)</span>) and their corresponding targets (<span class="math notranslate nohighlight">\(y\)</span>).</p></li>
+<li><p>We wish to find a model function <span class="math notranslate nohighlight">\(f\)</span> that relates <span class="math notranslate nohighlight">\(X\)</span> to <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
+<li><p>Then use that model function to predict the targets of new examples.</p></li>
+<li><p>We have been working with this set up so far.</p></li>
+</ul>
+<p><img alt="" src="../../_images/sup-learning.png" /></p>
+</section>
+<section id="unsupervised-learning">
+<h3>Unsupervised learning<a class="headerlink" href="#unsupervised-learning" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Training data consists of observations (<span class="math notranslate nohighlight">\(X\)</span>) without any corresponding targets.</p></li>
+<li><p>Unsupervised learning could be used to group similar things together in <span class="math notranslate nohighlight">\(X\)</span> or to find underlying structure in the data.</p></li>
+</ul>
+<p><img alt="" src="../../_images/unsup-learning.png" /></p>
+</section>
+<section id="can-we-learn-without-targets">
+<h3>Can we learn without targets?<a class="headerlink" href="#can-we-learn-without-targets" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Yes, but the learning will be focused on finding the underlying structures of the inputs themselves (rather than finding the function <span class="math notranslate nohighlight">\(f\)</span> between input and output like we did in supervised learning models).</p></li>
+<li><p>Examples:</p>
+<ul>
+<li><p>Clustering (this course)</p></li>
+<li><p>Dimensionality reduction (requires some math, not covered in this course)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="labeled-vs-unlabeled-data">
+<h3>Labeled vs. Unlabeled data<a class="headerlink" href="#labeled-vs-unlabeled-data" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>If you have access to labeled training data, you’re in the “supervised” setting.</p></li>
+<li><p>You know what to do in that case from the previous lectures</p></li>
+<li><p>Unfortunately, getting large amount of labeled training data is often time consuming and expensive.</p></li>
+<li><p>Annotated data can become “stale” after a while in cases such as fraud detection.</p></li>
+<li><p>Can you still make sense of the data even though you do not have the labels?</p></li>
+<li><p>Yes! At least to a certain extent!</p></li>
+</ul>
+</section>
+<section id="example-supervised-vs-unsupervised-learning">
+<h3>Example: Supervised vs unsupervised learning<a class="headerlink" href="#example-supervised-vs-unsupervised-learning" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>In supervised learning, we are given features <span class="math notranslate nohighlight">\(X\)</span> and target <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
+</ul>
+<table>
+<tr style="background-color:white;">
+    <td>
+        <table>
+            <tr>
+                <td colspan="2" style="text-align:center;"> <b>Dataset 1</b> </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>$x_1$</td>
+                <td>$y$</td>
+            </tr>
+            <tr>
+                <td> 101.0
+                <td> Sick
+            </tr>
+            <tr>
+                <td> 98.5 
+                <td> Not Sick
+            </tr>
+            <tr>
+                <td> 93.8 
+                <td> Sick
+            </tr>
+            <tr>
+                <td> 104.3
+                <td> Sick
+            </tr>
+            <tr>
+                <td> 98.6 
+                <td> Not Sick
+            </tr>
+        </table>
+    </td>
+    <td>
+       <table>
+            <tr>
+                <td colspan="3" style="text-align:center;"> <b>Dataset2</b> </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>$x_1$</td>
+                <td>$x_2$</td>
+                <td>$y$</td>
+            </tr>
+            <tr>
+                <td> -2.68
+                <td> 0.32 
+                <td>class 1
+            </tr>
+            <tr>
+                <td> -2.71
+                <td> -0.18
+                <td> class 1
+            </tr>
+            <tr>
+                <td> 1.28  
+                <td> 0.69    
+                <td> class 2
+            </tr>
+            <tr>
+                <td> 0.93  
+                <td> 0.32   
+                <td> class 2
+            </tr>
+            <tr>
+                <td> 1.39
+                <td> -0.28 
+                <td> class 3
+            </tr>
+        </table>
+    </td>
+</tr>
+</table><ul class="simple">
+<li><p>In unsupervised learning, we are only given features <span class="math notranslate nohighlight">\(X\)</span>.</p></li>
+</ul>
+<table>
+<tr style="background-color:white;">
+    <td>
+        <table>
+            <tr>
+                <td colspan="2" style="text-align:center;"> <b>Dataset 1</b> </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>$x_1$</td>
+            </tr>
+            <tr>
+                <td> 101.0
+            </tr>
+            <tr>
+                <td> 98.5 
+            </tr>
+            <tr>
+                <td> 93.8 
+            </tr>
+            <tr>
+                <td> 104.3
+            </tr>
+            <tr>
+                <td> 98.6 
+            </tr>
+        </table>
+    </td>
+    <td>
+       <table>
+            <tr>
+                <td colspan="3" style="text-align:center;"> <b>Dataset 2</b> </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>$x_1$</td>
+                <td>$x_2$</td>
+            </tr>
+            <tr>
+                <td> -2.68
+                <td> 0.32 
+            </tr>
+            <tr>
+                <td> -2.71
+                <td> -0.18
+            </tr>
+            <tr>
+                <td> 1.28  
+                <td> 0.69    
+            </tr>
+            <tr>
+                <td> 0.93  
+                <td> 0.32   
+            </tr>
+            <tr>
+                <td> 1.39
+                <td> -0.28 
+            </tr>
+        </table>
+    </td>
+</tr>
+</table></section>
 </section>
 <section id="clustering-activity-5-mins">
 <h2>Clustering Activity (~5 mins)<a class="headerlink" href="#clustering-activity-5-mins" title="Permalink to this heading">#</a></h2>
@@ -474,7 +731,6 @@ document.write(`
 <p><img alt="" src="../../_images/food-clustering-activity.png" /></p>
 <ul class="simple">
 <li><p>Categorize the food items in the image and write your categories. Do you think there is one correct way to cluster these images? Why or why not?</p></li>
-<li><p>Imagine that you have a personal cook who is an expert in making different varieties of hummus. What variety would you ask them to make?</p></li>
 <li><p>If you want to build a machine learning model to cluster such images how would you represent such images?</p></li>
 <li><p>What would be some applications of clustering these items?</p></li>
 </ul>
@@ -552,13 +808,22 @@ document.write(`
 <p><strong>You’ll be working on document clustering in the homework.</strong></p>
 </section>
 </section>
+<section id="finding-cell-types-in-tumours">
+<h3>Finding cell types in tumours<a class="headerlink" href="#finding-cell-types-in-tumours" title="Permalink to this heading">#</a></h3>
+<p><img alt="" src="../../_images/sc_clustering.png" /></p>
+<p>Source <a class="reference external" href="https://www.biorxiv.org/content/10.1101/2022.11.17.516951v1">Sarkozy et al.</a></p>
+</section>
+<section id="finding-mutations-in-cancer-genomes">
+<h3>Finding mutations in cancer genomes<a class="headerlink" href="#finding-mutations-in-cancer-genomes" title="Permalink to this heading">#</a></h3>
+<p><img alt="" src="../../_images/genomics_snv_counts.svg" /></p>
+<p>Source <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/22285562/">Roth et al.</a></p>
+</section>
 <section id="other-applications">
 <h3>Other applications<a class="headerlink" href="#other-applications" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Social network analysis</p></li>
 <li><p>Medical imaging (image segmentation, image grouping, anomaly detection)</p></li>
 <li><p>Imputing missing data, data compression, privacy preservation</p></li>
-<li><p>Biology discovering new cell types</p></li>
 </ul>
 </section>
 </section>
@@ -616,7 +881,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 1, 0, 0, 2, 2, 1, 0], dtype=int32)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2, 1, 0, 1, 2, 2, 0, 0, 1, 2], dtype=int32)
 </pre></div>
 </div>
 </div>
@@ -628,7 +893,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 1, 0, 0, 2, 2, 1, 0], dtype=int32)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2, 1, 0, 1, 2, 2, 0, 0, 1, 2], dtype=int32)
 </pre></div>
 </div>
 </div>
@@ -641,9 +906,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 5.75745416, -9.48073598],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.10556679, -5.65013704],
        [ 2.04861878,  5.51226051],
-       [-0.10556679, -5.65013704]])
+       [ 5.75745416, -9.48073598]])
 </pre></div>
 </div>
 </div>
@@ -658,7 +923,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/03b054c99a94a9d135e03a55c50c550e0c2e7e165f86d7ea9dcd05355b788ecc.png" src="../../_images/03b054c99a94a9d135e03a55c50c550e0c2e7e165f86d7ea9dcd05355b788ecc.png" />
+<img alt="../../_images/c065fe3a49cf2d04430b3314189fd9ac9d5ae13d21eb86b95b513b7f58f3a1d3.png" src="../../_images/c065fe3a49cf2d04430b3314189fd9ac9d5ae13d21eb86b95b513b7f58f3a1d3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -669,7 +934,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 1]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1]
 </pre></div>
 </div>
 </div>
@@ -686,7 +951,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/67c19a0e579353b58978fc3789133c1a871e293596f3a62c092f4fa2f3ee3133.png" src="../../_images/67c19a0e579353b58978fc3789133c1a871e293596f3a62c092f4fa2f3ee3133.png" />
+<img alt="../../_images/c38a0579c671ffa65d64ec0549d5a01b9d41837ef8fe6f2be6964394f340dd6a.png" src="../../_images/c38a0579c671ffa65d64ec0549d5a01b9d41837ef8fe6f2be6964394f340dd6a.png" />
 </div>
 </div>
 </section>
@@ -919,13 +1184,6 @@ document.write(`
 </section>
 <section id="choosing-k-video">
 <h3>Choosing K [<a class="reference external" href="https://youtu.be/M5ilrhcL0oY">video</a>]<a class="headerlink" href="#choosing-k-video" title="Permalink to this heading">#</a></h3>
-<p>In the previous activity you were asked about hummus of your taste. Suppose you don’t have a cook anymore and you are to pick one of the following options, which one would you pick?</p>
-<ul class="simple">
-<li><p>(A) Original hummus</p></li>
-<li><p>(B) Roasted garlic hummus</p></li>
-<li><p>(C) Lemon hummus</p></li>
-</ul>
-<p><img alt="" src="../../_images/hummus.png" /></p>
 </section>
 <section id="hyperparameter-tuning-for-the-number-of-clusters">
 <h3>Hyperparameter tuning for the number of clusters<a class="headerlink" href="#hyperparameter-tuning-for-the-number-of-clusters" title="Permalink to this heading">#</a></h3>
@@ -1005,47 +1263,47 @@ document.write(`
     <tr>
       <th>1</th>
       <td>11</td>
-      <td>62.521220</td>
+      <td>70.076284</td>
     </tr>
     <tr>
       <th>2</th>
       <td>21</td>
-      <td>28.296204</td>
+      <td>26.137410</td>
     </tr>
     <tr>
       <th>3</th>
       <td>31</td>
-      <td>14.787738</td>
+      <td>15.359887</td>
     </tr>
     <tr>
       <th>4</th>
       <td>41</td>
-      <td>7.119160</td>
+      <td>6.844921</td>
     </tr>
     <tr>
       <th>5</th>
       <td>51</td>
-      <td>3.978918</td>
+      <td>3.593508</td>
     </tr>
     <tr>
       <th>6</th>
       <td>61</td>
-      <td>1.985659</td>
+      <td>2.126488</td>
     </tr>
     <tr>
       <th>7</th>
       <td>71</td>
-      <td>1.023802</td>
+      <td>1.016676</td>
     </tr>
     <tr>
       <th>8</th>
       <td>81</td>
-      <td>0.363641</td>
+      <td>0.385639</td>
     </tr>
     <tr>
       <th>9</th>
       <td>91</td>
-      <td>0.057535</td>
+      <td>0.053156</td>
     </tr>
   </tbody>
 </table>
@@ -1085,7 +1343,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/47979f131bf55e270d5846cb2671bdc84c5fcad42021b62135685712711e87a1.png" src="../../_images/47979f131bf55e270d5846cb2671bdc84c5fcad42021b62135685712711e87a1.png" />
+<img alt="../../_images/3e0cecdbc0ea8f4181b3f8a46d36b51bdf09a31bdae4a0db6b66eacbb1bcf58b.png" src="../../_images/3e0cecdbc0ea8f4181b3f8a46d36b51bdf09a31bdae4a0db6b66eacbb1bcf58b.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1109,7 +1367,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/3c3768c6342a4008c2ace93f55ed2b88b98e5b0fcde7eef9e1704dcc82d9c0a2.png" src="../../_images/3c3768c6342a4008c2ace93f55ed2b88b98e5b0fcde7eef9e1704dcc82d9c0a2.png" />
+<img alt="../../_images/9396c7d3a177ae331f077f955ed8c405c0f497c8d591946844e1072c778f05ca.png" src="../../_images/9396c7d3a177ae331f077f955ed8c405c0f497c8d591946844e1072c778f05ca.png" />
 </div>
 </div>
 </section>
@@ -1248,8 +1506,32 @@ document.write(`
 <li><p>(E) The Silhouette scores ranges between -1 and 1 where higher scores indicates better cluster assignments.</p></li>
 </ul>
 </section>
-<section id="introduction-to-gaussian-mixture-models-high-level">
-<h3>Introduction to Gaussian mixture models (high-level)<a class="headerlink" href="#introduction-to-gaussian-mixture-models-high-level" title="Permalink to this heading">#</a></h3>
+<section id="final-comments-summary-and-reflection">
+<h3>Final comments, summary, and reflection<a class="headerlink" href="#final-comments-summary-and-reflection" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="important-points-to-remember">
+<h3>Important points to remember<a class="headerlink" href="#important-points-to-remember" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Clustering is a common unsupervised approach to identify underlying structure in data and grouping points based on similarity.</p></li>
+<li><p>Appropriate data representation is crucial for meaningful clustering.</p></li>
+<li><p>We did not talk much about distance metrics but that is another importance consideration in clustering.</p></li>
+<li><p>K-Means is a popular clustering algorithm.</p></li>
+</ul>
+<p><strong>Clustering with K-Means</strong></p>
+<ul class="simple">
+<li><p>It requires us to specify the number of clusters in advance.</p></li>
+<li><p>Each example is assigned to one (and only one) cluster.</p></li>
+<li><p>The labels provided by the algorithm have no actual meaning.</p></li>
+<li><p>The centroids live in the same space as of the dataset but they are <strong>not</strong> actual data points, but instead are average points.</p></li>
+<li><p>It always converges. Convergence is dependent upon the initial centers and it may converge to a sub-optimal solution.</p></li>
+<li><p>Two popular ways to provide insight into how many clusters are reasonable for the give problem are: <strong>the Elbow method</strong> and <strong>the Silhouette method</strong>.</p></li>
+</ul>
+</section>
+</section>
+<section id="everything-after-this-is-optional">
+<h2>Everything after this is optional!<a class="headerlink" href="#everything-after-this-is-optional" title="Permalink to this heading">#</a></h2>
+<section id="optional-introduction-to-gaussian-mixture-models-high-level">
+<h3>(Optional) Introduction to Gaussian mixture models (high-level)<a class="headerlink" href="#optional-introduction-to-gaussian-mixture-models-high-level" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>K-Means is great but it cannot handle oddly shaped clusters.</p></li>
 <li><p>In K-Means our clusters are solely defined by cluster centers.</p></li>
@@ -1278,7 +1560,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">discrete_scatter</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_train</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">s</span><span class="o">=</span><span class="mi">6</span><span class="p">);</span><span class="n">mb</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">discrete_scatter</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_train</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">s</span><span class="o">=</span><span class="mi">6</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1296,7 +1578,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dbc4b6024822d03efde13876e525e25342b8df86d139e94bb970ecb93538549b.png" src="../../_images/dbc4b6024822d03efde13876e525e25342b8df86d139e94bb970ecb93538549b.png" />
+<img alt="../../_images/12d7a5034034535dda2e0c23da9ab71dfac28c873e829437b93514d8d5dcf199.png" src="../../_images/12d7a5034034535dda2e0c23da9ab71dfac28c873e829437b93514d8d5dcf199.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1329,7 +1611,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/af17d9ec88781518c54caa11ad86ab665c890ccfa91579fe90bf60ff30e87d69.png" src="../../_images/af17d9ec88781518c54caa11ad86ab665c890ccfa91579fe90bf60ff30e87d69.png" />
+<img alt="../../_images/de4db50ea26d97a5766e380d8d2b75169f037edab8c5f5d70886e2683a24f707.png" src="../../_images/de4db50ea26d97a5766e380d8d2b75169f037edab8c5f5d70886e2683a24f707.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1339,9 +1621,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.93609356,  3.96311554],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.25596947, -5.15011412],
        [11.38137298, -3.31731115],
-       [ 1.25596947, -5.15011412]])
+       [ 1.93609356,  3.96311554]])
 </pre></div>
 </div>
 </div>
@@ -1353,14 +1635,14 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[10.95673803, 10.63462235],
-        [10.63462235, 11.26072047]],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ 1.97803583,  0.26628563],
+        [ 0.26628563,  3.11174164]],
 
        [[ 9.09449493, -7.25892116],
         [-7.25892116,  9.394036  ]],
 
-       [[ 1.97803583,  0.26628563],
-        [ 0.26628563,  3.11174164]]])
+       [[10.95673803, 10.63462235],
+        [10.63462235, 11.26072047]]])
 </pre></div>
 </div>
 </div>
@@ -1372,7 +1654,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.57275449, 0.28682168, 0.14042383])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.14042383, 0.28682168, 0.57275449])
 </pre></div>
 </div>
 </div>
@@ -1384,7 +1666,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9999999999999998
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
 </pre></div>
 </div>
 </div>
@@ -1594,7 +1876,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/70457e14ce8bbea7e78a18ebaa46909a54b23823c38087047f1ab06f6c996d03.png" src="../../_images/70457e14ce8bbea7e78a18ebaa46909a54b23823c38087047f1ab06f6c996d03.png" />
+<img alt="../../_images/c60471f3403eeee2e519cb2d022eb285ec7f27182314d8a5e811e3a9be6bd309.png" src="../../_images/c60471f3403eeee2e519cb2d022eb285ec7f27182314d8a5e811e3a9be6bd309.png" />
 </div>
 </div>
 </section>
@@ -1607,27 +1889,6 @@ document.write(`
 <li><p>(B) In GMMs, each data point has a probability associated with each component.</p></li>
 <li><p>(C) GMMs are sensitive to the initialization.</p></li>
 <li><p>(D) The number of components in a GMM has no effect on the model’s ability to fit the data.</p></li>
-</ul>
-</section>
-<section id="final-comments-summary-and-reflection">
-<h3>Final comments, summary, and reflection<a class="headerlink" href="#final-comments-summary-and-reflection" title="Permalink to this heading">#</a></h3>
-</section>
-<section id="important-points-to-remember">
-<h3>Important points to remember<a class="headerlink" href="#important-points-to-remember" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Clustering is a common unsupervised approach to identify underlying structure in data and grouping points based on similarity.</p></li>
-<li><p>Appropriate data representation is crucial for meaningful clustering.</p></li>
-<li><p>We did not talk much about distance metrics but that is another importance consideration in clustering.</p></li>
-<li><p>K-Means is a popular clustering algorithm.</p></li>
-</ul>
-<p><strong>Clustering with K-Means</strong></p>
-<ul class="simple">
-<li><p>It requires us to specify the number of clusters in advance.</p></li>
-<li><p>Each example is assigned to one (and only one) cluster.</p></li>
-<li><p>The labels provided by the algorithm have no actual meaning.</p></li>
-<li><p>The centroids live in the same space as of the dataset but they are <strong>not</strong> actual data points, but instead are average points.</p></li>
-<li><p>It always converges. Convergence is dependent upon the initial centers and it may converge to a sub-optimal solution.</p></li>
-<li><p>Two popular ways to provide insight into how many clusters are reasonable for the give problem are: <strong>the Elbow method</strong> and <strong>the Silhouette method</strong>.</p></li>
 </ul>
 <p><strong>Clustering with Gaussian mixture models</strong></p>
 <ul class="simple">
@@ -1692,6 +1953,17 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#announcements">Announcements</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-plan">Lecture plan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes">Learning outcomes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-midterm-poll">(iClicker) Midterm poll</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-unsupervised-learning">Introduction to unsupervised learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-machine-learning">Types of machine learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-learning">Supervised learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-learning">Unsupervised learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#can-we-learn-without-targets">Can we learn without targets?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#labeled-vs-unlabeled-data">Labeled vs. Unlabeled data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-supervised-vs-unsupervised-learning">Example: Supervised vs unsupervised learning</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-activity-5-mins">Clustering Activity (~5 mins)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-clustering">What is clustering?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-input-and-possible-output">Clustering: Input and (possible) output</a><ul class="nav section-nav flex-column">
@@ -1704,6 +1976,8 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#document-clustering">Document clustering</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-cell-types-in-tumours">Finding cell types in tumours</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-mutations-in-cancer-genomes">Finding mutations in cancer genomes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-applications">Other applications</a></li>
 </ul>
 </li>
@@ -1733,13 +2007,16 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-silhouette-scores-to-select-the-number-of-clusters">Using Silhouette scores to select the number of clusters</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-look-for-in-these-plots">What to look for in these plots?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">14.3 Select all of the following statements which are <strong>True</strong> (iClicker)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-gaussian-mixture-models-high-level">Introduction to Gaussian mixture models (high-level)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-comments-summary-and-reflection">Final comments, summary, and reflection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-points-to-remember">Important points to remember</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#everything-after-this-is-optional">Everything after this is optional!</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-introduction-to-gaussian-mixture-models-high-level">(Optional) Introduction to Gaussian mixture models (high-level)</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-it-work-high-level">How does it work? (high-level)</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">14.4 Select all of the following statements which are <strong>True</strong> (iClicker)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-comments-summary-and-reflection">Final comments, summary, and reflection</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-points-to-remember">Important points to remember</a></li>
 </ul>
 </li>
 </ul>

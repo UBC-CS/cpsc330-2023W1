@@ -15,19 +15,83 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-set_seed(seed=42)
+data_dir = "../data/birds"
+file_names = [image_file for image_file in glob.glob(data_dir + "/*/*.jpg")]
+n_images = len(file_names)
+BATCH_SIZE = n_images  # because our dataset is quite small
+birds_inputs, birds_classes = read_img_dataset(data_dir)
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[5], line 1[0m
-[0;32m----> 1[0m [43mset_seed[49m[43m([49m[43mseed[49m[38;5;241;43m=[39;49m[38;5;241;43m42[39;49m[43m)[49m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+Cell [0;32mIn[9], line 5[0m
+[1;32m      3[0m n_images [38;5;241m=[39m [38;5;28mlen[39m(file_names)
+[1;32m      4[0m BATCH_SIZE [38;5;241m=[39m n_images  [38;5;66;03m# because our dataset is quite small[39;00m
+[0;32m----> 5[0m birds_inputs, birds_classes [38;5;241m=[39m [43mread_img_dataset[49m[43m([49m[43mdata_dir[49m[43m)[49m
 
-Cell [0;32mIn[4], line 4[0m, in [0;36mset_seed[0;34m(seed)[0m
-[1;32m      2[0m torch[38;5;241m.[39mmanual_seed(seed)
-[1;32m      3[0m np[38;5;241m.[39mrandom[38;5;241m.[39mseed(seed)
-[0;32m----> 4[0m [43mrandom[49m[38;5;241m.[39mseed(seed)
+Cell [0;32mIn[7], line 11[0m, in [0;36mread_img_dataset[0;34m(data_dir)[0m
+[1;32m      3[0m [38;5;28;01mdef[39;00m [38;5;21mread_img_dataset[39m(data_dir):     
+[1;32m      4[0m     data_transforms [38;5;241m=[39m transforms[38;5;241m.[39mCompose(
+[1;32m      5[0m         [
+[1;32m      6[0m             transforms[38;5;241m.[39mResize((IMAGE_SIZE, IMAGE_SIZE)),     
+[1;32m      7[0m             transforms[38;5;241m.[39mToTensor(),
+[1;32m      8[0m             transforms[38;5;241m.[39mNormalize([[38;5;241m0.5[39m, [38;5;241m0.5[39m, [38;5;241m0.5[39m], [[38;5;241m0.5[39m, [38;5;241m0.5[39m, [38;5;241m0.5[39m]),            
+[1;32m      9[0m         ])
+[0;32m---> 11[0m     image_dataset [38;5;241m=[39m [43mdatasets[49m[38;5;241;43m.[39;49m[43mImageFolder[49m[43m([49m[43mroot[49m[38;5;241;43m=[39;49m[43mdata_dir[49m[43m,[49m[43m [49m[43mtransform[49m[38;5;241;43m=[39;49m[43mdata_transforms[49m[43m)[49m
+[1;32m     12[0m     dataloader [38;5;241m=[39m torch[38;5;241m.[39mutils[38;5;241m.[39mdata[38;5;241m.[39mDataLoader(
+[1;32m     13[0m          image_dataset, batch_size[38;5;241m=[39mBATCH_SIZE, shuffle[38;5;241m=[39m[38;5;28;01mTrue[39;00m, num_workers[38;5;241m=[39m[38;5;241m0[39m
+[1;32m     14[0m     )
+[1;32m     15[0m     dataset_size [38;5;241m=[39m [38;5;28mlen[39m(image_dataset)
 
-[0;31mNameError[0m: name 'random' is not defined
+File [0;32m~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/torchvision/datasets/folder.py:309[0m, in [0;36mImageFolder.__init__[0;34m(self, root, transform, target_transform, loader, is_valid_file)[0m
+[1;32m    301[0m [38;5;28;01mdef[39;00m [38;5;21m__init__[39m(
+[1;32m    302[0m     [38;5;28mself[39m,
+[1;32m    303[0m     root: [38;5;28mstr[39m,
+[0;32m   (...)[0m
+[1;32m    307[0m     is_valid_file: Optional[Callable[[[38;5;28mstr[39m], [38;5;28mbool[39m]] [38;5;241m=[39m [38;5;28;01mNone[39;00m,
+[1;32m    308[0m ):
+[0;32m--> 309[0m     [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m
+[1;32m    310[0m [43m        [49m[43mroot[49m[43m,[49m
+[1;32m    311[0m [43m        [49m[43mloader[49m[43m,[49m
+[1;32m    312[0m [43m        [49m[43mIMG_EXTENSIONS[49m[43m [49m[38;5;28;43;01mif[39;49;00m[43m [49m[43mis_valid_file[49m[43m [49m[38;5;129;43;01mis[39;49;00m[43m [49m[38;5;28;43;01mNone[39;49;00m[43m [49m[38;5;28;43;01melse[39;49;00m[43m [49m[38;5;28;43;01mNone[39;49;00m[43m,[49m
+[1;32m    313[0m [43m        [49m[43mtransform[49m[38;5;241;43m=[39;49m[43mtransform[49m[43m,[49m
+[1;32m    314[0m [43m        [49m[43mtarget_transform[49m[38;5;241;43m=[39;49m[43mtarget_transform[49m[43m,[49m
+[1;32m    315[0m [43m        [49m[43mis_valid_file[49m[38;5;241;43m=[39;49m[43mis_valid_file[49m[43m,[49m
+[1;32m    316[0m [43m    [49m[43m)[49m
+[1;32m    317[0m     [38;5;28mself[39m[38;5;241m.[39mimgs [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39msamples
+
+File [0;32m~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/torchvision/datasets/folder.py:144[0m, in [0;36mDatasetFolder.__init__[0;34m(self, root, loader, extensions, transform, target_transform, is_valid_file)[0m
+[1;32m    134[0m [38;5;28;01mdef[39;00m [38;5;21m__init__[39m(
+[1;32m    135[0m     [38;5;28mself[39m,
+[1;32m    136[0m     root: [38;5;28mstr[39m,
+[0;32m   (...)[0m
+[1;32m    141[0m     is_valid_file: Optional[Callable[[[38;5;28mstr[39m], [38;5;28mbool[39m]] [38;5;241m=[39m [38;5;28;01mNone[39;00m,
+[1;32m    142[0m ) [38;5;241m-[39m[38;5;241m>[39m [38;5;28;01mNone[39;00m:
+[1;32m    143[0m     [38;5;28msuper[39m()[38;5;241m.[39m[38;5;21m__init__[39m(root, transform[38;5;241m=[39mtransform, target_transform[38;5;241m=[39mtarget_transform)
+[0;32m--> 144[0m     classes, class_to_idx [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mfind_classes[49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mroot[49m[43m)[49m
+[1;32m    145[0m     samples [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mmake_dataset([38;5;28mself[39m[38;5;241m.[39mroot, class_to_idx, extensions, is_valid_file)
+[1;32m    147[0m     [38;5;28mself[39m[38;5;241m.[39mloader [38;5;241m=[39m loader
+
+File [0;32m~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/torchvision/datasets/folder.py:218[0m, in [0;36mDatasetFolder.find_classes[0;34m(self, directory)[0m
+[1;32m    191[0m [38;5;28;01mdef[39;00m [38;5;21mfind_classes[39m([38;5;28mself[39m, directory: [38;5;28mstr[39m) [38;5;241m-[39m[38;5;241m>[39m Tuple[List[[38;5;28mstr[39m], Dict[[38;5;28mstr[39m, [38;5;28mint[39m]]:
+[1;32m    192[0m [38;5;250m    [39m[38;5;124;03m"""Find the class folders in a dataset structured as follows::[39;00m
+[1;32m    193[0m 
+[1;32m    194[0m [38;5;124;03m        directory/[39;00m
+[0;32m   (...)[0m
+[1;32m    216[0m [38;5;124;03m        (Tuple[List[str], Dict[str, int]]): List of all classes and dictionary mapping each class to an index.[39;00m
+[1;32m    217[0m [38;5;124;03m    """[39;00m
+[0;32m--> 218[0m     [38;5;28;01mreturn[39;00m [43mfind_classes[49m[43m([49m[43mdirectory[49m[43m)[49m
+
+File [0;32m~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/torchvision/datasets/folder.py:40[0m, in [0;36mfind_classes[0;34m(directory)[0m
+[1;32m     35[0m [38;5;28;01mdef[39;00m [38;5;21mfind_classes[39m(directory: [38;5;28mstr[39m) [38;5;241m-[39m[38;5;241m>[39m Tuple[List[[38;5;28mstr[39m], Dict[[38;5;28mstr[39m, [38;5;28mint[39m]]:
+[1;32m     36[0m [38;5;250m    [39m[38;5;124;03m"""Finds the class folders in a dataset.[39;00m
+[1;32m     37[0m 
+[1;32m     38[0m [38;5;124;03m    See :class:`DatasetFolder` for details.[39;00m
+[1;32m     39[0m [38;5;124;03m    """[39;00m
+[0;32m---> 40[0m     classes [38;5;241m=[39m [38;5;28msorted[39m(entry[38;5;241m.[39mname [38;5;28;01mfor[39;00m entry [38;5;129;01min[39;00m [43mos[49m[38;5;241;43m.[39;49m[43mscandir[49m[43m([49m[43mdirectory[49m[43m)[49m [38;5;28;01mif[39;00m entry[38;5;241m.[39mis_dir())
+[1;32m     41[0m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m classes:
+[1;32m     42[0m         [38;5;28;01mraise[39;00m [38;5;167;01mFileNotFoundError[39;00m([38;5;124mf[39m[38;5;124m"[39m[38;5;124mCouldn[39m[38;5;124m'[39m[38;5;124mt find any class folder in [39m[38;5;132;01m{[39;00mdirectory[38;5;132;01m}[39;00m[38;5;124m.[39m[38;5;124m"[39m)
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: '../data/birds'
 

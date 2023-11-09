@@ -150,7 +150,6 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../syllabus.html">Syllabus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../docs/README.html">CPSC 330 Documents</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../learning-objectives.html">Course Learning Objectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
 <ul class="nav bd-sidenav">
@@ -165,6 +164,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../09_classification-metrics.html">Lecture 9: Classification metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../10_regression-metrics.html">Lecture 10: Regression metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../11_ensembles.html">Lecture 11: Ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../12_feat-importances.html">Lecture 12: Feature importances and model transparency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../13_feature-engineering-selection.html">Lecture 13: Feature engineering and feature selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../14_K-Means.html">Lecture 14: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../15_DBSCAN-hierarchical.html">Lecture 15: More Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../16_recommender-systems.html">Lecture 16: Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../17_natural-language-processing.html">Lecture 18: Introduction to natural language processing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -172,6 +177,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../class_demos/04_class-demo.html">Lecture 4: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../class_demos/05-06_class-demo.html">Lectures 5 and 6: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../class_demos/07_class-demo.html">Lectures 7: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../class_demos/09_class-demo.html">Exploring classification metrics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../class_demos/14_class-demo.html">Lecture 14: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../class_demos/15_class-demo.html">Lecture 15: Class demo</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -387,6 +396,12 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+</pre></div>
+</div>
+</div>
 </div>
 <section id="announcements">
 <h1>Announcements<a class="headerlink" href="#announcements" title="Permalink to this heading">#</a></h1>
@@ -415,7 +430,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1787a13c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x14a606bc0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/a9f9d0e70d0f5e6c0d8a38463b08c20c9c2cc69c14d0ecca973fb8e8cb4789bc.png" src="../../_images/a9f9d0e70d0f5e6c0d8a38463b08c20c9c2cc69c14d0ecca973fb8e8cb4789bc.png" />
@@ -606,36 +621,36 @@ Test score: 0.55
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000373</td>
-      <td>0.001062</td>
+      <td>0.000410</td>
+      <td>0.001114</td>
       <td>0.250000</td>
       <td>0.687500</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000287</td>
-      <td>0.000868</td>
+      <td>0.000272</td>
+      <td>0.000891</td>
       <td>0.500000</td>
       <td>0.625000</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000263</td>
-      <td>0.000857</td>
+      <td>0.000270</td>
+      <td>0.000876</td>
       <td>0.583333</td>
       <td>0.541667</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000269</td>
-      <td>0.000875</td>
+      <td>0.000261</td>
+      <td>0.000863</td>
       <td>0.583333</td>
       <td>0.604167</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000269</td>
-      <td>0.000833</td>
+      <td>0.000256</td>
+      <td>0.000857</td>
       <td>0.416667</td>
       <td>0.604167</td>
     </tr>
@@ -1234,36 +1249,36 @@ memory usage: 1.9+ KB
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.004095</td>
-      <td>0.002110</td>
+      <td>0.004000</td>
+      <td>0.001918</td>
       <td>1.00</td>
       <td>0.937500</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.003702</td>
-      <td>0.002003</td>
+      <td>0.003206</td>
+      <td>0.001739</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.003397</td>
-      <td>0.001856</td>
+      <td>0.003144</td>
+      <td>0.001732</td>
       <td>0.50</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.003151</td>
-      <td>0.001748</td>
+      <td>0.003172</td>
+      <td>0.001708</td>
       <td>0.75</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.003116</td>
-      <td>0.001801</td>
+      <td>0.003125</td>
+      <td>0.001795</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>

@@ -152,7 +152,6 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../syllabus.html">Syllabus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../docs/README.html">CPSC 330 Documents</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../learning-objectives.html">Course Learning Objectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
 <ul class="nav bd-sidenav">
@@ -167,6 +166,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../09_classification-metrics.html">Lecture 9: Classification metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../10_regression-metrics.html">Lecture 10: Regression metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../11_ensembles.html">Lecture 11: Ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../12_feat-importances.html">Lecture 12: Feature importances and model transparency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../13_feature-engineering-selection.html">Lecture 13: Feature engineering and feature selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../14_K-Means.html">Lecture 14: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../15_DBSCAN-hierarchical.html">Lecture 15: More Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../16_recommender-systems.html">Lecture 16: Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../17_natural-language-processing.html">Lecture 18: Introduction to natural language processing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="current nav bd-sidenav">
@@ -174,6 +179,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 4: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05-06_class-demo.html">Lectures 5 and 6: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="07_class-demo.html">Lectures 7: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_class-demo.html">Exploring classification metrics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="14_class-demo.html">Lecture 14: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_class-demo.html">Lecture 15: Class demo</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -363,6 +372,12 @@ document.write(`
 <span class="kn">from</span> <span class="nn">plotting_functions</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_validate</span><span class="p">,</span> <span class="n">train_test_split</span>
 <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 </pre></div>
 </div>
 </div>
@@ -943,36 +958,36 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.007204</td>
-      <td>0.000537</td>
+      <td>0.005533</td>
+      <td>0.000756</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000179</td>
-      <td>0.000217</td>
+      <td>0.000199</td>
+      <td>0.000228</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000161</td>
-      <td>0.000209</td>
+      <td>0.000165</td>
+      <td>0.000210</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000153</td>
-      <td>0.000201</td>
+      <td>0.000162</td>
+      <td>0.000208</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000149</td>
-      <td>0.000201</td>
+      <td>0.000153</td>
+      <td>0.000212</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
@@ -1021,36 +1036,36 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000889</td>
-      <td>0.111099</td>
+      <td>0.000647</td>
+      <td>0.227760</td>
       <td>0.966667</td>
       <td>0.991667</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000579</td>
-      <td>0.002132</td>
+      <td>0.000491</td>
+      <td>0.003295</td>
       <td>1.000000</td>
       <td>0.991667</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000344</td>
-      <td>0.001096</td>
+      <td>0.000365</td>
+      <td>0.001858</td>
       <td>0.933333</td>
       <td>0.983333</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000326</td>
-      <td>0.001058</td>
+      <td>0.000369</td>
+      <td>0.001882</td>
       <td>0.933333</td>
       <td>0.991667</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000339</td>
-      <td>0.001052</td>
+      <td>0.000356</td>
+      <td>0.001888</td>
       <td>0.933333</td>
       <td>1.000000</td>
     </tr>

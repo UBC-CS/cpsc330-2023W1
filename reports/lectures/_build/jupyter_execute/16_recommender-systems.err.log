@@ -1,0 +1,56 @@
+Traceback (most recent call last):
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import os
+import random
+import sys
+import time
+
+import numpy as np
+sys.path.append(os.path.join(os.path.abspath("."), "code"))
+
+import matplotlib.pyplot as plt
+from plotting_functions import *
+from plotting_functions_unsup import *
+from sklearn.decomposition import PCA
+from sklearn.model_selection import cross_validate, train_test_split
+from sklearn.preprocessing import StandardScaler
+
+plt.rcParams["font.size"] = 16
+import matplotlib.cm as cm
+
+# plt.style.use("seaborn")
+%matplotlib inline
+pd.set_option("display.max_colwidth", 0)
+------------------
+
+----- stdout -----
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[1], line 10[0m
+[1;32m      7[0m sys[38;5;241m.[39mpath[38;5;241m.[39mappend(os[38;5;241m.[39mpath[38;5;241m.[39mjoin(os[38;5;241m.[39mpath[38;5;241m.[39mabspath([38;5;124m"[39m[38;5;124m.[39m[38;5;124m"[39m), [38;5;124m"[39m[38;5;124mcode[39m[38;5;124m"[39m))
+[1;32m      9[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+[0;32m---> 10[0m [38;5;28;01mfrom[39;00m [38;5;21;01mplotting_functions[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+[1;32m     11[0m [38;5;28;01mfrom[39;00m [38;5;21;01mplotting_functions_unsup[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+[1;32m     12[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdecomposition[39;00m [38;5;28;01mimport[39;00m PCA
+
+[0;31mModuleNotFoundError[0m: No module named 'plotting_functions'
+

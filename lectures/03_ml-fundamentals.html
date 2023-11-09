@@ -154,7 +154,6 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Syllabus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../docs/README.html">CPSC 330 Documents</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../learning-objectives.html">Course Learning Objectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
 <ul class="current nav bd-sidenav">
@@ -169,6 +168,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="09_classification-metrics.html">Lecture 9: Classification metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10_regression-metrics.html">Lecture 10: Regression metrics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_ensembles.html">Lecture 11: Ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_feat-importances.html">Lecture 12: Feature importances and model transparency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_feature-engineering-selection.html">Lecture 13: Feature engineering and feature selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_K-Means.html">Lecture 14: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_DBSCAN-hierarchical.html">Lecture 15: More Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_recommender-systems.html">Lecture 16: Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_natural-language-processing.html">Lecture 18: Introduction to natural language processing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -176,6 +181,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="class_demos/04_class-demo.html">Lecture 4: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="class_demos/05-06_class-demo.html">Lectures 5 and 6: Class demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="class_demos/07_class-demo.html">Lectures 7: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/09_class-demo.html">Exploring classification metrics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="class_demos/14_class-demo.html">Lecture 14: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/15_class-demo.html">Lecture 15: Class demo</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -450,6 +459,12 @@ document.write(`
 <span class="o">%</span><span class="k">matplotlib</span> inline
 
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_colwidth&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 </pre></div>
 </div>
 </div>
@@ -1252,7 +1267,7 @@ Name: country, Length: 209, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/14cad5230fabc92290da2c3aaa7ac8b749821cd1b0e9984195cc7776fbdcf225.png" src="../_images/14cad5230fabc92290da2c3aaa7ac8b749821cd1b0e9984195cc7776fbdcf225.png" />
+<img alt="../_images/eb8537bd211316339cc2aa4382b5b0ac5e6fcf3d7e75df51c51a33c8b83f3ab2.png" src="../_images/eb8537bd211316339cc2aa4382b5b0ac5e6fcf3d7e75df51c51a33c8b83f3ab2.png" />
 </div>
 </div>
 <p>Let’s examine the train and test accuracies with the split now.</p>
@@ -1265,7 +1280,7 @@ Name: country, Length: 209, dtype: object
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train accuracy:   1.000
-Test accuracy:   0.762
+Test accuracy:   0.738
 </pre></div>
 </div>
 </div>
@@ -1281,7 +1296,7 @@ Test accuracy:   0.762
   warnings.warn(
 </pre></div>
 </div>
-<img alt="../_images/2db47a4d19cdaa5abd483aaf84d14cb2e8bdc9d5ec05af261c2ade265dab2f50.png" src="../_images/2db47a4d19cdaa5abd483aaf84d14cb2e8bdc9d5ec05af261c2ade265dab2f50.png" />
+<img alt="../_images/184ead5598aa5389dc3eb9ac0adfd91360fd0fdfd191fa84dd8edd8aed0a792e.png" src="../_images/184ead5598aa5389dc3eb9ac0adfd91360fd0fdfd191fa84dd8edd8aed0a792e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1317,7 +1332,7 @@ Test accuracy:   0.762
   warnings.warn(
 </pre></div>
 </div>
-<img alt="../_images/30c13ca1f31560fd3a6363db37c15526f429718fe22853163bc4ba9a4cd45875.png" src="../_images/30c13ca1f31560fd3a6363db37c15526f429718fe22853163bc4ba9a4cd45875.png" />
+<img alt="../_images/3d1385e6e93181b49968a55df587fca17bcfecb261759fbb3de5336f868f1bff.png" src="../_images/3d1385e6e93181b49968a55df587fca17bcfecb261759fbb3de5336f868f1bff.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1564,71 +1579,71 @@ Standard deviation of cross-validation score = 0.09
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001500</td>
-      <td>0.000793</td>
+      <td>0.001106</td>
+      <td>0.000733</td>
       <td>0.764706</td>
       <td>0.913333</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000994</td>
-      <td>0.000693</td>
+      <td>0.000888</td>
+      <td>0.000645</td>
       <td>0.823529</td>
       <td>0.906667</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000942</td>
-      <td>0.000661</td>
+      <td>0.000873</td>
+      <td>0.000688</td>
       <td>0.705882</td>
       <td>0.906667</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000928</td>
-      <td>0.000663</td>
+      <td>0.000884</td>
+      <td>0.000622</td>
       <td>0.941176</td>
       <td>0.900000</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000919</td>
-      <td>0.000662</td>
+      <td>0.000887</td>
+      <td>0.000624</td>
       <td>0.823529</td>
       <td>0.906667</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.000919</td>
-      <td>0.000652</td>
+      <td>0.000840</td>
+      <td>0.000654</td>
       <td>0.823529</td>
       <td>0.913333</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.000900</td>
-      <td>0.000646</td>
+      <td>0.000839</td>
+      <td>0.000608</td>
       <td>0.705882</td>
       <td>0.920000</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.000911</td>
-      <td>0.000650</td>
+      <td>0.000853</td>
+      <td>0.000631</td>
       <td>0.937500</td>
       <td>0.900662</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.000930</td>
-      <td>0.000709</td>
+      <td>0.000866</td>
+      <td>0.000624</td>
       <td>0.937500</td>
       <td>0.900662</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.000954</td>
-      <td>0.000664</td>
+      <td>0.000859</td>
+      <td>0.000626</td>
       <td>0.937500</td>
       <td>0.900662</td>
     </tr>
@@ -1667,11 +1682,11 @@ Standard deviation of cross-validation score = 0.09
   <tbody>
     <tr>
       <th>fit_time</th>
-      <td>0.000990</td>
+      <td>0.000889</td>
     </tr>
     <tr>
       <th>score_time</th>
-      <td>0.000679</td>
+      <td>0.000646</td>
     </tr>
     <tr>
       <th>test_score</th>
@@ -1751,71 +1766,71 @@ Standard deviation of cross-validation score = 0.09
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001241</td>
-      <td>0.000725</td>
+      <td>0.001463</td>
+      <td>0.000814</td>
       <td>0.875000</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000996</td>
-      <td>0.000682</td>
+      <td>0.000982</td>
+      <td>0.000654</td>
       <td>0.875000</td>
       <td>0.992857</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000979</td>
-      <td>0.000759</td>
+      <td>0.000889</td>
+      <td>0.000613</td>
       <td>0.875000</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.001133</td>
-      <td>0.000737</td>
-      <td>0.750000</td>
+      <td>0.000890</td>
+      <td>0.000605</td>
+      <td>0.687500</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000969</td>
-      <td>0.000668</td>
+      <td>0.000877</td>
+      <td>0.000611</td>
       <td>0.812500</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.000945</td>
-      <td>0.000667</td>
+      <td>0.000859</td>
+      <td>0.000612</td>
       <td>0.812500</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.000966</td>
-      <td>0.000649</td>
+      <td>0.000884</td>
+      <td>0.000644</td>
       <td>0.866667</td>
       <td>0.985816</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.000955</td>
-      <td>0.000653</td>
+      <td>0.000885</td>
+      <td>0.000611</td>
       <td>0.600000</td>
-      <td>0.992908</td>
+      <td>1.000000</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.000945</td>
-      <td>0.000649</td>
+      <td>0.000891</td>
+      <td>0.000631</td>
       <td>0.666667</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>9</th>
       <td>0.000922</td>
-      <td>0.000652</td>
+      <td>0.000628</td>
       <td>0.733333</td>
       <td>1.000000</td>
     </tr>
@@ -1883,7 +1898,7 @@ Standard deviation of cross-validation score = 0.09
       <th>Decision tree</th>
       <td>0.001 (+/- 0.000)</td>
       <td>0.001 (+/- 0.000)</td>
-      <td>0.769 (+/- 0.050)</td>
+      <td>0.775 (+/- 0.047)</td>
       <td>0.994 (+/- 0.014)</td>
     </tr>
   </tbody>
@@ -1947,7 +1962,7 @@ Validation error:   0.212
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train error:   0.000
-Validation error:   0.220
+Validation error:   0.213
 </pre></div>
 </div>
 </div>
@@ -1996,7 +2011,7 @@ Validation error:   0.220
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03c2696cc5c6e6490cf55c851df7ad752e648ad99031f7ce0cc87809eaeacbd0.png" src="../_images/03c2696cc5c6e6490cf55c851df7ad752e648ad99031f7ce0cc87809eaeacbd0.png" />
+<img alt="../_images/e15360dfa3ada60f781850acee290de60a24521744b6f3ca8d3a09f02c44569a.png" src="../_images/e15360dfa3ada60f781850acee290de60a24521744b6f3ca8d3a09f02c44569a.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2104,15 +2119,15 @@ Validation error:   0.220
     <tr>
       <th>2</th>
       <td>0.160258</td>
-      <td>0.223750</td>
-      <td>0.062723</td>
+      <td>0.217500</td>
+      <td>0.048940</td>
       <td>0.007316</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0.142467</td>
-      <td>0.204583</td>
-      <td>0.053763</td>
+      <td>0.210833</td>
+      <td>0.067757</td>
       <td>0.022848</td>
     </tr>
     <tr>
@@ -2125,71 +2140,71 @@ Validation error:   0.220
     <tr>
       <th>5</th>
       <td>0.083338</td>
-      <td>0.185000</td>
-      <td>0.064205</td>
+      <td>0.191250</td>
+      <td>0.067120</td>
       <td>0.010650</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.066960</td>
+      <td>0.066251</td>
       <td>0.191250</td>
       <td>0.072707</td>
-      <td>0.012065</td>
+      <td>0.012019</td>
     </tr>
     <tr>
       <th>7</th>
       <td>0.044873</td>
-      <td>0.216667</td>
-      <td>0.085025</td>
+      <td>0.210417</td>
+      <td>0.089136</td>
       <td>0.009059</td>
     </tr>
     <tr>
       <th>8</th>
       <td>0.030618</td>
-      <td>0.222500</td>
-      <td>0.092669</td>
+      <td>0.210000</td>
+      <td>0.092331</td>
       <td>0.010547</td>
     </tr>
     <tr>
       <th>9</th>
       <td>0.020653</td>
-      <td>0.197083</td>
-      <td>0.093950</td>
+      <td>0.209583</td>
+      <td>0.091819</td>
       <td>0.010294</td>
     </tr>
     <tr>
       <th>10</th>
       <td>0.010679</td>
-      <td>0.235417</td>
-      <td>0.096990</td>
+      <td>0.216250</td>
+      <td>0.088397</td>
       <td>0.007938</td>
     </tr>
     <tr>
       <th>11</th>
       <td>0.005699</td>
-      <td>0.229167</td>
-      <td>0.101772</td>
+      <td>0.222500</td>
+      <td>0.105577</td>
       <td>0.004264</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>0.002143</td>
+      <td>0.003561</td>
       <td>0.248333</td>
       <td>0.089485</td>
-      <td>0.003273</td>
+      <td>0.004769</td>
     </tr>
     <tr>
       <th>13</th>
       <td>0.000000</td>
-      <td>0.235833</td>
-      <td>0.092687</td>
+      <td>0.229583</td>
+      <td>0.089354</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>14</th>
       <td>0.000000</td>
-      <td>0.229583</td>
-      <td>0.089354</td>
+      <td>0.223333</td>
+      <td>0.089892</td>
       <td>0.000000</td>
     </tr>
     <tr>
@@ -2220,7 +2235,7 @@ Validation error:   0.220
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The minimum validation error is 0.185 at max_depth = 5 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The minimum validation error is 0.191 at max_depth = 5 
 </pre></div>
 </div>
 </div>
