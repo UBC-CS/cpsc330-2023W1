@@ -1074,7 +1074,9 @@ Test-set R^2: 0.60
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.89
-Test-set R^2: 0.84
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test-set R^2: 0.84
 </pre></div>
 </div>
 <img alt="../_images/2508eaa9c6ff31d91314c9732a9f8a466811ed107928bbfb6e12fedeb822f988.png" src="../_images/2508eaa9c6ff31d91314c9732a9f8a466811ed107928bbfb6e12fedeb822f988.png" />
@@ -1807,7 +1809,9 @@ Test-set R^2: 0.62
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Train-set R^2: 0.87
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.87
 Test-set R^2: 0.85
 </pre></div>
 </div>
@@ -2209,7 +2213,7 @@ Freq: 3H, Name: one, Length: 248, dtype: int64
 <ul class="simple">
 <li><p>Note the NaN pattern.</p></li>
 <li><p>We can either drop the first 5 rows or apply imputation.</p></li>
-<li><p>Let’s try these features with Ridge model.</p></li>
+<li><p>Let’s try these features with <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> model.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2324,14 +2328,14 @@ Test-set R^2: 0.37
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.94
-Test-set R^2: 0.68
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.95
+Test-set R^2: 0.70
 </pre></div>
 </div>
-<img alt="../_images/e140fff96d450dfd7d1428f049b7c9c41103c327351c865ef62935b1aa373d87.png" src="../_images/e140fff96d450dfd7d1428f049b7c9c41103c327351c865ef62935b1aa373d87.png" />
+<img alt="../_images/2e02641f40813fc63e8d99228c288ffe9f8dcc93caeffbe4cf36b043c101e198.png" src="../_images/2e02641f40813fc63e8d99228c288ffe9f8dcc93caeffbe4cf36b043c101e198.png" />
 </div>
 </div>
-<p>The results are not as good as the results with our previously engineered features. How about combining lag-based features and the previously extracted features?</p>
+<p>The results are better than <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> with lag features but they are not as good as the results with our previously engineered features. How about combining lag-based features and the previously extracted features?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_hour_week_onehot_poly_lag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">X_hour_week_onehot_poly</span><span class="p">,</span> <span class="n">X_lag_features_imp</span><span class="p">])</span>
@@ -2351,7 +2355,7 @@ Test-set R^2: 0.68
 Test-set R^2: 0.79
 </pre></div>
 </div>
-<img alt="../_images/9c031fd6534075695cfcb66ee28f229c7f078a922939196313e8dad720992f46.png" src="../_images/9c031fd6534075695cfcb66ee28f229c7f078a922939196313e8dad720992f46.png" />
+<img alt="../_images/b1a63308872e88f69ad65ace6c5c2f591708eaf64eef5687c721358f653a7fac.png" src="../_images/b1a63308872e88f69ad65ace6c5c2f591708eaf64eef5687c721358f653a7fac.png" />
 </div>
 </div>
 <p>Some improvement but we are getting better results without the lag features in this case.</p>
@@ -2360,7 +2364,7 @@ Test-set R^2: 0.79
 <p>What about cross-validation?</p>
 <ul class="simple">
 <li><p>We can’t do regular cross-validation if we don’t want to be predicting the past.</p></li>
-<li><p>If you carry out regular cross-validation, you’ll be predicting the past given future which is not a realistic scenario for the deployment data.</p></li>
+<li><p>If you carry out regular cross-validation, as shown below, you’ll be predicting the past given future which is not a realistic scenario for the deployment data.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2451,36 +2455,36 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001079</td>
-      <td>0.000296</td>
+      <td>0.001093</td>
+      <td>0.000283</td>
       <td>0.642676</td>
       <td>0.873182</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000911</td>
-      <td>0.000746</td>
+      <td>0.000548</td>
+      <td>0.000228</td>
       <td>0.828405</td>
       <td>0.874305</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000912</td>
-      <td>0.000588</td>
+      <td>0.000899</td>
+      <td>0.000217</td>
       <td>0.773851</td>
       <td>0.901262</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000962</td>
-      <td>0.000632</td>
+      <td>0.000907</td>
+      <td>0.000218</td>
       <td>0.696712</td>
       <td>0.889429</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001045</td>
-      <td>0.000590</td>
+      <td>0.001037</td>
+      <td>0.000735</td>
       <td>0.892733</td>
       <td>0.863889</td>
     </tr>
@@ -2493,31 +2497,35 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 </section>
 <section id="forecasting-further-into-the-future">
 <h2>Forecasting further into the future<a class="headerlink" href="#forecasting-further-into-the-future" title="Permalink to this heading">#</a></h2>
-<p>What if we want to predict number of rentals in September?</p>
+<p>Recall that we are working with the bike rentals data in August 2015.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imp</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">()</span>
-<span class="n">X_lag_features_imp</span> <span class="o">=</span> <span class="n">imp</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_lag_features</span><span class="p">)</span>
-<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">()</span>
-<span class="n">eval_on_features</span><span class="p">(</span><span class="n">X_lag_features_imp</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">rf</span><span class="p">,</span> <span class="n">feat_names</span><span class="o">=</span><span class="s2">&quot;Lag features&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">citibike</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.94
-Test-set R^2: 0.67
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>starttime
+2015-08-01 00:00:00     3
+2015-08-01 03:00:00     0
+2015-08-01 06:00:00     9
+2015-08-01 09:00:00    41
+2015-08-01 12:00:00    39
+                       ..
+2015-08-31 09:00:00    16
+2015-08-31 12:00:00     8
+2015-08-31 15:00:00    17
+2015-08-31 18:00:00    22
+2015-08-31 21:00:00     7
+Freq: 3H, Name: one, Length: 248, dtype: int64
 </pre></div>
 </div>
-<img alt="../_images/4a0250f016fd37814d95db57399b2c97f5393215283c69810693996e9e0a11a9.png" src="../_images/4a0250f016fd37814d95db57399b2c97f5393215283c69810693996e9e0a11a9.png" />
 </div>
 </div>
-<ul class="simple">
-<li><p>Now, if we drop the “starttime” column we have a target (“n_rentals”) and 5 features (the previous 5 n_rentals).</p></li>
-</ul>
+<p>Here is our data with lag features.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rentals_lag5</span> <span class="o">=</span> <span class="n">rentals_lag5</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">rentals_lag5</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rentals_lag5</span>
 </pre></div>
 </div>
 </div>
@@ -2547,10 +2555,19 @@ Test-set R^2: 0.67
       <th>n_rentals-4</th>
       <th>n_rentals-5</th>
     </tr>
+    <tr>
+      <th>starttime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <th>2015-08-01 00:00:00</th>
       <td>3</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -2559,7 +2576,7 @@ Test-set R^2: 0.67
       <td>NaN</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>2015-08-01 03:00:00</th>
       <td>0</td>
       <td>3.0</td>
       <td>NaN</td>
@@ -2568,7 +2585,7 @@ Test-set R^2: 0.67
       <td>NaN</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>2015-08-01 06:00:00</th>
       <td>9</td>
       <td>0.0</td>
       <td>3.0</td>
@@ -2577,7 +2594,7 @@ Test-set R^2: 0.67
       <td>NaN</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>2015-08-01 09:00:00</th>
       <td>41</td>
       <td>9.0</td>
       <td>0.0</td>
@@ -2586,7 +2603,7 @@ Test-set R^2: 0.67
       <td>NaN</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>2015-08-01 12:00:00</th>
       <td>39</td>
       <td>41.0</td>
       <td>9.0</td>
@@ -2604,7 +2621,7 @@ Test-set R^2: 0.67
       <td>...</td>
     </tr>
     <tr>
-      <th>243</th>
+      <th>2015-08-31 09:00:00</th>
       <td>16</td>
       <td>36.0</td>
       <td>2.0</td>
@@ -2613,7 +2630,7 @@ Test-set R^2: 0.67
       <td>37.0</td>
     </tr>
     <tr>
-      <th>244</th>
+      <th>2015-08-31 12:00:00</th>
       <td>8</td>
       <td>16.0</td>
       <td>36.0</td>
@@ -2622,7 +2639,7 @@ Test-set R^2: 0.67
       <td>6.0</td>
     </tr>
     <tr>
-      <th>245</th>
+      <th>2015-08-31 15:00:00</th>
       <td>17</td>
       <td>8.0</td>
       <td>16.0</td>
@@ -2631,7 +2648,7 @@ Test-set R^2: 0.67
       <td>3.0</td>
     </tr>
     <tr>
-      <th>246</th>
+      <th>2015-08-31 18:00:00</th>
       <td>22</td>
       <td>17.0</td>
       <td>8.0</td>
@@ -2640,7 +2657,7 @@ Test-set R^2: 0.67
       <td>2.0</td>
     </tr>
     <tr>
-      <th>247</th>
+      <th>2015-08-31 21:00:00</th>
       <td>7</td>
       <td>22.0</td>
       <td>17.0</td>
@@ -2653,9 +2670,19 @@ Test-set R^2: 0.67
 <p>248 rows × 6 columns</p>
 </div></div></div>
 </div>
+<p>Let’s impute the data and create <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imp</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">()</span>
+<span class="n">X_lag_features_imp</span> <span class="o">=</span> <span class="n">imp</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_lag_features</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rentals_lag5_X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_lag_features_imp</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">rentals_lag5</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;n_rentals&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">rentals_lag5_X</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">rentals_lag5</span><span class="o">.</span><span class="n">index</span>
 <span class="n">rentals_lag5_X</span>
 </pre></div>
 </div>
@@ -2685,10 +2712,18 @@ Test-set R^2: 0.67
       <th>n_rentals-4</th>
       <th>n_rentals-5</th>
     </tr>
+    <tr>
+      <th>starttime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <th>2015-08-01 00:00:00</th>
       <td>17.024291</td>
       <td>17.004065</td>
       <td>17.004082</td>
@@ -2696,7 +2731,7 @@ Test-set R^2: 0.67
       <td>17.045267</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>2015-08-01 03:00:00</th>
       <td>3.000000</td>
       <td>17.004065</td>
       <td>17.004082</td>
@@ -2704,7 +2739,7 @@ Test-set R^2: 0.67
       <td>17.045267</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>2015-08-01 06:00:00</th>
       <td>0.000000</td>
       <td>3.000000</td>
       <td>17.004082</td>
@@ -2712,7 +2747,7 @@ Test-set R^2: 0.67
       <td>17.045267</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>2015-08-01 09:00:00</th>
       <td>9.000000</td>
       <td>0.000000</td>
       <td>3.000000</td>
@@ -2720,7 +2755,7 @@ Test-set R^2: 0.67
       <td>17.045267</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>2015-08-01 12:00:00</th>
       <td>41.000000</td>
       <td>9.000000</td>
       <td>0.000000</td>
@@ -2736,7 +2771,7 @@ Test-set R^2: 0.67
       <td>...</td>
     </tr>
     <tr>
-      <th>243</th>
+      <th>2015-08-31 09:00:00</th>
       <td>36.000000</td>
       <td>2.000000</td>
       <td>3.000000</td>
@@ -2744,7 +2779,7 @@ Test-set R^2: 0.67
       <td>37.000000</td>
     </tr>
     <tr>
-      <th>244</th>
+      <th>2015-08-31 12:00:00</th>
       <td>16.000000</td>
       <td>36.000000</td>
       <td>2.000000</td>
@@ -2752,7 +2787,7 @@ Test-set R^2: 0.67
       <td>6.000000</td>
     </tr>
     <tr>
-      <th>245</th>
+      <th>2015-08-31 15:00:00</th>
       <td>8.000000</td>
       <td>16.000000</td>
       <td>36.000000</td>
@@ -2760,7 +2795,7 @@ Test-set R^2: 0.67
       <td>3.000000</td>
     </tr>
     <tr>
-      <th>246</th>
+      <th>2015-08-31 18:00:00</th>
       <td>17.000000</td>
       <td>8.000000</td>
       <td>16.000000</td>
@@ -2768,7 +2803,7 @@ Test-set R^2: 0.67
       <td>2.000000</td>
     </tr>
     <tr>
-      <th>247</th>
+      <th>2015-08-31 21:00:00</th>
       <td>22.000000</td>
       <td>17.000000</td>
       <td>8.000000</td>
@@ -2787,6 +2822,8 @@ Test-set R^2: 0.67
 </div>
 </div>
 </div>
+<p>With a linear model and lag features we get the following scores.</p>
+<p>Let’s split the data and train a model</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># split the given features into a training and a test set</span>
@@ -2846,10 +2883,18 @@ Test-set R^2: 0.68
       <th>n_rentals-4</th>
       <th>n_rentals-5</th>
     </tr>
+    <tr>
+      <th>starttime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     <tr>
-      <th>184</th>
+      <th>2015-08-24 00:00:00</th>
       <td>12.0</td>
       <td>31.0</td>
       <td>58.0</td>
@@ -2857,7 +2902,7 @@ Test-set R^2: 0.68
       <td>23.0</td>
     </tr>
     <tr>
-      <th>185</th>
+      <th>2015-08-24 03:00:00</th>
       <td>2.0</td>
       <td>12.0</td>
       <td>31.0</td>
@@ -2865,7 +2910,7 @@ Test-set R^2: 0.68
       <td>30.0</td>
     </tr>
     <tr>
-      <th>186</th>
+      <th>2015-08-24 06:00:00</th>
       <td>3.0</td>
       <td>2.0</td>
       <td>12.0</td>
@@ -2873,7 +2918,7 @@ Test-set R^2: 0.68
       <td>58.0</td>
     </tr>
     <tr>
-      <th>187</th>
+      <th>2015-08-24 09:00:00</th>
       <td>27.0</td>
       <td>3.0</td>
       <td>2.0</td>
@@ -2881,7 +2926,7 @@ Test-set R^2: 0.68
       <td>31.0</td>
     </tr>
     <tr>
-      <th>188</th>
+      <th>2015-08-24 12:00:00</th>
       <td>6.0</td>
       <td>27.0</td>
       <td>3.0</td>
@@ -2897,7 +2942,7 @@ Test-set R^2: 0.68
       <td>...</td>
     </tr>
     <tr>
-      <th>243</th>
+      <th>2015-08-31 09:00:00</th>
       <td>36.0</td>
       <td>2.0</td>
       <td>3.0</td>
@@ -2905,7 +2950,7 @@ Test-set R^2: 0.68
       <td>37.0</td>
     </tr>
     <tr>
-      <th>244</th>
+      <th>2015-08-31 12:00:00</th>
       <td>16.0</td>
       <td>36.0</td>
       <td>2.0</td>
@@ -2913,7 +2958,7 @@ Test-set R^2: 0.68
       <td>6.0</td>
     </tr>
     <tr>
-      <th>245</th>
+      <th>2015-08-31 15:00:00</th>
       <td>8.0</td>
       <td>16.0</td>
       <td>36.0</td>
@@ -2921,7 +2966,7 @@ Test-set R^2: 0.68
       <td>3.0</td>
     </tr>
     <tr>
-      <th>246</th>
+      <th>2015-08-31 18:00:00</th>
       <td>17.0</td>
       <td>8.0</td>
       <td>16.0</td>
@@ -2929,7 +2974,7 @@ Test-set R^2: 0.68
       <td>2.0</td>
     </tr>
     <tr>
-      <th>247</th>
+      <th>2015-08-31 21:00:00</th>
       <td>22.0</td>
       <td>17.0</td>
       <td>8.0</td>
@@ -2996,10 +3041,20 @@ Test-set R^2: 0.68
       <th>predicted_n_rentals</th>
       <th>n_rentals</th>
     </tr>
+    <tr>
+      <th>starttime</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     <tr>
-      <th>243</th>
+      <th>2015-08-31 09:00:00</th>
       <td>36.0</td>
       <td>2.0</td>
       <td>3.0</td>
@@ -3009,7 +3064,7 @@ Test-set R^2: 0.68
       <td>16</td>
     </tr>
     <tr>
-      <th>244</th>
+      <th>2015-08-31 12:00:00</th>
       <td>16.0</td>
       <td>36.0</td>
       <td>2.0</td>
@@ -3019,7 +3074,7 @@ Test-set R^2: 0.68
       <td>8</td>
     </tr>
     <tr>
-      <th>245</th>
+      <th>2015-08-31 15:00:00</th>
       <td>8.0</td>
       <td>16.0</td>
       <td>36.0</td>
@@ -3029,7 +3084,7 @@ Test-set R^2: 0.68
       <td>17</td>
     </tr>
     <tr>
-      <th>246</th>
+      <th>2015-08-31 18:00:00</th>
       <td>17.0</td>
       <td>8.0</td>
       <td>16.0</td>
@@ -3039,7 +3094,7 @@ Test-set R^2: 0.68
       <td>22</td>
     </tr>
     <tr>
-      <th>247</th>
+      <th>2015-08-31 21:00:00</th>
       <td>22.0</td>
       <td>17.0</td>
       <td>8.0</td>
@@ -3053,21 +3108,28 @@ Test-set R^2: 0.68
 </div></div></div>
 </div>
 <ul class="simple">
-<li><p>Ok, that is fine, but what if we want to predict 15 hours in the future?</p></li>
-<li><p>Well, we would not have access to our features!! We don’t yet know <code class="docutils literal notranslate"><span class="pre">n_rentals</span></code> for 3 hours prior, 6 hours prior, or 9 hours prior!</p></li>
+<li><p>Ok, that is fine, but what if we want to predict 15 hours in the future? In other words, what if we want to predict number of rentals for the next three hours at time 2015-09-01 12:00:00?</p></li>
+<li><p>Well, we would not have access to our lag features!! We don’t yet know <code class="docutils literal notranslate"><span class="pre">n_rentals</span></code> for</p>
+<ul>
+<li><p>2015-09-01 00:00:00</p></li>
+<li><p>2015-09-01 03:00:00</p></li>
+<li><p>2015-09-01 06:00:00</p></li>
+<li><p>2015-09-01 09:00:00</p></li>
+</ul>
+</li>
 </ul>
 <ul class="simple">
 <li><p>There are a few approaches which could be employed:</p></li>
 </ul>
 <ol class="arabic simple">
-<li><p>Train a separate model for each number of months. E.g. one model that predicts sales for next month, another model that predicts sales in two months, etc. We can build these datasets.</p></li>
-<li><p>Use a multi-output model that jointly predicts RainTomorrow, RainIn2Days, etc. However, multi-output models are outside the scope of CPSC 330.</p></li>
-<li><p>Use one model and sequentially predict using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop. However, this requires predicting <em>all</em> features into a model so may not be that useful here.</p></li>
+<li><p>Train a separate model for each number of 3-hour span. E.g. one model that predicts <code class="docutils literal notranslate"><span class="pre">n_rentals</span></code> for next three hours, another model that predicts <code class="docutils literal notranslate"><span class="pre">n_rentals</span></code> in six hours, etc. We can build these datasets.</p></li>
+<li><p>Use a multi-output model that jointly predicts <code class="docutils literal notranslate"><span class="pre">n_rentalsIn3hours</span></code>, <code class="docutils literal notranslate"><span class="pre">n_rentalsIn6hours</span></code>, etc. However, multi-output models are outside the scope of CPSC 330.</p></li>
+<li><p>Use one model and sequentially predict using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.</p></li>
 </ol>
 <p>If we decide to use approach 3, we would predict these values and then pretend they are true! For example, given that it’s August 31st 2015 at 21:00.</p>
 <ol class="arabic simple">
 <li><p>Predict <code class="docutils literal notranslate"><span class="pre">n_rentals</span></code> for September 1st 2015 at 00:00.</p></li>
-<li><p>Then to predict <code class="docutils literal notranslate"><span class="pre">n_rentals</span></code> for September 1st 2015 at 03:00, we need to know <code class="docutils literal notranslate"><span class="pre">n_rentals</span></code> for September 1st 2015 at 00:00. Use our <em>prediction</em> for December 2022 as the truth.</p></li>
+<li><p>Then to predict <code class="docutils literal notranslate"><span class="pre">n_rentals</span></code> for September 1st 2015 at 03:00, we need to know <code class="docutils literal notranslate"><span class="pre">n_rentals</span></code> for September 1st 2015 at 00:00. Use our <em>prediction</em> for September 1st 2015 at 00:00 as the truth.</p></li>
 <li><p>Then, to predict <code class="docutils literal notranslate"><span class="pre">n_rentals</span></code> for September 1st 2015 at 06:00, we need to know <code class="docutils literal notranslate"><span class="pre">n_rentals</span></code> for September 1st 2015 at 00:00 and <code class="docutils literal notranslate"><span class="pre">n_rentals</span></code> for September 1st 2015 at 03:00. Use our predictions.</p></li>
 <li><p>Etc etc.</p></li>
 </ol>
