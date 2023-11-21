@@ -61,6 +61,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/19_time-series';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -351,11 +353,9 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-for-you">❓❓ Questions for you</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-split-for-temporal-data">Train/test split for temporal data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">❓❓ Questions for you</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-split-for-temporal-data">Train/test split for temporal data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering-for-date-time-columns">Feature engineering for date/time columns</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">❓❓ Questions for you</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posix-time-feature">POSIX time feature</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-date-and-time-information">Extracting date and time information</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">❓❓ Questions for you</a></li>
@@ -591,6 +591,7 @@ Freq: 3H, Name: one, dtype: int64
 <section id="train-test-split-for-temporal-data">
 <h2>Train/test split for temporal data<a class="headerlink" href="#train-test-split-for-temporal-data" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
+<li><p>To evaluate the model’s ability to generalize, we will divide the data into training and testing subsets.</p></li>
 <li><p>What will happen if we split this data the usual way?</p></li>
 </ul>
 <div class="cell docutils container">
@@ -616,6 +617,23 @@ Freq: 3H, Name: one, dtype: int64
 Name: one, dtype: int64
 </pre></div>
 </div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">train_df_sort</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+<span class="n">test_df_sort</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_df_sort</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_df_sort</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1abfda1e002ed97f29cd57ccb337940a5111895bdc8e90bf879468a6e4bfb87c.png" src="../_images/1abfda1e002ed97f29cd57ccb337940a5111895bdc8e90bf879468a6e4bfb87c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -648,23 +666,6 @@ Name: one, dtype: int64
 <li><p>There may be cases where this is OK, e.g. if you aren’t trying to forecast and just want to understand your data (maybe you’re not even splitting).</p></li>
 <li><p>But, for our purposes, we want to avoid this.</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">train_df_sort</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
-<span class="n">test_df_sort</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_df_sort</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_df_sort</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/1abfda1e002ed97f29cd57ccb337940a5111895bdc8e90bf879468a6e4bfb87c.png" src="../_images/1abfda1e002ed97f29cd57ccb337940a5111895bdc8e90bf879468a6e4bfb87c.png" />
-</div>
-</div>
 <p>We’ll split the data as follows:</p>
 <ul class="simple">
 <li><p>We have total 248 data points.</p></li>
@@ -708,10 +709,11 @@ Name: one, dtype: int64
 <img alt="../_images/99c5b3e53565a52e43d743cbbfd9cfeeff8ca4b6cca39e85aa6736198e2d52db.png" src="../_images/99c5b3e53565a52e43d743cbbfd9cfeeff8ca4b6cca39e85aa6736198e2d52db.png" />
 </div>
 </div>
-<ul class="simple">
-<li><p>This split is looking reasonable now.</p></li>
-</ul>
+<p>This split is looking reasonable now. We’ll train our model on the blue part and evaluate it on the red part.</p>
 <p><br><br></p>
+</section>
+<section id="feature-engineering-for-date-time-columns">
+<h2>Feature engineering for date/time columns<a class="headerlink" href="#feature-engineering-for-date-time-columns" title="Permalink to this heading">#</a></h2>
 <section id="id1">
 <h3>❓❓ Questions for you<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
@@ -719,9 +721,6 @@ Name: one, dtype: int64
 </ul>
 <p><br><br><br><br><br><br><br><br></p>
 </section>
-</section>
-<section id="feature-engineering-for-date-time-columns">
-<h2>Feature engineering for date/time columns<a class="headerlink" href="#feature-engineering-for-date-time-columns" title="Permalink to this heading">#</a></h2>
 <section id="posix-time-feature">
 <h3>POSIX time feature<a class="headerlink" href="#posix-time-feature" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
@@ -739,6 +738,10 @@ Name: one, dtype: int64
 </pre></div>
 </div>
 </div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Note</p>
+<p>In pandas, datetime objects are typically represented as Timestamp objects, which internally store time as the number of nanoseconds (1 billionth of a second. 1 second = <span class="math notranslate nohighlight">\(10^9\)</span> nanoseconds) since the POSIX epoch (January 1, 1970, 00:00:00 UTC).</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -803,28 +806,67 @@ Name: one, dtype: int64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code credit: Adapted from </span>
 <span class="c1"># https://learning.oreilly.com/library/view/introduction-to-machine/9781449369880/</span>
 
-<span class="k">def</span> <span class="nf">eval_on_features</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">regressor</span><span class="p">,</span> <span class="n">n_train</span> <span class="o">=</span> <span class="mi">184</span><span class="p">,</span> <span class="n">sales_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Rentals&#39;</span><span class="p">,</span> <span class="n">feat_names</span><span class="o">=</span><span class="s2">&quot;Default&quot;</span><span class="p">):</span>
-    <span class="c1"># split the given features into a training and a test set</span>
+<span class="k">def</span> <span class="nf">eval_on_features</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">regressor</span><span class="p">,</span> <span class="n">n_train</span><span class="o">=</span><span class="mi">184</span><span class="p">,</span> <span class="n">sales_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Rentals&#39;</span><span class="p">,</span> <span class="n">feat_names</span><span class="o">=</span><span class="s2">&quot;Default&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Evaluate a regression model on a given set of features and target.</span>
+
+<span class="sd">    This function splits the data into training and test sets, fits the </span>
+<span class="sd">    regression model to the training data, and then evaluates and plots </span>
+<span class="sd">    the performance of the model on both the training and test datasets.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    features : array-like</span>
+<span class="sd">        Input features for the model.</span>
+<span class="sd">    target : array-like</span>
+<span class="sd">        Target variable for the model.</span>
+<span class="sd">    regressor : model object</span>
+<span class="sd">        A regression model instance that follows the scikit-learn API.</span>
+<span class="sd">    n_train : int, default=184</span>
+<span class="sd">        The number of samples to be used in the training set.</span>
+<span class="sd">    sales_data : bool, default=False</span>
+<span class="sd">        Indicates if the data is sales data, which affects the plot ticks.</span>
+<span class="sd">    ylabel : str, default=&#39;Rentals&#39;</span>
+<span class="sd">        The label for the y-axis in the plot.</span>
+<span class="sd">    feat_names : str, default=&#39;Default&#39;</span>
+<span class="sd">        Names of the features used, for display in the plot title.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    None</span>
+<span class="sd">        The function does not return any value. It prints the R^2 score</span>
+<span class="sd">        and generates a plot.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Split the features and target data into training and test sets</span>
     <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">features</span><span class="p">[:</span><span class="n">n_train</span><span class="p">],</span> <span class="n">features</span><span class="p">[</span><span class="n">n_train</span><span class="p">:]</span>
-    <span class="c1"># also split the target array</span>
     <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">target</span><span class="p">[:</span><span class="n">n_train</span><span class="p">],</span> <span class="n">target</span><span class="p">[</span><span class="n">n_train</span><span class="p">:]</span>
+
+    <span class="c1"># Fit the model on the training data</span>
     <span class="n">regressor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+    <span class="c1"># Print R^2 scores for training and test datasets</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Train-set R^2: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">regressor</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test-set R^2: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">regressor</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
-    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+    <span class="c1"># Predict target variable for both training and test datasets</span>
     <span class="n">y_pred_train</span> <span class="o">=</span> <span class="n">regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+    <span class="c1"># Plotting</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 
+    <span class="c1"># If not sales data, adjust x-ticks for dates (assumes datetime format)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">sales_data</span><span class="p">:</span> 
         <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="mi">8</span><span class="p">),</span> <span class="n">xticks</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%a</span><span class="s2"> %m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
-        
+
+    <span class="c1"># Plot training and test data, along with predictions</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_train</span><span class="p">),</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_train</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span> <span class="o">+</span> <span class="n">n_train</span><span class="p">),</span> <span class="n">y_test</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_train</span><span class="p">),</span> <span class="n">y_pred_train</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;prediction train&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_train</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span> <span class="o">+</span> <span class="n">n_train</span><span class="p">),</span> <span class="n">y_pred</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;prediction test&quot;</span><span class="p">)</span>
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-        <span class="nb">range</span><span class="p">(</span><span class="n">n_train</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span> <span class="o">+</span> <span class="n">n_train</span><span class="p">),</span> <span class="n">y_pred</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;prediction test&quot;</span>
-    <span class="p">)</span>
+    <span class="c1"># Set plot title, labels, and legend</span>
     <span class="n">title</span> <span class="o">=</span> <span class="n">regressor</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Features= &quot;</span> <span class="o">+</span> <span class="n">feat_names</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="p">(</span><span class="mf">1.01</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
@@ -853,7 +895,7 @@ Test-set R^2: -0.04
 </div>
 </div>
 <ul class="simple">
-<li><p>The predictions on the training score is pretty good</p></li>
+<li><p>The predictions on the training data and training score are pretty good</p></li>
 <li><p>But for the test data, a constant line is predicted …</p></li>
 <li><p>What’s going on?</p></li>
 </ul>
@@ -2258,11 +2300,11 @@ Test-set R^2: 0.37
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.94
-Test-set R^2: 0.70
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.95
+Test-set R^2: 0.67
 </pre></div>
 </div>
-<img alt="../_images/f6ad1d446dd91c188949104385f3f33f90144f5a0be8566fd68adbaa55372f7d.png" src="../_images/f6ad1d446dd91c188949104385f3f33f90144f5a0be8566fd68adbaa55372f7d.png" />
+<img alt="../_images/b3593ccaf9f3e3a95cc55aeb81ff8ece760a3da6c315f3ff9a829f57bdbbb1cd.png" src="../_images/b3593ccaf9f3e3a95cc55aeb81ff8ece760a3da6c315f3ff9a829f57bdbbb1cd.png" />
 </div>
 </div>
 <p>The results are not as good as the results with our previously engineered features. How about combining lag-based features and the previously extracted features?</p>
@@ -2281,11 +2323,11 @@ Test-set R^2: 0.70
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.96
-Test-set R^2: 0.80
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.95
+Test-set R^2: 0.77
 </pre></div>
 </div>
-<img alt="../_images/bee2b0737ab45f05fda00b995f6711dd745724f1ec4087d6d61e7cb3fa6c20e3.png" src="../_images/bee2b0737ab45f05fda00b995f6711dd745724f1ec4087d6d61e7cb3fa6c20e3.png" />
+<img alt="../_images/d222baec77c4f3529c49f7f76fd3c193d0954df4b73bc82c4d50963815f74515.png" src="../_images/d222baec77c4f3529c49f7f76fd3c193d0954df4b73bc82c4d50963815f74515.png" />
 </div>
 </div>
 <p>Some improvement but we are getting better results without the lag features in this case.</p>
@@ -2386,36 +2428,36 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001248</td>
-      <td>0.000277</td>
+      <td>0.000782</td>
+      <td>0.000268</td>
       <td>0.642676</td>
       <td>0.873182</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000521</td>
-      <td>0.000223</td>
+      <td>0.000537</td>
+      <td>0.000225</td>
       <td>0.828405</td>
       <td>0.874305</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.001018</td>
-      <td>0.000739</td>
+      <td>0.001041</td>
+      <td>0.000754</td>
       <td>0.773851</td>
       <td>0.901262</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000750</td>
-      <td>0.000255</td>
+      <td>0.000965</td>
+      <td>0.000645</td>
       <td>0.696712</td>
       <td>0.889429</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001215</td>
-      <td>0.000669</td>
+      <td>0.000953</td>
+      <td>0.000227</td>
       <td>0.892733</td>
       <td>0.863889</td>
     </tr>
@@ -2440,10 +2482,10 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.94
-Test-set R^2: 0.69
+Test-set R^2: 0.67
 </pre></div>
 </div>
-<img alt="../_images/534e20a6c3663c5f5a778b94262815a605cc325fe0017dc43474c93dc56e4cd7.png" src="../_images/534e20a6c3663c5f5a778b94262815a605cc325fe0017dc43474c93dc56e4cd7.png" />
+<img alt="../_images/57a105a80af0556d72b80b57e68117748634c0c1e316ddd16a79fa0500de3663.png" src="../_images/57a105a80af0556d72b80b57e68117748634c0c1e316ddd16a79fa0500de3663.png" />
 </div>
 </div>
 <ul class="simple">
@@ -9719,11 +9761,9 @@ Test score: 0.85
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-for-you">❓❓ Questions for you</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-split-for-temporal-data">Train/test split for temporal data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">❓❓ Questions for you</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-split-for-temporal-data">Train/test split for temporal data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering-for-date-time-columns">Feature engineering for date/time columns</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">❓❓ Questions for you</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#posix-time-feature">POSIX time feature</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-date-and-time-information">Extracting date and time information</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">❓❓ Questions for you</a></li>
