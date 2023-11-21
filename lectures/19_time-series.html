@@ -346,6 +346,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports-announcements-lo">Imports, announcements, LO</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#announcements">Announcements</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning objectives</a></li>
 </ul>
 </li>
@@ -360,7 +361,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-date-and-time-information">Extracting date and time information</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">❓❓ Questions for you</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-time-of-day-as-a-categorical-feature">Encoding time of day as a categorical feature</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lag-based-features">Lag-based features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interim-summary">Interim summary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lag-based-features">Lag-based features</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">Cross-validation</a></li>
 </ul>
 </li>
@@ -449,6 +453,13 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 </div>
 </div>
 </div>
+</section>
+<section id="announcements">
+<h3>Announcements<a class="headerlink" href="#announcements" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>HW8 has been released. (Due next week Monday.)</p></li>
+<li></li>
+</ul>
 </section>
 <section id="learning-objectives">
 <h3>Learning objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this heading">#</a></h3>
@@ -1791,7 +1802,9 @@ Test-set R^2: 0.62
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Train-set R^2: 0.87
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.87
 Test-set R^2: 0.85
 </pre></div>
 </div>
@@ -1892,11 +1905,20 @@ Test-set R^2: 0.85
 <li><p>If it’s Saturday 09:00 or Wednesday 06:00, the model is likely to predict bigger number for rentals.</p></li>
 <li><p>If it’s Midnight or 03:00 or Sunday 06:00, the model is likely to predict smaller number for rentals.</p></li>
 </ul>
-<p><strong>Key Takeaway: In time-series analysis, the selection of the model and the features incorporated are critical factors for success.</strong></p>
+</section>
+<section id="interim-summary">
+<h3>Interim summary<a class="headerlink" href="#interim-summary" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Success in time-series analysis heavily relies on the appropriate choice of models and features.</p></li>
+<li><p>Tree-based models cannot extrapolate; caution is needed when using them with linear integer features.</p></li>
+<li><p>Linear models struggle with cyclic patterns in numeric features (e.g., numerically encoded time of the day feature) because these patterns are inherently non-linear.</p></li>
+<li><p>Applying one-hot encoding on such features transforms cyclic temporal features into a format where their impact on the target variable can be independently and linearly modeled, enabling linear models to effectively capture and use these cyclic patterns.</p></li>
+</ul>
 <p><br><br></p>
 </section>
+</section>
 <section id="lag-based-features">
-<h3>Lag-based features<a class="headerlink" href="#lag-based-features" title="Permalink to this heading">#</a></h3>
+<h2>Lag-based features<a class="headerlink" href="#lag-based-features" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>So far we engineered some features and managed to get reasonable results.</p></li>
 <li><p>In time series data there is temporal dependence; observations close in time tend to be correlated.</p></li>
@@ -2299,11 +2321,11 @@ Test-set R^2: 0.37
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.95
-Test-set R^2: 0.69
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.94
+Test-set R^2: 0.67
 </pre></div>
 </div>
-<img alt="../_images/7223e773cbadb77981275668076fd8b598d1896c8f8684dd0ed7e4433a5835f4.png" src="../_images/7223e773cbadb77981275668076fd8b598d1896c8f8684dd0ed7e4433a5835f4.png" />
+<img alt="../_images/0b6c8d2f53fd55f6bf04331a755484b0527ec1f15bdd933aa065867aff4201dc.png" src="../_images/0b6c8d2f53fd55f6bf04331a755484b0527ec1f15bdd933aa065867aff4201dc.png" />
 </div>
 </div>
 <p>The results are not as good as the results with our previously engineered features. How about combining lag-based features and the previously extracted features?</p>
@@ -2322,15 +2344,14 @@ Test-set R^2: 0.69
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.96
-Test-set R^2: 0.79
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.95
+Test-set R^2: 0.77
 </pre></div>
 </div>
-<img alt="../_images/5ba8227a9e8d225c25cd9b9c819610ec41de3ce74d40205ce41e2ce909254e6d.png" src="../_images/5ba8227a9e8d225c25cd9b9c819610ec41de3ce74d40205ce41e2ce909254e6d.png" />
+<img alt="../_images/e21ec7b923d865af8ac57b6b94cbd40612bef5cc6e7a4b680c46ec9377e01c2d.png" src="../_images/e21ec7b923d865af8ac57b6b94cbd40612bef5cc6e7a4b680c46ec9377e01c2d.png" />
 </div>
 </div>
 <p>Some improvement but we are getting better results without the lag features in this case.</p>
-</section>
 <section id="cross-validation">
 <h3>Cross-validation<a class="headerlink" href="#cross-validation" title="Permalink to this heading">#</a></h3>
 <p>What about cross-validation?</p>
@@ -2427,36 +2448,36 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000962</td>
-      <td>0.000299</td>
+      <td>0.002226</td>
+      <td>0.000267</td>
       <td>0.642676</td>
       <td>0.873182</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000655</td>
-      <td>0.000292</td>
+      <td>0.000525</td>
+      <td>0.000226</td>
       <td>0.828405</td>
       <td>0.874305</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000706</td>
-      <td>0.000265</td>
+      <td>0.000550</td>
+      <td>0.000217</td>
       <td>0.773851</td>
       <td>0.901262</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.001002</td>
-      <td>0.000751</td>
+      <td>0.001136</td>
+      <td>0.000293</td>
       <td>0.696712</td>
       <td>0.889429</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000813</td>
-      <td>0.000245</td>
+      <td>0.000845</td>
+      <td>0.000467</td>
       <td>0.892733</td>
       <td>0.863889</td>
     </tr>
@@ -2481,10 +2502,10 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.94
-Test-set R^2: 0.69
+Test-set R^2: 0.70
 </pre></div>
 </div>
-<img alt="../_images/a99b49081b28890e9e721b1cc202f8dcd0d80b49ae50de01f10b5b12386b3c60.png" src="../_images/a99b49081b28890e9e721b1cc202f8dcd0d80b49ae50de01f10b5b12386b3c60.png" />
+<img alt="../_images/e92d21c7abea219e75c890b7b4422b33a42144030e35a4b137f5740f5118435a.png" src="../_images/e92d21c7abea219e75c890b7b4422b33a42144030e35a4b137f5740f5118435a.png" />
 </div>
 </div>
 <ul class="simple">
@@ -9753,6 +9774,7 @@ Test score: 0.85
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports-announcements-lo">Imports, announcements, LO</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#announcements">Announcements</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning objectives</a></li>
 </ul>
 </li>
@@ -9767,7 +9789,10 @@ Test score: 0.85
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-date-and-time-information">Extracting date and time information</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">❓❓ Questions for you</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-time-of-day-as-a-categorical-feature">Encoding time of day as a categorical feature</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lag-based-features">Lag-based features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interim-summary">Interim summary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lag-based-features">Lag-based features</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">Cross-validation</a></li>
 </ul>
 </li>
