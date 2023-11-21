@@ -1807,9 +1807,7 @@ Test-set R^2: 0.62
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.87
+Train-set R^2: 0.87
 Test-set R^2: 0.85
 </pre></div>
 </div>
@@ -2326,11 +2324,11 @@ Test-set R^2: 0.37
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.94
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.95
 Test-set R^2: 0.69
 </pre></div>
 </div>
-<img alt="../_images/e417bc322c2d5f45c26fef85d8149e47dea18d0086601724795dd4371655590f.png" src="../_images/e417bc322c2d5f45c26fef85d8149e47dea18d0086601724795dd4371655590f.png" />
+<img alt="../_images/5150da95375430c2933d48e4fc388a55452908c508d4d2b6a556e8852f1b5b13.png" src="../_images/5150da95375430c2933d48e4fc388a55452908c508d4d2b6a556e8852f1b5b13.png" />
 </div>
 </div>
 <p>The results are better than <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> with lag features but they are not as good as the results with our previously engineered features. How about combining lag-based features and the previously extracted features?</p>
@@ -2349,11 +2347,11 @@ Test-set R^2: 0.69
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.95
-Test-set R^2: 0.77
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.96
+Test-set R^2: 0.79
 </pre></div>
 </div>
-<img alt="../_images/5adcf6f71245dc2af25579426397569bfabc368c6ff2b11bbb55fd3dd9b00575.png" src="../_images/5adcf6f71245dc2af25579426397569bfabc368c6ff2b11bbb55fd3dd9b00575.png" />
+<img alt="../_images/b0a7e1d5a49f4ed2ed8a16cce855565a4b2be320bccefe01777eea067c3e4203.png" src="../_images/b0a7e1d5a49f4ed2ed8a16cce855565a4b2be320bccefe01777eea067c3e4203.png" />
 </div>
 </div>
 <p>Some improvement but we are getting better results without the lag features in this case.</p>
@@ -2453,36 +2451,36 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001298</td>
-      <td>0.000331</td>
+      <td>0.001065</td>
+      <td>0.000278</td>
       <td>0.642676</td>
       <td>0.873182</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000765</td>
-      <td>0.000313</td>
+      <td>0.000933</td>
+      <td>0.000739</td>
       <td>0.828405</td>
       <td>0.874305</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000902</td>
-      <td>0.000316</td>
+      <td>0.000750</td>
+      <td>0.000254</td>
       <td>0.773851</td>
       <td>0.901262</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.001197</td>
-      <td>0.000282</td>
+      <td>0.000604</td>
+      <td>0.000221</td>
       <td>0.696712</td>
       <td>0.889429</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001477</td>
-      <td>0.000735</td>
+      <td>0.001104</td>
+      <td>0.000630</td>
       <td>0.892733</td>
       <td>0.863889</td>
     </tr>
@@ -3854,18 +3852,10 @@ Test-set R^2: 0.68
 </div></div></div>
 </div>
 <ul class="simple">
-<li><p>Ok, that is fine, but what if we want to predict 5 months in the future?</p></li>
-<li><p>Well, we would not have access to our features!! We don’t yet know the previous months sales, or two months prior!</p></li>
+<li><p>Now what if we want to predict 5 months in the future?</p></li>
+<li><p>We would not have access to our features!! We don’t yet know the previous months sales, or two months prior!</p></li>
 </ul>
-<ul class="simple">
-<li><p>There are a few approaches which could be employed:</p></li>
-</ul>
-<ol class="arabic simple">
-<li><p>Train a separate model for each number of months. E.g. one model that predicts sales for next month, another model that predicts sales in two months, etc. We can build these datasets.</p></li>
-<li><p>Use a multi-output model that jointly predicts RainTomorrow, RainIn2Days, etc. However, multi-output models are outside the scope of CPSC 330.</p></li>
-<li><p>Use one model and sequentially predict using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop. However, this requires predicting <em>all</em> features into a model so may not be that useful here.</p></li>
-</ol>
-<p>If we decide to use approach 3, we would predict these values and then pretend they are true! For example, given that it’s November 2022</p>
+<p>If we decide to use approach 3 from above, we would predict these values and then pretend they are true! For example, given that it’s November 2022</p>
 <ol class="arabic simple">
 <li><p>Predict December 2022 sales</p></li>
 <li><p>Then, to predict for January 2023, we need to know December 2022 sales. Use our <em>prediction</em> for December 2022 as the truth.</p></li>
