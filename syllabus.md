@@ -74,9 +74,9 @@ The iClicker participation grade will mainly consider your engagement rather tha
 
 The plan is that most of the assignments will contribute equally towards the overall Assignments grade. However, this is not finalized yet. For example, the last assignment ends up particularly short or long due to timing. Furthermore, we will drop your lowest homework grade. 
 <!--**By default late submissions will not be accepted.** The rationale is that we will be posting the solutions shortly after the assignment deadline, and we cannot accept submissions after the solutions are posted. I do not like this, but I believe the overall policy is best for the class as a whole.--> 
-See [this document](homework_instructions.md) for more detailed instructions on submitting homework assignments.
+See [this document](docs/homework_instructions.md) for more detailed instructions on submitting homework assignments.
 
-For the full policy on grades, see [this document](grades.md). We understand that grades are important for you for several reasons. But try not to focus too much on them. You will have a better learning experience and in general, you'll be happier in life if you focus more on learning the material well. For the grading scheme we wish we could use [this](https://youtu.be/HdHlfiOAJyE?t=3771).
+For the full policy on grades, see [this document](docs/grades.md). We understand that grades are important for you for several reasons. But try not to focus too much on them. You will have a better learning experience and in general, you'll be happier in life if you focus more on learning the material well. For the grading scheme we wish we could use [this](https://youtu.be/HdHlfiOAJyE?t=3771).
 
 
 **Late policy**
