@@ -458,7 +458,12 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 <h3>Announcements<a class="headerlink" href="#announcements" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>HW8 has been released. (Due next week Monday.)</p></li>
-<li></li>
+<li><p>Thank you for filling out the midterm survey!</p>
+<ul>
+<li><p>We’ll try to be more responsive on Piazza.</p></li>
+<li><p>Our lectures are recorded. You can find the Panopto links for each section on Canvas.</p></li>
+</ul>
+</li>
 </ul>
 </section>
 <section id="learning-objectives">
@@ -1802,9 +1807,7 @@ Test-set R^2: 0.62
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.87
+Train-set R^2: 0.87
 Test-set R^2: 0.85
 </pre></div>
 </div>
@@ -1922,7 +1925,7 @@ Test-set R^2: 0.85
 <ul class="simple">
 <li><p>So far we engineered some features and managed to get reasonable results.</p></li>
 <li><p>In time series data there is temporal dependence; observations close in time tend to be correlated.</p></li>
-<li><p>Currently we’re using current time to predict the number of bike rentals at that time.</p></li>
+<li><p>Currently we’re using current time to predict the number of bike rentals in the next three hours.</p></li>
 <li><p>But, what if the number of bike rentals is also related to bike rentals three hours ago or 6 hours ago and so on?</p>
 <ul>
 <li><p>Such features are called <em>lagged</em> features.</p></li>
@@ -2322,10 +2325,10 @@ Test-set R^2: 0.37
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.94
-Test-set R^2: 0.67
+Test-set R^2: 0.68
 </pre></div>
 </div>
-<img alt="../_images/0b6c8d2f53fd55f6bf04331a755484b0527ec1f15bdd933aa065867aff4201dc.png" src="../_images/0b6c8d2f53fd55f6bf04331a755484b0527ec1f15bdd933aa065867aff4201dc.png" />
+<img alt="../_images/e140fff96d450dfd7d1428f049b7c9c41103c327351c865ef62935b1aa373d87.png" src="../_images/e140fff96d450dfd7d1428f049b7c9c41103c327351c865ef62935b1aa373d87.png" />
 </div>
 </div>
 <p>The results are not as good as the results with our previously engineered features. How about combining lag-based features and the previously extracted features?</p>
@@ -2344,11 +2347,11 @@ Test-set R^2: 0.67
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.95
-Test-set R^2: 0.77
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.96
+Test-set R^2: 0.79
 </pre></div>
 </div>
-<img alt="../_images/e21ec7b923d865af8ac57b6b94cbd40612bef5cc6e7a4b680c46ec9377e01c2d.png" src="../_images/e21ec7b923d865af8ac57b6b94cbd40612bef5cc6e7a4b680c46ec9377e01c2d.png" />
+<img alt="../_images/9c031fd6534075695cfcb66ee28f229c7f078a922939196313e8dad720992f46.png" src="../_images/9c031fd6534075695cfcb66ee28f229c7f078a922939196313e8dad720992f46.png" />
 </div>
 </div>
 <p>Some improvement but we are getting better results without the lag features in this case.</p>
@@ -2448,36 +2451,36 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.002226</td>
-      <td>0.000267</td>
+      <td>0.001079</td>
+      <td>0.000296</td>
       <td>0.642676</td>
       <td>0.873182</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000525</td>
-      <td>0.000226</td>
+      <td>0.000911</td>
+      <td>0.000746</td>
       <td>0.828405</td>
       <td>0.874305</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000550</td>
-      <td>0.000217</td>
+      <td>0.000912</td>
+      <td>0.000588</td>
       <td>0.773851</td>
       <td>0.901262</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.001136</td>
-      <td>0.000293</td>
+      <td>0.000962</td>
+      <td>0.000632</td>
       <td>0.696712</td>
       <td>0.889429</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000845</td>
-      <td>0.000467</td>
+      <td>0.001045</td>
+      <td>0.000590</td>
       <td>0.892733</td>
       <td>0.863889</td>
     </tr>
@@ -2502,10 +2505,10 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.94
-Test-set R^2: 0.70
+Test-set R^2: 0.67
 </pre></div>
 </div>
-<img alt="../_images/e92d21c7abea219e75c890b7b4422b33a42144030e35a4b137f5740f5118435a.png" src="../_images/e92d21c7abea219e75c890b7b4422b33a42144030e35a4b137f5740f5118435a.png" />
+<img alt="../_images/4a0250f016fd37814d95db57399b2c97f5393215283c69810693996e9e0a11a9.png" src="../_images/4a0250f016fd37814d95db57399b2c97f5393215283c69810693996e9e0a11a9.png" />
 </div>
 </div>
 <ul class="simple">
