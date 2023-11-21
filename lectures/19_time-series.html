@@ -1074,9 +1074,7 @@ Test-set R^2: 0.60
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.89
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test-set R^2: 0.84
+Test-set R^2: 0.84
 </pre></div>
 </div>
 <img alt="../_images/2508eaa9c6ff31d91314c9732a9f8a466811ed107928bbfb6e12fedeb822f988.png" src="../_images/2508eaa9c6ff31d91314c9732a9f8a466811ed107928bbfb6e12fedeb822f988.png" />
@@ -2328,11 +2326,11 @@ Test-set R^2: 0.37
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.95
-Test-set R^2: 0.70
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.94
+Test-set R^2: 0.69
 </pre></div>
 </div>
-<img alt="../_images/2e02641f40813fc63e8d99228c288ffe9f8dcc93caeffbe4cf36b043c101e198.png" src="../_images/2e02641f40813fc63e8d99228c288ffe9f8dcc93caeffbe4cf36b043c101e198.png" />
+<img alt="../_images/e417bc322c2d5f45c26fef85d8149e47dea18d0086601724795dd4371655590f.png" src="../_images/e417bc322c2d5f45c26fef85d8149e47dea18d0086601724795dd4371655590f.png" />
 </div>
 </div>
 <p>The results are better than <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> with lag features but they are not as good as the results with our previously engineered features. How about combining lag-based features and the previously extracted features?</p>
@@ -2351,11 +2349,11 @@ Test-set R^2: 0.70
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.96
-Test-set R^2: 0.79
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.95
+Test-set R^2: 0.77
 </pre></div>
 </div>
-<img alt="../_images/b1a63308872e88f69ad65ace6c5c2f591708eaf64eef5687c721358f653a7fac.png" src="../_images/b1a63308872e88f69ad65ace6c5c2f591708eaf64eef5687c721358f653a7fac.png" />
+<img alt="../_images/5adcf6f71245dc2af25579426397569bfabc368c6ff2b11bbb55fd3dd9b00575.png" src="../_images/5adcf6f71245dc2af25579426397569bfabc368c6ff2b11bbb55fd3dd9b00575.png" />
 </div>
 </div>
 <p>Some improvement but we are getting better results without the lag features in this case.</p>
@@ -2455,35 +2453,35 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001093</td>
-      <td>0.000283</td>
+      <td>0.001298</td>
+      <td>0.000331</td>
       <td>0.642676</td>
       <td>0.873182</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000548</td>
-      <td>0.000228</td>
+      <td>0.000765</td>
+      <td>0.000313</td>
       <td>0.828405</td>
       <td>0.874305</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000899</td>
-      <td>0.000217</td>
+      <td>0.000902</td>
+      <td>0.000316</td>
       <td>0.773851</td>
       <td>0.901262</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000907</td>
-      <td>0.000218</td>
+      <td>0.001197</td>
+      <td>0.000282</td>
       <td>0.696712</td>
       <td>0.889429</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001037</td>
+      <td>0.001477</td>
       <td>0.000735</td>
       <td>0.892733</td>
       <td>0.863889</td>
@@ -2497,7 +2495,7 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 </section>
 <section id="forecasting-further-into-the-future">
 <h2>Forecasting further into the future<a class="headerlink" href="#forecasting-further-into-the-future" title="Permalink to this heading">#</a></h2>
-<p>Recall that we are working with the bike rentals data in August 2015.</p>
+<p>Recall that we are working with the bike rentals data from August 2015.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">citibike</span>
@@ -2822,8 +2820,7 @@ Freq: 3H, Name: one, Length: 248, dtype: int64
 </div>
 </div>
 </div>
-<p>With a linear model and lag features we get the following scores.</p>
-<p>Let’s split the data and train a model</p>
+<p>Let’s split the data and train a linear model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># split the given features into a training and a test set</span>
@@ -2851,7 +2848,7 @@ Test-set R^2: 0.68
 </div>
 </div>
 </div>
-<p>Given this, we can now predict the sales</p>
+<p>Given this, we can now predict <code class="docutils literal notranslate"><span class="pre">n_rentals</span></code> on the test data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_test</span>
@@ -3118,9 +3115,7 @@ Test-set R^2: 0.68
 </ul>
 </li>
 </ul>
-<ul class="simple">
-<li><p>There are a few approaches which could be employed:</p></li>
-</ul>
+<p>There are a few approaches which could be employed:</p>
 <ol class="arabic simple">
 <li><p>Train a separate model for each number of 3-hour span. E.g. one model that predicts <code class="docutils literal notranslate"><span class="pre">n_rentals</span></code> for next three hours, another model that predicts <code class="docutils literal notranslate"><span class="pre">n_rentals</span></code> in six hours, etc. We can build these datasets.</p></li>
 <li><p>Use a multi-output model that jointly predicts <code class="docutils literal notranslate"><span class="pre">n_rentalsIn3hours</span></code>, <code class="docutils literal notranslate"><span class="pre">n_rentalsIn6hours</span></code>, etc. However, multi-output models are outside the scope of CPSC 330.</p></li>
