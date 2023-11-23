@@ -177,6 +177,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 17: Introduction to natural language processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="18_intro_to_computer-vision.html">Lecture 18: Multi-class classification and introduction to computer vision</a></li>
 <li class="toctree-l1"><a class="reference internal" href="19_time-series.html">Lecture 19: Time series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -496,27 +497,31 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">time</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">),</span> <span class="s2">&quot;code&quot;</span><span class="p">))</span>
+<span class="ne">----&gt; </span><span class="mi">9</span> <span class="kn">from</span> <span class="nn">plotting_functions_unsup</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="kn">import</span> <span class="nn">IPython</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">CS</span><span class="o">/</span><span class="mi">2023</span><span class="o">-</span><span class="mi">24</span><span class="o">/</span><span class="mi">330</span><span class="o">/</span><span class="n">cpsc330</span><span class="o">-</span><span class="mi">2023</span><span class="n">W1</span><span class="o">/</span><span class="n">lectures</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">plotting_functions_unsup</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;seaborn&#39;
 </pre></div>
 </div>
-<img alt="../_images/f4e692d03b4ae4f598f46eddcaa692f688b4b4e22cbdda6a6ab2b46a40032a1b.png" src="../_images/f4e692d03b4ae4f598f46eddcaa692f688b4b4e22cbdda6a6ab2b46a40032a1b.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
 <span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package stopwords to
-[nltk_data]     /Users/kvarada/nltk_data...
-[nltk_data]   Package stopwords is already up-to-date!
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
@@ -646,82 +651,6 @@ MILK DRINKERS ARE TURNING TO POWDER
 <span class="kn">import</span> <span class="nn">gensim.downloader</span> <span class="k">as</span> <span class="nn">api</span>
 
 <span class="n">google_news_vectors</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;word2vec-google-news-300&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># It&#39;ll take a while to run this when you try it out for the first time.</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">gensim.downloader</span> <span class="k">as</span> <span class="nn">api</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">google_news_vectors</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;word2vec-google-news-300&quot;</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/gensim/downloader.py:503,</span> in <span class="ni">load</span><span class="nt">(name, return_path)</span>
-<span class="g g-Whitespace">    </span><span class="mi">501</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">BASE_DIR</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">502</span> <span class="n">module</span> <span class="o">=</span> <span class="nb">__import__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">503</span> <span class="k">return</span> <span class="n">module</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
-
-<span class="nn">File ~/gensim-data/word2vec-google-news-300/__init__.py:8,</span> in <span class="ni">load_data</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">def</span> <span class="nf">load_data</span><span class="p">():</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="s1">&#39;word2vec-google-news-300&#39;</span><span class="p">,</span> <span class="s2">&quot;word2vec-google-news-300.gz&quot;</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">8</span>     <span class="n">model</span> <span class="o">=</span> <span class="n">KeyedVectors</span><span class="o">.</span><span class="n">load_word2vec_format</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="k">return</span> <span class="n">model</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/gensim/models/keyedvectors.py:1719,</span> in <span class="ni">KeyedVectors.load_word2vec_format</span><span class="nt">(cls, fname, fvocab, binary, encoding, unicode_errors, limit, datatype, no_header)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1672</span> <span class="nd">@classmethod</span>
-<span class="g g-Whitespace">   </span><span class="mi">1673</span> <span class="k">def</span> <span class="nf">load_word2vec_format</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1674</span>         <span class="bp">cls</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">fvocab</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">,</span> <span class="n">unicode_errors</span><span class="o">=</span><span class="s1">&#39;strict&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1675</span>         <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">REAL</span><span class="p">,</span> <span class="n">no_header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1676</span>     <span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1677</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Load KeyedVectors from a file produced by the original C word2vec-tool format.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1678</span><span class="sd"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1679</span><span class="sd">     Warnings</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1717</span><span class="sd"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1718</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1719</span>     <span class="k">return</span> <span class="n">_load_word2vec_format</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1720</span>         <span class="bp">cls</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">fvocab</span><span class="o">=</span><span class="n">fvocab</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="n">binary</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="n">unicode_errors</span><span class="o">=</span><span class="n">unicode_errors</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1721</span>         <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">datatype</span><span class="p">,</span> <span class="n">no_header</span><span class="o">=</span><span class="n">no_header</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1722</span>     <span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/gensim/models/keyedvectors.py:2065,</span> in <span class="ni">_load_word2vec_format</span><span class="nt">(cls, fname, fvocab, binary, encoding, unicode_errors, limit, datatype, no_header, binary_chunk_size)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2062</span> <span class="n">kv</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">vector_size</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">datatype</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2064</span> <span class="k">if</span> <span class="n">binary</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">2065</span>     <span class="n">_word2vec_read_binary</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2066</span>         <span class="n">fin</span><span class="p">,</span> <span class="n">kv</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">vector_size</span><span class="p">,</span> <span class="n">datatype</span><span class="p">,</span> <span class="n">unicode_errors</span><span class="p">,</span> <span class="n">binary_chunk_size</span><span class="p">,</span> <span class="n">encoding</span>
-<span class="g g-Whitespace">   </span><span class="mi">2067</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2068</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2069</span>     <span class="n">_word2vec_read_text</span><span class="p">(</span><span class="n">fin</span><span class="p">,</span> <span class="n">kv</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">vector_size</span><span class="p">,</span> <span class="n">datatype</span><span class="p">,</span> <span class="n">unicode_errors</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/gensim/models/keyedvectors.py:1958,</span> in <span class="ni">_word2vec_read_binary</span><span class="nt">(fin, kv, counts, vocab_size, vector_size, datatype, unicode_errors, binary_chunk_size, encoding)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1955</span> <span class="n">tot_processed_words</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="g g-Whitespace">   </span><span class="mi">1957</span> <span class="k">while</span> <span class="n">tot_processed_words</span> <span class="o">&lt;</span> <span class="n">vocab_size</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1958</span>     <span class="n">new_chunk</span> <span class="o">=</span> <span class="n">fin</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">binary_chunk_size</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1959</span>     <span class="n">chunk</span> <span class="o">+=</span> <span class="n">new_chunk</span>
-<span class="g g-Whitespace">   </span><span class="mi">1960</span>     <span class="n">processed_words</span><span class="p">,</span> <span class="n">chunk</span> <span class="o">=</span> <span class="n">_add_bytes_to_kv</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1961</span>         <span class="n">kv</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">chunk</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">vector_size</span><span class="p">,</span> <span class="n">datatype</span><span class="p">,</span> <span class="n">unicode_errors</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/gzip.py:301,</span> in <span class="ni">GzipFile.read</span><span class="nt">(self, size)</span>
-<span class="g g-Whitespace">    </span><span class="mi">299</span>     <span class="kn">import</span> <span class="nn">errno</span>
-<span class="g g-Whitespace">    </span><span class="mi">300</span>     <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="n">errno</span><span class="o">.</span><span class="n">EBADF</span><span class="p">,</span> <span class="s2">&quot;read() on write-only GzipFile object&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">301</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/_compression.py:68,</span> in <span class="ni">DecompressReader.readinto</span><span class="nt">(self, b)</span>
-<span class="g g-Whitespace">     </span><span class="mi">66</span> <span class="k">def</span> <span class="nf">readinto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">67</span>     <span class="k">with</span> <span class="nb">memoryview</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">as</span> <span class="n">view</span><span class="p">,</span> <span class="n">view</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">byte_view</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">68</span>         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">byte_view</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span>         <span class="n">byte_view</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)]</span> <span class="o">=</span> <span class="n">data</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span>     <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/gzip.py:500,</span> in <span class="ni">_GzipReader.read</span><span class="nt">(self, size)</span>
-<span class="g g-Whitespace">    </span><span class="mi">497</span> <span class="c1"># Read a chunk of data from the file</span>
-<span class="g g-Whitespace">    </span><span class="mi">498</span> <span class="n">buf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">DEFAULT_BUFFER_SIZE</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">500</span> <span class="n">uncompress</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decompressor</span><span class="o">.</span><span class="n">decompress</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">501</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decompressor</span><span class="o">.</span><span class="n">unconsumed_tail</span> <span class="o">!=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">502</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_fp</span><span class="o">.</span><span class="n">prepend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_decompressor</span><span class="o">.</span><span class="n">unconsumed_tail</span><span class="p">)</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>

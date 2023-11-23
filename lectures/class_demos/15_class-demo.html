@@ -175,6 +175,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../17_natural-language-processing.html">Lecture 17: Introduction to natural language processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../18_intro_to_computer-vision.html">Lecture 18: Multi-class classification and introduction to computer vision</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../19_time-series.html">Lecture 19: Time series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="current nav bd-sidenav">
@@ -376,11 +377,23 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">),</span> <span class="s2">&quot;code&quot;</span><span class="p">))</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">plotting_functions_unsup</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">CS</span><span class="o">/</span><span class="mi">2023</span><span class="o">-</span><span class="mi">24</span><span class="o">/</span><span class="mi">330</span><span class="o">/</span><span class="n">cpsc330</span><span class="o">-</span><span class="mi">2023</span><span class="n">W1</span><span class="o">/</span><span class="n">lectures</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">plotting_functions_unsup</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;seaborn&#39;
 </pre></div>
 </div>
-<img alt="../../_images/4d0a0902061469170a8076750809d647c83f5d87101f53e5b46692637beb0865.png" src="../../_images/4d0a0902061469170a8076750809d647c83f5d87101f53e5b46692637beb0865.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -496,78 +509,7 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">n_images</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">file_names</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="n">n_images</span>  <span class="c1"># because our dataset is quite small</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">food_inputs</span><span class="p">,</span> <span class="n">food_classes</span> <span class="o">=</span> <span class="n">read_img_dataset</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">n_images</span>
-
-<span class="nn">Cell In[7], line 11,</span> in <span class="ni">read_img_dataset</span><span class="nt">(data_dir)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">def</span> <span class="nf">read_img_dataset</span><span class="p">(</span><span class="n">data_dir</span><span class="p">):</span>     
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">data_transforms</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>         <span class="p">[</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>             <span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">((</span><span class="n">IMAGE_SIZE</span><span class="p">,</span> <span class="n">IMAGE_SIZE</span><span class="p">)),</span>     
-<span class="g g-Whitespace">      </span><span class="mi">7</span>             <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>             <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]),</span>            
-<span class="g g-Whitespace">      </span><span class="mi">9</span>         <span class="p">])</span>
-<span class="ne">---&gt; </span><span class="mi">11</span>     <span class="n">image_dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ImageFolder</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">data_transforms</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="n">dataloader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span>          <span class="n">image_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span>     <span class="n">dataset_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">image_dataset</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/torchvision/datasets/folder.py:309,</span> in <span class="ni">ImageFolder.__init__</span><span class="nt">(self, root, transform, target_transform, loader, is_valid_file)</span>
-<span class="g g-Whitespace">    </span><span class="mi">301</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">302</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">303</span>     <span class="n">root</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">307</span>     <span class="n">is_valid_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">308</span> <span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">309</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span>         <span class="n">root</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">311</span>         <span class="n">loader</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">312</span>         <span class="n">IMG_EXTENSIONS</span> <span class="k">if</span> <span class="n">is_valid_file</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">314</span>         <span class="n">target_transform</span><span class="o">=</span><span class="n">target_transform</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">315</span>         <span class="n">is_valid_file</span><span class="o">=</span><span class="n">is_valid_file</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">316</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">317</span>     <span class="bp">self</span><span class="o">.</span><span class="n">imgs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/torchvision/datasets/folder.py:144,</span> in <span class="ni">DatasetFolder.__init__</span><span class="nt">(self, root, loader, extensions, transform, target_transform, is_valid_file)</span>
-<span class="g g-Whitespace">    </span><span class="mi">134</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">135</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">136</span>     <span class="n">root</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">141</span>     <span class="n">is_valid_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">142</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">143</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span> <span class="n">target_transform</span><span class="o">=</span><span class="n">target_transform</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">144</span>     <span class="n">classes</span><span class="p">,</span> <span class="n">class_to_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_classes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">145</span>     <span class="n">samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_dataset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">class_to_idx</span><span class="p">,</span> <span class="n">extensions</span><span class="p">,</span> <span class="n">is_valid_file</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">147</span>     <span class="bp">self</span><span class="o">.</span><span class="n">loader</span> <span class="o">=</span> <span class="n">loader</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/torchvision/datasets/folder.py:218,</span> in <span class="ni">DatasetFolder.find_classes</span><span class="nt">(self, directory)</span>
-<span class="g g-Whitespace">    </span><span class="mi">191</span> <span class="k">def</span> <span class="nf">find_classes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
-<span class="g g-Whitespace">    </span><span class="mi">192</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Find the class folders in a dataset structured as follows::</span>
-<span class="g g-Whitespace">    </span><span class="mi">193</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">194</span><span class="sd">         directory/</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">216</span><span class="sd">         (Tuple[List[str], Dict[str, int]]): List of all classes and dictionary mapping each class to an index.</span>
-<span class="g g-Whitespace">    </span><span class="mi">217</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">218</span>     <span class="k">return</span> <span class="n">find_classes</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/torchvision/datasets/folder.py:40,</span> in <span class="ni">find_classes</span><span class="nt">(directory)</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span> <span class="k">def</span> <span class="nf">find_classes</span><span class="p">(</span><span class="n">directory</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
-<span class="g g-Whitespace">     </span><span class="mi">36</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Finds the class folders in a dataset.</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">38</span><span class="sd">     See :class:`DatasetFolder` for details.</span>
-<span class="g g-Whitespace">     </span><span class="mi">39</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="nn">---&gt; 40     classes = sorted(entry.name for entry</span> in <span class="ni">os.scandir(directory) if entry.is_dir</span><span class="nt">())</span>
-<span class="g g-Whitespace">     </span><span class="mi">41</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">classes</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">42</span>         <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Couldn&#39;t find any class folder in </span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;../data/food&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>350
 </pre></div>
 </div>
 </div>

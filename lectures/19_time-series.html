@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/19_time-series';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Lecture 3: Class demo" href="class_demos/03_class-demo.html" />
+    <link rel="next" title="Lecture 20: Survival analysis" href="20_survival-analysis.html" />
     <link rel="prev" title="Lecture 18: Multi-class classification and introduction to computer vision" href="18_intro_to_computer-vision.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -177,6 +177,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="17_natural-language-processing.html">Lecture 17: Introduction to natural language processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="18_intro_to_computer-vision.html">Lecture 18: Multi-class classification and introduction to computer vision</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 19: Time series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -451,12 +452,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="announcements">
@@ -589,7 +584,7 @@ Freq: 3H, Name: one, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1feccf396b36f426934e92bc38d41313d1ec6161fb74a106905d8567aa2d5ffa.png" src="../_images/1feccf396b36f426934e92bc38d41313d1ec6161fb74a106905d8567aa2d5ffa.png" />
+<img alt="../_images/9ff8f88e22244e08340225fb48c1ebdd3c0c226b9ff95da449a4a623f9f464a6.png" src="../_images/9ff8f88e22244e08340225fb48c1ebdd3c0c226b9ff95da449a4a623f9f464a6.png" />
 </div>
 </div>
 <ul class="simple">
@@ -654,7 +649,7 @@ Name: one, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1abfda1e002ed97f29cd57ccb337940a5111895bdc8e90bf879468a6e4bfb87c.png" src="../_images/1abfda1e002ed97f29cd57ccb337940a5111895bdc8e90bf879468a6e4bfb87c.png" />
+<img alt="../_images/42aaa39d622cc33857a7b9b34ac035d8e4648a0ec407544dbbe2cea9d1314ca4.png" src="../_images/42aaa39d622cc33857a7b9b34ac035d8e4648a0ec407544dbbe2cea9d1314ca4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -727,7 +722,7 @@ Name: one, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/99c5b3e53565a52e43d743cbbfd9cfeeff8ca4b6cca39e85aa6736198e2d52db.png" src="../_images/99c5b3e53565a52e43d743cbbfd9cfeeff8ca4b6cca39e85aa6736198e2d52db.png" />
+<img alt="../_images/43a4aea4d01c9164c0978b7fc81897510b62cdb09df1df9565294eea5a14d69f.png" src="../_images/43a4aea4d01c9164c0978b7fc81897510b62cdb09df1df9565294eea5a14d69f.png" />
 </div>
 </div>
 <p>This split is looking reasonable now. We’ll train our model on the blue part and evaluate it on the red part.</p>
@@ -851,7 +846,10 @@ Freq: 3H, Name: one, Length: 184, dtype: int64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code credit: Adapted from </span>
 <span class="c1"># https://learning.oreilly.com/library/view/introduction-to-machine/9781449369880/</span>
 
-<span class="k">def</span> <span class="nf">eval_on_features</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">regressor</span><span class="p">,</span> <span class="n">n_train</span><span class="o">=</span><span class="mi">184</span><span class="p">,</span> <span class="n">sales_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Rentals&#39;</span><span class="p">,</span> <span class="n">feat_names</span><span class="o">=</span><span class="s2">&quot;Default&quot;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">eval_on_features</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">regressor</span><span class="p">,</span> <span class="n">n_train</span><span class="o">=</span><span class="mi">184</span><span class="p">,</span> <span class="n">sales_data</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
+                     <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Rentals&#39;</span><span class="p">,</span> 
+                     <span class="n">feat_names</span><span class="o">=</span><span class="s2">&quot;Default&quot;</span><span class="p">,</span> 
+                     <span class="n">impute</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Evaluate a regression model on a given set of features and target.</span>
 
@@ -875,6 +873,8 @@ Freq: 3H, Name: one, Length: 184, dtype: int64
 <span class="sd">        The label for the y-axis in the plot.</span>
 <span class="sd">    feat_names : str, default=&#39;Default&#39;</span>
 <span class="sd">        Names of the features used, for display in the plot title.</span>
+<span class="sd">    impute : bool, default=True</span>
+<span class="sd">        whether SimpleImputer needs to be applied or not</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">    --------</span>
@@ -887,6 +887,11 @@ Freq: 3H, Name: one, Length: 184, dtype: int64
     <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">features</span><span class="p">[:</span><span class="n">n_train</span><span class="p">],</span> <span class="n">features</span><span class="p">[</span><span class="n">n_train</span><span class="p">:]</span>
     <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">target</span><span class="p">[:</span><span class="n">n_train</span><span class="p">],</span> <span class="n">target</span><span class="p">[</span><span class="n">n_train</span><span class="p">:]</span>
 
+    <span class="k">if</span> <span class="n">impute</span><span class="p">:</span>
+        <span class="n">simp</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">()</span>
+        <span class="n">X_train</span> <span class="o">=</span> <span class="n">simp</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+        <span class="n">X_test</span> <span class="o">=</span> <span class="n">simp</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    
     <span class="c1"># Fit the model on the training data</span>
     <span class="n">regressor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
@@ -936,7 +941,7 @@ Freq: 3H, Name: one, Length: 184, dtype: int64
 Test-set R^2: -0.04
 </pre></div>
 </div>
-<img alt="../_images/144cfeb5f03748b1d6f57492f84df3341d29a8b2d9e8de0531cc6e709c917fe0.png" src="../_images/144cfeb5f03748b1d6f57492f84df3341d29a8b2d9e8de0531cc6e709c917fe0.png" />
+<img alt="../_images/bb7eca05c5633064c2b3f7311c7fe9e58e24ae4fe0c250b97df4f815ae0f2d6b.png" src="../_images/bb7eca05c5633064c2b3f7311c7fe9e58e24ae4fe0c250b97df4f815ae0f2d6b.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1083,7 +1088,7 @@ Test-set R^2: -0.04
 Test-set R^2: 0.60
 </pre></div>
 </div>
-<img alt="../_images/1e8f0f4c887d1d1d819b43f628756ab25bbba37f2e51f7fd03247b96bd5630db.png" src="../_images/1e8f0f4c887d1d1d819b43f628756ab25bbba37f2e51f7fd03247b96bd5630db.png" />
+<img alt="../_images/7ab6967cce35a8ccbb5dcffa17854789028c994dbdfaa18474360c03cf1d3df0.png" src="../_images/7ab6967cce35a8ccbb5dcffa17854789028c994dbdfaa18474360c03cf1d3df0.png" />
 </div>
 </div>
 <p>The scores are better when we add time of the day feature.</p>
@@ -1106,7 +1111,7 @@ Test-set R^2: 0.60
 Test-set R^2: 0.84
 </pre></div>
 </div>
-<img alt="../_images/2508eaa9c6ff31d91314c9732a9f8a466811ed107928bbfb6e12fedeb822f988.png" src="../_images/2508eaa9c6ff31d91314c9732a9f8a466811ed107928bbfb6e12fedeb822f988.png" />
+<img alt="../_images/bb54c73672f00423a4e273ec0726886a4a853371e8f44722936275ce90af4818.png" src="../_images/bb54c73672f00423a4e273ec0726886a4a853371e8f44722936275ce90af4818.png" />
 </div>
 </div>
 <p>The results are much better. The time of the day and day of the week features are clearly helping.</p>
@@ -1124,12 +1129,11 @@ Test-set R^2: 0.84
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Train-set R^2: 0.16
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.16
 Test-set R^2: 0.13
 </pre></div>
 </div>
-<img alt="../_images/5db4bebf6eaedbe09aca44b4335783db04a9df208cc4499cdf176a765e9eca61.png" src="../_images/5db4bebf6eaedbe09aca44b4335783db04a9df208cc4499cdf176a765e9eca61.png" />
+<img alt="../_images/a1506493c5c510ba0f1db28f11d2181c6cc3a7501958ce222cecf79c26e3a774.png" src="../_images/a1506493c5c510ba0f1db28f11d2181c6cc3a7501958ce222cecf79c26e3a774.png" />
 </div>
 </div>
 </section>
@@ -1431,12 +1435,11 @@ Test-set R^2: 0.13
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Train-set R^2: 0.53
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.53
 Test-set R^2: 0.62
 </pre></div>
 </div>
-<img alt="../_images/e3760a1f2329f77bff953efb3108a4a070af678191e221fbcffd5131bbff911a.png" src="../_images/e3760a1f2329f77bff953efb3108a4a070af678191e221fbcffd5131bbff911a.png" />
+<img alt="../_images/d3f0430050d3b92ba80c8a42e6c4419dabaf1cc4fc2c5fc5d29144c39265c344.png" src="../_images/d3f0430050d3b92ba80c8a42e6c4419dabaf1cc4fc2c5fc5d29144c39265c344.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1835,14 +1838,11 @@ Test-set R^2: 0.62
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.87
 Test-set R^2: 0.85
 </pre></div>
 </div>
-<img alt="../_images/85412bb536ae0a97c3176419ba4ca35b40a9ec0b6e8f08c287256ec40504844e.png" src="../_images/85412bb536ae0a97c3176419ba4ca35b40a9ec0b6e8f08c287256ec40504844e.png" />
+<img alt="../_images/c6df5d48475ebc0e5bf82b99722787a35117477e0249a34a2744e11668733cd8.png" src="../_images/c6df5d48475ebc0e5bf82b99722787a35117477e0249a34a2744e11668733cd8.png" />
 </div>
 </div>
 <p>The scores are much better now. Since we are using a linear model, we can examine the coefficients learned by <code class="docutils literal notranslate"><span class="pre">Ridge</span></code>.</p>
@@ -2239,7 +2239,7 @@ Freq: 3H, Name: one, Length: 248, dtype: int64
 </div>
 <ul class="simple">
 <li><p>Note the NaN pattern.</p></li>
-<li><p>We can either drop the first 5 rows or apply imputation.</p></li>
+<li><p>We can either drop the first 5 rows or apply imputation. (You have to be careful about )</p></li>
 <li><p>Let’s try these features with <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> model.</p></li>
 </ul>
 <div class="cell docutils container">
@@ -2263,20 +2263,17 @@ Freq: 3H, Name: one, Length: 248, dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imp</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">()</span>
-<span class="n">X_lag_features_imp</span> <span class="o">=</span> <span class="n">imp</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_lag_features</span><span class="p">)</span>
-<span class="n">lr</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">()</span>
-<span class="n">eval_on_features</span><span class="p">(</span><span class="n">X_lag_features_imp</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lr</span><span class="p">,</span> <span class="n">feat_names</span><span class="o">=</span><span class="s2">&quot;Lag features&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">()</span>
+<span class="n">eval_on_features</span><span class="p">(</span><span class="n">X_lag_features</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lr</span><span class="p">,</span> <span class="n">feat_names</span><span class="o">=</span><span class="s2">&quot;Lag features&quot;</span><span class="p">,</span> <span class="n">impute</span><span class="o">=</span><span class="s2">&quot;yes&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Train-set R^2: 0.26
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.25
 Test-set R^2: 0.37
 </pre></div>
 </div>
-<img alt="../_images/87ef294da4aed320abbff9094e806be388e075fd4713e4bb79c73ef92e7bfe1a.png" src="../_images/87ef294da4aed320abbff9094e806be388e075fd4713e4bb79c73ef92e7bfe1a.png" />
+<img alt="../_images/4fa25e5322710a7b6ca3b5b6c87a9c2bc2552db5ceb7a16d0ffbfc6902cfeac9.png" src="../_images/4fa25e5322710a7b6ca3b5b6c87a9c2bc2552db5ceb7a16d0ffbfc6902cfeac9.png" />
 </div>
 </div>
 <p>The results are not great. But let’s examine the coefficients.</p>
@@ -2322,23 +2319,23 @@ Test-set R^2: 0.37
   <tbody>
     <tr>
       <th>n_rentals-1</th>
-      <td>0.165145</td>
+      <td>0.165617</td>
     </tr>
     <tr>
       <th>n_rentals-4</th>
-      <td>-0.049007</td>
+      <td>-0.048630</td>
     </tr>
     <tr>
       <th>n_rentals-2</th>
-      <td>-0.215227</td>
+      <td>-0.214821</td>
     </tr>
     <tr>
       <th>n_rentals-3</th>
-      <td>-0.258891</td>
+      <td>-0.258225</td>
     </tr>
     <tr>
       <th>n_rentals-5</th>
-      <td>-0.373974</td>
+      <td>-0.373656</td>
     </tr>
   </tbody>
 </table>
@@ -2356,16 +2353,16 @@ Test-set R^2: 0.37
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.94
-Test-set R^2: 0.70
+Test-set R^2: 0.69
 </pre></div>
 </div>
-<img alt="../_images/7afb56f818774455c223d01235228960353126fdf7dfd0fabad69eb895fd845f.png" src="../_images/7afb56f818774455c223d01235228960353126fdf7dfd0fabad69eb895fd845f.png" />
+<img alt="../_images/5a2a78012f9af288f4caf92a2d3a48fdbe615a25b82ba25322d905d791f9e630.png" src="../_images/5a2a78012f9af288f4caf92a2d3a48fdbe615a25b82ba25322d905d791f9e630.png" />
 </div>
 </div>
 <p>The results are better than <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> with lag features but they are not as good as the results with our previously engineered features. How about combining lag-based features and the previously extracted features?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_hour_week_onehot_poly_lag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">X_hour_week_onehot_poly</span><span class="p">,</span> <span class="n">X_lag_features_imp</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_hour_week_onehot_poly_lag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">X_hour_week_onehot_poly</span><span class="p">,</span> <span class="n">X_lag_features</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2378,11 +2375,11 @@ Test-set R^2: 0.70
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.95
-Test-set R^2: 0.78
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.96
+Test-set R^2: 0.79
 </pre></div>
 </div>
-<img alt="../_images/b23f2f34e905787b98eed7ee82ad33907ea7c8ddcdc8e7b2dc1588a52d7c0722.png" src="../_images/b23f2f34e905787b98eed7ee82ad33907ea7c8ddcdc8e7b2dc1588a52d7c0722.png" />
+<img alt="../_images/de141bcdb12f0d73efa1b82bd623f0798e72d94fa21567f783a6be96d1194ce4.png" src="../_images/de141bcdb12f0d73efa1b82bd623f0798e72d94fa21567f783a6be96d1194ce4.png" />
 </div>
 </div>
 <p>Some improvement but we are getting better results without the lag features in this case.</p>
@@ -2400,7 +2397,7 @@ Test-set R^2: 0.78
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d7074e26df8a72d43f62df5a33a5159a6a6edc276b08138d9c457452fe2ccd07.png" src="../_images/d7074e26df8a72d43f62df5a33a5159a6a6edc276b08138d9c457452fe2ccd07.png" />
+<img alt="../_images/60bd1cbec341153a743ba52b86c2a30e26bb6a5f7a907802e967afed933839f7.png" src="../_images/60bd1cbec341153a743ba52b86c2a30e26bb6a5f7a907802e967afed933839f7.png" />
 </div>
 </div>
 <p>There is <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html"><code class="docutils literal notranslate"><span class="pre">TimeSeriesSplit</span></code></a> for time series data.</p>
@@ -2448,13 +2445,6 @@ Test-set R^2: 0.78
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2482,36 +2472,36 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000861</td>
-      <td>0.000296</td>
+      <td>0.000865</td>
+      <td>0.000291</td>
       <td>0.642676</td>
       <td>0.873182</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000537</td>
-      <td>0.000229</td>
+      <td>0.000517</td>
+      <td>0.000226</td>
       <td>0.828405</td>
       <td>0.874305</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000873</td>
-      <td>0.000268</td>
+      <td>0.000564</td>
+      <td>0.000220</td>
       <td>0.773851</td>
       <td>0.901262</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000997</td>
-      <td>0.000742</td>
+      <td>0.000545</td>
+      <td>0.000215</td>
       <td>0.696712</td>
       <td>0.889429</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001280</td>
-      <td>0.000642</td>
+      <td>0.000601</td>
+      <td>0.000208</td>
       <td>0.892733</td>
       <td>0.863889</td>
     </tr>
@@ -3270,7 +3260,7 @@ Test-set R^2: 0.68
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a80b1e6e0f4860f37848bbffd3125a8d9da7b31816f09f3945f147920662780b.png" src="../_images/a80b1e6e0f4860f37848bbffd3125a8d9da7b31816f09f3945f147920662780b.png" />
+<img alt="../_images/88710ea7a810e5504939a1b7bc430a6338dbc9cb499335b976295f599b97f1d3.png" src="../_images/88710ea7a810e5504939a1b7bc430a6338dbc9cb499335b976295f599b97f1d3.png" />
 </div>
 </div>
 <p>We can create a dataset using purely lag features.</p>
@@ -3909,7 +3899,7 @@ Test-set R^2: 0.68
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a80b1e6e0f4860f37848bbffd3125a8d9da7b31816f09f3945f147920662780b.png" src="../_images/a80b1e6e0f4860f37848bbffd3125a8d9da7b31816f09f3945f147920662780b.png" />
+<img alt="../_images/88710ea7a810e5504939a1b7bc430a6338dbc9cb499335b976295f599b97f1d3.png" src="../_images/88710ea7a810e5504939a1b7bc430a6338dbc9cb499335b976295f599b97f1d3.png" />
 </div>
 </div>
 <ul class="simple">
@@ -5972,7 +5962,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/08af6986e2925b321a5356f95b2309fff4cf197c5ab62c7e4bca5e494961bcfb.png" src="../_images/08af6986e2925b321a5356f95b2309fff4cf197c5ab62c7e4bca5e494961bcfb.png" />
+<img alt="../_images/d68783f610576b4a00e74cd24fb928fd12b7328c06a1eeeb339b4baa22f79a35.png" src="../_images/d68783f610576b4a00e74cd24fb928fd12b7328c06a1eeeb339b4baa22f79a35.png" />
 </div>
 </div>
 <p>We’re learning relationships from the blue part; predicting only using features in the red part from the day before.</p>
@@ -6601,47 +6591,47 @@ Test score: 0.84
   <tbody>
     <tr>
       <th>Humidity3pm</th>
-      <td>1.243212</td>
+      <td>1.243215</td>
     </tr>
     <tr>
       <th>RainToday_missing</th>
-      <td>0.927576</td>
+      <td>0.921985</td>
     </tr>
     <tr>
       <th>Pressure9am</th>
-      <td>0.865455</td>
+      <td>0.865421</td>
     </tr>
     <tr>
       <th>Location_Witchcliffe</th>
-      <td>0.729178</td>
+      <td>0.728860</td>
     </tr>
     <tr>
       <th>WindGustSpeed</th>
-      <td>0.720396</td>
+      <td>0.720466</td>
     </tr>
     <tr>
       <th>...</th>
       <td>...</td>
     </tr>
     <tr>
-      <th>Location_Townsville</th>
-      <td>-0.718523</td>
+      <th>RainToday_No</th>
+      <td>-0.719455</td>
     </tr>
     <tr>
       <th>Location_Katherine</th>
-      <td>-0.726349</td>
+      <td>-0.726561</td>
     </tr>
     <tr>
       <th>Location_Wollongong</th>
-      <td>-0.748329</td>
+      <td>-0.748866</td>
     </tr>
     <tr>
       <th>Location_MountGinini</th>
-      <td>-0.964628</td>
+      <td>-0.964964</td>
     </tr>
     <tr>
       <th>Pressure3pm</th>
-      <td>-1.221788</td>
+      <td>-1.221745</td>
     </tr>
   </tbody>
 </table>
@@ -7487,7 +7477,7 @@ Test score: 0.84
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8478874811631412
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8478763185801196
 </pre></div>
 </div>
 </div>
@@ -7750,47 +7740,47 @@ Test score: 0.84
   <tbody>
     <tr>
       <th>Humidity3pm</th>
-      <td>1.243125</td>
+      <td>1.243128</td>
     </tr>
     <tr>
       <th>RainToday_missing</th>
-      <td>0.939310</td>
+      <td>0.898503</td>
     </tr>
     <tr>
       <th>Pressure9am</th>
-      <td>0.864369</td>
+      <td>0.864767</td>
     </tr>
     <tr>
       <th>Location_Witchcliffe</th>
-      <td>0.731127</td>
+      <td>0.728944</td>
     </tr>
     <tr>
       <th>WindGustSpeed</th>
-      <td>0.720150</td>
+      <td>0.720107</td>
     </tr>
     <tr>
       <th>...</th>
       <td>...</td>
     </tr>
     <tr>
-      <th>Location_Townsville</th>
-      <td>-0.715836</td>
+      <th>RainToday_No</th>
+      <td>-0.740896</td>
     </tr>
     <tr>
       <th>Location_Katherine</th>
-      <td>-0.736917</td>
+      <td>-0.743264</td>
     </tr>
     <tr>
       <th>Location_Wollongong</th>
-      <td>-0.745582</td>
+      <td>-0.748168</td>
     </tr>
     <tr>
       <th>Location_MountGinini</th>
-      <td>-0.963181</td>
+      <td>-0.965330</td>
     </tr>
     <tr>
       <th>Pressure3pm</th>
-      <td>-1.221646</td>
+      <td>-1.222060</td>
     </tr>
   </tbody>
 </table>
@@ -7962,23 +7952,23 @@ Test score: 0.84
   <tbody>
     <tr>
       <th>Humidity3pm</th>
-      <td>1.266912</td>
+      <td>1.266913</td>
     </tr>
     <tr>
       <th>RainToday_missing</th>
-      <td>0.945668</td>
+      <td>0.941305</td>
     </tr>
     <tr>
       <th>Pressure9am</th>
-      <td>0.798893</td>
+      <td>0.799216</td>
     </tr>
     <tr>
       <th>Location_Witchcliffe</th>
-      <td>0.748824</td>
+      <td>0.748882</td>
     </tr>
     <tr>
       <th>WindGustSpeed</th>
-      <td>0.705665</td>
+      <td>0.705631</td>
     </tr>
     <tr>
       <th>...</th>
@@ -7986,23 +7976,23 @@ Test score: 0.84
     </tr>
     <tr>
       <th>Location_Darwin</th>
-      <td>-0.735386</td>
+      <td>-0.736009</td>
     </tr>
     <tr>
       <th>Location_Wollongong</th>
-      <td>-0.748457</td>
+      <td>-0.748191</td>
     </tr>
     <tr>
       <th>Location_Townsville</th>
-      <td>-0.902783</td>
+      <td>-0.903267</td>
     </tr>
     <tr>
       <th>Location_Katherine</th>
-      <td>-0.926680</td>
+      <td>-0.930442</td>
     </tr>
     <tr>
       <th>Pressure3pm</th>
-      <td>-1.181793</td>
+      <td>-1.182084</td>
     </tr>
   </tbody>
 </table>
@@ -8439,19 +8429,19 @@ Test score: 0.84
   <tbody>
     <tr>
       <th>Season_Fall</th>
-      <td>0.069933</td>
+      <td>0.067428</td>
     </tr>
     <tr>
       <th>Season_Summer</th>
-      <td>-0.219294</td>
+      <td>-0.222020</td>
     </tr>
     <tr>
       <th>Season_Winter</th>
-      <td>0.111232</td>
+      <td>0.108838</td>
     </tr>
     <tr>
       <th>Season_Autumn</th>
-      <td>0.050885</td>
+      <td>0.048496</td>
     </tr>
   </tbody>
 </table>
@@ -8469,7 +8459,7 @@ Test score: 0.84
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1b00f0df1b8a682b9271e713a9ae8d87d2392540dae01c793c29f6e4422bd1ab.png" src="../_images/1b00f0df1b8a682b9271e713a9ae8d87d2392540dae01c793c29f6e4422bd1ab.png" />
+<img alt="../_images/80d596d017a4ad16ead6242dfbd9c9b5b4d8c667cb906e743e96111d34701272.png" src="../_images/80d596d017a4ad16ead6242dfbd9c9b5b4d8c667cb906e743e96111d34701272.png" />
 </div>
 </div>
 </section>
@@ -9384,11 +9374,11 @@ Test score: 0.84
   <tbody>
     <tr>
       <th>Rainfall</th>
-      <td>0.081042</td>
+      <td>0.081096</td>
     </tr>
     <tr>
       <th>Rainfall_lag1</th>
-      <td>0.008300</td>
+      <td>0.008298</td>
     </tr>
   </tbody>
 </table>
@@ -9654,27 +9644,27 @@ Test score: 0.85
   <tbody>
     <tr>
       <th>Rainfall</th>
-      <td>0.108487</td>
+      <td>0.108493</td>
     </tr>
     <tr>
       <th>Rainfall_lag1</th>
-      <td>0.023054</td>
+      <td>0.023062</td>
     </tr>
     <tr>
       <th>Rainfall_lag2</th>
-      <td>0.018269</td>
+      <td>0.018270</td>
     </tr>
     <tr>
       <th>Rainfall_lag3</th>
-      <td>0.017801</td>
+      <td>0.017803</td>
     </tr>
     <tr>
       <th>Humidity3pm</th>
-      <td>1.278574</td>
+      <td>1.278577</td>
     </tr>
     <tr>
       <th>Humidity3pm_lag1</th>
-      <td>-0.267491</td>
+      <td>-0.267483</td>
     </tr>
   </tbody>
 </table>
@@ -9827,11 +9817,11 @@ Test score: 0.85
       </div>
     </a>
     <a class="right-next"
-       href="class_demos/03_class-demo.html"
+       href="20_survival-analysis.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 3: Class demo</p>
+        <p class="prev-next-title">Lecture 20: Survival analysis</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
