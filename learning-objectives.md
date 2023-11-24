@@ -1,6 +1,6 @@
 ## Course Learning Objectives
 
-This course provides a deep dive into the foundational concepts of machine learning and data science, offering learners practical expertise. The primary goal is to equip participants with a thorough understanding of machine learning fundamentals, spanning topics like supervised learning, clustering, recommendation systems, working with text data, neural networks (high-level introduction), time series, and more. Throughout the course, there is a strong emphasis on hands-on skills in model development, evaluation, interpretation, ethical considerations, and clear communication. 
+The course is designed for a diverse group of students with varying backgrounds, including those from Computer Science and Statistics. It serves as a gentle introduction to machine learning, yet its applied nature is valuable even for those already familiar with the field. The curriculum covers foundational concepts of machine learning and data science, with topics ranging from data preprocessing and supervised learning to clustering, recommendation systems, text data processing, a high-level introduction to neural networks, time series, and survival analysis. A key focus of the course is developing hands-on skills in model development, evaluation, interpretation, ethical considerations, and clear communication.
 
 By the end of this course, the students should be able to:
 - Describe supervised learning and its suitability for various tasks.
