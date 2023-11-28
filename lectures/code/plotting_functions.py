@@ -12,6 +12,27 @@ import graphviz
 import imageio
 
 
+def plot_loss_diagram(labels_inside=False): # From Mike's notebook: https://github.com/UBC-CS/cpsc340-2020w2/blob/main/lectures/19_linear-classifiers-fit.ipynb        
+    grid = np.linspace(-2,2,1000)
+    plt.figure(figsize=(6, 4), dpi=80)
+    plt.xlabel('$y_iw^T x_i$', fontsize=18)
+    plt.ylabel('$f_i(w)$', fontsize=18)
+    plt.xlim(-2,2)
+    plt.ylim(-0.025,3)
+    plt.fill_between([0, 2], -1, 3, facecolor='blue', alpha=0.2);
+    plt.fill_between([-2, 0], -1, 3, facecolor='red', alpha=0.2);
+    plt.yticks([0,1,2,3]);
+
+    if labels_inside:
+        plt.text(-1.95, 2.73, "incorrect prediction", fontsize=15) # 2.68
+        plt.text(0.15, 2.73, "correct prediction", fontsize=15)
+    else:
+        plt.text(-1.95, 3.1, "incorrect prediction", fontsize=15) # 2.68
+        plt.text(0.15, 3.1, "correct prediction", fontsize=15)
+
+
+    plt.tight_layout()
+    
 def plot_tree_decision_boundary(
     model, X, y, x_label="x-axis", y_label="y-axis", eps=None, ax=None, title=None
 ):
