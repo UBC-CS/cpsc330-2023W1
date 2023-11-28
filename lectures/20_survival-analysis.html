@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/20_survival-analysis';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Lecture 3: Class demo" href="class_demos/03_class-demo.html" />
+    <link rel="next" title="Lecture 21: Communication" href="21_communication.html" />
     <link rel="prev" title="Lecture 19: Time series" href="19_time-series.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -178,6 +178,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="18_intro_to_computer-vision.html">Lecture 18: Multi-class classification and introduction to computer vision</a></li>
 <li class="toctree-l1"><a class="reference internal" href="19_time-series.html">Lecture 19: Time series</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 20: Survival analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_communication.html">Lecture 21: Communication</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -1131,23 +1132,23 @@ memory usage: 907.8+ KB
       <th>tenure</th>
       <th>MonthlyCharges</th>
       <th>TotalCharges</th>
-      <th>Partner_No</th>
-      <th>Partner_Yes</th>
+      <th>DeviceProtection_No</th>
+      <th>DeviceProtection_No internet service</th>
+      <th>DeviceProtection_Yes</th>
       <th>PhoneService_No</th>
       <th>PhoneService_Yes</th>
+      <th>TechSupport_No</th>
+      <th>TechSupport_No internet service</th>
+      <th>...</th>
       <th>OnlineBackup_No</th>
       <th>OnlineBackup_No internet service</th>
       <th>OnlineBackup_Yes</th>
-      <th>...</th>
-      <th>PaperlessBilling_Yes</th>
-      <th>StreamingMovies_No</th>
-      <th>StreamingMovies_No internet service</th>
-      <th>StreamingMovies_Yes</th>
-      <th>TechSupport_No</th>
-      <th>TechSupport_No internet service</th>
-      <th>TechSupport_Yes</th>
-      <th>Dependents_No</th>
-      <th>Dependents_Yes</th>
+      <th>StreamingTV_No</th>
+      <th>StreamingTV_No internet service</th>
+      <th>StreamingTV_Yes</th>
+      <th>Contract_Month-to-month</th>
+      <th>Contract_One year</th>
+      <th>Contract_Two year</th>
       <th>SeniorCitizen</th>
     </tr>
   </thead>
@@ -1160,19 +1161,19 @@ memory usage: 907.8+ KB
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>1.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
     </tr>
@@ -1184,12 +1185,11 @@ memory usage: 907.8+ KB
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
       <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>...</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1197,6 +1197,7 @@ memory usage: 907.8+ KB
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -1205,10 +1206,10 @@ memory usage: 907.8+ KB
       <td>-0.148349</td>
       <td>1.133562</td>
       <td>0.226789</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1216,11 +1217,11 @@ memory usage: 907.8+ KB
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -1229,22 +1230,22 @@ memory usage: 907.8+ KB
       <td>-1.248999</td>
       <td>0.458524</td>
       <td>-0.950696</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
       <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>1.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
     </tr>
@@ -1254,22 +1255,22 @@ memory usage: 907.8+ KB
       <td>-0.183179</td>
       <td>0.433814</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>1.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
   </tbody>
@@ -1420,7 +1421,7 @@ Name: count, dtype: int64
     </tr>
     <tr>
       <th>logistic regression</th>
-      <td>0.051 (+/- 0.007)</td>
+      <td>0.044 (+/- 0.005)</td>
       <td>0.006 (+/- 0.000)</td>
       <td>0.804 (+/- 0.013)</td>
       <td>0.809 (+/- 0.002)</td>
@@ -1501,16 +1502,16 @@ Name: count, dtype: int64
     </tr>
     <tr>
       <th>logistic regression</th>
-      <td>0.051 (+/- 0.007)</td>
+      <td>0.044 (+/- 0.005)</td>
       <td>0.006 (+/- 0.000)</td>
       <td>0.804 (+/- 0.013)</td>
       <td>0.809 (+/- 0.002)</td>
     </tr>
     <tr>
       <th>random forest</th>
-      <td>0.364 (+/- 0.050)</td>
-      <td>0.020 (+/- 0.001)</td>
-      <td>0.790 (+/- 0.015)</td>
+      <td>0.328 (+/- 0.011)</td>
+      <td>0.018 (+/- 0.000)</td>
+      <td>0.790 (+/- 0.014)</td>
       <td>0.998 (+/- 0.000)</td>
     </tr>
   </tbody>
@@ -1524,8 +1525,8 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[3516,  396],
-       [ 734,  636]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[3527,  385],
+       [ 726,  644]])
 </pre></div>
 </div>
 </div>
@@ -2439,23 +2440,23 @@ What could be possible scenarios for the duration column?</p>
       <th>tenure</th>
       <th>SeniorCitizen</th>
       <th>MonthlyCharges</th>
-      <th>Partner_No</th>
-      <th>Partner_Yes</th>
+      <th>DeviceProtection_No</th>
+      <th>DeviceProtection_No internet service</th>
+      <th>DeviceProtection_Yes</th>
       <th>PhoneService_No</th>
       <th>PhoneService_Yes</th>
+      <th>TechSupport_No</th>
+      <th>...</th>
+      <th>gender_Male</th>
       <th>OnlineBackup_No</th>
       <th>OnlineBackup_No internet service</th>
-      <th>...</th>
-      <th>PaperlessBilling_No</th>
-      <th>PaperlessBilling_Yes</th>
-      <th>StreamingMovies_No</th>
-      <th>StreamingMovies_No internet service</th>
-      <th>StreamingMovies_Yes</th>
-      <th>TechSupport_No</th>
-      <th>TechSupport_No internet service</th>
-      <th>TechSupport_Yes</th>
-      <th>Dependents_No</th>
-      <th>Dependents_Yes</th>
+      <th>OnlineBackup_Yes</th>
+      <th>StreamingTV_No</th>
+      <th>StreamingTV_No internet service</th>
+      <th>StreamingTV_Yes</th>
+      <th>Contract_Month-to-month</th>
+      <th>Contract_One year</th>
+      <th>Contract_Two year</th>
     </tr>
   </thead>
   <tbody>
@@ -2468,12 +2469,10 @@ What could be possible scenarios for the duration column?</p>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>...</td>
-      <td>0.0</td>
-      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -2481,6 +2480,8 @@ What could be possible scenarios for the duration column?</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -2492,11 +2493,10 @@ What could be possible scenarios for the duration column?</p>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
       <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
       <td>...</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -2505,6 +2505,7 @@ What could be possible scenarios for the duration column?</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -2513,22 +2514,22 @@ What could be possible scenarios for the duration column?</p>
       <td>29.0</td>
       <td>0.0</td>
       <td>1.133562</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>...</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -2537,22 +2538,22 @@ What could be possible scenarios for the duration column?</p>
       <td>2.0</td>
       <td>1.0</td>
       <td>0.458524</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
       <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -2562,22 +2563,22 @@ What could be possible scenarios for the duration column?</p>
       <td>0.0</td>
       <td>-0.183179</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
   </tbody>
 </table>
@@ -2853,12 +2854,12 @@ What could be possible scenarios for the duration column?</p>
 <li><p>A negative coefficient indicates that higher values of the feature are associated with lower hazard rates, meaning they are associated with better survival.</p></li>
 <li><p>In our example, it looks like <code class="docutils literal notranslate"><span class="pre">Contract_Month-to-month</span></code> has a positive coefficient</p>
 <ul>
-<li><p>If the contract is month-to-month, it leads to more churn <span class="math notranslate nohighlight">\(\downarrow\)</span> worse survival</p></li>
+<li><p>If the contract is month-to-month, it leads to more churn worse survival (😔)</p></li>
 </ul>
 </li>
 <li><p>In our example, it looks like <code class="docutils literal notranslate"><span class="pre">Contract_Two</span> <span class="pre">year</span></code> has a negative coefficient</p>
 <ul>
-<li><p>If the contract is two-year contract, it leads to less churn <span class="math notranslate nohighlight">\(\downarrow\)</span> better survival</p></li>
+<li><p>If the contract is two-year contract, it leads to less churn better survival (😊)</p></li>
 </ul>
 </li>
 </ul>
@@ -2934,7 +2935,7 @@ What could be possible scenarios for the duration column?</p>
       <td>1.097088</td>
       <td>0.0</td>
       <td>-0.341571</td>
-      <td>0.732674</td>
+      <td>7.326741e-01</td>
       <td>0.448757</td>
     </tr>
     <tr>
@@ -2948,50 +2949,50 @@ What could be possible scenarios for the duration column?</p>
       <td>1.078387</td>
       <td>0.0</td>
       <td>-0.079377</td>
-      <td>0.936733</td>
+      <td>9.367329e-01</td>
       <td>0.094290</td>
     </tr>
     <tr>
-      <th>Partner_No</th>
-      <td>0.244814</td>
-      <td>1.277384</td>
-      <td>0.067499</td>
-      <td>0.112519</td>
-      <td>0.377109</td>
-      <td>1.119094</td>
-      <td>1.458063</td>
+      <th>DeviceProtection_No</th>
+      <td>0.180214</td>
+      <td>1.197473</td>
+      <td>0.067879</td>
+      <td>0.047174</td>
+      <td>0.313254</td>
+      <td>1.048304</td>
+      <td>1.367868</td>
       <td>0.0</td>
-      <td>3.626946</td>
-      <td>0.000287</td>
-      <td>11.767704</td>
+      <td>2.654935</td>
+      <td>7.932379e-03</td>
+      <td>6.978031</td>
     </tr>
     <tr>
-      <th>Partner_Yes</th>
-      <td>-0.244814</td>
-      <td>0.782850</td>
-      <td>0.067499</td>
-      <td>-0.377109</td>
-      <td>-0.112519</td>
-      <td>0.685841</td>
-      <td>0.893580</td>
+      <th>DeviceProtection_No internet service</th>
+      <td>-0.057267</td>
+      <td>0.944342</td>
+      <td>0.100970</td>
+      <td>-0.255165</td>
+      <td>0.140631</td>
+      <td>0.774789</td>
+      <td>1.150999</td>
       <td>0.0</td>
-      <td>-3.626946</td>
-      <td>0.000287</td>
-      <td>11.767704</td>
+      <td>-0.567169</td>
+      <td>5.705995e-01</td>
+      <td>0.809450</td>
     </tr>
     <tr>
-      <th>PhoneService_No</th>
-      <td>0.014650</td>
-      <td>1.014758</td>
-      <td>0.127087</td>
-      <td>-0.234436</td>
-      <td>0.263736</td>
-      <td>0.791017</td>
-      <td>1.301784</td>
+      <th>DeviceProtection_Yes</th>
+      <td>-0.154556</td>
+      <td>0.856795</td>
+      <td>0.069302</td>
+      <td>-0.290385</td>
+      <td>-0.018727</td>
+      <td>0.747975</td>
+      <td>0.981447</td>
       <td>0.0</td>
-      <td>0.115276</td>
-      <td>0.908227</td>
-      <td>0.138876</td>
+      <td>-2.230194</td>
+      <td>2.573457e-02</td>
+      <td>5.280148</td>
     </tr>
     <tr>
       <th>...</th>
@@ -3008,21 +3009,7 @@ What could be possible scenarios for the duration column?</p>
       <td>...</td>
     </tr>
     <tr>
-      <th>TechSupport_No</th>
-      <td>0.212303</td>
-      <td>1.236522</td>
-      <td>0.069653</td>
-      <td>0.075786</td>
-      <td>0.348820</td>
-      <td>1.078732</td>
-      <td>1.417394</td>
-      <td>0.0</td>
-      <td>3.048022</td>
-      <td>0.002304</td>
-      <td>8.761936</td>
-    </tr>
-    <tr>
-      <th>TechSupport_No internet service</th>
+      <th>StreamingTV_No internet service</th>
       <td>-0.057267</td>
       <td>0.944342</td>
       <td>0.100970</td>
@@ -3032,50 +3019,64 @@ What could be possible scenarios for the duration column?</p>
       <td>1.150999</td>
       <td>0.0</td>
       <td>-0.567169</td>
-      <td>0.570599</td>
+      <td>5.705995e-01</td>
       <td>0.809450</td>
     </tr>
     <tr>
-      <th>TechSupport_Yes</th>
-      <td>-0.212133</td>
-      <td>0.808857</td>
-      <td>0.072954</td>
-      <td>-0.355121</td>
-      <td>-0.069145</td>
-      <td>0.701089</td>
-      <td>0.933191</td>
+      <th>StreamingTV_Yes</th>
+      <td>-0.008830</td>
+      <td>0.991209</td>
+      <td>0.068706</td>
+      <td>-0.143491</td>
+      <td>0.125831</td>
+      <td>0.866328</td>
+      <td>1.134090</td>
       <td>0.0</td>
-      <td>-2.907752</td>
-      <td>0.003640</td>
-      <td>8.101699</td>
+      <td>-0.128522</td>
+      <td>8.977359e-01</td>
+      <td>0.155637</td>
     </tr>
     <tr>
-      <th>Dependents_No</th>
-      <td>0.063772</td>
-      <td>1.065849</td>
-      <td>0.075042</td>
-      <td>-0.083308</td>
-      <td>0.210852</td>
-      <td>0.920067</td>
-      <td>1.234730</td>
+      <th>Contract_Month-to-month</th>
+      <td>0.812875</td>
+      <td>2.254380</td>
+      <td>0.069188</td>
+      <td>0.677268</td>
+      <td>0.948482</td>
+      <td>1.968493</td>
+      <td>2.581787</td>
       <td>0.0</td>
-      <td>0.849812</td>
-      <td>0.395429</td>
-      <td>1.338508</td>
+      <td>11.748725</td>
+      <td>7.169269e-32</td>
+      <td>103.459873</td>
     </tr>
     <tr>
-      <th>Dependents_Yes</th>
-      <td>-0.063772</td>
-      <td>0.938219</td>
-      <td>0.075042</td>
-      <td>-0.210852</td>
-      <td>0.083308</td>
-      <td>0.809894</td>
-      <td>1.086877</td>
+      <th>Contract_One year</th>
+      <td>-0.351821</td>
+      <td>0.703406</td>
+      <td>0.077761</td>
+      <td>-0.504231</td>
+      <td>-0.199412</td>
+      <td>0.603970</td>
+      <td>0.819213</td>
       <td>0.0</td>
-      <td>-0.849812</td>
-      <td>0.395429</td>
-      <td>1.338508</td>
+      <td>-4.524364</td>
+      <td>6.057732e-06</td>
+      <td>17.332791</td>
+    </tr>
+    <tr>
+      <th>Contract_Two year</th>
+      <td>-0.776427</td>
+      <td>0.460047</td>
+      <td>0.081167</td>
+      <td>-0.935512</td>
+      <td>-0.617342</td>
+      <td>0.392385</td>
+      <td>0.539376</td>
+      <td>0.0</td>
+      <td>-9.565746</td>
+      <td>1.113949e-21</td>
+      <td>69.604807</td>
     </tr>
   </tbody>
 </table>
@@ -3427,7 +3428,7 @@ Name: Churn, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3b8bcbdf975797a04d57adbdc06b2771071362474af13105b37472c7cc0b1ed3.png" src="../_images/3b8bcbdf975797a04d57adbdc06b2771071362474af13105b37472c7cc0b1ed3.png" />
+<img alt="../_images/f004d7a21f9958870fe220993a45ddc6d7581962a49a1fb9fd99e4a6245fe069.png" src="../_images/f004d7a21f9958870fe220993a45ddc6d7581962a49a1fb9fd99e4a6245fe069.png" />
 </div>
 </div>
 <ul class="simple">
@@ -4579,11 +4580,11 @@ in the call in `.fit`. See documentation in link [E] below.
       </div>
     </a>
     <a class="right-next"
-       href="class_demos/03_class-demo.html"
+       href="21_communication.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 3: Class demo</p>
+        <p class="prev-next-title">Lecture 21: Communication</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
