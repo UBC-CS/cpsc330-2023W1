@@ -382,7 +382,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#break-5-min">Break (5 min)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-and-predict-proba-20-min">Confidence and <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> (20 min)</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-and-predict-proba-10-min">Confidence and <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> (10 min)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-this-mean-for-us-when-we-re-trying-to-make-claims-about-our-data">What does this mean for us, when we’re trying to make claims about our data?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">❓❓ Questions for you</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-this-have-to-do-with-applied-ml">What does this have to do with applied ML?</a></li>
@@ -803,8 +803,8 @@ document.write(`
 <p><img alt="" src="../_images/eva-coffee.png" /></p>
 <p><br><br></p>
 </section>
-<section id="confidence-and-predict-proba-20-min">
-<h2>Confidence and <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> (20 min)<a class="headerlink" href="#confidence-and-predict-proba-20-min" title="Permalink to this heading">#</a></h2>
+<section id="confidence-and-predict-proba-10-min">
+<h2>Confidence and <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> (10 min)<a class="headerlink" href="#confidence-and-predict-proba-10-min" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>What does it mean to be “confident” in your results?</p></li>
 <li><p>When you perform analysis, you are responsible for many judgment calls.</p></li>
@@ -1397,36 +1397,36 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Neighborhood&#39;,
- &#39;GarageFinish&#39;,
- &#39;BldgType&#39;,
- &#39;LandSlope&#39;,
- &#39;Condition2&#39;,
- &#39;HouseStyle&#39;,
- &#39;GarageType&#39;,
- &#39;RoofStyle&#39;,
- &#39;Utilities&#39;,
- &#39;MiscFeature&#39;,
- &#39;MSSubClass&#39;,
- &#39;MasVnrType&#39;,
- &#39;LotShape&#39;,
- &#39;SaleType&#39;,
- &#39;PavedDrive&#39;,
- &#39;LandContour&#39;,
- &#39;Exterior1st&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;MiscFeature&#39;,
  &#39;Exterior2nd&#39;,
- &#39;Heating&#39;,
- &#39;SaleCondition&#39;,
- &#39;Electrical&#39;,
- &#39;MoSold&#39;,
- &#39;Condition1&#39;,
+ &#39;RoofStyle&#39;,
  &#39;Street&#39;,
- &#39;RoofMatl&#39;,
- &#39;MSZoning&#39;,
+ &#39;Exterior1st&#39;,
+ &#39;LotShape&#39;,
+ &#39;Alley&#39;,
+ &#39;MasVnrType&#39;,
+ &#39;GarageFinish&#39;,
  &#39;LotConfig&#39;,
- &#39;Foundation&#39;,
+ &#39;MSZoning&#39;,
+ &#39;Neighborhood&#39;,
+ &#39;PavedDrive&#39;,
+ &#39;Utilities&#39;,
+ &#39;MSSubClass&#39;,
+ &#39;Heating&#39;,
+ &#39;HouseStyle&#39;,
+ &#39;LandContour&#39;,
+ &#39;LandSlope&#39;,
+ &#39;MoSold&#39;,
+ &#39;SaleCondition&#39;,
+ &#39;Condition1&#39;,
  &#39;CentralAir&#39;,
- &#39;Alley&#39;]
+ &#39;Condition2&#39;,
+ &#39;RoofMatl&#39;,
+ &#39;Electrical&#39;,
+ &#39;SaleType&#39;,
+ &#39;Foundation&#39;,
+ &#39;GarageType&#39;,
+ &#39;BldgType&#39;]
 </pre></div>
 </div>
 </div>
@@ -1490,16 +1490,16 @@ document.write(`
                                   &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;, &#x27;MasVnrArea&#x27;,
                                   &#x27;BsmtFinSF1&#x27;, &#x27;BsmtFinSF2&#x27;, &#x27;BsmtUnfSF&#x27;,
                                   &#x27;TotalBsmtSF&#x27;, &#x27;...
-                                 [&#x27;Neighborhood&#x27;, &#x27;GarageFinish&#x27;, &#x27;BldgType&#x27;,
-                                  &#x27;LandSlope&#x27;, &#x27;Condition2&#x27;, &#x27;HouseStyle&#x27;,
-                                  &#x27;GarageType&#x27;, &#x27;RoofStyle&#x27;, &#x27;Utilities&#x27;,
-                                  &#x27;MiscFeature&#x27;, &#x27;MSSubClass&#x27;, &#x27;MasVnrType&#x27;,
-                                  &#x27;LotShape&#x27;, &#x27;SaleType&#x27;, &#x27;PavedDrive&#x27;,
-                                  &#x27;LandContour&#x27;, &#x27;Exterior1st&#x27;, &#x27;Exterior2nd&#x27;,
-                                  &#x27;Heating&#x27;, &#x27;SaleCondition&#x27;, &#x27;Electrical&#x27;,
-                                  &#x27;MoSold&#x27;, &#x27;Condition1&#x27;, &#x27;Street&#x27;, &#x27;RoofMatl&#x27;,
-                                  &#x27;MSZoning&#x27;, &#x27;LotConfig&#x27;, &#x27;Foundation&#x27;,
-                                  &#x27;CentralAir&#x27;, &#x27;Alley&#x27;])])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[(&#x27;drop&#x27;, &#x27;drop&#x27;, [&#x27;Id&#x27;]),
+                                 [&#x27;MiscFeature&#x27;, &#x27;Exterior2nd&#x27;, &#x27;RoofStyle&#x27;,
+                                  &#x27;Street&#x27;, &#x27;Exterior1st&#x27;, &#x27;LotShape&#x27;, &#x27;Alley&#x27;,
+                                  &#x27;MasVnrType&#x27;, &#x27;GarageFinish&#x27;, &#x27;LotConfig&#x27;,
+                                  &#x27;MSZoning&#x27;, &#x27;Neighborhood&#x27;, &#x27;PavedDrive&#x27;,
+                                  &#x27;Utilities&#x27;, &#x27;MSSubClass&#x27;, &#x27;Heating&#x27;,
+                                  &#x27;HouseStyle&#x27;, &#x27;LandContour&#x27;, &#x27;LandSlope&#x27;,
+                                  &#x27;MoSold&#x27;, &#x27;SaleCondition&#x27;, &#x27;Condition1&#x27;,
+                                  &#x27;CentralAir&#x27;, &#x27;Condition2&#x27;, &#x27;RoofMatl&#x27;,
+                                  &#x27;Electrical&#x27;, &#x27;SaleType&#x27;, &#x27;Foundation&#x27;,
+                                  &#x27;GarageType&#x27;, &#x27;BldgType&#x27;])])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[(&#x27;drop&#x27;, &#x27;drop&#x27;, [&#x27;Id&#x27;]),
                                 (&#x27;pipeline-1&#x27;,
                                  Pipeline(steps=[(&#x27;simpleimputer&#x27;,
                                                   SimpleImputer(strategy=&#x27;median&#x27;)),
@@ -1510,16 +1510,16 @@ document.write(`
                                   &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;, &#x27;MasVnrArea&#x27;,
                                   &#x27;BsmtFinSF1&#x27;, &#x27;BsmtFinSF2&#x27;, &#x27;BsmtUnfSF&#x27;,
                                   &#x27;TotalBsmtSF&#x27;, &#x27;...
-                                 [&#x27;Neighborhood&#x27;, &#x27;GarageFinish&#x27;, &#x27;BldgType&#x27;,
-                                  &#x27;LandSlope&#x27;, &#x27;Condition2&#x27;, &#x27;HouseStyle&#x27;,
-                                  &#x27;GarageType&#x27;, &#x27;RoofStyle&#x27;, &#x27;Utilities&#x27;,
-                                  &#x27;MiscFeature&#x27;, &#x27;MSSubClass&#x27;, &#x27;MasVnrType&#x27;,
-                                  &#x27;LotShape&#x27;, &#x27;SaleType&#x27;, &#x27;PavedDrive&#x27;,
-                                  &#x27;LandContour&#x27;, &#x27;Exterior1st&#x27;, &#x27;Exterior2nd&#x27;,
-                                  &#x27;Heating&#x27;, &#x27;SaleCondition&#x27;, &#x27;Electrical&#x27;,
-                                  &#x27;MoSold&#x27;, &#x27;Condition1&#x27;, &#x27;Street&#x27;, &#x27;RoofMatl&#x27;,
-                                  &#x27;MSZoning&#x27;, &#x27;LotConfig&#x27;, &#x27;Foundation&#x27;,
-                                  &#x27;CentralAir&#x27;, &#x27;Alley&#x27;])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>[&#x27;Id&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>drop</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-1</label><div class="sk-toggleable__content"><pre>[&#x27;BedroomAbvGr&#x27;, &#x27;KitchenAbvGr&#x27;, &#x27;LotFrontage&#x27;, &#x27;LotArea&#x27;, &#x27;OverallQual&#x27;, &#x27;OverallCond&#x27;, &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;, &#x27;MasVnrArea&#x27;, &#x27;BsmtFinSF1&#x27;, &#x27;BsmtFinSF2&#x27;, &#x27;BsmtUnfSF&#x27;, &#x27;TotalBsmtSF&#x27;, &#x27;1stFlrSF&#x27;, &#x27;2ndFlrSF&#x27;, &#x27;LowQualFinSF&#x27;, &#x27;GrLivArea&#x27;, &#x27;BsmtFullBath&#x27;, &#x27;BsmtHalfBath&#x27;, &#x27;FullBath&#x27;, &#x27;HalfBath&#x27;, &#x27;TotRmsAbvGrd&#x27;, &#x27;Fireplaces&#x27;, &#x27;GarageYrBlt&#x27;, &#x27;GarageCars&#x27;, &#x27;GarageArea&#x27;, &#x27;WoodDeckSF&#x27;, &#x27;OpenPorchSF&#x27;, &#x27;EnclosedPorch&#x27;, &#x27;3SsnPorch&#x27;, &#x27;ScreenPorch&#x27;, &#x27;PoolArea&#x27;, &#x27;MiscVal&#x27;, &#x27;YrSold&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;median&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-2</label><div class="sk-toggleable__content"><pre>[&#x27;ExterQual&#x27;, &#x27;ExterCond&#x27;, &#x27;BsmtQual&#x27;, &#x27;BsmtCond&#x27;, &#x27;HeatingQC&#x27;, &#x27;KitchenQual&#x27;, &#x27;FireplaceQu&#x27;, &#x27;GarageQual&#x27;, &#x27;GarageCond&#x27;, &#x27;PoolQC&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;most_frequent&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label sk-toggleable__label-arrow">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[[&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                                 [&#x27;MiscFeature&#x27;, &#x27;Exterior2nd&#x27;, &#x27;RoofStyle&#x27;,
+                                  &#x27;Street&#x27;, &#x27;Exterior1st&#x27;, &#x27;LotShape&#x27;, &#x27;Alley&#x27;,
+                                  &#x27;MasVnrType&#x27;, &#x27;GarageFinish&#x27;, &#x27;LotConfig&#x27;,
+                                  &#x27;MSZoning&#x27;, &#x27;Neighborhood&#x27;, &#x27;PavedDrive&#x27;,
+                                  &#x27;Utilities&#x27;, &#x27;MSSubClass&#x27;, &#x27;Heating&#x27;,
+                                  &#x27;HouseStyle&#x27;, &#x27;LandContour&#x27;, &#x27;LandSlope&#x27;,
+                                  &#x27;MoSold&#x27;, &#x27;SaleCondition&#x27;, &#x27;Condition1&#x27;,
+                                  &#x27;CentralAir&#x27;, &#x27;Condition2&#x27;, &#x27;RoofMatl&#x27;,
+                                  &#x27;Electrical&#x27;, &#x27;SaleType&#x27;, &#x27;Foundation&#x27;,
+                                  &#x27;GarageType&#x27;, &#x27;BldgType&#x27;])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>[&#x27;Id&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>drop</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-1</label><div class="sk-toggleable__content"><pre>[&#x27;BedroomAbvGr&#x27;, &#x27;KitchenAbvGr&#x27;, &#x27;LotFrontage&#x27;, &#x27;LotArea&#x27;, &#x27;OverallQual&#x27;, &#x27;OverallCond&#x27;, &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;, &#x27;MasVnrArea&#x27;, &#x27;BsmtFinSF1&#x27;, &#x27;BsmtFinSF2&#x27;, &#x27;BsmtUnfSF&#x27;, &#x27;TotalBsmtSF&#x27;, &#x27;1stFlrSF&#x27;, &#x27;2ndFlrSF&#x27;, &#x27;LowQualFinSF&#x27;, &#x27;GrLivArea&#x27;, &#x27;BsmtFullBath&#x27;, &#x27;BsmtHalfBath&#x27;, &#x27;FullBath&#x27;, &#x27;HalfBath&#x27;, &#x27;TotRmsAbvGrd&#x27;, &#x27;Fireplaces&#x27;, &#x27;GarageYrBlt&#x27;, &#x27;GarageCars&#x27;, &#x27;GarageArea&#x27;, &#x27;WoodDeckSF&#x27;, &#x27;OpenPorchSF&#x27;, &#x27;EnclosedPorch&#x27;, &#x27;3SsnPorch&#x27;, &#x27;ScreenPorch&#x27;, &#x27;PoolArea&#x27;, &#x27;MiscVal&#x27;, &#x27;YrSold&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;median&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-2</label><div class="sk-toggleable__content"><pre>[&#x27;ExterQual&#x27;, &#x27;ExterCond&#x27;, &#x27;BsmtQual&#x27;, &#x27;BsmtCond&#x27;, &#x27;HeatingQC&#x27;, &#x27;KitchenQual&#x27;, &#x27;FireplaceQu&#x27;, &#x27;GarageQual&#x27;, &#x27;GarageCond&#x27;, &#x27;PoolQC&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;most_frequent&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label sk-toggleable__label-arrow">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[[&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
                            [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
                            [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
                            [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
@@ -1533,7 +1533,7 @@ document.write(`
                            [&#x27;NA&#x27;, &#x27;Unf&#x27;, &#x27;LwQ&#x27;, &#x27;Rec&#x27;, &#x27;BLQ&#x27;, &#x27;ALQ&#x27;, &#x27;GLQ&#x27;],
                            [&#x27;Sal&#x27;, &#x27;Sev&#x27;, &#x27;Maj2&#x27;, &#x27;Maj1&#x27;, &#x27;Mod&#x27;, &#x27;Min2&#x27;, &#x27;Min1&#x27;,
                             &#x27;Typ&#x27;],
-                           [&#x27;NA&#x27;, &#x27;MnWw&#x27;, &#x27;GdWo&#x27;, &#x27;MnPrv&#x27;, &#x27;GdPrv&#x27;]])</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-13" type="checkbox" ><label for="sk-estimator-id-13" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-4</label><div class="sk-toggleable__content"><pre>[&#x27;Neighborhood&#x27;, &#x27;GarageFinish&#x27;, &#x27;BldgType&#x27;, &#x27;LandSlope&#x27;, &#x27;Condition2&#x27;, &#x27;HouseStyle&#x27;, &#x27;GarageType&#x27;, &#x27;RoofStyle&#x27;, &#x27;Utilities&#x27;, &#x27;MiscFeature&#x27;, &#x27;MSSubClass&#x27;, &#x27;MasVnrType&#x27;, &#x27;LotShape&#x27;, &#x27;SaleType&#x27;, &#x27;PavedDrive&#x27;, &#x27;LandContour&#x27;, &#x27;Exterior1st&#x27;, &#x27;Exterior2nd&#x27;, &#x27;Heating&#x27;, &#x27;SaleCondition&#x27;, &#x27;Electrical&#x27;, &#x27;MoSold&#x27;, &#x27;Condition1&#x27;, &#x27;Street&#x27;, &#x27;RoofMatl&#x27;, &#x27;MSZoning&#x27;, &#x27;LotConfig&#x27;, &#x27;Foundation&#x27;, &#x27;CentralAir&#x27;, &#x27;Alley&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-14" type="checkbox" ><label for="sk-estimator-id-14" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(fill_value=&#x27;missing&#x27;, strategy=&#x27;constant&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-15" type="checkbox" ><label for="sk-estimator-id-15" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown=&#x27;ignore&#x27;, sparse_output=False)</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+                           [&#x27;NA&#x27;, &#x27;MnWw&#x27;, &#x27;GdWo&#x27;, &#x27;MnPrv&#x27;, &#x27;GdPrv&#x27;]])</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-13" type="checkbox" ><label for="sk-estimator-id-13" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-4</label><div class="sk-toggleable__content"><pre>[&#x27;MiscFeature&#x27;, &#x27;Exterior2nd&#x27;, &#x27;RoofStyle&#x27;, &#x27;Street&#x27;, &#x27;Exterior1st&#x27;, &#x27;LotShape&#x27;, &#x27;Alley&#x27;, &#x27;MasVnrType&#x27;, &#x27;GarageFinish&#x27;, &#x27;LotConfig&#x27;, &#x27;MSZoning&#x27;, &#x27;Neighborhood&#x27;, &#x27;PavedDrive&#x27;, &#x27;Utilities&#x27;, &#x27;MSSubClass&#x27;, &#x27;Heating&#x27;, &#x27;HouseStyle&#x27;, &#x27;LandContour&#x27;, &#x27;LandSlope&#x27;, &#x27;MoSold&#x27;, &#x27;SaleCondition&#x27;, &#x27;Condition1&#x27;, &#x27;CentralAir&#x27;, &#x27;Condition2&#x27;, &#x27;RoofMatl&#x27;, &#x27;Electrical&#x27;, &#x27;SaleType&#x27;, &#x27;Foundation&#x27;, &#x27;GarageType&#x27;, &#x27;BldgType&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-14" type="checkbox" ><label for="sk-estimator-id-14" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(fill_value=&#x27;missing&#x27;, strategy=&#x27;constant&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-15" type="checkbox" ><label for="sk-estimator-id-15" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown=&#x27;ignore&#x27;, sparse_output=False)</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1588,16 +1588,16 @@ document.write(`
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
-      <th>Foundation_CBlock</th>
-      <th>Foundation_PConc</th>
-      <th>Foundation_Slab</th>
-      <th>Foundation_Stone</th>
-      <th>Foundation_Wood</th>
-      <th>CentralAir_N</th>
-      <th>CentralAir_Y</th>
-      <th>Alley_Grvl</th>
-      <th>Alley_Pave</th>
-      <th>Alley_missing</th>
+      <th>GarageType_Basment</th>
+      <th>GarageType_BuiltIn</th>
+      <th>GarageType_CarPort</th>
+      <th>GarageType_Detchd</th>
+      <th>GarageType_missing</th>
+      <th>BldgType_1Fam</th>
+      <th>BldgType_2fmCon</th>
+      <th>BldgType_Duplex</th>
+      <th>BldgType_Twnhs</th>
+      <th>BldgType_TwnhsE</th>
     </tr>
   </thead>
   <tbody>
@@ -1615,7 +1615,6 @@ document.write(`
       <td>-0.961498</td>
       <td>...</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1623,7 +1622,8 @@ document.write(`
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>767</th>
@@ -1638,7 +1638,6 @@ document.write(`
       <td>-0.573129</td>
       <td>0.476092</td>
       <td>...</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1647,7 +1646,8 @@ document.write(`
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>429</th>
@@ -1662,7 +1662,6 @@ document.write(`
       <td>-0.573129</td>
       <td>1.227559</td>
       <td>...</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1671,7 +1670,8 @@ document.write(`
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1139</th>
@@ -1689,13 +1689,13 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>558</th>
@@ -1711,7 +1711,6 @@ document.write(`
       <td>0.354114</td>
       <td>...</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1719,7 +1718,8 @@ document.write(`
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
   </tbody>
 </table>
@@ -1765,16 +1765,16 @@ document.write(`
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
-      <th>Foundation_CBlock</th>
-      <th>Foundation_PConc</th>
-      <th>Foundation_Slab</th>
-      <th>Foundation_Stone</th>
-      <th>Foundation_Wood</th>
-      <th>CentralAir_N</th>
-      <th>CentralAir_Y</th>
-      <th>Alley_Grvl</th>
-      <th>Alley_Pave</th>
-      <th>Alley_missing</th>
+      <th>GarageType_Basment</th>
+      <th>GarageType_BuiltIn</th>
+      <th>GarageType_CarPort</th>
+      <th>GarageType_Detchd</th>
+      <th>GarageType_missing</th>
+      <th>BldgType_1Fam</th>
+      <th>BldgType_2fmCon</th>
+      <th>BldgType_Duplex</th>
+      <th>BldgType_Twnhs</th>
+      <th>BldgType_TwnhsE</th>
     </tr>
   </thead>
   <tbody>
@@ -1796,11 +1796,11 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>676</th>
@@ -1822,7 +1822,7 @@ document.write(`
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -1840,12 +1840,12 @@ document.write(`
       <td>-0.961498</td>
       <td>...</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
@@ -1864,15 +1864,15 @@ document.write(`
       <td>1.162214</td>
       <td>...</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
     </tr>
     <tr>
       <th>1427</th>
@@ -1887,14 +1887,14 @@ document.write(`
       <td>-0.573129</td>
       <td>0.301838</td>
       <td>...</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -2001,7 +2001,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fd834f82c997499f2a6b8fb54a43d217328b5d6b58fb4663a6499655cc4e63d6.png" src="../_images/fd834f82c997499f2a6b8fb54a43d217328b5d6b58fb4663a6499655cc4e63d6.png" />
+<img alt="../_images/d1d2e481a53339fc3a015f2c952af459827bda1f18bbaf16b5849c3e582b6a7f.png" src="../_images/d1d2e481a53339fc3a015f2c952af459827bda1f18bbaf16b5849c3e582b6a7f.png" />
 </div>
 </div>
 <p>Could you create some visualizations such that it makes</p>
@@ -2033,7 +2033,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/49867912c19e9b89df6468b46107580902e1d8adb0346b0fbbc359e03c128e6d.png" src="../_images/49867912c19e9b89df6468b46107580902e1d8adb0346b0fbbc359e03c128e6d.png" />
+<img alt="../_images/cf576b4fc02836cdae70868fa70a548195f8499e90a44e86fd3e029b56e67c67.png" src="../_images/cf576b4fc02836cdae70868fa70a548195f8499e90a44e86fd3e029b56e67c67.png" />
 </div>
 </div>
 </section>
@@ -2051,7 +2051,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ea2439a201eddd7a0bd4bacabfb4a5e4aa460dc2726348b34049bc4506cf8381.png" src="../_images/ea2439a201eddd7a0bd4bacabfb4a5e4aa460dc2726348b34049bc4506cf8381.png" />
+<img alt="../_images/5988aad988fb8ea58f46bc1f7ec681b180c1dda9d5a8d74e865a0dfdd594978f.png" src="../_images/5988aad988fb8ea58f46bc1f7ec681b180c1dda9d5a8d74e865a0dfdd594978f.png" />
 </div>
 </div>
 </section>
@@ -2079,7 +2079,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/93964d6c20df7e855ce8a5f0ac8d83a0238937166e0657b642abc07c0e0a398e.png" src="../_images/93964d6c20df7e855ce8a5f0ac8d83a0238937166e0657b642abc07c0e0a398e.png" />
+<img alt="../_images/ef8970a1c8f5f0d4aebce7b061644adeef673edb05dd3d8fdf497e98b628e5c7.png" src="../_images/ef8970a1c8f5f0d4aebce7b061644adeef673edb05dd3d8fdf497e98b628e5c7.png" />
 </div>
 </div>
 </section>
@@ -2231,7 +2231,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#break-5-min">Break (5 min)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-and-predict-proba-20-min">Confidence and <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> (20 min)</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-and-predict-proba-10-min">Confidence and <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> (10 min)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-this-mean-for-us-when-we-re-trying-to-make-claims-about-our-data">What does this mean for us, when we’re trying to make claims about our data?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">❓❓ Questions for you</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-this-have-to-do-with-applied-ml">What does this have to do with applied ML?</a></li>
