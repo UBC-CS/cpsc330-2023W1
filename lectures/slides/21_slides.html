@@ -177,6 +177,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../19_time-series.html">Lecture 19: Time series</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../21_communication.html">Lecture 21: Communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -347,7 +348,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#announcements">Announcements</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning objectives</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attribution">Attribution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker">(iClicker)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-21-1">(iClicker) Exercise 21.1</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap">Recap</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-should-we-care-about-effective-communication">Why should we care about effective communication?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-the-problems-with-the-following">What are the problems with the following?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#main-issues-in-ml-related-communication">Main issues in ML-related communication</a></li>
@@ -370,17 +375,17 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ml-and-decision-making-5-min">ML and decision-making (5 min)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-for-you">❓❓ Questions for you</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decisions-involve-a-few-key-pieces">Decisions involve a few key pieces</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-this-inform-you-as-an-ml-practitioner">How does this inform you as an ML practitioner?</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#break-5-min">Break (5 min)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-and-predict-proba-20-min">Confidence and <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> (20 min)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-this-mean-for-us-when-we-re-trying-to-make-claims-about-our-data">What does this mean for us, when we’re trying to make claims about our data?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-do-credences-mean-in-practical-terms">What do credences mean in practical terms?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#it-s-easy-enough-to-evaluate-how-good-we-are-at-being-right">It’s easy enough to evaluate how good we are at being right…</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">❓❓ Questions for you</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-this-have-to-do-with-applied-ml">What does this have to do with applied ML?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preferences-in-logisticregression">Preferences in <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-should-be-the-loss-activity-4-mins">What should be the loss? (Activity: 4 mins)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-your-results">Visualizing your results</a><ul class="nav section-nav flex-column">
@@ -390,6 +395,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-feature-transformations">Applying feature transformations</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-the-preprocessed-data">Examining the preprocessed data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-random-forests-and-gradient-boosted-trees">Training random forests and gradient boosted trees</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusing-and-perhaps-misleading-visualization-of-results">Confusing and perhaps misleading visualization of results</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-is-this-confusing-misleading">Why is this confusing/misleading?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rf-better-than-gb">RF better than GB</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gb-better-than-rf">GB better than RF</a></li>
@@ -454,6 +460,7 @@ document.write(`
 <li><p><strong>No late days</strong></p></li>
 </ul>
 </li>
+<li><p>Solutions to HW7 and HW8 are available in Canvas under Files</p></li>
 <li><p>Guest lecture Thursday at 11am in SWNG221 (upstairs)</p>
 <ul>
 <li><p>No lecture at 3pm</p></li>
@@ -462,7 +469,14 @@ document.write(`
 </li>
 <li><p>I will be having my OH at ~12:30 next Thursday</p></li>
 <li><p>Student experience survey is available on Canvas</p></li>
-<li><p>Information on the final exam is posted on <a class="reference external" href="https://piazza.com/class/l6pflbyug1230c/post/568">Piazza</a></p></li>
+<li><p>Final exam</p>
+<ul>
+<li><p><strong>CPSC330 101 Sun Dec 17 2023 | 15:30 pm ESB 1013</strong></p></li>
+<li><p>CPSC330 102 Sun Dec 17 2023 | 15:30 pm CIRS 1250</p></li>
+<li><p>Format will be similar to the midterm.</p></li>
+<li><p>We’ll release some practice questions next week.</p></li>
+</ul>
+</li>
 </ul>
 </section>
 <section id="learning-objectives">
@@ -484,18 +498,53 @@ document.write(`
 <li><p>The first part of this lecture is adapted from <a class="reference external" href="https://github.com/UBC-MDS/DSCI_542_comm-arg">DSCI 542</a>, created by <a class="reference external" href="https://davidklaing.com/">David Laing</a>.</p></li>
 <li><p>The visualization component of this lecture benefitted from discussions with <a class="reference external" href="http://firas.moosvi.com/">Firas Moosvi</a> about his course, <a class="reference external" href="https://github.com/UBC-MDS/DSCI_531_viz-1">DSCI 531</a>.</p></li>
 </ul>
+<section id="iclicker">
+<h3>(iClicker)<a class="headerlink" href="#iclicker" title="Permalink to this heading">#</a></h3>
+<p><strong>iClicker cloud join link: https://join.iclicker.com/SNBF</strong></p>
+<p>For our last class on December 7th, we have a couple of options, and we’d like to know your preference. Please choose one of the following options:</p>
+<ul class="simple">
+<li><p>(A) <strong>Introduction to Bayesian models</strong>: An <strong>optional</strong> brief session where we explore the basics of Bayesian modelling and how to use modern probabilistic programming languages. We won’t have any questions on this material in the final exam.</p></li>
+<li><p>(B) <strong>Final exam review session</strong>: A review session where we go over key topics and answer any questions you might have for the upcoming final exam.</p></li>
+<li><p>(C) <strong>Combined session</strong>: The first half of the class will be an optional brief session on Bayesian modelling, followed by a final exam review in the second half.</p></li>
+<li><p>(D) <strong>Relax and take a day off!</strong> A well-deserved break where we can relax and recharge.</p></li>
+</ul>
+</section>
 <section id="iclicker-exercise-21-1">
 <h3>(iClicker) Exercise 21.1<a class="headerlink" href="#iclicker-exercise-21-1" title="Permalink to this heading">#</a></h3>
 <p><strong>iClicker cloud join link: https://join.iclicker.com/SNBF</strong></p>
 <p><strong>Select all of the following statements which are TRUE.</strong></p>
 <ul class="simple">
-<li><p>(A) Adding a days since feature can be added to time series data to deal with trends</p></li>
+<li><p>(A) A days since feature can be added to time series data to deal with trends</p></li>
 <li><p>(B) Kaplan-Meier curves can be used to compare survival functions between groups</p></li>
 <li><p>(C) Kaplan-Meier curves can provide an error bar estimate for coefficients</p></li>
 <li><p>(D) Cox proportional hazard models are like linear regression for censored data</p></li>
 <li><p>(E) Cox proportional hazard models can provide evidence that a feature adds additional predictive value to other features</p></li>
 </ul>
 </section>
+</section>
+<section id="recap">
+<h2>Recap<a class="headerlink" href="#recap" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>What is right-censored data?</p></li>
+<li><p>What happens when we treat right-censored data the same as “regular” data?</p>
+<ul>
+<li><p>Predicting churn vs. no churn</p></li>
+<li><p>Predicting tenure</p>
+<ul>
+<li><p>Throw away people who haven’t churned</p></li>
+<li><p>Assume everyone churns today</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Survival analysis encompasses predicting both churn and tenure and deals with censoring and can make rich and interesting predictions!</p>
+<ul>
+<li><p>We can get survival curves which show the probability of survival over time.</p></li>
+<li><p>KM model <span class="math notranslate nohighlight">\(\rightarrow\)</span> doesn’t look at features</p></li>
+<li><p>CPH model <span class="math notranslate nohighlight">\(\rightarrow\)</span> like linear regression, does look at the features and provides coefficients associated with each feature</p></li>
+</ul>
+</li>
+</ul>
 <section id="why-should-we-care-about-effective-communication">
 <h3>Why should we care about effective communication?<a class="headerlink" href="#why-should-we-care-about-effective-communication" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
@@ -697,10 +746,22 @@ document.write(`
 </section>
 <section id="ml-and-decision-making-5-min">
 <h2>ML and decision-making (5 min)<a class="headerlink" href="#ml-and-decision-making-5-min" title="Permalink to this heading">#</a></h2>
+<section id="questions-for-you">
+<h3>❓❓ Questions for you<a class="headerlink" href="#questions-for-you" title="Permalink to this heading">#</a></h3>
+<p>Imagine you are tasked with developing a recommender system for YouTube. You possess data on which users clicked on which videos. After spending considerable time building a recommender system using this data, you realize it isn’t producing high-quality recommendations. What could be the reasons for this?</p>
+<p>Think beyond the data that’s given to you. Questions you have to consider:</p>
+<ul class="simple">
+<li><p>Who is the decision maker?</p></li>
+<li><p>What are their objectives?</p></li>
+<li><p>What are their alternatives?</p></li>
+<li><p>What is their context?</p></li>
+<li><p>What data do I need?</p></li>
+</ul>
 <ul class="simple">
 <li><p>There is often a wide gap between what people care about and what ML can do.</p></li>
 <li><p>To understand what ML can do, let’s think about what <strong>decisions</strong> will be made using ML.</p></li>
 </ul>
+</section>
 <section id="decisions-involve-a-few-key-pieces">
 <h3>Decisions involve a few key pieces<a class="headerlink" href="#decisions-involve-a-few-key-pieces" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
@@ -720,17 +781,6 @@ document.write(`
 <li><p>E.g. the housing market, cost of marketing it, my timeline, etc.</p></li>
 </ul>
 </li>
-</ul>
-</section>
-<section id="how-does-this-inform-you-as-an-ml-practitioner">
-<h3>How does this inform you as an ML practitioner?<a class="headerlink" href="#how-does-this-inform-you-as-an-ml-practitioner" title="Permalink to this heading">#</a></h3>
-<p>Questions you have to answer:</p>
-<ul class="simple">
-<li><p>Who is the decision maker?</p></li>
-<li><p>What are their objectives?</p></li>
-<li><p>What are their alternatives?</p></li>
-<li><p>What is their context?</p></li>
-<li><p>What data do I need?</p></li>
 </ul>
 </section>
 </section>
@@ -766,18 +816,9 @@ document.write(`
 <p>Which belief is better now?</p>
 <p><strong>Conclusion: We don’t just want to be right. We want to be confident when we’re right and hesitant when we’re wrong.</strong></p>
 </section>
-<section id="what-do-credences-mean-in-practical-terms">
-<h3>What do credences mean in practical terms?<a class="headerlink" href="#what-do-credences-mean-in-practical-terms" title="Permalink to this heading">#</a></h3>
-<p>One of two things:</p>
-<ul class="simple">
-<li><p><strong>I would accept a bet at these odds.</strong> 99% sure means, “For the chance of winning \<span class="math notranslate nohighlight">\(1, I would bet \\\)</span>99 that I’m right about this.” 75% sure means, “For the chance of winning \<span class="math notranslate nohighlight">\(25, I would bet \\\)</span>75 that I’m right about this.”</p></li>
-<li><p><strong>Long-run frequency of correctness.</strong> 99% sure means, “For every 100 predictions I make at this level of confidence, I would expect only 1 of them to be incorrect.” 75% sure means, “For every 100 predictions I make at this level of confidence, I would expect about 25 of them to be incorrect.”</p></li>
-</ul>
-</section>
-<section id="it-s-easy-enough-to-evaluate-how-good-we-are-at-being-right">
-<h3>It’s easy enough to evaluate how good we are at being right…<a class="headerlink" href="#it-s-easy-enough-to-evaluate-how-good-we-are-at-being-right" title="Permalink to this heading">#</a></h3>
-<p>But if we want to evaluate <em>how good we are at knowing how right we are</em>?</p>
-<p>We would need to keep of not just the correctness of our predictions, but also our confidence in those predictions.</p>
+<section id="id1">
+<h3>❓❓ Questions for you<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>In our final exam, imagine if, along with your answers, we ask you to also provide a confidence score for each. This would involve rating how sure you are about each answer, perhaps on a percentage scale from 0% (completely unsure) to 100% (completely sure). This method not only assesses your knowledge but also your awareness of your own understanding, potentially impacting the grading process and highlighting areas for improvement. Who supports this idea 😉?</p>
 </section>
 <section id="what-does-this-have-to-do-with-applied-ml">
 <h3>What does this have to do with applied ML?<a class="headerlink" href="#what-does-this-have-to-do-with-applied-ml" title="Permalink to this heading">#</a></h3>
@@ -813,6 +854,9 @@ document.write(`
 <li><p>This is a “loss” or “error” function like mean squared error, so lower values are better.</p></li>
 <li><p>When you call <code class="docutils literal notranslate"><span class="pre">fit</span></code> it tries to minimize this metric.</p></li>
 </ul>
+</section>
+<section id="what-should-be-the-loss-activity-4-mins">
+<h3>What should be the loss? (Activity: 4 mins)<a class="headerlink" href="#what-should-be-the-loss-activity-4-mins" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Consider the following made-up classification example where target (true <code class="docutils literal notranslate"><span class="pre">y</span></code>) is binary: -1 or 1.</p></li>
 <li><p>The true <span class="math notranslate nohighlight">\(y\)</span> (<code class="docutils literal notranslate"><span class="pre">y_true</span></code>) and models raw scores (<span class="math notranslate nohighlight">\(w^Tx_i\)</span>) are given to you.</p></li>
@@ -957,13 +1001,13 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="n">plot_loss_diagram</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">grid</span><span class="p">)),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;logistic loss&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">grid</span><span class="p">)),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;logistic&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/689d9a7525b84357418cea9a41a3bc115f1e890905d9de3e17cd96e8025ccb42.png" src="../../_images/689d9a7525b84357418cea9a41a3bc115f1e890905d9de3e17cd96e8025ccb42.png" />
+<img alt="../../_images/f81e3e4a4337f158bc58605e81f315f206d97d788906c90dc51a10dea18d121d.png" src="../../_images/f81e3e4a4337f158bc58605e81f315f206d97d788906c90dc51a10dea18d121d.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1361,36 +1405,36 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;GarageFinish&#39;,
- &#39;RoofStyle&#39;,
- &#39;HouseStyle&#39;,
- &#39;Exterior1st&#39;,
- &#39;LotShape&#39;,
- &#39;Electrical&#39;,
- &#39;LandSlope&#39;,
- &#39;MiscFeature&#39;,
- &#39;MoSold&#39;,
- &#39;SaleType&#39;,
- &#39;SaleCondition&#39;,
- &#39;Alley&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Exterior2nd&#39;,
+ &#39;Neighborhood&#39;,
  &#39;Condition1&#39;,
- &#39;Heating&#39;,
- &#39;CentralAir&#39;,
- &#39;GarageType&#39;,
- &#39;MSSubClass&#39;,
- &#39;MasVnrType&#39;,
- &#39;Utilities&#39;,
- &#39;RoofMatl&#39;,
+ &#39;Alley&#39;,
+ &#39;LandSlope&#39;,
+ &#39;PavedDrive&#39;,
  &#39;MSZoning&#39;,
  &#39;LandContour&#39;,
  &#39;Foundation&#39;,
- &#39;Exterior2nd&#39;,
- &#39;PavedDrive&#39;,
- &#39;Street&#39;,
  &#39;BldgType&#39;,
+ &#39;Electrical&#39;,
+ &#39;LotConfig&#39;,
+ &#39;Heating&#39;,
+ &#39;HouseStyle&#39;,
+ &#39;CentralAir&#39;,
+ &#39;SaleType&#39;,
+ &#39;GarageType&#39;,
+ &#39;MasVnrType&#39;,
+ &#39;MiscFeature&#39;,
  &#39;Condition2&#39;,
- &#39;Neighborhood&#39;,
- &#39;LotConfig&#39;]
+ &#39;MoSold&#39;,
+ &#39;SaleCondition&#39;,
+ &#39;Street&#39;,
+ &#39;RoofMatl&#39;,
+ &#39;Utilities&#39;,
+ &#39;MSSubClass&#39;,
+ &#39;GarageFinish&#39;,
+ &#39;Exterior1st&#39;,
+ &#39;RoofStyle&#39;,
+ &#39;LotShape&#39;]
 </pre></div>
 </div>
 </div>
@@ -1454,16 +1498,16 @@ document.write(`
                                   &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;, &#x27;MasVnrArea&#x27;,
                                   &#x27;BsmtFinSF1&#x27;, &#x27;BsmtFinSF2&#x27;, &#x27;BsmtUnfSF&#x27;,
                                   &#x27;TotalBsmtSF&#x27;, &#x27;...
-                                 [&#x27;GarageFinish&#x27;, &#x27;RoofStyle&#x27;, &#x27;HouseStyle&#x27;,
-                                  &#x27;Exterior1st&#x27;, &#x27;LotShape&#x27;, &#x27;Electrical&#x27;,
-                                  &#x27;LandSlope&#x27;, &#x27;MiscFeature&#x27;, &#x27;MoSold&#x27;,
-                                  &#x27;SaleType&#x27;, &#x27;SaleCondition&#x27;, &#x27;Alley&#x27;,
-                                  &#x27;Condition1&#x27;, &#x27;Heating&#x27;, &#x27;CentralAir&#x27;,
-                                  &#x27;GarageType&#x27;, &#x27;MSSubClass&#x27;, &#x27;MasVnrType&#x27;,
-                                  &#x27;Utilities&#x27;, &#x27;RoofMatl&#x27;, &#x27;MSZoning&#x27;,
-                                  &#x27;LandContour&#x27;, &#x27;Foundation&#x27;, &#x27;Exterior2nd&#x27;,
-                                  &#x27;PavedDrive&#x27;, &#x27;Street&#x27;, &#x27;BldgType&#x27;,
-                                  &#x27;Condition2&#x27;, &#x27;Neighborhood&#x27;, &#x27;LotConfig&#x27;])])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[(&#x27;drop&#x27;, &#x27;drop&#x27;, [&#x27;Id&#x27;]),
+                                 [&#x27;Exterior2nd&#x27;, &#x27;Neighborhood&#x27;, &#x27;Condition1&#x27;,
+                                  &#x27;Alley&#x27;, &#x27;LandSlope&#x27;, &#x27;PavedDrive&#x27;,
+                                  &#x27;MSZoning&#x27;, &#x27;LandContour&#x27;, &#x27;Foundation&#x27;,
+                                  &#x27;BldgType&#x27;, &#x27;Electrical&#x27;, &#x27;LotConfig&#x27;,
+                                  &#x27;Heating&#x27;, &#x27;HouseStyle&#x27;, &#x27;CentralAir&#x27;,
+                                  &#x27;SaleType&#x27;, &#x27;GarageType&#x27;, &#x27;MasVnrType&#x27;,
+                                  &#x27;MiscFeature&#x27;, &#x27;Condition2&#x27;, &#x27;MoSold&#x27;,
+                                  &#x27;SaleCondition&#x27;, &#x27;Street&#x27;, &#x27;RoofMatl&#x27;,
+                                  &#x27;Utilities&#x27;, &#x27;MSSubClass&#x27;, &#x27;GarageFinish&#x27;,
+                                  &#x27;Exterior1st&#x27;, &#x27;RoofStyle&#x27;, &#x27;LotShape&#x27;])])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[(&#x27;drop&#x27;, &#x27;drop&#x27;, [&#x27;Id&#x27;]),
                                 (&#x27;pipeline-1&#x27;,
                                  Pipeline(steps=[(&#x27;simpleimputer&#x27;,
                                                   SimpleImputer(strategy=&#x27;median&#x27;)),
@@ -1474,16 +1518,16 @@ document.write(`
                                   &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;, &#x27;MasVnrArea&#x27;,
                                   &#x27;BsmtFinSF1&#x27;, &#x27;BsmtFinSF2&#x27;, &#x27;BsmtUnfSF&#x27;,
                                   &#x27;TotalBsmtSF&#x27;, &#x27;...
-                                 [&#x27;GarageFinish&#x27;, &#x27;RoofStyle&#x27;, &#x27;HouseStyle&#x27;,
-                                  &#x27;Exterior1st&#x27;, &#x27;LotShape&#x27;, &#x27;Electrical&#x27;,
-                                  &#x27;LandSlope&#x27;, &#x27;MiscFeature&#x27;, &#x27;MoSold&#x27;,
-                                  &#x27;SaleType&#x27;, &#x27;SaleCondition&#x27;, &#x27;Alley&#x27;,
-                                  &#x27;Condition1&#x27;, &#x27;Heating&#x27;, &#x27;CentralAir&#x27;,
-                                  &#x27;GarageType&#x27;, &#x27;MSSubClass&#x27;, &#x27;MasVnrType&#x27;,
-                                  &#x27;Utilities&#x27;, &#x27;RoofMatl&#x27;, &#x27;MSZoning&#x27;,
-                                  &#x27;LandContour&#x27;, &#x27;Foundation&#x27;, &#x27;Exterior2nd&#x27;,
-                                  &#x27;PavedDrive&#x27;, &#x27;Street&#x27;, &#x27;BldgType&#x27;,
-                                  &#x27;Condition2&#x27;, &#x27;Neighborhood&#x27;, &#x27;LotConfig&#x27;])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>[&#x27;Id&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>drop</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-1</label><div class="sk-toggleable__content"><pre>[&#x27;BedroomAbvGr&#x27;, &#x27;KitchenAbvGr&#x27;, &#x27;LotFrontage&#x27;, &#x27;LotArea&#x27;, &#x27;OverallQual&#x27;, &#x27;OverallCond&#x27;, &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;, &#x27;MasVnrArea&#x27;, &#x27;BsmtFinSF1&#x27;, &#x27;BsmtFinSF2&#x27;, &#x27;BsmtUnfSF&#x27;, &#x27;TotalBsmtSF&#x27;, &#x27;1stFlrSF&#x27;, &#x27;2ndFlrSF&#x27;, &#x27;LowQualFinSF&#x27;, &#x27;GrLivArea&#x27;, &#x27;BsmtFullBath&#x27;, &#x27;BsmtHalfBath&#x27;, &#x27;FullBath&#x27;, &#x27;HalfBath&#x27;, &#x27;TotRmsAbvGrd&#x27;, &#x27;Fireplaces&#x27;, &#x27;GarageYrBlt&#x27;, &#x27;GarageCars&#x27;, &#x27;GarageArea&#x27;, &#x27;WoodDeckSF&#x27;, &#x27;OpenPorchSF&#x27;, &#x27;EnclosedPorch&#x27;, &#x27;3SsnPorch&#x27;, &#x27;ScreenPorch&#x27;, &#x27;PoolArea&#x27;, &#x27;MiscVal&#x27;, &#x27;YrSold&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;median&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-2</label><div class="sk-toggleable__content"><pre>[&#x27;ExterQual&#x27;, &#x27;ExterCond&#x27;, &#x27;BsmtQual&#x27;, &#x27;BsmtCond&#x27;, &#x27;HeatingQC&#x27;, &#x27;KitchenQual&#x27;, &#x27;FireplaceQu&#x27;, &#x27;GarageQual&#x27;, &#x27;GarageCond&#x27;, &#x27;PoolQC&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;most_frequent&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label sk-toggleable__label-arrow">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[[&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                                 [&#x27;Exterior2nd&#x27;, &#x27;Neighborhood&#x27;, &#x27;Condition1&#x27;,
+                                  &#x27;Alley&#x27;, &#x27;LandSlope&#x27;, &#x27;PavedDrive&#x27;,
+                                  &#x27;MSZoning&#x27;, &#x27;LandContour&#x27;, &#x27;Foundation&#x27;,
+                                  &#x27;BldgType&#x27;, &#x27;Electrical&#x27;, &#x27;LotConfig&#x27;,
+                                  &#x27;Heating&#x27;, &#x27;HouseStyle&#x27;, &#x27;CentralAir&#x27;,
+                                  &#x27;SaleType&#x27;, &#x27;GarageType&#x27;, &#x27;MasVnrType&#x27;,
+                                  &#x27;MiscFeature&#x27;, &#x27;Condition2&#x27;, &#x27;MoSold&#x27;,
+                                  &#x27;SaleCondition&#x27;, &#x27;Street&#x27;, &#x27;RoofMatl&#x27;,
+                                  &#x27;Utilities&#x27;, &#x27;MSSubClass&#x27;, &#x27;GarageFinish&#x27;,
+                                  &#x27;Exterior1st&#x27;, &#x27;RoofStyle&#x27;, &#x27;LotShape&#x27;])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>[&#x27;Id&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>drop</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-1</label><div class="sk-toggleable__content"><pre>[&#x27;BedroomAbvGr&#x27;, &#x27;KitchenAbvGr&#x27;, &#x27;LotFrontage&#x27;, &#x27;LotArea&#x27;, &#x27;OverallQual&#x27;, &#x27;OverallCond&#x27;, &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;, &#x27;MasVnrArea&#x27;, &#x27;BsmtFinSF1&#x27;, &#x27;BsmtFinSF2&#x27;, &#x27;BsmtUnfSF&#x27;, &#x27;TotalBsmtSF&#x27;, &#x27;1stFlrSF&#x27;, &#x27;2ndFlrSF&#x27;, &#x27;LowQualFinSF&#x27;, &#x27;GrLivArea&#x27;, &#x27;BsmtFullBath&#x27;, &#x27;BsmtHalfBath&#x27;, &#x27;FullBath&#x27;, &#x27;HalfBath&#x27;, &#x27;TotRmsAbvGrd&#x27;, &#x27;Fireplaces&#x27;, &#x27;GarageYrBlt&#x27;, &#x27;GarageCars&#x27;, &#x27;GarageArea&#x27;, &#x27;WoodDeckSF&#x27;, &#x27;OpenPorchSF&#x27;, &#x27;EnclosedPorch&#x27;, &#x27;3SsnPorch&#x27;, &#x27;ScreenPorch&#x27;, &#x27;PoolArea&#x27;, &#x27;MiscVal&#x27;, &#x27;YrSold&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;median&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-2</label><div class="sk-toggleable__content"><pre>[&#x27;ExterQual&#x27;, &#x27;ExterCond&#x27;, &#x27;BsmtQual&#x27;, &#x27;BsmtCond&#x27;, &#x27;HeatingQC&#x27;, &#x27;KitchenQual&#x27;, &#x27;FireplaceQu&#x27;, &#x27;GarageQual&#x27;, &#x27;GarageCond&#x27;, &#x27;PoolQC&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;most_frequent&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label sk-toggleable__label-arrow">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[[&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
                            [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
                            [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
                            [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
@@ -1497,7 +1541,7 @@ document.write(`
                            [&#x27;NA&#x27;, &#x27;Unf&#x27;, &#x27;LwQ&#x27;, &#x27;Rec&#x27;, &#x27;BLQ&#x27;, &#x27;ALQ&#x27;, &#x27;GLQ&#x27;],
                            [&#x27;Sal&#x27;, &#x27;Sev&#x27;, &#x27;Maj2&#x27;, &#x27;Maj1&#x27;, &#x27;Mod&#x27;, &#x27;Min2&#x27;, &#x27;Min1&#x27;,
                             &#x27;Typ&#x27;],
-                           [&#x27;NA&#x27;, &#x27;MnWw&#x27;, &#x27;GdWo&#x27;, &#x27;MnPrv&#x27;, &#x27;GdPrv&#x27;]])</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-13" type="checkbox" ><label for="sk-estimator-id-13" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-4</label><div class="sk-toggleable__content"><pre>[&#x27;GarageFinish&#x27;, &#x27;RoofStyle&#x27;, &#x27;HouseStyle&#x27;, &#x27;Exterior1st&#x27;, &#x27;LotShape&#x27;, &#x27;Electrical&#x27;, &#x27;LandSlope&#x27;, &#x27;MiscFeature&#x27;, &#x27;MoSold&#x27;, &#x27;SaleType&#x27;, &#x27;SaleCondition&#x27;, &#x27;Alley&#x27;, &#x27;Condition1&#x27;, &#x27;Heating&#x27;, &#x27;CentralAir&#x27;, &#x27;GarageType&#x27;, &#x27;MSSubClass&#x27;, &#x27;MasVnrType&#x27;, &#x27;Utilities&#x27;, &#x27;RoofMatl&#x27;, &#x27;MSZoning&#x27;, &#x27;LandContour&#x27;, &#x27;Foundation&#x27;, &#x27;Exterior2nd&#x27;, &#x27;PavedDrive&#x27;, &#x27;Street&#x27;, &#x27;BldgType&#x27;, &#x27;Condition2&#x27;, &#x27;Neighborhood&#x27;, &#x27;LotConfig&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-14" type="checkbox" ><label for="sk-estimator-id-14" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(fill_value=&#x27;missing&#x27;, strategy=&#x27;constant&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-15" type="checkbox" ><label for="sk-estimator-id-15" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown=&#x27;ignore&#x27;, sparse_output=False)</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+                           [&#x27;NA&#x27;, &#x27;MnWw&#x27;, &#x27;GdWo&#x27;, &#x27;MnPrv&#x27;, &#x27;GdPrv&#x27;]])</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-13" type="checkbox" ><label for="sk-estimator-id-13" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-4</label><div class="sk-toggleable__content"><pre>[&#x27;Exterior2nd&#x27;, &#x27;Neighborhood&#x27;, &#x27;Condition1&#x27;, &#x27;Alley&#x27;, &#x27;LandSlope&#x27;, &#x27;PavedDrive&#x27;, &#x27;MSZoning&#x27;, &#x27;LandContour&#x27;, &#x27;Foundation&#x27;, &#x27;BldgType&#x27;, &#x27;Electrical&#x27;, &#x27;LotConfig&#x27;, &#x27;Heating&#x27;, &#x27;HouseStyle&#x27;, &#x27;CentralAir&#x27;, &#x27;SaleType&#x27;, &#x27;GarageType&#x27;, &#x27;MasVnrType&#x27;, &#x27;MiscFeature&#x27;, &#x27;Condition2&#x27;, &#x27;MoSold&#x27;, &#x27;SaleCondition&#x27;, &#x27;Street&#x27;, &#x27;RoofMatl&#x27;, &#x27;Utilities&#x27;, &#x27;MSSubClass&#x27;, &#x27;GarageFinish&#x27;, &#x27;Exterior1st&#x27;, &#x27;RoofStyle&#x27;, &#x27;LotShape&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-14" type="checkbox" ><label for="sk-estimator-id-14" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(fill_value=&#x27;missing&#x27;, strategy=&#x27;constant&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-15" type="checkbox" ><label for="sk-estimator-id-15" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown=&#x27;ignore&#x27;, sparse_output=False)</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1552,16 +1596,16 @@ document.write(`
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
-      <th>Neighborhood_SawyerW</th>
-      <th>Neighborhood_Somerst</th>
-      <th>Neighborhood_StoneBr</th>
-      <th>Neighborhood_Timber</th>
-      <th>Neighborhood_Veenker</th>
-      <th>LotConfig_Corner</th>
-      <th>LotConfig_CulDSac</th>
-      <th>LotConfig_FR2</th>
-      <th>LotConfig_FR3</th>
-      <th>LotConfig_Inside</th>
+      <th>RoofStyle_Flat</th>
+      <th>RoofStyle_Gable</th>
+      <th>RoofStyle_Gambrel</th>
+      <th>RoofStyle_Hip</th>
+      <th>RoofStyle_Mansard</th>
+      <th>RoofStyle_Shed</th>
+      <th>LotShape_IR1</th>
+      <th>LotShape_IR2</th>
+      <th>LotShape_IR3</th>
+      <th>LotShape_Reg</th>
     </tr>
   </thead>
   <tbody>
@@ -1579,12 +1623,12 @@ document.write(`
       <td>-0.961498</td>
       <td>...</td>
       <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1603,15 +1647,15 @@ document.write(`
       <td>0.476092</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>429</th>
@@ -1627,12 +1671,12 @@ document.write(`
       <td>1.227559</td>
       <td>...</td>
       <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1651,15 +1695,15 @@ document.write(`
       <td>0.443419</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>558</th>
@@ -1675,7 +1719,7 @@ document.write(`
       <td>0.354114</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1729,16 +1773,16 @@ document.write(`
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
-      <th>Neighborhood_SawyerW</th>
-      <th>Neighborhood_Somerst</th>
-      <th>Neighborhood_StoneBr</th>
-      <th>Neighborhood_Timber</th>
-      <th>Neighborhood_Veenker</th>
-      <th>LotConfig_Corner</th>
-      <th>LotConfig_CulDSac</th>
-      <th>LotConfig_FR2</th>
-      <th>LotConfig_FR3</th>
-      <th>LotConfig_Inside</th>
+      <th>RoofStyle_Flat</th>
+      <th>RoofStyle_Gable</th>
+      <th>RoofStyle_Gambrel</th>
+      <th>RoofStyle_Hip</th>
+      <th>RoofStyle_Mansard</th>
+      <th>RoofStyle_Shed</th>
+      <th>LotShape_IR1</th>
+      <th>LotShape_IR2</th>
+      <th>LotShape_IR3</th>
+      <th>LotShape_Reg</th>
     </tr>
   </thead>
   <tbody>
@@ -1756,7 +1800,7 @@ document.write(`
       <td>-0.961498</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1780,7 +1824,7 @@ document.write(`
       <td>-0.961498</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1804,7 +1848,7 @@ document.write(`
       <td>-0.961498</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1828,15 +1872,15 @@ document.write(`
       <td>1.162214</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>1427</th>
@@ -1852,7 +1896,7 @@ document.write(`
       <td>0.301838</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1942,6 +1986,9 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
+<section id="confusing-and-perhaps-misleading-visualization-of-results">
+<h3>Confusing and perhaps misleading visualization of results<a class="headerlink" href="#confusing-and-perhaps-misleading-visualization-of-results" title="Permalink to this heading">#</a></h3>
 <p>Here is a low-quality plot that is confusing and perhaps downright misleading:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1961,19 +2008,19 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/3af6e5e5c0bcf99c528f024bf18496d17098ee5135f2a8dd230abff4120462d4.png" src="../../_images/3af6e5e5c0bcf99c528f024bf18496d17098ee5135f2a8dd230abff4120462d4.png" />
+<img alt="../../_images/d35e134d8f270c30ad3dc82306cb528a0460c17f15b7919e4153f53e5219b7a4.png" src="../../_images/d35e134d8f270c30ad3dc82306cb528a0460c17f15b7919e4153f53e5219b7a4.png" />
 </div>
 </div>
 </section>
 <section id="why-is-this-confusing-misleading">
 <h3>Why is this confusing/misleading?<a class="headerlink" href="#why-is-this-confusing-misleading" title="Permalink to this heading">#</a></h3>
-<p>Let’s create some visualizations.</p>
+<p>Could you create some visualizations such that it makes</p>
 <ul class="simple">
-<li><p>Create a visualization that makes RF look better than GB.</p></li>
-<li><p>Create a visualization that makes GB look better than RF.</p></li>
-<li><p>Create a visualization that makes RF and GB look equally good.</p></li>
+<li><p>RF look better than GB</p></li>
+<li><p>GB look better than RF</p></li>
+<li><p>RF and GB look equally good</p></li>
 </ul>
-<p>You can create your own misleading example and copy or screenshot it and paste it into the <a class="reference external" href="https://docs.google.com/document/d/1y4YMSAWQGRFFn8ig0pAs5TJR5h2jKnvtY97HN-rEkyE/edit#">Google Doc</a>.</p>
+<p>You can create your own misleading example and copy or screenshot it and paste it into <a class="reference external" href="https://docs.google.com/document/d/1Nqpcx4yHuVhyrDFrpxbBnduoJC4VFnvVybqzIA1aUmM/edit?usp=sharing">this Google document</a>.</p>
 <p>Here are some misleading plots.</p>
 </section>
 <section id="rf-better-than-gb">
@@ -1994,7 +2041,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/d551d23258d65f997f706f99a4c042b70cf32325f1de90927e4342e681de56bd.png" src="../../_images/d551d23258d65f997f706f99a4c042b70cf32325f1de90927e4342e681de56bd.png" />
+<img alt="../../_images/c4506e070eae2aac81ebe562d8bfdc33e614d1675e259a265965268766d13757.png" src="../../_images/c4506e070eae2aac81ebe562d8bfdc33e614d1675e259a265965268766d13757.png" />
 </div>
 </div>
 </section>
@@ -2017,7 +2064,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/18247cd8be2317f77b2a8db79c9c0fcadd75c176bab43176170f28670196155e.png" src="../../_images/18247cd8be2317f77b2a8db79c9c0fcadd75c176bab43176170f28670196155e.png" />
+<img alt="../../_images/9a9007dcc13365d3b89fd0e00a5faa5f41afd9b6372f946b54135fcd7e7478d1.png" src="../../_images/9a9007dcc13365d3b89fd0e00a5faa5f41afd9b6372f946b54135fcd7e7478d1.png" />
 </div>
 </div>
 </section>
@@ -2045,7 +2092,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/eb8181e9f9fcd6f2ed40539b6cd2c8d6be17f4791d9417f52ecc8f2d56159664.png" src="../../_images/eb8181e9f9fcd6f2ed40539b6cd2c8d6be17f4791d9417f52ecc8f2d56159664.png" />
+<img alt="../../_images/0fec89cba8ab9dc92297b206d69b6bb0971a97a18bea5d8fe92f00d62e3fc8ee.png" src="../../_images/0fec89cba8ab9dc92297b206d69b6bb0971a97a18bea5d8fe92f00d62e3fc8ee.png" />
 </div>
 </div>
 </section>
@@ -2057,6 +2104,8 @@ document.write(`
 <li><p>Bar chart for a cherry-picked values</p></li>
 <li><p>Different y-axes</p></li>
 </ul>
+<p><strong>Be critical of your visualizations and try to make them as honest as possible.</strong></p>
+<p><strong>Did the previous analysis actually make any sense to start with?</strong></p>
 </section>
 </section>
 <section id="what-did-we-learn-today">
@@ -2134,7 +2183,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#announcements">Announcements</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning objectives</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attribution">Attribution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker">(iClicker)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker-exercise-21-1">(iClicker) Exercise 21.1</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap">Recap</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-should-we-care-about-effective-communication">Why should we care about effective communication?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-the-problems-with-the-following">What are the problems with the following?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#main-issues-in-ml-related-communication">Main issues in ML-related communication</a></li>
@@ -2157,17 +2210,17 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ml-and-decision-making-5-min">ML and decision-making (5 min)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-for-you">❓❓ Questions for you</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decisions-involve-a-few-key-pieces">Decisions involve a few key pieces</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-this-inform-you-as-an-ml-practitioner">How does this inform you as an ML practitioner?</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#break-5-min">Break (5 min)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confidence-and-predict-proba-20-min">Confidence and <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> (20 min)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-this-mean-for-us-when-we-re-trying-to-make-claims-about-our-data">What does this mean for us, when we’re trying to make claims about our data?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-do-credences-mean-in-practical-terms">What do credences mean in practical terms?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#it-s-easy-enough-to-evaluate-how-good-we-are-at-being-right">It’s easy enough to evaluate how good we are at being right…</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">❓❓ Questions for you</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-this-have-to-do-with-applied-ml">What does this have to do with applied ML?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preferences-in-logisticregression">Preferences in <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-should-be-the-loss-activity-4-mins">What should be the loss? (Activity: 4 mins)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-your-results">Visualizing your results</a><ul class="nav section-nav flex-column">
@@ -2177,6 +2230,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-feature-transformations">Applying feature transformations</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-the-preprocessed-data">Examining the preprocessed data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-random-forests-and-gradient-boosted-trees">Training random forests and gradient boosted trees</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusing-and-perhaps-misleading-visualization-of-results">Confusing and perhaps misleading visualization of results</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-is-this-confusing-misleading">Why is this confusing/misleading?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rf-better-than-gb">RF better than GB</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gb-better-than-rf">GB better than RF</a></li>
