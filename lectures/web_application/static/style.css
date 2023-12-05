@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px; /* Set a max-width for larger screens */
+    background-color: #fff;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+}
+
+h1 {
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1em;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em; /* Spacing between form elements */
+}
+
+input[type="text"] {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    padding: 0.75em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+input[type="submit"] {
+    font-family: 'Roboto', sans-serif;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover, input[type="submit"]:focus {
+    background-color: #0056b3;
+}
+
+.back-button {
+    font-family: 'Roboto', sans-serif;
+    margin-top: 1em;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    display: inline-block;
+    background: #ddd;
+    color: #333;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #ccc;
+}
