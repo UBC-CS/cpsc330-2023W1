@@ -146,6 +146,27 @@ def simple_bar_plot(x, y, x_title = "x", y_title ="y"):
     return fig 
 
 
+def plot_lda_w_vectors(W, component_labels, feature_names, width=800, height=600): 
+    
+    fig = px.imshow(
+        W,
+        y=component_labels,
+        x=feature_names,
+        color_continuous_scale="viridis",
+    )
+
+    fig.update_layout(
+        xaxis_title="Features",
+        yaxis_title="Topics",
+        xaxis = {'side': 'top',  'tickangle':300}, 
+    )
+    fig.update_layout(
+        autosize=False,
+        width=width,
+        height=height,
+    )    
+
+    return fig
 
 
 ####################################
