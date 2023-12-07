@@ -445,6 +445,12 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="learning-objectives">
@@ -584,7 +590,7 @@ Intercept shape:  (3,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9dafd86e7534f8b31fbe95c5fb42132f586f397a31dd31216375ff37afb5c411.png" src="../_images/9dafd86e7534f8b31fbe95c5fb42132f586f397a31dd31216375ff37afb5c411.png" />
+<img alt="../_images/a6e7d5f952918d083a52015d9dc04c6ff57e4f8afff4814cd18efbb986ce82ea.png" src="../_images/a6e7d5f952918d083a52015d9dc04c6ff57e4f8afff4814cd18efbb986ce82ea.png" />
 </div>
 </div>
 <p>Let’s calculate the raw scores for a test point.</p>
@@ -732,10 +738,10 @@ Intercept shape:  (3,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>233 ms ± 3.1 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>241 ms ± 975 µs per loop (mean ± std. dev. of 7 runs, 1 loop each)
 With OVO wrapper
-0.8146666666666667
-0.752
+0.8026666666666666
+0.768
 </pre></div>
 </div>
 </div>
@@ -751,10 +757,10 @@ With OVO wrapper
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>31.9 ms ± 76.7 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>45.2 ms ± 5.33 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 With OVR wrapper
-0.7066666666666667
-0.636
+0.7373333333333333
+0.704
 </pre></div>
 </div>
 </div>
@@ -1036,19 +1042,6 @@ With OVR wrapper
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">21</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Attribution: [Code from PyTorch docs](https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html?highlight=transfer%20learning)</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">torch</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;torch&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1058,9 +1051,9 @@ With OVR wrapper
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
@@ -1078,7 +1071,7 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6a4ce7fcebdd24864ce0424b8c3603b162aa699afbf7cbb16189683b3c3d281d.png" src="../_images/6a4ce7fcebdd24864ce0424b8c3603b162aa699afbf7cbb16189683b3c3d281d.png" />
+<img alt="../_images/8dec60a8f6da8e524e9d66d709b2a796725cbf028f280e563abf81f2c0c3eeb0.png" src="../_images/8dec60a8f6da8e524e9d66d709b2a796725cbf028f280e563abf81f2c0c3eeb0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1241,7 +1234,7 @@ First sample: (&#39;data/animal_faces/train/cat/flickr_cat_000002.jpg&#39;, 0)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2babb0f5b455101618c5d3a8da704c337ce7e558d0d9645134886b61547fab3d.png" src="../_images/2babb0f5b455101618c5d3a8da704c337ce7e558d0d9645134886b61547fab3d.png" />
+<img alt="../_images/122a75673b6a476375ce2a02d46525815d9d46cab5a41b464bbe110f958455a2.png" src="../_images/122a75673b6a476375ce2a02d46525815d9d46cab5a41b464bbe110f958455a2.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1254,8 +1247,8 @@ First sample: (&#39;data/animal_faces/train/cat/flickr_cat_000002.jpg&#39;, 0)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.9764706 , 0.9764706 , 0.9764706 , ..., 0.16862746, 0.18039216,
-       0.19607843], dtype=float32)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.24705882, 0.23921569, 0.23137255, ..., 0.5686275 , 0.5764706 ,
+       0.5803922 ], dtype=float32)
 </pre></div>
 </div>
 </div>
@@ -1399,7 +1392,7 @@ First sample: (&#39;data/animal_faces/train/cat/flickr_cat_000002.jpg&#39;, 0)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8531251d4f7823eac8161ae3b2e6facdcaabd598a4e380c86abba4393e3fb0ff.png" src="../_images/8531251d4f7823eac8161ae3b2e6facdcaabd598a4e380c86abba4393e3fb0ff.png" />
+<img alt="../_images/7232b9854d4ef71bdd9335937f7ec91999dc40d6252e4130746185e33bd6a9c6.png" src="../_images/7232b9854d4ef71bdd9335937f7ec91999dc40d6252e4130746185e33bd6a9c6.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                     Class  Probability score
          cheetah, chetah, Acinonyx jubatus              0.983
                   leopard, Panthera pardus              0.012
@@ -1408,7 +1401,7 @@ jaguar, panther, Panthera onca, Felis onca              0.004
 --------------------------------------------------------------
 </pre></div>
 </div>
-<img alt="../_images/43cc9ba2e909aba3eda39e963499f315988da88d4a756a49602f800ca2ceb777.png" src="../_images/43cc9ba2e909aba3eda39e963499f315988da88d4a756a49602f800ca2ceb777.png" />
+<img alt="../_images/d83ae4580f0762769a54c33dec742a31cebeea1c08c1c7630b523def9fc7d103.png" src="../_images/d83ae4580f0762769a54c33dec742a31cebeea1c08c1c7630b523def9fc7d103.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                         Class  Probability score
                      tiger cat              0.353
               tabby, tabby cat              0.207
@@ -1417,7 +1410,7 @@ Pembroke, Pembroke Welsh corgi              0.046
 --------------------------------------------------------------
 </pre></div>
 </div>
-<img alt="../_images/dfcac1994fd83c52e477f86d4cc674aed975ffb09d00f8599034cd834eb42c9d.png" src="../_images/dfcac1994fd83c52e477f86d4cc674aed975ffb09d00f8599034cd834eb42c9d.png" />
+<img alt="../_images/703daf5b182b9acc3d4fa9a4a5eeb65e7d101ac466fe7c7c1931944673e89270.png" src="../_images/703daf5b182b9acc3d4fa9a4a5eeb65e7d101ac466fe7c7c1931944673e89270.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                   Class  Probability score
                                  macaque              0.714
 patas, hussar monkey, Erythrocebus patas              0.122
@@ -1426,7 +1419,7 @@ patas, hussar monkey, Erythrocebus patas              0.122
 --------------------------------------------------------------
 </pre></div>
 </div>
-<img alt="../_images/c2d3153222b6b45bf422bd7cbb45fdb56ee199b83ac2e72748c0dc6a98b42be9.png" src="../_images/c2d3153222b6b45bf422bd7cbb45fdb56ee199b83ac2e72748c0dc6a98b42be9.png" />
+<img alt="../_images/432f81e74f4191e50d293127c73b829e5569d622e2f46c578111a4030d9ff92b.png" src="../_images/432f81e74f4191e50d293127c73b829e5569d622e2f46c578111a4030d9ff92b.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                        Class  Probability score
 Walker hound, Walker foxhound              0.580
              English foxhound              0.091
@@ -1457,6 +1450,44 @@ Walker hound, Walker foxhound              0.580
     <span class="n">df</span> <span class="o">=</span> <span class="n">classify_image</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--------------------------------------------------------------&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1e1a0faefa77fa5ca381e6c15ff492bfea5c6f6b1adc287177d438912165d86a.png" src="../_images/1e1a0faefa77fa5ca381e6c15ff492bfea5c6f6b1adc287177d438912165d86a.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                      Class  Probability score
+                                        fig              0.637
+                                pomegranate              0.193
+grocery store, grocery, food market, market              0.041
+                                      crate              0.023
+--------------------------------------------------------------
+</pre></div>
+</div>
+<img alt="../_images/9e36713f96caadc0e1bf04a517f403941789aa1a713f41db2069e1b58da93a0c.png" src="../_images/9e36713f96caadc0e1bf04a517f403941789aa1a713f41db2069e1b58da93a0c.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                               Class  Probability score
+                                         toilet seat              0.171
+                                          safety pin              0.060
+bannister, banister, balustrade, balusters, handrail              0.039
+                                              bubble              0.035
+--------------------------------------------------------------
+</pre></div>
+</div>
+<img alt="../_images/d4073913935b1750acc1c9b27a7c8196e4f90c88f57ba3074b2a7f66e6abcc7b.png" src="../_images/d4073913935b1750acc1c9b27a7c8196e4f90c88f57ba3074b2a7f66e6abcc7b.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                    Class  Probability score
+worm fence, snake fence, snake-rail fence, Virginia fence              0.202
+                                                     barn              0.036
+                                                   sorrel              0.033
+                                             valley, vale              0.029
+--------------------------------------------------------------
+</pre></div>
+</div>
+<img alt="../_images/4d957cf63f8a3aa4bf9a42b23384eed36ec8385aac2db12931d5d1ceea58277e.png" src="../_images/4d957cf63f8a3aa4bf9a42b23384eed36ec8385aac2db12931d5d1ceea58277e.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              Class  Probability score
+     patio, terrace              0.213
+           fountain              0.164
+lakeside, lakeshore              0.097
+            sundial              0.088
+--------------------------------------------------------------
 </pre></div>
 </div>
 </div>
@@ -1562,13 +1593,13 @@ Walker hound, Walker foxhound              0.580
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 </pre></div>
 </div>
@@ -1582,7 +1613,7 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d02c3b859acb195e8a56b2ea9fc907b6d685d9704900b2584688e93db3dbf9ee.png" src="../_images/d02c3b859acb195e8a56b2ea9fc907b6d685d9704900b2584688e93db3dbf9ee.png" />
+<img alt="../_images/3fb945e6ef0055ad1a9a8a23eea3e17abc3a8b19a909ab59777e5a7e7cb022e0.png" src="../_images/3fb945e6ef0055ad1a9a8a23eea3e17abc3a8b19a909ab59777e5a7e7cb022e0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1643,16 +1674,18 @@ First sample: (&#39;data/animal_faces/train/cat/flickr_cat_000002.jpg&#39;, 0)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
@@ -1731,123 +1764,123 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000483</td>
-      <td>0.009694</td>
-      <td>0.002966</td>
-      <td>0.003535</td>
-      <td>0.079649</td>
-      <td>0.645208</td>
-      <td>0.000452</td>
-      <td>0.001325</td>
-      <td>0.198396</td>
-      <td>0.000328</td>
+      <td>0.000520</td>
+      <td>0.004237</td>
+      <td>0.003024</td>
+      <td>0.003337</td>
+      <td>0.108240</td>
+      <td>1.059773</td>
+      <td>0.000576</td>
+      <td>0.006221</td>
+      <td>0.274745</td>
+      <td>0.000305</td>
       <td>...</td>
-      <td>1.126623</td>
-      <td>0.266533</td>
-      <td>2.924311</td>
-      <td>0.007297</td>
-      <td>0.381509</td>
-      <td>1.053698</td>
-      <td>0.325764</td>
-      <td>0.130841</td>
-      <td>1.128843</td>
-      <td>1.764958</td>
+      <td>0.293774</td>
+      <td>0.093928</td>
+      <td>0.280199</td>
+      <td>0.266957</td>
+      <td>1.037305</td>
+      <td>0.572172</td>
+      <td>0.439547</td>
+      <td>4.132022</td>
+      <td>0.261533</td>
+      <td>0.220739</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000284</td>
-      <td>0.002102</td>
-      <td>0.002955</td>
-      <td>0.002685</td>
-      <td>0.111121</td>
-      <td>1.212284</td>
-      <td>0.000984</td>
-      <td>0.002903</td>
-      <td>0.414740</td>
-      <td>0.000348</td>
+      <td>0.000232</td>
+      <td>0.004158</td>
+      <td>0.005136</td>
+      <td>0.001407</td>
+      <td>0.125263</td>
+      <td>0.575487</td>
+      <td>0.000428</td>
+      <td>0.003283</td>
+      <td>0.252543</td>
+      <td>0.000353</td>
       <td>...</td>
-      <td>0.277046</td>
-      <td>0.424268</td>
-      <td>0.544169</td>
-      <td>0.662279</td>
-      <td>0.593259</td>
-      <td>2.492394</td>
-      <td>1.060665</td>
-      <td>1.524364</td>
-      <td>0.665433</td>
-      <td>1.070349</td>
+      <td>0.284818</td>
+      <td>0.601100</td>
+      <td>0.099456</td>
+      <td>1.772009</td>
+      <td>0.014566</td>
+      <td>0.283486</td>
+      <td>0.115664</td>
+      <td>1.183474</td>
+      <td>1.169785</td>
+      <td>5.137957</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000390</td>
-      <td>0.002905</td>
-      <td>0.002416</td>
-      <td>0.003127</td>
-      <td>0.094314</td>
-      <td>0.461192</td>
-      <td>0.000359</td>
-      <td>0.003267</td>
-      <td>0.576526</td>
-      <td>0.000422</td>
+      <td>0.000273</td>
+      <td>0.002180</td>
+      <td>0.004972</td>
+      <td>0.003112</td>
+      <td>0.084045</td>
+      <td>0.291867</td>
+      <td>0.000451</td>
+      <td>0.001001</td>
+      <td>0.143676</td>
+      <td>0.000290</td>
       <td>...</td>
-      <td>0.033064</td>
-      <td>0.531866</td>
-      <td>0.567041</td>
-      <td>0.050661</td>
-      <td>0.143195</td>
-      <td>1.206287</td>
-      <td>1.717478</td>
-      <td>2.991739</td>
-      <td>0.127004</td>
-      <td>0.912218</td>
+      <td>0.606601</td>
+      <td>0.460450</td>
+      <td>1.549026</td>
+      <td>1.673476</td>
+      <td>0.731719</td>
+      <td>0.737403</td>
+      <td>2.113860</td>
+      <td>0.586723</td>
+      <td>1.554687</td>
+      <td>1.130068</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000374</td>
-      <td>0.002893</td>
-      <td>0.005851</td>
-      <td>0.004015</td>
-      <td>0.091863</td>
-      <td>0.542394</td>
-      <td>0.000349</td>
-      <td>0.003279</td>
-      <td>0.248737</td>
-      <td>0.000273</td>
+      <td>0.000517</td>
+      <td>0.004380</td>
+      <td>0.003926</td>
+      <td>0.001728</td>
+      <td>0.193429</td>
+      <td>0.469612</td>
+      <td>0.000384</td>
+      <td>0.001719</td>
+      <td>0.342186</td>
+      <td>0.000300</td>
       <td>...</td>
-      <td>1.747940</td>
-      <td>0.114120</td>
-      <td>0.534144</td>
-      <td>1.278105</td>
-      <td>0.971214</td>
-      <td>1.291732</td>
-      <td>1.099902</td>
-      <td>0.781434</td>
-      <td>1.016797</td>
-      <td>0.517829</td>
+      <td>0.972209</td>
+      <td>0.970271</td>
+      <td>3.912840</td>
+      <td>0.183416</td>
+      <td>0.740683</td>
+      <td>0.085398</td>
+      <td>0.393023</td>
+      <td>0.697785</td>
+      <td>2.302450</td>
+      <td>0.990054</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000386</td>
-      <td>0.003049</td>
-      <td>0.001335</td>
-      <td>0.000729</td>
-      <td>0.145898</td>
-      <td>0.681336</td>
-      <td>0.001091</td>
-      <td>0.001438</td>
-      <td>0.198613</td>
-      <td>0.000183</td>
+      <td>0.000543</td>
+      <td>0.006532</td>
+      <td>0.003428</td>
+      <td>0.001313</td>
+      <td>0.118057</td>
+      <td>0.160921</td>
+      <td>0.000334</td>
+      <td>0.003976</td>
+      <td>0.214027</td>
+      <td>0.000428</td>
       <td>...</td>
-      <td>0.258712</td>
-      <td>0.296962</td>
-      <td>0.163084</td>
-      <td>0.006049</td>
-      <td>0.179923</td>
-      <td>0.772564</td>
-      <td>3.183432</td>
-      <td>0.651511</td>
-      <td>0.556854</td>
-      <td>0.897929</td>
+      <td>0.696674</td>
+      <td>1.200120</td>
+      <td>0.794370</td>
+      <td>1.293151</td>
+      <td>0.898878</td>
+      <td>0.819128</td>
+      <td>0.744933</td>
+      <td>4.225101</td>
+      <td>0.237515</td>
+      <td>1.101783</td>
     </tr>
   </tbody>
 </table>
@@ -1879,7 +1912,7 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8933333333333333
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9
 </pre></div>
 </div>
 </div>
