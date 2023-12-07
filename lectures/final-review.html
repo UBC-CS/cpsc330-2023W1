@@ -61,9 +61,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/final-review';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Bonus: A high-level quick introduction to LLMs" href="A-Quick-intro-to-LLMs.html" />
+    <link rel="prev" title="Lecture 23: Deployment and conclusion" href="23_deployment-conclusion.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -153,7 +157,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../learning-objectives.html">Course Learning Objectives</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="01_intro.html">Lecture 1: Course Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="02_decision-trees.html">Lecture 2: Terminology, Baselines, Decision Trees</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_ml-fundamentals.html">Lecture 3: Machine Learning Fundamentals</a></li>
@@ -176,6 +180,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="21_communication.html">Lecture 21: Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Final review guiding questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A-Quick-intro-to-LLMs.html">Bonus: A high-level quick introduction to LLMs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -345,6 +351,13 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering">Clustering</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommender-systems">Recommender systems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-nlp">Introduction to NLP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiclass-classification-and-computer-vision">Multiclass classification and computer vision</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series">Time series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#survival-analysis">Survival analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#communication">Communication</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ethics">Ethics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment">Deployment</a></li>
 </ul>
             </nav>
         </div>
@@ -365,9 +378,9 @@ document.write(`
 <section id="clustering">
 <h2>Clustering<a class="headerlink" href="#clustering" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Why clustering?</p></li>
-<li><p>Clustering methods</p></li>
-<li><p>Clustering evaluation</p></li>
+<li><p>Why clustering and what is the problem of clustering?</p></li>
+<li><p>Compare and contrast different clustering methods.</p></li>
+<li><p>What’s the difficulty in evaluation of clustering? How do we evaluate clusters?</p></li>
 </ul>
 <table class="table">
 <thead>
@@ -379,7 +392,13 @@ document.write(`
 <tr class="row-even"><td><p>Well-separated spherical clusters</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p>Large Datasets</p></td>
+<tr class="row-odd"><td><p>Large datasets</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Flexibility with cluster shapes</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Small to medium datasets</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p>Prior knowlege on how many clusters</p></td>
@@ -391,62 +410,173 @@ document.write(`
 <tr class="row-even"><td><p>Irregularly shaped clusters</p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-odd"><td><p>Unknown number of clusters</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Clusters with different densities</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Datasets with hierarchical relationships</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>No prior knowledge on number of clusters</p></td>
+<td><p></p></td>
+</tr>
 <tr class="row-odd"><td><p>Noise and outliers</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p>Unknown number of clusters</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p>Clusters with different densities</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p>Datasets with hierarchical relationships</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p>No prior knowledge on number of clusters</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p>Flexibility with cluster shapes</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p>Small to medium datasets</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
+<ul class="simple">
+<li><p>Which clustering method would you use in each of the scenarios below? Why?</p></li>
+<li><p>How would you represent the data in each case?</p>
+<ul>
+<li><p>Scenario 1: Customer segmentation in retail</p></li>
+<li><p>Scenario 2: An environmental study aiming to identify clusters of a rare plant species</p></li>
+<li><p>Scenario 3: Clustering furniture items for inventory management and customer recommendations</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>How to decide the number of clusters?</p></li>
+<li><p>What’s the difficulty in evaluation of clustering? How do we evaluate clusters?</p></li>
+</ul>
 </section>
 <section id="recommender-systems">
 <h2>Recommender systems<a class="headerlink" href="#recommender-systems" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Problem of recommender systems</p></li>
-<li><p>Baselines</p></li>
-<li></li>
-</ul>
-<ul class="simple">
-<li><p>Which clustering method in what scenario?</p></li>
-</ul>
-<ul class="simple">
-<li><p>Why clustering and what is the problem of clustering?</p></li>
-<li><p>What are the three methods of clustering we talked about?</p></li>
-<li><p>What’s the difficulty in evaluation of clustering? How do we evaluate clusters?</p></li>
-<li><p>What’s the problem of recommender systems?</p></li>
 <li><p>What’s the utility matrix?</p></li>
 <li><p>How do we evaluate recommender systems?</p></li>
-<li><p>What are the baseline models we talked about?</p></li>
-<li><p>What are the two recommender systems methods we talked about?</p></li>
+<li><p>What are the baseline models we talked about?</p>
+<ul>
+<li><p>Global average</p></li>
+<li><p>Per user average</p></li>
+<li><p>Per item average</p></li>
+</ul>
+</li>
+<li><p>Evaluation of recommender systems</p></li>
+<li><p>Compare and contrast KNN Imputer, collaborative filtering, and content-based filtering</p></li>
+<li><p>Ethical issues associated with recommender systems</p></li>
+</ul>
+</section>
+<section id="introduction-to-nlp">
+<h2>Introduction to NLP<a class="headerlink" href="#introduction-to-nlp" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Embeddings</p>
+<ul>
 <li><p>What are different document and word representations we talked about?</p></li>
-<li><p>What do we care about creating different representations?</p></li>
+<li><p>Why do we care about creating different representations?</p></li>
 <li><p>What are pre-trained models? Why are the benefits of using them?</p></li>
+</ul>
+</li>
+<li><p>Topic modeling</p>
+<ul>
 <li><p>What is topic modeling? What are the inputs and outputs of topic modeling?</p></li>
+<li><p>How it’s different from clustering documents using a clustering model, say KMeans?</p></li>
+</ul>
+</li>
+<li><p>Text Preprocessing</p></li>
+</ul>
+</section>
+<section id="multiclass-classification-and-computer-vision">
+<h2>Multiclass classification and computer vision<a class="headerlink" href="#multiclass-classification-and-computer-vision" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
 <li><p>What’s the difference between OVR and OVO?</p></li>
-<li><p>What are the methods we saw to use pre-trained image classification models for our image classification tasks?</p></li>
-<li><p>What is time series?</p></li>
-<li><p>What’s wrong with using our usual <code class="docutils literal notranslate"><span class="pre">train_train_split</span></code> on time-series data?</p></li>
-<li><p>What are lag features?</p></li>
-<li><p>How can we forecast into the future?</p></li>
-<li><p>What’s wrong with using binary classification models on right censored data?</p></li>
+<li><p>What are the methods we saw to use pre-trained image classification models for our image classification tasks?</p>
+<ul>
+<li><p>Out of the box</p></li>
+<li><p>Using pre-trained models as feature extractors</p></li>
+<li><p>Fine-tuning pre-trained models for our task (only mentioned)</p></li>
+</ul>
+</li>
+</ul>
+<p>How would you use pre-trained model in each case below?</p>
+<ul class="simple">
+<li><p>Imagine you want to quickly develop a prototype for an app that can identify different cat breeds from photos.</p></li>
+<li><p>Suppose you’re working on a project to predict the city in Canada based on the photos of landmarks in the city, a task for which there’s limited training data available.</p></li>
+<li><p>Suppose you’re developing a system to diagnose specific types of tumors from MRI scans.</p></li>
+</ul>
+</section>
+<section id="time-series">
+<h2>Time series<a class="headerlink" href="#time-series" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>When is time series analysis appropriate?</p>
+<ul>
+<li><p>Time series analysis is used when there is a temporal aspect in the data.</p></li>
+</ul>
+</li>
+<li><p><strong>Data splitting</strong>: Data should be split based on time to avoid future data leaking into the training set.</p></li>
+<li><p><strong>Essential questions for Exploratory Data Analysis (EDA)</strong>:</p>
+<ul>
+<li><p>What is the frequency of data collection (e.g., hourly, daily)?</p></li>
+<li><p>How many time series are present within the dataset?</p></li>
+<li><p>Are there any gaps or missing values in the data?</p></li>
+</ul>
+</li>
+<li><p><strong>Feature engineering</strong></p>
+<ul>
+<li><p>Derived new features from the date/time column.</p></li>
+<li><p>Appropriately encoded features based on the chosen model.</p></li>
+<li><p>Created lag features to incorporate past values for prediction.</p></li>
+</ul>
+</li>
+<li><p><strong>Baseline model approach</strong>: Employ a simple model, such as using today’s target value to predict tomorrow’s, as a starting point for comparison.</p></li>
+<li><p><strong>Cross-Validation Method for Time Series</strong>: In <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>, use <code class="docutils literal notranslate"><span class="pre">TimeSeriesSplit</span></code> as the <code class="docutils literal notranslate"><span class="pre">cv</span></code> parameter in functions like <code class="docutils literal notranslate"><span class="pre">cross_validate</span></code> or <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> for time-appropriate validation.</p></li>
+<li><p><strong>Strategies for long-term forecasting</strong>:</p>
+<ul>
+<li><p>Generate forecasts for sequential time steps by assuming the predictions for the previous steps are accurate.</p></li>
+</ul>
+</li>
+<li><p><strong>Trends</strong></p>
+<ul>
+<li><p>A ‘days since’ feature to capture the trend over time</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="survival-analysis">
+<h2>Survival analysis<a class="headerlink" href="#survival-analysis" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>What is right-censored data?</p></li>
+<li><p>What happens when we treat right-censored data the same as “regular” data?</p>
+<ul>
+<li><p>Predicting churn vs. no churn</p></li>
+<li><p>Predicting tenure</p>
+<ul>
+<li><p>Throw away people who haven’t churned</p></li>
+<li><p>Assume everyone churns today</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Survival analysis encompasses predicting both churn and tenure and deals with censoring and can make rich and useful predictions!</p>
+<ul>
+<li><p>We can get survival curves which show the probability of survival over time.</p></li>
+<li><p>KM model <span class="math notranslate nohighlight">\(\rightarrow\)</span> doesn’t look at features</p></li>
+<li><p>CPH model <span class="math notranslate nohighlight">\(\rightarrow\)</span> like linear regression, does look at the features and provides coefficients associated with each feature</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="communication">
+<h2>Communication<a class="headerlink" href="#communication" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Why is communication important in ML and Data Science?</p></li>
 <li><p>What are different principles of good explanation?</p></li>
 <li><p>What to watch out for when producing or consuming visualizations?</p></li>
+</ul>
+</section>
+<section id="ethics">
+<h2>Ethics<a class="headerlink" href="#ethics" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Bias and fairness</p></li>
+</ul>
+</section>
+<section id="deployment">
+<h2>Deployment<a class="headerlink" href="#deployment" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Deploying a model as a web app</p></li>
+<li><p>Deploying a model as a REST API</p></li>
 </ul>
 </section>
 </section>
@@ -482,6 +612,24 @@ document.write(`
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="23_deployment-conclusion.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lecture 23: Deployment and conclusion</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="A-Quick-intro-to-LLMs.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Bonus: A high-level quick introduction to LLMs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -502,6 +650,13 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering">Clustering</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommender-systems">Recommender systems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-nlp">Introduction to NLP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiclass-classification-and-computer-vision">Multiclass classification and computer vision</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series">Time series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#survival-analysis">Survival analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#communication">Communication</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ethics">Ethics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment">Deployment</a></li>
 </ul>
   </nav></div>
 

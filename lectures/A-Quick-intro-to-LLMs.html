@@ -1,0 +1,957 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Bonus: A high-level quick introduction to LLMs &#8212; CPSC 330 Applied Machine Learning 2023W1</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/A-Quick-intro-to-LLMs';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lecture 3: Class demo" href="class_demos/03_class-demo.html" />
+    <link rel="prev" title="Final review guiding questions" href="final-review.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/UBC-CS-logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/UBC-CS-logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Things you should know</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/README.html">CPSC 330 Documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../learning-objectives.html">Course Learning Objectives</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_intro.html">Lecture 1: Course Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_decision-trees.html">Lecture 2: Terminology, Baselines, Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_ml-fundamentals.html">Lecture 3: Machine Learning Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_kNNs-SVM-RBF.html">Lecture 4: <span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbours and SVM RBFs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_preprocessing-pipelines.html">Lecture 5: Preprocessing and <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_column-transformer-text-feats.html">Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_linear-models.html">Lecture 7: Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_hyperparameter-optimization.html">Lecture 8: Hyperparameter Optimization and Optimization Bias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_classification-metrics.html">Lecture 9: Classification metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_regression-metrics.html">Lecture 10: Regression metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_ensembles.html">Lecture 11: Ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_feat-importances.html">Lecture 12: Feature importances and model transparency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_feature-engineering-selection.html">Lecture 13: Feature engineering and feature selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_K-Means.html">Lecture 14: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_DBSCAN-hierarchical.html">Lecture 15: More Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_recommender-systems.html">Lecture 16: Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_natural-language-processing.html">Lecture 17: Introduction to natural language processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_intro_to_computer-vision.html">Lecture 18: Multi-class classification and introduction to computer vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_time-series.html">Lecture 19: Time series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_communication.html">Lecture 21: Communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="final-review.html">Final review guiding questions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Bonus: A high-level quick introduction to LLMs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="class_demos/03_class-demo.html">Lecture 3: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/04_class-demo.html">Lecture 4: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/05-06_class-demo.html">Lectures 5 and 6: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/07_class-demo.html">Lectures 7: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/09_class-demo.html">Exploring classification metrics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="class_demos/14_class-demo.html">Lecture 14: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/15_class-demo.html">Lecture 15: Class demo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Appendix-A.html">Appendix A</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Appendix-B.html">Appendix-B</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../attribution.html">Attributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">LICENSE</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lectures/A-Quick-intro-to-LLMs.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Bonus: A high-level quick introduction to LLMs</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-language-model">What is a language model?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-model-of-language">A simple model of language</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#long-distance-dependencies">Long-distance dependencies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformers-library">🤗 Transformers library</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-pre-trained-transformer-models">Using pre-trained transformer models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prompts">Prompts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#increase-in-size-of-language-models">Increase in size of language models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#harms-of-large-language-models">Harms of large language models</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p><img alt="" src="../_images/330-banner.png" /></p>
+<section class="tex2jax_ignore mathjax_ignore" id="bonus-a-high-level-quick-introduction-to-llms">
+<h1>Bonus: A high-level quick introduction to LLMs<a class="headerlink" href="#bonus-a-high-level-quick-introduction-to-llms" title="Permalink to this heading">#</a></h1>
+<p>UBC 2022-23</p>
+<p>Instructor: Varada Kolhatkar</p>
+<section id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">os</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">),</span> <span class="s2">&quot;code&quot;</span><span class="p">))</span>
+<span class="kn">from</span> <span class="nn">plotting_functions</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_colwidth&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="what-is-a-language-model">
+<h2>What is a language model?<a class="headerlink" href="#what-is-a-language-model" title="Permalink to this heading">#</a></h2>
+<p>How would you complete the sentence below?</p>
+<p>I am ___</p>
+<p><br><br><br><br></p>
+<p>A language model computes the probability distribution over sequences (of words or characters). Intuitively, this probability tells us how “good” or plausible a sequence of words is.</p>
+<p><img alt="" src="../_images/voice-assistant-ex.png" /></p>
+<p><img alt="" src="../_images/smart-compose.gif" /></p>
+<p>Humans aren’t good at providing calibrated probabilities for arbitrary texts. What if we ask this to billions of people and calculate probabilities based on the frequencies of words?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Words to display on the y-axis</span>
+<span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;happy&quot;</span><span class="p">,</span> <span class="s2">&quot;tired&quot;</span><span class="p">,</span> <span class="s2">&quot;hungry&quot;</span><span class="p">,</span> <span class="s2">&quot;smart&quot;</span><span class="p">,</span> <span class="s2">&quot;bird&quot;</span><span class="p">,</span> <span class="s2">&quot;machine&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">]</span>
+
+<span class="c1"># Hypothetical probabilities for each word following &quot;I am&quot;</span>
+<span class="n">probabilities</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">]</span>
+<span class="n">show_made_up_probs</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">probabilities</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/746252d950f7f2ec7c8d53896b6c0eefbfb9c76ed6a5bd2e7a18c09b58d8b993.png" src="../_images/746252d950f7f2ec7c8d53896b6c0eefbfb9c76ed6a5bd2e7a18c09b58d8b993.png" />
+</div>
+</div>
+</section>
+<section id="a-simple-model-of-language">
+<h2>A simple model of language<a class="headerlink" href="#a-simple-model-of-language" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Calculate the co-occurrence frequencies and probabilities based on these frequencies</p></li>
+<li><p>Predict the next word based on these probabilities</p></li>
+</ul>
+<p><img alt="" src="../_images/Markov-bigram-probs.png" /></p>
+</section>
+<section id="long-distance-dependencies">
+<h2>Long-distance dependencies<a class="headerlink" href="#long-distance-dependencies" title="Permalink to this heading">#</a></h2>
+<p>What are some reasonable predictions for the next word in the sequence?</p>
+<blockquote>
+<div><p>I am studying law at the University of British Columbia Point Grey campus in Vancouver because I want to work as a ___</p>
+</div></blockquote>
+<p>Markov model is unable to capture such long-distance dependencies in language.</p>
+<p>Enter attention and transformer models! All current LLMs are based on transformer-based architectures under the hood.</p>
+<p><img alt="" src="../_images/baby-chatGPT-ex.png" /></p>
+<ul class="simple">
+<li><p>The most important component of transformer models is self-attention which is inspired by the idea of human attention.</p></li>
+<li><p>The attention weights are learned during the training process. They reflect the relative - importance of each word with respect to the task at hand.</p></li>
+<li><p>ChatGPT fine tunes next word prediction on Q&amp;A task (instruction tuning and RLHF)</p></li>
+<li><p>The context or the “prompt” we provide guides the prediction.</p></li>
+</ul>
+<p><br><br><br><br></p>
+</section>
+<section id="transformers-library">
+<h2><a class="reference external" href="https://huggingface.co/docs/transformers/index">🤗 Transformers library</a><a class="headerlink" href="#transformers-library" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The Hugging Face Transformers library is a popular open-source Python library for working with transformer models.</p></li>
+<li><p>It provides a wide range of pre-trained transformer models which have achieved top performance in many state-of-the-art NLP tasks.</p></li>
+<li><p>It provides</p>
+<ul>
+<li><p>an easy-to-use API that allows using these pre-trained models off-the-shelf for tasks such as text classification, question answering, named entity recognition, or machine translation.</p></li>
+<li><p>an easy-to-use API that allows developers to fine-tune pre-trained transformer models on their own NLP tasks.</p></li>
+</ul>
+</li>
+<li><p>It also includes utilities for tokenization, model inference, and training and other useful features for model visualization, model comparison, and model sharing via the Hugging Face model hub.</p></li>
+<li><p>It supports various deep learning frameworks such as PyTorch and TensorFlow and provides a unified inferface to working with transformer models across these frameworks.</p></li>
+<li><p>Excellent documentation and very useful tool for NLP practioners and researchers</p></li>
+</ul>
+<section id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h3>
+<p>First, install the library if it’s not already in your course environment. On the command line, activate the course environment and install the library. <a class="reference external" href="https://huggingface.co/docs/transformers/installation">Here</a> you will find installation instructions.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">transformers</span></code></p>
+</section>
+<section id="using-pre-trained-transformer-models">
+<h3>Using pre-trained transformer models<a class="headerlink" href="#using-pre-trained-transformer-models" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Let’s try sentiment analysis with pre-trained models.</p></li>
+<li><p>An easiest way to get started with using pre-trained transformer models is using <a class="reference external" href="https://huggingface.co/docs/transformers/pipeline_tutorial">pipelines</a> which abstracts many things away from the user.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">pipeline</span>
+
+<span class="n">input_text</span> <span class="o">=</span> <span class="s2">&quot;CPSC330-2023W1 students are the best!&quot;</span>
+<span class="n">sentiment_classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;sentiment-analysis&quot;</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">sentiment_classifier</span><span class="p">(</span><span class="n">input_text</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No model was supplied, defaulted to distilbert-base-uncased-finetuned-sst-2-english and revision af0f99b (https://huggingface.co/distilbert-base-uncased-finetuned-sst-2-english).
+Using a pipeline without specifying a model name and revision in production is not recommended.
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>POSITIVE</td>
+      <td>0.999864</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Right now it’s using the default pre-trained model. You can use a model is more suitable for your specific language or data.</p>
+<p>You can also pass a list of documents to the pipeline.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sentiment_classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;sentiment-analysis&quot;</span><span class="p">)</span>
+<span class="n">input_text</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;CPSC330-2023W1 students are the best!&quot;</span><span class="p">,</span> <span class="s2">&quot;I am sad that this is the last lecture of the course.&quot;</span><span class="p">]</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">sentiment_classifier</span><span class="p">(</span><span class="n">input_text</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No model was supplied, defaulted to distilbert-base-uncased-finetuned-sst-2-english and revision af0f99b (https://huggingface.co/distilbert-base-uncased-finetuned-sst-2-english).
+Using a pipeline without specifying a model name and revision in production is not recommended.
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>POSITIVE</td>
+      <td>0.999864</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NEGATIVE</td>
+      <td>0.999641</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>You can also explicitly specify the pre-trained model you want to use specific to your data. For example, if you want to do sentiment analysis on Twitter data, it’s better to use a model trained on twitter data.
+There are more than 1000 sentiment analysis models publicly available on <a class="reference external" href="https://huggingface.co/models">the Hub</a> and integrating them with Python just a few lines of code. Let’s just go with one of the most commonly used model for sentiment analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;distilbert-base-uncased-finetuned-sst-2-english&quot;</span>
+<span class="n">sentiment_classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;sentiment-analysis&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model_name</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">sentiment_classifier</span><span class="p">(</span><span class="n">input_text</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>POSITIVE</td>
+      <td>0.999864</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NEGATIVE</td>
+      <td>0.999641</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="prompts">
+<h3>Prompts<a class="headerlink" href="#prompts" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Up until recently, language models were only a component of a large system such as speech recognition system or machine translation system.</p></li>
+<li><p>Now they are becoming more capable of being a standalone system.</p></li>
+<li><p>Language models are capable of conditional generation. So they are capable of generating completion given a prompt.<br />
+$<span class="math notranslate nohighlight">\(\text{prompt} \rightarrow \text{completion}\)</span>$</p></li>
+<li><p>This simple interface opens up lets us use language models for a variety of tasks by just changing the prompt.</p></li>
+<li><p>Let’s try a couple of prompts with the T5 encoder decoder language model.</p></li>
+<li><p>The following examples are based on the documentation <a class="reference external" href="https://huggingface.co/docs/transformers/model_doc/t5">here</a>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModelWithLMHead</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;t5-base&#39;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelWithLMHead</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;t5-base&#39;</span><span class="p">,</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/transformers/models/t5/tokenization_t5_fast.py:160: FutureWarning: This tokenizer was incorrectly instantiated with a model max length of 512 which will be corrected in Transformers v5.
+For now, this behavior is kept to avoid breaking backwards compatibility when padding/encoding with `truncation is True`.
+- Be aware that you SHOULD NOT rely on t5-base automatically truncating your input to 512 when padding/encoding.
+- If you want to encode/pad to sequences longer than 512 you can either instantiate this tokenizer with `model_max_length` or pass `max_length` when encoding/padding.
+- To avoid this warning, please instantiate this tokenizer with `model_max_length` set to your preferred value.
+  warnings.warn(
+/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:1509: FutureWarning: The class `AutoModelWithLMHead` is deprecated and will be removed in a future version. Please use `AutoModelForCausalLM` for causal language models, `AutoModelForMaskedLM` for masked language models and `AutoModelForSeq2SeqLM` for encoder-decoder models.
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sequence</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">           A transformer is a deep learning model that adopts the mechanism of self-attention, </span>
+<span class="s1">           differentially weighting the significance of each part of the input data. </span>
+<span class="s1">           It is used primarily in the fields of natural language processing (NLP) and computer vision (CV).</span>
+<span class="s1">           Like recurrent neural networks (RNNs), transformers are designed to process sequential input data, </span>
+<span class="s1">           such as natural language, with applications towards tasks such as translation and text summarization. </span>
+<span class="s1">           However, unlike RNNs, transformers process the entire input all at once. </span>
+<span class="s1">           The attention mechanism provides context for any position in the input sequence. </span>
+<span class="s1">           For example, if the input data is a natural language sentence, </span>
+<span class="s1">           the transformer does not have to process one word at a time. </span>
+<span class="s1">           This allows for more parallelization than RNNs and therefore reduces training times.</span>
+<span class="s1">           </span>
+<span class="s1">           Transformers were introduced in 2017 by a team at Google Brain and are increasingly the model of choice </span>
+<span class="s1">           for NLP problems, replacing RNN models such as long short-term memory (LSTM). </span>
+<span class="s1">           The additional training parallelization allows training on larger datasets. </span>
+<span class="s1">           This led to the development of pretrained systems such as BERT (Bidirectional Encoder Representations from Transformers) </span>
+<span class="s1">           and GPT (Generative Pre-trained Transformer), which were trained with large language datasets, </span>
+<span class="s1">           such as the Wikipedia Corpus and Common Crawl, and can be fine-tuned for specific tasks. </span>
+<span class="s1">           </span>
+<span class="s1">           Before transformers, most state-of-the-art NLP systems relied on gated RNNs, </span>
+<span class="s1">           such as LSTMs and gated recurrent units (GRUs), with added attention mechanisms. </span>
+<span class="s1">           Transformers also make use of attention mechanisms but, unlike RNNs, do not have a recurrent structure. </span>
+<span class="s1">           This means that provided with enough training data, attention mechanisms alone can match the performance </span>
+<span class="s1">           of RNNs with attention.</span>
+<span class="s1">           </span>
+<span class="s1">           Gated RNNs process tokens sequentially, maintaining a state vector that contains </span>
+<span class="s1">           a representation of the data seen prior to the current token. To process the </span>
+<span class="s1">           nth token, the model combines the state representing the sentence up to token n-1 with the information </span>
+<span class="s1">           of the new token to create a new state, representing the sentence up to token n. </span>
+<span class="s1">           Theoretically, the information from one token can propagate arbitrarily far down the sequence, </span>
+<span class="s1">           if at every point the state continues to encode contextual information about the token. </span>
+<span class="s1">           In practice this mechanism is flawed: the vanishing gradient problem leaves the model&#39;s state at </span>
+<span class="s1">           the end of a long sentence without precise, extractable information about preceding tokens. </span>
+<span class="s1">           The dependency of token computations on the results of previous token computations also makes it hard </span>
+<span class="s1">           to parallelize computation on modern deep-learning hardware. This can make the training of RNNs inefficient.</span>
+<span class="s1">           </span>
+<span class="s1">           These problems were addressed by attention mechanisms. Attention mechanisms let a model draw </span>
+<span class="s1">           from the state at any preceding point along the sequence. The attention layer can access </span>
+<span class="s1">           all previous states and weigh them according to a learned measure of relevance, providing </span>
+<span class="s1">           relevant information about far-away tokens.</span>
+<span class="s1">           </span>
+<span class="s1">           A clear example of the value of attention is in language translation, where context is essential </span>
+<span class="s1">           to assign the meaning of a word in a sentence. In an English-to-French translation system, </span>
+<span class="s1">           the first word of the French output most probably depends heavily on the first few words of the English input. </span>
+<span class="s1">           However, in a classic LSTM model, in order to produce the first word of the French output, the model </span>
+<span class="s1">           is given only the state vector after processing the last English word. Theoretically, this vector can encode </span>
+<span class="s1">           information about the whole English sentence, giving the model all the necessary knowledge. </span>
+<span class="s1">           In practice, this information is often poorly preserved by the LSTM. </span>
+<span class="s1">           An attention mechanism can be added to address this problem: the decoder is given access to the state vectors of every English input word, </span>
+<span class="s1">           not just the last, and can learn attention weights that dictate how much to attend to each English input state vector.</span>
+<span class="s1">            &#39;&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;summarize: &quot;</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">prompt</span> <span class="o">+</span> <span class="n">sequence</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_ids</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">length_penalty</span><span class="o">=</span><span class="mf">5.</span><span class="p">,</span> <span class="n">num_beams</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">summary_ids</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[    0,     3,     9, 19903,    19,     3,     9,  1659,  1036,   825,
+            24,  4693,     7,     8,  8557,    13,  1044,    18, 25615,     3,
+             5,  9770,     3,    60, 14907, 24228,  5275,    41, 14151,   567,
+             7,   201, 19903,     7,   433,     8,  1297,  3785,    66,    44,
+           728,     3,     5,     8,  1388,  8557,   795,  2625,    21,   136,
+          1102,    16,     8,  3785,  5932,     3,     5, 19903,     7,   130,
+          3665,    16,  1233,    57,     3,     9,   372,    44, 10283,  2241,
+             3,     5,     8,  1388,  8557,    19,  1126,    12,    24,    13,
+             3,     9,     3,    60, 14907, 24228,  1229,    41, 14151,   567,
+            61,     1]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">summary_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;&lt;pad&gt; a transformer is a deep learning model that adopts the mechanism of self-attention. unlike recurrent neural networks (RNNs), transformers process the entire input all at once. the attention mechanism provides context for any position in the input sequence. transformers were introduced in 2017 by a team at google brain. the attention mechanism is similar to that of a recurrent neural network (RNN)&lt;/s&gt;&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+<p>Let’s try translation with the same model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">input_ids</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="s2">&quot;translate English to German: The house is wonderful.&quot;</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">input_ids</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="s2">&quot;Das Haus ist wunderbar.&quot;</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">input_ids</span>
+<span class="n">labels</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[  644,  4598,   229, 19250,     5,     1]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Das Haus ist wunderbar.&lt;/s&gt;&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br><br><br></p>
+</section>
+<section id="increase-in-size-of-language-models">
+<h3>Increase in size of language models<a class="headerlink" href="#increase-in-size-of-language-models" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The model sizes have increased by an order of 500x over the last 4 years.</p></li>
+</ul>
+<p><img alt="" src="../_images/model-sizes.png" /></p>
+<p><a class="reference external" href="https://stanford-cs324.github.io/winter2022/lectures/introduction/">Source</a></p>
+</section>
+<section id="harms-of-large-language-models">
+<h3>Harms of large language models<a class="headerlink" href="#harms-of-large-language-models" title="Permalink to this heading">#</a></h3>
+<p>While these models are super powerful and useful, be mindful of the harms caused by these models. Some of the harms as summarized <a class="reference external" href="https://stanford-cs324.github.io/winter2022/lectures/harms-1/">here</a> are:</p>
+<ul class="simple">
+<li><p>performance disparties</p></li>
+<li><p>social biases and stereotypes</p></li>
+<li><p>toxicity</p></li>
+<li><p>misinformation</p></li>
+<li><p>security and privacy risks</p></li>
+<li><p>copyright and legal protections</p></li>
+<li><p>environmental impact</p></li>
+<li><p>centralization of power</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "cpsc330"
+        },
+        kernelOptions: {
+            name: "cpsc330",
+            path: "./lectures"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'cpsc330'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="final-review.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Final review guiding questions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="class_demos/03_class-demo.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lecture 3: Class demo</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-language-model">What is a language model?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-model-of-language">A simple model of language</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#long-distance-dependencies">Long-distance dependencies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformers-library">🤗 Transformers library</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-pre-trained-transformer-models">Using pre-trained transformer models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prompts">Prompts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#increase-in-size-of-language-models">Increase in size of language models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#harms-of-large-language-models">Harms of large language models</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Varada Kolhatkar
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
