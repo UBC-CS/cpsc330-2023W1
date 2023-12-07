@@ -175,6 +175,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../17_natural-language-processing.html">Lecture 17: Introduction to natural language processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../18_intro_to_computer-vision.html">Lecture 18: Multi-class classification and introduction to computer vision</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../19_time-series.html">Lecture 19: Time series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../21_communication.html">Lecture 21: Communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="current nav bd-sidenav">
@@ -383,12 +386,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -402,6 +399,20 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 <span class="kn">from</span> <span class="nn">torchvision.models</span> <span class="kn">import</span> <span class="n">vgg16</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda:0&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">os</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">torch</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">transforms</span><span class="p">,</span> <span class="n">utils</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;torch&#39;
 </pre></div>
 </div>
 </div>
@@ -966,36 +977,36 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.004760</td>
-      <td>0.000708</td>
+      <td>0.000977</td>
+      <td>0.000544</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000191</td>
-      <td>0.000235</td>
+      <td>0.000206</td>
+      <td>0.000222</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000164</td>
-      <td>0.000210</td>
+      <td>0.000172</td>
+      <td>0.000208</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000152</td>
-      <td>0.000202</td>
+      <td>0.000154</td>
+      <td>0.000201</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000149</td>
-      <td>0.000200</td>
+      <td>0.000147</td>
+      <td>0.000197</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
@@ -1044,36 +1055,36 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000803</td>
-      <td>0.114997</td>
+      <td>0.001140</td>
+      <td>0.103175</td>
       <td>0.966667</td>
       <td>0.991667</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000514</td>
-      <td>0.003168</td>
+      <td>0.000966</td>
+      <td>0.008489</td>
       <td>1.000000</td>
       <td>0.991667</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000363</td>
-      <td>0.002012</td>
+      <td>0.000513</td>
+      <td>0.001647</td>
       <td>0.933333</td>
       <td>0.983333</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000356</td>
-      <td>0.001889</td>
+      <td>0.000501</td>
+      <td>0.002283</td>
       <td>0.933333</td>
       <td>0.991667</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000354</td>
-      <td>0.001947</td>
+      <td>0.000355</td>
+      <td>0.001255</td>
       <td>0.933333</td>
       <td>1.000000</td>
     </tr>

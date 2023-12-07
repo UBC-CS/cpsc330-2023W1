@@ -499,31 +499,23 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">time</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">),</span> <span class="s2">&quot;code&quot;</span><span class="p">))</span>
-<span class="ne">----&gt; </span><span class="mi">9</span> <span class="kn">from</span> <span class="nn">plotting_functions_unsup</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="kn">import</span> <span class="nn">IPython</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">CS</span><span class="o">/</span><span class="mi">2023</span><span class="o">-</span><span class="mi">24</span><span class="o">/</span><span class="mi">330</span><span class="o">/</span><span class="n">cpsc330</span><span class="o">-</span><span class="mi">2023</span><span class="n">W1</span><span class="o">/</span><span class="n">lectures</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">plotting_functions_unsup</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;seaborn&#39;
-</pre></div>
-</div>
+<img alt="../_images/ede31fb3dddb599bde8532da1b015308c29499f2936b57423003d4298b22bd34.png" src="../_images/ede31fb3dddb599bde8532da1b015308c29499f2936b57423003d4298b22bd34.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
 <span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package stopwords to
+[nltk_data]     /Users/kvarada/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
@@ -656,6 +648,91 @@ MILK DRINKERS ARE TURNING TO POWDER
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># It&#39;ll take a while to run this when you try it out for the first time.</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">gensim.downloader</span> <span class="k">as</span> <span class="nn">api</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">google_news_vectors</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;word2vec-google-news-300&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/gensim/downloader.py:503,</span> in <span class="ni">load</span><span class="nt">(name, return_path)</span>
+<span class="g g-Whitespace">    </span><span class="mi">501</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">BASE_DIR</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">502</span> <span class="n">module</span> <span class="o">=</span> <span class="nb">__import__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">503</span> <span class="k">return</span> <span class="n">module</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+
+<span class="nn">File ~/gensim-data/word2vec-google-news-300/__init__.py:8,</span> in <span class="ni">load_data</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">def</span> <span class="nf">load_data</span><span class="p">():</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="s1">&#39;word2vec-google-news-300&#39;</span><span class="p">,</span> <span class="s2">&quot;word2vec-google-news-300.gz&quot;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">8</span>     <span class="n">model</span> <span class="o">=</span> <span class="n">KeyedVectors</span><span class="o">.</span><span class="n">load_word2vec_format</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="k">return</span> <span class="n">model</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/gensim/models/keyedvectors.py:1719,</span> in <span class="ni">KeyedVectors.load_word2vec_format</span><span class="nt">(cls, fname, fvocab, binary, encoding, unicode_errors, limit, datatype, no_header)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1672</span> <span class="nd">@classmethod</span>
+<span class="g g-Whitespace">   </span><span class="mi">1673</span> <span class="k">def</span> <span class="nf">load_word2vec_format</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1674</span>         <span class="bp">cls</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">fvocab</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">,</span> <span class="n">unicode_errors</span><span class="o">=</span><span class="s1">&#39;strict&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1675</span>         <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">REAL</span><span class="p">,</span> <span class="n">no_header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1676</span>     <span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1677</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Load KeyedVectors from a file produced by the original C word2vec-tool format.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1678</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1679</span><span class="sd">     Warnings</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1717</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1718</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1719</span>     <span class="k">return</span> <span class="n">_load_word2vec_format</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1720</span>         <span class="bp">cls</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">fvocab</span><span class="o">=</span><span class="n">fvocab</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="n">binary</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="n">unicode_errors</span><span class="o">=</span><span class="n">unicode_errors</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1721</span>         <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">datatype</span><span class="p">,</span> <span class="n">no_header</span><span class="o">=</span><span class="n">no_header</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1722</span>     <span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/gensim/models/keyedvectors.py:2065,</span> in <span class="ni">_load_word2vec_format</span><span class="nt">(cls, fname, fvocab, binary, encoding, unicode_errors, limit, datatype, no_header, binary_chunk_size)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2062</span> <span class="n">kv</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">vector_size</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">datatype</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2064</span> <span class="k">if</span> <span class="n">binary</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2065</span>     <span class="n">_word2vec_read_binary</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2066</span>         <span class="n">fin</span><span class="p">,</span> <span class="n">kv</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">vector_size</span><span class="p">,</span> <span class="n">datatype</span><span class="p">,</span> <span class="n">unicode_errors</span><span class="p">,</span> <span class="n">binary_chunk_size</span><span class="p">,</span> <span class="n">encoding</span>
+<span class="g g-Whitespace">   </span><span class="mi">2067</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2068</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2069</span>     <span class="n">_word2vec_read_text</span><span class="p">(</span><span class="n">fin</span><span class="p">,</span> <span class="n">kv</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">vector_size</span><span class="p">,</span> <span class="n">datatype</span><span class="p">,</span> <span class="n">unicode_errors</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/gensim/models/keyedvectors.py:1960,</span> in <span class="ni">_word2vec_read_binary</span><span class="nt">(fin, kv, counts, vocab_size, vector_size, datatype, unicode_errors, binary_chunk_size, encoding)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1958</span> <span class="n">new_chunk</span> <span class="o">=</span> <span class="n">fin</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">binary_chunk_size</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1959</span> <span class="n">chunk</span> <span class="o">+=</span> <span class="n">new_chunk</span>
+<span class="ne">-&gt; </span><span class="mi">1960</span> <span class="n">processed_words</span><span class="p">,</span> <span class="n">chunk</span> <span class="o">=</span> <span class="n">_add_bytes_to_kv</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1961</span>     <span class="n">kv</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">chunk</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">vector_size</span><span class="p">,</span> <span class="n">datatype</span><span class="p">,</span> <span class="n">unicode_errors</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1962</span> <span class="n">tot_processed_words</span> <span class="o">+=</span> <span class="n">processed_words</span>
+<span class="g g-Whitespace">   </span><span class="mi">1963</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_chunk</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">binary_chunk_size</span><span class="p">:</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/gensim/models/keyedvectors.py:1943,</span> in <span class="ni">_add_bytes_to_kv</span><span class="nt">(kv, counts, chunk, vocab_size, vector_size, datatype, unicode_errors, encoding)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1941</span> <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1942</span> <span class="n">vector</span> <span class="o">=</span> <span class="n">frombuffer</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">i_vector</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="n">vector_size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">REAL</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">datatype</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1943</span> <span class="n">_add_word_to_kv</span><span class="p">(</span><span class="n">kv</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">vector</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1944</span> <span class="n">start</span> <span class="o">=</span> <span class="n">i_vector</span> <span class="o">+</span> <span class="n">bytes_per_vector</span>
+<span class="g g-Whitespace">   </span><span class="mi">1945</span> <span class="n">processed_words</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/gensim/models/keyedvectors.py:1911,</span> in <span class="ni">_add_word_to_kv</span><span class="nt">(kv, counts, word, weights, vocab_size)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1909</span>     <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;duplicate word &#39;</span><span class="si">%s</span><span class="s2">&#39; in word2vec file, ignoring all but first&quot;</span><span class="p">,</span> <span class="n">word</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1910</span>     <span class="k">return</span>
+<span class="ne">-&gt; </span><span class="mi">1911</span> <span class="n">word_id</span> <span class="o">=</span> <span class="n">kv</span><span class="o">.</span><span class="n">add_vector</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1913</span> <span class="k">if</span> <span class="n">counts</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1914</span>     <span class="c1"># Most common scenario: no vocab file given. Just make up some bogus counts, in descending order.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1915</span>     <span class="c1"># TODO (someday): make this faking optional, include more realistic (Zipf-based) fake numbers.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1916</span>     <span class="n">word_count</span> <span class="o">=</span> <span class="n">vocab_size</span> <span class="o">-</span> <span class="n">word_id</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/gensim/models/keyedvectors.py:526,</span> in <span class="ni">KeyedVectors.add_vector</span><span class="nt">(self, key, vector)</span>
+<span class="g g-Whitespace">    </span><span class="mi">523</span>         <span class="n">mean</span> <span class="o">=</span> <span class="n">matutils</span><span class="o">.</span><span class="n">unitvec</span><span class="p">(</span><span class="n">mean</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">REAL</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">524</span>     <span class="k">return</span> <span class="n">mean</span>
+<span class="ne">--&gt; </span><span class="mi">526</span> <span class="k">def</span> <span class="nf">add_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">vector</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">527</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Add one new vector at the given key, into existing slot if available.</span>
+<span class="g g-Whitespace">    </span><span class="mi">528</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">529</span><span class="sd">     Warning: using this repeatedly is inefficient, requiring a full reallocation &amp; copy,</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">545</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">546</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">547</span>     <span class="n">target_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_index</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -691,6 +768,86 @@ MILK DRINKERS ARE TURNING TO POWDER
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Italy : pizza :: Japan : ?
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Analogy word</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sushi</td>
+      <td>0.542754</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ramen</td>
+      <td>0.541916</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>bento</td>
+      <td>0.539965</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>teriyaki</td>
+      <td>0.502705</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>yakisoba</td>
+      <td>0.502351</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>takoyaki</td>
+      <td>0.501550</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>onigiri</td>
+      <td>0.501540</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>burger</td>
+      <td>0.495270</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>ramen_noodle</td>
+      <td>0.493126</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>noodle</td>
+      <td>0.490753</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <section id="id3">
 <h3>Word embeddings<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
@@ -787,6 +944,11 @@ Canada (A.G.) v. Igloo Vikski Inc. was a tariff code case that made its way to t
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Euclidean Distance: 5.1962
+</pre></div>
+</div>
+</div>
 </div>
 <p>dot product similarity: $<span class="math notranslate nohighlight">\(similarity_{dot product}(vec1,vec2) = vec1.vec2\)</span>$</p>
 <div class="cell docutils container">
@@ -794,6 +956,11 @@ Canada (A.G.) v. Igloo Vikski Inc. was a tariff code case that made its way to t
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dot Product</span>
 <span class="n">dot_product</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span> <span class="n">vec2</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dot Product: </span><span class="si">{</span><span class="n">dot_product</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dot Product: 14.0000
 </pre></div>
 </div>
 </div>
@@ -812,6 +979,11 @@ $<span class="math notranslate nohighlight">\(\left\lVert vec2\right\rVert_2 = \
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cosine Similarity</span>
 <span class="n">cosine_similarity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span> <span class="n">vec2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vec1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vec2</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cosine Similarity: </span><span class="si">{</span><span class="n">cosine_similarity</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cosine Similarity: 0.5098
 </pre></div>
 </div>
 </div>
@@ -933,6 +1105,12 @@ $<span class="math notranslate nohighlight">\(\left\lVert vec2\right\rVert_2 = \
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Size of the vocabulary: 12
+{&#39;.&#39;: 0, &#39;2,430&#39;: 1, &#39;?&#39;: 2, &#39;height&#39;: 3, &#39;how&#39;: 4, &#39;is&#39;: 5, &#39;m&#39;: 6, &#39;machu_picchu&#39;: 7, &#39;of&#39;: 8, &#39;official&#39;: 9, &#39;tall&#39;: 10, &#39;the&#39;: 11}
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -944,11 +1122,243 @@ $<span class="math notranslate nohighlight">\(\left\lVert vec2\right\rVert_2 = \
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>11</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>.</th>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2,430</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>?</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>height</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>how</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>is</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>m</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>machu_picchu</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>of</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>official</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>tall</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>the</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_cosine_similarity</span><span class="p">(</span><span class="n">ohe_df</span><span class="p">,</span> <span class="s2">&quot;tall&quot;</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">)</span>
 <span class="n">print_cosine_similarity</span><span class="p">(</span><span class="n">ohe_df</span><span class="p">,</span> <span class="s2">&quot;tall&quot;</span><span class="p">,</span> <span class="s2">&quot;official&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The dot product between tall and height: 0.00 and cosine similarity is: 0.00
+The dot product between tall and official: 0.00 and cosine similarity is: 0.00
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_21121/929304889.py:24: DeprecationWarning:
+
+Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+
+/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_21121/929304889.py:24: DeprecationWarning:
+
+Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
 </pre></div>
 </div>
 </div>
@@ -1064,11 +1474,193 @@ $<span class="math notranslate nohighlight">\(similarity_{cosine}(w_1,w_2) = \fr
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tall</th>
+      <th>machu</th>
+      <th>picchu</th>
+      <th>13.164</th>
+      <th>degrees</th>
+      <th>south</th>
+      <th>equator</th>
+      <th>official</th>
+      <th>height</th>
+      <th>2,430</th>
+      <th>...</th>
+      <th>mean</th>
+      <th>sea</th>
+      <th>level</th>
+      <th>1,000</th>
+      <th>3,300</th>
+      <th>ft</th>
+      <th>lower</th>
+      <th>elevation</th>
+      <th>3,400</th>
+      <th>11,200</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>tall</th>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>machu</th>
+      <td>1</td>
+      <td>0</td>
+      <td>5</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>picchu</th>
+      <td>1</td>
+      <td>5</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>13.164</th>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>degrees</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 32 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_cosine_similarity</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;tall&quot;</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">)</span>
 <span class="n">print_cosine_similarity</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;tall&quot;</span><span class="p">,</span> <span class="s2">&quot;official&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The dot product between tall and height: 2.00 and cosine similarity is: 0.82
+The dot product between tall and official: 1.00 and cosine similarity is: 0.50
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_21121/929304889.py:24: DeprecationWarning:
+
+Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+
+/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_21121/929304889.py:24: DeprecationWarning:
+
+Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
 </pre></div>
 </div>
 </div>
@@ -1101,6 +1693,11 @@ $<span class="math notranslate nohighlight">\(similarity_{cosine}(w_1,w_2) = \fr
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of sentences in the corpus:  691
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1113,11 +1710,337 @@ $<span class="math notranslate nohighlight">\(similarity_{cosine}(w_1,w_2) = \fr
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>machu</th>
+      <th>picchu</th>
+      <th>15th-century</th>
+      <th>inca</th>
+      <th>citadel</th>
+      <th>located</th>
+      <th>eastern</th>
+      <th>cordillera</th>
+      <th>southern</th>
+      <th>peru</th>
+      <th>...</th>
+      <th>comprehensive</th>
+      <th>overview</th>
+      <th>cbc</th>
+      <th>digital</th>
+      <th>archives</th>
+      <th>boondoggles</th>
+      <th>elephants</th>
+      <th>campaigning</th>
+      <th>compared</th>
+      <th>textbook</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>machu</th>
+      <td>0</td>
+      <td>79</td>
+      <td>1</td>
+      <td>5</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>picchu</th>
+      <td>79</td>
+      <td>0</td>
+      <td>1</td>
+      <td>6</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>15th-century</th>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>inca</th>
+      <td>5</td>
+      <td>6</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>citadel</th>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>boondoggles</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>elephants</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>campaigning</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>compared</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>textbook</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>4074 rows × 4074 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_cosine_similarity</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;tall&quot;</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">)</span>
 <span class="n">print_cosine_similarity</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;tall&quot;</span><span class="p">,</span> <span class="s2">&quot;south&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The dot product between tall and height: 21.00 and cosine similarity is: 0.36
+The dot product between tall and south: 2.00 and cosine similarity is: 0.05
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_21121/929304889.py:24: DeprecationWarning:
+
+Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+
+/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_21121/929304889.py:24: DeprecationWarning:
+
+Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
 </pre></div>
 </div>
 </div>
@@ -1211,6 +2134,11 @@ $<span class="math notranslate nohighlight">\(similarity_{cosine}(w_1,w_2) = \fr
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;fasttext-wiki-news-subwords-300&#39;, &#39;conceptnet-numberbatch-17-06-300&#39;, &#39;word2vec-ruscorpora-300&#39;, &#39;word2vec-google-news-300&#39;, &#39;glove-wiki-gigaword-50&#39;, &#39;glove-wiki-gigaword-100&#39;, &#39;glove-wiki-gigaword-200&#39;, &#39;glove-wiki-gigaword-300&#39;, &#39;glove-twitter-25&#39;, &#39;glove-twitter-50&#39;, &#39;glove-twitter-100&#39;, &#39;glove-twitter-200&#39;, &#39;__testing_word2vec-matrix-synopsis&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1222,6 +2150,11 @@ $<span class="math notranslate nohighlight">\(similarity_{cosine}(w_1,w_2) = \fr
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Size of vocabulary: &quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">google_news_vectors</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Size of vocabulary:  3000000
 </pre></div>
 </div>
 </div>
@@ -1241,10 +2174,24 @@ $<span class="math notranslate nohighlight">\(similarity_{cosine}(w_1,w_2) = \fr
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.3828125 , -0.18066406,  0.10644531,  0.4296875 ,  0.21582031,
+       -0.10693359,  0.13476562, -0.08740234, -0.14648438, -0.09619141,
+        0.02807617,  0.01409912, -0.12890625, -0.21972656, -0.41210938,
+       -0.1875    , -0.11914062, -0.22851562,  0.19433594, -0.08642578],
+      dtype=float32)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">google_news_vectors</span><span class="p">[</span><span class="s2">&quot;UBC&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(300,)
 </pre></div>
 </div>
 </div>
@@ -1262,10 +2209,38 @@ $<span class="math notranslate nohighlight">\(similarity_{cosine}(w_1,w_2) = \fr
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;UVic&#39;, 0.788647472858429),
+ (&#39;SFU&#39;, 0.7588527202606201),
+ (&#39;Simon_Fraser&#39;, 0.7356573939323425),
+ (&#39;UFV&#39;, 0.6880434155464172),
+ (&#39;VIU&#39;, 0.6778583526611328),
+ (&#39;Kwantlen&#39;, 0.6771427989006042),
+ (&#39;UBCO&#39;, 0.6734487414360046),
+ (&#39;UPEI&#39;, 0.6731125116348267),
+ (&#39;UBC_Okanagan&#39;, 0.6709135174751282),
+ (&#39;Lakehead_University&#39;, 0.662250816822052)]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">google_news_vectors</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="s2">&quot;information&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;info&#39;, 0.7363681793212891),
+ (&#39;infomation&#39;, 0.680029571056366),
+ (&#39;infor_mation&#39;, 0.6733849048614502),
+ (&#39;informaiton&#39;, 0.6639008522033691),
+ (&#39;informa_tion&#39;, 0.6601257920265198),
+ (&#39;informationon&#39;, 0.633933424949646),
+ (&#39;informationabout&#39;, 0.6320980787277222),
+ (&#39;Information&#39;, 0.6186580657958984),
+ (&#39;informaion&#39;, 0.6093292236328125),
+ (&#39;details&#39;, 0.6063088178634644)]
 </pre></div>
 </div>
 </div>
@@ -1275,6 +2250,20 @@ $<span class="math notranslate nohighlight">\(similarity_{cosine}(w_1,w_2) = \fr
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">google_news_vectors</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="s2">&quot;british_columbia&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;alberta&#39;, 0.6111123561859131),
+ (&#39;canadian&#39;, 0.6086405515670776),
+ (&#39;ontario&#39;, 0.6031432747840881),
+ (&#39;erik&#39;, 0.5993571281433105),
+ (&#39;dominican_republic&#39;, 0.5925410389900208),
+ (&#39;costco&#39;, 0.5824530720710754),
+ (&#39;rhode_island&#39;, 0.5804311037063599),
+ (&#39;dreampharmaceuticals&#39;, 0.5755444765090942),
+ (&#39;canada&#39;, 0.5630921125411987),
+ (&#39;austin&#39;, 0.5623062252998352)]
 </pre></div>
 </div>
 </div>
@@ -1288,10 +2277,20 @@ $<span class="math notranslate nohighlight">\(similarity_{cosine}(w_1,w_2) = \fr
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.27610135
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">google_news_vectors</span><span class="o">.</span><span class="n">similarity</span><span class="p">(</span><span class="s2">&quot;Japan&quot;</span><span class="p">,</span> <span class="s2">&quot;hockey&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0019627833
 </pre></div>
 </div>
 </div>
@@ -1311,6 +2310,16 @@ $<span class="math notranslate nohighlight">\(similarity_{cosine}(w_1,w_2) = \fr
         <span class="s2">&quot;The similarity between </span><span class="si">%s</span><span class="s2"> and </span><span class="si">%s</span><span class="s2"> is </span><span class="si">%0.3f</span><span class="s2">&quot;</span>
         <span class="o">%</span> <span class="p">(</span><span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">google_news_vectors</span><span class="o">.</span><span class="n">similarity</span><span class="p">(</span><span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
     <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The similarity between height and tall is 0.473
+The similarity between height and official is 0.002
+The similarity between pineapple and mango is 0.668
+The similarity between pineapple and juice is 0.418
+The similarity between sun and robot is 0.029
+The similarity between GPU and hummus is 0.094
 </pre></div>
 </div>
 </div>
@@ -1369,6 +2378,86 @@ $<span class="math notranslate nohighlight">\(similarity_{cosine}(w_1,w_2) = \fr
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>man : king :: woman : ?
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Analogy word</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>queen</td>
+      <td>0.711819</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>monarch</td>
+      <td>0.618967</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>princess</td>
+      <td>0.590243</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>crown_prince</td>
+      <td>0.549946</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>prince</td>
+      <td>0.537732</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>kings</td>
+      <td>0.523684</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Queen_Consort</td>
+      <td>0.523595</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>queens</td>
+      <td>0.518113</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>sultan</td>
+      <td>0.509859</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>monarchy</td>
+      <td>0.508741</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1376,6 +2465,86 @@ $<span class="math notranslate nohighlight">\(similarity_{cosine}(w_1,w_2) = \fr
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Montreal : Canadiens :: Vancouver : ?
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Analogy word</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Canucks</td>
+      <td>0.821327</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Vancouver_Canucks</td>
+      <td>0.750401</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Calgary_Flames</td>
+      <td>0.705471</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Leafs</td>
+      <td>0.695783</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Maple_Leafs</td>
+      <td>0.691617</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Thrashers</td>
+      <td>0.687503</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Avs</td>
+      <td>0.681716</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Sabres</td>
+      <td>0.665307</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Blackhawks</td>
+      <td>0.664625</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Habs</td>
+      <td>0.661023</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1383,6 +2552,86 @@ $<span class="math notranslate nohighlight">\(similarity_{cosine}(w_1,w_2) = \fr
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Toronto : UofT :: Vancouver : ?
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Analogy word</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>SFU</td>
+      <td>0.579245</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>UVic</td>
+      <td>0.576921</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>UBC</td>
+      <td>0.571431</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Simon_Fraser</td>
+      <td>0.543464</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Langara_College</td>
+      <td>0.541347</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>UVIC</td>
+      <td>0.520495</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Grant_MacEwan</td>
+      <td>0.517273</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>UFV</td>
+      <td>0.514150</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Ubyssey</td>
+      <td>0.510421</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Kwantlen</td>
+      <td>0.503807</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1390,6 +2639,86 @@ $<span class="math notranslate nohighlight">\(similarity_{cosine}(w_1,w_2) = \fr
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gauss : Mathematician :: Bob_Dylan : ?
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Analogy word</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>singer_songwriter_Bob_Dylan</td>
+      <td>0.505507</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Johnny_Cash</td>
+      <td>0.495035</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Randy_VanWarmer</td>
+      <td>0.490558</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Heard_Voices</td>
+      <td>0.487652</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Legendary_singer_songwriter</td>
+      <td>0.484667</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Pete_Seeger</td>
+      <td>0.478709</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Joan_Baez</td>
+      <td>0.476631</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Tillie_Olsen</td>
+      <td>0.476463</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Snooky_Pryor</td>
+      <td>0.474850</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Receive_Honorary_Doctorate</td>
+      <td>0.472724</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1397,6 +2726,86 @@ $<span class="math notranslate nohighlight">\(similarity_{cosine}(w_1,w_2) = \fr
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>USA : pizza :: Japan : ?
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Analogy word</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sushi</td>
+      <td>0.573410</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>bento</td>
+      <td>0.549762</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>yakiniku</td>
+      <td>0.536980</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>okonomiyaki</td>
+      <td>0.525135</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ramen</td>
+      <td>0.520394</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>gyudon</td>
+      <td>0.515915</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>soba</td>
+      <td>0.513071</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>ramen_noodle</td>
+      <td>0.506992</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>pepperoni_pizza</td>
+      <td>0.495575</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>yakitori</td>
+      <td>0.489174</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1404,6 +2813,86 @@ $<span class="math notranslate nohighlight">\(similarity_{cosine}(w_1,w_2) = \fr
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>USA : pizza :: India : ?
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Analogy word</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>vada_pav</td>
+      <td>0.554463</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>jalebi</td>
+      <td>0.547090</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>idlis</td>
+      <td>0.540039</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>pav_bhaji</td>
+      <td>0.526046</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>dosas</td>
+      <td>0.521772</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>samosa</td>
+      <td>0.520700</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>idli</td>
+      <td>0.516858</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>pizzas</td>
+      <td>0.516199</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>tiffin</td>
+      <td>0.514347</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>chaat</td>
+      <td>0.508534</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <section id="vada-pav">
@@ -1427,6 +2916,86 @@ $<span class="math notranslate nohighlight">\(similarity_{cosine}(w_1,w_2) = \fr
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>man : computer_programmer :: woman : ?
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Analogy word</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>homemaker</td>
+      <td>0.562712</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>housewife</td>
+      <td>0.510505</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>graphic_designer</td>
+      <td>0.505180</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>schoolteacher</td>
+      <td>0.497949</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>businesswoman</td>
+      <td>0.493489</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>paralegal</td>
+      <td>0.492551</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>registered_nurse</td>
+      <td>0.490797</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>saleswoman</td>
+      <td>0.488163</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>electrical_engineer</td>
+      <td>0.479773</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>mechanical_engineer</td>
+      <td>0.475540</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p><img alt="" src="../_images/eva-srsly.png" /></p>
 <ul class="simple">
@@ -1457,6 +3026,18 @@ $<span class="math notranslate nohighlight">\(similarity_{cosine}(w_1,w_2) = \fr
 
 <span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="s2">&quot;pineapple&quot;</span><span class="p">)</span> <span class="c1"># extract all interesting information about the document</span>
 <span class="n">doc</span><span class="o">.</span><span class="n">vector</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">42</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">spacy</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;en_core_web_md&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="s2">&quot;pineapple&quot;</span><span class="p">)</span> <span class="c1"># extract all interesting information about the document</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;spacy&#39;
 </pre></div>
 </div>
 </div>

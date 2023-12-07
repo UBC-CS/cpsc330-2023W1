@@ -175,6 +175,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../17_natural-language-processing.html">Lecture 17: Introduction to natural language processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../18_intro_to_computer-vision.html">Lecture 18: Multi-class classification and introduction to computer vision</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../19_time-series.html">Lecture 19: Time series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../21_communication.html">Lecture 21: Communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -484,83 +487,100 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/housing-kaggle/train.csv&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">train_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="nn">File ~/miniconda3/envs/jbook/lib/python3.10/site-packages/pandas/util/_decorators.py:311,</span> in <span class="ni">deprecate_nonkeyword_arguments.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">305</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">num_allow_args</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">306</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">307</span>         <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="n">arguments</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">308</span>         <span class="ne">FutureWarning</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">309</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span>     <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">311</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="nn">File ~/miniconda3/envs/jbook/lib/python3.10/site-packages/pandas/io/parsers/readers.py:680,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">665</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">666</span>     <span class="n">dialect</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">667</span>     <span class="n">delimiter</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">676</span>     <span class="n">defaults</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;delimiter&quot;</span><span class="p">:</span> <span class="s2">&quot;,&quot;</span><span class="p">},</span>
-<span class="g g-Whitespace">    </span><span class="mi">677</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">678</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">680</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/jbook/lib/python3.10/site-packages/pandas/io/parsers/readers.py:575,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">572</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">574</span> <span class="c1"># Create the parser.</span>
-<span class="ne">--&gt; </span><span class="mi">575</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">577</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">578</span>     <span class="k">return</span> <span class="n">parser</span>
-
-<span class="nn">File ~/miniconda3/envs/jbook/lib/python3.10/site-packages/pandas/io/parsers/readers.py:933,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">930</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">932</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="ne">--&gt; </span><span class="mi">933</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/jbook/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1217,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1213</span>     <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;rb&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1214</span> <span class="c1"># error: No overload variant of &quot;get_handle&quot; matches argument types</span>
-<span class="g g-Whitespace">   </span><span class="mi">1215</span> <span class="c1"># &quot;Union[str, PathLike[str], ReadCsvBuffer[bytes], ReadCsvBuffer[str]]&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1216</span> <span class="c1"># , &quot;str&quot;, &quot;bool&quot;, &quot;Any&quot;, &quot;Any&quot;, &quot;Any&quot;, &quot;Any&quot;, &quot;Any&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1217</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>  <span class="c1"># type: ignore[call-overload]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1218</span>     <span class="n">f</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1219</span>     <span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1220</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1221</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1222</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1223</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1224</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1225</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1226</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1227</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1228</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
-
-<span class="nn">File ~/miniconda3/envs/jbook/lib/python3.10/site-packages/pandas/io/common.py:789,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">784</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">785</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
-<span class="g g-Whitespace">    </span><span class="mi">786</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
-<span class="g g-Whitespace">    </span><span class="mi">787</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">788</span>         <span class="c1"># Encoding</span>
-<span class="ne">--&gt; </span><span class="mi">789</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">790</span>             <span class="n">handle</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">791</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">792</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">793</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">794</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">795</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">796</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">797</span>         <span class="c1"># Binary mode</span>
-<span class="g g-Whitespace">    </span><span class="mi">798</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;../data/housing-kaggle/train.csv&#39;
-</pre></div>
-</div>
-</div>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Id</th>
+      <th>MSSubClass</th>
+      <th>MSZoning</th>
+      <th>LotFrontage</th>
+      <th>LotArea</th>
+      <th>Street</th>
+      <th>Alley</th>
+      <th>LotShape</th>
+      <th>LandContour</th>
+      <th>Utilities</th>
+      <th>...</th>
+      <th>PoolArea</th>
+      <th>PoolQC</th>
+      <th>Fence</th>
+      <th>MiscFeature</th>
+      <th>MiscVal</th>
+      <th>MoSold</th>
+      <th>YrSold</th>
+      <th>SaleType</th>
+      <th>SaleCondition</th>
+      <th>SalePrice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>302</th>
+      <td>303</td>
+      <td>20</td>
+      <td>RL</td>
+      <td>118.0</td>
+      <td>13704</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2006</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>205000</td>
+    </tr>
+    <tr>
+      <th>767</th>
+      <td>768</td>
+      <td>50</td>
+      <td>RL</td>
+      <td>75.0</td>
+      <td>12508</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Shed</td>
+      <td>1300</td>
+      <td>7</td>
+      <td>2008</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>160000</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 81 columns</p>
+</div></div></div>
 </div>
 <ul class="simple">
 <li><p>The supervised machine learning problem is predicting housing price given features associated with properties.</p></li>
@@ -836,7 +856,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-Index: 1314 entries, 302 to 1389
+Int64Index: 1314 entries, 302 to 1389
 Data columns (total 81 columns):
  #   Column         Non-Null Count  Dtype  
 ---  ------         --------------  -----  
@@ -865,7 +885,7 @@ Data columns (total 81 columns):
  22  RoofMatl       1314 non-null   object 
  23  Exterior1st    1314 non-null   object 
  24  Exterior2nd    1314 non-null   object 
- 25  MasVnrType     528 non-null    object 
+ 25  MasVnrType     1307 non-null   object 
  26  MasVnrArea     1307 non-null   float64
  27  ExterQual      1314 non-null   object 
  28  ExterCond      1314 non-null   object 
@@ -1136,36 +1156,36 @@ memory usage: 841.8+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Condition1&#39;,
- &#39;Exterior1st&#39;,
- &#39;Foundation&#39;,
- &#39;Neighborhood&#39;,
- &#39;MSSubClass&#39;,
- &#39;MSZoning&#39;,
- &#39;HouseStyle&#39;,
- &#39;Exterior2nd&#39;,
- &#39;Electrical&#39;,
- &#39;SaleType&#39;,
- &#39;MiscFeature&#39;,
- &#39;RoofMatl&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;SaleCondition&#39;,
  &#39;Heating&#39;,
  &#39;LandContour&#39;,
- &#39;Street&#39;,
  &#39;LotConfig&#39;,
- &#39;Utilities&#39;,
- &#39;GarageFinish&#39;,
  &#39;PavedDrive&#39;,
- &#39;Alley&#39;,
- &#39;Condition2&#39;,
- &#39;LandSlope&#39;,
  &#39;RoofStyle&#39;,
- &#39;MasVnrType&#39;,
- &#39;LotShape&#39;,
- &#39;GarageType&#39;,
- &#39;CentralAir&#39;,
+ &#39;RoofMatl&#39;,
+ &#39;Alley&#39;,
+ &#39;SaleType&#39;,
+ &#39;Condition1&#39;,
  &#39;BldgType&#39;,
- &#39;SaleCondition&#39;,
- &#39;MoSold&#39;]
+ &#39;LotShape&#39;,
+ &#39;Electrical&#39;,
+ &#39;GarageType&#39;,
+ &#39;Utilities&#39;,
+ &#39;MSSubClass&#39;,
+ &#39;Street&#39;,
+ &#39;MoSold&#39;,
+ &#39;LandSlope&#39;,
+ &#39;Foundation&#39;,
+ &#39;HouseStyle&#39;,
+ &#39;MSZoning&#39;,
+ &#39;CentralAir&#39;,
+ &#39;Exterior2nd&#39;,
+ &#39;Condition2&#39;,
+ &#39;GarageFinish&#39;,
+ &#39;Exterior1st&#39;,
+ &#39;MasVnrType&#39;,
+ &#39;Neighborhood&#39;,
+ &#39;MiscFeature&#39;]
 </pre></div>
 </div>
 </div>
@@ -1310,16 +1330,16 @@ memory usage: 841.8+ KB
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
-      <th>MoSold_3</th>
-      <th>MoSold_4</th>
-      <th>MoSold_5</th>
-      <th>MoSold_6</th>
-      <th>MoSold_7</th>
-      <th>MoSold_8</th>
-      <th>MoSold_9</th>
-      <th>MoSold_10</th>
-      <th>MoSold_11</th>
-      <th>MoSold_12</th>
+      <th>Neighborhood_SawyerW</th>
+      <th>Neighborhood_Somerst</th>
+      <th>Neighborhood_StoneBr</th>
+      <th>Neighborhood_Timber</th>
+      <th>Neighborhood_Veenker</th>
+      <th>MiscFeature_Gar2</th>
+      <th>MiscFeature_Othr</th>
+      <th>MiscFeature_Shed</th>
+      <th>MiscFeature_TenC</th>
+      <th>MiscFeature_missing</th>
     </tr>
   </thead>
   <tbody>
@@ -1345,7 +1365,7 @@ memory usage: 841.8+ KB
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>767</th>
@@ -1364,10 +1384,10 @@ memory usage: 841.8+ KB
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -1384,16 +1404,16 @@ memory usage: 841.8+ KB
       <td>-0.573129</td>
       <td>1.227559</td>
       <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>1139</th>
@@ -1410,14 +1430,14 @@ memory usage: 841.8+ KB
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
     </tr>
     <tr>
       <th>558</th>
@@ -1437,15 +1457,15 @@ memory usage: 841.8+ KB
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 262 columns</p>
+<p>5 rows × 263 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1455,7 +1475,7 @@ memory usage: 841.8+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((1314, 80), (1314, 262))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((1314, 80), (1314, 263))
 </pre></div>
 </div>
 </div>
@@ -1499,71 +1519,71 @@ memory usage: 841.8+ KB
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001587</td>
-      <td>0.000620</td>
+      <td>0.000935</td>
+      <td>0.000284</td>
       <td>-0.003547</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001186</td>
-      <td>0.000616</td>
+      <td>0.000570</td>
+      <td>0.000222</td>
       <td>-0.001266</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.001056</td>
-      <td>0.000438</td>
+      <td>0.000525</td>
+      <td>0.000197</td>
       <td>-0.011767</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.001151</td>
-      <td>0.000427</td>
+      <td>0.000512</td>
+      <td>0.000195</td>
       <td>-0.006744</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000885</td>
-      <td>0.000408</td>
+      <td>0.000508</td>
+      <td>0.000193</td>
       <td>-0.076533</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.000983</td>
-      <td>0.000440</td>
+      <td>0.000511</td>
+      <td>0.000204</td>
       <td>-0.003133</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.000909</td>
-      <td>0.000401</td>
+      <td>0.000507</td>
+      <td>0.000188</td>
       <td>-0.000397</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.000891</td>
-      <td>0.000412</td>
+      <td>0.000506</td>
+      <td>0.000188</td>
       <td>-0.003785</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.000902</td>
-      <td>0.000421</td>
+      <td>0.000503</td>
+      <td>0.000187</td>
       <td>-0.001740</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.000865</td>
-      <td>0.000409</td>
+      <td>0.000508</td>
+      <td>0.000186</td>
       <td>-0.000117</td>
       <td>0.0</td>
     </tr>
@@ -1590,9 +1610,9 @@ memory usage: 841.8+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([224865.34161762,  65243.29045704, 133337.46729488, 250900.65424895,
-       128984.32127053, 205597.8361313 , 334576.71199006, 158982.7234503 ,
-       148343.09009799, 129257.94933723])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([224795.63596802,  65063.79363463, 133408.78346075, 250878.88144979,
+       128875.99852629, 205597.41832137, 334578.36315754, 159241.04183629,
+       148367.15710315, 129278.59247656])
 </pre></div>
 </div>
 </div>
@@ -1605,8 +1625,8 @@ memory usage: 841.8+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Smallest coefficient:  -191169.07174468998
-Largest coefficient: 83603.01311996081
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Smallest coefficient:  -191129.77431368644
+Largest coefficient: 83646.71100760235
 </pre></div>
 </div>
 </div>
@@ -1646,73 +1666,73 @@ Largest coefficient: 83603.01311996081
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.110372</td>
-      <td>0.016864</td>
-      <td>0.862432</td>
-      <td>0.911846</td>
+      <td>0.026905</td>
+      <td>0.006835</td>
+      <td>0.861355</td>
+      <td>0.911906</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.030887</td>
-      <td>0.009557</td>
-      <td>0.812363</td>
-      <td>0.913849</td>
+      <td>0.026082</td>
+      <td>0.006191</td>
+      <td>0.812301</td>
+      <td>0.913861</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.037350</td>
-      <td>0.010032</td>
-      <td>0.775270</td>
-      <td>0.915952</td>
+      <td>0.026058</td>
+      <td>0.007016</td>
+      <td>0.775283</td>
+      <td>0.915963</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.034898</td>
-      <td>0.010189</td>
-      <td>0.874532</td>
-      <td>0.910843</td>
+      <td>0.031662</td>
+      <td>0.010411</td>
+      <td>0.874519</td>
+      <td>0.910849</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.035345</td>
-      <td>0.010177</td>
-      <td>0.852104</td>
-      <td>0.911615</td>
+      <td>0.025870</td>
+      <td>0.006076</td>
+      <td>0.851969</td>
+      <td>0.911622</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.035850</td>
-      <td>0.010048</td>
-      <td>0.826142</td>
-      <td>0.910174</td>
+      <td>0.026454</td>
+      <td>0.006018</td>
+      <td>0.826198</td>
+      <td>0.910176</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.035635</td>
-      <td>0.010101</td>
-      <td>0.825697</td>
-      <td>0.913767</td>
+      <td>0.025268</td>
+      <td>0.006132</td>
+      <td>0.825533</td>
+      <td>0.913781</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.035794</td>
-      <td>0.010222</td>
-      <td>0.873704</td>
-      <td>0.910018</td>
+      <td>0.025556</td>
+      <td>0.006156</td>
+      <td>0.872238</td>
+      <td>0.910071</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.035665</td>
-      <td>0.010233</td>
-      <td>0.196599</td>
-      <td>0.921438</td>
+      <td>0.026371</td>
+      <td>0.005961</td>
+      <td>0.196663</td>
+      <td>0.921448</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.041555</td>
-      <td>0.010893</td>
-      <td>0.890457</td>
-      <td>0.908215</td>
+      <td>0.025156</td>
+      <td>0.005879</td>
+      <td>0.890474</td>
+      <td>0.908221</td>
     </tr>
   </tbody>
 </table>
@@ -1751,7 +1771,7 @@ Largest coefficient: 83603.01311996081
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/af985011e12d1a13cd52fbd560cb70a0a7e228ed15acd1249e43fa90eec51059.png" src="../../_images/af985011e12d1a13cd52fbd560cb70a0a7e228ed15acd1249e43fa90eec51059.png" />
+<img alt="../../_images/53b6dd4119714c2f9ce652b2e093b02cd824f1abaa88ce20a5932c38686d538e.png" src="../../_images/53b6dd4119714c2f9ce652b2e093b02cd824f1abaa88ce20a5932c38686d538e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1766,7 +1786,7 @@ Largest coefficient: 83603.01311996081
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;ridge__alpha&#39;: 100.0}
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7951559890417758
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7950686603241026
 </pre></div>
 </div>
 </div>
@@ -1807,23 +1827,23 @@ Largest coefficient: 83603.01311996081
   <tbody>
     <tr>
       <th>OverallQual</th>
-      <td>9691.378159</td>
+      <td>9689.632266</td>
     </tr>
     <tr>
       <th>GrLivArea</th>
-      <td>7816.490033</td>
+      <td>7816.816972</td>
     </tr>
     <tr>
       <th>1stFlrSF</th>
-      <td>5931.401623</td>
+      <td>5930.575341</td>
     </tr>
     <tr>
       <th>TotRmsAbvGrd</th>
-      <td>5209.377032</td>
+      <td>5208.547961</td>
     </tr>
     <tr>
       <th>GarageCars</th>
-      <td>5057.215412</td>
+      <td>5055.756475</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1831,27 +1851,27 @@ Largest coefficient: 83603.01311996081
     </tr>
     <tr>
       <th>SaleType_WD</th>
-      <td>-1214.532034</td>
+      <td>-1214.377135</td>
     </tr>
     <tr>
       <th>GarageFinish_Unf</th>
-      <td>-1281.596864</td>
+      <td>-1280.655867</td>
     </tr>
     <tr>
       <th>Foundation_CBlock</th>
-      <td>-1766.048889</td>
+      <td>-1767.116100</td>
     </tr>
     <tr>
       <th>RoofStyle_Gable</th>
-      <td>-1985.253914</td>
+      <td>-1984.434183</td>
     </tr>
     <tr>
       <th>KitchenAbvGr</th>
-      <td>-2623.509001</td>
+      <td>-2623.381280</td>
     </tr>
   </tbody>
 </table>
-<p>262 rows × 1 columns</p>
+<p>263 rows × 1 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1890,23 +1910,23 @@ Largest coefficient: 83603.01311996081
   <tbody>
     <tr>
       <th>RoofMatl_WdShngl</th>
-      <td>128384.117412</td>
+      <td>128419.408757</td>
     </tr>
     <tr>
       <th>RoofMatl_Membran</th>
-      <td>127326.497787</td>
+      <td>127334.605534</td>
     </tr>
     <tr>
       <th>RoofMatl_Metal</th>
-      <td>106023.481514</td>
+      <td>106033.814922</td>
     </tr>
     <tr>
       <th>Condition2_PosA</th>
-      <td>83437.787574</td>
+      <td>83475.834626</td>
     </tr>
     <tr>
       <th>RoofMatl_CompShg</th>
-      <td>70568.838951</td>
+      <td>70577.031608</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1914,27 +1934,27 @@ Largest coefficient: 83603.01311996081
     </tr>
     <tr>
       <th>Exterior1st_ImStucc</th>
-      <td>-34441.626206</td>
+      <td>-34430.377551</td>
     </tr>
     <tr>
       <th>Heating_OthW</th>
-      <td>-34806.290424</td>
+      <td>-34801.030771</td>
     </tr>
     <tr>
       <th>Condition2_RRAe</th>
-      <td>-63362.335309</td>
+      <td>-63399.065969</td>
     </tr>
     <tr>
       <th>Condition2_PosN</th>
-      <td>-194985.470060</td>
+      <td>-194897.224244</td>
     </tr>
     <tr>
       <th>RoofMatl_ClyTile</th>
-      <td>-582469.424221</td>
+      <td>-582393.604620</td>
     </tr>
   </tbody>
 </table>
-<p>262 rows × 1 columns</p>
+<p>263 rows × 1 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1975,23 +1995,23 @@ Largest coefficient: 83603.01311996081
   <tbody>
     <tr>
       <th>OverallQual</th>
-      <td>14485.526602</td>
+      <td>14484.902165</td>
     </tr>
     <tr>
       <th>GrLivArea</th>
-      <td>11693.792577</td>
+      <td>11704.053037</td>
     </tr>
     <tr>
       <th>Neighborhood_NridgHt</th>
-      <td>9661.926657</td>
+      <td>9662.969631</td>
     </tr>
     <tr>
       <th>Neighborhood_NoRidge</th>
-      <td>9492.921850</td>
+      <td>9497.598615</td>
     </tr>
     <tr>
       <th>BsmtQual</th>
-      <td>8076.988901</td>
+      <td>8073.088562</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1999,27 +2019,27 @@ Largest coefficient: 83603.01311996081
     </tr>
     <tr>
       <th>RoofMatl_ClyTile</th>
-      <td>-3991.413796</td>
+      <td>-3992.399179</td>
     </tr>
     <tr>
       <th>LandContour_Bnk</th>
-      <td>-5002.470666</td>
+      <td>-5001.996997</td>
     </tr>
     <tr>
       <th>Neighborhood_Gilbert</th>
-      <td>-5212.984664</td>
+      <td>-5197.585536</td>
     </tr>
     <tr>
       <th>Neighborhood_CollgCr</th>
-      <td>-5461.450739</td>
+      <td>-5467.463086</td>
     </tr>
     <tr>
       <th>Neighborhood_Edwards</th>
-      <td>-5789.889086</td>
+      <td>-5796.508529</td>
     </tr>
   </tbody>
 </table>
-<p>262 rows × 1 columns</p>
+<p>263 rows × 1 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -2061,9 +2081,9 @@ Largest coefficient: 83603.01311996081
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([228603.06797961, 104643.99931883, 155624.61029914, 246332.07245741,
-       127614.33726089, 243243.60429913, 304784.87844893, 145425.67512181,
-       157008.6526853 , 128528.91515735])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([228728.1963872 , 104718.39905565, 155778.96723311, 246316.71119031,
+       127633.10676873, 243207.19441128, 304930.24461291, 145374.59435295,
+       157059.38983893, 128487.51979632])
 </pre></div>
 </div>
 </div>
@@ -2102,23 +2122,23 @@ Largest coefficient: 83603.01311996081
   <tbody>
     <tr>
       <th>OverallQual</th>
-      <td>14485.526602</td>
+      <td>14484.902165</td>
     </tr>
     <tr>
       <th>GrLivArea</th>
-      <td>11693.792577</td>
+      <td>11704.053037</td>
     </tr>
     <tr>
       <th>Neighborhood_NridgHt</th>
-      <td>9661.926657</td>
+      <td>9662.969631</td>
     </tr>
     <tr>
       <th>Neighborhood_NoRidge</th>
-      <td>9492.921850</td>
+      <td>9497.598615</td>
     </tr>
     <tr>
       <th>BsmtQual</th>
-      <td>8076.988901</td>
+      <td>8073.088562</td>
     </tr>
     <tr>
       <th>...</th>
@@ -2126,27 +2146,27 @@ Largest coefficient: 83603.01311996081
     </tr>
     <tr>
       <th>RoofMatl_ClyTile</th>
-      <td>-3991.413796</td>
+      <td>-3992.399179</td>
     </tr>
     <tr>
       <th>LandContour_Bnk</th>
-      <td>-5002.470666</td>
+      <td>-5001.996997</td>
     </tr>
     <tr>
       <th>Neighborhood_Gilbert</th>
-      <td>-5212.984664</td>
+      <td>-5197.585536</td>
     </tr>
     <tr>
       <th>Neighborhood_CollgCr</th>
-      <td>-5461.450739</td>
+      <td>-5467.463086</td>
     </tr>
     <tr>
       <th>Neighborhood_Edwards</th>
-      <td>-5789.889086</td>
+      <td>-5796.508529</td>
     </tr>
   </tbody>
 </table>
-<p>262 rows × 1 columns</p>
+<p>263 rows × 1 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -2211,7 +2231,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>872961060.7986538
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>873230473.3636105
 </pre></div>
 </div>
 </div>
@@ -2226,7 +2246,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>872961060.7986538
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>873230473.3636101
 </pre></div>
 </div>
 </div>
@@ -2248,7 +2268,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8729610607986.539
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8732304733636.105
 </pre></div>
 </div>
 </div>
@@ -2267,7 +2287,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>29545.914451894256
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>29550.47331877461
 </pre></div>
 </div>
 </div>
@@ -2283,7 +2303,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/618fbadd5838f340f4f14b5a6520ad525d2c596f03ad6737be02fc9b369fab05.png" src="../../_images/618fbadd5838f340f4f14b5a6520ad525d2c596f03ad6737be02fc9b369fab05.png" />
+<img alt="../../_images/29acb665a09650459b043a6ff3ac8287d852e42b555093efaf5404dc428c6793.png" src="../../_images/29acb665a09650459b043a6ff3ac8287d852e42b555093efaf5404dc428c6793.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2334,10 +2354,10 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>302      3.839225
-767     11.558889
-429      8.560768
-1139   -16.405650
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>302      3.851038
+767     11.564239
+429      8.535533
+1139   -16.371069
 Name: SalePrice, dtype: float64
 </pre></div>
 </div>
@@ -2352,10 +2372,10 @@ Name: SalePrice, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>302      3.839225
-767     11.558889
-429      8.560768
-1139    16.405650
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>302      3.851038
+767     11.564239
+429      8.535533
+1139    16.371069
 Name: SalePrice, dtype: float64
 </pre></div>
 </div>
@@ -2371,7 +2391,7 @@ Name: SalePrice, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.10092665203438765
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.1009312129422526
 </pre></div>
 </div>
 </div>
@@ -2454,16 +2474,16 @@ Name: SalePrice, dtype: float64
                                                    &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;,
                                                    &#x27;MasVnrArea&#x27;, &#x27;BsmtFinSF1&#x27;,
                                                    &#x27;Bs...
-                                                   &#x27;Heating&#x27;, &#x27;LandContour&#x27;,
-                                                   &#x27;Street&#x27;, &#x27;LotConfig&#x27;,
-                                                   &#x27;Utilities&#x27;, &#x27;GarageFinish&#x27;,
-                                                   &#x27;PavedDrive&#x27;, &#x27;Alley&#x27;,
-                                                   &#x27;Condition2&#x27;, &#x27;LandSlope&#x27;,
-                                                   &#x27;RoofStyle&#x27;, &#x27;MasVnrType&#x27;,
-                                                   &#x27;LotShape&#x27;, &#x27;GarageType&#x27;,
-                                                   &#x27;CentralAir&#x27;, &#x27;BldgType&#x27;,
-                                                   &#x27;SaleCondition&#x27;,
-                                                   &#x27;MoSold&#x27;])])),
+                                                   &#x27;Electrical&#x27;, &#x27;GarageType&#x27;,
+                                                   &#x27;Utilities&#x27;, &#x27;MSSubClass&#x27;,
+                                                   &#x27;Street&#x27;, &#x27;MoSold&#x27;,
+                                                   &#x27;LandSlope&#x27;, &#x27;Foundation&#x27;,
+                                                   &#x27;HouseStyle&#x27;, &#x27;MSZoning&#x27;,
+                                                   &#x27;CentralAir&#x27;, &#x27;Exterior2nd&#x27;,
+                                                   &#x27;Condition2&#x27;, &#x27;GarageFinish&#x27;,
+                                                   &#x27;Exterior1st&#x27;, &#x27;MasVnrType&#x27;,
+                                                   &#x27;Neighborhood&#x27;,
+                                                   &#x27;MiscFeature&#x27;])])),
                 (&#x27;transformedtargetregressor&#x27;,
                  TransformedTargetRegressor(func=&lt;ufunc &#x27;log1p&#x27;&gt;,
                                             inverse_func=&lt;ufunc &#x27;expm1&#x27;&gt;,
@@ -2481,16 +2501,16 @@ Name: SalePrice, dtype: float64
                                                    &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;,
                                                    &#x27;MasVnrArea&#x27;, &#x27;BsmtFinSF1&#x27;,
                                                    &#x27;Bs...
-                                                   &#x27;Heating&#x27;, &#x27;LandContour&#x27;,
-                                                   &#x27;Street&#x27;, &#x27;LotConfig&#x27;,
-                                                   &#x27;Utilities&#x27;, &#x27;GarageFinish&#x27;,
-                                                   &#x27;PavedDrive&#x27;, &#x27;Alley&#x27;,
-                                                   &#x27;Condition2&#x27;, &#x27;LandSlope&#x27;,
-                                                   &#x27;RoofStyle&#x27;, &#x27;MasVnrType&#x27;,
-                                                   &#x27;LotShape&#x27;, &#x27;GarageType&#x27;,
-                                                   &#x27;CentralAir&#x27;, &#x27;BldgType&#x27;,
-                                                   &#x27;SaleCondition&#x27;,
-                                                   &#x27;MoSold&#x27;])])),
+                                                   &#x27;Electrical&#x27;, &#x27;GarageType&#x27;,
+                                                   &#x27;Utilities&#x27;, &#x27;MSSubClass&#x27;,
+                                                   &#x27;Street&#x27;, &#x27;MoSold&#x27;,
+                                                   &#x27;LandSlope&#x27;, &#x27;Foundation&#x27;,
+                                                   &#x27;HouseStyle&#x27;, &#x27;MSZoning&#x27;,
+                                                   &#x27;CentralAir&#x27;, &#x27;Exterior2nd&#x27;,
+                                                   &#x27;Condition2&#x27;, &#x27;GarageFinish&#x27;,
+                                                   &#x27;Exterior1st&#x27;, &#x27;MasVnrType&#x27;,
+                                                   &#x27;Neighborhood&#x27;,
+                                                   &#x27;MiscFeature&#x27;])])),
                 (&#x27;transformedtargetregressor&#x27;,
                  TransformedTargetRegressor(func=&lt;ufunc &#x27;log1p&#x27;&gt;,
                                             inverse_func=&lt;ufunc &#x27;expm1&#x27;&gt;,
@@ -2505,16 +2525,16 @@ Name: SalePrice, dtype: float64
                                   &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;, &#x27;MasVnrArea&#x27;,
                                   &#x27;BsmtFinSF1&#x27;, &#x27;BsmtFinSF2&#x27;, &#x27;BsmtUnfSF&#x27;,
                                   &#x27;TotalBsmtSF&#x27;, &#x27;...
-                                 [&#x27;Condition1&#x27;, &#x27;Exterior1st&#x27;, &#x27;Foundation&#x27;,
-                                  &#x27;Neighborhood&#x27;, &#x27;MSSubClass&#x27;, &#x27;MSZoning&#x27;,
-                                  &#x27;HouseStyle&#x27;, &#x27;Exterior2nd&#x27;, &#x27;Electrical&#x27;,
-                                  &#x27;SaleType&#x27;, &#x27;MiscFeature&#x27;, &#x27;RoofMatl&#x27;,
-                                  &#x27;Heating&#x27;, &#x27;LandContour&#x27;, &#x27;Street&#x27;,
-                                  &#x27;LotConfig&#x27;, &#x27;Utilities&#x27;, &#x27;GarageFinish&#x27;,
-                                  &#x27;PavedDrive&#x27;, &#x27;Alley&#x27;, &#x27;Condition2&#x27;,
-                                  &#x27;LandSlope&#x27;, &#x27;RoofStyle&#x27;, &#x27;MasVnrType&#x27;,
-                                  &#x27;LotShape&#x27;, &#x27;GarageType&#x27;, &#x27;CentralAir&#x27;,
-                                  &#x27;BldgType&#x27;, &#x27;SaleCondition&#x27;, &#x27;MoSold&#x27;])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>[&#x27;Id&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>drop</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-1</label><div class="sk-toggleable__content"><pre>[&#x27;BedroomAbvGr&#x27;, &#x27;KitchenAbvGr&#x27;, &#x27;LotFrontage&#x27;, &#x27;LotArea&#x27;, &#x27;OverallQual&#x27;, &#x27;OverallCond&#x27;, &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;, &#x27;MasVnrArea&#x27;, &#x27;BsmtFinSF1&#x27;, &#x27;BsmtFinSF2&#x27;, &#x27;BsmtUnfSF&#x27;, &#x27;TotalBsmtSF&#x27;, &#x27;1stFlrSF&#x27;, &#x27;2ndFlrSF&#x27;, &#x27;LowQualFinSF&#x27;, &#x27;GrLivArea&#x27;, &#x27;BsmtFullBath&#x27;, &#x27;BsmtHalfBath&#x27;, &#x27;FullBath&#x27;, &#x27;HalfBath&#x27;, &#x27;TotRmsAbvGrd&#x27;, &#x27;Fireplaces&#x27;, &#x27;GarageYrBlt&#x27;, &#x27;GarageCars&#x27;, &#x27;GarageArea&#x27;, &#x27;WoodDeckSF&#x27;, &#x27;OpenPorchSF&#x27;, &#x27;EnclosedPorch&#x27;, &#x27;3SsnPorch&#x27;, &#x27;ScreenPorch&#x27;, &#x27;PoolArea&#x27;, &#x27;MiscVal&#x27;, &#x27;YrSold&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;median&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-2</label><div class="sk-toggleable__content"><pre>[&#x27;ExterQual&#x27;, &#x27;ExterCond&#x27;, &#x27;BsmtQual&#x27;, &#x27;BsmtCond&#x27;, &#x27;HeatingQC&#x27;, &#x27;KitchenQual&#x27;, &#x27;FireplaceQu&#x27;, &#x27;GarageQual&#x27;, &#x27;GarageCond&#x27;, &#x27;PoolQC&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;most_frequent&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox" ><label for="sk-estimator-id-10" class="sk-toggleable__label sk-toggleable__label-arrow">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[[&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                                 [&#x27;SaleCondition&#x27;, &#x27;Heating&#x27;, &#x27;LandContour&#x27;,
+                                  &#x27;LotConfig&#x27;, &#x27;PavedDrive&#x27;, &#x27;RoofStyle&#x27;,
+                                  &#x27;RoofMatl&#x27;, &#x27;Alley&#x27;, &#x27;SaleType&#x27;, &#x27;Condition1&#x27;,
+                                  &#x27;BldgType&#x27;, &#x27;LotShape&#x27;, &#x27;Electrical&#x27;,
+                                  &#x27;GarageType&#x27;, &#x27;Utilities&#x27;, &#x27;MSSubClass&#x27;,
+                                  &#x27;Street&#x27;, &#x27;MoSold&#x27;, &#x27;LandSlope&#x27;, &#x27;Foundation&#x27;,
+                                  &#x27;HouseStyle&#x27;, &#x27;MSZoning&#x27;, &#x27;CentralAir&#x27;,
+                                  &#x27;Exterior2nd&#x27;, &#x27;Condition2&#x27;, &#x27;GarageFinish&#x27;,
+                                  &#x27;Exterior1st&#x27;, &#x27;MasVnrType&#x27;, &#x27;Neighborhood&#x27;,
+                                  &#x27;MiscFeature&#x27;])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>[&#x27;Id&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>drop</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-1</label><div class="sk-toggleable__content"><pre>[&#x27;BedroomAbvGr&#x27;, &#x27;KitchenAbvGr&#x27;, &#x27;LotFrontage&#x27;, &#x27;LotArea&#x27;, &#x27;OverallQual&#x27;, &#x27;OverallCond&#x27;, &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;, &#x27;MasVnrArea&#x27;, &#x27;BsmtFinSF1&#x27;, &#x27;BsmtFinSF2&#x27;, &#x27;BsmtUnfSF&#x27;, &#x27;TotalBsmtSF&#x27;, &#x27;1stFlrSF&#x27;, &#x27;2ndFlrSF&#x27;, &#x27;LowQualFinSF&#x27;, &#x27;GrLivArea&#x27;, &#x27;BsmtFullBath&#x27;, &#x27;BsmtHalfBath&#x27;, &#x27;FullBath&#x27;, &#x27;HalfBath&#x27;, &#x27;TotRmsAbvGrd&#x27;, &#x27;Fireplaces&#x27;, &#x27;GarageYrBlt&#x27;, &#x27;GarageCars&#x27;, &#x27;GarageArea&#x27;, &#x27;WoodDeckSF&#x27;, &#x27;OpenPorchSF&#x27;, &#x27;EnclosedPorch&#x27;, &#x27;3SsnPorch&#x27;, &#x27;ScreenPorch&#x27;, &#x27;PoolArea&#x27;, &#x27;MiscVal&#x27;, &#x27;YrSold&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;median&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-2</label><div class="sk-toggleable__content"><pre>[&#x27;ExterQual&#x27;, &#x27;ExterCond&#x27;, &#x27;BsmtQual&#x27;, &#x27;BsmtCond&#x27;, &#x27;HeatingQC&#x27;, &#x27;KitchenQual&#x27;, &#x27;FireplaceQu&#x27;, &#x27;GarageQual&#x27;, &#x27;GarageCond&#x27;, &#x27;PoolQC&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;most_frequent&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox" ><label for="sk-estimator-id-10" class="sk-toggleable__label sk-toggleable__label-arrow">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[[&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
                            [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
                            [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
                            [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
@@ -2528,7 +2548,7 @@ Name: SalePrice, dtype: float64
                            [&#x27;NA&#x27;, &#x27;Unf&#x27;, &#x27;LwQ&#x27;, &#x27;Rec&#x27;, &#x27;BLQ&#x27;, &#x27;ALQ&#x27;, &#x27;GLQ&#x27;],
                            [&#x27;Sal&#x27;, &#x27;Sev&#x27;, &#x27;Maj2&#x27;, &#x27;Maj1&#x27;, &#x27;Mod&#x27;, &#x27;Min2&#x27;, &#x27;Min1&#x27;,
                             &#x27;Typ&#x27;],
-                           [&#x27;NA&#x27;, &#x27;MnWw&#x27;, &#x27;GdWo&#x27;, &#x27;MnPrv&#x27;, &#x27;GdPrv&#x27;]])</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-14" type="checkbox" ><label for="sk-estimator-id-14" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-4</label><div class="sk-toggleable__content"><pre>[&#x27;Condition1&#x27;, &#x27;Exterior1st&#x27;, &#x27;Foundation&#x27;, &#x27;Neighborhood&#x27;, &#x27;MSSubClass&#x27;, &#x27;MSZoning&#x27;, &#x27;HouseStyle&#x27;, &#x27;Exterior2nd&#x27;, &#x27;Electrical&#x27;, &#x27;SaleType&#x27;, &#x27;MiscFeature&#x27;, &#x27;RoofMatl&#x27;, &#x27;Heating&#x27;, &#x27;LandContour&#x27;, &#x27;Street&#x27;, &#x27;LotConfig&#x27;, &#x27;Utilities&#x27;, &#x27;GarageFinish&#x27;, &#x27;PavedDrive&#x27;, &#x27;Alley&#x27;, &#x27;Condition2&#x27;, &#x27;LandSlope&#x27;, &#x27;RoofStyle&#x27;, &#x27;MasVnrType&#x27;, &#x27;LotShape&#x27;, &#x27;GarageType&#x27;, &#x27;CentralAir&#x27;, &#x27;BldgType&#x27;, &#x27;SaleCondition&#x27;, &#x27;MoSold&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-15" type="checkbox" ><label for="sk-estimator-id-15" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(fill_value=&#x27;missing&#x27;, strategy=&#x27;constant&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-16" type="checkbox" ><label for="sk-estimator-id-16" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown=&#x27;ignore&#x27;, sparse_output=False)</pre></div></div></div></div></div></div></div></div></div></div><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-17" type="checkbox" ><label for="sk-estimator-id-17" class="sk-toggleable__label sk-toggleable__label-arrow">transformedtargetregressor: TransformedTargetRegressor</label><div class="sk-toggleable__content"><pre>TransformedTargetRegressor(func=&lt;ufunc &#x27;log1p&#x27;&gt;, inverse_func=&lt;ufunc &#x27;expm1&#x27;&gt;,
+                           [&#x27;NA&#x27;, &#x27;MnWw&#x27;, &#x27;GdWo&#x27;, &#x27;MnPrv&#x27;, &#x27;GdPrv&#x27;]])</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-14" type="checkbox" ><label for="sk-estimator-id-14" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-4</label><div class="sk-toggleable__content"><pre>[&#x27;SaleCondition&#x27;, &#x27;Heating&#x27;, &#x27;LandContour&#x27;, &#x27;LotConfig&#x27;, &#x27;PavedDrive&#x27;, &#x27;RoofStyle&#x27;, &#x27;RoofMatl&#x27;, &#x27;Alley&#x27;, &#x27;SaleType&#x27;, &#x27;Condition1&#x27;, &#x27;BldgType&#x27;, &#x27;LotShape&#x27;, &#x27;Electrical&#x27;, &#x27;GarageType&#x27;, &#x27;Utilities&#x27;, &#x27;MSSubClass&#x27;, &#x27;Street&#x27;, &#x27;MoSold&#x27;, &#x27;LandSlope&#x27;, &#x27;Foundation&#x27;, &#x27;HouseStyle&#x27;, &#x27;MSZoning&#x27;, &#x27;CentralAir&#x27;, &#x27;Exterior2nd&#x27;, &#x27;Condition2&#x27;, &#x27;GarageFinish&#x27;, &#x27;Exterior1st&#x27;, &#x27;MasVnrType&#x27;, &#x27;Neighborhood&#x27;, &#x27;MiscFeature&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-15" type="checkbox" ><label for="sk-estimator-id-15" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(fill_value=&#x27;missing&#x27;, strategy=&#x27;constant&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-16" type="checkbox" ><label for="sk-estimator-id-16" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown=&#x27;ignore&#x27;, sparse_output=False)</pre></div></div></div></div></div></div></div></div></div></div><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-17" type="checkbox" ><label for="sk-estimator-id-17" class="sk-toggleable__label sk-toggleable__label-arrow">transformedtargetregressor: TransformedTargetRegressor</label><div class="sk-toggleable__content"><pre>TransformedTargetRegressor(func=&lt;ufunc &#x27;log1p&#x27;&gt;, inverse_func=&lt;ufunc &#x27;expm1&#x27;&gt;,
                            regressor=Ridge(alpha=100.0))</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-18" type="checkbox" ><label for="sk-estimator-id-18" class="sk-toggleable__label sk-toggleable__label-arrow">regressor: Ridge</label><div class="sk-toggleable__content"><pre>Ridge(alpha=100.0)</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-19" type="checkbox" ><label for="sk-estimator-id-19" class="sk-toggleable__label sk-toggleable__label-arrow">Ridge</label><div class="sk-toggleable__content"><pre>Ridge(alpha=100.0)</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
@@ -2545,8 +2565,8 @@ Name: SalePrice, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([221329.43833466, 170670.12761659, 182639.31984311, ...,
-       248609.60023631, 132158.15026771, 133270.71866979])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([221355.29528077, 170663.43286226, 182608.09768702, ...,
+       248575.94877669, 132148.9047652 , 133262.17638244])
 </pre></div>
 </div>
 </div>
@@ -2558,7 +2578,7 @@ Name: SalePrice, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0780850698289626
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.07808600924240852
 </pre></div>
 </div>
 </div>
@@ -2611,38 +2631,38 @@ Name: SalePrice, dtype: float64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.058952</td>
-      <td>0.017841</td>
-      <td>-7.055915e+08</td>
-      <td>-9.379875e+08</td>
+      <td>0.025019</td>
+      <td>0.007448</td>
+      <td>-7.060346e+08</td>
+      <td>-9.383069e+08</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.037522</td>
-      <td>0.012024</td>
-      <td>-1.239944e+09</td>
-      <td>-8.264283e+08</td>
+      <td>0.023689</td>
+      <td>0.007239</td>
+      <td>-1.239851e+09</td>
+      <td>-8.267971e+08</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.038325</td>
-      <td>0.012385</td>
-      <td>-1.125440e+09</td>
-      <td>-8.758062e+08</td>
+      <td>0.023392</td>
+      <td>0.007483</td>
+      <td>-1.125125e+09</td>
+      <td>-8.763019e+08</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.039022</td>
-      <td>0.012244</td>
-      <td>-9.801219e+08</td>
-      <td>-8.849438e+08</td>
+      <td>0.024812</td>
+      <td>0.007245</td>
+      <td>-9.819320e+08</td>
+      <td>-8.847908e+08</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.046787</td>
-      <td>0.012960</td>
-      <td>-2.267612e+09</td>
-      <td>-7.395282e+08</td>
+      <td>0.043430</td>
+      <td>0.011327</td>
+      <td>-2.268434e+09</td>
+      <td>-7.397199e+08</td>
     </tr>
   </tbody>
 </table>
@@ -2692,38 +2712,38 @@ Name: SalePrice, dtype: float64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.069275</td>
-      <td>0.020829</td>
-      <td>-0.096960</td>
-      <td>-0.104070</td>
+      <td>0.036652</td>
+      <td>0.011856</td>
+      <td>-0.096993</td>
+      <td>-0.104071</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.052758</td>
-      <td>0.020309</td>
-      <td>-0.107985</td>
-      <td>-0.099685</td>
+      <td>0.045521</td>
+      <td>0.010995</td>
+      <td>-0.108030</td>
+      <td>-0.099662</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.048205</td>
-      <td>0.014515</td>
-      <td>-0.118347</td>
-      <td>-0.101796</td>
+      <td>0.034749</td>
+      <td>0.009174</td>
+      <td>-0.118362</td>
+      <td>-0.101807</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.047903</td>
-      <td>0.014235</td>
-      <td>-0.107947</td>
-      <td>-0.102435</td>
+      <td>0.025028</td>
+      <td>0.007844</td>
+      <td>-0.107847</td>
+      <td>-0.102472</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.047534</td>
-      <td>0.014629</td>
-      <td>-0.121985</td>
-      <td>-0.098307</td>
+      <td>0.024318</td>
+      <td>0.007190</td>
+      <td>-0.121967</td>
+      <td>-0.098286</td>
     </tr>
   </tbody>
 </table>
@@ -2782,99 +2802,99 @@ Whether score_func is a score function (default), meaning high is good, or a los
   <tbody>
     <tr>
       <th>fit_time</th>
-      <td>5.331683e-02</td>
-      <td>4.861569e-02</td>
-      <td>4.748678e-02</td>
-      <td>4.709196e-02</td>
-      <td>4.670668e-02</td>
+      <td>2.521873e-02</td>
+      <td>2.362895e-02</td>
+      <td>2.398682e-02</td>
+      <td>2.434731e-02</td>
+      <td>2.427077e-02</td>
     </tr>
     <tr>
       <th>score_time</th>
-      <td>1.708698e-02</td>
-      <td>1.731038e-02</td>
-      <td>1.723242e-02</td>
-      <td>1.651645e-02</td>
-      <td>1.649046e-02</td>
+      <td>8.230209e-03</td>
+      <td>7.906199e-03</td>
+      <td>8.017302e-03</td>
+      <td>7.857800e-03</td>
+      <td>8.060217e-03</td>
     </tr>
     <tr>
       <th>test_r2</th>
-      <td>8.669805e-01</td>
-      <td>8.200326e-01</td>
-      <td>8.262156e-01</td>
-      <td>8.514598e-01</td>
-      <td>6.110915e-01</td>
+      <td>8.668969e-01</td>
+      <td>8.200460e-01</td>
+      <td>8.262644e-01</td>
+      <td>8.511854e-01</td>
+      <td>6.109505e-01</td>
     </tr>
     <tr>
       <th>train_r2</th>
-      <td>8.551862e-01</td>
-      <td>8.636849e-01</td>
-      <td>8.580539e-01</td>
-      <td>8.561645e-01</td>
-      <td>8.834356e-01</td>
+      <td>8.551369e-01</td>
+      <td>8.636241e-01</td>
+      <td>8.579735e-01</td>
+      <td>8.561893e-01</td>
+      <td>8.834054e-01</td>
     </tr>
     <tr>
       <th>test_mape_scorer</th>
-      <td>-9.696034e-02</td>
-      <td>-1.079852e-01</td>
-      <td>-1.183471e-01</td>
-      <td>-1.079471e-01</td>
-      <td>-1.219845e-01</td>
+      <td>-9.699277e-02</td>
+      <td>-1.080304e-01</td>
+      <td>-1.183620e-01</td>
+      <td>-1.078469e-01</td>
+      <td>-1.219672e-01</td>
     </tr>
     <tr>
       <th>train_mape_scorer</th>
-      <td>-1.040698e-01</td>
-      <td>-9.968514e-02</td>
-      <td>-1.017959e-01</td>
-      <td>-1.024351e-01</td>
-      <td>-9.830712e-02</td>
+      <td>-1.040712e-01</td>
+      <td>-9.966190e-02</td>
+      <td>-1.018073e-01</td>
+      <td>-1.024720e-01</td>
+      <td>-9.828607e-02</td>
     </tr>
     <tr>
       <th>test_sklearn MAPE</th>
-      <td>-9.696034e-02</td>
-      <td>-1.079852e-01</td>
-      <td>-1.183471e-01</td>
-      <td>-1.079471e-01</td>
-      <td>-1.219845e-01</td>
+      <td>-9.699277e-02</td>
+      <td>-1.080304e-01</td>
+      <td>-1.183620e-01</td>
+      <td>-1.078469e-01</td>
+      <td>-1.219672e-01</td>
     </tr>
     <tr>
       <th>train_sklearn MAPE</th>
-      <td>-1.040698e-01</td>
-      <td>-9.968514e-02</td>
-      <td>-1.017959e-01</td>
-      <td>-1.024351e-01</td>
-      <td>-9.830712e-02</td>
+      <td>-1.040712e-01</td>
+      <td>-9.966190e-02</td>
+      <td>-1.018073e-01</td>
+      <td>-1.024720e-01</td>
+      <td>-9.828607e-02</td>
     </tr>
     <tr>
       <th>test_neg_root_mean_square_error</th>
-      <td>-2.656297e+04</td>
-      <td>-3.521284e+04</td>
-      <td>-3.354759e+04</td>
-      <td>-3.130690e+04</td>
-      <td>-4.761945e+04</td>
+      <td>-2.657131e+04</td>
+      <td>-3.521152e+04</td>
+      <td>-3.354288e+04</td>
+      <td>-3.133579e+04</td>
+      <td>-4.762808e+04</td>
     </tr>
     <tr>
       <th>train_neg_root_mean_square_error</th>
-      <td>-3.062658e+04</td>
-      <td>-2.874767e+04</td>
-      <td>-2.959402e+04</td>
-      <td>-2.974801e+04</td>
-      <td>-2.719427e+04</td>
+      <td>-3.063179e+04</td>
+      <td>-2.875408e+04</td>
+      <td>-2.960240e+04</td>
+      <td>-2.974543e+04</td>
+      <td>-2.719779e+04</td>
     </tr>
     <tr>
       <th>test_neg_mean_squared_error</th>
-      <td>-7.055915e+08</td>
-      <td>-1.239944e+09</td>
-      <td>-1.125440e+09</td>
-      <td>-9.801219e+08</td>
-      <td>-2.267612e+09</td>
+      <td>-7.060346e+08</td>
+      <td>-1.239851e+09</td>
+      <td>-1.125125e+09</td>
+      <td>-9.819320e+08</td>
+      <td>-2.268434e+09</td>
     </tr>
     <tr>
       <th>train_neg_mean_squared_error</th>
-      <td>-9.379875e+08</td>
-      <td>-8.264283e+08</td>
-      <td>-8.758062e+08</td>
-      <td>-8.849438e+08</td>
-      <td>-7.395282e+08</td>
+      <td>-9.383069e+08</td>
+      <td>-8.267971e+08</td>
+      <td>-8.763019e+08</td>
+      <td>-8.847908e+08</td>
+      <td>-7.397199e+08</td>
     </tr>
   </tbody>
 </table>
@@ -2951,33 +2971,33 @@ Best score: -0.111
   <tbody>
     <tr>
       <th>mean_train_score</th>
-      <td>-0.101259</td>
-      <td>-0.111543</td>
-      <td>-0.096462</td>
-      <td>-0.090785</td>
-      <td>-0.085698</td>
-      <td>-0.085508</td>
-      <td>-0.085546</td>
-      <td>-0.08555</td>
-      <td>-0.085551</td>
-      <td>-0.085551</td>
-      <td>-0.203421</td>
-      <td>-0.33213</td>
+      <td>-0.10126</td>
+      <td>-0.111549</td>
+      <td>-0.096454</td>
+      <td>-0.090825</td>
+      <td>-0.085733</td>
+      <td>-0.085533</td>
+      <td>-0.085569</td>
+      <td>-0.085573</td>
+      <td>-0.085574</td>
+      <td>-0.085574</td>
+      <td>-0.203402</td>
+      <td>-0.332121</td>
     </tr>
     <tr>
       <th>mean_test_score</th>
-      <td>-0.110645</td>
-      <td>-0.115401</td>
-      <td>-0.116497</td>
-      <td>-0.122331</td>
-      <td>-0.125644</td>
-      <td>-0.127242</td>
-      <td>-0.127418</td>
-      <td>-0.127439</td>
-      <td>-0.127441</td>
-      <td>-0.127441</td>
-      <td>-0.204692</td>
-      <td>-0.33271</td>
+      <td>-0.11064</td>
+      <td>-0.115412</td>
+      <td>-0.116506</td>
+      <td>-0.122385</td>
+      <td>-0.12576</td>
+      <td>-0.12737</td>
+      <td>-0.127556</td>
+      <td>-0.127572</td>
+      <td>-0.127574</td>
+      <td>-0.127574</td>
+      <td>-0.204672</td>
+      <td>-0.332702</td>
     </tr>
     <tr>
       <th>param_ridge__alpha</th>
@@ -2996,18 +3016,18 @@ Best score: -0.111
     </tr>
     <tr>
       <th>mean_fit_time</th>
-      <td>0.128092</td>
-      <td>0.127731</td>
-      <td>0.120763</td>
-      <td>0.123527</td>
-      <td>0.125656</td>
-      <td>0.122418</td>
-      <td>0.12763</td>
-      <td>0.127673</td>
-      <td>0.130119</td>
-      <td>0.084991</td>
-      <td>0.141531</td>
-      <td>0.136094</td>
+      <td>0.041757</td>
+      <td>0.038687</td>
+      <td>0.039474</td>
+      <td>0.041791</td>
+      <td>0.040214</td>
+      <td>0.035918</td>
+      <td>0.048185</td>
+      <td>0.045656</td>
+      <td>0.043007</td>
+      <td>0.031646</td>
+      <td>0.040116</td>
+      <td>0.036112</td>
     </tr>
   </tbody>
 </table>
@@ -3116,291 +3136,291 @@ Best score: -0.111
   <tbody>
     <tr>
       <th>1</th>
-      <td>0.132274</td>
-      <td>0.005032</td>
-      <td>0.045462</td>
-      <td>0.001943</td>
+      <td>0.042629</td>
+      <td>0.006837</td>
+      <td>0.012409</td>
+      <td>0.002927</td>
       <td>100.0</td>
       <td>{'ridge__alpha': 100.0}</td>
-      <td>0.866980</td>
-      <td>0.820033</td>
-      <td>0.826216</td>
-      <td>0.851460</td>
+      <td>0.866897</td>
+      <td>0.820046</td>
+      <td>0.826264</td>
+      <td>0.851185</td>
       <td>...</td>
-      <td>-1.263742e+09</td>
-      <td>5.328077e+08</td>
+      <td>-1.264275e+09</td>
+      <td>5.328496e+08</td>
       <td>1</td>
-      <td>-9.379875e+08</td>
-      <td>-8.264283e+08</td>
-      <td>-8.758062e+08</td>
-      <td>-8.849438e+08</td>
-      <td>-7.395282e+08</td>
-      <td>-8.529388e+08</td>
-      <td>6.685103e+07</td>
+      <td>-9.383069e+08</td>
+      <td>-8.267971e+08</td>
+      <td>-8.763019e+08</td>
+      <td>-8.847908e+08</td>
+      <td>-7.397199e+08</td>
+      <td>-8.531833e+08</td>
+      <td>6.685761e+07</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.166171</td>
-      <td>0.034114</td>
-      <td>0.059196</td>
-      <td>0.015461</td>
+      <td>0.036346</td>
+      <td>0.003838</td>
+      <td>0.012827</td>
+      <td>0.005183</td>
       <td>1000.0</td>
       <td>{'ridge__alpha': 1000.0}</td>
-      <td>0.827261</td>
-      <td>0.786555</td>
-      <td>0.802902</td>
-      <td>0.812272</td>
+      <td>0.827194</td>
+      <td>0.786532</td>
+      <td>0.802856</td>
+      <td>0.812304</td>
       <td>...</td>
-      <td>-1.362185e+09</td>
-      <td>3.262269e+08</td>
+      <td>-1.362306e+09</td>
+      <td>3.261402e+08</td>
       <td>3</td>
-      <td>-1.282021e+09</td>
-      <td>-1.156311e+09</td>
-      <td>-1.207814e+09</td>
-      <td>-1.225301e+09</td>
-      <td>-1.029950e+09</td>
-      <td>-1.180279e+09</td>
-      <td>8.521743e+07</td>
+      <td>-1.282106e+09</td>
+      <td>-1.156442e+09</td>
+      <td>-1.207920e+09</td>
+      <td>-1.225280e+09</td>
+      <td>-1.030069e+09</td>
+      <td>-1.180363e+09</td>
+      <td>8.519271e+07</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.125609</td>
-      <td>0.010245</td>
-      <td>0.044295</td>
-      <td>0.003133</td>
+      <td>0.040605</td>
+      <td>0.002582</td>
+      <td>0.012374</td>
+      <td>0.002348</td>
       <td>10.0</td>
       <td>{'ridge__alpha': 10.0}</td>
-      <td>0.859318</td>
-      <td>0.820564</td>
-      <td>0.832866</td>
-      <td>0.846650</td>
+      <td>0.858957</td>
+      <td>0.820552</td>
+      <td>0.832899</td>
+      <td>0.846307</td>
       <td>...</td>
-      <td>-1.283119e+09</td>
-      <td>5.511620e+08</td>
+      <td>-1.284019e+09</td>
+      <td>5.507493e+08</td>
       <td>2</td>
-      <td>-7.034979e+08</td>
-      <td>-6.276943e+08</td>
-      <td>-6.910456e+08</td>
-      <td>-6.701186e+08</td>
-      <td>-5.915714e+08</td>
-      <td>-6.567856e+08</td>
-      <td>4.155178e+07</td>
+      <td>-7.031807e+08</td>
+      <td>-6.276881e+08</td>
+      <td>-6.910603e+08</td>
+      <td>-6.699413e+08</td>
+      <td>-5.916073e+08</td>
+      <td>-6.566956e+08</td>
+      <td>4.146121e+07</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.136016</td>
-      <td>0.006792</td>
-      <td>0.043729</td>
-      <td>0.002724</td>
+      <td>0.043889</td>
+      <td>0.001906</td>
+      <td>0.013886</td>
+      <td>0.002384</td>
       <td>1.0</td>
       <td>{'ridge__alpha': 1.0}</td>
-      <td>0.835749</td>
-      <td>0.810073</td>
-      <td>0.831611</td>
-      <td>0.843992</td>
+      <td>0.834450</td>
+      <td>0.810031</td>
+      <td>0.831653</td>
+      <td>0.843537</td>
       <td>...</td>
-      <td>-1.386071e+09</td>
-      <td>6.378971e+08</td>
+      <td>-1.388085e+09</td>
+      <td>6.365356e+08</td>
       <td>4</td>
-      <td>-5.394113e+08</td>
-      <td>-4.898703e+08</td>
-      <td>-5.405227e+08</td>
-      <td>-5.290961e+08</td>
-      <td>-5.046193e+08</td>
-      <td>-5.207039e+08</td>
-      <td>2.011269e+07</td>
+      <td>-5.387270e+08</td>
+      <td>-4.897545e+08</td>
+      <td>-5.405067e+08</td>
+      <td>-5.288482e+08</td>
+      <td>-5.045273e+08</td>
+      <td>-5.204727e+08</td>
+      <td>2.001295e+07</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.130938</td>
-      <td>0.008744</td>
-      <td>0.047061</td>
-      <td>0.006918</td>
+      <td>0.038870</td>
+      <td>0.001554</td>
+      <td>0.011694</td>
+      <td>0.003546</td>
       <td>0.1</td>
       <td>{'ridge__alpha': 0.1}</td>
-      <td>0.821807</td>
-      <td>0.792828</td>
-      <td>0.805198</td>
-      <td>0.863941</td>
+      <td>0.819830</td>
+      <td>0.792735</td>
+      <td>0.805207</td>
+      <td>0.863338</td>
       <td>...</td>
-      <td>-1.465279e+09</td>
-      <td>6.931439e+08</td>
+      <td>-1.468319e+09</td>
+      <td>6.909866e+08</td>
       <td>5</td>
-      <td>-4.579559e+08</td>
-      <td>-4.009514e+08</td>
-      <td>-4.345386e+08</td>
-      <td>-4.515351e+08</td>
-      <td>-4.846260e+08</td>
-      <td>-4.459214e+08</td>
-      <td>2.766317e+07</td>
+      <td>-4.573403e+08</td>
+      <td>-4.008696e+08</td>
+      <td>-4.345403e+08</td>
+      <td>-4.511181e+08</td>
+      <td>-4.845183e+08</td>
+      <td>-4.456773e+08</td>
+      <td>2.758988e+07</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.125548</td>
-      <td>0.011318</td>
-      <td>0.043274</td>
-      <td>0.000902</td>
+      <td>0.041381</td>
+      <td>0.006667</td>
+      <td>0.011295</td>
+      <td>0.002684</td>
       <td>0.01</td>
       <td>{'ridge__alpha': 0.01}</td>
-      <td>0.824884</td>
-      <td>0.782183</td>
-      <td>0.787933</td>
-      <td>0.868003</td>
+      <td>0.822784</td>
+      <td>0.782073</td>
+      <td>0.787900</td>
+      <td>0.867310</td>
       <td>...</td>
-      <td>-1.501304e+09</td>
-      <td>7.090376e+08</td>
+      <td>-1.504687e+09</td>
+      <td>7.065130e+08</td>
       <td>6</td>
-      <td>-4.522563e+08</td>
-      <td>-3.926733e+08</td>
-      <td>-4.251158e+08</td>
-      <td>-4.446284e+08</td>
-      <td>-4.837022e+08</td>
-      <td>-4.396752e+08</td>
-      <td>3.014081e+07</td>
+      <td>-4.516497e+08</td>
+      <td>-3.925934e+08</td>
+      <td>-4.251121e+08</td>
+      <td>-4.441832e+08</td>
+      <td>-4.835932e+08</td>
+      <td>-4.394263e+08</td>
+      <td>3.006982e+07</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.129750</td>
-      <td>0.004327</td>
-      <td>0.043355</td>
-      <td>0.003814</td>
+      <td>0.040820</td>
+      <td>0.001526</td>
+      <td>0.013346</td>
+      <td>0.007204</td>
       <td>0.001</td>
       <td>{'ridge__alpha': 0.001}</td>
-      <td>0.826553</td>
-      <td>0.780497</td>
-      <td>0.785399</td>
-      <td>0.868281</td>
+      <td>0.824481</td>
+      <td>0.780386</td>
+      <td>0.785360</td>
+      <td>0.867572</td>
       <td>...</td>
-      <td>-1.505592e+09</td>
-      <td>7.117899e+08</td>
+      <td>-1.508977e+09</td>
+      <td>7.092363e+08</td>
       <td>7</td>
-      <td>-4.521578e+08</td>
-      <td>-3.925288e+08</td>
-      <td>-4.249618e+08</td>
-      <td>-4.445124e+08</td>
-      <td>-4.836880e+08</td>
-      <td>-4.395697e+08</td>
-      <td>3.018459e+07</td>
+      <td>-4.515516e+08</td>
+      <td>-3.924490e+08</td>
+      <td>-4.249579e+08</td>
+      <td>-4.440666e+08</td>
+      <td>-4.835790e+08</td>
+      <td>-4.393208e+08</td>
+      <td>3.011365e+07</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.122386</td>
-      <td>0.006678</td>
-      <td>0.042967</td>
-      <td>0.002872</td>
+      <td>0.037917</td>
+      <td>0.007759</td>
+      <td>0.015081</td>
+      <td>0.006243</td>
       <td>0.0001</td>
       <td>{'ridge__alpha': 0.0001}</td>
-      <td>0.826739</td>
-      <td>0.780316</td>
-      <td>0.785134</td>
-      <td>0.868305</td>
+      <td>0.824671</td>
+      <td>0.780205</td>
+      <td>0.785095</td>
+      <td>0.867595</td>
       <td>...</td>
-      <td>-1.506035e+09</td>
-      <td>7.120769e+08</td>
+      <td>-1.509418e+09</td>
+      <td>7.095221e+08</td>
       <td>8</td>
-      <td>-4.521567e+08</td>
-      <td>-3.925272e+08</td>
-      <td>-4.249601e+08</td>
-      <td>-4.445111e+08</td>
-      <td>-4.836878e+08</td>
-      <td>-4.395686e+08</td>
-      <td>3.018507e+07</td>
+      <td>-4.515504e+08</td>
+      <td>-3.924474e+08</td>
+      <td>-4.249563e+08</td>
+      <td>-4.440653e+08</td>
+      <td>-4.835789e+08</td>
+      <td>-4.393197e+08</td>
+      <td>3.011413e+07</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.130967</td>
-      <td>0.019439</td>
-      <td>0.039007</td>
-      <td>0.006258</td>
+      <td>0.034727</td>
+      <td>0.004125</td>
+      <td>0.012342</td>
+      <td>0.003059</td>
       <td>0.00001</td>
       <td>{'ridge__alpha': 1e-05}</td>
-      <td>0.826758</td>
-      <td>0.780298</td>
-      <td>0.785108</td>
-      <td>0.868308</td>
+      <td>0.824691</td>
+      <td>0.780187</td>
+      <td>0.785068</td>
+      <td>0.867597</td>
       <td>...</td>
-      <td>-1.506079e+09</td>
-      <td>7.121056e+08</td>
+      <td>-1.509463e+09</td>
+      <td>7.095507e+08</td>
       <td>9</td>
-      <td>-4.521567e+08</td>
-      <td>-3.925272e+08</td>
-      <td>-4.249601e+08</td>
-      <td>-4.445111e+08</td>
-      <td>-4.836878e+08</td>
-      <td>-4.395686e+08</td>
-      <td>3.018507e+07</td>
+      <td>-4.515504e+08</td>
+      <td>-3.924474e+08</td>
+      <td>-4.249562e+08</td>
+      <td>-4.440653e+08</td>
+      <td>-4.835789e+08</td>
+      <td>-4.393197e+08</td>
+      <td>3.011413e+07</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>0.093235</td>
-      <td>0.018278</td>
-      <td>0.032982</td>
-      <td>0.006405</td>
+      <td>0.034080</td>
+      <td>0.003145</td>
+      <td>0.012632</td>
+      <td>0.003417</td>
       <td>0.000001</td>
       <td>{'ridge__alpha': 1e-06}</td>
-      <td>0.826760</td>
-      <td>0.780296</td>
-      <td>0.785105</td>
-      <td>0.868308</td>
+      <td>0.824693</td>
+      <td>0.780185</td>
+      <td>0.785065</td>
+      <td>0.867597</td>
       <td>...</td>
-      <td>-1.506084e+09</td>
-      <td>7.121084e+08</td>
+      <td>-1.509467e+09</td>
+      <td>7.095536e+08</td>
       <td>10</td>
-      <td>-4.521567e+08</td>
-      <td>-3.925272e+08</td>
-      <td>-4.249601e+08</td>
-      <td>-4.445111e+08</td>
-      <td>-4.836878e+08</td>
-      <td>-4.395686e+08</td>
-      <td>3.018507e+07</td>
+      <td>-4.515504e+08</td>
+      <td>-3.924474e+08</td>
+      <td>-4.249562e+08</td>
+      <td>-4.440653e+08</td>
+      <td>-4.835789e+08</td>
+      <td>-4.393197e+08</td>
+      <td>3.011413e+07</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>0.150008</td>
-      <td>0.013874</td>
-      <td>0.047600</td>
-      <td>0.004518</td>
+      <td>0.043409</td>
+      <td>0.007480</td>
+      <td>0.018147</td>
+      <td>0.005375</td>
       <td>10000.0</td>
       <td>{'ridge__alpha': 10000.0}</td>
-      <td>0.593370</td>
-      <td>0.551975</td>
+      <td>0.593402</td>
+      <td>0.551970</td>
       <td>0.568663</td>
-      <td>0.557739</td>
+      <td>0.557891</td>
       <td>...</td>
-      <td>-2.686348e+09</td>
-      <td>3.316395e+08</td>
+      <td>-2.686107e+09</td>
+      <td>3.315718e+08</td>
       <td>11</td>
-      <td>-2.762093e+09</td>
-      <td>-2.571901e+09</td>
-      <td>-2.662541e+09</td>
-      <td>-2.624450e+09</td>
-      <td>-2.595569e+09</td>
-      <td>-2.643311e+09</td>
-      <td>6.665351e+07</td>
+      <td>-2.761798e+09</td>
+      <td>-2.571596e+09</td>
+      <td>-2.662233e+09</td>
+      <td>-2.624434e+09</td>
+      <td>-2.595316e+09</td>
+      <td>-2.643075e+09</td>
+      <td>6.663313e+07</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>0.133128</td>
-      <td>0.026296</td>
-      <td>0.032542</td>
-      <td>0.006817</td>
+      <td>0.046037</td>
+      <td>0.009445</td>
+      <td>0.010001</td>
+      <td>0.001866</td>
       <td>100000.0</td>
       <td>{'ridge__alpha': 100000.0}</td>
-      <td>0.135384</td>
-      <td>0.113837</td>
-      <td>0.118874</td>
-      <td>0.123367</td>
+      <td>0.135414</td>
+      <td>0.113850</td>
+      <td>0.118889</td>
+      <td>0.123419</td>
       <td>...</td>
-      <td>-5.442377e+09</td>
-      <td>5.531116e+08</td>
+      <td>-5.442218e+09</td>
+      <td>5.531025e+08</td>
       <td>12</td>
-      <td>-5.629792e+09</td>
-      <td>-5.271738e+09</td>
-      <td>-5.379416e+09</td>
-      <td>-5.342605e+09</td>
-      <td>-5.498133e+09</td>
-      <td>-5.424337e+09</td>
-      <td>1.262079e+08</td>
+      <td>-5.629636e+09</td>
+      <td>-5.271544e+09</td>
+      <td>-5.379227e+09</td>
+      <td>-5.342554e+09</td>
+      <td>-5.497948e+09</td>
+      <td>-5.424182e+09</td>
+      <td>1.262024e+08</td>
     </tr>
   </tbody>
 </table>
@@ -3414,7 +3434,7 @@ Best score: -0.111
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.09503409246217497
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.09496387589496001
 </pre></div>
 </div>
 </div>

@@ -472,20 +472,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">11</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">),</span> <span class="s2">&quot;code&quot;</span><span class="p">))</span>
-<span class="ne">---&gt; </span><span class="mi">11</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="kn">from</span> <span class="nn">plotting_functions</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;seaborn&#39;
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="learning-outcomes">
@@ -866,36 +852,36 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;PavedDrive&#39;,
- &#39;RoofStyle&#39;,
- &#39;Foundation&#39;,
- &#39;RoofMatl&#39;,
- &#39;SaleCondition&#39;,
- &#39;MiscFeature&#39;,
- &#39;CentralAir&#39;,
- &#39;Alley&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;GarageType&#39;,
  &#39;BldgType&#39;,
- &#39;Condition2&#39;,
- &#39;Exterior1st&#39;,
- &#39;Exterior2nd&#39;,
- &#39;LotConfig&#39;,
- &#39;HouseStyle&#39;,
- &#39;GarageType&#39;,
- &#39;SaleType&#39;,
- &#39;Neighborhood&#39;,
- &#39;Street&#39;,
- &#39;Condition1&#39;,
- &#39;MasVnrType&#39;,
- &#39;LandContour&#39;,
  &#39;GarageFinish&#39;,
- &#39;MoSold&#39;,
+ &#39;Condition1&#39;,
+ &#39;SaleType&#39;,
  &#39;Utilities&#39;,
- &#39;Heating&#39;,
- &#39;Electrical&#39;,
+ &#39;Exterior1st&#39;,
+ &#39;MasVnrType&#39;,
+ &#39;Foundation&#39;,
+ &#39;CentralAir&#39;,
  &#39;MSSubClass&#39;,
+ &#39;SaleCondition&#39;,
+ &#39;MoSold&#39;,
+ &#39;LotShape&#39;,
+ &#39;Heating&#39;,
+ &#39;LandContour&#39;,
+ &#39;LotConfig&#39;,
+ &#39;RoofStyle&#39;,
+ &#39;Street&#39;,
+ &#39;Exterior2nd&#39;,
+ &#39;PavedDrive&#39;,
+ &#39;Electrical&#39;,
+ &#39;MiscFeature&#39;,
+ &#39;HouseStyle&#39;,
+ &#39;RoofMatl&#39;,
  &#39;LandSlope&#39;,
  &#39;MSZoning&#39;,
- &#39;LotShape&#39;]
+ &#39;Alley&#39;,
+ &#39;Neighborhood&#39;,
+ &#39;Condition2&#39;]
 </pre></div>
 </div>
 </div>
@@ -1027,16 +1013,16 @@ document.write(`
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
-      <th>LandSlope_Sev</th>
-      <th>MSZoning_C (all)</th>
-      <th>MSZoning_FV</th>
-      <th>MSZoning_RH</th>
-      <th>MSZoning_RL</th>
-      <th>MSZoning_RM</th>
-      <th>LotShape_IR1</th>
-      <th>LotShape_IR2</th>
-      <th>LotShape_IR3</th>
-      <th>LotShape_Reg</th>
+      <th>Neighborhood_Timber</th>
+      <th>Neighborhood_Veenker</th>
+      <th>Condition2_Artery</th>
+      <th>Condition2_Feedr</th>
+      <th>Condition2_Norm</th>
+      <th>Condition2_PosA</th>
+      <th>Condition2_PosN</th>
+      <th>Condition2_RRAe</th>
+      <th>Condition2_RRAn</th>
+      <th>Condition2_RRNn</th>
     </tr>
   </thead>
   <tbody>
@@ -1059,7 +1045,7 @@ document.write(`
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1083,7 +1069,7 @@ document.write(`
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1101,13 +1087,13 @@ document.write(`
       <td>-0.573129</td>
       <td>1.227559</td>
       <td>...</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1131,7 +1117,7 @@ document.write(`
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1156,7 +1142,7 @@ document.write(`
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -1206,7 +1192,7 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1122</th>
@@ -1227,7 +1213,7 @@ document.write(`
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1252,7 +1238,7 @@ document.write(`
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -1278,7 +1264,7 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1389</th>
@@ -1297,12 +1283,12 @@ document.write(`
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
   </tbody>
 </table>
@@ -1357,36 +1343,36 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.032616</td>
-      <td>0.008111</td>
+      <td>0.026315</td>
+      <td>0.007451</td>
       <td>0.835749</td>
       <td>0.916722</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.026517</td>
-      <td>0.007387</td>
+      <td>0.026042</td>
+      <td>0.007056</td>
       <td>0.810073</td>
       <td>0.919198</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.023797</td>
-      <td>0.007133</td>
+      <td>0.025244</td>
+      <td>0.006934</td>
       <td>0.831611</td>
       <td>0.912395</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.024727</td>
-      <td>0.008341</td>
+      <td>0.026690</td>
+      <td>0.006807</td>
       <td>0.843992</td>
       <td>0.914003</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.024118</td>
-      <td>0.007278</td>
+      <td>0.025579</td>
+      <td>0.007285</td>
       <td>0.548831</td>
       <td>0.920462</td>
     </tr>
@@ -1427,7 +1413,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7a1e89e97900a831949357b13ce92d227d2fcb48dc66361de51ac697966c2a1f.png" src="../_images/7a1e89e97900a831949357b13ce92d227d2fcb48dc66361de51ac697966c2a1f.png" />
+<img alt="../_images/08bb0634c6f5a8594083eb48b234459243307febb22faeab0b06c7d7d8982ae8.png" src="../_images/08bb0634c6f5a8594083eb48b234459243307febb22faeab0b06c7d7d8982ae8.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1454,7 +1440,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0529d491f91abee291989223143db503e97ec445370b46720005608ff4e8b80c.png" src="../_images/0529d491f91abee291989223143db503e97ec445370b46720005608ff4e8b80c.png" />
+<img alt="../_images/425cbe3f8410fb4dbf4398bed212e135fafad7571cece542713299e433f8b202.png" src="../_images/425cbe3f8410fb4dbf4398bed212e135fafad7571cece542713299e433f8b202.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1784,7 +1770,7 @@ Name: ExterQual, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;PavedDrive&#39;, &#39;RoofStyle&#39;, &#39;Foundation&#39;, &#39;RoofMatl&#39;, &#39;SaleCondition&#39;, &#39;MiscFeature&#39;, &#39;CentralAir&#39;, &#39;Alley&#39;, &#39;BldgType&#39;, &#39;Condition2&#39;, &#39;Exterior1st&#39;, &#39;Exterior2nd&#39;, &#39;LotConfig&#39;, &#39;HouseStyle&#39;, &#39;GarageType&#39;, &#39;SaleType&#39;, &#39;Neighborhood&#39;, &#39;Street&#39;, &#39;Condition1&#39;, &#39;MasVnrType&#39;, &#39;LandContour&#39;, &#39;GarageFinish&#39;, &#39;MoSold&#39;, &#39;Utilities&#39;, &#39;Heating&#39;, &#39;Electrical&#39;, &#39;MSSubClass&#39;, &#39;LandSlope&#39;, &#39;MSZoning&#39;, &#39;LotShape&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;GarageType&#39;, &#39;BldgType&#39;, &#39;GarageFinish&#39;, &#39;Condition1&#39;, &#39;SaleType&#39;, &#39;Utilities&#39;, &#39;Exterior1st&#39;, &#39;MasVnrType&#39;, &#39;Foundation&#39;, &#39;CentralAir&#39;, &#39;MSSubClass&#39;, &#39;SaleCondition&#39;, &#39;MoSold&#39;, &#39;LotShape&#39;, &#39;Heating&#39;, &#39;LandContour&#39;, &#39;LotConfig&#39;, &#39;RoofStyle&#39;, &#39;Street&#39;, &#39;Exterior2nd&#39;, &#39;PavedDrive&#39;, &#39;Electrical&#39;, &#39;MiscFeature&#39;, &#39;HouseStyle&#39;, &#39;RoofMatl&#39;, &#39;LandSlope&#39;, &#39;MSZoning&#39;, &#39;Alley&#39;, &#39;Neighborhood&#39;, &#39;Condition2&#39;]
 </pre></div>
 </div>
 </div>
@@ -2310,16 +2296,16 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
-      <th>LandSlope_Sev</th>
-      <th>MSZoning_C (all)</th>
-      <th>MSZoning_FV</th>
-      <th>MSZoning_RH</th>
-      <th>MSZoning_RL</th>
-      <th>MSZoning_RM</th>
-      <th>LotShape_IR1</th>
-      <th>LotShape_IR2</th>
-      <th>LotShape_IR3</th>
-      <th>LotShape_Reg</th>
+      <th>Neighborhood_Timber</th>
+      <th>Neighborhood_Veenker</th>
+      <th>Condition2_Artery</th>
+      <th>Condition2_Feedr</th>
+      <th>Condition2_Norm</th>
+      <th>Condition2_PosA</th>
+      <th>Condition2_PosN</th>
+      <th>Condition2_RRAe</th>
+      <th>Condition2_RRAn</th>
+      <th>Condition2_RRNn</th>
     </tr>
   </thead>
   <tbody>
@@ -2342,7 +2328,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -2360,7 +2346,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:457: UserWarning: X has feature names, but Ridge was fitted without feature names
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:458: UserWarning: X has feature names, but Ridge was fitted without feature names
   warnings.warn(
 </pre></div>
 </div>
@@ -2407,16 +2393,16 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
-      <th>LandSlope_Sev</th>
-      <th>MSZoning_C (all)</th>
-      <th>MSZoning_FV</th>
-      <th>MSZoning_RH</th>
-      <th>MSZoning_RL</th>
-      <th>MSZoning_RM</th>
-      <th>LotShape_IR1</th>
-      <th>LotShape_IR2</th>
-      <th>LotShape_IR3</th>
-      <th>LotShape_Reg</th>
+      <th>Neighborhood_Timber</th>
+      <th>Neighborhood_Veenker</th>
+      <th>Condition2_Artery</th>
+      <th>Condition2_Feedr</th>
+      <th>Condition2_Norm</th>
+      <th>Condition2_PosA</th>
+      <th>Condition2_PosN</th>
+      <th>Condition2_RRAe</th>
+      <th>Condition2_RRAn</th>
+      <th>Condition2_RRNn</th>
     </tr>
   </thead>
   <tbody>
@@ -2439,7 +2425,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -2457,7 +2443,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:457: UserWarning: X has feature names, but Ridge was fitted without feature names
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:458: UserWarning: X has feature names, but Ridge was fitted without feature names
   warnings.warn(
 </pre></div>
 </div>
@@ -2776,135 +2762,72 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [6950.28526
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">55</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">adult_df_large</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/adult.csv&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">adult_df_large</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">train_df_nan</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:948,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
+<span class="g g-Whitespace">    </span><span class="mi">935</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">936</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">937</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">944</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">945</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">946</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">948</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>age</th>
-      <th>workclass</th>
-      <th>fnlwgt</th>
-      <th>education</th>
-      <th>education.num</th>
-      <th>marital.status</th>
-      <th>occupation</th>
-      <th>relationship</th>
-      <th>race</th>
-      <th>sex</th>
-      <th>capital.gain</th>
-      <th>capital.loss</th>
-      <th>hours.per.week</th>
-      <th>native.country</th>
-      <th>income</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>5514</th>
-      <td>26</td>
-      <td>Private</td>
-      <td>256263</td>
-      <td>HS-grad</td>
-      <td>9</td>
-      <td>Never-married</td>
-      <td>Craft-repair</td>
-      <td>Not-in-family</td>
-      <td>White</td>
-      <td>Male</td>
-      <td>0</td>
-      <td>0</td>
-      <td>25</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-    </tr>
-    <tr>
-      <th>19777</th>
-      <td>24</td>
-      <td>Private</td>
-      <td>170277</td>
-      <td>HS-grad</td>
-      <td>9</td>
-      <td>Never-married</td>
-      <td>Other-service</td>
-      <td>Not-in-family</td>
-      <td>White</td>
-      <td>Female</td>
-      <td>0</td>
-      <td>0</td>
-      <td>35</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-    </tr>
-    <tr>
-      <th>10781</th>
-      <td>36</td>
-      <td>Private</td>
-      <td>75826</td>
-      <td>Bachelors</td>
-      <td>13</td>
-      <td>Divorced</td>
-      <td>Adm-clerical</td>
-      <td>Unmarried</td>
-      <td>White</td>
-      <td>Female</td>
-      <td>0</td>
-      <td>0</td>
-      <td>40</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-    </tr>
-    <tr>
-      <th>32240</th>
-      <td>22</td>
-      <td>State-gov</td>
-      <td>24395</td>
-      <td>Some-college</td>
-      <td>10</td>
-      <td>Married-civ-spouse</td>
-      <td>Adm-clerical</td>
-      <td>Wife</td>
-      <td>White</td>
-      <td>Female</td>
-      <td>0</td>
-      <td>0</td>
-      <td>20</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-    </tr>
-    <tr>
-      <th>9876</th>
-      <td>31</td>
-      <td>Local-gov</td>
-      <td>356689</td>
-      <td>Bachelors</td>
-      <td>13</td>
-      <td>Married-civ-spouse</td>
-      <td>Prof-specialty</td>
-      <td>Husband</td>
-      <td>White</td>
-      <td>Male</td>
-      <td>0</td>
-      <td>0</td>
-      <td>40</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:611,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">608</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">610</span> <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">611</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">613</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">614</span>     <span class="k">return</span> <span class="n">parser</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1448,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1445</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1447</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1448</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1705,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1703</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1704</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1705</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1706</span>     <span class="n">f</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1707</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1708</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1709</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1710</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1711</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1712</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1713</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1714</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1715</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1716</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/common.py:863,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">858</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
+<span class="g g-Whitespace">    </span><span class="mi">861</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">862</span>         <span class="c1"># Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">863</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">864</span>             <span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">865</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">866</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">867</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">868</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">869</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">870</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">871</span>         <span class="c1"># Binary mode</span>
+<span class="g g-Whitespace">    </span><span class="mi">872</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/adult.csv&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

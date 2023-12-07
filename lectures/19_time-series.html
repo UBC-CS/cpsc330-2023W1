@@ -178,6 +178,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="18_intro_to_computer-vision.html">Lecture 18: Multi-class classification and introduction to computer vision</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 19: Time series</a></li>
 <li class="toctree-l1"><a class="reference internal" href="20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_communication.html">Lecture 21: Communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -2352,11 +2354,11 @@ Test-set R^2: 0.37
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.94
-Test-set R^2: 0.69
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.95
+Test-set R^2: 0.70
 </pre></div>
 </div>
-<img alt="../_images/5a2a78012f9af288f4caf92a2d3a48fdbe615a25b82ba25322d905d791f9e630.png" src="../_images/5a2a78012f9af288f4caf92a2d3a48fdbe615a25b82ba25322d905d791f9e630.png" />
+<img alt="../_images/f2de8ce3a36b9398c56c6eb2b4e7ff1c95d0a8716681752a3807c44500f3711b.png" src="../_images/f2de8ce3a36b9398c56c6eb2b4e7ff1c95d0a8716681752a3807c44500f3711b.png" />
 </div>
 </div>
 <p>The results are better than <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> with lag features but they are not as good as the results with our previously engineered features. How about combining lag-based features and the previously extracted features?</p>
@@ -2376,10 +2378,10 @@ Test-set R^2: 0.69
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.96
-Test-set R^2: 0.79
+Test-set R^2: 0.80
 </pre></div>
 </div>
-<img alt="../_images/de141bcdb12f0d73efa1b82bd623f0798e72d94fa21567f783a6be96d1194ce4.png" src="../_images/de141bcdb12f0d73efa1b82bd623f0798e72d94fa21567f783a6be96d1194ce4.png" />
+<img alt="../_images/74a9456b81c9b16aa2815d0b9511de505da48bbafc138e1f1dbb22c8576cda60.png" src="../_images/74a9456b81c9b16aa2815d0b9511de505da48bbafc138e1f1dbb22c8576cda60.png" />
 </div>
 </div>
 <p>Some improvement but we are getting better results without the lag features in this case.</p>
@@ -2472,36 +2474,36 @@ Test-set R^2: 0.79
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000865</td>
-      <td>0.000291</td>
+      <td>0.000989</td>
+      <td>0.000312</td>
       <td>0.642676</td>
       <td>0.873182</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000517</td>
-      <td>0.000226</td>
+      <td>0.000622</td>
+      <td>0.000248</td>
       <td>0.828405</td>
       <td>0.874305</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000564</td>
-      <td>0.000220</td>
+      <td>0.000561</td>
+      <td>0.000225</td>
       <td>0.773851</td>
       <td>0.901262</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000545</td>
-      <td>0.000215</td>
+      <td>0.000567</td>
+      <td>0.000219</td>
       <td>0.696712</td>
       <td>0.889429</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000601</td>
-      <td>0.000208</td>
+      <td>0.000570</td>
+      <td>0.000212</td>
       <td>0.892733</td>
       <td>0.863889</td>
     </tr>

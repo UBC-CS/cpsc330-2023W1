@@ -173,6 +173,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../17_natural-language-processing.html">Lecture 17: Introduction to natural language processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../18_intro_to_computer-vision.html">Lecture 18: Multi-class classification and introduction to computer vision</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../19_time-series.html">Lecture 19: Time series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../21_communication.html">Lecture 21: Communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -404,12 +407,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
-</div>
 </div>
 <section id="announcements">
 <h1>Announcements<a class="headerlink" href="#announcements" title="Permalink to this heading">#</a></h1>
@@ -438,10 +435,10 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x14ac06aa0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x16ed5ce80&gt;
 </pre></div>
 </div>
-<img alt="../../_images/a9f9d0e70d0f5e6c0d8a38463b08c20c9c2cc69c14d0ecca973fb8e8cb4789bc.png" src="../../_images/a9f9d0e70d0f5e6c0d8a38463b08c20c9c2cc69c14d0ecca973fb8e8cb4789bc.png" />
+<img alt="../../_images/dfa150bdab02b91a2f468056d1608d02fa851559ba02cb2edd3126a592198161.png" src="../../_images/dfa150bdab02b91a2f468056d1608d02fa851559ba02cb2edd3126a592198161.png" />
 </div>
 </div>
 <section id="bad-methodology-1-scaling-the-data-separately-for-class-discussion">
@@ -486,7 +483,7 @@ Test score: 0.60
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ff74d3988bc98187d5543daf746c7bb6294fa3a16e308b3aae3b9155cd9291fe.png" src="../../_images/ff74d3988bc98187d5543daf746c7bb6294fa3a16e308b3aae3b9155cd9291fe.png" />
+<img alt="../../_images/ef1466f22e11faa7455a4bf1fd1d7b424e390f460b3bd47623833ede3c572de5.png" src="../../_images/ef1466f22e11faa7455a4bf1fd1d7b424e390f460b3bd47623833ede3c572de5.png" />
 </div>
 </div>
 </section>
@@ -546,7 +543,7 @@ Test score: 0.55
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/6eddfcff0133c360f15be8edc9ca3977fba50e4e08669f66c9958792a4bbb694.png" src="../../_images/6eddfcff0133c360f15be8edc9ca3977fba50e4e08669f66c9958792a4bbb694.png" />
+<img alt="../../_images/5977f8ac9d42554f2cb93123ea1a316e42f7c3215061a3ee031b8965fd0e0735.png" src="../../_images/5977f8ac9d42554f2cb93123ea1a316e42f7c3215061a3ee031b8965fd0e0735.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -629,36 +626,36 @@ Test score: 0.55
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000377</td>
-      <td>0.001086</td>
+      <td>0.000358</td>
+      <td>0.001069</td>
       <td>0.250000</td>
       <td>0.687500</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000269</td>
-      <td>0.000885</td>
+      <td>0.000289</td>
+      <td>0.000907</td>
       <td>0.500000</td>
       <td>0.625000</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000281</td>
+      <td>0.000276</td>
       <td>0.000889</td>
       <td>0.583333</td>
       <td>0.541667</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000265</td>
-      <td>0.000861</td>
+      <td>0.000280</td>
+      <td>0.000903</td>
       <td>0.583333</td>
       <td>0.604167</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000256</td>
-      <td>0.000855</td>
+      <td>0.000277</td>
+      <td>0.000941</td>
       <td>0.416667</td>
       <td>0.604167</td>
     </tr>
@@ -673,7 +670,7 @@ Test score: 0.55
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/61213a21459cc7e04d00eeeb3686159c4cac411e08601e97a844b478cdca7765.png" src="../../_images/61213a21459cc7e04d00eeeb3686159c4cac411e08601e97a844b478cdca7765.png" />
+<img alt="../../_images/6ceb65847c69117fe58651a01662422154bd94a5cd5a4d6133a925096bad8c44.png" src="../../_images/6ceb65847c69117fe58651a01662422154bd94a5cd5a4d6133a925096bad8c44.png" />
 </div>
 </div>
 </section>
@@ -1257,36 +1254,36 @@ memory usage: 1.9+ KB
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.004939</td>
-      <td>0.001858</td>
+      <td>0.003984</td>
+      <td>0.001800</td>
       <td>1.00</td>
       <td>0.937500</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.003220</td>
-      <td>0.001740</td>
+      <td>0.003245</td>
+      <td>0.001679</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.003174</td>
-      <td>0.001712</td>
+      <td>0.003146</td>
+      <td>0.001827</td>
       <td>0.50</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.003152</td>
-      <td>0.001699</td>
+      <td>0.003221</td>
+      <td>0.001692</td>
       <td>0.75</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.003126</td>
-      <td>0.001736</td>
+      <td>0.003164</td>
+      <td>0.001653</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>

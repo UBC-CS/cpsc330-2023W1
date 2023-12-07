@@ -177,6 +177,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="17_natural-language-processing.html">Lecture 17: Introduction to natural language processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="18_intro_to_computer-vision.html">Lecture 18: Multi-class classification and introduction to computer vision</a></li>
 <li class="toctree-l1"><a class="reference internal" href="19_time-series.html">Lecture 19: Time series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_communication.html">Lecture 21: Communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -483,11 +486,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
-<img alt="../_images/8b3cdc5a8a5ce4efec8851ca45b71bc8d0d92bf4aaa1e736ef8d5eaee4a98cf2.png" src="../_images/8b3cdc5a8a5ce4efec8851ca45b71bc8d0d92bf4aaa1e736ef8d5eaee4a98cf2.png" />
+<img alt="../_images/23a32857627dc9d651f04946eb9ae747e86a8690f4cbebed63e37ad5b3c59933.png" src="../_images/23a32857627dc9d651f04946eb9ae747e86a8690f4cbebed63e37ad5b3c59933.png" />
 </div>
 </div>
 </section>
@@ -2129,26 +2128,26 @@ Global average valid RMSE: 5.77
     <tr>
       <th>3633</th>
       <td>-4.5937</td>
-      <td>-6.4907</td>
-      <td>-6.1594</td>
+      <td>-6.4376</td>
+      <td>-5.9563</td>
       <td>-9.1560</td>
       <td>-7.1437</td>
-      <td>-6.5406</td>
-      <td>2.2031</td>
-      <td>-1.7782</td>
-      <td>-3.7406</td>
+      <td>-5.5844</td>
+      <td>2.2531</td>
+      <td>-0.9688</td>
+      <td>-2.8530</td>
       <td>-0.6406</td>
       <td>...</td>
       <td>-4.6938</td>
-      <td>4.8061</td>
-      <td>4.9968</td>
+      <td>3.4186</td>
+      <td>5.1656</td>
       <td>-0.1626</td>
-      <td>2.4187</td>
+      <td>2.5594</td>
       <td>-0.7750</td>
       <td>4.6781</td>
-      <td>1.7658</td>
-      <td>0.4595</td>
-      <td>0.1843</td>
+      <td>1.2658</td>
+      <td>-1.1718</td>
+      <td>-0.7157</td>
     </tr>
     <tr>
       <th>3634</th>
@@ -2467,26 +2466,26 @@ KNN imputer valid RMSE: 4.79
     <tr>
       <th>3633</th>
       <td>-4.5937</td>
-      <td>-6.4907</td>
-      <td>-6.1594</td>
+      <td>-6.4376</td>
+      <td>-5.9563</td>
       <td>-9.1560</td>
       <td>-7.1437</td>
-      <td>-6.5406</td>
-      <td>2.2031</td>
-      <td>-1.7782</td>
-      <td>-3.7406</td>
+      <td>-5.5844</td>
+      <td>2.2531</td>
+      <td>-0.9688</td>
+      <td>-2.8530</td>
       <td>-0.6406</td>
       <td>...</td>
       <td>-4.6938</td>
-      <td>4.8061</td>
-      <td>4.9968</td>
+      <td>3.4186</td>
+      <td>5.1656</td>
       <td>-0.1626</td>
-      <td>2.4187</td>
+      <td>2.5594</td>
       <td>-0.7750</td>
       <td>4.6781</td>
-      <td>1.7658</td>
-      <td>0.4595</td>
-      <td>0.1843</td>
+      <td>1.2658</td>
+      <td>-1.1718</td>
+      <td>-0.7157</td>
     </tr>
     <tr>
       <th>3634</th>
@@ -2624,6 +2623,11 @@ a person who speaks two languages is called &quot;bi-lingual,&quot; what do call
 a person who only speaks one language?
 
 A: American! 
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_22577/3461118492.py:9: DeprecationWarning:
+
+Calling nonzero on 0d arrays is deprecated, as it behaves surprisingly. Use `atleast_1d(cond).nonzero()` if the old behavior was intended. If the context of this warning is of the form `arr[nonzero(cond)]`, just use `arr[cond]`.
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -2867,10 +2871,10 @@ A: American!
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating RMSE, MAE of algorithm SVD on 5 split(s).
 
                   Fold 1  Fold 2  Fold 3  Fold 4  Fold 5  Mean    Std     
-RMSE (testset)    5.2900  5.2786  5.2600  5.3040  5.2779  5.2821  0.0146  
-MAE (testset)     4.2148  4.1876  4.1829  4.2264  4.1941  4.2012  0.0167  
-Fit time          0.53    0.26    0.24    0.23    0.21    0.29    0.12    
-Test time         0.09    0.22    0.09    0.15    0.08    0.13    0.05    
+RMSE (testset)    5.2851  5.2815  5.2718  5.3101  5.2586  5.2814  0.0170  
+MAE (testset)     4.2030  4.2127  4.1827  4.2245  4.1785  4.2003  0.0175  
+Fit time          0.25    0.34    0.25    0.29    0.24    0.27    0.04    
+Test time         0.08    0.15    0.08    0.14    0.08    0.11    0.03    
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -2900,38 +2904,38 @@ Test time         0.09    0.22    0.09    0.15    0.08    0.13    0.05
   <tbody>
     <tr>
       <th>0</th>
-      <td>5.290015</td>
-      <td>4.214789</td>
-      <td>0.525016</td>
-      <td>0.094339</td>
+      <td>5.285110</td>
+      <td>4.202977</td>
+      <td>0.248536</td>
+      <td>0.082104</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>5.278569</td>
-      <td>4.187631</td>
-      <td>0.256846</td>
-      <td>0.220660</td>
+      <td>5.281510</td>
+      <td>4.212725</td>
+      <td>0.336217</td>
+      <td>0.145417</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>5.259974</td>
-      <td>4.182936</td>
-      <td>0.238888</td>
-      <td>0.085514</td>
+      <td>5.271796</td>
+      <td>4.182675</td>
+      <td>0.246243</td>
+      <td>0.080291</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>5.304010</td>
-      <td>4.226410</td>
-      <td>0.229876</td>
-      <td>0.146885</td>
+      <td>5.310086</td>
+      <td>4.224486</td>
+      <td>0.293340</td>
+      <td>0.144488</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>5.277926</td>
-      <td>4.194138</td>
-      <td>0.214270</td>
-      <td>0.084685</td>
+      <td>5.258552</td>
+      <td>4.178479</td>
+      <td>0.238560</td>
+      <td>0.079545</td>
     </tr>
   </tbody>
 </table>
@@ -2983,35 +2987,47 @@ Test time         0.09    0.22    0.09    0.15    0.08    0.13    0.05
 <span class="g g-Whitespace">   </span><span class="mi">1793</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_completed_tasks</span> <span class="o">+=</span> <span class="mi">1</span>
 <span class="g g-Whitespace">   </span><span class="mi">1794</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_progress</span><span class="p">()</span>
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/surprise/model_selection/validation.py:186,</span> in <span class="ni">fit_and_score</span><span class="nt">(algo, trainset, testset, measures, return_train_measures)</span>
-<span class="g g-Whitespace">    </span><span class="mi">184</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">measures</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">185</span>     <span class="n">f</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
-<span class="ne">--&gt; </span><span class="mi">186</span>     <span class="n">test_measures</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">187</span>     <span class="k">if</span> <span class="n">return_train_measures</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">188</span>         <span class="n">train_measures</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">train_predictions</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/surprise/model_selection/validation.py:176,</span> in <span class="ni">fit_and_score</span><span class="nt">(algo, trainset, testset, measures, return_train_measures)</span>
+<span class="g g-Whitespace">    </span><span class="mi">174</span> <span class="n">fit_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_fit</span>
+<span class="g g-Whitespace">    </span><span class="mi">175</span> <span class="n">start_test</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">176</span> <span class="n">predictions</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">testset</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="n">test_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_test</span>
+<span class="g g-Whitespace">    </span><span class="mi">179</span> <span class="k">if</span> <span class="n">return_train_measures</span><span class="p">:</span>
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/surprise/accuracy.py:46,</span> in <span class="ni">rmse</span><span class="nt">(predictions, verbose)</span>
-<span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">predictions</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">44</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Prediction list is empty.&quot;</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">46</span> <span class="n">mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">47</span>     <span class="p">[</span><span class="nb">float</span><span class="p">((</span><span class="n">true_r</span> <span class="o">-</span> <span class="n">est</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">true_r</span><span class="p">,</span> <span class="n">est</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="ow">in</span> <span class="n">predictions</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">48</span> <span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">49</span> <span class="n">rmse_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mse</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">51</span> <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/surprise/prediction_algorithms/algo_base.py:160,</span> in <span class="ni">AlgoBase.test</span><span class="nt">(self, testset, verbose)</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Test the algorithm on given testset, i.e. estimate all the ratings</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span><span class="sd"> in the given testset.</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">156</span><span class="sd">     that contains all the estimated ratings.</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">159</span> <span class="c1"># The ratings are translated back to their original scale.</span>
+<span class="ne">--&gt; </span><span class="mi">160</span> <span class="n">predictions</span> <span class="o">=</span> <span class="p">[</span>
+<span class="g g-Whitespace">    </span><span class="mi">161</span>     <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">iid</span><span class="p">,</span> <span class="n">r_ui_trans</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span>     <span class="k">for</span> <span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">iid</span><span class="p">,</span> <span class="n">r_ui_trans</span><span class="p">)</span> <span class="ow">in</span> <span class="n">testset</span>
+<span class="g g-Whitespace">    </span><span class="mi">163</span> <span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span> <span class="k">return</span> <span class="n">predictions</span>
 
-<span class="nn">File &lt;__array_function__ internals&gt;:200,</span> in <span class="ni">mean</span><span class="nt">(*args, **kwargs)</span>
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/surprise/prediction_algorithms/algo_base.py:161,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Test the algorithm on given testset, i.e. estimate all the ratings</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span><span class="sd"> in the given testset.</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">156</span><span class="sd">     that contains all the estimated ratings.</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">159</span> <span class="c1"># The ratings are translated back to their original scale.</span>
+<span class="g g-Whitespace">    </span><span class="mi">160</span> <span class="n">predictions</span> <span class="o">=</span> <span class="p">[</span>
+<span class="ne">--&gt; </span><span class="mi">161</span>     <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">iid</span><span class="p">,</span> <span class="n">r_ui_trans</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span>     <span class="k">for</span> <span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">iid</span><span class="p">,</span> <span class="n">r_ui_trans</span><span class="p">)</span> <span class="ow">in</span> <span class="n">testset</span>
+<span class="g g-Whitespace">    </span><span class="mi">163</span> <span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span> <span class="k">return</span> <span class="n">predictions</span>
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/numpy/core/fromnumeric.py:3464,</span> in <span class="ni">mean</span><span class="nt">(a, axis, dtype, out, keepdims, where)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3461</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">3462</span>         <span class="k">return</span> <span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">3464</span> <span class="k">return</span> <span class="n">_methods</span><span class="o">.</span><span class="n">_mean</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">3465</span>                       <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/numpy/core/_methods.py:165,</span> in <span class="ni">_mean</span><span class="nt">(a, axis, dtype, out, keepdims, where)</span>
-<span class="g g-Whitespace">    </span><span class="mi">164</span> <span class="k">def</span> <span class="nf">_mean</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">165</span>     <span class="n">arr</span> <span class="o">=</span> <span class="n">asanyarray</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">167</span>     <span class="n">is_float16_result</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="g g-Whitespace">    </span><span class="mi">169</span>     <span class="n">rcount</span> <span class="o">=</span> <span class="n">_count_reduce_items</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="n">keepdims</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">where</span><span class="p">)</span>
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/surprise/prediction_algorithms/algo_base.py:92,</span> in <span class="ni">AlgoBase.predict</span><span class="nt">(self, uid, iid, r_ui, clip, verbose)</span>
+<span class="g g-Whitespace">     </span><span class="mi">90</span> <span class="c1"># Convert raw ids to inner ids</span>
+<span class="g g-Whitespace">     </span><span class="mi">91</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">92</span>     <span class="n">iuid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainset</span><span class="o">.</span><span class="n">to_inner_uid</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">93</span> <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">94</span>     <span class="n">iuid</span> <span class="o">=</span> <span class="s2">&quot;UKN__&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -4058,9 +4074,6 @@ Name: Lion King, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -4253,9 +4266,6 @@ Name: Lion King, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -4499,14 +4509,6 @@ Name: Lion King, dtype: int64
     <span class="n">models</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">()</span>
     <span class="n">models</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_usr</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">y_train_usr</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
     <span class="n">pred_lin_reg</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">models</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 </pre></div>
 </div>
 </div>
@@ -4814,7 +4816,6 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 <li><p><a class="reference external" href="https://help.netflix.com/en/node/100639">How Netflix’s Recommendations System Works</a></p></li>
 <li><p><a class="reference external" href="https://learning.oreilly.com/library/view/hands-on-recommendation-systems/9781788993753/">Hands on Recommendation Systems with Python</a></p></li>
 </ul>
-<p><br><br><br><br></p>
 </section>
 </section>
 </section>
