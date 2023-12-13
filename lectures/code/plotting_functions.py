@@ -12,6 +12,35 @@ import graphviz
 import imageio
 
 
+# adapted from mglearn https://github.com/amueller/mglearn/blob/master/mglearn/tools.py
+def my_heatmap(values, xlabel, ylabel, xticklabels, yticklabels, cmap=None,
+            vmin=None, vmax=None, ax=None, fmt="%0.2f"):
+    if ax is None:
+        ax = plt.gca()
+    # plot the mean cross-validation scores
+    img = ax.pcolor(values, cmap=cmap, vmin=vmin, vmax=vmax)
+    img.update_scalarmappable()
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    ax.set_xticks(np.arange(len(xticklabels)) + .5)
+    ax.set_yticks(np.arange(len(yticklabels)) + .5)
+    ax.set_xticklabels(xticklabels)
+    ax.set_yticklabels(yticklabels)
+    ax.set_aspect(1)
+
+    
+    iteration = 0
+    for p, color, value in zip(img.get_paths(), img.get_facecolors(),
+                               img.get_array().flatten()):
+        x, y = p.vertices[:-2, :].mean(0)
+        if np.mean(color[:3]) > 0.5:
+            c = 'k'
+        else:
+            c = 'w'        
+        ax.text(x, y, fmt % value, color=c, ha="center", va="center")
+    return img
+
+
 def plot_loss_diagram(labels_inside=False): # From Mike's notebook: https://github.com/UBC-CS/cpsc340-2020w2/blob/main/lectures/19_linear-classifiers-fit.ipynb        
     grid = np.linspace(-2,2,1000)
     plt.figure(figsize=(6, 4), dpi=80)

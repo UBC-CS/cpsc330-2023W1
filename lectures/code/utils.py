@@ -83,6 +83,6 @@ def mean_std_cross_val_scores(model, X_train, y_train, **kwargs):
     out_col = []
 
     for i in range(len(mean_scores)):
-        out_col.append((f"%0.3f (+/- %0.3f)" % (mean_scores[i], std_scores[i])))
+        out_col.append((f"%0.3f (+/- %0.3f)" % (mean_scores.iloc[i], std_scores.iloc[i])))
 
     return pd.Series(data=out_col, index=mean_scores.index)
