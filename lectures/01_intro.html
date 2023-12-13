@@ -180,6 +180,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="21_communication.html">Lecture 21: Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="final-review.html">Final review guiding questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A-Quick-intro-to-LLMs.html">Bonus: A high-level quick introduction to LLMs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -194,8 +196,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Appendix-A.html">Appendix A</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Appendix-B.html">Appendix-B</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixA.html">Appendix A: Common features used in text classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixB.html">Appendix B: K-Means customer segmentation case study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixC.html">Appendix C: Representing documents using embeddings</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -708,72 +711,36 @@ There is also <a class="reference external" href="https://docs.google.com/docume
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sms_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/spam.csv&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;latin-1&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">sms_df</span> <span class="o">=</span> <span class="n">sms_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Unnamed: 2&quot;</span><span class="p">,</span> <span class="s2">&quot;Unnamed: 3&quot;</span><span class="p">,</span> <span class="s2">&quot;Unnamed: 4&quot;</span><span class="p">])</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">sms_df</span> <span class="o">=</span> <span class="n">sms_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;v1&quot;</span><span class="p">:</span> <span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;v2&quot;</span><span class="p">:</span> <span class="s2">&quot;sms&quot;</span><span class="p">})</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:948,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
-<span class="g g-Whitespace">    </span><span class="mi">935</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">936</span>     <span class="n">dialect</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">937</span>     <span class="n">delimiter</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">944</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">945</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">946</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">948</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:611,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">608</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">610</span> <span class="c1"># Create the parser.</span>
-<span class="ne">--&gt; </span><span class="mi">611</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">613</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">614</span>     <span class="k">return</span> <span class="n">parser</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1448,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1445</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1447</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="ne">-&gt; </span><span class="mi">1448</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1705,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1703</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1704</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1705</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1706</span>     <span class="n">f</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1707</span>     <span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1708</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1709</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1710</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1711</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1712</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1713</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1714</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1715</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1716</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/common.py:863,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">858</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">859</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
-<span class="g g-Whitespace">    </span><span class="mi">860</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
-<span class="g g-Whitespace">    </span><span class="mi">861</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">862</span>         <span class="c1"># Encoding</span>
-<span class="ne">--&gt; </span><span class="mi">863</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">864</span>             <span class="n">handle</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">865</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">866</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">867</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">868</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">869</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">870</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">871</span>         <span class="c1"># Binary mode</span>
-<span class="g g-Whitespace">    </span><span class="mi">872</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/spam.csv&#39;
-</pre></div>
-</div>
-</div>
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>target</th>
+      <th>sms</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>spam</td>
+      <td>LookAtMe!: Thanks for your purchase of a video clip from LookAtMe!, you've been charged 35p. Think you can do better? Why not send a video in a MMSto 32323.</td>
+    </tr>
+    <tr>
+      <td>ham</td>
+      <td>Aight, I'll hit you up when I get some cash</td>
+    </tr>
+    <tr>
+      <td>ham</td>
+      <td>Don no da:)whats you plan?</td>
+    </tr>
+    <tr>
+      <td>ham</td>
+      <td>Going to take your babe out ?</td>
+    </tr>
+    <tr>
+      <td>ham</td>
+      <td>No need lar. Jus testing e phone card. Dunno network not gd i thk. Me waiting 4 my sis 2 finish bathing so i can bathe. Dun disturb u liao u cleaning ur room.</td>
+    </tr>
+  </tbody>
+</table></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -854,38 +821,38 @@ There is also <a class="reference external" href="https://docs.google.com/docume
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
-#T_01617_row0_col0, #T_01617_row0_col1, #T_01617_row1_col0, #T_01617_row1_col1, #T_01617_row2_col0, #T_01617_row2_col1, #T_01617_row3_col0, #T_01617_row3_col1 {
+#T_f4b7c_row0_col0, #T_f4b7c_row0_col1, #T_f4b7c_row1_col0, #T_f4b7c_row1_col1, #T_f4b7c_row2_col0, #T_f4b7c_row2_col1, #T_f4b7c_row3_col0, #T_f4b7c_row3_col1 {
   text-align: left;
 }
 </style>
-<table id="T_01617">
+<table id="T_f4b7c">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_01617_level0_col0" class="col_heading level0 col0" >sms</th>
-      <th id="T_01617_level0_col1" class="col_heading level0 col1" >spam_predictions</th>
+      <th id="T_f4b7c_level0_col0" class="col_heading level0 col0" >sms</th>
+      <th id="T_f4b7c_level0_col1" class="col_heading level0 col1" >spam_predictions</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_01617_level0_row0" class="row_heading level0 row0" >3245</th>
-      <td id="T_01617_row0_col0" class="data row0 col0" >Funny fact Nobody teaches volcanoes 2 erupt, tsunamis 2 arise, hurricanes 2 sway aroundn no 1 teaches hw 2 choose a wife Natural disasters just happens</td>
-      <td id="T_01617_row0_col1" class="data row0 col1" >ham</td>
+      <th id="T_f4b7c_level0_row0" class="row_heading level0 row0" >3245</th>
+      <td id="T_f4b7c_row0_col0" class="data row0 col0" >Funny fact Nobody teaches volcanoes 2 erupt, tsunamis 2 arise, hurricanes 2 sway aroundn no 1 teaches hw 2 choose a wife Natural disasters just happens</td>
+      <td id="T_f4b7c_row0_col1" class="data row0 col1" >ham</td>
     </tr>
     <tr>
-      <th id="T_01617_level0_row1" class="row_heading level0 row1" >944</th>
-      <td id="T_01617_row1_col0" class="data row1 col0" >I sent my scores to sophas and i had to do secondary application for a few schools. I think if you are thinking of applying, do a research on cost also. Contact joke ogunrinde, her school is one me the less expensive ones</td>
-      <td id="T_01617_row1_col1" class="data row1 col1" >ham</td>
+      <th id="T_f4b7c_level0_row1" class="row_heading level0 row1" >944</th>
+      <td id="T_f4b7c_row1_col0" class="data row1 col0" >I sent my scores to sophas and i had to do secondary application for a few schools. I think if you are thinking of applying, do a research on cost also. Contact joke ogunrinde, her school is one me the less expensive ones</td>
+      <td id="T_f4b7c_row1_col1" class="data row1 col1" >ham</td>
     </tr>
     <tr>
-      <th id="T_01617_level0_row2" class="row_heading level0 row2" >1044</th>
-      <td id="T_01617_row2_col0" class="data row2 col0" >We know someone who you know that fancies you. Call 09058097218 to find out who. POBox 6, LS15HB 150p</td>
-      <td id="T_01617_row2_col1" class="data row2 col1" >spam</td>
+      <th id="T_f4b7c_level0_row2" class="row_heading level0 row2" >1044</th>
+      <td id="T_f4b7c_row2_col0" class="data row2 col0" >We know someone who you know that fancies you. Call 09058097218 to find out who. POBox 6, LS15HB 150p</td>
+      <td id="T_f4b7c_row2_col1" class="data row2 col1" >spam</td>
     </tr>
     <tr>
-      <th id="T_01617_level0_row3" class="row_heading level0 row3" >2484</th>
-      <td id="T_01617_row3_col0" class="data row3 col0" >Only if you promise your getting out as SOON as you can. And you'll text me in the morning to let me know you made it in ok.</td>
-      <td id="T_01617_row3_col1" class="data row3 col1" >ham</td>
+      <th id="T_f4b7c_level0_row3" class="row_heading level0 row3" >2484</th>
+      <td id="T_f4b7c_row3_col0" class="data row3 col0" >Only if you promise your getting out as SOON as you can. And you'll text me in the morning to let me know you made it in ok.</td>
+      <td id="T_f4b7c_row3_col1" class="data row3 col1" >ham</td>
     </tr>
   </tbody>
 </table>
@@ -1228,7 +1195,7 @@ conda install -c pytorch torchvision</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8531251d4f7823eac8161ae3b2e6facdcaabd598a4e380c86abba4393e3fb0ff.png" src="../_images/8531251d4f7823eac8161ae3b2e6facdcaabd598a4e380c86abba4393e3fb0ff.png" />
+<img alt="../_images/7232b9854d4ef71bdd9335937f7ec91999dc40d6252e4130746185e33bd6a9c6.png" src="../_images/7232b9854d4ef71bdd9335937f7ec91999dc40d6252e4130746185e33bd6a9c6.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                     Class  Probability score
          cheetah, chetah, Acinonyx jubatus              0.994
                   leopard, Panthera pardus              0.005
@@ -1237,7 +1204,7 @@ jaguar, panther, Panthera onca, Felis onca              0.001
 --------------------------------------------------------------
 </pre></div>
 </div>
-<img alt="../_images/43cc9ba2e909aba3eda39e963499f315988da88d4a756a49602f800ca2ceb777.png" src="../_images/43cc9ba2e909aba3eda39e963499f315988da88d4a756a49602f800ca2ceb777.png" />
+<img alt="../_images/d83ae4580f0762769a54c33dec742a31cebeea1c08c1c7630b523def9fc7d103.png" src="../_images/d83ae4580f0762769a54c33dec742a31cebeea1c08c1c7630b523def9fc7d103.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                         Class  Probability score
                      tiger cat              0.636
               tabby, tabby cat              0.174
@@ -1246,7 +1213,7 @@ Pembroke, Pembroke Welsh corgi              0.081
 --------------------------------------------------------------
 </pre></div>
 </div>
-<img alt="../_images/dfcac1994fd83c52e477f86d4cc674aed975ffb09d00f8599034cd834eb42c9d.png" src="../_images/dfcac1994fd83c52e477f86d4cc674aed975ffb09d00f8599034cd834eb42c9d.png" />
+<img alt="../_images/703daf5b182b9acc3d4fa9a4a5eeb65e7d101ac466fe7c7c1931944673e89270.png" src="../_images/703daf5b182b9acc3d4fa9a4a5eeb65e7d101ac466fe7c7c1931944673e89270.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                   Class  Probability score
                                  macaque              0.885
 patas, hussar monkey, Erythrocebus patas              0.062
@@ -1255,7 +1222,7 @@ patas, hussar monkey, Erythrocebus patas              0.062
 --------------------------------------------------------------
 </pre></div>
 </div>
-<img alt="../_images/c2d3153222b6b45bf422bd7cbb45fdb56ee199b83ac2e72748c0dc6a98b42be9.png" src="../_images/c2d3153222b6b45bf422bd7cbb45fdb56ee199b83ac2e72748c0dc6a98b42be9.png" />
+<img alt="../_images/432f81e74f4191e50d293127c73b829e5569d622e2f46c578111a4030d9ff92b.png" src="../_images/432f81e74f4191e50d293127c73b829e5569d622e2f46c578111a4030d9ff92b.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                        Class  Probability score
 Walker hound, Walker foxhound              0.582
              English foxhound              0.144
@@ -1350,38 +1317,38 @@ Walker hound, Walker foxhound              0.582
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
-#T_0ea53_row0_col0, #T_0ea53_row0_col1, #T_0ea53_row1_col0, #T_0ea53_row1_col1, #T_0ea53_row2_col0, #T_0ea53_row2_col1, #T_0ea53_row3_col0, #T_0ea53_row3_col1 {
+#T_22e2f_row0_col0, #T_22e2f_row0_col1, #T_22e2f_row1_col0, #T_22e2f_row1_col1, #T_22e2f_row2_col0, #T_22e2f_row2_col1, #T_22e2f_row3_col0, #T_22e2f_row3_col1 {
   text-align: left;
 }
 </style>
-<table id="T_0ea53">
+<table id="T_22e2f">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_0ea53_level0_col0" class="col_heading level0 col0" >reviews</th>
-      <th id="T_0ea53_level0_col1" class="col_heading level0 col1" >sentiment_predictions</th>
+      <th id="T_22e2f_level0_col0" class="col_heading level0 col0" >reviews</th>
+      <th id="T_22e2f_level0_col1" class="col_heading level0 col1" >sentiment_predictions</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_0ea53_level0_row0" class="row_heading level0 row0" >11872</th>
-      <td id="T_0ea53_row0_col0" class="data row0 col0" >You'll feel like you've experienced a vacation in Hell after you have sat down and watched this horrible TV movie. This movie is an exercise in over-acting (very bad over-acting) to situations that made out to be more than what they are. I won't give away the plot, but once you realize why the people in this film are running from the native man in the film you will demand the two wasted hours of your life back. The only plus is seeing Marcia Brady running around in a bikini!</td>
-      <td id="T_0ea53_row0_col1" class="data row0 col1" >neg</td>
+      <th id="T_22e2f_level0_row0" class="row_heading level0 row0" >11872</th>
+      <td id="T_22e2f_row0_col0" class="data row0 col0" >You'll feel like you've experienced a vacation in Hell after you have sat down and watched this horrible TV movie. This movie is an exercise in over-acting (very bad over-acting) to situations that made out to be more than what they are. I won't give away the plot, but once you realize why the people in this film are running from the native man in the film you will demand the two wasted hours of your life back. The only plus is seeing Marcia Brady running around in a bikini!</td>
+      <td id="T_22e2f_row0_col1" class="data row0 col1" >neg</td>
     </tr>
     <tr>
-      <th id="T_0ea53_level0_row1" class="row_heading level0 row1" >40828</th>
-      <td id="T_0ea53_row1_col0" class="data row1 col0" >Bela Lugosi gets to play one of his rare good guy roles in a serial based upon the long running radio hit (which was also the source of a feature film where Lugosi played the villain.) Lugosi cuts a fine dashing figure and its sad that he didn't get more roles where he could be the guy in command in a good way. Here Chandu returns from the East in order to help the Princess Nadji who is being hunted by the leaders of the cult of Ubasti who need her to bring back from the dead the high priestess of their cult. This is a good looking globe trotting serial that is a great deal of fun. To be certain the pacing is a bit slack, more akin to one of Principals (the producing studios) features then a rip roaring adventure, but it's still enjoyable. This plays better than the two feature films that were cut from it because it allows for things to happen at their own pace instead of feeling rushed or having a sense that "hey I missed something". One of the trilogy of three good serials Lugosi made, the others being SOS Coast Guard and Phantom Creeps</td>
-      <td id="T_0ea53_row1_col1" class="data row1 col1" >pos</td>
+      <th id="T_22e2f_level0_row1" class="row_heading level0 row1" >40828</th>
+      <td id="T_22e2f_row1_col0" class="data row1 col0" >Bela Lugosi gets to play one of his rare good guy roles in a serial based upon the long running radio hit (which was also the source of a feature film where Lugosi played the villain.) Lugosi cuts a fine dashing figure and its sad that he didn't get more roles where he could be the guy in command in a good way. Here Chandu returns from the East in order to help the Princess Nadji who is being hunted by the leaders of the cult of Ubasti who need her to bring back from the dead the high priestess of their cult. This is a good looking globe trotting serial that is a great deal of fun. To be certain the pacing is a bit slack, more akin to one of Principals (the producing studios) features then a rip roaring adventure, but it's still enjoyable. This plays better than the two feature films that were cut from it because it allows for things to happen at their own pace instead of feeling rushed or having a sense that "hey I missed something". One of the trilogy of three good serials Lugosi made, the others being SOS Coast Guard and Phantom Creeps</td>
+      <td id="T_22e2f_row1_col1" class="data row1 col1" >pos</td>
     </tr>
     <tr>
-      <th id="T_0ea53_level0_row2" class="row_heading level0 row2" >36400</th>
-      <td id="T_0ea53_row2_col0" class="data row2 col0" >When you wish for the dragon to eat every cast member, you know you're in for a bad ride.<br /><br />I went in with very, very low expectations, having read some of the other comments, and was not let down. Unlike some other cheap and failed movies, however, this one doesn't really remain hilariously (and unintentionally) funny throughout.<br /><br />-SPOILERS FOLLOW-<br /><br />First of all, plot it very inconsistent. Looking past the "small" mistakes, such as the dragon growing up in 3 hours, the whole idea it's based on is messed up. See, the movie wants us to believe that dragons came from outer space in the form of meteorites which really were dragon eggs. After explaining this, they show some peasant poking at one with his pitchfork and the dragon pops out. Later, the obligatory "crazy scientist" guy babbles on about how dragons outlived the dinosaurs. So apparently humans were around when dinosaurs were, or we just have a fine little plot hole here. The other major thing is that the lab is blown up with a force "half as strong" as what was used for Hiroshima. Then two guys later walk in to check everything out, and it's almost unscathed! There's even another dragon, which grew out of who knows what. All in all it's very predictable. As soon as the guy mentioned cloning, I guessed they'd clone a dragon. That means that our Mr. Smarty-pants security guy isn't so intuitive and smart as the movie would have you believe, if you ignore that I knew this film would be about, you know, dragons.<br /><br />Putting that aside, the second worst thing is the "special effects." Others have mentioned the fake rocks falling during the beginning, the CG helicopter, and the dragon. It looks a bit better than a blob, but it ruined whatever it had going for it when it trudged down the hall in the same manner time after time. To their credit, the flying dragons in the beginning looked OK from far away (although the one in the cave is probably the worst one in the whole movie.) These things are funny to watch, however. The scenes where a million different shots of the same person facing different ways are shown are not. Nor are the "introduction" screens with the vital stats.<br /><br />Coming to the actors, they weren't the greatest, but I guess at least they tried? They seemed more enthusiastic about what they were doing than many of the actors participating in the recent "BloodRayne," for example, and you've got to give them points for that. One thing I noticed though was that the woman who plays Meredith often had her face covered in make-up that was many tones lighter than the rest of her. She looked like she had a bad run-in with some white-face.<br /><br />The script is bad and cheesy. You don't really notice the music, but it's actually not too bad for the most part.<br /><br />The bottom line is don't watch it unless you want to see it because you hear it's bad (like I did), although the only funny things are the bad CG effects. Other than that, don't waste your time and money.</td>
-      <td id="T_0ea53_row2_col1" class="data row2 col1" >neg</td>
+      <th id="T_22e2f_level0_row2" class="row_heading level0 row2" >36400</th>
+      <td id="T_22e2f_row2_col0" class="data row2 col0" >When you wish for the dragon to eat every cast member, you know you're in for a bad ride.<br /><br />I went in with very, very low expectations, having read some of the other comments, and was not let down. Unlike some other cheap and failed movies, however, this one doesn't really remain hilariously (and unintentionally) funny throughout.<br /><br />-SPOILERS FOLLOW-<br /><br />First of all, plot it very inconsistent. Looking past the "small" mistakes, such as the dragon growing up in 3 hours, the whole idea it's based on is messed up. See, the movie wants us to believe that dragons came from outer space in the form of meteorites which really were dragon eggs. After explaining this, they show some peasant poking at one with his pitchfork and the dragon pops out. Later, the obligatory "crazy scientist" guy babbles on about how dragons outlived the dinosaurs. So apparently humans were around when dinosaurs were, or we just have a fine little plot hole here. The other major thing is that the lab is blown up with a force "half as strong" as what was used for Hiroshima. Then two guys later walk in to check everything out, and it's almost unscathed! There's even another dragon, which grew out of who knows what. All in all it's very predictable. As soon as the guy mentioned cloning, I guessed they'd clone a dragon. That means that our Mr. Smarty-pants security guy isn't so intuitive and smart as the movie would have you believe, if you ignore that I knew this film would be about, you know, dragons.<br /><br />Putting that aside, the second worst thing is the "special effects." Others have mentioned the fake rocks falling during the beginning, the CG helicopter, and the dragon. It looks a bit better than a blob, but it ruined whatever it had going for it when it trudged down the hall in the same manner time after time. To their credit, the flying dragons in the beginning looked OK from far away (although the one in the cave is probably the worst one in the whole movie.) These things are funny to watch, however. The scenes where a million different shots of the same person facing different ways are shown are not. Nor are the "introduction" screens with the vital stats.<br /><br />Coming to the actors, they weren't the greatest, but I guess at least they tried? They seemed more enthusiastic about what they were doing than many of the actors participating in the recent "BloodRayne," for example, and you've got to give them points for that. One thing I noticed though was that the woman who plays Meredith often had her face covered in make-up that was many tones lighter than the rest of her. She looked like she had a bad run-in with some white-face.<br /><br />The script is bad and cheesy. You don't really notice the music, but it's actually not too bad for the most part.<br /><br />The bottom line is don't watch it unless you want to see it because you hear it's bad (like I did), although the only funny things are the bad CG effects. Other than that, don't waste your time and money.</td>
+      <td id="T_22e2f_row2_col1" class="data row2 col1" >neg</td>
     </tr>
     <tr>
-      <th id="T_0ea53_level0_row3" class="row_heading level0 row3" >5166</th>
-      <td id="T_0ea53_row3_col0" class="data row3 col0" >Sorry, but Jacqueline Hyde (get it??? - Jack L and Hyde - Jekyll & Hyde) has some of the worst acting this side of hardcore porn, not to mention a script apparently written by a first-grader with undiagnosed learning disabilities.<br /><br />Jackie Hyde inherits an old mansion by a grandfather she never knew she had. Guess who? Yes, an inventor of the special formula that slowly takes over one's body and mind - yes, that Mr. Hyde! <br /><br />Despite some nice skin scenes, this film fails to register any feeling or emotion other than uncontrollable laughter.<br /><br />As much as poor Jackie tries she just can't stay away from granddaddy's special formula and the result is an hour and half of wasted time.</td>
-      <td id="T_0ea53_row3_col1" class="data row3 col1" >neg</td>
+      <th id="T_22e2f_level0_row3" class="row_heading level0 row3" >5166</th>
+      <td id="T_22e2f_row3_col0" class="data row3 col0" >Sorry, but Jacqueline Hyde (get it??? - Jack L and Hyde - Jekyll & Hyde) has some of the worst acting this side of hardcore porn, not to mention a script apparently written by a first-grader with undiagnosed learning disabilities.<br /><br />Jackie Hyde inherits an old mansion by a grandfather she never knew she had. Guess who? Yes, an inventor of the special formula that slowly takes over one's body and mind - yes, that Mr. Hyde! <br /><br />Despite some nice skin scenes, this film fails to register any feeling or emotion other than uncontrollable laughter.<br /><br />As much as poor Jackie tries she just can't stay away from granddaddy's special formula and the result is an hour and half of wasted time.</td>
+      <td id="T_22e2f_row3_col1" class="data row3 col1" >neg</td>
     </tr>
   </tbody>
 </table>

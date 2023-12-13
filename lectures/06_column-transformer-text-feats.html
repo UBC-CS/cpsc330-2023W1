@@ -180,6 +180,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="21_communication.html">Lecture 21: Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="final-review.html">Final review guiding questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A-Quick-intro-to-LLMs.html">Bonus: A high-level quick introduction to LLMs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -194,8 +196,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Appendix-A.html">Appendix A</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Appendix-B.html">Appendix-B</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixA.html">Appendix A: Common features used in text classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixB.html">Appendix B: K-Means customer segmentation case study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixC.html">Appendix C: Representing documents using embeddings</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -3947,36 +3950,36 @@ ValueError: Found unknown categories [&#39;Biology&#39;] in column 0 during tran
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.012091</td>
-      <td>0.004136</td>
+      <td>0.004824</td>
+      <td>0.002248</td>
       <td>1.00</td>
       <td>0.937500</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.004507</td>
-      <td>0.002545</td>
+      <td>0.004130</td>
+      <td>0.001993</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.004793</td>
-      <td>0.002126</td>
+      <td>0.004073</td>
+      <td>0.001976</td>
       <td>0.50</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.004102</td>
-      <td>0.002059</td>
+      <td>0.004081</td>
+      <td>0.002009</td>
       <td>0.75</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.004151</td>
-      <td>0.030059</td>
+      <td>0.004038</td>
+      <td>0.006787</td>
       <td>NaN</td>
       <td>1.000000</td>
     </tr>
@@ -4130,36 +4133,36 @@ Name: count, dtype: int64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.005486</td>
-      <td>0.002585</td>
+      <td>0.005081</td>
+      <td>0.002168</td>
       <td>1.00</td>
       <td>0.937500</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.004467</td>
-      <td>0.002376</td>
+      <td>0.004136</td>
+      <td>0.002032</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.004366</td>
-      <td>0.002070</td>
+      <td>0.004096</td>
+      <td>0.001984</td>
       <td>0.50</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.004163</td>
-      <td>0.002071</td>
+      <td>0.004037</td>
+      <td>0.001962</td>
       <td>0.75</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.004228</td>
-      <td>0.002038</td>
+      <td>0.004015</td>
+      <td>0.001983</td>
       <td>0.75</td>
       <td>1.000000</td>
     </tr>
@@ -4433,36 +4436,36 @@ Name: enjoy_course, dtype: object
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.007846</td>
-      <td>0.003278</td>
+      <td>0.005147</td>
+      <td>0.002433</td>
       <td>1.00</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.005359</td>
-      <td>0.002645</td>
+      <td>0.004638</td>
+      <td>0.002415</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.005189</td>
-      <td>0.003290</td>
+      <td>0.004627</td>
+      <td>0.002340</td>
       <td>0.50</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.006442</td>
-      <td>0.002721</td>
+      <td>0.004699</td>
+      <td>0.002340</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.005190</td>
-      <td>0.002598</td>
+      <td>0.004617</td>
+      <td>0.002342</td>
       <td>0.75</td>
       <td>1.000000</td>
     </tr>
@@ -4493,72 +4496,105 @@ Name: enjoy_course, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">58</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">housing_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/housing.csv&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">housing_df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">train_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:948,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
-<span class="g g-Whitespace">    </span><span class="mi">935</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">936</span>     <span class="n">dialect</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">937</span>     <span class="n">delimiter</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">944</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">945</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">946</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">948</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:611,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">608</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">610</span> <span class="c1"># Create the parser.</span>
-<span class="ne">--&gt; </span><span class="mi">611</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">613</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">614</span>     <span class="k">return</span> <span class="n">parser</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1448,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1445</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1447</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="ne">-&gt; </span><span class="mi">1448</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1705,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1703</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1704</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1705</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1706</span>     <span class="n">f</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1707</span>     <span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1708</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1709</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1710</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1711</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1712</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1713</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1714</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1715</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1716</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/common.py:863,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">858</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">859</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
-<span class="g g-Whitespace">    </span><span class="mi">860</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
-<span class="g g-Whitespace">    </span><span class="mi">861</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">862</span>         <span class="c1"># Encoding</span>
-<span class="ne">--&gt; </span><span class="mi">863</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">864</span>             <span class="n">handle</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">865</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">866</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">867</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">868</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">869</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">870</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">871</span>         <span class="c1"># Binary mode</span>
-<span class="g g-Whitespace">    </span><span class="mi">872</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/housing.csv&#39;
-</pre></div>
-</div>
-</div>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>longitude</th>
+      <th>latitude</th>
+      <th>housing_median_age</th>
+      <th>total_rooms</th>
+      <th>total_bedrooms</th>
+      <th>population</th>
+      <th>households</th>
+      <th>median_income</th>
+      <th>median_house_value</th>
+      <th>ocean_proximity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6051</th>
+      <td>-117.75</td>
+      <td>34.04</td>
+      <td>22.0</td>
+      <td>2948.0</td>
+      <td>636.0</td>
+      <td>2600.0</td>
+      <td>602.0</td>
+      <td>3.1250</td>
+      <td>113600.0</td>
+      <td>INLAND</td>
+    </tr>
+    <tr>
+      <th>20113</th>
+      <td>-119.57</td>
+      <td>37.94</td>
+      <td>17.0</td>
+      <td>346.0</td>
+      <td>130.0</td>
+      <td>51.0</td>
+      <td>20.0</td>
+      <td>3.4861</td>
+      <td>137500.0</td>
+      <td>INLAND</td>
+    </tr>
+    <tr>
+      <th>14289</th>
+      <td>-117.13</td>
+      <td>32.74</td>
+      <td>46.0</td>
+      <td>3355.0</td>
+      <td>768.0</td>
+      <td>1457.0</td>
+      <td>708.0</td>
+      <td>2.6604</td>
+      <td>170100.0</td>
+      <td>NEAR OCEAN</td>
+    </tr>
+    <tr>
+      <th>13665</th>
+      <td>-117.31</td>
+      <td>34.02</td>
+      <td>18.0</td>
+      <td>1634.0</td>
+      <td>274.0</td>
+      <td>899.0</td>
+      <td>285.0</td>
+      <td>5.2139</td>
+      <td>129300.0</td>
+      <td>INLAND</td>
+    </tr>
+    <tr>
+      <th>14471</th>
+      <td>-117.23</td>
+      <td>32.88</td>
+      <td>18.0</td>
+      <td>5566.0</td>
+      <td>1465.0</td>
+      <td>6303.0</td>
+      <td>1458.0</td>
+      <td>1.8580</td>
+      <td>205000.0</td>
+      <td>NEAR OCEAN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Some column values are mean/median but some are not.</p>
 <p>Let’s add some new features to the dataset which could help predicting the target: <code class="docutils literal notranslate"><span class="pre">median_house_value</span></code>.</p>
@@ -5348,10 +5384,6 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/CS/2023-24/330/cpsc330-2023W1/lectures/code/./utils.py:86: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
-  out_col.append((f&quot;%0.3f (+/- %0.3f)&quot; % (mean_scores[i], std_scores[i])))
-</pre></div>
-</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -5458,12 +5490,6 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/CS/2023-24/330/cpsc330-2023W1/lectures/code/./utils.py:86: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
-  out_col.append((f&quot;%0.3f (+/- %0.3f)&quot; % (mean_scores[i], std_scores[i])))
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -5506,8 +5532,8 @@ Name: count, dtype: int64
     </tr>
     <tr>
       <th>imp + scaling + ohe + KNN</th>
-      <td>0.025 (+/- 0.003)</td>
-      <td>0.192 (+/- 0.016)</td>
+      <td>0.023 (+/- 0.001)</td>
+      <td>0.223 (+/- 0.017)</td>
       <td>0.706 (+/- 0.015)</td>
       <td>0.806 (+/- 0.015)</td>
     </tr>
@@ -5524,12 +5550,6 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/CS/2023-24/330/cpsc330-2023W1/lectures/code/./utils.py:86: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
-  out_col.append((f&quot;%0.3f (+/- %0.3f)&quot; % (mean_scores[i], std_scores[i])))
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -5537,56 +5557,6 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>fit_time</th>
-      <th>score_time</th>
-      <th>test_score</th>
-      <th>train_score</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>dummy</th>
-      <td>0.001 (+/- 0.000)</td>
-      <td>0.000 (+/- 0.000)</td>
-      <td>-0.001 (+/- 0.001)</td>
-      <td>0.000 (+/- 0.000)</td>
-    </tr>
-    <tr>
-      <th>imp + scaling + ohe + KNN</th>
-      <td>0.025 (+/- 0.003)</td>
-      <td>0.192 (+/- 0.016)</td>
-      <td>0.706 (+/- 0.015)</td>
-      <td>0.806 (+/- 0.015)</td>
-    </tr>
-    <tr>
-      <th>imp + scaling + ohe + SVR (default)</th>
-      <td>8.163 (+/- 0.086)</td>
-      <td>3.153 (+/- 0.016)</td>
-      <td>-0.049 (+/- 0.012)</td>
-      <td>-0.048 (+/- 0.001)</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <p>The results with <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>’s default SVR hyperparameters are pretty bad.</p>
 <div class="cell docutils container">
@@ -5598,12 +5568,6 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/CS/2023-24/330/cpsc330-2023W1/lectures/code/./utils.py:86: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
-  out_col.append((f&quot;%0.3f (+/- %0.3f)&quot; % (mean_scores[i], std_scores[i])))
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -5611,63 +5575,6 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>fit_time</th>
-      <th>score_time</th>
-      <th>test_score</th>
-      <th>train_score</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>dummy</th>
-      <td>0.001 (+/- 0.000)</td>
-      <td>0.000 (+/- 0.000)</td>
-      <td>-0.001 (+/- 0.001)</td>
-      <td>0.000 (+/- 0.000)</td>
-    </tr>
-    <tr>
-      <th>imp + scaling + ohe + KNN</th>
-      <td>0.025 (+/- 0.003)</td>
-      <td>0.192 (+/- 0.016)</td>
-      <td>0.706 (+/- 0.015)</td>
-      <td>0.806 (+/- 0.015)</td>
-    </tr>
-    <tr>
-      <th>imp + scaling + ohe + SVR (default)</th>
-      <td>8.163 (+/- 0.086)</td>
-      <td>3.153 (+/- 0.016)</td>
-      <td>-0.049 (+/- 0.012)</td>
-      <td>-0.048 (+/- 0.001)</td>
-    </tr>
-    <tr>
-      <th>imp + scaling + ohe + SVR (C=10000)</th>
-      <td>7.528 (+/- 0.049)</td>
-      <td>3.149 (+/- 0.013)</td>
-      <td>0.708 (+/- 0.011)</td>
-      <td>0.713 (+/- 0.017)</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <p>With a bigger value for <code class="docutils literal notranslate"><span class="pre">C</span></code> the results are much better. We need to carry out systematic hyperparameter optimization to get better results. (Coming up next week.)</p>
 <ul class="simple">
@@ -5742,63 +5649,6 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>sms</th>
-      <th>target</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!</td>
-      <td>spam</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Lol you are always so convincing.</td>
-      <td>non spam</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Nah I don't think he goes to usf, he lives around here though</td>
-      <td>non spam</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!</td>
-      <td>spam</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030</td>
-      <td>spam</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Congrats! I can't wait to see you!!</td>
-      <td>non spam</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 </section>
 <section id="what-if-we-apply-ohe">
@@ -5812,91 +5662,6 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead tr th {
-        text-align: left;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Congrats! I can't wait to see you!!</th>
-      <th>Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030</th>
-      <th>Lol you are always so convincing.</th>
-      <th>Nah I don't think he goes to usf, he lives around here though</th>
-      <th>URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!</th>
-      <th>URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <ul class="simple">
 <li><p>We do not have a fixed number of categories here.</p></li>
@@ -5962,230 +5727,10 @@ Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>08002986030</th>
-      <th>100000</th>
-      <th>11</th>
-      <th>900</th>
-      <th>always</th>
-      <th>are</th>
-      <th>around</th>
-      <th>as</th>
-      <th>been</th>
-      <th>call</th>
-      <th>...</th>
-      <th>update</th>
-      <th>urgent</th>
-      <th>usf</th>
-      <th>valued</th>
-      <th>wait</th>
-      <th>week</th>
-      <th>with</th>
-      <th>won</th>
-      <th>you</th>
-      <th>your</th>
-    </tr>
-    <tr>
-      <th>sms</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Lol you are always so convincing.</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Nah I don't think he goes to usf, he lives around here though</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!</th>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030</th>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>...</td>
-      <td>2</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>Congrats! I can't wait to see you!!</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-<p>6 rows × 61 columns</p>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">toy_df</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.series.Series
 </pre></div>
 </div>
 </div>
@@ -6197,12 +5742,6 @@ Name: count, dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_counts</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6x61 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
-	with 71 stored elements in Compressed Sparse Row format&gt;
 </pre></div>
 </div>
 </div>
@@ -6231,14 +5770,6 @@ Name: count, dtype: int64
     <span class="s2">&quot;The value at cell 3,</span><span class="si">%d</span><span class="s2"> is: </span><span class="si">%d</span><span class="s2">&quot;</span>
     <span class="o">%</span> <span class="p">(</span><span class="n">vec</span><span class="o">.</span><span class="n">vocabulary_</span><span class="p">[</span><span class="s2">&quot;jackpot&quot;</span><span class="p">],</span> <span class="n">X_counts</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="n">vec</span><span class="o">.</span><span class="n">vocabulary_</span><span class="p">[</span><span class="s2">&quot;jackpot&quot;</span><span class="p">]])</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The total number of elements:  366
-The number of non-zero elements:  71
-Proportion of non-zero elements: 0.1940
-The value at cell 3,27 is: 1
 </pre></div>
 </div>
 </div>
@@ -6298,221 +5829,6 @@ The value at cell 3,27 is: 1
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>08002986030</th>
-      <th>100000</th>
-      <th>11</th>
-      <th>900</th>
-      <th>always</th>
-      <th>are</th>
-      <th>around</th>
-      <th>as</th>
-      <th>been</th>
-      <th>call</th>
-      <th>...</th>
-      <th>update</th>
-      <th>urgent</th>
-      <th>usf</th>
-      <th>valued</th>
-      <th>wait</th>
-      <th>week</th>
-      <th>with</th>
-      <th>won</th>
-      <th>you</th>
-      <th>your</th>
-    </tr>
-    <tr>
-      <th>sms</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Lol you are always so convincing.</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Nah I don't think he goes to usf, he lives around here though</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!</th>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030</th>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>...</td>
-      <td>2</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>Congrats! I can't wait to see you!!</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-<p>6 rows × 61 columns</p>
-</div></div></div>
 </div>
 <p>When we use <code class="docutils literal notranslate"><span class="pre">binary=True</span></code>, the representation uses presence/absence of words instead of word counts.</p>
 <div class="cell docutils container">
@@ -6526,221 +5842,6 @@ The value at cell 3,27 is: 1
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>08002986030</th>
-      <th>100000</th>
-      <th>11</th>
-      <th>900</th>
-      <th>always</th>
-      <th>are</th>
-      <th>around</th>
-      <th>as</th>
-      <th>been</th>
-      <th>call</th>
-      <th>...</th>
-      <th>update</th>
-      <th>urgent</th>
-      <th>usf</th>
-      <th>valued</th>
-      <th>wait</th>
-      <th>week</th>
-      <th>with</th>
-      <th>won</th>
-      <th>you</th>
-      <th>your</th>
-    </tr>
-    <tr>
-      <th>sms</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Lol you are always so convincing.</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Nah I don't think he goes to usf, he lives around here though</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!</th>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030</th>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>...</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>Congrats! I can't wait to see you!!</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-<p>6 rows × 61 columns</p>
-</div></div></div>
 </div>
 <p>We can control the size of X (the number of features) using <code class="docutils literal notranslate"><span class="pre">max_features</span></code>.</p>
 <div class="cell docutils container">
@@ -6754,116 +5855,6 @@ The value at cell 3,27 is: 1
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>free</th>
-      <th>have</th>
-      <th>mobile</th>
-      <th>the</th>
-      <th>to</th>
-      <th>update</th>
-      <th>urgent</th>
-      <th>you</th>
-    </tr>
-    <tr>
-      <th>sms</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!</th>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>Lol you are always so convincing.</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>Nah I don't think he goes to usf, he lives around here though</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!</th>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030</th>
-      <td>2</td>
-      <td>0</td>
-      <td>2</td>
-      <td>2</td>
-      <td>2</td>
-      <td>2</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Congrats! I can't wait to see you!!</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -6883,64 +5874,6 @@ The value at cell 3,27 is: 1
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>counts</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>to</th>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>you</th>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>free</th>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>have</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>mobile</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>the</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>update</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>urgent</th>
-      <td>2</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -6954,64 +5887,6 @@ The value at cell 3,27 is: 1
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>counts</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>to</th>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>you</th>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>free</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>have</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>prize</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>urgent</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>mobiles</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>months</th>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 </section>
 <section id="preprocessing">
@@ -7037,18 +5912,10 @@ The value at cell 3,27 is: 1
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-11 {color: black;}#sk-container-id-11 pre{padding: 0;}#sk-container-id-11 div.sk-toggleable {background-color: white;}#sk-container-id-11 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-11 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-11 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-11 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-11 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-11 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-11 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-11 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-11 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-11 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-11 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-11 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-11 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-11 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-11 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-11 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-11 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-11 div.sk-item {position: relative;z-index: 1;}#sk-container-id-11 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-11 div.sk-item::before, #sk-container-id-11 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-11 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-11 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-11 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-11 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-11 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-11 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-11 div.sk-label-container {text-align: center;}#sk-container-id-11 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-11 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-11" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;countvectorizer&#x27;, CountVectorizer()), (&#x27;svc&#x27;, SVC())])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-96" type="checkbox" ><label for="sk-estimator-id-96" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;countvectorizer&#x27;, CountVectorizer()), (&#x27;svc&#x27;, SVC())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-97" type="checkbox" ><label for="sk-estimator-id-97" class="sk-toggleable__label sk-toggleable__label-arrow">CountVectorizer</label><div class="sk-toggleable__content"><pre>CountVectorizer()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-98" type="checkbox" ><label for="sk-estimator-id-98" class="sk-toggleable__label sk-toggleable__label-arrow">SVC</label><div class="sk-toggleable__content"><pre>SVC()</pre></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">toy_df</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;spam&#39;, &#39;non spam&#39;, &#39;non spam&#39;, &#39;spam&#39;, &#39;spam&#39;, &#39;non spam&#39;],
-      dtype=object)
 </pre></div>
 </div>
 </div>

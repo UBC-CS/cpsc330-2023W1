@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/23_deployment-conclusion';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Lecture 3: Class demo" href="class_demos/03_class-demo.html" />
+    <link rel="next" title="Final review guiding questions" href="final-review.html" />
     <link rel="prev" title="Lecture 21: Communication" href="21_communication.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -180,6 +180,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="21_communication.html">Lecture 21: Communication</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 23: Deployment and conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="final-review.html">Final review guiding questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A-Quick-intro-to-LLMs.html">Bonus: A high-level quick introduction to LLMs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -194,8 +196,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Appendix-A.html">Appendix A</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Appendix-B.html">Appendix-B</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixA.html">Appendix A: Common features used in text classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixB.html">Appendix B: K-Means customer segmentation case study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixC.html">Appendix C: Representing documents using embeddings</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -436,12 +439,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="learning-objectives">
@@ -476,8 +473,9 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 <h2>❓❓ Questions for you<a class="headerlink" href="#questions-for-you" title="Permalink to this heading">#</a></h2>
 <p>Imagine you’ve created a machine learning model and are eager to share it with others. Consider the following scenarios for sharing your model:</p>
 <ul class="simple">
-<li><p>To a non-technical audience: How would you present your model to friends and family who may not have a technical background?</p></li>
-<li><p>To a technical audience: How would you share your model with peers or professionals in the field who have a technical understanding of machine learning?
+<li><p>To a non-technical Audience: How would you present your model to friends and family who may not have a technical background?</p></li>
+<li><p>To a technical audience: How would you share your model with peers or professionals in the field who have a technical understanding of machine learning?</p></li>
+<li><p>In an academic or research setting: How would you disseminate your model within academic or research communities?
 <br><br><br><br><br><br><br><br><br><br></p></li>
 </ul>
 <section id="try-out-this-moment-predictor">
@@ -1130,7 +1128,7 @@ Name: count, dtype: int64
 <td><p>Calculate precipitation in six hour increments for a geographic region</p></td>
 </tr>
 <tr class="row-even"><td><p>EvoCarShare app</p></td>
-<td><p>Calculate number of car rentals in four hour increaments at a particular Evo parking spot</p></td>
+<td><p>Calculate number of car rentals in four increaments at a particular Evo parking spot</p></td>
 </tr>
 <tr class="row-odd"><td><p>Pharma app</p></td>
 <td><p>Understand the effect of a new drug on patient survival time</p></td>
@@ -1324,11 +1322,11 @@ Name: count, dtype: int64
       </div>
     </a>
     <a class="right-next"
-       href="class_demos/03_class-demo.html"
+       href="final-review.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 3: Class demo</p>
+        <p class="prev-next-title">Final review guiding questions</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

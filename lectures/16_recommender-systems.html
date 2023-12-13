@@ -180,6 +180,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="21_communication.html">Lecture 21: Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="final-review.html">Final review guiding questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A-Quick-intro-to-LLMs.html">Bonus: A high-level quick introduction to LLMs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -194,8 +196,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Appendix-A.html">Appendix A</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Appendix-B.html">Appendix-B</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixA.html">Appendix A: Common features used in text classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixB.html">Appendix B: K-Means customer segmentation case study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixC.html">Appendix C: Representing documents using embeddings</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -486,11 +489,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
-<img alt="../_images/4f4c4e8190776ba24319df3c1de0c2c44241d7f9ff15289c637f49cf998cfa1b.png" src="../_images/4f4c4e8190776ba24319df3c1de0c2c44241d7f9ff15289c637f49cf998cfa1b.png" />
+<img alt="../_images/e240cd9d628bc29bdb157720acb265903bad19b13442d4bc8635c7e152f914ce.png" src="../_images/e240cd9d628bc29bdb157720acb265903bad19b13442d4bc8635c7e152f914ce.png" />
 </div>
 </div>
 </section>
@@ -2629,7 +2628,7 @@ a person who only speaks one language?
 A: American! 
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_25025/3461118492.py:9: DeprecationWarning:
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_36386/3461118492.py:9: DeprecationWarning:
 
 Calling nonzero on 0d arrays is deprecated, as it behaves surprisingly. Use `atleast_1d(cond).nonzero()` if the old behavior was intended. If the context of this warning is of the form `arr[nonzero(cond)]`, just use `arr[cond]`.
 </pre></div>
@@ -2875,10 +2874,10 @@ Calling nonzero on 0d arrays is deprecated, as it behaves surprisingly. Use `atl
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating RMSE, MAE of algorithm SVD on 5 split(s).
 
                   Fold 1  Fold 2  Fold 3  Fold 4  Fold 5  Mean    Std     
-RMSE (testset)    5.2753  5.2655  5.2975  5.3000  5.2511  5.2779  0.0187  
-MAE (testset)     4.2083  4.1788  4.2064  4.2196  4.1715  4.1969  0.0185  
-Fit time          0.24    0.25    0.25    0.23    0.24    0.24    0.01    
-Test time         0.08    0.14    0.08    0.15    0.08    0.11    0.03    
+RMSE (testset)    5.2489  5.3173  5.2857  5.2631  5.3004  5.2831  0.0247  
+MAE (testset)     4.1676  4.2293  4.2077  4.1851  4.2225  4.2024  0.0231  
+Fit time          0.22    0.35    0.27    0.24    0.26    0.27    0.04    
+Test time         0.08    0.18    0.08    0.14    0.10    0.12    0.04    
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -2908,38 +2907,38 @@ Test time         0.08    0.14    0.08    0.15    0.08    0.11    0.03
   <tbody>
     <tr>
       <th>0</th>
-      <td>5.275266</td>
-      <td>4.208326</td>
-      <td>0.237202</td>
-      <td>0.081728</td>
+      <td>5.248932</td>
+      <td>4.167637</td>
+      <td>0.224042</td>
+      <td>0.079149</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>5.265520</td>
-      <td>4.178802</td>
-      <td>0.248562</td>
-      <td>0.141250</td>
+      <td>5.317334</td>
+      <td>4.229261</td>
+      <td>0.350780</td>
+      <td>0.184237</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>5.297458</td>
-      <td>4.206372</td>
-      <td>0.249718</td>
-      <td>0.082722</td>
+      <td>5.285735</td>
+      <td>4.207712</td>
+      <td>0.265115</td>
+      <td>0.080013</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>5.300010</td>
-      <td>4.219648</td>
-      <td>0.232634</td>
-      <td>0.145835</td>
+      <td>5.263108</td>
+      <td>4.185121</td>
+      <td>0.235024</td>
+      <td>0.144302</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>5.251069</td>
-      <td>4.171478</td>
-      <td>0.239094</td>
-      <td>0.081310</td>
+      <td>5.300368</td>
+      <td>4.222480</td>
+      <td>0.258304</td>
+      <td>0.101851</td>
     </tr>
   </tbody>
 </table>
@@ -2984,38 +2983,68 @@ Test time         0.08    0.14    0.08    0.15    0.08    0.11    0.03
 <span class="g g-Whitespace">   </span><span class="mi">1869</span> <span class="c1"># callback.</span>
 <span class="g g-Whitespace">   </span><span class="mi">1870</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:1789,</span> in <span class="ni">Parallel._get_sequential_output</span><span class="nt">(self, iterable)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1786</span> <span class="k">yield</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1788</span> <span class="c1"># Sequentially call the tasks and yield the results.</span>
-<span class="ne">-&gt; </span><span class="mi">1789</span> <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1790</span>     <span class="bp">self</span><span class="o">.</span><span class="n">n_dispatched_batches</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">   </span><span class="mi">1791</span>     <span class="bp">self</span><span class="o">.</span><span class="n">n_dispatched_tasks</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:1792,</span> in <span class="ni">Parallel._get_sequential_output</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1790</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_dispatched_batches</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="g g-Whitespace">   </span><span class="mi">1791</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_dispatched_tasks</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="ne">-&gt; </span><span class="mi">1792</span> <span class="n">res</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1793</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_completed_tasks</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="g g-Whitespace">   </span><span class="mi">1794</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_progress</span><span class="p">()</span>
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/surprise/model_selection/validation.py:104,</span> in <span class="ni">&lt;genexpr&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span> <span class="n">measures</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">measures</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">102</span> <span class="n">cv</span> <span class="o">=</span> <span class="n">get_cv</span><span class="p">(</span><span class="n">cv</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">104</span> <span class="n">delayed_list</span> <span class="o">=</span> <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">105</span>     <span class="n">delayed</span><span class="p">(</span><span class="n">fit_and_score</span><span class="p">)(</span><span class="n">algo</span><span class="p">,</span> <span class="n">trainset</span><span class="p">,</span> <span class="n">testset</span><span class="p">,</span> <span class="n">measures</span><span class="p">,</span> <span class="n">return_train_measures</span><span class="p">)</span>
-<span class="nn">    106     for (trainset, testset)</span> in <span class="ni">cv.split</span><span class="nt">(data)</span>
-<span class="g g-Whitespace">    </span><span class="mi">107</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">108</span> <span class="n">out</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">pre_dispatch</span><span class="o">=</span><span class="n">pre_dispatch</span><span class="p">)(</span><span class="n">delayed_list</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="p">(</span><span class="n">test_measures_dicts</span><span class="p">,</span> <span class="n">train_measures_dicts</span><span class="p">,</span> <span class="n">fit_times</span><span class="p">,</span> <span class="n">test_times</span><span class="p">)</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">out</span><span class="p">)</span>
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/surprise/model_selection/validation.py:176,</span> in <span class="ni">fit_and_score</span><span class="nt">(algo, trainset, testset, measures, return_train_measures)</span>
+<span class="g g-Whitespace">    </span><span class="mi">174</span> <span class="n">fit_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_fit</span>
+<span class="g g-Whitespace">    </span><span class="mi">175</span> <span class="n">start_test</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">176</span> <span class="n">predictions</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">testset</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="n">test_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_test</span>
+<span class="g g-Whitespace">    </span><span class="mi">179</span> <span class="k">if</span> <span class="n">return_train_measures</span><span class="p">:</span>
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/surprise/model_selection/split.py:117,</span> in <span class="ni">KFold.split</span><span class="nt">(self, data)</span>
-<span class="g g-Whitespace">    </span><span class="mi">112</span> <span class="n">raw_trainset</span> <span class="o">=</span> <span class="p">[</span>
-<span class="nn">    113     data.raw_ratings[i] for i</span> in <span class="ni">chain</span><span class="nt">(indices[:start], indices[stop:])</span>
-<span class="g g-Whitespace">    </span><span class="mi">114</span> <span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="n">raw_testset</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">raw_ratings</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="p">]]</span>
-<span class="ne">--&gt; </span><span class="mi">117</span> <span class="n">trainset</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">construct_trainset</span><span class="p">(</span><span class="n">raw_trainset</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">118</span> <span class="n">testset</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">construct_testset</span><span class="p">(</span><span class="n">raw_testset</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">120</span> <span class="k">yield</span> <span class="n">trainset</span><span class="p">,</span> <span class="n">testset</span>
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/surprise/prediction_algorithms/algo_base.py:160,</span> in <span class="ni">AlgoBase.test</span><span class="nt">(self, testset, verbose)</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Test the algorithm on given testset, i.e. estimate all the ratings</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span><span class="sd"> in the given testset.</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">156</span><span class="sd">     that contains all the estimated ratings.</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">159</span> <span class="c1"># The ratings are translated back to their original scale.</span>
+<span class="ne">--&gt; </span><span class="mi">160</span> <span class="n">predictions</span> <span class="o">=</span> <span class="p">[</span>
+<span class="g g-Whitespace">    </span><span class="mi">161</span>     <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">iid</span><span class="p">,</span> <span class="n">r_ui_trans</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span>     <span class="k">for</span> <span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">iid</span><span class="p">,</span> <span class="n">r_ui_trans</span><span class="p">)</span> <span class="ow">in</span> <span class="n">testset</span>
+<span class="g g-Whitespace">    </span><span class="mi">163</span> <span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span> <span class="k">return</span> <span class="n">predictions</span>
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/surprise/dataset.py:207,</span> in <span class="ni">Dataset.construct_trainset</span><span class="nt">(self, raw_trainset)</span>
-<span class="g g-Whitespace">    </span><span class="mi">204</span>         <span class="n">current_i_index</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="n">ur</span><span class="p">[</span><span class="n">uid</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">iid</span><span class="p">,</span> <span class="n">r</span><span class="p">))</span>
-<span class="ne">--&gt; </span><span class="mi">207</span>     <span class="n">ir</span><span class="p">[</span><span class="n">iid</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">uid</span><span class="p">,</span> <span class="n">r</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">209</span> <span class="n">n_users</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ur</span><span class="p">)</span>  <span class="c1"># number of users</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span> <span class="n">n_items</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ir</span><span class="p">)</span>  <span class="c1"># number of items</span>
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/surprise/prediction_algorithms/algo_base.py:161,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Test the algorithm on given testset, i.e. estimate all the ratings</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span><span class="sd"> in the given testset.</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">156</span><span class="sd">     that contains all the estimated ratings.</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">159</span> <span class="c1"># The ratings are translated back to their original scale.</span>
+<span class="g g-Whitespace">    </span><span class="mi">160</span> <span class="n">predictions</span> <span class="o">=</span> <span class="p">[</span>
+<span class="ne">--&gt; </span><span class="mi">161</span>     <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">iid</span><span class="p">,</span> <span class="n">r_ui_trans</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span>     <span class="k">for</span> <span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">iid</span><span class="p">,</span> <span class="n">r_ui_trans</span><span class="p">)</span> <span class="ow">in</span> <span class="n">testset</span>
+<span class="g g-Whitespace">    </span><span class="mi">163</span> <span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span> <span class="k">return</span> <span class="n">predictions</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/surprise/prediction_algorithms/algo_base.py:102,</span> in <span class="ni">AlgoBase.predict</span><span class="nt">(self, uid, iid, r_ui, clip, verbose)</span>
+<span class="g g-Whitespace">    </span><span class="mi">100</span> <span class="n">details</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="g g-Whitespace">    </span><span class="mi">101</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">102</span>     <span class="n">est</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimate</span><span class="p">(</span><span class="n">iuid</span><span class="p">,</span> <span class="n">iiid</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span>     <span class="c1"># If the details dict was also returned</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">est</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/surprise/prediction_algorithms/matrix_factorization.pyx:256,</span> in <span class="ni">surprise.prediction_algorithms.matrix_factorization.SVD.estimate</span><span class="nt">()</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/surprise/trainset.py:66,</span> in <span class="ni">Trainset.knows_user</span><span class="nt">(self, uid)</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_inner2raw_id_users</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_inner2raw_id_items</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">---&gt; </span><span class="mi">66</span> <span class="k">def</span> <span class="nf">knows_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uid</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">67</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Indicate if the user is part of the trainset.</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span><span class="sd">     A user is part of the trainset if the user has at least one rating.</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">     </span><span class="mi">75</span><span class="sd">         ``True`` if user is part of the trainset, else ``False``.</span>
+<span class="g g-Whitespace">     </span><span class="mi">76</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span>     <span class="k">return</span> <span class="n">uid</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ur</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -4804,6 +4833,7 @@ Name: Lion King, dtype: int64
 <li><p><a class="reference external" href="https://help.netflix.com/en/node/100639">How Netflix’s Recommendations System Works</a></p></li>
 <li><p><a class="reference external" href="https://learning.oreilly.com/library/view/hands-on-recommendation-systems/9781788993753/">Hands on Recommendation Systems with Python</a></p></li>
 </ul>
+<p><br><br><br><br></p>
 </section>
 </section>
 </section>

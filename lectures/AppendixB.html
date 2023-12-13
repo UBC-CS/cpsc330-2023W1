@@ -1,0 +1,3069 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Appendix B: K-Means customer segmentation case study &#8212; CPSC 330 Applied Machine Learning 2023W1</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/AppendixB';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Appendix C: Representing documents using embeddings" href="AppendixC.html" />
+    <link rel="prev" title="Appendix A: Common features used in text classification" href="AppendixA.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/UBC-CS-logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/UBC-CS-logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Things you should know</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/README.html">CPSC 330 Documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../learning-objectives.html">Course Learning Objectives</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_intro.html">Lecture 1: Course Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_decision-trees.html">Lecture 2: Terminology, Baselines, Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_ml-fundamentals.html">Lecture 3: Machine Learning Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_kNNs-SVM-RBF.html">Lecture 4: <span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbours and SVM RBFs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_preprocessing-pipelines.html">Lecture 5: Preprocessing and <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_column-transformer-text-feats.html">Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_linear-models.html">Lecture 7: Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_hyperparameter-optimization.html">Lecture 8: Hyperparameter Optimization and Optimization Bias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_classification-metrics.html">Lecture 9: Classification metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_regression-metrics.html">Lecture 10: Regression metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_ensembles.html">Lecture 11: Ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_feat-importances.html">Lecture 12: Feature importances and model transparency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_feature-engineering-selection.html">Lecture 13: Feature engineering and feature selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_K-Means.html">Lecture 14: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_DBSCAN-hierarchical.html">Lecture 15: More Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_recommender-systems.html">Lecture 16: Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_natural-language-processing.html">Lecture 17: Introduction to natural language processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_intro_to_computer-vision.html">Lecture 18: Multi-class classification and introduction to computer vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_time-series.html">Lecture 19: Time series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_communication.html">Lecture 21: Communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="final-review.html">Final review guiding questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A-Quick-intro-to-LLMs.html">Bonus: A high-level quick introduction to LLMs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="class_demos/03_class-demo.html">Lecture 3: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/04_class-demo.html">Lecture 4: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/05-06_class-demo.html">Lectures 5 and 6: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/07_class-demo.html">Lectures 7: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/09_class-demo.html">Exploring classification metrics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="class_demos/14_class-demo.html">Lecture 14: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/15_class-demo.html">Lecture 15: Class demo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="AppendixA.html">Appendix A: Common features used in text classification</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Appendix B: K-Means customer segmentation case study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixC.html">Appendix C: Representing documents using embeddings</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../attribution.html">Attributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">LICENSE</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lectures/AppendixB.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Appendix B: K-Means customer segmentation case study</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-customer-segmentation">What is customer segmentation?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#business-problem">Business problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#information-of-the-dataset">Information of the dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preliminary-eda">Preliminary EDA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-exercises-for-you">Practice exercises for you</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mini-exercises-for-you-answers">Mini exercises for you (Answers)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-types-and-preprocessing">Feature types and preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-n-clusters">Choosing <code class="docutils literal notranslate"><span class="pre">n_clusters</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-elbow-method">The Elbow method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-clusters">Visualizing clusters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cluster-interpretation">Cluster interpretation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transactors">Transactors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#revolvers">Revolvers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#low-activity">Low activity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vip-prime">VIP/Prime</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-on-interpretation-of-clusters">More on interpretation of clusters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-exercise-for-you">Practice exercise for you</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="appendix-b-k-means-customer-segmentation-case-study">
+<h1>Appendix B: K-Means customer segmentation case study<a class="headerlink" href="#appendix-b-k-means-customer-segmentation-case-study" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;code/.&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="kn">from</span> <span class="nn">plotting_functions</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">cluster</span><span class="p">,</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">metrics</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span><span class="p">,</span> <span class="n">make_column_transformer</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="c1"># from support_functions import *</span>
+<span class="kn">from</span> <span class="nn">yellowbrick.cluster</span> <span class="kn">import</span> <span class="n">KElbowVisualizer</span><span class="p">,</span> <span class="n">SilhouetteVisualizer</span>
+
+<span class="c1">#plt.style.use(&quot;seaborn&quot;)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">16</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="what-is-customer-segmentation">
+<h2>What is customer segmentation?<a class="headerlink" href="#what-is-customer-segmentation" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Understand landscape of the market in businesses and craft targeted business or marketing strategies tailored for each group.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/customer-segmentation.png"><img alt="" src="../_images/customer-segmentation.png" style="width: 600px; height: 600px;" /></a>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=zPJtDohab-g&amp;t=134s">source</a></p>
+<p>Check out <a class="reference external" href="https://www.ted.com/talks/malcolm_gladwell_on_spaghetti_sauce?language=en">this interesting talk by Malcom Gladwell</a>. Humans are diverse and there is no single spaghetti sauce that would make all of them happy!</p>
+<p>Often it’s beneficial to businesses to explore the landscape of the market and tailor their services and products offered to each group. This is called <strong>customer segmentation</strong>. It’s usually applied when the dataset contains some of the following features.</p>
+<ul class="simple">
+<li><p><strong>Demographic information</strong> such as gender, age, marital status, income, education, and occupation</p></li>
+<li><p><strong>Geographical information</strong> such as specific towns or counties or a customer’s city, state, or even country of residence (in case of big global companies)</p></li>
+<li><p><strong>Psychographics</strong> such as social class, lifestyle, and personality traits</p></li>
+<li><p><strong>Behavioral data</strong> such as spending and consumption habits, product/service usage, and desired benefits</p></li>
+</ul>
+</section>
+<section id="business-problem">
+<h2>Business problem<a class="headerlink" href="#business-problem" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Imagine that you are hired as a data scientist at a bank. They provide some data of their credit card customers to you.</p></li>
+<li><p>Their goal is to develop customized marketing campaigns and they ask you to group customers based on the given information.</p></li>
+<li><p>Now that you know about K-Means clustering, let’s apply it to the dataset to group customers.</p></li>
+</ul>
+</section>
+<section id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>We will use the <a class="reference external" href="https://www.kaggle.com/arjunbhasin2013/ccdata">Credit Card Dataset for clustering</a> from Kaggle.</p></li>
+<li><p>Download the data and save the CSV under the <code class="docutils literal notranslate"><span class="pre">data</span></code> folder.</p></li>
+<li><p>I encourage you to work through this case study on your own.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">creditcard_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/CC General.csv&quot;</span><span class="p">)</span>
+<span class="n">creditcard_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">creditcard_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/CC General.csv&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">creditcard_df</span><span class="o">.</span><span class="n">shape</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:948,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
+<span class="g g-Whitespace">    </span><span class="mi">935</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">936</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">937</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">944</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">945</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">946</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">948</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:611,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">608</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">610</span> <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">611</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">613</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">614</span>     <span class="k">return</span> <span class="n">parser</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1448,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1445</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1447</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1448</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1705,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1703</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1704</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1705</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1706</span>     <span class="n">f</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1707</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1708</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1709</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1710</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1711</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1712</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1713</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1714</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1715</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1716</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/common.py:863,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">858</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
+<span class="g g-Whitespace">    </span><span class="mi">861</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">862</span>         <span class="c1"># Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">863</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">864</span>             <span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">865</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">866</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">867</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">868</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">869</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">870</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">871</span>         <span class="c1"># Binary mode</span>
+<span class="g g-Whitespace">    </span><span class="mi">872</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/CC General.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="information-of-the-dataset">
+<h2>Information of the dataset<a class="headerlink" href="#information-of-the-dataset" title="Permalink to this heading">#</a></h2>
+<p>We have behavioral data.</p>
+<ul class="simple">
+<li><p>CUSTID: Identification of Credit Card holder</p></li>
+<li><p>BALANCE: Balance amount left in customer’s account to make purchases</p></li>
+<li><p>BALANCE_FREQUENCY: How frequently the Balance is updated, score between 0 and 1 (1 = frequently updated, 0 = not frequently updated)</p></li>
+<li><p>PURCHASES: Amount of purchases made from account</p></li>
+<li><p>ONEOFFPURCHASES: Maximum purchase amount done in one-go</p></li>
+<li><p>INSTALLMENTS_PURCHASES: Amount of purchase done in installment</p></li>
+<li><p>CASH_ADVANCE: Cash in advance given by the user</p></li>
+<li><p>PURCHASES_FREQUENCY: How frequently the Purchases are being made, score between 0 and 1 (1 = frequently purchased, 0 = not frequently purchased)</p></li>
+<li><p>ONEOFF_PURCHASES_FREQUENCY: How frequently Purchases are happening in one-go (1 = frequently purchased, 0 = not frequently purchased)</p></li>
+<li><p>PURCHASES_INSTALLMENTS_FREQUENCY: How frequently purchases in installments are being done (1 = frequently done, 0 = not frequently done)</p></li>
+<li><p>CASH_ADVANCE_FREQUENCY: How frequently the cash in advance being paid</p></li>
+<li><p>CASH_ADVANCE_TRX: Number of Transactions made with “Cash in Advance”</p></li>
+<li><p>PURCHASES_TRX: Number of purchase transactions made</p></li>
+<li><p>CREDIT_LIMIT: Limit of Credit Card for user</p></li>
+<li><p>PAYMENTS: Amount of Payment done by user</p></li>
+<li><p>MINIMUM_PAYMENTS: Minimum amount of payments made by user</p></li>
+<li><p>PRC_FULL_PAYMENT: Percent of full payment paid by user</p></li>
+<li><p>TENURE: Tenure of credit card service for user</p></li>
+</ul>
+</section>
+<section id="preliminary-eda">
+<h2>Preliminary EDA<a class="headerlink" href="#preliminary-eda" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">creditcard_df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 8950 entries, 0 to 8949
+Data columns (total 18 columns):
+ #   Column                            Non-Null Count  Dtype  
+---  ------                            --------------  -----  
+ 0   CUST_ID                           8950 non-null   object 
+ 1   BALANCE                           8950 non-null   float64
+ 2   BALANCE_FREQUENCY                 8950 non-null   float64
+ 3   PURCHASES                         8950 non-null   float64
+ 4   ONEOFF_PURCHASES                  8950 non-null   float64
+ 5   INSTALLMENTS_PURCHASES            8950 non-null   float64
+ 6   CASH_ADVANCE                      8950 non-null   float64
+ 7   PURCHASES_FREQUENCY               8950 non-null   float64
+ 8   ONEOFF_PURCHASES_FREQUENCY        8950 non-null   float64
+ 9   PURCHASES_INSTALLMENTS_FREQUENCY  8950 non-null   float64
+ 10  CASH_ADVANCE_FREQUENCY            8950 non-null   float64
+ 11  CASH_ADVANCE_TRX                  8950 non-null   int64  
+ 12  PURCHASES_TRX                     8950 non-null   int64  
+ 13  CREDIT_LIMIT                      8949 non-null   float64
+ 14  PAYMENTS                          8950 non-null   float64
+ 15  MINIMUM_PAYMENTS                  8637 non-null   float64
+ 16  PRC_FULL_PAYMENT                  8950 non-null   float64
+ 17  TENURE                            8950 non-null   int64  
+dtypes: float64(14), int64(3), object(1)
+memory usage: 1.2+ MB
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>All numeric features</p></li>
+<li><p>Some missing values</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">creditcard_df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>BALANCE</th>
+      <th>BALANCE_FREQUENCY</th>
+      <th>PURCHASES</th>
+      <th>ONEOFF_PURCHASES</th>
+      <th>INSTALLMENTS_PURCHASES</th>
+      <th>CASH_ADVANCE</th>
+      <th>PURCHASES_FREQUENCY</th>
+      <th>ONEOFF_PURCHASES_FREQUENCY</th>
+      <th>PURCHASES_INSTALLMENTS_FREQUENCY</th>
+      <th>CASH_ADVANCE_FREQUENCY</th>
+      <th>CASH_ADVANCE_TRX</th>
+      <th>PURCHASES_TRX</th>
+      <th>CREDIT_LIMIT</th>
+      <th>PAYMENTS</th>
+      <th>MINIMUM_PAYMENTS</th>
+      <th>PRC_FULL_PAYMENT</th>
+      <th>TENURE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>8950.000000</td>
+      <td>8950.000000</td>
+      <td>8950.000000</td>
+      <td>8950.000000</td>
+      <td>8950.000000</td>
+      <td>8950.000000</td>
+      <td>8950.000000</td>
+      <td>8950.000000</td>
+      <td>8950.000000</td>
+      <td>8950.000000</td>
+      <td>8950.000000</td>
+      <td>8950.000000</td>
+      <td>8949.000000</td>
+      <td>8950.000000</td>
+      <td>8637.000000</td>
+      <td>8950.000000</td>
+      <td>8950.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>1564.474828</td>
+      <td>0.877271</td>
+      <td>1003.204834</td>
+      <td>592.437371</td>
+      <td>411.067645</td>
+      <td>978.871112</td>
+      <td>0.490351</td>
+      <td>0.202458</td>
+      <td>0.364437</td>
+      <td>0.135144</td>
+      <td>3.248827</td>
+      <td>14.709832</td>
+      <td>4494.449450</td>
+      <td>1733.143852</td>
+      <td>864.206542</td>
+      <td>0.153715</td>
+      <td>11.517318</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>2081.531879</td>
+      <td>0.236904</td>
+      <td>2136.634782</td>
+      <td>1659.887917</td>
+      <td>904.338115</td>
+      <td>2097.163877</td>
+      <td>0.401371</td>
+      <td>0.298336</td>
+      <td>0.397448</td>
+      <td>0.200121</td>
+      <td>6.824647</td>
+      <td>24.857649</td>
+      <td>3638.815725</td>
+      <td>2895.063757</td>
+      <td>2372.446607</td>
+      <td>0.292499</td>
+      <td>1.338331</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>50.000000</td>
+      <td>0.000000</td>
+      <td>0.019163</td>
+      <td>0.000000</td>
+      <td>6.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>128.281915</td>
+      <td>0.888889</td>
+      <td>39.635000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.083333</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>1600.000000</td>
+      <td>383.276166</td>
+      <td>169.123707</td>
+      <td>0.000000</td>
+      <td>12.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>873.385231</td>
+      <td>1.000000</td>
+      <td>361.280000</td>
+      <td>38.000000</td>
+      <td>89.000000</td>
+      <td>0.000000</td>
+      <td>0.500000</td>
+      <td>0.083333</td>
+      <td>0.166667</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>7.000000</td>
+      <td>3000.000000</td>
+      <td>856.901546</td>
+      <td>312.343947</td>
+      <td>0.000000</td>
+      <td>12.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>2054.140036</td>
+      <td>1.000000</td>
+      <td>1110.130000</td>
+      <td>577.405000</td>
+      <td>468.637500</td>
+      <td>1113.821139</td>
+      <td>0.916667</td>
+      <td>0.300000</td>
+      <td>0.750000</td>
+      <td>0.222222</td>
+      <td>4.000000</td>
+      <td>17.000000</td>
+      <td>6500.000000</td>
+      <td>1901.134317</td>
+      <td>825.485459</td>
+      <td>0.142857</td>
+      <td>12.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>19043.138560</td>
+      <td>1.000000</td>
+      <td>49039.570000</td>
+      <td>40761.250000</td>
+      <td>22500.000000</td>
+      <td>47137.211760</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.500000</td>
+      <td>123.000000</td>
+      <td>358.000000</td>
+      <td>30000.000000</td>
+      <td>50721.483360</td>
+      <td>76406.207520</td>
+      <td>1.000000</td>
+      <td>12.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="practice-exercises-for-you">
+<h2>Practice exercises for you<a class="headerlink" href="#practice-exercises-for-you" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>What is the average <code class="docutils literal notranslate"><span class="pre">BALANCE</span></code> amount?</p></li>
+<li><p>How often the <code class="docutils literal notranslate"><span class="pre">BALANCE_FREQUENCY</span></code> is updated on average?</p></li>
+<li><p>Obtain the row the customer who made the maximum cash advance transaction.</p></li>
+</ol>
+<p><br><br><br><br></p>
+</section>
+<section id="mini-exercises-for-you-answers">
+<h2>Mini exercises for you (Answers)<a class="headerlink" href="#mini-exercises-for-you-answers" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>What is the average <code class="docutils literal notranslate"><span class="pre">BALANCE</span></code> amount? 1564.47</p></li>
+<li><p>How often the <code class="docutils literal notranslate"><span class="pre">BALANCE_FREQUENCY</span></code> is updated on average? 0.877 (pretty often)</p></li>
+<li><p>Obtain the row of the customer who made the maximum cash advance transaction.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Answer 3.</span>
+<span class="n">max_cash_advance</span> <span class="o">=</span> <span class="n">creditcard_df</span><span class="p">[</span><span class="s2">&quot;CASH_ADVANCE&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">creditcard_df</span><span class="p">[</span><span class="n">creditcard_df</span><span class="p">[</span><span class="s2">&quot;CASH_ADVANCE&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">max_cash_advance</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CUST_ID</th>
+      <th>BALANCE</th>
+      <th>BALANCE_FREQUENCY</th>
+      <th>PURCHASES</th>
+      <th>ONEOFF_PURCHASES</th>
+      <th>INSTALLMENTS_PURCHASES</th>
+      <th>CASH_ADVANCE</th>
+      <th>PURCHASES_FREQUENCY</th>
+      <th>ONEOFF_PURCHASES_FREQUENCY</th>
+      <th>PURCHASES_INSTALLMENTS_FREQUENCY</th>
+      <th>CASH_ADVANCE_FREQUENCY</th>
+      <th>CASH_ADVANCE_TRX</th>
+      <th>PURCHASES_TRX</th>
+      <th>CREDIT_LIMIT</th>
+      <th>PAYMENTS</th>
+      <th>MINIMUM_PAYMENTS</th>
+      <th>PRC_FULL_PAYMENT</th>
+      <th>TENURE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2159</th>
+      <td>C12226</td>
+      <td>10905.05381</td>
+      <td>1.0</td>
+      <td>431.93</td>
+      <td>133.5</td>
+      <td>298.43</td>
+      <td>47137.21176</td>
+      <td>0.583333</td>
+      <td>0.25</td>
+      <td>0.5</td>
+      <td>1.0</td>
+      <td>123</td>
+      <td>21</td>
+      <td>19600.0</td>
+      <td>39048.59762</td>
+      <td>5394.173671</td>
+      <td>0.0</td>
+      <td>12</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s examine correlations between features.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cor</span> <span class="o">=</span> <span class="n">creditcard_df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">font_scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cor</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_6151/4232743610.py:1: FutureWarning: The default value of numeric_only in DataFrame.corr is deprecated. In a future version, it will default to False. Select only valid columns or specify the value of numeric_only to silence this warning.
+  cor = creditcard_df.corr()
+</pre></div>
+</div>
+<img alt="../_images/26db054514c34f27e74fe82d516415367c201467b6d55b379a16001bf05fe8b4.png" src="../_images/26db054514c34f27e74fe82d516415367c201467b6d55b379a16001bf05fe8b4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr_df</span> <span class="o">=</span> <span class="p">(</span><span class="n">creditcard_df</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="s1">&#39;spearman&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">corr_df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">background_gradient</span><span class="p">()</span><span class="o">.</span><span class="n">set_precision</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_6151/2227010425.py:1: FutureWarning: The default value of numeric_only in DataFrame.corr is deprecated. In a future version, it will default to False. Select only valid columns or specify the value of numeric_only to silence this warning.
+  corr_df = (creditcard_df.corr(&#39;spearman&#39;).round(2))
+/var/folders/b3/g26r0dcx4b35vf3nk31216hc0000gr/T/ipykernel_6151/2227010425.py:2: FutureWarning: this method is deprecated in favour of `Styler.format(precision=..)`
+  corr_df.style.background_gradient().set_precision(2)
+</pre></div>
+</div>
+<div class="output text_html"><style type="text/css">
+#T_1137a_row0_col0, #T_1137a_row1_col1, #T_1137a_row2_col2, #T_1137a_row3_col3, #T_1137a_row4_col4, #T_1137a_row5_col5, #T_1137a_row6_col6, #T_1137a_row7_col7, #T_1137a_row8_col8, #T_1137a_row9_col9, #T_1137a_row10_col10, #T_1137a_row11_col11, #T_1137a_row12_col12, #T_1137a_row13_col13, #T_1137a_row14_col14, #T_1137a_row15_col15, #T_1137a_row16_col16 {
+  background-color: #023858;
+  color: #f1f1f1;
+}
+#T_1137a_row0_col1 {
+  background-color: #3f93c2;
+  color: #f1f1f1;
+}
+#T_1137a_row0_col2, #T_1137a_row3_col12 {
+  background-color: #c4cbe3;
+  color: #000000;
+}
+#T_1137a_row0_col3 {
+  background-color: #c6cce3;
+  color: #000000;
+}
+#T_1137a_row0_col4, #T_1137a_row0_col6, #T_1137a_row3_col16, #T_1137a_row6_col16 {
+  background-color: #dad9ea;
+  color: #000000;
+}
+#T_1137a_row0_col5 {
+  background-color: #167bb6;
+  color: #f1f1f1;
+}
+#T_1137a_row0_col7 {
+  background-color: #cdd0e5;
+  color: #000000;
+}
+#T_1137a_row0_col8, #T_1137a_row11_col12 {
+  background-color: #e1dfed;
+  color: #000000;
+}
+#T_1137a_row0_col9 {
+  background-color: #2081b9;
+  color: #f1f1f1;
+}
+#T_1137a_row0_col10, #T_1137a_row1_col0, #T_1137a_row9_col0 {
+  background-color: #1c7fb8;
+  color: #f1f1f1;
+}
+#T_1137a_row0_col11, #T_1137a_row3_col1, #T_1137a_row4_col1, #T_1137a_row6_col14, #T_1137a_row8_col3 {
+  background-color: #ced0e6;
+  color: #000000;
+}
+#T_1137a_row0_col12, #T_1137a_row3_col15, #T_1137a_row7_col14, #T_1137a_row12_col4, #T_1137a_row16_col4 {
+  background-color: #acc0dd;
+  color: #000000;
+}
+#T_1137a_row0_col13, #T_1137a_row7_col8, #T_1137a_row16_col8 {
+  background-color: #adc1dd;
+  color: #000000;
+}
+#T_1137a_row0_col14, #T_1137a_row14_col0 {
+  background-color: #034a74;
+  color: #f1f1f1;
+}
+#T_1137a_row0_col15, #T_1137a_row5_col3, #T_1137a_row5_col6, #T_1137a_row5_col7, #T_1137a_row5_col8, #T_1137a_row5_col11, #T_1137a_row6_col5, #T_1137a_row6_col9, #T_1137a_row6_col10, #T_1137a_row8_col13, #T_1137a_row9_col2, #T_1137a_row9_col3, #T_1137a_row9_col4, #T_1137a_row9_col6, #T_1137a_row9_col8, #T_1137a_row9_col11, #T_1137a_row9_col16, #T_1137a_row10_col3, #T_1137a_row10_col6, #T_1137a_row14_col15, #T_1137a_row15_col0, #T_1137a_row15_col1, #T_1137a_row15_col12, #T_1137a_row15_col14 {
+  background-color: #fff7fb;
+  color: #000000;
+}
+#T_1137a_row0_col16, #T_1137a_row7_col5 {
+  background-color: #e0deed;
+  color: #000000;
+}
+#T_1137a_row1_col2 {
+  background-color: #a1bbda;
+  color: #000000;
+}
+#T_1137a_row1_col3, #T_1137a_row4_col0, #T_1137a_row5_col1, #T_1137a_row7_col12, #T_1137a_row11_col16, #T_1137a_row12_col16 {
+  background-color: #cccfe5;
+  color: #000000;
+}
+#T_1137a_row1_col4, #T_1137a_row7_col15 {
+  background-color: #a9bfdc;
+  color: #000000;
+}
+#T_1137a_row1_col5, #T_1137a_row7_col4, #T_1137a_row12_col3 {
+  background-color: #99b8d8;
+  color: #000000;
+}
+#T_1137a_row1_col6, #T_1137a_row13_col9 {
+  background-color: #89b1d4;
+  color: #000000;
+}
+#T_1137a_row1_col7 {
+  background-color: #c1cae2;
+  color: #000000;
+}
+#T_1137a_row1_col8 {
+  background-color: #a2bcda;
+  color: #000000;
+}
+#T_1137a_row1_col9, #T_1137a_row1_col10 {
+  background-color: #8eb3d5;
+  color: #000000;
+}
+#T_1137a_row1_col11 {
+  background-color: #8fb4d6;
+  color: #000000;
+}
+#T_1137a_row1_col12, #T_1137a_row9_col13 {
+  background-color: #f1ebf5;
+  color: #000000;
+}
+#T_1137a_row1_col13, #T_1137a_row4_col12, #T_1137a_row10_col13, #T_1137a_row16_col13 {
+  background-color: #f0eaf4;
+  color: #000000;
+}
+#T_1137a_row1_col14 {
+  background-color: #2786bb;
+  color: #f1f1f1;
+}
+#T_1137a_row1_col15, #T_1137a_row8_col16, #T_1137a_row14_col3, #T_1137a_row15_col7 {
+  background-color: #d9d8ea;
+  color: #000000;
+}
+#T_1137a_row1_col16, #T_1137a_row2_col14, #T_1137a_row4_col7 {
+  background-color: #b9c6e0;
+  color: #000000;
+}
+#T_1137a_row2_col0 {
+  background-color: #b5c4df;
+  color: #000000;
+}
+#T_1137a_row2_col1, #T_1137a_row8_col1 {
+  background-color: #c8cde4;
+  color: #000000;
+}
+#T_1137a_row2_col3, #T_1137a_row2_col4 {
+  background-color: #0569a5;
+  color: #f1f1f1;
+}
+#T_1137a_row2_col5, #T_1137a_row2_col10, #T_1137a_row8_col5, #T_1137a_row8_col9 {
+  background-color: #f8f1f8;
+  color: #000000;
+}
+#T_1137a_row2_col6, #T_1137a_row4_col6 {
+  background-color: #045e93;
+  color: #f1f1f1;
+}
+#T_1137a_row2_col7 {
+  background-color: #0872b1;
+  color: #f1f1f1;
+}
+#T_1137a_row2_col8 {
+  background-color: #1278b4;
+  color: #f1f1f1;
+}
+#T_1137a_row2_col9 {
+  background-color: #f9f2f8;
+  color: #000000;
+}
+#T_1137a_row2_col11 {
+  background-color: #034c78;
+  color: #f1f1f1;
+}
+#T_1137a_row2_col12, #T_1137a_row14_col12 {
+  background-color: #d2d2e7;
+  color: #000000;
+}
+#T_1137a_row2_col13 {
+  background-color: #bdc8e1;
+  color: #000000;
+}
+#T_1137a_row2_col15 {
+  background-color: #79abd0;
+  color: #f1f1f1;
+}
+#T_1137a_row2_col16, #T_1137a_row7_col13, #T_1137a_row8_col0, #T_1137a_row16_col7 {
+  background-color: #d5d5e8;
+  color: #000000;
+}
+#T_1137a_row3_col0, #T_1137a_row12_col11 {
+  background-color: #93b5d6;
+  color: #000000;
+}
+#T_1137a_row3_col2 {
+  background-color: #04649d;
+  color: #f1f1f1;
+}
+#T_1137a_row3_col4 {
+  background-color: #96b6d7;
+  color: #000000;
+}
+#T_1137a_row3_col5, #T_1137a_row3_col9, #T_1137a_row3_col10, #T_1137a_row7_col9, #T_1137a_row7_col16 {
+  background-color: #dfddec;
+  color: #000000;
+}
+#T_1137a_row3_col6 {
+  background-color: #4295c3;
+  color: #f1f1f1;
+}
+#T_1137a_row3_col7, #T_1137a_row5_col9, #T_1137a_row7_col3, #T_1137a_row9_col5 {
+  background-color: #034369;
+  color: #f1f1f1;
+}
+#T_1137a_row3_col8, #T_1137a_row13_col8 {
+  background-color: #abbfdc;
+  color: #000000;
+}
+#T_1137a_row3_col11, #T_1137a_row5_col0 {
+  background-color: #157ab5;
+  color: #f1f1f1;
+}
+#T_1137a_row3_col13, #T_1137a_row8_col14, #T_1137a_row14_col2 {
+  background-color: #c9cee4;
+  color: #000000;
+}
+#T_1137a_row3_col14, #T_1137a_row12_col9, #T_1137a_row16_col0, #T_1137a_row16_col2 {
+  background-color: #a7bddb;
+  color: #000000;
+}
+#T_1137a_row4_col2 {
+  background-color: #0569a4;
+  color: #f1f1f1;
+}
+#T_1137a_row4_col3 {
+  background-color: #b8c6e0;
+  color: #000000;
+}
+#T_1137a_row4_col5, #T_1137a_row4_col10 {
+  background-color: #f6eff7;
+  color: #000000;
+}
+#T_1137a_row4_col8, #T_1137a_row6_col11, #T_1137a_row8_col4, #T_1137a_row11_col6 {
+  background-color: #03476f;
+  color: #f1f1f1;
+}
+#T_1137a_row4_col9, #T_1137a_row6_col13, #T_1137a_row8_col10 {
+  background-color: #f7f0f7;
+  color: #000000;
+}
+#T_1137a_row4_col11, #T_1137a_row6_col4, #T_1137a_row8_col11 {
+  background-color: #045f95;
+  color: #f1f1f1;
+}
+#T_1137a_row4_col13, #T_1137a_row10_col15 {
+  background-color: #eae6f1;
+  color: #000000;
+}
+#T_1137a_row4_col14, #T_1137a_row11_col0 {
+  background-color: #c2cbe2;
+  color: #000000;
+}
+#T_1137a_row4_col15 {
+  background-color: #6da6cd;
+  color: #f1f1f1;
+}
+#T_1137a_row4_col16, #T_1137a_row16_col9 {
+  background-color: #d7d6e9;
+  color: #000000;
+}
+#T_1137a_row5_col2, #T_1137a_row5_col4, #T_1137a_row10_col2, #T_1137a_row10_col4, #T_1137a_row10_col8, #T_1137a_row10_col11 {
+  background-color: #fef6fb;
+  color: #000000;
+}
+#T_1137a_row5_col10, #T_1137a_row10_col5 {
+  background-color: #034165;
+  color: #f1f1f1;
+}
+#T_1137a_row5_col12, #T_1137a_row5_col15 {
+  background-color: #e8e4f0;
+  color: #000000;
+}
+#T_1137a_row5_col13 {
+  background-color: #e5e1ef;
+  color: #000000;
+}
+#T_1137a_row5_col14 {
+  background-color: #2c89bd;
+  color: #f1f1f1;
+}
+#T_1137a_row5_col16, #T_1137a_row10_col7 {
+  background-color: #fdf5fa;
+  color: #000000;
+}
+#T_1137a_row6_col0 {
+  background-color: #d6d6e9;
+  color: #000000;
+}
+#T_1137a_row6_col1, #T_1137a_row11_col1 {
+  background-color: #bbc7e0;
+  color: #000000;
+}
+#T_1137a_row6_col2 {
+  background-color: #045e94;
+  color: #f1f1f1;
+}
+#T_1137a_row6_col3, #T_1137a_row15_col6 {
+  background-color: #6fa7ce;
+  color: #f1f1f1;
+}
+#T_1137a_row6_col7 {
+  background-color: #5ea0ca;
+  color: #f1f1f1;
+}
+#T_1137a_row6_col8 {
+  background-color: #045585;
+  color: #f1f1f1;
+}
+#T_1137a_row6_col12, #T_1137a_row10_col12, #T_1137a_row15_col13 {
+  background-color: #f3edf5;
+  color: #000000;
+}
+#T_1137a_row6_col15 {
+  background-color: #69a5cc;
+  color: #f1f1f1;
+}
+#T_1137a_row7_col0 {
+  background-color: #9ab8d8;
+  color: #000000;
+}
+#T_1137a_row7_col1, #T_1137a_row14_col13 {
+  background-color: #c5cce3;
+  color: #000000;
+}
+#T_1137a_row7_col2 {
+  background-color: #056ba9;
+  color: #f1f1f1;
+}
+#T_1137a_row7_col6, #T_1137a_row14_col9 {
+  background-color: #358fc0;
+  color: #f1f1f1;
+}
+#T_1137a_row7_col10, #T_1137a_row15_col3 {
+  background-color: #dddbec;
+  color: #000000;
+}
+#T_1137a_row7_col11 {
+  background-color: #0f76b3;
+  color: #f1f1f1;
+}
+#T_1137a_row8_col2 {
+  background-color: #1077b4;
+  color: #f1f1f1;
+}
+#T_1137a_row8_col6 {
+  background-color: #045483;
+  color: #f1f1f1;
+}
+#T_1137a_row8_col7 {
+  background-color: #d0d1e6;
+  color: #000000;
+}
+#T_1137a_row8_col12, #T_1137a_row11_col5, #T_1137a_row11_col9 {
+  background-color: #fbf3f9;
+  color: #000000;
+}
+#T_1137a_row8_col15, #T_1137a_row12_col14 {
+  background-color: #73a9cf;
+  color: #f1f1f1;
+}
+#T_1137a_row9_col1, #T_1137a_row10_col1 {
+  background-color: #c0c9e2;
+  color: #000000;
+}
+#T_1137a_row9_col7 {
+  background-color: #fef6fa;
+  color: #000000;
+}
+#T_1137a_row9_col10, #T_1137a_row10_col9 {
+  background-color: #023b5d;
+  color: #f1f1f1;
+}
+#T_1137a_row9_col12 {
+  background-color: #f4eef6;
+  color: #000000;
+}
+#T_1137a_row9_col14, #T_1137a_row14_col10 {
+  background-color: #328dbf;
+  color: #f1f1f1;
+}
+#T_1137a_row9_col15 {
+  background-color: #ece7f2;
+  color: #000000;
+}
+#T_1137a_row10_col0 {
+  background-color: #197db7;
+  color: #f1f1f1;
+}
+#T_1137a_row10_col14, #T_1137a_row14_col5 {
+  background-color: #2f8bbe;
+  color: #f1f1f1;
+}
+#T_1137a_row10_col16 {
+  background-color: #fbf4f9;
+  color: #000000;
+}
+#T_1137a_row11_col2 {
+  background-color: #034d79;
+  color: #f1f1f1;
+}
+#T_1137a_row11_col3 {
+  background-color: #2a88bc;
+  color: #f1f1f1;
+}
+#T_1137a_row11_col4 {
+  background-color: #046097;
+  color: #f1f1f1;
+}
+#T_1137a_row11_col7 {
+  background-color: #2383ba;
+  color: #f1f1f1;
+}
+#T_1137a_row11_col8 {
+  background-color: #046096;
+  color: #f1f1f1;
+}
+#T_1137a_row11_col10 {
+  background-color: #faf3f9;
+  color: #000000;
+}
+#T_1137a_row11_col13 {
+  background-color: #e0dded;
+  color: #000000;
+}
+#T_1137a_row11_col14, #T_1137a_row13_col16 {
+  background-color: #bfc9e1;
+  color: #000000;
+}
+#T_1137a_row11_col15 {
+  background-color: #76aad0;
+  color: #f1f1f1;
+}
+#T_1137a_row12_col0, #T_1137a_row13_col14 {
+  background-color: #4e9ac6;
+  color: #f1f1f1;
+}
+#T_1137a_row12_col1, #T_1137a_row14_col6, #T_1137a_row14_col16, #T_1137a_row16_col10 {
+  background-color: #d2d3e7;
+  color: #000000;
+}
+#T_1137a_row12_col2, #T_1137a_row15_col11 {
+  background-color: #81aed2;
+  color: #f1f1f1;
+}
+#T_1137a_row12_col5, #T_1137a_row16_col14 {
+  background-color: #94b6d7;
+  color: #000000;
+}
+#T_1137a_row12_col6, #T_1137a_row12_col10, #T_1137a_row16_col6 {
+  background-color: #a4bcda;
+  color: #000000;
+}
+#T_1137a_row12_col7 {
+  background-color: #9ebad9;
+  color: #000000;
+}
+#T_1137a_row12_col8 {
+  background-color: #bcc7e1;
+  color: #000000;
+}
+#T_1137a_row12_col13 {
+  background-color: #a5bddb;
+  color: #000000;
+}
+#T_1137a_row12_col15, #T_1137a_row16_col15 {
+  background-color: #b3c3de;
+  color: #000000;
+}
+#T_1137a_row13_col0 {
+  background-color: #3b92c1;
+  color: #f1f1f1;
+}
+#T_1137a_row13_col1 {
+  background-color: #b7c5df;
+  color: #000000;
+}
+#T_1137a_row13_col2 {
+  background-color: #569dc8;
+  color: #f1f1f1;
+}
+#T_1137a_row13_col3 {
+  background-color: #84b0d3;
+  color: #f1f1f1;
+}
+#T_1137a_row13_col4 {
+  background-color: #8bb2d4;
+  color: #000000;
+}
+#T_1137a_row13_col5, #T_1137a_row13_col11 {
+  background-color: #78abd0;
+  color: #f1f1f1;
+}
+#T_1137a_row13_col6, #T_1137a_row13_col7 {
+  background-color: #91b5d6;
+  color: #000000;
+}
+#T_1137a_row13_col10, #T_1137a_row15_col2 {
+  background-color: #86b0d3;
+  color: #000000;
+}
+#T_1137a_row13_col12 {
+  background-color: #8cb3d5;
+  color: #000000;
+}
+#T_1137a_row13_col15 {
+  background-color: #88b1d4;
+  color: #000000;
+}
+#T_1137a_row14_col1 {
+  background-color: #509ac6;
+  color: #f1f1f1;
+}
+#T_1137a_row14_col4 {
+  background-color: #d4d4e8;
+  color: #000000;
+}
+#T_1137a_row14_col7 {
+  background-color: #dbdaeb;
+  color: #000000;
+}
+#T_1137a_row14_col8 {
+  background-color: #d8d7e9;
+  color: #000000;
+}
+#T_1137a_row14_col11 {
+  background-color: #cacee5;
+  color: #000000;
+}
+#T_1137a_row15_col4 {
+  background-color: #7eadd1;
+  color: #f1f1f1;
+}
+#T_1137a_row15_col5 {
+  background-color: #ede7f2;
+  color: #000000;
+}
+#T_1137a_row15_col8 {
+  background-color: #83afd3;
+  color: #f1f1f1;
+}
+#T_1137a_row15_col9 {
+  background-color: #eee9f3;
+  color: #000000;
+}
+#T_1137a_row15_col10 {
+  background-color: #ede8f3;
+  color: #000000;
+}
+#T_1137a_row15_col16 {
+  background-color: #ebe6f2;
+  color: #000000;
+}
+#T_1137a_row16_col1 {
+  background-color: #b1c2de;
+  color: #000000;
+}
+#T_1137a_row16_col3, #T_1137a_row16_col5 {
+  background-color: #d3d4e7;
+  color: #000000;
+}
+#T_1137a_row16_col11 {
+  background-color: #97b7d7;
+  color: #000000;
+}
+#T_1137a_row16_col12 {
+  background-color: #e6e2ef;
+  color: #000000;
+}
+</style>
+<table id="T_1137a">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_1137a_level0_col0" class="col_heading level0 col0" >BALANCE</th>
+      <th id="T_1137a_level0_col1" class="col_heading level0 col1" >BALANCE_FREQUENCY</th>
+      <th id="T_1137a_level0_col2" class="col_heading level0 col2" >PURCHASES</th>
+      <th id="T_1137a_level0_col3" class="col_heading level0 col3" >ONEOFF_PURCHASES</th>
+      <th id="T_1137a_level0_col4" class="col_heading level0 col4" >INSTALLMENTS_PURCHASES</th>
+      <th id="T_1137a_level0_col5" class="col_heading level0 col5" >CASH_ADVANCE</th>
+      <th id="T_1137a_level0_col6" class="col_heading level0 col6" >PURCHASES_FREQUENCY</th>
+      <th id="T_1137a_level0_col7" class="col_heading level0 col7" >ONEOFF_PURCHASES_FREQUENCY</th>
+      <th id="T_1137a_level0_col8" class="col_heading level0 col8" >PURCHASES_INSTALLMENTS_FREQUENCY</th>
+      <th id="T_1137a_level0_col9" class="col_heading level0 col9" >CASH_ADVANCE_FREQUENCY</th>
+      <th id="T_1137a_level0_col10" class="col_heading level0 col10" >CASH_ADVANCE_TRX</th>
+      <th id="T_1137a_level0_col11" class="col_heading level0 col11" >PURCHASES_TRX</th>
+      <th id="T_1137a_level0_col12" class="col_heading level0 col12" >CREDIT_LIMIT</th>
+      <th id="T_1137a_level0_col13" class="col_heading level0 col13" >PAYMENTS</th>
+      <th id="T_1137a_level0_col14" class="col_heading level0 col14" >MINIMUM_PAYMENTS</th>
+      <th id="T_1137a_level0_col15" class="col_heading level0 col15" >PRC_FULL_PAYMENT</th>
+      <th id="T_1137a_level0_col16" class="col_heading level0 col16" >TENURE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_1137a_level0_row0" class="row_heading level0 row0" >BALANCE</th>
+      <td id="T_1137a_row0_col0" class="data row0 col0" >1.00</td>
+      <td id="T_1137a_row0_col1" class="data row0 col1" >0.54</td>
+      <td id="T_1137a_row0_col2" class="data row0 col2" >0.01</td>
+      <td id="T_1137a_row0_col3" class="data row0 col3" >0.15</td>
+      <td id="T_1137a_row0_col4" class="data row0 col4" >-0.09</td>
+      <td id="T_1137a_row0_col5" class="data row0 col5" >0.57</td>
+      <td id="T_1137a_row0_col6" class="data row0 col6" >-0.15</td>
+      <td id="T_1137a_row0_col7" class="data row0 col7" >0.12</td>
+      <td id="T_1137a_row0_col8" class="data row0 col8" >-0.14</td>
+      <td id="T_1137a_row0_col9" class="data row0 col9" >0.54</td>
+      <td id="T_1137a_row0_col10" class="data row0 col10" >0.55</td>
+      <td id="T_1137a_row0_col11" class="data row0 col11" >-0.05</td>
+      <td id="T_1137a_row0_col12" class="data row0 col12" >0.37</td>
+      <td id="T_1137a_row0_col13" class="data row0 col13" >0.43</td>
+      <td id="T_1137a_row0_col14" class="data row0 col14" >0.90</td>
+      <td id="T_1137a_row0_col15" class="data row0 col15" >-0.48</td>
+      <td id="T_1137a_row0_col16" class="data row0 col16" >0.07</td>
+    </tr>
+    <tr>
+      <th id="T_1137a_level0_row1" class="row_heading level0 row1" >BALANCE_FREQUENCY</th>
+      <td id="T_1137a_row1_col0" class="data row1 col0" >0.54</td>
+      <td id="T_1137a_row1_col1" class="data row1 col1" >1.00</td>
+      <td id="T_1137a_row1_col2" class="data row1 col2" >0.15</td>
+      <td id="T_1137a_row1_col3" class="data row1 col3" >0.13</td>
+      <td id="T_1137a_row1_col4" class="data row1 col4" >0.13</td>
+      <td id="T_1137a_row1_col5" class="data row1 col5" >0.14</td>
+      <td id="T_1137a_row1_col6" class="data row1 col6" >0.20</td>
+      <td id="T_1137a_row1_col7" class="data row1 col7" >0.16</td>
+      <td id="T_1137a_row1_col8" class="data row1 col8" >0.15</td>
+      <td id="T_1137a_row1_col9" class="data row1 col9" >0.18</td>
+      <td id="T_1137a_row1_col10" class="data row1 col10" >0.18</td>
+      <td id="T_1137a_row1_col11" class="data row1 col11" >0.20</td>
+      <td id="T_1137a_row1_col12" class="data row1 col12" >0.11</td>
+      <td id="T_1137a_row1_col13" class="data row1 col13" >0.21</td>
+      <td id="T_1137a_row1_col14" class="data row1 col14" >0.50</td>
+      <td id="T_1137a_row1_col15" class="data row1 col15" >-0.17</td>
+      <td id="T_1137a_row1_col16" class="data row1 col16" >0.23</td>
+    </tr>
+    <tr>
+      <th id="T_1137a_level0_row2" class="row_heading level0 row2" >PURCHASES</th>
+      <td id="T_1137a_row2_col0" class="data row2 col0" >0.01</td>
+      <td id="T_1137a_row2_col1" class="data row2 col1" >0.15</td>
+      <td id="T_1137a_row2_col2" class="data row2 col2" >1.00</td>
+      <td id="T_1137a_row2_col3" class="data row2 col3" >0.75</td>
+      <td id="T_1137a_row2_col4" class="data row2 col4" >0.71</td>
+      <td id="T_1137a_row2_col5" class="data row2 col5" >-0.38</td>
+      <td id="T_1137a_row2_col6" class="data row2 col6" >0.79</td>
+      <td id="T_1137a_row2_col7" class="data row2 col7" >0.69</td>
+      <td id="T_1137a_row2_col8" class="data row2 col8" >0.61</td>
+      <td id="T_1137a_row2_col9" class="data row2 col9" >-0.39</td>
+      <td id="T_1137a_row2_col10" class="data row2 col10" >-0.38</td>
+      <td id="T_1137a_row2_col11" class="data row2 col11" >0.89</td>
+      <td id="T_1137a_row2_col12" class="data row2 col12" >0.26</td>
+      <td id="T_1137a_row2_col13" class="data row2 col13" >0.39</td>
+      <td id="T_1137a_row2_col14" class="data row2 col14" >-0.01</td>
+      <td id="T_1137a_row2_col15" class="data row2 col15" >0.24</td>
+      <td id="T_1137a_row2_col16" class="data row2 col16" >0.13</td>
+    </tr>
+    <tr>
+      <th id="T_1137a_level0_row3" class="row_heading level0 row3" >ONEOFF_PURCHASES</th>
+      <td id="T_1137a_row3_col0" class="data row3 col0" >0.15</td>
+      <td id="T_1137a_row3_col1" class="data row3 col1" >0.13</td>
+      <td id="T_1137a_row3_col2" class="data row3 col2" >0.75</td>
+      <td id="T_1137a_row3_col3" class="data row3 col3" >1.00</td>
+      <td id="T_1137a_row3_col4" class="data row3 col4" >0.20</td>
+      <td id="T_1137a_row3_col5" class="data row3 col5" >-0.18</td>
+      <td id="T_1137a_row3_col6" class="data row3 col6" >0.42</td>
+      <td id="T_1137a_row3_col7" class="data row3 col7" >0.95</td>
+      <td id="T_1137a_row3_col8" class="data row3 col8" >0.12</td>
+      <td id="T_1137a_row3_col9" class="data row3 col9" >-0.18</td>
+      <td id="T_1137a_row3_col10" class="data row3 col10" >-0.18</td>
+      <td id="T_1137a_row3_col11" class="data row3 col11" >0.59</td>
+      <td id="T_1137a_row3_col12" class="data row3 col12" >0.30</td>
+      <td id="T_1137a_row3_col13" class="data row3 col13" >0.36</td>
+      <td id="T_1137a_row3_col14" class="data row3 col14" >0.07</td>
+      <td id="T_1137a_row3_col15" class="data row3 col15" >0.05</td>
+      <td id="T_1137a_row3_col16" class="data row3 col16" >0.10</td>
+    </tr>
+    <tr>
+      <th id="T_1137a_level0_row4" class="row_heading level0 row4" >INSTALLMENTS_PURCHASES</th>
+      <td id="T_1137a_row4_col0" class="data row4 col0" >-0.09</td>
+      <td id="T_1137a_row4_col1" class="data row4 col1" >0.13</td>
+      <td id="T_1137a_row4_col2" class="data row4 col2" >0.71</td>
+      <td id="T_1137a_row4_col3" class="data row4 col3" >0.20</td>
+      <td id="T_1137a_row4_col4" class="data row4 col4" >1.00</td>
+      <td id="T_1137a_row4_col5" class="data row4 col5" >-0.36</td>
+      <td id="T_1137a_row4_col6" class="data row4 col6" >0.79</td>
+      <td id="T_1137a_row4_col7" class="data row4 col7" >0.19</td>
+      <td id="T_1137a_row4_col8" class="data row4 col8" >0.92</td>
+      <td id="T_1137a_row4_col9" class="data row4 col9" >-0.37</td>
+      <td id="T_1137a_row4_col10" class="data row4 col10" >-0.36</td>
+      <td id="T_1137a_row4_col11" class="data row4 col11" >0.78</td>
+      <td id="T_1137a_row4_col12" class="data row4 col12" >0.12</td>
+      <td id="T_1137a_row4_col13" class="data row4 col13" >0.24</td>
+      <td id="T_1137a_row4_col14" class="data row4 col14" >-0.05</td>
+      <td id="T_1137a_row4_col15" class="data row4 col15" >0.28</td>
+      <td id="T_1137a_row4_col16" class="data row4 col16" >0.12</td>
+    </tr>
+    <tr>
+      <th id="T_1137a_level0_row5" class="row_heading level0 row5" >CASH_ADVANCE</th>
+      <td id="T_1137a_row5_col0" class="data row5 col0" >0.57</td>
+      <td id="T_1137a_row5_col1" class="data row5 col1" >0.14</td>
+      <td id="T_1137a_row5_col2" class="data row5 col2" >-0.38</td>
+      <td id="T_1137a_row5_col3" class="data row5 col3" >-0.18</td>
+      <td id="T_1137a_row5_col4" class="data row5 col4" >-0.36</td>
+      <td id="T_1137a_row5_col5" class="data row5 col5" >1.00</td>
+      <td id="T_1137a_row5_col6" class="data row5 col6" >-0.45</td>
+      <td id="T_1137a_row5_col7" class="data row5 col7" >-0.19</td>
+      <td id="T_1137a_row5_col8" class="data row5 col8" >-0.38</td>
+      <td id="T_1137a_row5_col9" class="data row5 col9" >0.94</td>
+      <td id="T_1137a_row5_col10" class="data row5 col10" >0.95</td>
+      <td id="T_1137a_row5_col11" class="data row5 col11" >-0.41</td>
+      <td id="T_1137a_row5_col12" class="data row5 col12" >0.16</td>
+      <td id="T_1137a_row5_col13" class="data row5 col13" >0.26</td>
+      <td id="T_1137a_row5_col14" class="data row5 col14" >0.48</td>
+      <td id="T_1137a_row5_col15" class="data row5 col15" >-0.27</td>
+      <td id="T_1137a_row5_col16" class="data row5 col16" >-0.11</td>
+    </tr>
+    <tr>
+      <th id="T_1137a_level0_row6" class="row_heading level0 row6" >PURCHASES_FREQUENCY</th>
+      <td id="T_1137a_row6_col0" class="data row6 col0" >-0.15</td>
+      <td id="T_1137a_row6_col1" class="data row6 col1" >0.20</td>
+      <td id="T_1137a_row6_col2" class="data row6 col2" >0.79</td>
+      <td id="T_1137a_row6_col3" class="data row6 col3" >0.42</td>
+      <td id="T_1137a_row6_col4" class="data row6 col4" >0.79</td>
+      <td id="T_1137a_row6_col5" class="data row6 col5" >-0.45</td>
+      <td id="T_1137a_row6_col6" class="data row6 col6" >1.00</td>
+      <td id="T_1137a_row6_col7" class="data row6 col7" >0.46</td>
+      <td id="T_1137a_row6_col8" class="data row6 col8" >0.85</td>
+      <td id="T_1137a_row6_col9" class="data row6 col9" >-0.45</td>
+      <td id="T_1137a_row6_col10" class="data row6 col10" >-0.45</td>
+      <td id="T_1137a_row6_col11" class="data row6 col11" >0.92</td>
+      <td id="T_1137a_row6_col12" class="data row6 col12" >0.10</td>
+      <td id="T_1137a_row6_col13" class="data row6 col13" >0.17</td>
+      <td id="T_1137a_row6_col14" class="data row6 col14" >-0.10</td>
+      <td id="T_1137a_row6_col15" class="data row6 col15" >0.29</td>
+      <td id="T_1137a_row6_col16" class="data row6 col16" >0.10</td>
+    </tr>
+    <tr>
+      <th id="T_1137a_level0_row7" class="row_heading level0 row7" >ONEOFF_PURCHASES_FREQUENCY</th>
+      <td id="T_1137a_row7_col0" class="data row7 col0" >0.12</td>
+      <td id="T_1137a_row7_col1" class="data row7 col1" >0.16</td>
+      <td id="T_1137a_row7_col2" class="data row7 col2" >0.69</td>
+      <td id="T_1137a_row7_col3" class="data row7 col3" >0.95</td>
+      <td id="T_1137a_row7_col4" class="data row7 col4" >0.19</td>
+      <td id="T_1137a_row7_col5" class="data row7 col5" >-0.19</td>
+      <td id="T_1137a_row7_col6" class="data row7 col6" >0.46</td>
+      <td id="T_1137a_row7_col7" class="data row7 col7" >1.00</td>
+      <td id="T_1137a_row7_col8" class="data row7 col8" >0.11</td>
+      <td id="T_1137a_row7_col9" class="data row7 col9" >-0.18</td>
+      <td id="T_1137a_row7_col10" class="data row7 col10" >-0.17</td>
+      <td id="T_1137a_row7_col11" class="data row7 col11" >0.61</td>
+      <td id="T_1137a_row7_col12" class="data row7 col12" >0.28</td>
+      <td id="T_1137a_row7_col13" class="data row7 col13" >0.32</td>
+      <td id="T_1137a_row7_col14" class="data row7 col14" >0.05</td>
+      <td id="T_1137a_row7_col15" class="data row7 col15" >0.06</td>
+      <td id="T_1137a_row7_col16" class="data row7 col16" >0.08</td>
+    </tr>
+    <tr>
+      <th id="T_1137a_level0_row8" class="row_heading level0 row8" >PURCHASES_INSTALLMENTS_FREQUENCY</th>
+      <td id="T_1137a_row8_col0" class="data row8 col0" >-0.14</td>
+      <td id="T_1137a_row8_col1" class="data row8 col1" >0.15</td>
+      <td id="T_1137a_row8_col2" class="data row8 col2" >0.61</td>
+      <td id="T_1137a_row8_col3" class="data row8 col3" >0.12</td>
+      <td id="T_1137a_row8_col4" class="data row8 col4" >0.92</td>
+      <td id="T_1137a_row8_col5" class="data row8 col5" >-0.38</td>
+      <td id="T_1137a_row8_col6" class="data row8 col6" >0.85</td>
+      <td id="T_1137a_row8_col7" class="data row8 col7" >0.11</td>
+      <td id="T_1137a_row8_col8" class="data row8 col8" >1.00</td>
+      <td id="T_1137a_row8_col9" class="data row8 col9" >-0.38</td>
+      <td id="T_1137a_row8_col10" class="data row8 col10" >-0.37</td>
+      <td id="T_1137a_row8_col11" class="data row8 col11" >0.78</td>
+      <td id="T_1137a_row8_col12" class="data row8 col12" >0.05</td>
+      <td id="T_1137a_row8_col13" class="data row8 col13" >0.12</td>
+      <td id="T_1137a_row8_col14" class="data row8 col14" >-0.08</td>
+      <td id="T_1137a_row8_col15" class="data row8 col15" >0.26</td>
+      <td id="T_1137a_row8_col16" class="data row8 col16" >0.11</td>
+    </tr>
+    <tr>
+      <th id="T_1137a_level0_row9" class="row_heading level0 row9" >CASH_ADVANCE_FREQUENCY</th>
+      <td id="T_1137a_row9_col0" class="data row9 col0" >0.54</td>
+      <td id="T_1137a_row9_col1" class="data row9 col1" >0.18</td>
+      <td id="T_1137a_row9_col2" class="data row9 col2" >-0.39</td>
+      <td id="T_1137a_row9_col3" class="data row9 col3" >-0.18</td>
+      <td id="T_1137a_row9_col4" class="data row9 col4" >-0.37</td>
+      <td id="T_1137a_row9_col5" class="data row9 col5" >0.94</td>
+      <td id="T_1137a_row9_col6" class="data row9 col6" >-0.45</td>
+      <td id="T_1137a_row9_col7" class="data row9 col7" >-0.18</td>
+      <td id="T_1137a_row9_col8" class="data row9 col8" >-0.38</td>
+      <td id="T_1137a_row9_col9" class="data row9 col9" >1.00</td>
+      <td id="T_1137a_row9_col10" class="data row9 col10" >0.98</td>
+      <td id="T_1137a_row9_col11" class="data row9 col11" >-0.41</td>
+      <td id="T_1137a_row9_col12" class="data row9 col12" >0.09</td>
+      <td id="T_1137a_row9_col13" class="data row9 col13" >0.20</td>
+      <td id="T_1137a_row9_col14" class="data row9 col14" >0.46</td>
+      <td id="T_1137a_row9_col15" class="data row9 col15" >-0.29</td>
+      <td id="T_1137a_row9_col16" class="data row9 col16" >-0.13</td>
+    </tr>
+    <tr>
+      <th id="T_1137a_level0_row10" class="row_heading level0 row10" >CASH_ADVANCE_TRX</th>
+      <td id="T_1137a_row10_col0" class="data row10 col0" >0.55</td>
+      <td id="T_1137a_row10_col1" class="data row10 col1" >0.18</td>
+      <td id="T_1137a_row10_col2" class="data row10 col2" >-0.38</td>
+      <td id="T_1137a_row10_col3" class="data row10 col3" >-0.18</td>
+      <td id="T_1137a_row10_col4" class="data row10 col4" >-0.36</td>
+      <td id="T_1137a_row10_col5" class="data row10 col5" >0.95</td>
+      <td id="T_1137a_row10_col6" class="data row10 col6" >-0.45</td>
+      <td id="T_1137a_row10_col7" class="data row10 col7" >-0.17</td>
+      <td id="T_1137a_row10_col8" class="data row10 col8" >-0.37</td>
+      <td id="T_1137a_row10_col9" class="data row10 col9" >0.98</td>
+      <td id="T_1137a_row10_col10" class="data row10 col10" >1.00</td>
+      <td id="T_1137a_row10_col11" class="data row10 col11" >-0.40</td>
+      <td id="T_1137a_row10_col12" class="data row10 col12" >0.10</td>
+      <td id="T_1137a_row10_col13" class="data row10 col13" >0.21</td>
+      <td id="T_1137a_row10_col14" class="data row10 col14" >0.47</td>
+      <td id="T_1137a_row10_col15" class="data row10 col15" >-0.28</td>
+      <td id="T_1137a_row10_col16" class="data row10 col16" >-0.10</td>
+    </tr>
+    <tr>
+      <th id="T_1137a_level0_row11" class="row_heading level0 row11" >PURCHASES_TRX</th>
+      <td id="T_1137a_row11_col0" class="data row11 col0" >-0.05</td>
+      <td id="T_1137a_row11_col1" class="data row11 col1" >0.20</td>
+      <td id="T_1137a_row11_col2" class="data row11 col2" >0.89</td>
+      <td id="T_1137a_row11_col3" class="data row11 col3" >0.59</td>
+      <td id="T_1137a_row11_col4" class="data row11 col4" >0.78</td>
+      <td id="T_1137a_row11_col5" class="data row11 col5" >-0.41</td>
+      <td id="T_1137a_row11_col6" class="data row11 col6" >0.92</td>
+      <td id="T_1137a_row11_col7" class="data row11 col7" >0.61</td>
+      <td id="T_1137a_row11_col8" class="data row11 col8" >0.78</td>
+      <td id="T_1137a_row11_col9" class="data row11 col9" >-0.41</td>
+      <td id="T_1137a_row11_col10" class="data row11 col10" >-0.40</td>
+      <td id="T_1137a_row11_col11" class="data row11 col11" >1.00</td>
+      <td id="T_1137a_row11_col12" class="data row11 col12" >0.19</td>
+      <td id="T_1137a_row11_col13" class="data row11 col13" >0.28</td>
+      <td id="T_1137a_row11_col14" class="data row11 col14" >-0.03</td>
+      <td id="T_1137a_row11_col15" class="data row11 col15" >0.25</td>
+      <td id="T_1137a_row11_col16" class="data row11 col16" >0.17</td>
+    </tr>
+    <tr>
+      <th id="T_1137a_level0_row12" class="row_heading level0 row12" >CREDIT_LIMIT</th>
+      <td id="T_1137a_row12_col0" class="data row12 col0" >0.37</td>
+      <td id="T_1137a_row12_col1" class="data row12 col1" >0.11</td>
+      <td id="T_1137a_row12_col2" class="data row12 col2" >0.26</td>
+      <td id="T_1137a_row12_col3" class="data row12 col3" >0.30</td>
+      <td id="T_1137a_row12_col4" class="data row12 col4" >0.12</td>
+      <td id="T_1137a_row12_col5" class="data row12 col5" >0.16</td>
+      <td id="T_1137a_row12_col6" class="data row12 col6" >0.10</td>
+      <td id="T_1137a_row12_col7" class="data row12 col7" >0.28</td>
+      <td id="T_1137a_row12_col8" class="data row12 col8" >0.05</td>
+      <td id="T_1137a_row12_col9" class="data row12 col9" >0.09</td>
+      <td id="T_1137a_row12_col10" class="data row12 col10" >0.10</td>
+      <td id="T_1137a_row12_col11" class="data row12 col11" >0.19</td>
+      <td id="T_1137a_row12_col12" class="data row12 col12" >1.00</td>
+      <td id="T_1137a_row12_col13" class="data row12 col13" >0.45</td>
+      <td id="T_1137a_row12_col14" class="data row12 col14" >0.26</td>
+      <td id="T_1137a_row12_col15" class="data row12 col15" >0.02</td>
+      <td id="T_1137a_row12_col16" class="data row12 col16" >0.17</td>
+    </tr>
+    <tr>
+      <th id="T_1137a_level0_row13" class="row_heading level0 row13" >PAYMENTS</th>
+      <td id="T_1137a_row13_col0" class="data row13 col0" >0.43</td>
+      <td id="T_1137a_row13_col1" class="data row13 col1" >0.21</td>
+      <td id="T_1137a_row13_col2" class="data row13 col2" >0.39</td>
+      <td id="T_1137a_row13_col3" class="data row13 col3" >0.36</td>
+      <td id="T_1137a_row13_col4" class="data row13 col4" >0.24</td>
+      <td id="T_1137a_row13_col5" class="data row13 col5" >0.26</td>
+      <td id="T_1137a_row13_col6" class="data row13 col6" >0.17</td>
+      <td id="T_1137a_row13_col7" class="data row13 col7" >0.32</td>
+      <td id="T_1137a_row13_col8" class="data row13 col8" >0.12</td>
+      <td id="T_1137a_row13_col9" class="data row13 col9" >0.20</td>
+      <td id="T_1137a_row13_col10" class="data row13 col10" >0.21</td>
+      <td id="T_1137a_row13_col11" class="data row13 col11" >0.28</td>
+      <td id="T_1137a_row13_col12" class="data row13 col12" >0.45</td>
+      <td id="T_1137a_row13_col13" class="data row13 col13" >1.00</td>
+      <td id="T_1137a_row13_col14" class="data row13 col14" >0.37</td>
+      <td id="T_1137a_row13_col15" class="data row13 col15" >0.19</td>
+      <td id="T_1137a_row13_col16" class="data row13 col16" >0.21</td>
+    </tr>
+    <tr>
+      <th id="T_1137a_level0_row14" class="row_heading level0 row14" >MINIMUM_PAYMENTS</th>
+      <td id="T_1137a_row14_col0" class="data row14 col0" >0.90</td>
+      <td id="T_1137a_row14_col1" class="data row14 col1" >0.50</td>
+      <td id="T_1137a_row14_col2" class="data row14 col2" >-0.01</td>
+      <td id="T_1137a_row14_col3" class="data row14 col3" >0.07</td>
+      <td id="T_1137a_row14_col4" class="data row14 col4" >-0.05</td>
+      <td id="T_1137a_row14_col5" class="data row14 col5" >0.48</td>
+      <td id="T_1137a_row14_col6" class="data row14 col6" >-0.10</td>
+      <td id="T_1137a_row14_col7" class="data row14 col7" >0.05</td>
+      <td id="T_1137a_row14_col8" class="data row14 col8" >-0.08</td>
+      <td id="T_1137a_row14_col9" class="data row14 col9" >0.46</td>
+      <td id="T_1137a_row14_col10" class="data row14 col10" >0.47</td>
+      <td id="T_1137a_row14_col11" class="data row14 col11" >-0.03</td>
+      <td id="T_1137a_row14_col12" class="data row14 col12" >0.26</td>
+      <td id="T_1137a_row14_col13" class="data row14 col13" >0.37</td>
+      <td id="T_1137a_row14_col14" class="data row14 col14" >1.00</td>
+      <td id="T_1137a_row14_col15" class="data row14 col15" >-0.48</td>
+      <td id="T_1137a_row14_col16" class="data row14 col16" >0.14</td>
+    </tr>
+    <tr>
+      <th id="T_1137a_level0_row15" class="row_heading level0 row15" >PRC_FULL_PAYMENT</th>
+      <td id="T_1137a_row15_col0" class="data row15 col0" >-0.48</td>
+      <td id="T_1137a_row15_col1" class="data row15 col1" >-0.17</td>
+      <td id="T_1137a_row15_col2" class="data row15 col2" >0.24</td>
+      <td id="T_1137a_row15_col3" class="data row15 col3" >0.05</td>
+      <td id="T_1137a_row15_col4" class="data row15 col4" >0.28</td>
+      <td id="T_1137a_row15_col5" class="data row15 col5" >-0.27</td>
+      <td id="T_1137a_row15_col6" class="data row15 col6" >0.29</td>
+      <td id="T_1137a_row15_col7" class="data row15 col7" >0.06</td>
+      <td id="T_1137a_row15_col8" class="data row15 col8" >0.26</td>
+      <td id="T_1137a_row15_col9" class="data row15 col9" >-0.29</td>
+      <td id="T_1137a_row15_col10" class="data row15 col10" >-0.28</td>
+      <td id="T_1137a_row15_col11" class="data row15 col11" >0.25</td>
+      <td id="T_1137a_row15_col12" class="data row15 col12" >0.02</td>
+      <td id="T_1137a_row15_col13" class="data row15 col13" >0.19</td>
+      <td id="T_1137a_row15_col14" class="data row15 col14" >-0.48</td>
+      <td id="T_1137a_row15_col15" class="data row15 col15" >1.00</td>
+      <td id="T_1137a_row15_col16" class="data row15 col16" >0.02</td>
+    </tr>
+    <tr>
+      <th id="T_1137a_level0_row16" class="row_heading level0 row16" >TENURE</th>
+      <td id="T_1137a_row16_col0" class="data row16 col0" >0.07</td>
+      <td id="T_1137a_row16_col1" class="data row16 col1" >0.23</td>
+      <td id="T_1137a_row16_col2" class="data row16 col2" >0.13</td>
+      <td id="T_1137a_row16_col3" class="data row16 col3" >0.10</td>
+      <td id="T_1137a_row16_col4" class="data row16 col4" >0.12</td>
+      <td id="T_1137a_row16_col5" class="data row16 col5" >-0.11</td>
+      <td id="T_1137a_row16_col6" class="data row16 col6" >0.10</td>
+      <td id="T_1137a_row16_col7" class="data row16 col7" >0.08</td>
+      <td id="T_1137a_row16_col8" class="data row16 col8" >0.11</td>
+      <td id="T_1137a_row16_col9" class="data row16 col9" >-0.13</td>
+      <td id="T_1137a_row16_col10" class="data row16 col10" >-0.10</td>
+      <td id="T_1137a_row16_col11" class="data row16 col11" >0.17</td>
+      <td id="T_1137a_row16_col12" class="data row16 col12" >0.17</td>
+      <td id="T_1137a_row16_col13" class="data row16 col13" >0.21</td>
+      <td id="T_1137a_row16_col14" class="data row16 col14" >0.14</td>
+      <td id="T_1137a_row16_col15" class="data row16 col15" >0.02</td>
+      <td id="T_1137a_row16_col16" class="data row16 col16" >1.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="feature-types-and-preprocessing">
+<h2>Feature types and preprocessing<a class="headerlink" href="#feature-types-and-preprocessing" title="Permalink to this heading">#</a></h2>
+<p>Let’s identify different feature types and transformations</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">creditcard_df</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;CUST_ID&#39;, &#39;BALANCE&#39;, &#39;BALANCE_FREQUENCY&#39;, &#39;PURCHASES&#39;,
+       &#39;ONEOFF_PURCHASES&#39;, &#39;INSTALLMENTS_PURCHASES&#39;, &#39;CASH_ADVANCE&#39;,
+       &#39;PURCHASES_FREQUENCY&#39;, &#39;ONEOFF_PURCHASES_FREQUENCY&#39;,
+       &#39;PURCHASES_INSTALLMENTS_FREQUENCY&#39;, &#39;CASH_ADVANCE_FREQUENCY&#39;,
+       &#39;CASH_ADVANCE_TRX&#39;, &#39;PURCHASES_TRX&#39;, &#39;CREDIT_LIMIT&#39;, &#39;PAYMENTS&#39;,
+       &#39;MINIMUM_PAYMENTS&#39;, &#39;PRC_FULL_PAYMENT&#39;, &#39;TENURE&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">drop_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;CUST_ID&quot;</span><span class="p">]</span>
+<span class="n">numeric_features</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">creditcard_df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">drop_features</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+
+<span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">SimpleImputer</span><span class="p">(),</span> <span class="n">StandardScaler</span><span class="p">())</span>
+
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">make_column_transformer</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">numeric_features</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;drop&quot;</span><span class="p">,</span> <span class="n">drop_features</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transformed_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">preprocessor</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">creditcard_df</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">numeric_features</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transformed_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CASH_ADVANCE</th>
+      <th>PURCHASES</th>
+      <th>INSTALLMENTS_PURCHASES</th>
+      <th>BALANCE</th>
+      <th>PURCHASES_FREQUENCY</th>
+      <th>PRC_FULL_PAYMENT</th>
+      <th>TENURE</th>
+      <th>ONEOFF_PURCHASES</th>
+      <th>ONEOFF_PURCHASES_FREQUENCY</th>
+      <th>PURCHASES_TRX</th>
+      <th>CREDIT_LIMIT</th>
+      <th>PAYMENTS</th>
+      <th>MINIMUM_PAYMENTS</th>
+      <th>BALANCE_FREQUENCY</th>
+      <th>CASH_ADVANCE_TRX</th>
+      <th>PURCHASES_INSTALLMENTS_FREQUENCY</th>
+      <th>CASH_ADVANCE_FREQUENCY</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.466786</td>
+      <td>-0.424900</td>
+      <td>-0.349079</td>
+      <td>-0.731989</td>
+      <td>-0.806490</td>
+      <td>-0.525551</td>
+      <td>0.360680</td>
+      <td>-0.356934</td>
+      <td>-0.678661</td>
+      <td>-0.511333</td>
+      <td>-0.960433</td>
+      <td>-0.528979</td>
+      <td>-3.109675e-01</td>
+      <td>-0.249434</td>
+      <td>-0.476070</td>
+      <td>-0.707313</td>
+      <td>-0.675349</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2.605605</td>
+      <td>-0.469552</td>
+      <td>-0.454576</td>
+      <td>0.786961</td>
+      <td>-1.221758</td>
+      <td>0.234227</td>
+      <td>0.360680</td>
+      <td>-0.356934</td>
+      <td>-0.678661</td>
+      <td>-0.591796</td>
+      <td>0.688639</td>
+      <td>0.818642</td>
+      <td>8.931021e-02</td>
+      <td>0.134325</td>
+      <td>0.110074</td>
+      <td>-0.916995</td>
+      <td>0.573963</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.466786</td>
+      <td>-0.107668</td>
+      <td>-0.454576</td>
+      <td>0.447135</td>
+      <td>1.269843</td>
+      <td>-0.525551</td>
+      <td>0.360680</td>
+      <td>0.108889</td>
+      <td>2.673451</td>
+      <td>-0.109020</td>
+      <td>0.826062</td>
+      <td>-0.383805</td>
+      <td>-1.016632e-01</td>
+      <td>0.518084</td>
+      <td>-0.476070</td>
+      <td>-0.916995</td>
+      <td>-0.675349</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.368653</td>
+      <td>0.232058</td>
+      <td>-0.454576</td>
+      <td>0.049099</td>
+      <td>-1.014125</td>
+      <td>-0.525551</td>
+      <td>0.360680</td>
+      <td>0.546189</td>
+      <td>-0.399319</td>
+      <td>-0.551565</td>
+      <td>0.826062</td>
+      <td>-0.598688</td>
+      <td>4.878305e-17</td>
+      <td>-1.016953</td>
+      <td>-0.329534</td>
+      <td>-0.916995</td>
+      <td>-0.258913</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.466786</td>
+      <td>-0.462063</td>
+      <td>-0.454576</td>
+      <td>-0.358775</td>
+      <td>-1.014125</td>
+      <td>-0.525551</td>
+      <td>0.360680</td>
+      <td>-0.347294</td>
+      <td>-0.399319</td>
+      <td>-0.551565</td>
+      <td>-0.905464</td>
+      <td>-0.364368</td>
+      <td>-2.657913e-01</td>
+      <td>0.518084</td>
+      <td>-0.476070</td>
+      <td>-0.916995</td>
+      <td>-0.675349</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>8945</th>
+      <td>-0.466786</td>
+      <td>-0.333293</td>
+      <td>-0.132643</td>
+      <td>-0.737950</td>
+      <td>1.269843</td>
+      <td>1.183951</td>
+      <td>-4.122768</td>
+      <td>-0.356934</td>
+      <td>-0.678661</td>
+      <td>-0.350408</td>
+      <td>-0.960433</td>
+      <td>-0.486217</td>
+      <td>-3.498541e-01</td>
+      <td>0.518084</td>
+      <td>-0.476070</td>
+      <td>1.179833</td>
+      <td>-0.675349</td>
+    </tr>
+    <tr>
+      <th>8946</th>
+      <td>-0.466786</td>
+      <td>-0.329136</td>
+      <td>-0.122823</td>
+      <td>-0.742423</td>
+      <td>1.269843</td>
+      <td>-0.525551</td>
+      <td>-4.122768</td>
+      <td>-0.356934</td>
+      <td>-0.678661</td>
+      <td>-0.350408</td>
+      <td>-0.960433</td>
+      <td>-0.503396</td>
+      <td>4.878305e-17</td>
+      <td>0.518084</td>
+      <td>-0.476070</td>
+      <td>1.179833</td>
+      <td>-0.675349</td>
+    </tr>
+    <tr>
+      <th>8947</th>
+      <td>-0.466786</td>
+      <td>-0.401965</td>
+      <td>-0.294893</td>
+      <td>-0.740398</td>
+      <td>0.854576</td>
+      <td>0.329200</td>
+      <td>-4.122768</td>
+      <td>-0.356934</td>
+      <td>-0.678661</td>
+      <td>-0.390639</td>
+      <td>-0.960433</td>
+      <td>-0.570615</td>
+      <td>-3.354655e-01</td>
+      <td>-0.185477</td>
+      <td>-0.476070</td>
+      <td>0.760469</td>
+      <td>-0.675349</td>
+    </tr>
+    <tr>
+      <th>8948</th>
+      <td>-0.449352</td>
+      <td>-0.469552</td>
+      <td>-0.454576</td>
+      <td>-0.745174</td>
+      <td>-1.221758</td>
+      <td>0.329200</td>
+      <td>-4.122768</td>
+      <td>-0.356934</td>
+      <td>-0.678661</td>
+      <td>-0.591796</td>
+      <td>-1.097856</td>
+      <td>-0.580536</td>
+      <td>-3.469065e-01</td>
+      <td>-0.185477</td>
+      <td>-0.182998</td>
+      <td>-0.916995</td>
+      <td>0.157527</td>
+    </tr>
+    <tr>
+      <th>8949</th>
+      <td>-0.406205</td>
+      <td>0.042146</td>
+      <td>-0.454576</td>
+      <td>-0.572575</td>
+      <td>0.439310</td>
+      <td>-0.525551</td>
+      <td>-4.122768</td>
+      <td>0.301732</td>
+      <td>1.556082</td>
+      <td>0.333524</td>
+      <td>-0.905464</td>
+      <td>-0.576869</td>
+      <td>-3.329464e-01</td>
+      <td>-0.889033</td>
+      <td>-0.182998</td>
+      <td>-0.916995</td>
+      <td>0.990398</td>
+    </tr>
+  </tbody>
+</table>
+<p>8950 rows × 17 columns</p>
+</div></div></div>
+</div>
+<p>Now that we have transformed the data, we are ready to run K-Means to cluster credit card customers.</p>
+</section>
+<section id="choosing-n-clusters">
+<h2>Choosing <code class="docutils literal notranslate"><span class="pre">n_clusters</span></code><a class="headerlink" href="#choosing-n-clusters" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>There is no definitive method to find the optimal number of clusters.</p></li>
+<li><p>Let’s try different approaches.</p></li>
+</ul>
+</section>
+<section id="the-elbow-method">
+<h2>The Elbow method<a class="headerlink" href="#the-elbow-method" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+<span class="n">visualizer</span> <span class="o">=</span> <span class="n">KElbowVisualizer</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+
+<span class="n">visualizer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">transformed_df</span><span class="p">)</span>  <span class="c1"># Fit the data to the visualizer</span>
+<span class="n">visualizer</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2a3d5244a84dbe4b1f2e02cdf61a5fc261fbb072fd5c51bd395b0c8157739cce.png" src="../_images/2a3d5244a84dbe4b1f2e02cdf61a5fc261fbb072fd5c51bd395b0c8157739cce.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>The optimal number of clusters is not as clear as it was in our toy example.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Let’s examine Silhouette scores.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">visualizer</span> <span class="o">=</span> <span class="n">SilhouetteVisualizer</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s2">&quot;yellowbrick&quot;</span><span class="p">)</span>
+    <span class="n">visualizer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">transformed_df</span><span class="p">)</span>  <span class="c1"># Fit the data to the visualizer</span>
+    <span class="n">visualizer</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/563/lib/python3.10/site-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+</pre></div>
+</div>
+<img alt="../_images/143d1dea456b63df31137176a8c887b84e64b2d7776dbf78c0958b14572932b5.png" src="../_images/143d1dea456b63df31137176a8c887b84e64b2d7776dbf78c0958b14572932b5.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/563/lib/python3.10/site-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+</pre></div>
+</div>
+<img alt="../_images/db849c3f26be159a7dec5855ae2c6b41372e72826b92163414f8092765a88739.png" src="../_images/db849c3f26be159a7dec5855ae2c6b41372e72826b92163414f8092765a88739.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/563/lib/python3.10/site-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+</pre></div>
+</div>
+<img alt="../_images/bb741803e22767afac7b32368acce956a6c4f4f5a8b64577e5492eeb32023588.png" src="../_images/bb741803e22767afac7b32368acce956a6c4f4f5a8b64577e5492eeb32023588.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>I’m going to run <code class="docutils literal notranslate"><span class="pre">KMeans</span></code> with <code class="docutils literal notranslate"><span class="pre">n_clusters</span> <span class="pre">=</span> <span class="pre">4</span></code>.</p></li>
+<li><p>You can try out <code class="docutils literal notranslate"><span class="pre">n_clusters</span> <span class="pre">=</span> <span class="pre">5</span></code> and <code class="docutils literal notranslate"><span class="pre">n_clusters</span> <span class="pre">=</span> <span class="pre">6</span></code> on your own.</p></li>
+</ul>
+</section>
+<section id="visualizing-clusters">
+<h2>Visualizing clusters<a class="headerlink" href="#visualizing-clusters" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Can we visualize the clusters?</p></li>
+<li><p>We have a high dimensional data and we need to reduce the dimensionality in order to visualize it.</p></li>
+<li><p>Let’s reduce the dimensionality using a technique called <a class="reference external" href="https://umap-learn.readthedocs.io/en/latest/index.html">UMAP</a>.</p></li>
+</ul>
+<p>I forgot to put this package in the course environment file. So to run the code below, you’ll have to install the <code class="docutils literal notranslate"><span class="pre">umap-learn</span></code> package in the course conda environment either with <code class="docutils literal notranslate"><span class="pre">conda</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span></code>, as described in the <a class="reference external" href="https://umap-learn.readthedocs.io/en/latest/index.html">documentation</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">conda</span> <span class="n">activate</span> <span class="mi">563</span>
+<span class="o">&gt;</span> <span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">umap</span><span class="o">-</span><span class="n">learn</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">conda</span> <span class="n">activate</span> <span class="mi">563</span>
+<span class="o">&gt;</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">umap</span><span class="o">-</span><span class="n">learn</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">umap</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_umap_clusters</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">cluster_labels</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;UMAP visualization&quot;</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Carry out dimensionality reduction using UMAP and plot 2-dimensional clusters.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    -----------</span>
+<span class="sd">    data : numpy array</span>
+<span class="sd">        data as a numpy array</span>
+<span class="sd">    cluster_labels : list</span>
+<span class="sd">        cluster labels for each row in the dataset</span>
+<span class="sd">    size : int</span>
+<span class="sd">        size of points in the scatterplot</span>
+<span class="sd">    n_neighbors : int</span>
+<span class="sd">        n_neighbors hyperparameter of UMAP. See the documentation.</span>
+<span class="sd">    title : str</span>
+<span class="sd">        title for the visualization plot</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -----------</span>
+<span class="sd">    None. Shows the clusters.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">reducer</span> <span class="o">=</span> <span class="n">umap</span><span class="o">.</span><span class="n">UMAP</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">)</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">reducer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  <span class="c1"># reduce dimensionality</span>
+    <span class="n">umap_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">Z</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;dim1&quot;</span><span class="p">,</span> <span class="s2">&quot;dim2&quot;</span><span class="p">])</span>
+    <span class="n">umap_df</span><span class="p">[</span><span class="s2">&quot;cluster&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cluster_labels</span>
+
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">umap_df</span><span class="p">[</span><span class="s2">&quot;cluster&quot;</span><span class="p">])</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+
+    <span class="n">scatter</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">umap_df</span><span class="p">[</span><span class="s2">&quot;dim1&quot;</span><span class="p">],</span>
+        <span class="n">umap_df</span><span class="p">[</span><span class="s2">&quot;dim2&quot;</span><span class="p">],</span>
+        <span class="n">c</span><span class="o">=</span><span class="n">umap_df</span><span class="p">[</span><span class="s2">&quot;cluster&quot;</span><span class="p">],</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;tab20b&quot;</span><span class="p">,</span>
+        <span class="n">s</span><span class="o">=</span><span class="n">size</span><span class="p">,</span>
+        <span class="n">edgecolors</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+        <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">legend</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="o">*</span><span class="n">scatter</span><span class="o">.</span><span class="n">legend_elements</span><span class="p">(),</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Clusters&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">legend</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+    <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">transformed_df</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span>
+    <span class="n">plot_umap_clusters</span><span class="p">(</span><span class="n">transformed_df</span><span class="p">,</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;K-Means with k = </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/563/lib/python3.10/site-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+</pre></div>
+</div>
+<img alt="../_images/d56aa4507dfe17cbd2de3d8a9ef45313985a808dc6c87ba75579f4bb340cf96b.png" src="../_images/d56aa4507dfe17cbd2de3d8a9ef45313985a808dc6c87ba75579f4bb340cf96b.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/563/lib/python3.10/site-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+</pre></div>
+</div>
+<img alt="../_images/4ebecb53a176b66d79e7fcf29edf15517efbf1c0b0fc33894a18f1feaf8e197f.png" src="../_images/4ebecb53a176b66d79e7fcf29edf15517efbf1c0b0fc33894a18f1feaf8e197f.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/563/lib/python3.10/site-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+</pre></div>
+</div>
+<img alt="../_images/c07a8d5049cf5390fcf12d5f39d81712d6c2e099145a62a1927cd321ec76048e.png" src="../_images/c07a8d5049cf5390fcf12d5f39d81712d6c2e099145a62a1927cd321ec76048e.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/563/lib/python3.10/site-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+</pre></div>
+</div>
+<img alt="../_images/4a2f4b3ce9c88e71ff28cb7035026ce7e69d1827757ca11a211e537aaa496d34.png" src="../_images/4a2f4b3ce9c88e71ff28cb7035026ce7e69d1827757ca11a211e537aaa496d34.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>The clusters above look reasonably well separated.</p></li>
+<li><p>This might not always be the case.</p></li>
+</ul>
+</section>
+<section id="cluster-interpretation">
+<h2>Cluster interpretation<a class="headerlink" href="#cluster-interpretation" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Let’s examine the cluster centers for k=4 and identify types of customers.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reasonable_k</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">reasonable_k</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">transformed_df</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/563/lib/python3.10/site-packages/sklearn/cluster/_kmeans.py:870: FutureWarning: The default value of `n_init` will change from 10 to &#39;auto&#39; in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cluster_centers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">transformed_df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">cluster_centers</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th>CASH_ADVANCE</th>
+      <th>PURCHASES</th>
+      <th>INSTALLMENTS_PURCHASES</th>
+      <th>BALANCE</th>
+      <th>PURCHASES_FREQUENCY</th>
+      <th>PRC_FULL_PAYMENT</th>
+      <th>TENURE</th>
+      <th>ONEOFF_PURCHASES</th>
+      <th>ONEOFF_PURCHASES_FREQUENCY</th>
+      <th>PURCHASES_TRX</th>
+      <th>CREDIT_LIMIT</th>
+      <th>PAYMENTS</th>
+      <th>MINIMUM_PAYMENTS</th>
+      <th>BALANCE_FREQUENCY</th>
+      <th>CASH_ADVANCE_TRX</th>
+      <th>PURCHASES_INSTALLMENTS_FREQUENCY</th>
+      <th>CASH_ADVANCE_FREQUENCY</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.366373</td>
+      <td>0.109044</td>
+      <td>0.255904</td>
+      <td>-0.321688</td>
+      <td>0.983721</td>
+      <td>0.395041</td>
+      <td>0.057744</td>
+      <td>0.000926</td>
+      <td>0.317153</td>
+      <td>0.296985</td>
+      <td>-0.077298</td>
+      <td>-0.138502</td>
+      <td>-0.091844</td>
+      <td>0.242574</td>
+      <td>-0.360303</td>
+      <td>0.874138</td>
+      <td>-0.462599</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.688972</td>
+      <td>-0.234638</td>
+      <td>-0.253747</td>
+      <td>1.459578</td>
+      <td>-0.504848</td>
+      <td>-0.406367</td>
+      <td>-0.097146</td>
+      <td>-0.163914</td>
+      <td>-0.212939</td>
+      <td>-0.283580</td>
+      <td>0.838968</td>
+      <td>0.603821</td>
+      <td>0.490910</td>
+      <td>0.384753</td>
+      <td>1.617143</td>
+      <td>-0.450201</td>
+      <td>1.745948</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.182691</td>
+      <td>-0.343190</td>
+      <td>-0.387798</td>
+      <td>-0.265552</td>
+      <td>-0.797823</td>
+      <td>-0.258866</td>
+      <td>-0.052972</td>
+      <td>-0.230500</td>
+      <td>-0.389437</td>
+      <td>-0.474987</td>
+      <td>-0.334417</td>
+      <td>-0.262060</td>
+      <td>-0.119249</td>
+      <td>-0.368944</td>
+      <td>-0.164607</td>
+      <td>-0.714246</td>
+      <td>-0.101500</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.155091</td>
+      <td>3.125845</td>
+      <td>2.406470</td>
+      <td>0.954485</td>
+      <td>1.136338</td>
+      <td>0.454703</td>
+      <td>0.324140</td>
+      <td>2.713251</td>
+      <td>1.798653</td>
+      <td>3.003251</td>
+      <td>1.429882</td>
+      <td>1.919096</td>
+      <td>0.477421</td>
+      <td>0.462694</td>
+      <td>-0.170458</td>
+      <td>1.065918</td>
+      <td>-0.319096</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>Recall that we have applied imputation and scaling on the dataset.</p></li>
+<li><p>But we would be able to interpret these clusters better if the centers are in the original scale.</p></li>
+<li><p>So let’s apply inverse transformations to get the cluster center values in the original scale.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;pipeline&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;standardscaler&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">cluster_centers</span><span class="p">[</span><span class="n">numeric_features</span><span class="p">])</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">org_cluster_centers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">numeric_features</span><span class="p">)</span>
+<span class="n">org_cluster_centers</span> <span class="o">=</span> <span class="n">org_cluster_centers</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span>
+    <span class="nb">sorted</span><span class="p">(</span><span class="n">org_cluster_centers</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+<span class="n">org_cluster_centers</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>BALANCE</th>
+      <th>BALANCE_FREQUENCY</th>
+      <th>CASH_ADVANCE</th>
+      <th>CASH_ADVANCE_FREQUENCY</th>
+      <th>CASH_ADVANCE_TRX</th>
+      <th>CREDIT_LIMIT</th>
+      <th>INSTALLMENTS_PURCHASES</th>
+      <th>MINIMUM_PAYMENTS</th>
+      <th>ONEOFF_PURCHASES</th>
+      <th>ONEOFF_PURCHASES_FREQUENCY</th>
+      <th>PAYMENTS</th>
+      <th>PRC_FULL_PAYMENT</th>
+      <th>PURCHASES</th>
+      <th>PURCHASES_FREQUENCY</th>
+      <th>PURCHASES_INSTALLMENTS_FREQUENCY</th>
+      <th>PURCHASES_TRX</th>
+      <th>TENURE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>894.907458</td>
+      <td>0.934734</td>
+      <td>210.570626</td>
+      <td>0.042573</td>
+      <td>0.790021</td>
+      <td>4213.207678</td>
+      <td>642.478274</td>
+      <td>650.167072</td>
+      <td>593.974874</td>
+      <td>0.297070</td>
+      <td>1332.194205</td>
+      <td>0.269258</td>
+      <td>1236.178934</td>
+      <td>0.885165</td>
+      <td>0.711842</td>
+      <td>22.091773</td>
+      <td>11.594595</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4602.462714</td>
+      <td>0.968415</td>
+      <td>4520.724309</td>
+      <td>0.484526</td>
+      <td>14.284641</td>
+      <td>7546.957050</td>
+      <td>181.607404</td>
+      <td>2008.251157</td>
+      <td>320.373681</td>
+      <td>0.138934</td>
+      <td>3481.145990</td>
+      <td>0.034859</td>
+      <td>501.896219</td>
+      <td>0.287731</td>
+      <td>0.185516</td>
+      <td>7.661102</td>
+      <td>11.387312</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1011.751528</td>
+      <td>0.789871</td>
+      <td>595.759339</td>
+      <td>0.114833</td>
+      <td>2.125503</td>
+      <td>3277.703165</td>
+      <td>60.386625</td>
+      <td>586.301239</td>
+      <td>209.853863</td>
+      <td>0.086281</td>
+      <td>974.505090</td>
+      <td>0.078001</td>
+      <td>269.973466</td>
+      <td>0.170146</td>
+      <td>0.080578</td>
+      <td>2.903421</td>
+      <td>11.446429</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3551.153761</td>
+      <td>0.986879</td>
+      <td>653.638891</td>
+      <td>0.071290</td>
+      <td>2.085575</td>
+      <td>9696.943765</td>
+      <td>2587.208264</td>
+      <td>1976.815179</td>
+      <td>5095.878826</td>
+      <td>0.739031</td>
+      <td>7288.739497</td>
+      <td>0.286707</td>
+      <td>7681.620098</td>
+      <td>0.946418</td>
+      <td>0.788060</td>
+      <td>89.359413</td>
+      <td>11.951100</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cluster_labels</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;Transactors&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Revolvers&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;Low activity&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;VIP/Prime&quot;</span><span class="p">}</span>
+<span class="n">org_cluster_centers</span><span class="p">[</span><span class="s2">&quot;cluster_labels&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">cluster_labels</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">relevant_cols</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;cluster_labels&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BALANCE&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CREDIT_LIMIT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PRC_FULL_PAYMENT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PURCHASES_FREQUENCY&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CASH_ADVANCE&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CASH_ADVANCE_FREQUENCY&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;CASH_ADVANCE_TRX&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">org_cluster_centers</span><span class="p">[</span><span class="n">relevant_cols</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cluster_labels</th>
+      <th>BALANCE</th>
+      <th>CREDIT_LIMIT</th>
+      <th>PRC_FULL_PAYMENT</th>
+      <th>PURCHASES_FREQUENCY</th>
+      <th>CASH_ADVANCE</th>
+      <th>CASH_ADVANCE_FREQUENCY</th>
+      <th>CASH_ADVANCE_TRX</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Transactors</td>
+      <td>894.907458</td>
+      <td>4213.207678</td>
+      <td>0.269258</td>
+      <td>0.885165</td>
+      <td>210.570626</td>
+      <td>0.042573</td>
+      <td>0.790021</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Revolvers</td>
+      <td>4602.462714</td>
+      <td>7546.957050</td>
+      <td>0.034859</td>
+      <td>0.287731</td>
+      <td>4520.724309</td>
+      <td>0.484526</td>
+      <td>14.284641</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Low activity</td>
+      <td>1011.751528</td>
+      <td>3277.703165</td>
+      <td>0.078001</td>
+      <td>0.170146</td>
+      <td>595.759339</td>
+      <td>0.114833</td>
+      <td>2.125503</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>VIP/Prime</td>
+      <td>3551.153761</td>
+      <td>9696.943765</td>
+      <td>0.286707</td>
+      <td>0.946418</td>
+      <td>653.638891</td>
+      <td>0.071290</td>
+      <td>2.085575</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>One way to interpret and label the clusters above is as follows.</p>
+<section id="transactors">
+<h3>Transactors<a class="headerlink" href="#transactors" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Credit card users who pay off their balance every month with least amount of interest charges.</p></li>
+<li><p>They are careful with their money.</p></li>
+<li><p>They have lowest balance and cash advance</p></li>
+</ul>
+</section>
+<section id="revolvers">
+<h3>Revolvers<a class="headerlink" href="#revolvers" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Credit card users who pay off only part of their monthly balance. They use credit card as a loan.</p></li>
+<li><p>They have highest balance and cash advance, high cash advance frequency, low purchase frequency, high cash advance transactions, low percentage of full payment</p></li>
+<li><p>Their credit limit is also high. (Lucrative group for banks 😟.)</p></li>
+</ul>
+</section>
+<section id="low-activity">
+<h3>Low activity<a class="headerlink" href="#low-activity" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>There is not much activity in the account. It has low balance and not many purchases.</p></li>
+<li><p>Credit card users who have low credit limit.</p></li>
+</ul>
+</section>
+<section id="vip-prime">
+<h3>VIP/Prime<a class="headerlink" href="#vip-prime" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Credit card users who have high credit limit.</p></li>
+<li><p>They have high one-off purchases frequency, high number of purchase transactions.</p></li>
+<li><p>They have high balance but they also have higher percentage of full payment, similar to transactors</p></li>
+<li><p>Target for increase credit limit (and increase spending habits)</p></li>
+</ul>
+</section>
+</section>
+<section id="more-on-interpretation-of-clusters">
+<h2>More on interpretation of clusters<a class="headerlink" href="#more-on-interpretation-of-clusters" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>In real life, you’ll look through all features in detail before assigning meaning to clusters.</p></li>
+<li><p>This is not that easy, especially when you have a large number of features and clusters.</p></li>
+<li><p>One way to approach this would be visualizing the distribution of feature values for each cluster.</p></li>
+<li><p>Some domain knowledge would definitely help at this stage.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">creditcard_df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">labels</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s check the cluster assignment for the customer who made the maximum cash advance transaction.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">creditcard_df</span><span class="p">[</span><span class="n">creditcard_df</span><span class="p">[</span><span class="s2">&quot;CASH_ADVANCE&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">max_cash_advance</span><span class="p">]</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CUST_ID</th>
+      <th>BALANCE</th>
+      <th>BALANCE_FREQUENCY</th>
+      <th>PURCHASES</th>
+      <th>ONEOFF_PURCHASES</th>
+      <th>INSTALLMENTS_PURCHASES</th>
+      <th>CASH_ADVANCE</th>
+      <th>PURCHASES_FREQUENCY</th>
+      <th>ONEOFF_PURCHASES_FREQUENCY</th>
+      <th>PURCHASES_INSTALLMENTS_FREQUENCY</th>
+      <th>CASH_ADVANCE_FREQUENCY</th>
+      <th>CASH_ADVANCE_TRX</th>
+      <th>PURCHASES_TRX</th>
+      <th>CREDIT_LIMIT</th>
+      <th>PAYMENTS</th>
+      <th>MINIMUM_PAYMENTS</th>
+      <th>PRC_FULL_PAYMENT</th>
+      <th>TENURE</th>
+      <th>cluster</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2159</th>
+      <td>C12226</td>
+      <td>10905.05381</td>
+      <td>1.0</td>
+      <td>431.93</td>
+      <td>133.5</td>
+      <td>298.43</td>
+      <td>47137.21176</td>
+      <td>0.583333</td>
+      <td>0.25</td>
+      <td>0.5</td>
+      <td>1.0</td>
+      <td>123</td>
+      <td>21</td>
+      <td>19600.0</td>
+      <td>39048.59762</td>
+      <td>5394.173671</td>
+      <td>0.0</td>
+      <td>12</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">show_hists</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">creditcard_df</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;BALANCE&quot;</span><span class="p">,</span> <span class="s2">&quot;CASH_ADVANCE&quot;</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">cluster</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;cluster&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">j</span><span class="p">]</span>
+            <span class="n">cluster</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">    </span><span class="se">\n</span><span class="s2">Cluster: </span><span class="si">{</span><span class="n">cluster_labels</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_hists</span><span class="p">()</span> <span class="c1"># Examining clusters for two features. </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d5f82cf8db32768ae31b29a5a489d25fd101bab40a26e080247406565ffe7029.png" src="../_images/d5f82cf8db32768ae31b29a5a489d25fd101bab40a26e080247406565ffe7029.png" />
+<img alt="../_images/f6b3984730e85a4f795dfe0d40c3e0d589c9efc2230733ba296c37b89ed712e6.png" src="../_images/f6b3984730e85a4f795dfe0d40c3e0d589c9efc2230733ba296c37b89ed712e6.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uncomment the code below to show histograms for all features. </span>
+<span class="c1"># cols = creditcard_df_cluster.columns.to_list()</span>
+<span class="c1"># cols.remove(&#39;CUST_ID&#39;)</span>
+<span class="c1"># cols.remove(&#39;cluster&#39;)</span>
+<span class="c1"># show_hists(creditcard_df_cluster, cols)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="practice-exercise-for-you">
+<h2>Practice exercise for you<a class="headerlink" href="#practice-exercise-for-you" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Try out different values for <code class="docutils literal notranslate"><span class="pre">n_clusters</span></code> in <code class="docutils literal notranslate"><span class="pre">KMeans</span></code> and examine the clusters.</p></li>
+<li><p>If you are feeling adventurous, you may try customer segmentation on <a class="reference external" href="https://www.kaggle.com/wordsforthewise/lending-club">All Lending Club loan data</a>.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "cpsc330"
+        },
+        kernelOptions: {
+            name: "cpsc330",
+            path: "./lectures"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'cpsc330'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="AppendixA.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Appendix A: Common features used in text classification</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="AppendixC.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Appendix C: Representing documents using embeddings</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-customer-segmentation">What is customer segmentation?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#business-problem">Business problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#information-of-the-dataset">Information of the dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preliminary-eda">Preliminary EDA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-exercises-for-you">Practice exercises for you</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mini-exercises-for-you-answers">Mini exercises for you (Answers)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-types-and-preprocessing">Feature types and preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-n-clusters">Choosing <code class="docutils literal notranslate"><span class="pre">n_clusters</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-elbow-method">The Elbow method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-clusters">Visualizing clusters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cluster-interpretation">Cluster interpretation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transactors">Transactors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#revolvers">Revolvers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#low-activity">Low activity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vip-prime">VIP/Prime</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-on-interpretation-of-clusters">More on interpretation of clusters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-exercise-for-you">Practice exercise for you</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Varada Kolhatkar
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

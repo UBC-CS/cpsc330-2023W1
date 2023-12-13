@@ -1,0 +1,35 @@
+Traceback (most recent call last):
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/kvarada/miniconda3/envs/jbook/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Words to display on the y-axis
+words = ["happy", "tired", "hungry", "smart", "bird", "machine", "a"]
+
+# Hypothetical probabilities for each word following "I am"
+probabilities = [0.25, 0.15, 0.20, 0.10, 0.05, 0.05, 0.20]
+show_made_up_probs(words, probabilities)
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[2], line 6[0m
+[1;32m      4[0m [38;5;66;03m# Hypothetical probabilities for each word following "I am"[39;00m
+[1;32m      5[0m probabilities [38;5;241m=[39m [[38;5;241m0.25[39m, [38;5;241m0.15[39m, [38;5;241m0.20[39m, [38;5;241m0.10[39m, [38;5;241m0.05[39m, [38;5;241m0.05[39m, [38;5;241m0.20[39m]
+[0;32m----> 6[0m [43mshow_made_up_probs[49m(words, probabilities)
+
+[0;31mNameError[0m: name 'show_made_up_probs' is not defined
+

@@ -180,6 +180,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="21_communication.html">Lecture 21: Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="final-review.html">Final review guiding questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A-Quick-intro-to-LLMs.html">Bonus: A high-level quick introduction to LLMs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -194,8 +196,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Appendix-A.html">Appendix A</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Appendix-B.html">Appendix-B</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixA.html">Appendix A: Common features used in text classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixB.html">Appendix B: K-Means customer segmentation case study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixC.html">Appendix C: Representing documents using embeddings</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -575,72 +578,129 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">spotify_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/spotify.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">X_spotify</span> <span class="o">=</span> <span class="n">spotify_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;artist&quot;</span><span class="p">])</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">y_spotify</span> <span class="o">=</span> <span class="n">spotify_df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:948,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
-<span class="g g-Whitespace">    </span><span class="mi">935</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">936</span>     <span class="n">dialect</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">937</span>     <span class="n">delimiter</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">944</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">945</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">946</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">948</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:611,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">608</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">610</span> <span class="c1"># Create the parser.</span>
-<span class="ne">--&gt; </span><span class="mi">611</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">613</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">614</span>     <span class="k">return</span> <span class="n">parser</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1448,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1445</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1447</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="ne">-&gt; </span><span class="mi">1448</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1705,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1703</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1704</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1705</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1706</span>     <span class="n">f</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1707</span>     <span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1708</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1709</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1710</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1711</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1712</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1713</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1714</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1715</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1716</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/common.py:863,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">858</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">859</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
-<span class="g g-Whitespace">    </span><span class="mi">860</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
-<span class="g g-Whitespace">    </span><span class="mi">861</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">862</span>         <span class="c1"># Encoding</span>
-<span class="ne">--&gt; </span><span class="mi">863</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">864</span>             <span class="n">handle</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">865</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">866</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">867</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">868</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">869</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">870</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">871</span>         <span class="c1"># Binary mode</span>
-<span class="g g-Whitespace">    </span><span class="mi">872</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/spotify.csv&#39;
-</pre></div>
-</div>
-</div>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>acousticness</th>
+      <th>danceability</th>
+      <th>duration_ms</th>
+      <th>energy</th>
+      <th>instrumentalness</th>
+      <th>key</th>
+      <th>liveness</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+      <th>valence</th>
+      <th>song_title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0102</td>
+      <td>0.833</td>
+      <td>204600</td>
+      <td>0.434</td>
+      <td>0.021900</td>
+      <td>2</td>
+      <td>0.1650</td>
+      <td>-8.795</td>
+      <td>1</td>
+      <td>0.4310</td>
+      <td>150.062</td>
+      <td>4.0</td>
+      <td>0.286</td>
+      <td>Mask Off</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.1990</td>
+      <td>0.743</td>
+      <td>326933</td>
+      <td>0.359</td>
+      <td>0.006110</td>
+      <td>1</td>
+      <td>0.1370</td>
+      <td>-10.401</td>
+      <td>1</td>
+      <td>0.0794</td>
+      <td>160.083</td>
+      <td>4.0</td>
+      <td>0.588</td>
+      <td>Redbone</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0344</td>
+      <td>0.838</td>
+      <td>185707</td>
+      <td>0.412</td>
+      <td>0.000234</td>
+      <td>2</td>
+      <td>0.1590</td>
+      <td>-7.148</td>
+      <td>1</td>
+      <td>0.2890</td>
+      <td>75.044</td>
+      <td>4.0</td>
+      <td>0.173</td>
+      <td>Xanny Family</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.6040</td>
+      <td>0.494</td>
+      <td>199413</td>
+      <td>0.338</td>
+      <td>0.510000</td>
+      <td>5</td>
+      <td>0.0922</td>
+      <td>-15.236</td>
+      <td>1</td>
+      <td>0.0261</td>
+      <td>86.468</td>
+      <td>4.0</td>
+      <td>0.230</td>
+      <td>Master Of None</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.1800</td>
+      <td>0.678</td>
+      <td>392893</td>
+      <td>0.561</td>
+      <td>0.512000</td>
+      <td>5</td>
+      <td>0.4390</td>
+      <td>-11.648</td>
+      <td>0</td>
+      <td>0.0694</td>
+      <td>174.004</td>
+      <td>4.0</td>
+      <td>0.904</td>
+      <td>Parallel Lines</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -724,7 +784,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7309385996961713
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7290771686248869
 </pre></div>
 </div>
 </div>
@@ -796,8 +856,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.043634
-score_time     0.010538
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.044858
+score_time     0.011283
 test_score     0.734011
 train_score    0.828891
 dtype: float64
@@ -975,23 +1035,21 @@ dtype: float64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">mean_cv_score</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 
-<span class="n">mglearn</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+<span class="n">my_heatmap</span><span class="p">(</span>
     <span class="n">scores</span><span class="p">,</span>
     <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="p">,</span>
     <span class="n">xticklabels</span><span class="o">=</span><span class="n">param_grid</span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">],</span>
     <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;gamma&quot;</span><span class="p">,</span>
     <span class="n">yticklabels</span><span class="o">=</span><span class="n">param_grid</span><span class="p">[</span><span class="s2">&quot;gamma&quot;</span><span class="p">],</span>
     <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span>
-<span class="p">)</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%0.2f</span><span class="s2">&quot;</span>
+<span class="p">);</span>
 <span class="c1"># plot the mean cross-validation scores</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PolyCollection at 0x17a609330&gt;
-</pre></div>
-</div>
-<img alt="../_images/fce0ec594e610cf4eb5a7a0a75a42611ddc1d17681a2be051acb2d3df7b5a911.png" src="../_images/fce0ec594e610cf4eb5a7a0a75a42611ddc1d17681a2be051acb2d3df7b5a911.png" />
+<img alt="../_images/b7470cbba5ad12f5f18332ef5f0562202830c79b0423517d99173227f861b6e6.png" src="../_images/b7470cbba5ad12f5f18332ef5f0562202830c79b0423517d99173227f861b6e6.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1096,7 +1154,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a6563df0b7b25c0cecdea4a4a2b8ce2668deeb0dea051f594852722bcda75923.png" src="../_images/a6563df0b7b25c0cecdea4a4a2b8ce2668deeb0dea051f594852722bcda75923.png" />
+<img alt="../_images/cff1bd4b1dcbb4e3d8a9d034f4c79c01f000d8400816fa03ba19e5b0b4082a5b.png" src="../_images/cff1bd4b1dcbb4e3d8a9d034f4c79c01f000d8400816fa03ba19e5b0b4082a5b.png" />
 </div>
 </div>
 <p>In this lecture we are going to talk about two such most commonly used automated optimizations methods from <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>.</p>
@@ -1337,99 +1395,99 @@ dtype: float64
   <tbody>
     <tr>
       <th>mean_fit_time</th>
-      <td>0.09362</td>
-      <td>0.090496</td>
-      <td>0.093034</td>
-      <td>0.081402</td>
-      <td>0.083386</td>
-      <td>0.079499</td>
-      <td>0.088536</td>
-      <td>0.097821</td>
-      <td>0.088655</td>
-      <td>0.086925</td>
+      <td>0.084799</td>
+      <td>0.083365</td>
+      <td>0.081087</td>
+      <td>0.08117</td>
+      <td>0.076375</td>
+      <td>0.087916</td>
+      <td>0.079953</td>
+      <td>0.080694</td>
+      <td>0.078242</td>
+      <td>0.078036</td>
       <td>...</td>
-      <td>0.138336</td>
-      <td>0.124506</td>
-      <td>0.126638</td>
-      <td>0.116394</td>
-      <td>0.092997</td>
-      <td>0.160912</td>
-      <td>0.12998</td>
-      <td>0.11663</td>
-      <td>0.134479</td>
-      <td>0.114185</td>
+      <td>0.134974</td>
+      <td>0.112302</td>
+      <td>0.131705</td>
+      <td>0.111314</td>
+      <td>0.094516</td>
+      <td>0.165202</td>
+      <td>0.127544</td>
+      <td>0.121308</td>
+      <td>0.1134</td>
+      <td>0.11573</td>
     </tr>
     <tr>
       <th>std_fit_time</th>
-      <td>0.002245</td>
-      <td>0.007851</td>
-      <td>0.003061</td>
-      <td>0.006539</td>
-      <td>0.005313</td>
-      <td>0.008247</td>
-      <td>0.016187</td>
-      <td>0.012647</td>
-      <td>0.00674</td>
-      <td>0.009408</td>
+      <td>0.007823</td>
+      <td>0.009193</td>
+      <td>0.009527</td>
+      <td>0.006456</td>
+      <td>0.005406</td>
+      <td>0.016433</td>
+      <td>0.009664</td>
+      <td>0.004703</td>
+      <td>0.002725</td>
+      <td>0.00311</td>
       <td>...</td>
-      <td>0.019875</td>
-      <td>0.007316</td>
-      <td>0.00394</td>
-      <td>0.005157</td>
-      <td>0.006984</td>
-      <td>0.007498</td>
-      <td>0.005194</td>
-      <td>0.003368</td>
-      <td>0.027403</td>
-      <td>0.009475</td>
+      <td>0.00403</td>
+      <td>0.007545</td>
+      <td>0.027318</td>
+      <td>0.006043</td>
+      <td>0.006947</td>
+      <td>0.008738</td>
+      <td>0.011222</td>
+      <td>0.015188</td>
+      <td>0.020808</td>
+      <td>0.014656</td>
     </tr>
     <tr>
       <th>mean_score_time</th>
-      <td>0.026274</td>
-      <td>0.022236</td>
-      <td>0.023867</td>
-      <td>0.020585</td>
-      <td>0.021553</td>
-      <td>0.024314</td>
-      <td>0.026362</td>
-      <td>0.020904</td>
-      <td>0.018969</td>
-      <td>0.020618</td>
+      <td>0.020058</td>
+      <td>0.027582</td>
+      <td>0.021574</td>
+      <td>0.022042</td>
+      <td>0.019047</td>
+      <td>0.021058</td>
+      <td>0.020972</td>
+      <td>0.020351</td>
+      <td>0.02134</td>
+      <td>0.02366</td>
       <td>...</td>
-      <td>0.022381</td>
-      <td>0.024938</td>
-      <td>0.025389</td>
-      <td>0.027556</td>
-      <td>0.025549</td>
-      <td>0.020927</td>
-      <td>0.022487</td>
-      <td>0.033786</td>
-      <td>0.027255</td>
-      <td>0.024416</td>
+      <td>0.025311</td>
+      <td>0.02239</td>
+      <td>0.023252</td>
+      <td>0.024485</td>
+      <td>0.021746</td>
+      <td>0.022081</td>
+      <td>0.023824</td>
+      <td>0.025381</td>
+      <td>0.025123</td>
+      <td>0.022704</td>
     </tr>
     <tr>
       <th>std_score_time</th>
-      <td>0.00278</td>
-      <td>0.001885</td>
-      <td>0.006274</td>
-      <td>0.004214</td>
-      <td>0.002736</td>
-      <td>0.003899</td>
-      <td>0.009461</td>
-      <td>0.004083</td>
-      <td>0.00275</td>
-      <td>0.003466</td>
+      <td>0.002327</td>
+      <td>0.008256</td>
+      <td>0.006856</td>
+      <td>0.002381</td>
+      <td>0.00226</td>
+      <td>0.003775</td>
+      <td>0.000429</td>
+      <td>0.000397</td>
+      <td>0.001015</td>
+      <td>0.003933</td>
       <td>...</td>
-      <td>0.003687</td>
-      <td>0.004545</td>
-      <td>0.001204</td>
-      <td>0.004307</td>
-      <td>0.004743</td>
-      <td>0.00318</td>
-      <td>0.00124</td>
-      <td>0.009491</td>
-      <td>0.004045</td>
-      <td>0.005211</td>
+      <td>0.007308</td>
+      <td>0.004024</td>
+      <td>0.002661</td>
+      <td>0.002022</td>
+      <td>0.001018</td>
+      <td>0.003054</td>
+      <td>0.005262</td>
+      <td>0.006015</td>
+      <td>0.008522</td>
+      <td>0.003892</td>
     </tr>
     <tr>
       <th>param_columntransformer__countvectorizer__max_features</th>
@@ -1946,99 +2004,99 @@ dtype: float64
   <tbody>
     <tr>
       <th>mean_fit_time</th>
-      <td>0.082239</td>
-      <td>0.091365</td>
-      <td>0.075905</td>
-      <td>0.079365</td>
-      <td>0.074667</td>
-      <td>0.071952</td>
-      <td>0.114204</td>
-      <td>0.120616</td>
-      <td>0.138336</td>
-      <td>0.111872</td>
+      <td>0.084821</td>
+      <td>0.092701</td>
+      <td>0.080693</td>
+      <td>0.08178</td>
+      <td>0.072704</td>
+      <td>0.071951</td>
+      <td>0.119087</td>
+      <td>0.122358</td>
+      <td>0.134974</td>
+      <td>0.120067</td>
       <td>...</td>
-      <td>0.095529</td>
-      <td>0.094435</td>
-      <td>0.086811</td>
-      <td>0.084239</td>
-      <td>0.084668</td>
-      <td>0.114835</td>
-      <td>0.133654</td>
-      <td>0.100802</td>
-      <td>0.084321</td>
-      <td>0.09362</td>
+      <td>0.092312</td>
+      <td>0.095218</td>
+      <td>0.096805</td>
+      <td>0.089774</td>
+      <td>0.087583</td>
+      <td>0.081031</td>
+      <td>0.093778</td>
+      <td>0.092827</td>
+      <td>0.090954</td>
+      <td>0.084799</td>
     </tr>
     <tr>
       <th>std_fit_time</th>
-      <td>0.017929</td>
-      <td>0.009019</td>
-      <td>0.001863</td>
-      <td>0.002799</td>
-      <td>0.005709</td>
-      <td>0.012657</td>
-      <td>0.004517</td>
-      <td>0.013534</td>
-      <td>0.019875</td>
-      <td>0.004554</td>
+      <td>0.012817</td>
+      <td>0.004912</td>
+      <td>0.003299</td>
+      <td>0.00672</td>
+      <td>0.003707</td>
+      <td>0.004959</td>
+      <td>0.002752</td>
+      <td>0.021941</td>
+      <td>0.00403</td>
+      <td>0.007395</td>
       <td>...</td>
-      <td>0.008126</td>
-      <td>0.005758</td>
-      <td>0.001365</td>
-      <td>0.001992</td>
-      <td>0.002249</td>
-      <td>0.030487</td>
-      <td>0.010186</td>
-      <td>0.01529</td>
-      <td>0.006017</td>
-      <td>0.002245</td>
+      <td>0.009119</td>
+      <td>0.008261</td>
+      <td>0.019061</td>
+      <td>0.008197</td>
+      <td>0.003097</td>
+      <td>0.005002</td>
+      <td>0.013358</td>
+      <td>0.014488</td>
+      <td>0.006715</td>
+      <td>0.007823</td>
     </tr>
     <tr>
       <th>mean_score_time</th>
-      <td>0.02044</td>
-      <td>0.023177</td>
-      <td>0.020847</td>
-      <td>0.019106</td>
-      <td>0.016048</td>
-      <td>0.016085</td>
-      <td>0.019604</td>
-      <td>0.021965</td>
-      <td>0.022381</td>
-      <td>0.016905</td>
+      <td>0.022616</td>
+      <td>0.019873</td>
+      <td>0.016402</td>
+      <td>0.02012</td>
+      <td>0.017569</td>
+      <td>0.0176</td>
+      <td>0.019607</td>
+      <td>0.018281</td>
+      <td>0.025311</td>
+      <td>0.018196</td>
       <td>...</td>
-      <td>0.025864</td>
-      <td>0.022135</td>
-      <td>0.022843</td>
-      <td>0.022825</td>
-      <td>0.024425</td>
-      <td>0.022338</td>
-      <td>0.027007</td>
-      <td>0.021059</td>
-      <td>0.020835</td>
-      <td>0.026274</td>
+      <td>0.024594</td>
+      <td>0.025063</td>
+      <td>0.019473</td>
+      <td>0.022577</td>
+      <td>0.023586</td>
+      <td>0.023957</td>
+      <td>0.022811</td>
+      <td>0.023648</td>
+      <td>0.02207</td>
+      <td>0.020058</td>
     </tr>
     <tr>
       <th>std_score_time</th>
-      <td>0.00605</td>
-      <td>0.003086</td>
-      <td>0.005943</td>
-      <td>0.000669</td>
-      <td>0.002716</td>
-      <td>0.003923</td>
-      <td>0.00054</td>
-      <td>0.004778</td>
-      <td>0.003687</td>
-      <td>0.001155</td>
-      <td>...</td>
-      <td>0.007156</td>
-      <td>0.00148</td>
       <td>0.004053</td>
-      <td>0.001528</td>
-      <td>0.001748</td>
-      <td>0.003598</td>
-      <td>0.001511</td>
-      <td>0.004258</td>
-      <td>0.003631</td>
-      <td>0.00278</td>
+      <td>0.002547</td>
+      <td>0.001912</td>
+      <td>0.000593</td>
+      <td>0.002468</td>
+      <td>0.000793</td>
+      <td>0.000783</td>
+      <td>0.002834</td>
+      <td>0.007308</td>
+      <td>0.00294</td>
+      <td>...</td>
+      <td>0.001628</td>
+      <td>0.005281</td>
+      <td>0.002502</td>
+      <td>0.000883</td>
+      <td>0.001097</td>
+      <td>0.00834</td>
+      <td>0.000922</td>
+      <td>0.003478</td>
+      <td>0.00097</td>
+      <td>0.002327</td>
     </tr>
     <tr>
       <th>param_columntransformer__countvectorizer__max_features</th>
@@ -2634,27 +2692,27 @@ dtype: float64
     </tr>
     <tr>
       <th>mean_fit_time</th>
-      <td>0.082239</td>
-      <td>0.091365</td>
-      <td>0.075905</td>
-      <td>0.079365</td>
-      <td>0.074667</td>
-      <td>0.071952</td>
-      <td>0.114204</td>
-      <td>0.120616</td>
-      <td>0.138336</td>
-      <td>0.111872</td>
+      <td>0.084821</td>
+      <td>0.092701</td>
+      <td>0.080693</td>
+      <td>0.08178</td>
+      <td>0.072704</td>
+      <td>0.071951</td>
+      <td>0.119087</td>
+      <td>0.122358</td>
+      <td>0.134974</td>
+      <td>0.120067</td>
       <td>...</td>
-      <td>0.095529</td>
-      <td>0.094435</td>
-      <td>0.086811</td>
-      <td>0.084239</td>
-      <td>0.084668</td>
-      <td>0.114835</td>
-      <td>0.133654</td>
-      <td>0.100802</td>
-      <td>0.084321</td>
-      <td>0.09362</td>
+      <td>0.092312</td>
+      <td>0.095218</td>
+      <td>0.096805</td>
+      <td>0.089774</td>
+      <td>0.087583</td>
+      <td>0.081031</td>
+      <td>0.093778</td>
+      <td>0.092827</td>
+      <td>0.090954</td>
+      <td>0.084799</td>
     </tr>
   </tbody>
 </table>
@@ -2779,7 +2837,7 @@ dtype: float64
     <span class="n">scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">mean_test_score</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 
     <span class="c1"># plot the mean cross-validation scores</span>
-    <span class="n">mglearn</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+    <span class="n">my_heatmap</span><span class="p">(</span>
         <span class="n">scores</span><span class="p">,</span>
         <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;gamma&quot;</span><span class="p">,</span>
         <span class="n">xticklabels</span><span class="o">=</span><span class="n">param_grid</span><span class="p">[</span><span class="s2">&quot;svc__gamma&quot;</span><span class="p">],</span>
@@ -2806,7 +2864,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7cbea11c64a9ba34851704dbe377970e7fb503b00ab7edfb0215c94bd81629b9.png" src="../_images/7cbea11c64a9ba34851704dbe377970e7fb503b00ab7edfb0215c94bd81629b9.png" />
+<img alt="../_images/38a0aefbdf70b09c41a614948ed604aa6fe8d00aaaa8f3a7a25c8bee72476ece.png" src="../_images/38a0aefbdf70b09c41a614948ed604aa6fe8d00aaaa8f3a7a25c8bee72476ece.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2856,7 +2914,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d53dbd44a15de747cafe3dd6f70550c51f64b6ca6d65ca3c0d2a13d97ff3a006.png" src="../_images/d53dbd44a15de747cafe3dd6f70550c51f64b6ca6d65ca3c0d2a13d97ff3a006.png" />
+<img alt="../_images/512500994bbe7b1b1cfb0af45073f154443efe11c2db385e07b9fc2cad32a7ed.png" src="../_images/512500994bbe7b1b1cfb0af45073f154443efe11c2db385e07b9fc2cad32a7ed.png" />
 </div>
 </div>
 </section>
@@ -2895,7 +2953,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8fba9fd13ab2d6d8897e39261e318525a2d5aed6a4aa3ac504f9de1529b79e78.png" src="../_images/8fba9fd13ab2d6d8897e39261e318525a2d5aed6a4aa3ac504f9de1529b79e78.png" />
+<img alt="../_images/440dbc66363c61cfe96eed757f42d0a673799f857199a9b5b54ba21ffe0fb5e6.png" src="../_images/440dbc66363c61cfe96eed757f42d0a673799f857199a9b5b54ba21ffe0fb5e6.png" />
 </div>
 </div>
 <p>It seems like we are getting even better cross-validation results with <code class="docutils literal notranslate"><span class="pre">C</span></code> = 2.0 and <code class="docutils literal notranslate"><span class="pre">gamma</span></code> = 0.1</p>
@@ -2909,7 +2967,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e2c6cfd8ae8cd712fb1d9b62e05c75291cae17fc1776a18f99b71a308da427ab.png" src="../_images/e2c6cfd8ae8cd712fb1d9b62e05c75291cae17fc1776a18f99b71a308da427ab.png" />
+<img alt="../_images/e42f0ab1771281652b757f153f344c81e885f3051a7a186225705b6e3d1a09b6.png" src="../_images/e42f0ab1771281652b757f153f344c81e885f3051a7a186225705b6e3d1a09b6.png" />
 </div>
 </div>
 <p>That’s good! We are finding some more options for <code class="docutils literal notranslate"><span class="pre">C</span></code> where the accuracy is 0.75.
@@ -3130,38 +3188,38 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>2</th>
       <th>3</th>
       <th>4</th>
-      <th>5</th>
+      <th>4</th>
       <th>6</th>
       <th>7</th>
-      <th>7</th>
-      <th>9</th>
+      <th>8</th>
+      <th>8</th>
       <th>10</th>
       <th>...</th>
-      <th>86</th>
-      <th>86</th>
-      <th>86</th>
-      <th>86</th>
-      <th>86</th>
-      <th>86</th>
-      <th>86</th>
-      <th>86</th>
-      <th>86</th>
-      <th>86</th>
+      <th>84</th>
+      <th>84</th>
+      <th>84</th>
+      <th>84</th>
+      <th>84</th>
+      <th>84</th>
+      <th>84</th>
+      <th>84</th>
+      <th>84</th>
+      <th>84</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>mean_test_score</th>
+      <td>0.745178</td>
       <td>0.744565</td>
-      <td>0.743324</td>
+      <td>0.743949</td>
       <td>0.743323</td>
+      <td>0.743323</td>
+      <td>0.743321</td>
+      <td>0.742703</td>
       <td>0.742088</td>
-      <td>0.742086</td>
-      <td>0.741465</td>
-      <td>0.740844</td>
-      <td>0.740844</td>
-      <td>0.740842</td>
-      <td>0.738984</td>
+      <td>0.742088</td>
+      <td>0.741463</td>
       <td>...</td>
       <td>0.508371</td>
       <td>0.508371</td>
@@ -3176,26 +3234,26 @@ For example, in the context of <code class="docutils literal notranslate"><span 
     </tr>
     <tr>
       <th>param_columntransformer__countvectorizer__max_features</th>
-      <td>400</td>
-      <td>800</td>
       <td>100</td>
       <td>400</td>
-      <td>1000</td>
       <td>400</td>
-      <td>800</td>
+      <td>100</td>
       <td>200</td>
-      <td>200</td>
-      <td>200</td>
-      <td>...</td>
-      <td>1000</td>
+      <td>2000</td>
+      <td>2000</td>
       <td>400</td>
       <td>2000</td>
-      <td>100</td>
-      <td>200</td>
+      <td>1000</td>
+      <td>...</td>
+      <td>2000</td>
       <td>1000</td>
       <td>400</td>
+      <td>800</td>
       <td>100</td>
-      <td>100</td>
+      <td>400</td>
+      <td>200</td>
+      <td>1000</td>
+      <td>1000</td>
       <td>800</td>
     </tr>
     <tr>
@@ -3225,50 +3283,50 @@ For example, in the context of <code class="docutils literal notranslate"><span 
     <tr>
       <th>param_svc__C</th>
       <td>3.0</td>
-      <td>2.6</td>
-      <td>2.6</td>
-      <td>2.6</td>
-      <td>2.8</td>
-      <td>2.4</td>
-      <td>3.0</td>
-      <td>2.4</td>
       <td>3.0</td>
       <td>2.8</td>
+      <td>2.6</td>
+      <td>2.6</td>
+      <td>2.0</td>
+      <td>2.4</td>
+      <td>2.6</td>
+      <td>2.6</td>
+      <td>3.0</td>
       <td>...</td>
-      <td>2.0</td>
-      <td>2.0</td>
+      <td>2.8</td>
       <td>3.0</td>
       <td>2.4</td>
-      <td>2.6</td>
-      <td>3.0</td>
-      <td>2.6</td>
-      <td>3.0</td>
+      <td>2.4</td>
       <td>2.2</td>
-      <td>2.0</td>
+      <td>3.0</td>
+      <td>2.8</td>
+      <td>2.6</td>
+      <td>2.2</td>
+      <td>2.2</td>
     </tr>
     <tr>
       <th>mean_fit_time</th>
-      <td>0.0904</td>
-      <td>0.093338</td>
-      <td>0.073276</td>
-      <td>0.095493</td>
-      <td>0.105559</td>
-      <td>0.089195</td>
-      <td>0.102287</td>
-      <td>0.094115</td>
-      <td>0.093518</td>
-      <td>0.081567</td>
+      <td>0.083196</td>
+      <td>0.092198</td>
+      <td>0.091333</td>
+      <td>0.076871</td>
+      <td>0.081577</td>
+      <td>0.107743</td>
+      <td>0.119141</td>
+      <td>0.083906</td>
+      <td>0.116113</td>
+      <td>0.111632</td>
       <td>...</td>
-      <td>0.10582</td>
-      <td>0.119814</td>
-      <td>0.108882</td>
-      <td>0.101262</td>
-      <td>0.09743</td>
-      <td>0.109406</td>
-      <td>0.112171</td>
-      <td>0.096542</td>
-      <td>0.113092</td>
-      <td>0.198402</td>
+      <td>0.112661</td>
+      <td>0.108607</td>
+      <td>0.109723</td>
+      <td>0.110193</td>
+      <td>0.103863</td>
+      <td>0.110676</td>
+      <td>0.109469</td>
+      <td>0.113928</td>
+      <td>0.110735</td>
+      <td>0.097529</td>
     </tr>
   </tbody>
 </table>
@@ -3310,7 +3368,7 @@ For example, in the context of <code class="docutils literal notranslate"><span 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/48a7ef0d5bb0c16783174a60a0b0489ca10f3a5db5a9d92554d67e1d69d8ed9b.png" src="../_images/48a7ef0d5bb0c16783174a60a0b0489ca10f3a5db5a9d92554d67e1d69d8ed9b.png" />
+<img alt="../_images/4d5359cd5c0675435cb8bdfaaa5d7bbed0528f46de594c38d97ce09778dff5d1.png" src="../_images/4d5359cd5c0675435cb8bdfaaa5d7bbed0528f46de594c38d97ce09778dff5d1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3326,7 +3384,7 @@ For example, in the context of <code class="docutils literal notranslate"><span 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8fa448767bb303dd2dea2b23e8d7ba2ccf297a9c24cd7fc8d3fa45d9ebc02abd.png" src="../_images/8fa448767bb303dd2dea2b23e8d7ba2ccf297a9c24cd7fc8d3fa45d9ebc02abd.png" />
+<img alt="../_images/b52cda99c09e017427d284ac510d192c562b130f7da7eecb46bb17328018166c.png" src="../_images/b52cda99c09e017427d284ac510d192c562b130f7da7eecb46bb17328018166c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3342,7 +3400,7 @@ For example, in the context of <code class="docutils literal notranslate"><span 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a8a0a01765b1efeabc6de259635cf13607eac53854ddbc19a4eb4264ad8c6988.png" src="../_images/a8a0a01765b1efeabc6de259635cf13607eac53854ddbc19a4eb4264ad8c6988.png" />
+<img alt="../_images/2532d0e95d5ddca0062447046b80c83534746ac428e052e095bc5f5f093cce48.png" src="../_images/2532d0e95d5ddca0062447046b80c83534746ac428e052e095bc5f5f093cce48.png" />
 </div>
 </div>
 <p><br><br></p>
@@ -3449,9 +3507,9 @@ For example, in the context of <code class="docutils literal notranslate"><span 
                                                                               (&#x27;passthrough&#x27;,
                                                                                &#x27;pass...
                    n_iter=100, n_jobs=-1,
-                   param_distributions={&#x27;columntransformer__countvectorizer__max_features&#x27;: &lt;scipy.stats._distn_infrastructure.rv_discrete_frozen object at 0x17a779450&gt;,
-                                        &#x27;svc__C&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x17ab11fc0&gt;,
-                                        &#x27;svc__gamma&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x17acdec20&gt;},
+                   param_distributions={&#x27;columntransformer__countvectorizer__max_features&#x27;: &lt;scipy.stats._distn_infrastructure.rv_discrete_frozen object at 0x144397fd0&gt;,
+                                        &#x27;svc__C&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x14465c1f0&gt;,
+                                        &#x27;svc__gamma&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x1442ca9b0&gt;},
                    return_train_score=True)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-69" type="checkbox" ><label for="sk-estimator-id-69" class="sk-toggleable__label sk-toggleable__label-arrow">RandomizedSearchCV</label><div class="sk-toggleable__content"><pre>RandomizedSearchCV(estimator=Pipeline(steps=[(&#x27;columntransformer&#x27;,
                                               ColumnTransformer(transformers=[(&#x27;standardscaler&#x27;,
                                                                                StandardScaler(),
@@ -3471,9 +3529,9 @@ For example, in the context of <code class="docutils literal notranslate"><span 
                                                                               (&#x27;passthrough&#x27;,
                                                                                &#x27;pass...
                    n_iter=100, n_jobs=-1,
-                   param_distributions={&#x27;columntransformer__countvectorizer__max_features&#x27;: &lt;scipy.stats._distn_infrastructure.rv_discrete_frozen object at 0x17a779450&gt;,
-                                        &#x27;svc__C&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x17ab11fc0&gt;,
-                                        &#x27;svc__gamma&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x17acdec20&gt;},
+                   param_distributions={&#x27;columntransformer__countvectorizer__max_features&#x27;: &lt;scipy.stats._distn_infrastructure.rv_discrete_frozen object at 0x144397fd0&gt;,
+                                        &#x27;svc__C&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x14465c1f0&gt;,
+                                        &#x27;svc__gamma&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x1442ca9b0&gt;},
                    return_train_score=True)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-70" type="checkbox" ><label for="sk-estimator-id-70" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;columntransformer&#x27;,
                  ColumnTransformer(transformers=[(&#x27;standardscaler&#x27;,
                                                   StandardScaler(),
@@ -3673,27 +3731,27 @@ For example, in the context of <code class="docutils literal notranslate"><span 
     </tr>
     <tr>
       <th>mean_fit_time</th>
-      <td>0.126102</td>
-      <td>0.176774</td>
-      <td>0.107119</td>
-      <td>0.130691</td>
-      <td>0.46922</td>
-      <td>0.122202</td>
-      <td>0.100362</td>
-      <td>0.246759</td>
-      <td>0.151667</td>
-      <td>0.173214</td>
+      <td>0.130273</td>
+      <td>0.136332</td>
+      <td>0.115882</td>
+      <td>0.132394</td>
+      <td>0.486029</td>
+      <td>0.168221</td>
+      <td>0.109244</td>
+      <td>0.269268</td>
+      <td>0.156212</td>
+      <td>0.18037</td>
       <td>...</td>
-      <td>0.157089</td>
-      <td>0.123943</td>
-      <td>0.146099</td>
-      <td>0.112194</td>
-      <td>0.169945</td>
-      <td>0.104168</td>
-      <td>0.107437</td>
-      <td>0.11166</td>
-      <td>0.100139</td>
-      <td>0.11174</td>
+      <td>0.120959</td>
+      <td>0.110708</td>
+      <td>0.116729</td>
+      <td>0.106839</td>
+      <td>0.105203</td>
+      <td>0.12935</td>
+      <td>0.111649</td>
+      <td>0.10962</td>
+      <td>0.119149</td>
+      <td>0.112679</td>
     </tr>
   </tbody>
 </table>
@@ -3769,9 +3827,9 @@ For example, in the context of <code class="docutils literal notranslate"><span 
                                                                                   &#x27;p...
                                                 (&#x27;svc&#x27;, SVC())]),
                       factor=2,
-                      param_distributions={&#x27;columntransformer__countvectorizer__max_features&#x27;: &lt;scipy.stats._distn_infrastructure.rv_discrete_frozen object at 0x17a779450&gt;,
-                                           &#x27;svc__C&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x17ab11fc0&gt;,
-                                           &#x27;svc__gamma&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x17acdec20&gt;},
+                      param_distributions={&#x27;columntransformer__countvectorizer__max_features&#x27;: &lt;scipy.stats._distn_infrastructure.rv_discrete_frozen object at 0x144397fd0&gt;,
+                                           &#x27;svc__C&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x14465c1f0&gt;,
+                                           &#x27;svc__gamma&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x1442ca9b0&gt;},
                       random_state=123)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-81" type="checkbox" ><label for="sk-estimator-id-81" class="sk-toggleable__label sk-toggleable__label-arrow">HalvingRandomSearchCV</label><div class="sk-toggleable__content"><pre>HalvingRandomSearchCV(estimator=Pipeline(steps=[(&#x27;columntransformer&#x27;,
                                                  ColumnTransformer(transformers=[(&#x27;standardscaler&#x27;,
                                                                                   StandardScaler(),
@@ -3792,9 +3850,9 @@ For example, in the context of <code class="docutils literal notranslate"><span 
                                                                                   &#x27;p...
                                                 (&#x27;svc&#x27;, SVC())]),
                       factor=2,
-                      param_distributions={&#x27;columntransformer__countvectorizer__max_features&#x27;: &lt;scipy.stats._distn_infrastructure.rv_discrete_frozen object at 0x17a779450&gt;,
-                                           &#x27;svc__C&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x17ab11fc0&gt;,
-                                           &#x27;svc__gamma&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x17acdec20&gt;},
+                      param_distributions={&#x27;columntransformer__countvectorizer__max_features&#x27;: &lt;scipy.stats._distn_infrastructure.rv_discrete_frozen object at 0x144397fd0&gt;,
+                                           &#x27;svc__C&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x14465c1f0&gt;,
+                                           &#x27;svc__gamma&#x27;: &lt;scipy.stats._distn_infrastructure.rv_continuous_frozen object at 0x1442ca9b0&gt;},
                       random_state=123)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-82" type="checkbox" ><label for="sk-estimator-id-82" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;columntransformer&#x27;,
                  ColumnTransformer(transformers=[(&#x27;standardscaler&#x27;,
                                                   StandardScaler(),
@@ -3882,10 +3940,10 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>0</th>
       <td>0</td>
       <td>20</td>
-      <td>0.008637</td>
-      <td>0.005436</td>
-      <td>0.003918</td>
-      <td>0.001374</td>
+      <td>0.004585</td>
+      <td>0.000258</td>
+      <td>0.002307</td>
+      <td>0.000221</td>
       <td>1634</td>
       <td>7129.653205</td>
       <td>0.026777</td>
@@ -3906,10 +3964,10 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>1</th>
       <td>0</td>
       <td>20</td>
-      <td>0.005105</td>
-      <td>0.000809</td>
-      <td>0.003716</td>
-      <td>0.001752</td>
+      <td>0.004293</td>
+      <td>0.000285</td>
+      <td>0.002259</td>
+      <td>0.000225</td>
       <td>1222</td>
       <td>5513.247691</td>
       <td>5.698385</td>
@@ -3930,10 +3988,10 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>2</th>
       <td>0</td>
       <td>20</td>
-      <td>0.004306</td>
-      <td>0.000287</td>
-      <td>0.002255</td>
-      <td>0.000225</td>
+      <td>0.004281</td>
+      <td>0.000274</td>
+      <td>0.002243</td>
+      <td>0.000224</td>
       <td>1247</td>
       <td>7800.377619</td>
       <td>0.019382</td>
@@ -3954,10 +4012,10 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>3</th>
       <td>0</td>
       <td>20</td>
-      <td>0.004415</td>
-      <td>0.000277</td>
-      <td>0.002346</td>
-      <td>0.000282</td>
+      <td>0.004291</td>
+      <td>0.000278</td>
+      <td>0.002258</td>
+      <td>0.000220</td>
       <td>213</td>
       <td>4809.419015</td>
       <td>0.013707</td>
@@ -3978,10 +4036,10 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>4</th>
       <td>0</td>
       <td>20</td>
-      <td>0.004316</td>
-      <td>0.000297</td>
-      <td>0.002292</td>
-      <td>0.000241</td>
+      <td>0.004284</td>
+      <td>0.000284</td>
+      <td>0.002259</td>
+      <td>0.000217</td>
       <td>1042</td>
       <td>6273.270093</td>
       <td>0.003919</td>
@@ -4026,10 +4084,10 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>155</th>
       <td>5</td>
       <td>640</td>
-      <td>0.018303</td>
-      <td>0.000372</td>
-      <td>0.004555</td>
-      <td>0.000103</td>
+      <td>0.018674</td>
+      <td>0.000263</td>
+      <td>0.004572</td>
+      <td>0.000160</td>
       <td>729</td>
       <td>4943.40065</td>
       <td>0.092454</td>
@@ -4050,10 +4108,10 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>156</th>
       <td>5</td>
       <td>640</td>
-      <td>0.017674</td>
-      <td>0.000300</td>
-      <td>0.004712</td>
-      <td>0.000077</td>
+      <td>0.017854</td>
+      <td>0.000313</td>
+      <td>0.004704</td>
+      <td>0.000112</td>
       <td>1383</td>
       <td>2705.246646</td>
       <td>0.173979</td>
@@ -4074,10 +4132,10 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>157</th>
       <td>5</td>
       <td>640</td>
-      <td>0.016892</td>
-      <td>0.000119</td>
-      <td>0.004425</td>
-      <td>0.000041</td>
+      <td>0.017244</td>
+      <td>0.000211</td>
+      <td>0.004476</td>
+      <td>0.000055</td>
       <td>440</td>
       <td>5315.613738</td>
       <td>0.17973</td>
@@ -4098,10 +4156,10 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>158</th>
       <td>6</td>
       <td>1280</td>
-      <td>0.057485</td>
-      <td>0.000514</td>
-      <td>0.009248</td>
-      <td>0.000634</td>
+      <td>0.057830</td>
+      <td>0.000823</td>
+      <td>0.009009</td>
+      <td>0.000217</td>
       <td>729</td>
       <td>4943.40065</td>
       <td>0.092454</td>
@@ -4122,10 +4180,10 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>159</th>
       <td>6</td>
       <td>1280</td>
-      <td>0.052716</td>
-      <td>0.000821</td>
-      <td>0.010648</td>
-      <td>0.000210</td>
+      <td>0.052756</td>
+      <td>0.000467</td>
+      <td>0.010711</td>
+      <td>0.000216</td>
       <td>1383</td>
       <td>2705.246646</td>
       <td>0.173979</td>
@@ -4280,8 +4338,12 @@ For example, in the context of <code class="docutils literal notranslate"><span 
 The expected grade among the best of 2 tests is : 0.33
 The expected grade among the best of 10 tests is : 0.47
 The expected grade among the best of 100 tests is : 0.62
-The expected grade among the best of 1000 tests is : 0.73
-The expected grade among the best of 10000 tests is : 0.83
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 1000 tests is : 0.73
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 10000 tests is : 0.83
 </pre></div>
 </div>
 </div>
@@ -4330,9 +4392,15 @@ The expected grade among the best of 10000 tests is : 0.83
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 1 tests is : 0.25
 The expected grade among the best of 2 tests is : 0.27
 The expected grade among the best of 10 tests is : 0.32
-The expected grade among the best of 100 tests is : 0.36
-The expected grade among the best of 1000 tests is : 0.40
-The expected grade among the best of 10000 tests is : 0.43
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 100 tests is : 0.36
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 1000 tests is : 0.40
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 10000 tests is : 0.43
 </pre></div>
 </div>
 </div>
@@ -4669,27 +4737,27 @@ The expected grade among the best of 10000 tests is : 0.43
     </tr>
     <tr>
       <th>mean_fit_time</th>
-      <td>0.021886</td>
-      <td>0.008879</td>
-      <td>0.008858</td>
-      <td>0.008777</td>
-      <td>0.011115</td>
-      <td>0.008113</td>
-      <td>0.008049</td>
-      <td>0.005042</td>
-      <td>0.007631</td>
-      <td>0.010351</td>
+      <td>0.026514</td>
+      <td>0.005514</td>
+      <td>0.006395</td>
+      <td>0.007606</td>
+      <td>0.007719</td>
+      <td>0.005667</td>
+      <td>0.007007</td>
+      <td>0.008214</td>
+      <td>0.006482</td>
+      <td>0.006983</td>
       <td>...</td>
-      <td>0.006752</td>
-      <td>0.00634</td>
-      <td>0.008893</td>
-      <td>0.006381</td>
-      <td>0.010268</td>
-      <td>0.011497</td>
-      <td>0.009724</td>
-      <td>0.005913</td>
-      <td>0.009408</td>
-      <td>0.006215</td>
+      <td>0.00959</td>
+      <td>0.00889</td>
+      <td>0.008704</td>
+      <td>0.01155</td>
+      <td>0.008994</td>
+      <td>0.009918</td>
+      <td>0.008176</td>
+      <td>0.00663</td>
+      <td>0.006731</td>
+      <td>0.008373</td>
     </tr>
   </tbody>
 </table>

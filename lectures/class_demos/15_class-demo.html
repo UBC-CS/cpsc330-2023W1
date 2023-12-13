@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/class_demos/15_class-demo';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Appendix A" href="../Appendix-A.html" />
+    <link rel="next" title="Appendix A: Common features used in text classification" href="../AppendixA.html" />
     <link rel="prev" title="Lecture 14: Class demo" href="14_class-demo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -194,8 +194,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../Appendix-A.html">Appendix A</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Appendix-B.html">Appendix-B</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AppendixA.html">Appendix A: Common features used in text classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AppendixB.html">Appendix B: K-Means customer segmentation case study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AppendixC.html">Appendix C: Representing documents using embeddings</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -363,7 +364,6 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="lecture-15-class-demo">
 <h1>Lecture 15: Class demo<a class="headerlink" href="#lecture-15-class-demo" title="Permalink to this heading">#</a></h1>
 <p>Let’s cluster images!!</p>
-<p><img alt="" src="lectures/img/eva-fun-times.png" /></p>
 <p>For this demo, I’m going to use the following image dataset:</p>
 <ol class="arabic simple">
 <li><p>A tiny subset of <a class="reference external" href="https://www.kaggle.com/datasets/kmader/food41?select=food_c101_n10099_r32x32x1.h5">Food-101</a> from last lecture
@@ -381,11 +381,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
-<img alt="../../_images/e3be5b0d70a496417882354f5739761b01e79b7b644ed7f7ea3d7b13057c8834.png" src="../../_images/e3be5b0d70a496417882354f5739761b01e79b7b644ed7f7ea3d7b13057c8834.png" />
+<img alt="../../_images/434e2bf7b636c3336193854f95f871a8864ef2dcf68ff25548a1a06873bad55f.png" src="../../_images/434e2bf7b636c3336193854f95f871a8864ef2dcf68ff25548a1a06873bad55f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -501,78 +497,7 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">n_images</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">file_names</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="n">n_images</span>  <span class="c1"># because our dataset is quite small</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">food_inputs</span><span class="p">,</span> <span class="n">food_classes</span> <span class="o">=</span> <span class="n">read_img_dataset</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">n_images</span>
-
-<span class="nn">Cell In[7], line 11,</span> in <span class="ni">read_img_dataset</span><span class="nt">(data_dir)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">def</span> <span class="nf">read_img_dataset</span><span class="p">(</span><span class="n">data_dir</span><span class="p">):</span>     
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">data_transforms</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>         <span class="p">[</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>             <span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">((</span><span class="n">IMAGE_SIZE</span><span class="p">,</span> <span class="n">IMAGE_SIZE</span><span class="p">)),</span>     
-<span class="g g-Whitespace">      </span><span class="mi">7</span>             <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>             <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]),</span>            
-<span class="g g-Whitespace">      </span><span class="mi">9</span>         <span class="p">])</span>
-<span class="ne">---&gt; </span><span class="mi">11</span>     <span class="n">image_dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ImageFolder</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">data_transforms</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="n">dataloader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span>          <span class="n">image_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span>     <span class="n">dataset_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">image_dataset</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/torchvision/datasets/folder.py:309,</span> in <span class="ni">ImageFolder.__init__</span><span class="nt">(self, root, transform, target_transform, loader, is_valid_file)</span>
-<span class="g g-Whitespace">    </span><span class="mi">301</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">302</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">303</span>     <span class="n">root</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">307</span>     <span class="n">is_valid_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">308</span> <span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">309</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span>         <span class="n">root</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">311</span>         <span class="n">loader</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">312</span>         <span class="n">IMG_EXTENSIONS</span> <span class="k">if</span> <span class="n">is_valid_file</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">314</span>         <span class="n">target_transform</span><span class="o">=</span><span class="n">target_transform</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">315</span>         <span class="n">is_valid_file</span><span class="o">=</span><span class="n">is_valid_file</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">316</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">317</span>     <span class="bp">self</span><span class="o">.</span><span class="n">imgs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/torchvision/datasets/folder.py:144,</span> in <span class="ni">DatasetFolder.__init__</span><span class="nt">(self, root, loader, extensions, transform, target_transform, is_valid_file)</span>
-<span class="g g-Whitespace">    </span><span class="mi">134</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">135</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">136</span>     <span class="n">root</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">141</span>     <span class="n">is_valid_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">142</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">143</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span> <span class="n">target_transform</span><span class="o">=</span><span class="n">target_transform</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">144</span>     <span class="n">classes</span><span class="p">,</span> <span class="n">class_to_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_classes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">145</span>     <span class="n">samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_dataset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">class_to_idx</span><span class="p">,</span> <span class="n">extensions</span><span class="p">,</span> <span class="n">is_valid_file</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">147</span>     <span class="bp">self</span><span class="o">.</span><span class="n">loader</span> <span class="o">=</span> <span class="n">loader</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/torchvision/datasets/folder.py:218,</span> in <span class="ni">DatasetFolder.find_classes</span><span class="nt">(self, directory)</span>
-<span class="g g-Whitespace">    </span><span class="mi">191</span> <span class="k">def</span> <span class="nf">find_classes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
-<span class="g g-Whitespace">    </span><span class="mi">192</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Find the class folders in a dataset structured as follows::</span>
-<span class="g g-Whitespace">    </span><span class="mi">193</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">194</span><span class="sd">         directory/</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">216</span><span class="sd">         (Tuple[List[str], Dict[str, int]]): List of all classes and dictionary mapping each class to an index.</span>
-<span class="g g-Whitespace">    </span><span class="mi">217</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">218</span>     <span class="k">return</span> <span class="n">find_classes</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/torchvision/datasets/folder.py:40,</span> in <span class="ni">find_classes</span><span class="nt">(directory)</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span> <span class="k">def</span> <span class="nf">find_classes</span><span class="p">(</span><span class="n">directory</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
-<span class="g g-Whitespace">     </span><span class="mi">36</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Finds the class folders in a dataset.</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">38</span><span class="sd">     See :class:`DatasetFolder` for details.</span>
-<span class="g g-Whitespace">     </span><span class="mi">39</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="nn">---&gt; 40     classes = sorted(entry.name for entry</span> in <span class="ni">os.scandir(directory) if entry.is_dir</span><span class="nt">())</span>
-<span class="g g-Whitespace">     </span><span class="mi">41</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">classes</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">42</span>         <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Couldn&#39;t find any class folder in </span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;../data/food&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>350
 </pre></div>
 </div>
 </div>
@@ -591,7 +516,7 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/3d9788bb666fcee15edcc7d7ed5279d3ace204c3e0ec646158619a0bf11abc6c.png" src="../../_images/3d9788bb666fcee15edcc7d7ed5279d3ace204c3e0ec646158619a0bf11abc6c.png" />
+<img alt="../../_images/5133ea5fdd6c3d90c1086108401e98dd7f66f9155009e8104fc3bbb7914523ff.png" src="../../_images/5133ea5fdd6c3d90c1086108401e98dd7f66f9155009e8104fc3bbb7914523ff.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -646,31 +571,31 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [ 82  58 168 114 122  44]
 </pre></div>
 </div>
-<img alt="../../_images/ddff267146084890d23371fda27f9fe85df18f2770c3b171957af57155e72cc4.png" src="../../_images/ddff267146084890d23371fda27f9fe85df18f2770c3b171957af57155e72cc4.png" />
+<img alt="../../_images/bd501a3548364d21be702fd34f0f431843af463b172a5153c4811cc185e70375.png" src="../../_images/bd501a3548364d21be702fd34f0f431843af463b172a5153c4811cc185e70375.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [ 89 209  67 330 141 166]
 </pre></div>
 </div>
-<img alt="../../_images/e5bafcb51655380b0cd5c3075c2d2dc31373261985b8ffac2e0e034c0ddfae23.png" src="../../_images/e5bafcb51655380b0cd5c3075c2d2dc31373261985b8ffac2e0e034c0ddfae23.png" />
+<img alt="../../_images/a7503faf0061c025e328b5d41bbc61a2b01a4ee4cf852356f49f2f4cc693857e.png" src="../../_images/a7503faf0061c025e328b5d41bbc61a2b01a4ee4cf852356f49f2f4cc693857e.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [249 327 331  30 236 267]
 </pre></div>
 </div>
-<img alt="../../_images/8b5b70b34c4f0d895547d10392fa3ac6b1d1c852a55353b67e94adead3cc9db0.png" src="../../_images/8b5b70b34c4f0d895547d10392fa3ac6b1d1c852a55353b67e94adead3cc9db0.png" />
+<img alt="../../_images/ae884218e37909c6b5cf739b6909c2f219eca83fac1ad92c083569fbae9bb928.png" src="../../_images/ae884218e37909c6b5cf739b6909c2f219eca83fac1ad92c083569fbae9bb928.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [ 76  90  29 240 237 238]
 </pre></div>
 </div>
-<img alt="../../_images/21276e95e2fa8b0db9f536bb9eb71e0bd86f62be4f96be88c1aea94ea0dad1ff.png" src="../../_images/21276e95e2fa8b0db9f536bb9eb71e0bd86f62be4f96be88c1aea94ea0dad1ff.png" />
+<img alt="../../_images/796ab95b08246f7e5ee0edb1d8fae17f1aca75f90c471c1174277979764cb6cd.png" src="../../_images/796ab95b08246f7e5ee0edb1d8fae17f1aca75f90c471c1174277979764cb6cd.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [223 136 124 304  13 137]
 </pre></div>
 </div>
-<img alt="../../_images/2e1451c964a31679b17449e4f7398eb7dc1cd460edd63416c907197b7c04632c.png" src="../../_images/2e1451c964a31679b17449e4f7398eb7dc1cd460edd63416c907197b7c04632c.png" />
+<img alt="../../_images/0ce78247c23ddc7d09292f8de9c24dfea8852c5e935aa2d8259037ea7eec5c98.png" src="../../_images/0ce78247c23ddc7d09292f8de9c24dfea8852c5e935aa2d8259037ea7eec5c98.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [190 132  73 140   6 149]
 </pre></div>
 </div>
-<img alt="../../_images/7618a86e5aa172bdf5d43d28404637758fa0d336d297d2a7bf3534633d0e9792.png" src="../../_images/7618a86e5aa172bdf5d43d28404637758fa0d336d297d2a7bf3534633d0e9792.png" />
+<img alt="../../_images/74e65d60f9612e729830e6d24e7ca2d6097d0197316b66dfd258d0f25c282c83.png" src="../../_images/74e65d60f9612e729830e6d24e7ca2d6097d0197316b66dfd258d0f25c282c83.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [ 65 238 237 236 235 234]
 </pre></div>
 </div>
-<img alt="../../_images/9f49300d86bffd1739f61acd71123690c831957339d2f3524457da244a393ba4.png" src="../../_images/9f49300d86bffd1739f61acd71123690c831957339d2f3524457da244a393ba4.png" />
+<img alt="../../_images/0ea2c1bb56b2f086eea340f31c58d79a80bb800fb8ba65185bec266e982508df.png" src="../../_images/0ea2c1bb56b2f086eea340f31c58d79a80bb800fb8ba65185bec266e982508df.png" />
 </div>
 </div>
 <p>Let’s try DBSCAN.</p>
@@ -1050,7 +975,9 @@ Number of clusters: 3
 Cluster sizes: [334  13   3]
 
 eps=19
-Number of clusters: 3
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of clusters: 3
 Cluster sizes: [311  35   4]
 
 eps=20
@@ -1082,7 +1009,9 @@ Number of clusters: 2
 Cluster sizes: [ 30 320]
 
 eps=27
-Number of clusters: 2
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of clusters: 2
 Cluster sizes: [ 17 333]
 
 eps=28
@@ -1121,8 +1050,8 @@ Unique labels: [-1  0  1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f7ce228abbeb5321ec2f92a22334513a056ef21e0176f8d776a603ba47d26b0f.png" src="../../_images/f7ce228abbeb5321ec2f92a22334513a056ef21e0176f8d776a603ba47d26b0f.png" />
-<img alt="../../_images/9bf5476b380f16646fb3b6cdbedf17c1e6c45726a75c10d0454f6240c312bd3e.png" src="../../_images/9bf5476b380f16646fb3b6cdbedf17c1e6c45726a75c10d0454f6240c312bd3e.png" />
+<img alt="../../_images/b71fd793a64a9dd58cc3eb000fa3ef6e1415548c67633652fcf40d974d10d2c6.png" src="../../_images/b71fd793a64a9dd58cc3eb000fa3ef6e1415548c67633652fcf40d974d10d2c6.png" />
+<img alt="../../_images/c15a651525ebcbd35a32b7bf6c0d45eaa087e0e4a3226ac989285443190ab6f9.png" src="../../_images/c15a651525ebcbd35a32b7bf6c0d45eaa087e0e4a3226ac989285443190ab6f9.png" />
 </div>
 </div>
 <p>Let’s examine noise points identified by DBSCAN.</p>
@@ -1133,7 +1062,7 @@ Unique labels: [-1  0  1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/d12fcc42f23ef2665aa90e5940718e03c0e4e6ed1379d3513016b18e2fbd6294.png" src="../../_images/d12fcc42f23ef2665aa90e5940718e03c0e4e6ed1379d3513016b18e2fbd6294.png" />
+<img alt="../../_images/bf0a6340811131309171ed3b6a92811d26748f5c844982d32f19463e487622a2.png" src="../../_images/bf0a6340811131309171ed3b6a92811d26748f5c844982d32f19463e487622a2.png" />
 </div>
 </div>
 <p><br><br></p>
@@ -1169,7 +1098,7 @@ Unique labels: [-1  0  1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2e7c870cf480453532a413d87d1194d8aa64d143678276230f87790ba1f663e0.png" src="../../_images/2e7c870cf480453532a413d87d1194d8aa64d143678276230f87790ba1f663e0.png" />
+<img alt="../../_images/ee943527414a3f403d6ae94e3b2ec018422151c4c7f167feea54dfacfcc4a603.png" src="../../_images/ee943527414a3f403d6ae94e3b2ec018422151c4c7f167feea54dfacfcc4a603.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1229,31 +1158,31 @@ Unique labels: [-1  0  1]
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [136 175 355 285  56 346]
 </pre></div>
 </div>
-<img alt="../../_images/25948529123e2d7b9b5ab834f7cde4678ba7b076c2bb5a74a6154ea18cd34803.png" src="../../_images/25948529123e2d7b9b5ab834f7cde4678ba7b076c2bb5a74a6154ea18cd34803.png" />
+<img alt="../../_images/6a49d552ac4a3a0ccf52340cd0ae0fb9d8517f4393f8fc0f1d2f8c80ac38dde2.png" src="../../_images/6a49d552ac4a3a0ccf52340cd0ae0fb9d8517f4393f8fc0f1d2f8c80ac38dde2.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [117 320 208 216 186  59]
 </pre></div>
 </div>
-<img alt="../../_images/aee7df4f127229fe2b790d7e1839326741b22421b260e034d9559b96cd9afe05.png" src="../../_images/aee7df4f127229fe2b790d7e1839326741b22421b260e034d9559b96cd9afe05.png" />
+<img alt="../../_images/a588038a1e3464088e642d7e4a24f2d52a1cad4b5ba19df84cfbb5fc781fd888.png" src="../../_images/a588038a1e3464088e642d7e4a24f2d52a1cad4b5ba19df84cfbb5fc781fd888.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [103 353 359 295  68  60]
 </pre></div>
 </div>
-<img alt="../../_images/84bf34766ed86f2383d2e539dc19e3f1f934cd7ed19cf5bb855caf96c5ba0439.png" src="../../_images/84bf34766ed86f2383d2e539dc19e3f1f934cd7ed19cf5bb855caf96c5ba0439.png" />
+<img alt="../../_images/f54f92f1e84a1d1d96eb8ee2f8ff4bd4b6f7f12509f1f679c9be160421ca9584.png" src="../../_images/f54f92f1e84a1d1d96eb8ee2f8ff4bd4b6f7f12509f1f679c9be160421ca9584.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [ 39 357 332 256 218   1]
 </pre></div>
 </div>
-<img alt="../../_images/9b55ce2f73a82bcf20d380e1cefe22f4178072990d1df1ee285ce4e1836f16a1.png" src="../../_images/9b55ce2f73a82bcf20d380e1cefe22f4178072990d1df1ee285ce4e1836f16a1.png" />
+<img alt="../../_images/36cf493895ecadbe3e346a7b00defbbd0c37cd984ffac81008441a371638c802.png" src="../../_images/36cf493895ecadbe3e346a7b00defbbd0c37cd984ffac81008441a371638c802.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [317 168 267   0 248 247]
 </pre></div>
 </div>
-<img alt="../../_images/17ac8a43c53228fd6c016d207d7808579baa8a9472afb61db79595f4c9069de1.png" src="../../_images/17ac8a43c53228fd6c016d207d7808579baa8a9472afb61db79595f4c9069de1.png" />
+<img alt="../../_images/5355f3362d5b64b6c07c7bf555ac160e4d0885d3a223abd99b9f02f7290b8a01.png" src="../../_images/5355f3362d5b64b6c07c7bf555ac160e4d0885d3a223abd99b9f02f7290b8a01.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [290 124 271  83 139 146]
 </pre></div>
 </div>
-<img alt="../../_images/ea686eeb95d9f4054c5f83142401014533ddc1851fcfca5f85e9fac3bffa11fb.png" src="../../_images/ea686eeb95d9f4054c5f83142401014533ddc1851fcfca5f85e9fac3bffa11fb.png" />
+<img alt="../../_images/bdc4858e5aae1f6f1555ce3d9a1ba3e8c436176090320250ccd62afc5378ba7f.png" src="../../_images/bdc4858e5aae1f6f1555ce3d9a1ba3e8c436176090320250ccd62afc5378ba7f.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [312 260 329 127  40 348]
 </pre></div>
 </div>
-<img alt="../../_images/2ed04edbbc338764ac49a70b7b7ab33e0b252553dcfae61b699cc454949ac1d0.png" src="../../_images/2ed04edbbc338764ac49a70b7b7ab33e0b252553dcfae61b699cc454949ac1d0.png" />
+<img alt="../../_images/5c10eb0c7403a3a0edff88b23b4db0d6c8b9329e48bbf1296f77441fb0c4f8d1.png" src="../../_images/5c10eb0c7403a3a0edff88b23b4db0d6c8b9329e48bbf1296f77441fb0c4f8d1.png" />
 </div>
 </div>
 <p><br><br></p>
@@ -1493,7 +1422,9 @@ Number of clusters: 9
 Cluster sizes: [261  84   3   3   3   4   3   3   3]
 
 eps=20
-Number of clusters: 7
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of clusters: 7
 Cluster sizes: [211 140   3   4   3   3   3]
 
 eps=21
@@ -1536,17 +1467,17 @@ Unique labels: [-1  0  1  2  3  4  5  6  7  8  9 10]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/1fb34a7741f5765f21abb533127b0b7bdd6c7a2a4c768950b70f3b9a9a91bea5.png" src="../../_images/1fb34a7741f5765f21abb533127b0b7bdd6c7a2a4c768950b70f3b9a9a91bea5.png" />
-<img alt="../../_images/b210856f880b692a6054b99fe7d45af20ffc023b99a8ec95a2f9a0a993b98b82.png" src="../../_images/b210856f880b692a6054b99fe7d45af20ffc023b99a8ec95a2f9a0a993b98b82.png" />
-<img alt="../../_images/8fad06a379efd42ff4ffd0508eb2e3694be0acf32361f8f3a856957d0eb47ae1.png" src="../../_images/8fad06a379efd42ff4ffd0508eb2e3694be0acf32361f8f3a856957d0eb47ae1.png" />
-<img alt="../../_images/343fa131c3528f4283d23fc2b429584fcdd146970622858937c95972f7af2739.png" src="../../_images/343fa131c3528f4283d23fc2b429584fcdd146970622858937c95972f7af2739.png" />
-<img alt="../../_images/95a397877980b4c7edec22e8b69208fa7578556d5354ebc6f6e6977b95310b61.png" src="../../_images/95a397877980b4c7edec22e8b69208fa7578556d5354ebc6f6e6977b95310b61.png" />
-<img alt="../../_images/6e808b83fd15e182ae3c42b5162a07f529621e63feec490e41e59d6b933d37c9.png" src="../../_images/6e808b83fd15e182ae3c42b5162a07f529621e63feec490e41e59d6b933d37c9.png" />
-<img alt="../../_images/b9d457608df5fe4145b2eece68426c28192a02173b9870982e1aff6ca230e02d.png" src="../../_images/b9d457608df5fe4145b2eece68426c28192a02173b9870982e1aff6ca230e02d.png" />
-<img alt="../../_images/c192c641a62740febb1c59a6f3d99b45a2dd2dfe5832706323a4b3b97c6d872a.png" src="../../_images/c192c641a62740febb1c59a6f3d99b45a2dd2dfe5832706323a4b3b97c6d872a.png" />
-<img alt="../../_images/b8d48a8f77c44f91bfcf0c621154310528128a813d64951df309eefff5ad2195.png" src="../../_images/b8d48a8f77c44f91bfcf0c621154310528128a813d64951df309eefff5ad2195.png" />
-<img alt="../../_images/12ed613d8009573f4c57262c90ce1360cd5923006f40464e619f17b7af6e817a.png" src="../../_images/12ed613d8009573f4c57262c90ce1360cd5923006f40464e619f17b7af6e817a.png" />
-<img alt="../../_images/1371381782bbd52b25505567f2aae27758c8bb9fba3f8a51e01e201df07f3e4d.png" src="../../_images/1371381782bbd52b25505567f2aae27758c8bb9fba3f8a51e01e201df07f3e4d.png" />
+<img alt="../../_images/6c78fc9cf07523896abc512a61ce85963fa97f310b3da7770e7ff7179c5c9d56.png" src="../../_images/6c78fc9cf07523896abc512a61ce85963fa97f310b3da7770e7ff7179c5c9d56.png" />
+<img alt="../../_images/b29fe0c5b77804fa633c421dcd2888236e59ad1096755aca7dd9166bd20ccd2b.png" src="../../_images/b29fe0c5b77804fa633c421dcd2888236e59ad1096755aca7dd9166bd20ccd2b.png" />
+<img alt="../../_images/24ebff339a0c7c697774aea38c3a568ec9ca548b4cb432c535aa881b9393aa68.png" src="../../_images/24ebff339a0c7c697774aea38c3a568ec9ca548b4cb432c535aa881b9393aa68.png" />
+<img alt="../../_images/b8beebee0de0bc4e71c64bc1f04843059b594b7635574f96afef2a3abbc10f6e.png" src="../../_images/b8beebee0de0bc4e71c64bc1f04843059b594b7635574f96afef2a3abbc10f6e.png" />
+<img alt="../../_images/01278c1df72c486ee59752f9566f6546a56044d13bf3ef042355c7ebdd9afa93.png" src="../../_images/01278c1df72c486ee59752f9566f6546a56044d13bf3ef042355c7ebdd9afa93.png" />
+<img alt="../../_images/1b3d00d0c77f184b6a8ae5b8e79c946c15f1a2c90c36c056c8fa0c265f348a87.png" src="../../_images/1b3d00d0c77f184b6a8ae5b8e79c946c15f1a2c90c36c056c8fa0c265f348a87.png" />
+<img alt="../../_images/a809b5daeab5c3fece3725fc994ae88db5bf029185f2a37b9cd813eb6c3d2b0b.png" src="../../_images/a809b5daeab5c3fece3725fc994ae88db5bf029185f2a37b9cd813eb6c3d2b0b.png" />
+<img alt="../../_images/262b1e3e7746385de97e0acb4c9a7420d06810b7e7d6e14e4af40271130c978a.png" src="../../_images/262b1e3e7746385de97e0acb4c9a7420d06810b7e7d6e14e4af40271130c978a.png" />
+<img alt="../../_images/e1ab00572fa9feee3b2953e121fd6092fcb9532774d78cc417d8015a9c75b4c3.png" src="../../_images/e1ab00572fa9feee3b2953e121fd6092fcb9532774d78cc417d8015a9c75b4c3.png" />
+<img alt="../../_images/12abc869490624f73c5884b83cbea4954e7b9b2c566bc2d288e7dc11a2712d8f.png" src="../../_images/12abc869490624f73c5884b83cbea4954e7b9b2c566bc2d288e7dc11a2712d8f.png" />
+<img alt="../../_images/68ed3110715771928b394ea8f2b20cd2d160ae948f177d62612ab6a9b26a65cf.png" src="../../_images/68ed3110715771928b394ea8f2b20cd2d160ae948f177d62612ab6a9b26a65cf.png" />
 </div>
 </div>
 <p>Let’s examine noise images identified by DBSCAN.</p>
@@ -1557,7 +1488,7 @@ Unique labels: [-1  0  1  2  3  4  5  6  7  8  9 10]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/acb1676cbdff1c981be119b839bcfd37677866dfcdb5756cde12a54c2fea5180.png" src="../../_images/acb1676cbdff1c981be119b839bcfd37677866dfcdb5756cde12a54c2fea5180.png" />
+<img alt="../../_images/9e24dbbfa28c2c52a2f43b5056e2801912746e0e2d27810a28e55801e736d9d8.png" src="../../_images/9e24dbbfa28c2c52a2f43b5056e2801912746e0e2d27810a28e55801e736d9d8.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1584,7 +1515,7 @@ Unique labels: [-1  0  1  2  3  4  5  6  7  8  9 10]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/bbbb9c232e529d20705709b5cba85ccff08c282e0b5d151d7b3904a46ba4b4b5.png" src="../../_images/bbbb9c232e529d20705709b5cba85ccff08c282e0b5d151d7b3904a46ba4b4b5.png" />
+<img alt="../../_images/471e00e912003fe3c19e4b5585c5d106a070e88e4fc682caa11f67d54dd7ad9a.png" src="../../_images/471e00e912003fe3c19e4b5585c5d106a070e88e4fc682caa11f67d54dd7ad9a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1605,32 +1536,32 @@ Unique labels: [-1  0  1  2  3  4  5  6  7  8  9 10]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/CS/2023-24/330/cpsc330-2023W1/lectures/code/plotting_functions_unsup.py:1500: RuntimeWarning:
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/CS/2023-24/330/cpsc330-2023W1/lectures/code/plotting_functions_unsup.py:1490: RuntimeWarning:
 
 More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`). Consider using `matplotlib.pyplot.close()`.
 </pre></div>
 </div>
-<img alt="../../_images/5d172394335f8607ffd1f444c3b29df010a638449d31de50e67152068d869f68.png" src="../../_images/5d172394335f8607ffd1f444c3b29df010a638449d31de50e67152068d869f68.png" />
-<img alt="../../_images/9b762576376b65a80603045b0a13303e432799c3350b446f86543a3f03bf83c1.png" src="../../_images/9b762576376b65a80603045b0a13303e432799c3350b446f86543a3f03bf83c1.png" />
-<img alt="../../_images/8019e6277287c8f8c7bbc7fb2296084ab846e372535ba4eac3f20ea13624340b.png" src="../../_images/8019e6277287c8f8c7bbc7fb2296084ab846e372535ba4eac3f20ea13624340b.png" />
-<img alt="../../_images/0bee896d76fd37c053382d7bf235c3aae8bae3ff3dfb01165e9c7fa76db281fe.png" src="../../_images/0bee896d76fd37c053382d7bf235c3aae8bae3ff3dfb01165e9c7fa76db281fe.png" />
-<img alt="../../_images/1cd3e5832e048d63bdaf86d28c2542752f5017f7af3de84ed90b22803bbcf9c0.png" src="../../_images/1cd3e5832e048d63bdaf86d28c2542752f5017f7af3de84ed90b22803bbcf9c0.png" />
-<img alt="../../_images/fabec369ce6c27d5ab1633d5065951c8d4fe589150446072776e688d25c10ab3.png" src="../../_images/fabec369ce6c27d5ab1633d5065951c8d4fe589150446072776e688d25c10ab3.png" />
-<img alt="../../_images/ae6865d2707b6e92934b213ef16baae638c5496bcbd66936fa36c846cc64b492.png" src="../../_images/ae6865d2707b6e92934b213ef16baae638c5496bcbd66936fa36c846cc64b492.png" />
-<img alt="../../_images/e0bf1d31a79d26aae6e9737f89f9a6470d62b699fdfa3affece9dbec673ccbc4.png" src="../../_images/e0bf1d31a79d26aae6e9737f89f9a6470d62b699fdfa3affece9dbec673ccbc4.png" />
-<img alt="../../_images/ed926dc8b2bb9de61d5211b8cce9c5e20908ce8340169bba6127a2ba5c1b4ada.png" src="../../_images/ed926dc8b2bb9de61d5211b8cce9c5e20908ce8340169bba6127a2ba5c1b4ada.png" />
-<img alt="../../_images/781d4d1777d7ef863b28f95906222202bd1d4b5ccd346d73168fed87823ea61f.png" src="../../_images/781d4d1777d7ef863b28f95906222202bd1d4b5ccd346d73168fed87823ea61f.png" />
-<img alt="../../_images/21e30e7e7aefcb08297ddf77bb26f04a720dac1940f00bad637e31b0103003c8.png" src="../../_images/21e30e7e7aefcb08297ddf77bb26f04a720dac1940f00bad637e31b0103003c8.png" />
-<img alt="../../_images/45af0c98c690ff162e4d874cf2f05ad947859c968b7ce11a334416ff0fb62748.png" src="../../_images/45af0c98c690ff162e4d874cf2f05ad947859c968b7ce11a334416ff0fb62748.png" />
-<img alt="../../_images/59e099dfe39e7f7f85a5630f1eea133ecf9ecf6ba3c634b0a5fbe981105b54c1.png" src="../../_images/59e099dfe39e7f7f85a5630f1eea133ecf9ecf6ba3c634b0a5fbe981105b54c1.png" />
-<img alt="../../_images/398f57f2e89e01bb5775fd05c0db0d7a1a20fea563d9b0f9ce90f4c921a97fac.png" src="../../_images/398f57f2e89e01bb5775fd05c0db0d7a1a20fea563d9b0f9ce90f4c921a97fac.png" />
-<img alt="../../_images/ccec592f6448395b6e759d8d958872fe0bc41a1f89696ebbc1659eea58a4e532.png" src="../../_images/ccec592f6448395b6e759d8d958872fe0bc41a1f89696ebbc1659eea58a4e532.png" />
-<img alt="../../_images/db4aff48e969bcc6a84174459527b4519a85c988bbad51d30e2639c56c0936c6.png" src="../../_images/db4aff48e969bcc6a84174459527b4519a85c988bbad51d30e2639c56c0936c6.png" />
-<img alt="../../_images/1e7058704ac3aa96990c266eb2216ef01bf9b04db7766517214abd1647c07c27.png" src="../../_images/1e7058704ac3aa96990c266eb2216ef01bf9b04db7766517214abd1647c07c27.png" />
-<img alt="../../_images/2b8f044dd639240b7f771ae602028083d6309e762962f2ccb5074f808db8e0a9.png" src="../../_images/2b8f044dd639240b7f771ae602028083d6309e762962f2ccb5074f808db8e0a9.png" />
-<img alt="../../_images/1625c287c2c79b2e1d9829b7f335c11bb4f5d034f8cf9db6f88283eb9b32f743.png" src="../../_images/1625c287c2c79b2e1d9829b7f335c11bb4f5d034f8cf9db6f88283eb9b32f743.png" />
-<img alt="../../_images/d2df768d38dcfe3556e0696deda0832a44d4f917000ac6128009e2ec5600dfcb.png" src="../../_images/d2df768d38dcfe3556e0696deda0832a44d4f917000ac6128009e2ec5600dfcb.png" />
-<img alt="../../_images/5f28cc311222ef9a8cd7635e4d5845bbbf0d3859ca97fc3fa49191c75891ba9f.png" src="../../_images/5f28cc311222ef9a8cd7635e4d5845bbbf0d3859ca97fc3fa49191c75891ba9f.png" />
+<img alt="../../_images/9c160a9e4b1834715e1e64fd1991e27a59776c04b88a1e947cac8766abbc512b.png" src="../../_images/9c160a9e4b1834715e1e64fd1991e27a59776c04b88a1e947cac8766abbc512b.png" />
+<img alt="../../_images/27791abec213384ea4f08a06c65832dc1da18436414025be86fafb952b433aa1.png" src="../../_images/27791abec213384ea4f08a06c65832dc1da18436414025be86fafb952b433aa1.png" />
+<img alt="../../_images/2fc8a29f122483ec0328d000350609e1a0ab557e72a01e3e9734824db6619c4f.png" src="../../_images/2fc8a29f122483ec0328d000350609e1a0ab557e72a01e3e9734824db6619c4f.png" />
+<img alt="../../_images/8fca48910b5ba3a7db872ab0fbd6facdee5977eafd9ea6f81a3a92b1e484680e.png" src="../../_images/8fca48910b5ba3a7db872ab0fbd6facdee5977eafd9ea6f81a3a92b1e484680e.png" />
+<img alt="../../_images/51c1d8d3cba69d8f0cdc36ff948866dc6e7584bf20af82e0040a6e47417b904a.png" src="../../_images/51c1d8d3cba69d8f0cdc36ff948866dc6e7584bf20af82e0040a6e47417b904a.png" />
+<img alt="../../_images/daf99497c655e86d693931bdbe05e5fd27724e2a2a56b7f8a564037a3d7a29ac.png" src="../../_images/daf99497c655e86d693931bdbe05e5fd27724e2a2a56b7f8a564037a3d7a29ac.png" />
+<img alt="../../_images/41026cefd545f963c176f23996e5bab1b9c0114163641af8ad0da61681d94a7a.png" src="../../_images/41026cefd545f963c176f23996e5bab1b9c0114163641af8ad0da61681d94a7a.png" />
+<img alt="../../_images/2ec5d4dec4afc00a3f46e44d42cead00f7eebaf13d92d97edc8016ca7f0e952e.png" src="../../_images/2ec5d4dec4afc00a3f46e44d42cead00f7eebaf13d92d97edc8016ca7f0e952e.png" />
+<img alt="../../_images/252cebb20b215d2c683545aee6ac4c4ed2e0a7616970e7907f1d782af3081073.png" src="../../_images/252cebb20b215d2c683545aee6ac4c4ed2e0a7616970e7907f1d782af3081073.png" />
+<img alt="../../_images/db98203da0610b73b5757d1f01d341232c5772241bc56160eb4cafc3095c5d4e.png" src="../../_images/db98203da0610b73b5757d1f01d341232c5772241bc56160eb4cafc3095c5d4e.png" />
+<img alt="../../_images/717be67c1f2f30405fc9125a77230769dac3a98737990d1c5ace7180ded44396.png" src="../../_images/717be67c1f2f30405fc9125a77230769dac3a98737990d1c5ace7180ded44396.png" />
+<img alt="../../_images/ea8865f5212a5481d380864c7d2a7f0f405a0c434fa53d18e2a25b6fdb3e5060.png" src="../../_images/ea8865f5212a5481d380864c7d2a7f0f405a0c434fa53d18e2a25b6fdb3e5060.png" />
+<img alt="../../_images/6fc0544c2133a197bc4f739d5e74f4a6ff05c7cf7ba954f86a13935934780a0c.png" src="../../_images/6fc0544c2133a197bc4f739d5e74f4a6ff05c7cf7ba954f86a13935934780a0c.png" />
+<img alt="../../_images/f041d77e0705ecf95555c3fb0e19e5e573e861af709e6c49590317dcd2a41b3b.png" src="../../_images/f041d77e0705ecf95555c3fb0e19e5e573e861af709e6c49590317dcd2a41b3b.png" />
+<img alt="../../_images/ddd0288aefe340c66aa681d5283338028251c9488285be5bf0c7d753285e68d5.png" src="../../_images/ddd0288aefe340c66aa681d5283338028251c9488285be5bf0c7d753285e68d5.png" />
+<img alt="../../_images/de96b9f0a7bd822e6795e561acf30ad9c2f761d5cd370612238f312327bef9d5.png" src="../../_images/de96b9f0a7bd822e6795e561acf30ad9c2f761d5cd370612238f312327bef9d5.png" />
+<img alt="../../_images/2157c47c35b948777762371cbc505c05ca5096700759c2f416ec8bf9c52f180e.png" src="../../_images/2157c47c35b948777762371cbc505c05ca5096700759c2f416ec8bf9c52f180e.png" />
+<img alt="../../_images/d13526a7ab751c2401b724451613a3efa95aead0429f8a262bc1e7f3b324d7e8.png" src="../../_images/d13526a7ab751c2401b724451613a3efa95aead0429f8a262bc1e7f3b324d7e8.png" />
+<img alt="../../_images/9b800ef0e0655c1b8737cf1c58c287d8930ee4a9710832726a4df8346d87ac5c.png" src="../../_images/9b800ef0e0655c1b8737cf1c58c287d8930ee4a9710832726a4df8346d87ac5c.png" />
+<img alt="../../_images/e574af00ac4d73e78c7838f4e2c1c89e33153c0ef317f8a94ac6d932367c904e.png" src="../../_images/e574af00ac4d73e78c7838f4e2c1c89e33153c0ef317f8a94ac6d932367c904e.png" />
+<img alt="../../_images/483c11895c18caa1b9bbe58b7c14401ef0e89c253533a6c308bf9ddcc044d172.png" src="../../_images/483c11895c18caa1b9bbe58b7c14401ef0e89c253533a6c308bf9ddcc044d172.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1680,11 +1611,11 @@ More than 20 figures have been opened. Figures created through the pyplot interf
       </div>
     </a>
     <a class="right-next"
-       href="../Appendix-A.html"
+       href="../AppendixA.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Appendix A</p>
+        <p class="prev-next-title">Appendix A: Common features used in text classification</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

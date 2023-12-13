@@ -196,8 +196,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Appendix-A.html">Appendix A</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Appendix-B.html">Appendix-B</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixA.html">Appendix A: Common features used in text classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixB.html">Appendix B: K-Means customer segmentation case study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixC.html">Appendix C: Representing documents using embeddings</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -375,7 +376,7 @@ document.write(`
   <p><img alt="" src="../_images/330-banner.png" /></p>
 <section class="tex2jax_ignore mathjax_ignore" id="bonus-a-high-level-quick-introduction-to-llms">
 <h1>Bonus: A high-level quick introduction to LLMs<a class="headerlink" href="#bonus-a-high-level-quick-introduction-to-llms" title="Permalink to this heading">#</a></h1>
-<p>UBC 2023-24</p>
+<p>UBC 2022-23</p>
 <p>Instructor: Varada Kolhatkar</p>
 <section id="imports">
 <h2>Imports<a class="headerlink" href="#imports" title="Permalink to this heading">#</a></h2>
@@ -393,12 +394,6 @@ document.write(`
 <span class="kn">from</span> <span class="nn">plotting_functions</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_colwidth&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 </pre></div>
 </div>
 </div>
@@ -425,7 +420,16 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/746252d950f7f2ec7c8d53896b6c0eefbfb9c76ed6a5bd2e7a18c09b58d8b993.png" src="../_images/746252d950f7f2ec7c8d53896b6c0eefbfb9c76ed6a5bd2e7a18c09b58d8b993.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Hypothetical probabilities for each word following &quot;I am&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">probabilities</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">]</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">show_made_up_probs</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">probabilities</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;show_made_up_probs&#39; is not defined
+</pre></div>
+</div>
 </div>
 </div>
 </section>

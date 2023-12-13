@@ -178,6 +178,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../21_communication.html">Lecture 21: Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final-review.html">Final review guiding questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A-Quick-intro-to-LLMs.html">Bonus: A high-level quick introduction to LLMs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="current nav bd-sidenav">
@@ -192,8 +194,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../Appendix-A.html">Appendix A</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Appendix-B.html">Appendix-B</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AppendixA.html">Appendix A: Common features used in text classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AppendixB.html">Appendix B: K-Means customer segmentation case study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AppendixC.html">Appendix C: Representing documents using embeddings</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -402,20 +405,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">os</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">torch</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">transforms</span><span class="p">,</span> <span class="n">utils</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;torch&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -523,7 +512,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2069e47e7e54819b7fb0e5a8202faad8554f045ba32121ff7b046d65e9ca665e.png" src="../../_images/2069e47e7e54819b7fb0e5a8202faad8554f045ba32121ff7b046d65e9ca665e.png" />
+<img alt="../../_images/9e9e3cd490684d167e46f1784e785cc9b3a747a5e5166fa6b660776d209894f8.png" src="../../_images/9e9e3cd490684d167e46f1784e785cc9b3a747a5e5166fa6b660776d209894f8.png" />
 </div>
 </div>
 <p>With K-nearest neighbours (KNN), we will attempt to classify an animal face into one of three categories: cat, dog, or wild animal. The idea is that when presented with a new animal face image, we want the model to assign it to one of these three classes based on its similarity to other images within each of these classes.</p>
@@ -977,36 +966,36 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000977</td>
-      <td>0.000544</td>
+      <td>0.002954</td>
+      <td>0.001133</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000206</td>
-      <td>0.000222</td>
+      <td>0.000196</td>
+      <td>0.000238</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000172</td>
-      <td>0.000208</td>
+      <td>0.000162</td>
+      <td>0.000210</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0.000154</td>
-      <td>0.000201</td>
+      <td>0.000205</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000147</td>
-      <td>0.000197</td>
+      <td>0.000151</td>
+      <td>0.000201</td>
       <td>0.333333</td>
       <td>0.333333</td>
     </tr>
@@ -1055,36 +1044,36 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001140</td>
-      <td>0.103175</td>
+      <td>0.000878</td>
+      <td>0.137541</td>
       <td>0.966667</td>
       <td>0.991667</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000966</td>
-      <td>0.008489</td>
+      <td>0.000714</td>
+      <td>0.010399</td>
       <td>1.000000</td>
       <td>0.991667</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000513</td>
-      <td>0.001647</td>
+      <td>0.000496</td>
+      <td>0.001891</td>
       <td>0.933333</td>
       <td>0.983333</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000501</td>
-      <td>0.002283</td>
+      <td>0.000354</td>
+      <td>0.002007</td>
       <td>0.933333</td>
       <td>0.991667</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000355</td>
-      <td>0.001255</td>
+      <td>0.000357</td>
+      <td>0.002107</td>
       <td>0.933333</td>
       <td>1.000000</td>
     </tr>
@@ -1280,7 +1269,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/824db923826b224e7d098c6735d20be92c53896607039480d42024d104e34c28.png" src="../../_images/824db923826b224e7d098c6735d20be92c53896607039480d42024d104e34c28.png" />
+<img alt="../../_images/c97cef0f28f27d9cdece8b84f50dbdb49b6e6298341d000d44234be7ea8cdc10.png" src="../../_images/c97cef0f28f27d9cdece8b84f50dbdb49b6e6298341d000d44234be7ea8cdc10.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1412,6 +1401,7 @@ C =  100.0
     <span class="n">neighbors</span> <span class="o">=</span> <span class="n">neighs</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
     <span class="n">query_img</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">query_img</span> <span class="o">=</span> <span class="p">((</span><span class="n">X</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Query image&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">query_img</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">));</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(())</span>
@@ -1423,6 +1413,7 @@ C =  100.0
     
     <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">dist</span><span class="p">,</span> <span class="n">img_ind</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">distances</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">neighbors</span><span class="p">):</span>
         <span class="n">img</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="n">img_ind</span><span class="p">]</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="p">((</span><span class="n">X_train</span><span class="p">[</span><span class="n">img_ind</span><span class="p">]</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;distance: &#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span><span class="mi">3</span><span class="p">)),</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span> <span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1439,26 +1430,26 @@ C =  100.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/23a183ef99301991e1c746e11984cae3aac77b28af39a6b57b1be91c98b3d713.png" src="../../_images/23a183ef99301991e1c746e11984cae3aac77b28af39a6b57b1be91c98b3d713.png" />
+<img alt="../../_images/4544b3ecc4e556e44cc63c1e143453c103f8b56db2362d90fec08515c2b47edc.png" src="../../_images/4544b3ecc4e556e44cc63c1e143453c103f8b56db2362d90fec08515c2b47edc.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Nearest neighbours:
 </pre></div>
 </div>
-<img alt="../../_images/3a86a60794dba2be9ed6506b0affd7ed8239897da8e57a3bbd1e674a1a2d598f.png" src="../../_images/3a86a60794dba2be9ed6506b0affd7ed8239897da8e57a3bbd1e674a1a2d598f.png" />
-<img alt="../../_images/c56c7b8aee8de219a679ade9d7f5000344a5cc02812ef42c09cc44bc2355c646.png" src="../../_images/c56c7b8aee8de219a679ade9d7f5000344a5cc02812ef42c09cc44bc2355c646.png" />
+<img alt="../../_images/39d23cb90c25e281bbaa74ff3f809c866f44758117dbfe5eb81166d5edb884ca.png" src="../../_images/39d23cb90c25e281bbaa74ff3f809c866f44758117dbfe5eb81166d5edb884ca.png" />
+<img alt="../../_images/020da419454f97f3abc81f07c71efda1070417136c4c713c694eeddb899799fe.png" src="../../_images/020da419454f97f3abc81f07c71efda1070417136c4c713c694eeddb899799fe.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Nearest neighbours:
 </pre></div>
 </div>
-<img alt="../../_images/82e6ea5a70befa4e9849f1cd55bc566687eec2af383a83cae27bf52a1cb2c92e.png" src="../../_images/82e6ea5a70befa4e9849f1cd55bc566687eec2af383a83cae27bf52a1cb2c92e.png" />
-<img alt="../../_images/af543d2dd645132bed0aed3f76db0804679c8a264446f0e242728e128714094e.png" src="../../_images/af543d2dd645132bed0aed3f76db0804679c8a264446f0e242728e128714094e.png" />
+<img alt="../../_images/1fc5d877b226fddcb5e079213494ca7e4fd873b8b1a0eaa32a8083416ed156c2.png" src="../../_images/1fc5d877b226fddcb5e079213494ca7e4fd873b8b1a0eaa32a8083416ed156c2.png" />
+<img alt="../../_images/b7c10db41023e4607856eb09e3036f5cdf05944b0cb1ff075322cf731bbf6001.png" src="../../_images/b7c10db41023e4607856eb09e3036f5cdf05944b0cb1ff075322cf731bbf6001.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Nearest neighbours:
 </pre></div>
 </div>
-<img alt="../../_images/6841dd4cf1502b03db48ab14950becaca22267a7b0411b346921977622dd44f0.png" src="../../_images/6841dd4cf1502b03db48ab14950becaca22267a7b0411b346921977622dd44f0.png" />
-<img alt="../../_images/b47ffa7b9af8a5e0d5bf22f2d9db7235f7a5d95c821387291ef7ee2be14395e3.png" src="../../_images/b47ffa7b9af8a5e0d5bf22f2d9db7235f7a5d95c821387291ef7ee2be14395e3.png" />
+<img alt="../../_images/8022185d417090527b146fab1601eb64f3a9b28ce93cfb29a438ef9322d3583d.png" src="../../_images/8022185d417090527b146fab1601eb64f3a9b28ce93cfb29a438ef9322d3583d.png" />
+<img alt="../../_images/08e825571fb9e78cb087ca030205ed246594163b360dbf7f9e577cf8a909fd0c.png" src="../../_images/08e825571fb9e78cb087ca030205ed246594163b360dbf7f9e577cf8a909fd0c.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Nearest neighbours:
 </pre></div>
 </div>
-<img alt="../../_images/dd656c1721ddff7eb8146c354ca4df296ce52b702b4a24adb01d519156066537.png" src="../../_images/dd656c1721ddff7eb8146c354ca4df296ce52b702b4a24adb01d519156066537.png" />
+<img alt="../../_images/c79c9fcda3d753e80b943ec988a388164c053bd58cb096716ace6f6cd95d97fe.png" src="../../_images/c79c9fcda3d753e80b943ec988a388164c053bd58cb096716ace6f6cd95d97fe.png" />
 </div>
 </div>
 </section>

@@ -180,6 +180,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="21_communication.html">Lecture 21: Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="final-review.html">Final review guiding questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A-Quick-intro-to-LLMs.html">Bonus: A high-level quick introduction to LLMs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -194,8 +196,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Appendix-A.html">Appendix A</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Appendix-B.html">Appendix-B</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixA.html">Appendix A: Common features used in text classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixB.html">Appendix B: K-Means customer segmentation case study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixC.html">Appendix C: Representing documents using embeddings</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -451,12 +454,6 @@ document.write(`
 
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 </pre></div>
 </div>
 </div>
@@ -1137,8 +1134,7 @@ Test-set R^2: 0.84
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Train-set R^2: 0.16
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.16
 Test-set R^2: 0.13
 </pre></div>
 </div>
@@ -1444,8 +1440,7 @@ Test-set R^2: 0.13
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Train-set R^2: 0.53
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.53
 Test-set R^2: 0.62
 </pre></div>
 </div>
@@ -1848,8 +1843,7 @@ Test-set R^2: 0.62
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Train-set R^2: 0.87
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.87
 Test-set R^2: 0.85
 </pre></div>
 </div>
@@ -2280,8 +2274,7 @@ Freq: 3H, Name: one, Length: 248, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Train-set R^2: 0.25
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.25
 Test-set R^2: 0.37
 </pre></div>
 </div>
@@ -2364,11 +2357,11 @@ Test-set R^2: 0.37
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.94
-Test-set R^2: 0.69
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.95
+Test-set R^2: 0.71
 </pre></div>
 </div>
-<img alt="../_images/79a5fe9f4dabec755eb7358be168723e4c1f8efb8678fa26677673cbd30f50d2.png" src="../_images/79a5fe9f4dabec755eb7358be168723e4c1f8efb8678fa26677673cbd30f50d2.png" />
+<img alt="../_images/f7e0f1dc30ebb4d8ef0d0edfe8c4ec7d431ffb29ec2b0f620c06b3a344becdea.png" src="../_images/f7e0f1dc30ebb4d8ef0d0edfe8c4ec7d431ffb29ec2b0f620c06b3a344becdea.png" />
 </div>
 </div>
 <p>The results are better than <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> with lag features but they are not as good as the results with our previously engineered features. How about combining lag-based features and the previously extracted features?</p>
@@ -2387,11 +2380,11 @@ Test-set R^2: 0.69
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.95
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.96
 Test-set R^2: 0.79
 </pre></div>
 </div>
-<img alt="../_images/9356bbc2b3a770e49d22f73ed227e03fe377ec6f0fc823c2c0ea70e7dea547a0.png" src="../_images/9356bbc2b3a770e49d22f73ed227e03fe377ec6f0fc823c2c0ea70e7dea547a0.png" />
+<img alt="../_images/327a31b37c99e66f9d17724e7b41ebb5fdf424b3e494c90dc0dd681a8d937aa4.png" src="../_images/327a31b37c99e66f9d17724e7b41ebb5fdf424b3e494c90dc0dd681a8d937aa4.png" />
 </div>
 </div>
 <p>Some improvement but we are getting better results without the lag features in this case.</p>
@@ -2457,13 +2450,6 @@ Test-set R^2: 0.79
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2491,36 +2477,36 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001015</td>
-      <td>0.000283</td>
+      <td>0.000866</td>
+      <td>0.000310</td>
       <td>0.642676</td>
       <td>0.873182</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000584</td>
-      <td>0.000287</td>
+      <td>0.000544</td>
+      <td>0.000221</td>
       <td>0.828405</td>
       <td>0.874305</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000975</td>
-      <td>0.000771</td>
+      <td>0.000609</td>
+      <td>0.000216</td>
       <td>0.773851</td>
       <td>0.901262</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000689</td>
-      <td>0.000233</td>
+      <td>0.000622</td>
+      <td>0.000209</td>
       <td>0.696712</td>
       <td>0.889429</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000932</td>
-      <td>0.000293</td>
+      <td>0.001819</td>
+      <td>0.000785</td>
       <td>0.892733</td>
       <td>0.863889</td>
     </tr>
@@ -9357,9 +9343,7 @@ Test score: 0.84
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train score: 0.85
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test score: 0.84
+Test score: 0.84
 </pre></div>
 </div>
 </div>

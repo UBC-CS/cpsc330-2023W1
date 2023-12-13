@@ -1,0 +1,738 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Appendix A: Common features used in text classification &#8212; CPSC 330 Applied Machine Learning 2023W1</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/AppendixA';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Appendix B: K-Means customer segmentation case study" href="AppendixB.html" />
+    <link rel="prev" title="Lecture 15: Class demo" href="class_demos/15_class-demo.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/UBC-CS-logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/UBC-CS-logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Things you should know</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docs/README.html">CPSC 330 Documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../learning-objectives.html">Course Learning Objectives</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_intro.html">Lecture 1: Course Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_decision-trees.html">Lecture 2: Terminology, Baselines, Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_ml-fundamentals.html">Lecture 3: Machine Learning Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_kNNs-SVM-RBF.html">Lecture 4: <span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbours and SVM RBFs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_preprocessing-pipelines.html">Lecture 5: Preprocessing and <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_column-transformer-text-feats.html">Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_linear-models.html">Lecture 7: Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_hyperparameter-optimization.html">Lecture 8: Hyperparameter Optimization and Optimization Bias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_classification-metrics.html">Lecture 9: Classification metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_regression-metrics.html">Lecture 10: Regression metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_ensembles.html">Lecture 11: Ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_feat-importances.html">Lecture 12: Feature importances and model transparency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_feature-engineering-selection.html">Lecture 13: Feature engineering and feature selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_K-Means.html">Lecture 14: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_DBSCAN-hierarchical.html">Lecture 15: More Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_recommender-systems.html">Lecture 16: Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_natural-language-processing.html">Lecture 17: Introduction to natural language processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_intro_to_computer-vision.html">Lecture 18: Multi-class classification and introduction to computer vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_time-series.html">Lecture 19: Time series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_communication.html">Lecture 21: Communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="final-review.html">Final review guiding questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A-Quick-intro-to-LLMs.html">Bonus: A high-level quick introduction to LLMs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="class_demos/03_class-demo.html">Lecture 3: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/04_class-demo.html">Lecture 4: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/05-06_class-demo.html">Lectures 5 and 6: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/07_class-demo.html">Lectures 7: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/09_class-demo.html">Exploring classification metrics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="class_demos/14_class-demo.html">Lecture 14: Class demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_demos/15_class-demo.html">Lecture 15: Class demo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Appendix A: Common features used in text classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixB.html">Appendix B: K-Means customer segmentation case study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixC.html">Appendix C: Representing documents using embeddings</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../attribution.html">Attributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">LICENSE</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lectures/AppendixA.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Appendix A: Common features used in text classification</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bag-of-words">Bag of words</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-label-personalized-important-e-mails">Example: Label “Personalized” Important E-mails:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-learning-behind-gmail-priority-inbox">The Learning Behind Gmail Priority Inbox</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering-examples-automatically-identifying-good-conversations-online">Feature engineering examples: Automatically Identifying Good Conversations Online</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#term-weighing-tf-idf">Term weighing (TF-IDF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-grams">N-grams</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aside-google-n-gram-viewer">ASIDE: Google n-gram viewer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Aside: Google n-gram viewer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Aside: Google n-gram viewer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-of-speech-features">Part-of-speech features</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-of-speech-pos-in-english">Part-of-speech (POS) in English</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-of-speech-pos-features">Part-of-speech (POS) features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-from-a-project">An example from a project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penn-treebank-part-of-speech-tags-bonus">Penn Treebank part-of-speech tags (bonus)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="appendix-a-common-features-used-in-text-classification">
+<h1>Appendix A: Common features used in text classification<a class="headerlink" href="#appendix-a-common-features-used-in-text-classification" title="Permalink to this heading">#</a></h1>
+<section id="bag-of-words">
+<h2>Bag of words<a class="headerlink" href="#bag-of-words" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>So far for text data we have been using bag of word features.</p></li>
+<li><p>They are good enough for many tasks. But …</p></li>
+<li><p>This encoding throws out a lot of things we know about language</p></li>
+<li><p>It assumes that word order is not that important.</p></li>
+<li><p>So if you want to improve the scores further on text classification tasks you carry out <strong>feature engineering</strong>.</p></li>
+</ul>
+<p>Let’s look at some examples from research papers.</p>
+</section>
+<section id="example-label-personalized-important-e-mails">
+<h2>Example: Label “Personalized” Important E-mails:<a class="headerlink" href="#example-label-personalized-important-e-mails" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/36955.pdf">The Learning Behind Gmail Priority Inbox</a></p></li>
+<li><p>Features: bag of words, trigrams, regular expressions, and so on.</p></li>
+<li><p>There might be some “globally” important messages:</p>
+<ul>
+<li><p>“This is your mother, something terrible happened, give me a call ASAP.”</p></li>
+</ul>
+</li>
+<li><p>But your “important” message may be unimportant to others.</p>
+<ul>
+<li><p>Similar for spam: “spam” for one user could be “not spam” for another.</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Social features (e.g., percentage of sender emails that is read by the recipient)</p></li>
+<li><p>Content features (e.g., recent terms the user has been using in emails)</p></li>
+<li><p>Thread features (e.g., whether the user has started the thread)</p></li>
+<li><p>…</p></li>
+</ul>
+</section>
+<section id="the-learning-behind-gmail-priority-inbox">
+<h2><a class="reference external" href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/36955.pdf">The Learning Behind Gmail Priority Inbox</a><a class="headerlink" href="#the-learning-behind-gmail-priority-inbox" title="Permalink to this heading">#</a></h2>
+<p><img alt="" src="../_images/gmail_priority_inbox.png" /></p>
+<!-- <img src="img/gmail_priority_inbox.png" width="1000" height="1000"> --><section id="feature-engineering-examples-automatically-identifying-good-conversations-online">
+<h3>Feature engineering examples: <a class="reference external" href="http://www.courtneynapoles.com/res/icwsm17-automatically.pdf">Automatically Identifying Good Conversations Online</a><a class="headerlink" href="#feature-engineering-examples-automatically-identifying-good-conversations-online" title="Permalink to this heading">#</a></h3>
+<p><img alt="" src="../_images/classifying_good_conversations_online.png" /></p>
+<!-- <img src="img/classifying_good_conversations_online.png" width="800" height="800"> -->
+</section>
+</section>
+<section id="term-weighing-tf-idf">
+<h2>Term weighing (TF-IDF)<a class="headerlink" href="#term-weighing-tf-idf" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A measure of relatedness between words and documents</p></li>
+<li><p>Intuition: Meaningful words may occur repeatedly in related documents, but functional words (e.g., <em>make</em>, <em>the</em>) may be distributed evenly over all documents</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[tf.idf(w_i,d_j) = (1+log(tf_{ij})) log\frac{D}{df_i}\]</div>
+<p>where,</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(tf_{ij}\)</span> → number of occurrences of the term <span class="math notranslate nohighlight">\(w_i\)</span> in document <span class="math notranslate nohighlight">\(d_j\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(D\)</span> → number of documents</p></li>
+<li><p><span class="math notranslate nohighlight">\(df_i\)</span> → number of documents in which <span class="math notranslate nohighlight">\(w_i\)</span> occurs</p></li>
+</ul>
+<p>Check <code class="docutils literal notranslate"><span class="pre">TfidfVectorizer</span></code> from <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>.</p>
+</section>
+<section id="n-grams">
+<h2>N-grams<a class="headerlink" href="#n-grams" title="Permalink to this heading">#</a></h2>
+<ul>
+<li><p>Incorporating more context</p></li>
+<li><p>A contiguous sequence of <em>n</em> items (characters, tokens) in text.</p>
+  <blockquote>
+      CPSC330 students are hard-working .
+  </blockquote>    
+</li>
+<li><p>2-grams (bigrams): a contiguous sequence of two words</p>
+<ul class="simple">
+<li><p><em>CPSC330 students, students are, are hard-working, hard-working .</em></p></li>
+</ul>
+</li>
+<li><p>3-grams (trigrams): a contiguous sequence of three words</p>
+<ul class="simple">
+<li><p><em>CPSC330 students are, students are hard-working, are hard-working .</em></p></li>
+</ul>
+</li>
+</ul>
+<p>You can extract ngram features using <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code> by passing <code class="docutils literal notranslate"><span class="pre">ngram_range</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;URGENT!! As a valued network customer you have been selected to receive a $900 prize reward!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Lol you are always so convincing.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;URGENT!! Call right away!!&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">vec</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">X_counts</span> <span class="o">=</span> <span class="n">vec</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">bow_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_counts</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">vec</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">vec</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">X_counts</span> <span class="o">=</span> <span class="n">vec</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">10</span> <span class="n">bow_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_counts</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">vec</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;pd&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bow_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="aside-google-n-gram-viewer">
+<h2>ASIDE: <a class="reference external" href="https://books.google.com/ngrams">Google n-gram viewer</a><a class="headerlink" href="#aside-google-n-gram-viewer" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>All Our N-gram are Belong to You</p>
+<ul>
+<li><p>https://ai.googleblog.com/2006/08/all-our-n-gram-are-belong-toyou.html</p></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+Here at Google Research we have been using word n-gram models for a variety
+of R&D projects, such as statistical machine translation, speech recognition,
+spelling correction, entity detection, information extraction, and others.
+That's why we decided to share this enormous dataset with everyone. We
+processed 1,024,908,267,229 words of running text and are publishing the
+counts for all 1,176,470,663 five-word sequences that appear at least 40
+times. There are 13,588,391 unique words, after discarding words that appear
+less than 200 times.”
+</blockquote><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://books.google.com/ngrams/&quot;</span>
+<span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;&lt;iframe src=</span><span class="si">%s</span><span class="s2"> width=1000 height=800&gt;&lt;/iframe&gt;&quot;</span> <span class="o">%</span> <span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h2>Aside: <a class="reference external" href="https://books.google.com/ngrams">Google n-gram viewer</a><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Count the occurrences of the bigram <em>smart women</em> in the corpus from 1800 to 2000</p></li>
+</ul>
+<p><img alt="" src="../_images/ngram_viewer_smart_woman.png" /></p>
+<!-- <img src="img/ngram_viewer_smart_woman.png" width="800" height="800"> --></section>
+<section id="id2">
+<h2>Aside: <a class="reference external" href="https://books.google.com/ngrams">Google n-gram viewer</a><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Trends in the word <em>challenge</em> used as a noun vs. verb</p></li>
+</ul>
+<p><img alt="" src="../_images/ngram_viewer_challenge_NN_VB.png" /></p>
+<!-- <img src="img/ngram_viewer_challenge_NN_VB.png" width="800" height="800"> --></section>
+<section id="part-of-speech-features">
+<h2>Part-of-speech features<a class="headerlink" href="#part-of-speech-features" title="Permalink to this heading">#</a></h2>
+<section id="part-of-speech-pos-in-english">
+<h3>Part-of-speech (POS) in English<a class="headerlink" href="#part-of-speech-pos-in-english" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Part-of-speech: A kind of syntactic category that tells you some of the grammatical properties of a word.</p>
+<ul>
+<li><p>Noun → water, sun, cat</p></li>
+<li><p>Verb → run, eat, teach</p></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+The ____ was running. 
+</blockquote>    
+<ul class="simple">
+<li><p>Only a noun fits here.</p></li>
+</ul>
+</section>
+</section>
+<section id="part-of-speech-pos-features">
+<h2>Part-of-speech (POS) features<a class="headerlink" href="#part-of-speech-pos-features" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>POS features use POS information for the words in text.</p></li>
+</ul>
+<blockquote>
+    CPSC330/<span style="color:green">PROPER_NOUN</span> students/<span style="color:green">NOUN</span> are/<span style="color:green">VERB</span> hard-working/<span style="color:green">ADJECTIVE</span>
+</blockquote>    
+</section>
+<section id="an-example-from-a-project">
+<h2>An example from a project<a class="headerlink" href="#an-example-from-a-project" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Data: a bunch of documents</p></li>
+<li><p>Task: identify texts with <em>permissions</em> and identify who is giving permission to whom.</p></li>
+</ul>
+<blockquote>
+<b>You</b> may <b>disclose</b> Google confidential information when compelled to do so by law if <b>you</b> provide <b>us</b> reasonable prior notice, unless a court orders that <b>we</b> not receive notice.
+</blockquote>
+<ul class="simple">
+<li><p>A very simple solution</p>
+<ul>
+<li><p>Look for pronouns and verbs.</p></li>
+<li><p>Add POS tags as features in your model.</p></li>
+<li><p>Maybe look up words similar to <strong>disclose</strong>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="penn-treebank-part-of-speech-tags-bonus">
+<h2>Penn Treebank part-of-speech tags (bonus)<a class="headerlink" href="#penn-treebank-part-of-speech-tags-bonus" title="Permalink to this heading">#</a></h2>
+<p><img alt="" src="../_images/PTB_POS.png" /></p>
+<!-- <img src="img/PTB_POS.png" width="900" height="900"/> --><ul class="simple">
+<li><p>You also need to download the language model which contains all the pre-trained models. For that run the following in your course <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "cpsc330"
+        },
+        kernelOptions: {
+            name: "cpsc330",
+            path: "./lectures"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'cpsc330'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="class_demos/15_class-demo.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lecture 15: Class demo</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="AppendixB.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Appendix B: K-Means customer segmentation case study</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bag-of-words">Bag of words</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-label-personalized-important-e-mails">Example: Label “Personalized” Important E-mails:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-learning-behind-gmail-priority-inbox">The Learning Behind Gmail Priority Inbox</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering-examples-automatically-identifying-good-conversations-online">Feature engineering examples: Automatically Identifying Good Conversations Online</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#term-weighing-tf-idf">Term weighing (TF-IDF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-grams">N-grams</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aside-google-n-gram-viewer">ASIDE: Google n-gram viewer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Aside: Google n-gram viewer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Aside: Google n-gram viewer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-of-speech-features">Part-of-speech features</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-of-speech-pos-in-english">Part-of-speech (POS) in English</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-of-speech-pos-features">Part-of-speech (POS) features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-from-a-project">An example from a project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penn-treebank-part-of-speech-tags-bonus">Penn Treebank part-of-speech tags (bonus)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Varada Kolhatkar
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

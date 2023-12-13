@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Lecture 4: Class demo" href="04_class-demo.html" />
-    <link rel="prev" title="Lecture 23: Deployment and conclusion" href="../23_deployment-conclusion.html" />
+    <link rel="prev" title="Bonus: A high-level quick introduction to LLMs" href="../A-Quick-intro-to-LLMs.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -178,6 +178,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../21_communication.html">Lecture 21: Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final-review.html">Final review guiding questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A-Quick-intro-to-LLMs.html">Bonus: A high-level quick introduction to LLMs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="current nav bd-sidenav">
@@ -192,8 +194,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../Appendix-A.html">Appendix A</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Appendix-B.html">Appendix-B</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AppendixA.html">Appendix A: Common features used in text classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AppendixB.html">Appendix B: K-Means customer segmentation case study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AppendixC.html">Appendix C: Representing documents using embeddings</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -410,71 +413,316 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">housing_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/kc_house_data.csv&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">housing_df</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:948,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
-<span class="g g-Whitespace">    </span><span class="mi">935</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">936</span>     <span class="n">dialect</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">937</span>     <span class="n">delimiter</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">944</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">945</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">946</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">948</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:611,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">608</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">610</span> <span class="c1"># Create the parser.</span>
-<span class="ne">--&gt; </span><span class="mi">611</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">613</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">614</span>     <span class="k">return</span> <span class="n">parser</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1448,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1445</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1447</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="ne">-&gt; </span><span class="mi">1448</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1705,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1703</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1704</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1705</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1706</span>     <span class="n">f</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1707</span>     <span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1708</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1709</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1710</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1711</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1712</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1713</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1714</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1715</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1716</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/common.py:863,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">858</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">859</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
-<span class="g g-Whitespace">    </span><span class="mi">860</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
-<span class="g g-Whitespace">    </span><span class="mi">861</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">862</span>         <span class="c1"># Encoding</span>
-<span class="ne">--&gt; </span><span class="mi">863</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">864</span>             <span class="n">handle</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">865</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">866</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">867</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">868</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">869</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">870</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">871</span>         <span class="c1"># Binary mode</span>
-<span class="g g-Whitespace">    </span><span class="mi">872</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;../data/kc_house_data.csv&#39;
-</pre></div>
-</div>
-</div>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>date</th>
+      <th>price</th>
+      <th>bedrooms</th>
+      <th>bathrooms</th>
+      <th>sqft_living</th>
+      <th>sqft_lot</th>
+      <th>floors</th>
+      <th>waterfront</th>
+      <th>view</th>
+      <th>...</th>
+      <th>grade</th>
+      <th>sqft_above</th>
+      <th>sqft_basement</th>
+      <th>yr_built</th>
+      <th>yr_renovated</th>
+      <th>zipcode</th>
+      <th>lat</th>
+      <th>long</th>
+      <th>sqft_living15</th>
+      <th>sqft_lot15</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>7129300520</td>
+      <td>20141013T000000</td>
+      <td>221900.0</td>
+      <td>3</td>
+      <td>1.00</td>
+      <td>1180</td>
+      <td>5650</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>7</td>
+      <td>1180</td>
+      <td>0</td>
+      <td>1955</td>
+      <td>0</td>
+      <td>98178</td>
+      <td>47.5112</td>
+      <td>-122.257</td>
+      <td>1340</td>
+      <td>5650</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>6414100192</td>
+      <td>20141209T000000</td>
+      <td>538000.0</td>
+      <td>3</td>
+      <td>2.25</td>
+      <td>2570</td>
+      <td>7242</td>
+      <td>2.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>7</td>
+      <td>2170</td>
+      <td>400</td>
+      <td>1951</td>
+      <td>1991</td>
+      <td>98125</td>
+      <td>47.7210</td>
+      <td>-122.319</td>
+      <td>1690</td>
+      <td>7639</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>5631500400</td>
+      <td>20150225T000000</td>
+      <td>180000.0</td>
+      <td>2</td>
+      <td>1.00</td>
+      <td>770</td>
+      <td>10000</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>6</td>
+      <td>770</td>
+      <td>0</td>
+      <td>1933</td>
+      <td>0</td>
+      <td>98028</td>
+      <td>47.7379</td>
+      <td>-122.233</td>
+      <td>2720</td>
+      <td>8062</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2487200875</td>
+      <td>20141209T000000</td>
+      <td>604000.0</td>
+      <td>4</td>
+      <td>3.00</td>
+      <td>1960</td>
+      <td>5000</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>7</td>
+      <td>1050</td>
+      <td>910</td>
+      <td>1965</td>
+      <td>0</td>
+      <td>98136</td>
+      <td>47.5208</td>
+      <td>-122.393</td>
+      <td>1360</td>
+      <td>5000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1954400510</td>
+      <td>20150218T000000</td>
+      <td>510000.0</td>
+      <td>3</td>
+      <td>2.00</td>
+      <td>1680</td>
+      <td>8080</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>8</td>
+      <td>1680</td>
+      <td>0</td>
+      <td>1987</td>
+      <td>0</td>
+      <td>98074</td>
+      <td>47.6168</td>
+      <td>-122.045</td>
+      <td>1800</td>
+      <td>7503</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>21608</th>
+      <td>263000018</td>
+      <td>20140521T000000</td>
+      <td>360000.0</td>
+      <td>3</td>
+      <td>2.50</td>
+      <td>1530</td>
+      <td>1131</td>
+      <td>3.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>8</td>
+      <td>1530</td>
+      <td>0</td>
+      <td>2009</td>
+      <td>0</td>
+      <td>98103</td>
+      <td>47.6993</td>
+      <td>-122.346</td>
+      <td>1530</td>
+      <td>1509</td>
+    </tr>
+    <tr>
+      <th>21609</th>
+      <td>6600060120</td>
+      <td>20150223T000000</td>
+      <td>400000.0</td>
+      <td>4</td>
+      <td>2.50</td>
+      <td>2310</td>
+      <td>5813</td>
+      <td>2.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>8</td>
+      <td>2310</td>
+      <td>0</td>
+      <td>2014</td>
+      <td>0</td>
+      <td>98146</td>
+      <td>47.5107</td>
+      <td>-122.362</td>
+      <td>1830</td>
+      <td>7200</td>
+    </tr>
+    <tr>
+      <th>21610</th>
+      <td>1523300141</td>
+      <td>20140623T000000</td>
+      <td>402101.0</td>
+      <td>2</td>
+      <td>0.75</td>
+      <td>1020</td>
+      <td>1350</td>
+      <td>2.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>7</td>
+      <td>1020</td>
+      <td>0</td>
+      <td>2009</td>
+      <td>0</td>
+      <td>98144</td>
+      <td>47.5944</td>
+      <td>-122.299</td>
+      <td>1020</td>
+      <td>2007</td>
+    </tr>
+    <tr>
+      <th>21611</th>
+      <td>291310100</td>
+      <td>20150116T000000</td>
+      <td>400000.0</td>
+      <td>3</td>
+      <td>2.50</td>
+      <td>1600</td>
+      <td>2388</td>
+      <td>2.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>8</td>
+      <td>1600</td>
+      <td>0</td>
+      <td>2004</td>
+      <td>0</td>
+      <td>98027</td>
+      <td>47.5345</td>
+      <td>-122.069</td>
+      <td>1410</td>
+      <td>1287</td>
+    </tr>
+    <tr>
+      <th>21612</th>
+      <td>1523300157</td>
+      <td>20141015T000000</td>
+      <td>325000.0</td>
+      <td>2</td>
+      <td>0.75</td>
+      <td>1020</td>
+      <td>1076</td>
+      <td>2.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>7</td>
+      <td>1020</td>
+      <td>0</td>
+      <td>2008</td>
+      <td>0</td>
+      <td>98144</td>
+      <td>47.5941</td>
+      <td>-122.299</td>
+      <td>1020</td>
+      <td>1357</td>
+    </tr>
+  </tbody>
+</table>
+<p>21613 rows × 21 columns</p>
+</div></div></div>
 </div>
 </section>
 <section id="exploratory-data-analysis">
@@ -939,7 +1187,7 @@ Name: count, Length: 70, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/afef3f30214e3e70a55421e0ef9423f8287c37350b7d3764b8b2fdcc2e119d14.png" src="../../_images/afef3f30214e3e70a55421e0ef9423f8287c37350b7d3764b8b2fdcc2e119d14.png" />
+<img alt="../../_images/0e080ab20243db11643bbf0fb080d1a3a58ece2645a59e86a5d20b175fb793c9.png" src="../../_images/0e080ab20243db11643bbf0fb080d1a3a58ece2645a59e86a5d20b175fb793c9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1157,7 +1405,7 @@ Name: count, Length: 70, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/886a2c48b73baf17a14ba1874f5d9e4b174d19ca5a56df7a91d63ed7654605e1.png" src="../../_images/886a2c48b73baf17a14ba1874f5d9e4b174d19ca5a56df7a91d63ed7654605e1.png" />
+<img alt="../../_images/ad96ab82c134140a35952ea3e4070996e1e1e1b5b356bfba57b93d3ff3964729.png" src="../../_images/ad96ab82c134140a35952ea3e4070996e1e1e1b5b356bfba57b93d3ff3964729.png" />
 </div>
 </div>
 <p>What depth gives the “best” validation score?</p>
@@ -1351,7 +1599,7 @@ Name: count, Length: 70, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/6c71d42fd4509284df200e76efc749758b80fa37c363598e06944440c73af232.png" src="../../_images/6c71d42fd4509284df200e76efc749758b80fa37c363598e06944440c73af232.png" />
+<img alt="../../_images/254c55f5906c425419497b68b8910ac025446b167ffcc0205b144eb7f7b0ce58.png" src="../../_images/254c55f5906c425419497b68b8910ac025446b167ffcc0205b144eb7f7b0ce58.png" />
 </div>
 </div>
 <p>What’s the “best” depth with cross-validation?</p>
@@ -1430,7 +1678,7 @@ Name: count, Length: 70, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/97306c66bc5d17de8016f3a1da50dad0af138a90f530d729bd3f1fff31f33840.png" src="../../_images/97306c66bc5d17de8016f3a1da50dad0af138a90f530d729bd3f1fff31f33840.png" />
+<img alt="../../_images/73a191c460c27c84fe0fc01453f1c28721d5b31070d9a92d5ee4891e32025644.png" src="../../_images/73a191c460c27c84fe0fc01453f1c28721d5b31070d9a92d5ee4891e32025644.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1612,12 +1860,12 @@ Name: count, Length: 70, dtype: int64
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../23_deployment-conclusion.html"
+       href="../A-Quick-intro-to-LLMs.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Lecture 23: Deployment and conclusion</p>
+        <p class="prev-next-title">Bonus: A high-level quick introduction to LLMs</p>
       </div>
     </a>
     <a class="right-next"

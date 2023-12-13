@@ -180,6 +180,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="21_communication.html">Lecture 21: Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="final-review.html">Final review guiding questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A-Quick-intro-to-LLMs.html">Bonus: A high-level quick introduction to LLMs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -194,8 +196,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Appendix-A.html">Appendix A</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Appendix-B.html">Appendix-B</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixA.html">Appendix A: Common features used in text classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixB.html">Appendix B: K-Means customer segmentation case study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixC.html">Appendix C: Representing documents using embeddings</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -578,72 +581,135 @@ The interests of truth require a diversity of opinions.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">adult_df_large</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/adult.csv&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">adult_df_large</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">train_df_nan</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:948,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
-<span class="g g-Whitespace">    </span><span class="mi">935</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">936</span>     <span class="n">dialect</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">937</span>     <span class="n">delimiter</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">944</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">945</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">946</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">948</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:611,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">608</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">610</span> <span class="c1"># Create the parser.</span>
-<span class="ne">--&gt; </span><span class="mi">611</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">613</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">614</span>     <span class="k">return</span> <span class="n">parser</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1448,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1445</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1447</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="ne">-&gt; </span><span class="mi">1448</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1705,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1703</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1704</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1705</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1706</span>     <span class="n">f</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1707</span>     <span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1708</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1709</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1710</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1711</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1712</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1713</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1714</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1715</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1716</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/common.py:863,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">858</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">859</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
-<span class="g g-Whitespace">    </span><span class="mi">860</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
-<span class="g g-Whitespace">    </span><span class="mi">861</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">862</span>         <span class="c1"># Encoding</span>
-<span class="ne">--&gt; </span><span class="mi">863</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">864</span>             <span class="n">handle</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">865</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">866</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">867</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">868</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">869</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">870</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">871</span>         <span class="c1"># Binary mode</span>
-<span class="g g-Whitespace">    </span><span class="mi">872</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/adult.csv&#39;
-</pre></div>
-</div>
-</div>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>workclass</th>
+      <th>fnlwgt</th>
+      <th>education</th>
+      <th>education.num</th>
+      <th>marital.status</th>
+      <th>occupation</th>
+      <th>relationship</th>
+      <th>race</th>
+      <th>sex</th>
+      <th>capital.gain</th>
+      <th>capital.loss</th>
+      <th>hours.per.week</th>
+      <th>native.country</th>
+      <th>income</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5514</th>
+      <td>26</td>
+      <td>Private</td>
+      <td>256263</td>
+      <td>HS-grad</td>
+      <td>9</td>
+      <td>Never-married</td>
+      <td>Craft-repair</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>0</td>
+      <td>25</td>
+      <td>United-States</td>
+      <td>&lt;=50K</td>
+    </tr>
+    <tr>
+      <th>19777</th>
+      <td>24</td>
+      <td>Private</td>
+      <td>170277</td>
+      <td>HS-grad</td>
+      <td>9</td>
+      <td>Never-married</td>
+      <td>Other-service</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>0</td>
+      <td>35</td>
+      <td>United-States</td>
+      <td>&lt;=50K</td>
+    </tr>
+    <tr>
+      <th>10781</th>
+      <td>36</td>
+      <td>Private</td>
+      <td>75826</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Divorced</td>
+      <td>Adm-clerical</td>
+      <td>Unmarried</td>
+      <td>White</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>0</td>
+      <td>40</td>
+      <td>United-States</td>
+      <td>&lt;=50K</td>
+    </tr>
+    <tr>
+      <th>32240</th>
+      <td>22</td>
+      <td>State-gov</td>
+      <td>24395</td>
+      <td>Some-college</td>
+      <td>10</td>
+      <td>Married-civ-spouse</td>
+      <td>Adm-clerical</td>
+      <td>Wife</td>
+      <td>White</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>0</td>
+      <td>20</td>
+      <td>United-States</td>
+      <td>&lt;=50K</td>
+    </tr>
+    <tr>
+      <th>9876</th>
+      <td>31</td>
+      <td>Local-gov</td>
+      <td>356689</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Married-civ-spouse</td>
+      <td>Prof-specialty</td>
+      <td>Husband</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>0</td>
+      <td>40</td>
+      <td>United-States</td>
+      <td>&lt;=50K</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -928,15 +994,15 @@ Name: proportion, dtype: float64
   <tbody>
     <tr>
       <th>Dummy</th>
-      <td>0.002 (+/- 0.001)</td>
+      <td>0.002 (+/- 0.000)</td>
       <td>0.000 (+/- 0.000)</td>
       <td>0.758 (+/- 0.000)</td>
       <td>0.758 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>Decision tree</th>
-      <td>0.118 (+/- 0.008)</td>
-      <td>0.011 (+/- 0.001)</td>
+      <td>0.118 (+/- 0.005)</td>
+      <td>0.010 (+/- 0.000)</td>
       <td>0.817 (+/- 0.006)</td>
       <td>0.979 (+/- 0.000)</td>
     </tr>
@@ -1015,22 +1081,22 @@ Name: proportion, dtype: float64
   <tbody>
     <tr>
       <th>Dummy</th>
-      <td>0.002 (+/- 0.001)</td>
+      <td>0.002 (+/- 0.000)</td>
       <td>0.000 (+/- 0.000)</td>
       <td>0.758 (+/- 0.000)</td>
       <td>0.758 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>Decision tree</th>
-      <td>0.118 (+/- 0.008)</td>
-      <td>0.011 (+/- 0.001)</td>
+      <td>0.118 (+/- 0.005)</td>
+      <td>0.010 (+/- 0.000)</td>
       <td>0.817 (+/- 0.006)</td>
       <td>0.979 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>Random forests</th>
-      <td>0.358 (+/- 0.023)</td>
-      <td>0.037 (+/- 0.001)</td>
+      <td>0.354 (+/- 0.025)</td>
+      <td>0.042 (+/- 0.007)</td>
       <td>0.847 (+/- 0.006)</td>
       <td>0.979 (+/- 0.000)</td>
     </tr>
@@ -1345,7 +1411,7 @@ Prediction by random forest:  [1]
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tree 1
 </pre></div>
 </div>
-<img alt="../_images/2e2ddc3b54caef96a6d1dbb59b7e65243ce320abcfaae3210e8692c02c5d84bb.png" src="../_images/2e2ddc3b54caef96a6d1dbb59b7e65243ce320abcfaae3210e8692c02c5d84bb.png" />
+<img alt="../_images/1a05869c41a135485f78964d2ad147e42dd09e3b39f73b07fd31a6426604476b.png" src="../_images/1a05869c41a135485f78964d2ad147e42dd09e3b39f73b07fd31a6426604476b.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>None
 </pre></div>
 </div>
@@ -1355,7 +1421,7 @@ Prediction by random forest:  [1]
 Tree 2
 </pre></div>
 </div>
-<img alt="../_images/3bc384ca70ce2722a667a563c2963e6544d1b77f9c70ff195d8352330adc586f.png" src="../_images/3bc384ca70ce2722a667a563c2963e6544d1b77f9c70ff195d8352330adc586f.png" />
+<img alt="../_images/d924635f05d67bf0a76e279213144bd39ea530cb15a5a978b3de04262fcc3ea2.png" src="../_images/d924635f05d67bf0a76e279213144bd39ea530cb15a5a978b3de04262fcc3ea2.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>None
 </pre></div>
 </div>
@@ -1365,7 +1431,7 @@ Tree 2
 Tree 3
 </pre></div>
 </div>
-<img alt="../_images/3e296dfcbdf337572a8b7c19182c4fa5455813957bbcaf6a758bb3d850fd9c88.png" src="../_images/3e296dfcbdf337572a8b7c19182c4fa5455813957bbcaf6a758bb3d850fd9c88.png" />
+<img alt="../_images/41a9795441b5ac7ad00e6ea4610b8225ed43792ddc56dfc86948badc4d3e42d6.png" src="../_images/41a9795441b5ac7ad00e6ea4610b8225ed43792ddc56dfc86948badc4d3e42d6.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>None
 </pre></div>
 </div>
@@ -1394,7 +1460,243 @@ Tree 3
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7e3d59d9370229ebf0a1390eb002c9eef0d723cf48d707359a704e7b94d963ad.png" src="../_images/7e3d59d9370229ebf0a1390eb002c9eef0d723cf48d707359a704e7b94d963ad.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">23</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">make_num_tree_plot</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">preprocessor</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">500</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="p">)</span> <span class="c1"># User-defined function defined in code/plotting_functions.py </span>
+
+<span class="nn">File ~/CS/2023-24/330/cpsc330-2023W1/lectures/code/plotting_functions.py:446,</span> in <span class="ni">make_num_tree_plot</span><span class="nt">(preprocessor, X_train, y_train, X_test, y_test, num_trees, scoring_metric)</span>
+<span class="g g-Whitespace">    </span><span class="mi">444</span> <span class="k">for</span> <span class="n">ntree</span> <span class="ow">in</span> <span class="n">num_trees</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">445</span>     <span class="n">model</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="n">ntree</span><span class="p">))</span>
+<span class="ne">--&gt; </span><span class="mi">446</span>     <span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">447</span>         <span class="n">model</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">scoring_metric</span>
+<span class="g g-Whitespace">    </span><span class="mi">448</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">449</span>     <span class="n">train_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s2">&quot;train_score&quot;</span><span class="p">]))</span>
+<span class="g g-Whitespace">    </span><span class="mi">450</span>     <span class="n">test_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s2">&quot;test_score&quot;</span><span class="p">]))</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/utils/_param_validation.py:214,</span> in <span class="ni">validate_params.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">208</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span>     <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>         <span class="n">skip_parameter_validation</span><span class="o">=</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">211</span>             <span class="n">prefer_skip_nested_validation</span> <span class="ow">or</span> <span class="n">global_skip_validation</span>
+<span class="g g-Whitespace">    </span><span class="mi">212</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">213</span>     <span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">214</span>         <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">215</span> <span class="k">except</span> <span class="n">InvalidParameterError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">216</span>     <span class="c1"># When the function is just a wrapper around an estimator, we allow</span>
+<span class="g g-Whitespace">    </span><span class="mi">217</span>     <span class="c1"># the function to delegate validation to the estimator, but we replace</span>
+<span class="g g-Whitespace">    </span><span class="mi">218</span>     <span class="c1"># the name of the estimator by the name of the function in the error</span>
+<span class="g g-Whitespace">    </span><span class="mi">219</span>     <span class="c1"># message to avoid confusion.</span>
+<span class="g g-Whitespace">    </span><span class="mi">220</span>     <span class="n">msg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">221</span>         <span class="sa">r</span><span class="s2">&quot;parameter of \w+ must be&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">222</span>         <span class="sa">f</span><span class="s2">&quot;parameter of </span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__qualname__</span><span class="si">}</span><span class="s2"> must be&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">223</span>         <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">224</span>     <span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/model_selection/_validation.py:309,</span> in <span class="ni">cross_validate</span><span class="nt">(estimator, X, y, groups, scoring, cv, n_jobs, verbose, fit_params, pre_dispatch, return_train_score, return_estimator, return_indices, error_score)</span>
+<span class="g g-Whitespace">    </span><span class="mi">306</span> <span class="c1"># We clone the estimator to make sure that all the folds are</span>
+<span class="g g-Whitespace">    </span><span class="mi">307</span> <span class="c1"># independent, and that it is pickle-able.</span>
+<span class="g g-Whitespace">    </span><span class="mi">308</span> <span class="n">parallel</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="n">pre_dispatch</span><span class="o">=</span><span class="n">pre_dispatch</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">309</span> <span class="n">results</span> <span class="o">=</span> <span class="n">parallel</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span>     <span class="n">delayed</span><span class="p">(</span><span class="n">_fit_and_score</span><span class="p">)(</span>
+<span class="g g-Whitespace">    </span><span class="mi">311</span>         <span class="n">clone</span><span class="p">(</span><span class="n">estimator</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span>         <span class="n">X</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="n">y</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">314</span>         <span class="n">scorers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">315</span>         <span class="n">train</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">316</span>         <span class="n">test</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">317</span>         <span class="n">verbose</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">318</span>         <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">319</span>         <span class="n">fit_params</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">320</span>         <span class="n">return_train_score</span><span class="o">=</span><span class="n">return_train_score</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">321</span>         <span class="n">return_times</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">322</span>         <span class="n">return_estimator</span><span class="o">=</span><span class="n">return_estimator</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">323</span>         <span class="n">error_score</span><span class="o">=</span><span class="n">error_score</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">324</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">325</span>     <span class="k">for</span> <span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="ow">in</span> <span class="n">indices</span>
+<span class="g g-Whitespace">    </span><span class="mi">326</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">328</span> <span class="n">_warn_or_raise_about_fit_failures</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">error_score</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">330</span> <span class="c1"># For callable scoring, the return type is only know after calling. If the</span>
+<span class="g g-Whitespace">    </span><span class="mi">331</span> <span class="c1"># return type is a dictionary, the error scores can now be inserted with</span>
+<span class="g g-Whitespace">    </span><span class="mi">332</span> <span class="c1"># the correct key.</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/utils/parallel.py:65,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="n">config</span> <span class="o">=</span> <span class="n">get_config</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">61</span> <span class="n">iterable_with_config</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">62</span>     <span class="p">(</span><span class="n">_with_config</span><span class="p">(</span><span class="n">delayed_func</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span>     <span class="k">for</span> <span class="n">delayed_func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="n">iterable</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span> <span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">65</span> <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="n">iterable_with_config</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:1863,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1861</span>     <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sequential_output</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1862</span>     <span class="nb">next</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1863</span>     <span class="k">return</span> <span class="n">output</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_generator</span> <span class="k">else</span> <span class="nb">list</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1865</span> <span class="c1"># Let&#39;s create an ID that uniquely identifies the current call. If the</span>
+<span class="g g-Whitespace">   </span><span class="mi">1866</span> <span class="c1"># call is interrupted early and that the same instance is immediately</span>
+<span class="g g-Whitespace">   </span><span class="mi">1867</span> <span class="c1"># re-used, this id will be used to prevent workers that were</span>
+<span class="g g-Whitespace">   </span><span class="mi">1868</span> <span class="c1"># concurrently finalizing a task from the previous call to run the</span>
+<span class="g g-Whitespace">   </span><span class="mi">1869</span> <span class="c1"># callback.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1870</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:1792,</span> in <span class="ni">Parallel._get_sequential_output</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1790</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_dispatched_batches</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="g g-Whitespace">   </span><span class="mi">1791</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_dispatched_tasks</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="ne">-&gt; </span><span class="mi">1792</span> <span class="n">res</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1793</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_completed_tasks</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="g g-Whitespace">   </span><span class="mi">1794</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_progress</span><span class="p">()</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/utils/parallel.py:127,</span> in <span class="ni">_FuncWrapper.__call__</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">125</span>     <span class="n">config</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="g g-Whitespace">    </span><span class="mi">126</span> <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">127</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/model_selection/_validation.py:729,</span> in <span class="ni">_fit_and_score</span><span class="nt">(estimator, X, y, scorer, train, test, verbose, parameters, fit_params, return_train_score, return_parameters, return_n_test_samples, return_times, return_estimator, split_progress, candidate_progress, error_score)</span>
+<span class="g g-Whitespace">    </span><span class="mi">727</span>         <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">728</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">729</span>         <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">731</span> <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">732</span>     <span class="c1"># Note fit time as time until error</span>
+<span class="g g-Whitespace">    </span><span class="mi">733</span>     <span class="n">fit_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:1152,</span> in <span class="ni">_fit_context.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(estimator, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1145</span>     <span class="n">estimator</span><span class="o">.</span><span class="n">_validate_params</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1147</span> <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1148</span>     <span class="n">skip_parameter_validation</span><span class="o">=</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1149</span>         <span class="n">prefer_skip_nested_validation</span> <span class="ow">or</span> <span class="n">global_skip_validation</span>
+<span class="g g-Whitespace">   </span><span class="mi">1150</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1151</span> <span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1152</span>     <span class="k">return</span> <span class="n">fit_method</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/pipeline.py:427,</span> in <span class="ni">Pipeline.fit</span><span class="nt">(self, X, y, **fit_params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">425</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_final_estimator</span> <span class="o">!=</span> <span class="s2">&quot;passthrough&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">426</span>         <span class="n">fit_params_last_step</span> <span class="o">=</span> <span class="n">fit_params_steps</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+<span class="ne">--&gt; </span><span class="mi">427</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_final_estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xt</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params_last_step</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">429</span> <span class="k">return</span> <span class="bp">self</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:1152,</span> in <span class="ni">_fit_context.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(estimator, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1145</span>     <span class="n">estimator</span><span class="o">.</span><span class="n">_validate_params</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1147</span> <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1148</span>     <span class="n">skip_parameter_validation</span><span class="o">=</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1149</span>         <span class="n">prefer_skip_nested_validation</span> <span class="ow">or</span> <span class="n">global_skip_validation</span>
+<span class="g g-Whitespace">   </span><span class="mi">1150</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1151</span> <span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1152</span>     <span class="k">return</span> <span class="n">fit_method</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/ensemble/_forest.py:456,</span> in <span class="ni">BaseForest.fit</span><span class="nt">(self, X, y, sample_weight)</span>
+<span class="g g-Whitespace">    </span><span class="mi">445</span> <span class="n">trees</span> <span class="o">=</span> <span class="p">[</span>
+<span class="g g-Whitespace">    </span><span class="mi">446</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_make_estimator</span><span class="p">(</span><span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+<span class="nn">    447     for i</span> in <span class="ni">range</span><span class="nt">(n_more_estimators)</span>
+<span class="g g-Whitespace">    </span><span class="mi">448</span> <span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">450</span> <span class="c1"># Parallel loop: we prefer the threading backend as the Cython code</span>
+<span class="g g-Whitespace">    </span><span class="mi">451</span> <span class="c1"># for fitting the trees is internally releasing the Python GIL</span>
+<span class="g g-Whitespace">    </span><span class="mi">452</span> <span class="c1"># making threading more efficient than multiprocessing in</span>
+<span class="g g-Whitespace">    </span><span class="mi">453</span> <span class="c1"># that case. However, for joblib 0.12+ we respect any</span>
+<span class="g g-Whitespace">    </span><span class="mi">454</span> <span class="c1"># parallel_backend contexts set at a higher level,</span>
+<span class="g g-Whitespace">    </span><span class="mi">455</span> <span class="c1"># since correctness does not rely on using threads.</span>
+<span class="ne">--&gt; </span><span class="mi">456</span> <span class="n">trees</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">457</span>     <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">458</span>     <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">459</span>     <span class="n">prefer</span><span class="o">=</span><span class="s2">&quot;threads&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">460</span> <span class="p">)(</span>
+<span class="g g-Whitespace">    </span><span class="mi">461</span>     <span class="n">delayed</span><span class="p">(</span><span class="n">_parallel_build_trees</span><span class="p">)(</span>
+<span class="g g-Whitespace">    </span><span class="mi">462</span>         <span class="n">t</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">463</span>         <span class="bp">self</span><span class="o">.</span><span class="n">bootstrap</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">464</span>         <span class="n">X</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">465</span>         <span class="n">y</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">466</span>         <span class="n">sample_weight</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">467</span>         <span class="n">i</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">468</span>         <span class="nb">len</span><span class="p">(</span><span class="n">trees</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">469</span>         <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">470</span>         <span class="n">class_weight</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">class_weight</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">471</span>         <span class="n">n_samples_bootstrap</span><span class="o">=</span><span class="n">n_samples_bootstrap</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">472</span>     <span class="p">)</span>
+<span class="nn">    473     for i, t</span> in <span class="ni">enumerate</span><span class="nt">(trees)</span>
+<span class="g g-Whitespace">    </span><span class="mi">474</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">476</span> <span class="c1"># Collect newly grown trees</span>
+<span class="g g-Whitespace">    </span><span class="mi">477</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">trees</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/utils/parallel.py:65,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="n">config</span> <span class="o">=</span> <span class="n">get_config</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">61</span> <span class="n">iterable_with_config</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">62</span>     <span class="p">(</span><span class="n">_with_config</span><span class="p">(</span><span class="n">delayed_func</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span>     <span class="k">for</span> <span class="n">delayed_func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="n">iterable</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span> <span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">65</span> <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="n">iterable_with_config</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:1863,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1861</span>     <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sequential_output</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1862</span>     <span class="nb">next</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1863</span>     <span class="k">return</span> <span class="n">output</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_generator</span> <span class="k">else</span> <span class="nb">list</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1865</span> <span class="c1"># Let&#39;s create an ID that uniquely identifies the current call. If the</span>
+<span class="g g-Whitespace">   </span><span class="mi">1866</span> <span class="c1"># call is interrupted early and that the same instance is immediately</span>
+<span class="g g-Whitespace">   </span><span class="mi">1867</span> <span class="c1"># re-used, this id will be used to prevent workers that were</span>
+<span class="g g-Whitespace">   </span><span class="mi">1868</span> <span class="c1"># concurrently finalizing a task from the previous call to run the</span>
+<span class="g g-Whitespace">   </span><span class="mi">1869</span> <span class="c1"># callback.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1870</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:1792,</span> in <span class="ni">Parallel._get_sequential_output</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1790</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_dispatched_batches</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="g g-Whitespace">   </span><span class="mi">1791</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_dispatched_tasks</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="ne">-&gt; </span><span class="mi">1792</span> <span class="n">res</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1793</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_completed_tasks</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="g g-Whitespace">   </span><span class="mi">1794</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_progress</span><span class="p">()</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/utils/parallel.py:127,</span> in <span class="ni">_FuncWrapper.__call__</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">125</span>     <span class="n">config</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="g g-Whitespace">    </span><span class="mi">126</span> <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">127</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/ensemble/_forest.py:188,</span> in <span class="ni">_parallel_build_trees</span><span class="nt">(tree, bootstrap, X, y, sample_weight, tree_idx, n_trees, verbose, class_weight, n_samples_bootstrap)</span>
+<span class="g g-Whitespace">    </span><span class="mi">185</span>     <span class="k">elif</span> <span class="n">class_weight</span> <span class="o">==</span> <span class="s2">&quot;balanced_subsample&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">186</span>         <span class="n">curr_sample_weight</span> <span class="o">*=</span> <span class="n">compute_sample_weight</span><span class="p">(</span><span class="s2">&quot;balanced&quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">indices</span><span class="o">=</span><span class="n">indices</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">188</span>     <span class="n">tree</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">curr_sample_weight</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">189</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">190</span>     <span class="n">tree</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:1152,</span> in <span class="ni">_fit_context.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(estimator, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1145</span>     <span class="n">estimator</span><span class="o">.</span><span class="n">_validate_params</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1147</span> <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1148</span>     <span class="n">skip_parameter_validation</span><span class="o">=</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1149</span>         <span class="n">prefer_skip_nested_validation</span> <span class="ow">or</span> <span class="n">global_skip_validation</span>
+<span class="g g-Whitespace">   </span><span class="mi">1150</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1151</span> <span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1152</span>     <span class="k">return</span> <span class="n">fit_method</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/tree/_classes.py:959,</span> in <span class="ni">DecisionTreeClassifier.fit</span><span class="nt">(self, X, y, sample_weight, check_input)</span>
+<span class="g g-Whitespace">    </span><span class="mi">928</span> <span class="nd">@_fit_context</span><span class="p">(</span><span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">929</span> <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">930</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Build a decision tree classifier from the training set (X, y).</span>
+<span class="g g-Whitespace">    </span><span class="mi">931</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">932</span><span class="sd">     Parameters</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">956</span><span class="sd">         Fitted estimator.</span>
+<span class="g g-Whitespace">    </span><span class="mi">957</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">959</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">960</span>         <span class="n">X</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">961</span>         <span class="n">y</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">962</span>         <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">963</span>         <span class="n">check_input</span><span class="o">=</span><span class="n">check_input</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">964</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">965</span>     <span class="k">return</span> <span class="bp">self</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/tree/_classes.py:443,</span> in <span class="ni">BaseDecisionTree._fit</span><span class="nt">(self, X, y, sample_weight, check_input, missing_values_in_feature_mask)</span>
+<span class="g g-Whitespace">    </span><span class="mi">432</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">433</span>     <span class="n">builder</span> <span class="o">=</span> <span class="n">BestFirstTreeBuilder</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">434</span>         <span class="n">splitter</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">435</span>         <span class="n">min_samples_split</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">440</span>         <span class="bp">self</span><span class="o">.</span><span class="n">min_impurity_decrease</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">443</span> <span class="n">builder</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tree_</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">,</span> <span class="n">missing_values_in_feature_mask</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">445</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_outputs_</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">is_classifier</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">446</span>     <span class="bp">self</span><span class="o">.</span><span class="n">n_classes_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_classes_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
 </div>
 </div>
 <section id="number-of-trees-and-fundamental-trade-off">
@@ -1706,64 +2008,64 @@ Tree 3
   <tbody>
     <tr>
       <th>Dummy</th>
-      <td>0.007 (+/- 0.000)</td>
-      <td>0.006 (+/- 0.000)</td>
+      <td>0.008 (+/- 0.001)</td>
+      <td>0.006 (+/- 0.001)</td>
       <td>0.758 (+/- 0.000)</td>
       <td>0.758 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>logistic regression</th>
-      <td>1.391 (+/- 0.120)</td>
-      <td>0.010 (+/- 0.000)</td>
+      <td>0.896 (+/- 0.065)</td>
+      <td>0.011 (+/- 0.002)</td>
       <td>0.849 (+/- 0.005)</td>
       <td>0.850 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>decision tree</th>
-      <td>0.118 (+/- 0.003)</td>
-      <td>0.010 (+/- 0.000)</td>
+      <td>0.122 (+/- 0.005)</td>
+      <td>0.011 (+/- 0.002)</td>
       <td>0.817 (+/- 0.006)</td>
       <td>0.979 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>random forest</th>
-      <td>1.291 (+/- 0.004)</td>
-      <td>0.078 (+/- 0.001)</td>
+      <td>1.428 (+/- 0.077)</td>
+      <td>0.089 (+/- 0.007)</td>
       <td>0.844 (+/- 0.007)</td>
       <td>0.976 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>XGBoost</th>
-      <td>1.419 (+/- 0.017)</td>
-      <td>0.015 (+/- 0.001)</td>
+      <td>1.918 (+/- 0.197)</td>
+      <td>0.019 (+/- 0.007)</td>
       <td>0.870 (+/- 0.003)</td>
       <td>0.898 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>LightGBM</th>
-      <td>0.374 (+/- 0.022)</td>
-      <td>0.023 (+/- 0.003)</td>
+      <td>0.421 (+/- 0.040)</td>
+      <td>0.023 (+/- 0.002)</td>
       <td>0.872 (+/- 0.004)</td>
       <td>0.888 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>CatBoost</th>
-      <td>3.701 (+/- 0.036)</td>
-      <td>0.092 (+/- 0.002)</td>
+      <td>4.367 (+/- 0.647)</td>
+      <td>0.101 (+/- 0.008)</td>
       <td>0.872 (+/- 0.003)</td>
       <td>0.895 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>sklearn_histGB</th>
-      <td>1.648 (+/- 0.106)</td>
-      <td>0.035 (+/- 0.002)</td>
+      <td>4.935 (+/- 2.090)</td>
+      <td>0.068 (+/- 0.027)</td>
       <td>0.871 (+/- 0.005)</td>
       <td>0.887 (+/- 0.002)</td>
     </tr>
     <tr>
       <th>sklearn_GB</th>
-      <td>1.858 (+/- 0.007)</td>
-      <td>0.015 (+/- 0.002)</td>
+      <td>1.959 (+/- 0.094)</td>
+      <td>0.016 (+/- 0.002)</td>
       <td>0.864 (+/- 0.004)</td>
       <td>0.870 (+/- 0.001)</td>
     </tr>
@@ -1817,64 +2119,64 @@ Tree 3
   <tbody>
     <tr>
       <th>Dummy</th>
-      <td>0.007 (+/- 0.000)</td>
-      <td>0.006 (+/- 0.000)</td>
+      <td>0.008 (+/- 0.001)</td>
+      <td>0.006 (+/- 0.001)</td>
       <td>0.758 (+/- 0.000)</td>
       <td>0.758 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>logistic regression</th>
-      <td>1.391 (+/- 0.120)</td>
-      <td>0.010 (+/- 0.000)</td>
+      <td>0.896 (+/- 0.065)</td>
+      <td>0.011 (+/- 0.002)</td>
       <td>0.849 (+/- 0.005)</td>
       <td>0.850 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>decision tree</th>
-      <td>0.118 (+/- 0.003)</td>
-      <td>0.010 (+/- 0.000)</td>
+      <td>0.122 (+/- 0.005)</td>
+      <td>0.011 (+/- 0.002)</td>
       <td>0.817 (+/- 0.006)</td>
       <td>0.979 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>random forest</th>
-      <td>1.291 (+/- 0.004)</td>
-      <td>0.078 (+/- 0.001)</td>
+      <td>1.428 (+/- 0.077)</td>
+      <td>0.089 (+/- 0.007)</td>
       <td>0.844 (+/- 0.007)</td>
       <td>0.976 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>XGBoost</th>
-      <td>1.419 (+/- 0.017)</td>
-      <td>0.015 (+/- 0.001)</td>
+      <td>1.918 (+/- 0.197)</td>
+      <td>0.019 (+/- 0.007)</td>
       <td>0.870 (+/- 0.003)</td>
       <td>0.898 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>LightGBM</th>
-      <td>0.374 (+/- 0.022)</td>
-      <td>0.023 (+/- 0.003)</td>
+      <td>0.421 (+/- 0.040)</td>
+      <td>0.023 (+/- 0.002)</td>
       <td>0.872 (+/- 0.004)</td>
       <td>0.888 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>CatBoost</th>
-      <td>3.701 (+/- 0.036)</td>
-      <td>0.092 (+/- 0.002)</td>
+      <td>4.367 (+/- 0.647)</td>
+      <td>0.101 (+/- 0.008)</td>
       <td>0.872 (+/- 0.003)</td>
       <td>0.895 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>sklearn_histGB</th>
-      <td>1.648 (+/- 0.106)</td>
-      <td>0.035 (+/- 0.002)</td>
+      <td>4.935 (+/- 2.090)</td>
+      <td>0.068 (+/- 0.027)</td>
       <td>0.871 (+/- 0.005)</td>
       <td>0.887 (+/- 0.002)</td>
     </tr>
     <tr>
       <th>sklearn_GB</th>
-      <td>1.858 (+/- 0.007)</td>
-      <td>0.015 (+/- 0.002)</td>
+      <td>1.959 (+/- 0.094)</td>
+      <td>0.016 (+/- 0.002)</td>
       <td>0.864 (+/- 0.004)</td>
       <td>0.870 (+/- 0.001)</td>
     </tr>
@@ -2504,7 +2806,7 @@ Tree 3
       <th>0</th>
       <td>1</td>
       <td>1</td>
-      <td>0.663111</td>
+      <td>0.663079</td>
       <td>1.0</td>
       <td>0.760000</td>
       <td>0.601041</td>
@@ -2514,7 +2816,7 @@ Tree 3
       <th>1</th>
       <td>1</td>
       <td>1</td>
-      <td>0.247537</td>
+      <td>0.247728</td>
       <td>1.0</td>
       <td>0.678924</td>
       <td>0.513223</td>
@@ -2524,7 +2826,7 @@ Tree 3
       <th>2</th>
       <td>1</td>
       <td>1</td>
-      <td>0.636616</td>
+      <td>0.636380</td>
       <td>0.5</td>
       <td>0.621537</td>
       <td>0.684857</td>
@@ -2534,7 +2836,7 @@ Tree 3
       <th>3</th>
       <td>1</td>
       <td>1</td>
-      <td>0.616069</td>
+      <td>0.615796</td>
       <td>0.0</td>
       <td>0.770000</td>
       <td>0.731338</td>
@@ -2553,7 +2855,7 @@ Tree 3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.41934687, 0.58065313])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.41930863, 0.58069137])
 </pre></div>
 </div>
 </div>
@@ -2573,7 +2875,7 @@ Tree 3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.096734368958311
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.0965431260668854
 </pre></div>
 </div>
 </div>
@@ -2592,7 +2894,7 @@ Tree 3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.903265631041689
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.9034568739331146
 </pre></div>
 </div>
 </div>
@@ -2617,7 +2919,7 @@ Tree 3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.41934687379166224, 0.5806531262083378)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.4193086252133771, 0.5806913747866229)
 </pre></div>
 </div>
 </div>
@@ -2629,7 +2931,7 @@ Tree 3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.41934687, 0.58065313])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.41930863, 0.58069137])
 </pre></div>
 </div>
 </div>
@@ -2643,7 +2945,7 @@ Tree 3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.37822156, 0.62177844])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.37826888, 0.62173112])
 </pre></div>
 </div>
 </div>
@@ -2691,71 +2993,71 @@ Tree 3
   <tbody>
     <tr>
       <th>Dummy</th>
-      <td>0.007 (+/- 0.000)</td>
-      <td>0.006 (+/- 0.000)</td>
+      <td>0.008 (+/- 0.001)</td>
+      <td>0.006 (+/- 0.001)</td>
       <td>0.758 (+/- 0.000)</td>
       <td>0.758 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>logistic regression</th>
-      <td>1.391 (+/- 0.120)</td>
-      <td>0.010 (+/- 0.000)</td>
+      <td>0.896 (+/- 0.065)</td>
+      <td>0.011 (+/- 0.002)</td>
       <td>0.849 (+/- 0.005)</td>
       <td>0.850 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>decision tree</th>
-      <td>0.118 (+/- 0.003)</td>
-      <td>0.010 (+/- 0.000)</td>
+      <td>0.122 (+/- 0.005)</td>
+      <td>0.011 (+/- 0.002)</td>
       <td>0.817 (+/- 0.006)</td>
       <td>0.979 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>random forest</th>
-      <td>1.291 (+/- 0.004)</td>
-      <td>0.078 (+/- 0.001)</td>
+      <td>1.428 (+/- 0.077)</td>
+      <td>0.089 (+/- 0.007)</td>
       <td>0.844 (+/- 0.007)</td>
       <td>0.976 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>XGBoost</th>
-      <td>1.419 (+/- 0.017)</td>
-      <td>0.015 (+/- 0.001)</td>
+      <td>1.918 (+/- 0.197)</td>
+      <td>0.019 (+/- 0.007)</td>
       <td>0.870 (+/- 0.003)</td>
       <td>0.898 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>LightGBM</th>
-      <td>0.374 (+/- 0.022)</td>
-      <td>0.023 (+/- 0.003)</td>
+      <td>0.421 (+/- 0.040)</td>
+      <td>0.023 (+/- 0.002)</td>
       <td>0.872 (+/- 0.004)</td>
       <td>0.888 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>CatBoost</th>
-      <td>3.701 (+/- 0.036)</td>
-      <td>0.092 (+/- 0.002)</td>
+      <td>4.367 (+/- 0.647)</td>
+      <td>0.101 (+/- 0.008)</td>
       <td>0.872 (+/- 0.003)</td>
       <td>0.895 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>sklearn_histGB</th>
-      <td>1.648 (+/- 0.106)</td>
-      <td>0.035 (+/- 0.002)</td>
+      <td>4.935 (+/- 2.090)</td>
+      <td>0.068 (+/- 0.027)</td>
       <td>0.871 (+/- 0.005)</td>
       <td>0.887 (+/- 0.002)</td>
     </tr>
     <tr>
       <th>sklearn_GB</th>
-      <td>1.858 (+/- 0.007)</td>
-      <td>0.015 (+/- 0.002)</td>
+      <td>1.959 (+/- 0.094)</td>
+      <td>0.016 (+/- 0.002)</td>
       <td>0.864 (+/- 0.004)</td>
       <td>0.870 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>Voting</th>
-      <td>4.483 (+/- 0.433)</td>
-      <td>0.144 (+/- 0.002)</td>
+      <td>3.879 (+/- 0.370)</td>
+      <td>0.155 (+/- 0.019)</td>
       <td>0.860 (+/- 0.005)</td>
       <td>0.953 (+/- 0.001)</td>
     </tr>
@@ -2818,78 +3120,78 @@ Tree 3
   <tbody>
     <tr>
       <th>Dummy</th>
-      <td>0.007 (+/- 0.000)</td>
-      <td>0.006 (+/- 0.000)</td>
+      <td>0.008 (+/- 0.001)</td>
+      <td>0.006 (+/- 0.001)</td>
       <td>0.758 (+/- 0.000)</td>
       <td>0.758 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>logistic regression</th>
-      <td>1.391 (+/- 0.120)</td>
-      <td>0.010 (+/- 0.000)</td>
+      <td>0.896 (+/- 0.065)</td>
+      <td>0.011 (+/- 0.002)</td>
       <td>0.849 (+/- 0.005)</td>
       <td>0.850 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>decision tree</th>
-      <td>0.118 (+/- 0.003)</td>
-      <td>0.010 (+/- 0.000)</td>
+      <td>0.122 (+/- 0.005)</td>
+      <td>0.011 (+/- 0.002)</td>
       <td>0.817 (+/- 0.006)</td>
       <td>0.979 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>random forest</th>
-      <td>1.291 (+/- 0.004)</td>
-      <td>0.078 (+/- 0.001)</td>
+      <td>1.428 (+/- 0.077)</td>
+      <td>0.089 (+/- 0.007)</td>
       <td>0.844 (+/- 0.007)</td>
       <td>0.976 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>XGBoost</th>
-      <td>1.419 (+/- 0.017)</td>
-      <td>0.015 (+/- 0.001)</td>
+      <td>1.918 (+/- 0.197)</td>
+      <td>0.019 (+/- 0.007)</td>
       <td>0.870 (+/- 0.003)</td>
       <td>0.898 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>LightGBM</th>
-      <td>0.374 (+/- 0.022)</td>
-      <td>0.023 (+/- 0.003)</td>
+      <td>0.421 (+/- 0.040)</td>
+      <td>0.023 (+/- 0.002)</td>
       <td>0.872 (+/- 0.004)</td>
       <td>0.888 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>CatBoost</th>
-      <td>3.701 (+/- 0.036)</td>
-      <td>0.092 (+/- 0.002)</td>
+      <td>4.367 (+/- 0.647)</td>
+      <td>0.101 (+/- 0.008)</td>
       <td>0.872 (+/- 0.003)</td>
       <td>0.895 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>sklearn_histGB</th>
-      <td>1.648 (+/- 0.106)</td>
-      <td>0.035 (+/- 0.002)</td>
+      <td>4.935 (+/- 2.090)</td>
+      <td>0.068 (+/- 0.027)</td>
       <td>0.871 (+/- 0.005)</td>
       <td>0.887 (+/- 0.002)</td>
     </tr>
     <tr>
       <th>sklearn_GB</th>
-      <td>1.858 (+/- 0.007)</td>
-      <td>0.015 (+/- 0.002)</td>
+      <td>1.959 (+/- 0.094)</td>
+      <td>0.016 (+/- 0.002)</td>
       <td>0.864 (+/- 0.004)</td>
       <td>0.870 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>Voting</th>
-      <td>4.483 (+/- 0.433)</td>
-      <td>0.144 (+/- 0.002)</td>
+      <td>3.879 (+/- 0.370)</td>
+      <td>0.155 (+/- 0.019)</td>
       <td>0.860 (+/- 0.005)</td>
       <td>0.953 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>Voting_ndt</th>
-      <td>4.088 (+/- 0.595)</td>
-      <td>0.132 (+/- 0.003)</td>
+      <td>3.381 (+/- 0.066)</td>
+      <td>0.130 (+/- 0.003)</td>
       <td>0.870 (+/- 0.005)</td>
       <td>0.918 (+/- 0.001)</td>
     </tr>
@@ -3078,23 +3380,23 @@ Tree 3
   <tbody>
     <tr>
       <th>LightGBM</th>
-      <td>4.283186</td>
+      <td>4.282828</td>
     </tr>
     <tr>
       <th>XGBoost</th>
-      <td>1.780374</td>
+      <td>1.780466</td>
     </tr>
     <tr>
       <th>logistic regression</th>
-      <td>0.656264</td>
+      <td>0.656587</td>
     </tr>
     <tr>
       <th>random forest</th>
-      <td>0.046732</td>
+      <td>0.046726</td>
     </tr>
     <tr>
       <th>decision tree</th>
-      <td>-0.120639</td>
+      <td>-0.120672</td>
     </tr>
   </tbody>
 </table>
@@ -3107,7 +3409,7 @@ Tree 3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-3.3171738])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-3.31723393])
 </pre></div>
 </div>
 </div>
@@ -3140,10 +3442,10 @@ Tree 3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.26109096, 0.73890904],
-       [0.58523477, 0.41476523],
-       [0.24218502, 0.75781498],
-       [0.20576452, 0.79423548]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.26110928, 0.73889072],
+       [0.58523734, 0.41476266],
+       [0.24222273, 0.75777727],
+       [0.2058008 , 0.7941992 ]])
 </pre></div>
 </div>
 </div>
@@ -3193,85 +3495,85 @@ Tree 3
   <tbody>
     <tr>
       <th>Dummy</th>
-      <td>0.007 (+/- 0.000)</td>
-      <td>0.006 (+/- 0.000)</td>
+      <td>0.008 (+/- 0.001)</td>
+      <td>0.006 (+/- 0.001)</td>
       <td>0.758 (+/- 0.000)</td>
       <td>0.758 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>logistic regression</th>
-      <td>1.391 (+/- 0.120)</td>
-      <td>0.010 (+/- 0.000)</td>
+      <td>0.896 (+/- 0.065)</td>
+      <td>0.011 (+/- 0.002)</td>
       <td>0.849 (+/- 0.005)</td>
       <td>0.850 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>decision tree</th>
-      <td>0.118 (+/- 0.003)</td>
-      <td>0.010 (+/- 0.000)</td>
+      <td>0.122 (+/- 0.005)</td>
+      <td>0.011 (+/- 0.002)</td>
       <td>0.817 (+/- 0.006)</td>
       <td>0.979 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>random forest</th>
-      <td>1.291 (+/- 0.004)</td>
-      <td>0.078 (+/- 0.001)</td>
+      <td>1.428 (+/- 0.077)</td>
+      <td>0.089 (+/- 0.007)</td>
       <td>0.844 (+/- 0.007)</td>
       <td>0.976 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>XGBoost</th>
-      <td>1.419 (+/- 0.017)</td>
-      <td>0.015 (+/- 0.001)</td>
+      <td>1.918 (+/- 0.197)</td>
+      <td>0.019 (+/- 0.007)</td>
       <td>0.870 (+/- 0.003)</td>
       <td>0.898 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>LightGBM</th>
-      <td>0.374 (+/- 0.022)</td>
-      <td>0.023 (+/- 0.003)</td>
+      <td>0.421 (+/- 0.040)</td>
+      <td>0.023 (+/- 0.002)</td>
       <td>0.872 (+/- 0.004)</td>
       <td>0.888 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>CatBoost</th>
-      <td>3.701 (+/- 0.036)</td>
-      <td>0.092 (+/- 0.002)</td>
+      <td>4.367 (+/- 0.647)</td>
+      <td>0.101 (+/- 0.008)</td>
       <td>0.872 (+/- 0.003)</td>
       <td>0.895 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>sklearn_histGB</th>
-      <td>1.648 (+/- 0.106)</td>
-      <td>0.035 (+/- 0.002)</td>
+      <td>4.935 (+/- 2.090)</td>
+      <td>0.068 (+/- 0.027)</td>
       <td>0.871 (+/- 0.005)</td>
       <td>0.887 (+/- 0.002)</td>
     </tr>
     <tr>
       <th>sklearn_GB</th>
-      <td>1.858 (+/- 0.007)</td>
-      <td>0.015 (+/- 0.002)</td>
+      <td>1.959 (+/- 0.094)</td>
+      <td>0.016 (+/- 0.002)</td>
       <td>0.864 (+/- 0.004)</td>
       <td>0.870 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>Voting</th>
-      <td>4.483 (+/- 0.433)</td>
-      <td>0.144 (+/- 0.002)</td>
+      <td>3.879 (+/- 0.370)</td>
+      <td>0.155 (+/- 0.019)</td>
       <td>0.860 (+/- 0.005)</td>
       <td>0.953 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>Voting_ndt</th>
-      <td>4.088 (+/- 0.595)</td>
-      <td>0.132 (+/- 0.003)</td>
+      <td>3.381 (+/- 0.066)</td>
+      <td>0.130 (+/- 0.003)</td>
       <td>0.870 (+/- 0.005)</td>
       <td>0.918 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>Stacking</th>
-      <td>19.477 (+/- 0.280)</td>
-      <td>0.141 (+/- 0.003)</td>
+      <td>19.554 (+/- 1.564)</td>
+      <td>0.165 (+/- 0.008)</td>
       <td>0.872 (+/- 0.004)</td>
       <td>0.890 (+/- 0.002)</td>
     </tr>
@@ -3316,7 +3618,7 @@ Tree 3
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2ae9dfe3ba42401d17a5e328b1a143db3b0c35d15b43b3aaa2aa9792ea00aa9b.png" src="../_images/2ae9dfe3ba42401d17a5e328b1a143db3b0c35d15b43b3aaa2aa9792ea00aa9b.png" />
+<img alt="../_images/832e7a9fa33158fadda701e7b3ef927ff4574cf6979939383fba032f4c42d213.png" src="../_images/832e7a9fa33158fadda701e7b3ef927ff4574cf6979939383fba032f4c42d213.png" />
 </div>
 </div>
 <section id="an-effective-strategy">

@@ -178,6 +178,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../21_communication.html">Lecture 21: Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final-review.html">Final review guiding questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A-Quick-intro-to-LLMs.html">Bonus: A high-level quick introduction to LLMs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -192,8 +194,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../Appendix-A.html">Appendix A</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Appendix-B.html">Appendix-B</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AppendixA.html">Appendix A: Common features used in text classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AppendixB.html">Appendix B: K-Means customer segmentation case study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AppendixC.html">Appendix C: Representing documents using embeddings</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -956,82 +959,105 @@ Is the following dataset (XOR function) linearly separable?</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">housing_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/california_housing.csv&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">housing_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="nn">File ~/miniconda3/envs/jbook/lib/python3.10/site-packages/pandas/util/_decorators.py:311,</span> in <span class="ni">deprecate_nonkeyword_arguments.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">305</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">num_allow_args</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">306</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">307</span>         <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="n">arguments</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">308</span>         <span class="ne">FutureWarning</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">309</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span>     <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">311</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="nn">File ~/miniconda3/envs/jbook/lib/python3.10/site-packages/pandas/io/parsers/readers.py:680,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">665</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">666</span>     <span class="n">dialect</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">667</span>     <span class="n">delimiter</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">676</span>     <span class="n">defaults</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;delimiter&quot;</span><span class="p">:</span> <span class="s2">&quot;,&quot;</span><span class="p">},</span>
-<span class="g g-Whitespace">    </span><span class="mi">677</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">678</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">680</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/jbook/lib/python3.10/site-packages/pandas/io/parsers/readers.py:575,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">572</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">574</span> <span class="c1"># Create the parser.</span>
-<span class="ne">--&gt; </span><span class="mi">575</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">577</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">578</span>     <span class="k">return</span> <span class="n">parser</span>
-
-<span class="nn">File ~/miniconda3/envs/jbook/lib/python3.10/site-packages/pandas/io/parsers/readers.py:933,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">930</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">932</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="ne">--&gt; </span><span class="mi">933</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/jbook/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1217,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1213</span>     <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;rb&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1214</span> <span class="c1"># error: No overload variant of &quot;get_handle&quot; matches argument types</span>
-<span class="g g-Whitespace">   </span><span class="mi">1215</span> <span class="c1"># &quot;Union[str, PathLike[str], ReadCsvBuffer[bytes], ReadCsvBuffer[str]]&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1216</span> <span class="c1"># , &quot;str&quot;, &quot;bool&quot;, &quot;Any&quot;, &quot;Any&quot;, &quot;Any&quot;, &quot;Any&quot;, &quot;Any&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1217</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>  <span class="c1"># type: ignore[call-overload]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1218</span>     <span class="n">f</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1219</span>     <span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1220</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1221</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1222</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1223</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1224</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1225</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1226</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1227</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1228</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
-
-<span class="nn">File ~/miniconda3/envs/jbook/lib/python3.10/site-packages/pandas/io/common.py:789,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">784</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">785</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
-<span class="g g-Whitespace">    </span><span class="mi">786</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
-<span class="g g-Whitespace">    </span><span class="mi">787</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">788</span>         <span class="c1"># Encoding</span>
-<span class="ne">--&gt; </span><span class="mi">789</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">790</span>             <span class="n">handle</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">791</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">792</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">793</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">794</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">795</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">796</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">797</span>         <span class="c1"># Binary mode</span>
-<span class="g g-Whitespace">    </span><span class="mi">798</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;../data/california_housing.csv&#39;
-</pre></div>
-</div>
-</div>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>longitude</th>
+      <th>latitude</th>
+      <th>housing_median_age</th>
+      <th>total_rooms</th>
+      <th>total_bedrooms</th>
+      <th>population</th>
+      <th>households</th>
+      <th>median_income</th>
+      <th>median_house_value</th>
+      <th>ocean_proximity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-122.23</td>
+      <td>37.88</td>
+      <td>41.0</td>
+      <td>880.0</td>
+      <td>129.0</td>
+      <td>322.0</td>
+      <td>126.0</td>
+      <td>8.3252</td>
+      <td>452600.0</td>
+      <td>NEAR BAY</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-122.22</td>
+      <td>37.86</td>
+      <td>21.0</td>
+      <td>7099.0</td>
+      <td>1106.0</td>
+      <td>2401.0</td>
+      <td>1138.0</td>
+      <td>8.3014</td>
+      <td>358500.0</td>
+      <td>NEAR BAY</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-122.24</td>
+      <td>37.85</td>
+      <td>52.0</td>
+      <td>1467.0</td>
+      <td>190.0</td>
+      <td>496.0</td>
+      <td>177.0</td>
+      <td>7.2574</td>
+      <td>352100.0</td>
+      <td>NEAR BAY</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-122.25</td>
+      <td>37.85</td>
+      <td>52.0</td>
+      <td>1274.0</td>
+      <td>235.0</td>
+      <td>558.0</td>
+      <td>219.0</td>
+      <td>5.6431</td>
+      <td>341300.0</td>
+      <td>NEAR BAY</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-122.25</td>
+      <td>37.85</td>
+      <td>52.0</td>
+      <td>1627.0</td>
+      <td>280.0</td>
+      <td>565.0</td>
+      <td>259.0</td>
+      <td>3.8462</td>
+      <td>342200.0</td>
+      <td>NEAR BAY</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1268,36 +1294,36 @@ memory usage: 1.6+ MB
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.007676</td>
-      <td>0.002997</td>
+      <td>0.003925</td>
+      <td>0.001269</td>
       <td>0.280028</td>
       <td>0.311769</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.015419</td>
-      <td>0.006034</td>
+      <td>0.003150</td>
+      <td>0.001174</td>
       <td>0.325319</td>
       <td>0.300464</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.020705</td>
-      <td>0.006861</td>
+      <td>0.003116</td>
+      <td>0.001156</td>
       <td>0.317277</td>
       <td>0.301952</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.017801</td>
-      <td>0.007906</td>
+      <td>0.003103</td>
+      <td>0.001153</td>
       <td>0.316798</td>
       <td>0.303004</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.019558</td>
-      <td>0.007068</td>
+      <td>0.003081</td>
+      <td>0.001141</td>
       <td>0.260258</td>
       <td>0.314840</td>
     </tr>
@@ -1318,7 +1344,7 @@ memory usage: 1.6+ MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/a3be8fbe0e50023a11369d3f05350587b5d31cba073973fd5cb067479b2d70d2.png" src="../../_images/a3be8fbe0e50023a11369d3f05350587b5d31cba073973fd5cb067479b2d70d2.png" />
+<img alt="../../_images/25671743a39c7d33ee22cc5bd2af5dcdafa915ca626987ca995cfd52be9aee96.png" src="../../_images/25671743a39c7d33ee22cc5bd2af5dcdafa915ca626987ca995cfd52be9aee96.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1384,36 +1410,36 @@ memory usage: 1.6+ MB
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.041103</td>
-      <td>0.010614</td>
+      <td>0.021124</td>
+      <td>0.003546</td>
       <td>0.441445</td>
       <td>0.456419</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.042370</td>
-      <td>0.015185</td>
+      <td>0.015661</td>
+      <td>0.005281</td>
       <td>0.469571</td>
       <td>0.446216</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.058692</td>
-      <td>0.015512</td>
+      <td>0.015863</td>
+      <td>0.003311</td>
       <td>0.479132</td>
       <td>0.446869</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.058763</td>
-      <td>0.015724</td>
+      <td>0.016597</td>
+      <td>0.003249</td>
       <td>0.450822</td>
       <td>0.453367</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.089928</td>
-      <td>0.016405</td>
+      <td>0.015598</td>
+      <td>0.003334</td>
       <td>0.388169</td>
       <td>0.467628</td>
     </tr>
@@ -1794,36 +1820,36 @@ memory usage: 1.6+ MB
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.026809</td>
-      <td>0.007828</td>
+      <td>0.014727</td>
+      <td>0.002532</td>
       <td>0.590618</td>
       <td>0.571969</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.044908</td>
-      <td>0.010527</td>
+      <td>0.014059</td>
+      <td>0.002456</td>
       <td>0.575907</td>
       <td>0.570473</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.061209</td>
-      <td>0.011243</td>
+      <td>0.013775</td>
+      <td>0.002420</td>
       <td>0.579091</td>
       <td>0.573542</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.056894</td>
-      <td>0.011553</td>
+      <td>0.015736</td>
+      <td>0.002495</td>
       <td>0.571500</td>
       <td>0.574260</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.051862</td>
-      <td>0.011770</td>
+      <td>0.013764</td>
+      <td>0.002423</td>
       <td>0.541488</td>
       <td>0.581687</td>
     </tr>
@@ -1940,13 +1966,12 @@ latitude_19.0            -262361.647795&gt;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sentiment
-Negative              1041
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Negative              1041
 Positive               947
 Neutral                619
 Extremely Positive     599
 Extremely Negative     592
-Name: count, dtype: int64
+Name: Sentiment, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -2048,8 +2073,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Location
-United States                     63
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>United States                     63
 London, England                   37
 Los Angeles, CA                   30
 New York, NY                      29
@@ -2060,7 +2084,7 @@ philippines                        1
 Dont ask for freedom, take it.     1
 Windsor Heights, IA                1
 St James&#39; Park, Newcastle          1
-Name: count, Length: 1441, dtype: int64
+Name: Location, Length: 1441, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -2080,13 +2104,12 @@ Name: count, Length: 1441, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sentiment
-Negative              852
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Negative              852
 Positive              743
 Neutral               501
 Extremely Negative    472
 Extremely Positive    470
-Name: count, dtype: int64
+Name: Sentiment, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -2146,8 +2169,8 @@ Name: count, dtype: int64
   <tbody>
     <tr>
       <th>dummy</th>
-      <td>0.002 (+/- 0.000)</td>
       <td>0.001 (+/- 0.000)</td>
+      <td>0.000 (+/- 0.000)</td>
       <td>0.280 (+/- 0.001)</td>
       <td>0.280 (+/- 0.000)</td>
     </tr>
@@ -2200,15 +2223,15 @@ Name: count, dtype: int64
   <tbody>
     <tr>
       <th>dummy</th>
-      <td>0.002 (+/- 0.000)</td>
       <td>0.001 (+/- 0.000)</td>
+      <td>0.000 (+/- 0.000)</td>
       <td>0.280 (+/- 0.001)</td>
       <td>0.280 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>logistic regression</th>
-      <td>1.914 (+/- 0.119)</td>
-      <td>0.074 (+/- 0.004)</td>
+      <td>0.443 (+/- 0.020)</td>
+      <td>0.010 (+/- 0.000)</td>
       <td>0.413 (+/- 0.011)</td>
       <td>0.999 (+/- 0.000)</td>
     </tr>
@@ -2252,6 +2275,17 @@ Name: count, dtype: int64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">spacy</span>
 
 <span class="c1"># !python -m spacy download en_core_web_md</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">39</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">spacy</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># !python -m spacy download en_core_web_md</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;spacy&#39;
 </pre></div>
 </div>
 </div>
@@ -3021,7 +3055,7 @@ DATE means:  Absolute or relative dates or periods
 <p>11664 rows × 2 columns</p>
 </div></div></div>
 </div>
-<p>Check <a class="reference internal" href="../Appendix-A.html"><span class="doc std std-doc">Appendix-A</span></a> for commonly used features in text classification.</p>
+<p>Check <span class="xref myst">Appendix-A</span> for commonly used features in text classification.</p>
 </section>
 </section>
 <section id="interim-summary">

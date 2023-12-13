@@ -180,6 +180,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="21_communication.html">Lecture 21: Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="final-review.html">Final review guiding questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A-Quick-intro-to-LLMs.html">Bonus: A high-level quick introduction to LLMs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -194,8 +196,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Appendix-A.html">Appendix A</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Appendix-B.html">Appendix-B</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixA.html">Appendix A: Common features used in text classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixB.html">Appendix B: K-Means customer segmentation case study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixC.html">Appendix C: Representing documents using embeddings</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -597,7 +600,7 @@ Follow the installation instructions <a class="reference external" href="https:/
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "8953d23a416e416d81b4c2ab60736110"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "24d0883382e64a299cc4bfe7cfea0c75"}</script></div>
 </div>
 </section>
 <section id="geometric-view-of-tabular-data-and-dimensions">
@@ -643,72 +646,126 @@ Follow the installation instructions <a class="reference external" href="https:/
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">spotify_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/spotify.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">X_spotify</span> <span class="o">=</span> <span class="n">spotify_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;song_title&quot;</span><span class="p">,</span> <span class="s2">&quot;artist&quot;</span><span class="p">])</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of features in the Spotify dataset: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">X_spotify</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:948,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
-<span class="g g-Whitespace">    </span><span class="mi">935</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">936</span>     <span class="n">dialect</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">937</span>     <span class="n">delimiter</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">944</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">945</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">946</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">948</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:611,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">608</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">610</span> <span class="c1"># Create the parser.</span>
-<span class="ne">--&gt; </span><span class="mi">611</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">613</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">614</span>     <span class="k">return</span> <span class="n">parser</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1448,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1445</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1447</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="ne">-&gt; </span><span class="mi">1448</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1705,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1703</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1704</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1705</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1706</span>     <span class="n">f</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1707</span>     <span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1708</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1709</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1710</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1711</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1712</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1713</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1714</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1715</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1716</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/common.py:863,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">858</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">859</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
-<span class="g g-Whitespace">    </span><span class="mi">860</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
-<span class="g g-Whitespace">    </span><span class="mi">861</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">862</span>         <span class="c1"># Encoding</span>
-<span class="ne">--&gt; </span><span class="mi">863</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">864</span>             <span class="n">handle</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">865</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">866</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">867</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">868</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">869</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">870</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">871</span>         <span class="c1"># Binary mode</span>
-<span class="g g-Whitespace">    </span><span class="mi">872</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/spotify.csv&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The number of features in the Spotify dataset: 13
 </pre></div>
 </div>
-</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>acousticness</th>
+      <th>danceability</th>
+      <th>duration_ms</th>
+      <th>energy</th>
+      <th>instrumentalness</th>
+      <th>key</th>
+      <th>liveness</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+      <th>valence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0102</td>
+      <td>0.833</td>
+      <td>204600</td>
+      <td>0.434</td>
+      <td>0.021900</td>
+      <td>2</td>
+      <td>0.1650</td>
+      <td>-8.795</td>
+      <td>1</td>
+      <td>0.4310</td>
+      <td>150.062</td>
+      <td>4.0</td>
+      <td>0.286</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.1990</td>
+      <td>0.743</td>
+      <td>326933</td>
+      <td>0.359</td>
+      <td>0.006110</td>
+      <td>1</td>
+      <td>0.1370</td>
+      <td>-10.401</td>
+      <td>1</td>
+      <td>0.0794</td>
+      <td>160.083</td>
+      <td>4.0</td>
+      <td>0.588</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0344</td>
+      <td>0.838</td>
+      <td>185707</td>
+      <td>0.412</td>
+      <td>0.000234</td>
+      <td>2</td>
+      <td>0.1590</td>
+      <td>-7.148</td>
+      <td>1</td>
+      <td>0.2890</td>
+      <td>75.044</td>
+      <td>4.0</td>
+      <td>0.173</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.6040</td>
+      <td>0.494</td>
+      <td>199413</td>
+      <td>0.338</td>
+      <td>0.510000</td>
+      <td>5</td>
+      <td>0.0922</td>
+      <td>-15.236</td>
+      <td>1</td>
+      <td>0.0261</td>
+      <td>86.468</td>
+      <td>4.0</td>
+      <td>0.230</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.1800</td>
+      <td>0.678</td>
+      <td>392893</td>
+      <td>0.561</td>
+      <td>0.512000</td>
+      <td>5</td>
+      <td>0.4390</td>
+      <td>-11.648</td>
+      <td>0</td>
+      <td>0.0694</td>
+      <td>174.004</td>
+      <td>4.0</td>
+      <td>0.904</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <section id="dimensions-in-ml-problems">
@@ -812,7 +869,7 @@ An example feature vector from the Spotify dataset:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/070e1a6af96546d17b84b7dd8fddc4c5a8f2afca5aa0dd957ce39cad9c680696.png" src="../_images/070e1a6af96546d17b84b7dd8fddc4c5a8f2afca5aa0dd957ce39cad9c680696.png" />
+<img alt="../_images/d1cf6192466330407cd1434980bc2be6d32bb4e01b03441cc6a62ff7c9b44cf9.png" src="../_images/d1cf6192466330407cd1434980bc2be6d32bb4e01b03441cc6a62ff7c9b44cf9.png" />
 </div>
 </div>
 </section>
@@ -1425,7 +1482,7 @@ Name: 81, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/53926e09bd9604ea63c14c921dcc7ec8bc88ca9d790de92626a790c955a8dfc9.png" src="../_images/53926e09bd9604ea63c14c921dcc7ec8bc88ca9d790de92626a790c955a8dfc9.png" />
+<img alt="../_images/e70f1ba0082f83beca12d34fab795a5171104d12673fd6c176dce9f2f79f9aa9.png" src="../_images/e70f1ba0082f83beca12d34fab795a5171104d12673fd6c176dce9f2f79f9aa9.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1453,7 +1510,7 @@ Name: 81, dtype: float64
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n_neighbors 1
 </pre></div>
 </div>
-<img alt="../_images/452bfc4c71729efb1924403ef57ebaaee59ae6e2af458b95a07b38b82a0cc3de.png" src="../_images/452bfc4c71729efb1924403ef57ebaaee59ae6e2af458b95a07b38b82a0cc3de.png" />
+<img alt="../_images/ba05017b030830d883fa52e30c90fd0ac655d037f03aea4f357c15bac52ea616.png" src="../_images/ba05017b030830d883fa52e30c90fd0ac655d037f03aea4f357c15bac52ea616.png" />
 </div>
 </div>
 <p>How about using <span class="math notranslate nohighlight">\(k &gt; 1\)</span> to get a more robust estimate?</p>
@@ -1478,7 +1535,7 @@ Name: 81, dtype: float64
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n_neighbors 3
 </pre></div>
 </div>
-<img alt="../_images/eaab73f017ef9af61f260c1fd6b3daf3b6dae2887b119d0572c44dcb562d52ee.png" src="../_images/eaab73f017ef9af61f260c1fd6b3daf3b6dae2887b119d0572c44dcb562d52ee.png" />
+<img alt="../_images/bc120a1a6bf2278004929360fb1dc54a0187b252bddb3c3559c64aac9c0a6d20.png" src="../_images/bc120a1a6bf2278004929360fb1dc54a0187b252bddb3c3559c64aac9c0a6d20.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1562,36 +1619,36 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001711</td>
-      <td>0.003738</td>
+      <td>0.001122</td>
+      <td>0.002389</td>
       <td>0.710526</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001018</td>
-      <td>0.002070</td>
+      <td>0.000835</td>
+      <td>0.001716</td>
       <td>0.684211</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.001090</td>
-      <td>0.002000</td>
+      <td>0.000798</td>
+      <td>0.001676</td>
       <td>0.842105</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000889</td>
-      <td>0.001829</td>
+      <td>0.000790</td>
+      <td>0.001659</td>
       <td>0.702703</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000913</td>
-      <td>0.001886</td>
+      <td>0.000777</td>
+      <td>0.001647</td>
       <td>0.837838</td>
       <td>1.0</td>
     </tr>
@@ -1636,38 +1693,38 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000939</td>
-      <td>0.004768</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>0.001025</td>
+      <td>0.048315</td>
+      <td>0.605263</td>
+      <td>0.600000</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001145</td>
-      <td>0.000851</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>0.001002</td>
+      <td>0.002077</td>
+      <td>0.605263</td>
+      <td>0.600000</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000830</td>
-      <td>0.000809</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>0.000807</td>
+      <td>0.002034</td>
+      <td>0.605263</td>
+      <td>0.600000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000791</td>
-      <td>0.000787</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>0.000809</td>
+      <td>0.001997</td>
+      <td>0.594595</td>
+      <td>0.602649</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001009</td>
-      <td>0.000843</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>0.000795</td>
+      <td>0.001980</td>
+      <td>0.594595</td>
+      <td>0.602649</td>
     </tr>
   </tbody>
 </table>
@@ -1693,7 +1750,7 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "73cca458a0744c5d801b3884a1ba8b20", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "0fd4cc2b4c1348fea27e8d7a04380c69"}</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1702,7 +1759,52 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/19c277ffc2e9db1d817c70b2848562fce6e11e0024405466d2e01ff62e5cbb02.png" src="../_images/19c277ffc2e9db1d817c70b2848562fce6e11e0024405466d2e01ff62e5cbb02.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/mglearn/plot_2d_separator.py:86,</span> in <span class="ni">plot_2d_separator</span><span class="nt">(classifier, X, fill, ax, eps, alpha, cm, linewidth, threshold, linestyle)</span>
+<span class="g g-Whitespace">     </span><span class="mi">85</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">86</span>     <span class="n">decision_values</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">X_grid</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">87</span>     <span class="n">levels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">threshold</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[</span><span class="n">threshold</span><span class="p">]</span>
+
+<span class="ne">AttributeError</span>: &#39;KNeighborsClassifier&#39; object has no attribute &#39;decision_function&#39;
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">31</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">plot_knn_decision_boundaries</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">k_values</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+
+<span class="nn">File ~/CS/2023-24/330/cpsc330-2023W1/lectures/code/./plotting_functions.py:155,</span> in <span class="ni">plot_knn_decision_boundaries</span><span class="nt">(X_train, y_train, k_values)</span>
+<span class="g g-Whitespace">    </span><span class="mi">153</span> <span class="n">mean_train_score</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="s2">&quot;train_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">154</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">155</span> <span class="n">mglearn</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">plot_2d_separator</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">156</span>     <span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">158</span> <span class="n">mglearn</span><span class="o">.</span><span class="n">discrete_scatter</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">159</span> <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;n_neighbors=</span><span class="si">{}</span><span class="se">\n</span><span class="s2"> train score=</span><span class="si">{}</span><span class="s2">, valid score=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">160</span>     <span class="n">n_neighbors</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">mean_train_score</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">mean_valid_score</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">161</span> <span class="p">)</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/mglearn/plot_2d_separator.py:92,</span> in <span class="ni">plot_2d_separator</span><span class="nt">(classifier, X, fill, ax, eps, alpha, cm, linewidth, threshold, linestyle)</span>
+<span class="g g-Whitespace">     </span><span class="mi">88</span>     <span class="n">fill_levels</span> <span class="o">=</span> <span class="p">[</span><span class="n">decision_values</span><span class="o">.</span><span class="n">min</span><span class="p">()]</span> <span class="o">+</span> <span class="n">levels</span> <span class="o">+</span> <span class="p">[</span>
+<span class="g g-Whitespace">     </span><span class="mi">89</span>         <span class="n">decision_values</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span>
+<span class="g g-Whitespace">     </span><span class="mi">90</span> <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">91</span>     <span class="c1"># no decision_function</span>
+<span class="ne">---&gt; </span><span class="mi">92</span>     <span class="n">decision_values</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_grid</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">93</span>     <span class="n">levels</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.5</span><span class="p">]</span> <span class="k">if</span> <span class="n">threshold</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[</span><span class="n">threshold</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">94</span>     <span class="n">fill_levels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">levels</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/neighbors/_classification.py:380,</span> in <span class="ni">KNeighborsClassifier.predict_proba</span><span class="nt">(self, X)</span>
+<span class="g g-Whitespace">    </span><span class="mi">378</span> <span class="c1"># a simple &#39;:&#39; index doesn&#39;t work right</span>
+<span class="nn">    379 for i, idx</span> in <span class="ni">enumerate(pred_labels.T):  # loop is O</span><span class="nt">(n_neighbors)</span>
+<span class="ne">--&gt; </span><span class="mi">380</span>     <span class="n">proba_k</span><span class="p">[</span><span class="n">all_rows</span><span class="p">,</span> <span class="n">idx</span><span class="p">]</span> <span class="o">+=</span> <span class="n">weights</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">382</span> <span class="c1"># normalize &#39;votes&#39; into real [0,1] probabilities</span>
+<span class="g g-Whitespace">    </span><span class="mi">383</span> <span class="n">normalizer</span> <span class="o">=</span> <span class="n">proba_k</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+<img alt="../_images/b1f1677c1c21e5e98cb2eb3f8c32d199aaff5604d49eeb6c343efa369baf602b.png" src="../_images/b1f1677c1c21e5e98cb2eb3f8c32d199aaff5604d49eeb6c343efa369baf602b.png" />
 </div>
 </div>
 </section>

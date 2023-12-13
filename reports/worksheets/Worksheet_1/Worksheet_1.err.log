@@ -15,47 +15,56 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import panel as pn
-from panel import widgets
-from panel.interact import interact
-import matplotlib
-
-pn.extension()
-
-from sklearn.datasets import fetch_california_housing
-
-cal = fetch_california_housing()
-X_reg = cal.data
-y_reg = cal.target
-
-# Define a function to train a DecisionTreeRegressor with variable depth
-
-def plot_depth_regression(depth):
-    plt.clf()
-    height_scale=5;width_scale=6
-    reg_tree = DecisionTreeRegressor(max_depth=depth, random_state=42)
-    reg_tree.fit(X_reg, y_reg)
-    score = reg_tree.score(X_reg, y_reg)
-    width = min(35, depth * 6)
-    height = min(20, depth * 5 )
-    fontsize = 11 - depth
-    fig = plt.figure(figsize=(width, height))    
-    plot_tree(reg_tree, feature_names=cal['feature_names'], fontsize = fontsize, filled=True)
-    plt.title(f"Regression Tree Score: {score:.2f}", fontsize=14)        
-    return fig
-
-depth_selector = pn.widgets.IntSlider(name='depth', start=1, end=10, value=1)
-pn.interact(plot_depth_regression, depth=depth_selector)
-#pn.interact(f, depth=depth_selector).embed(max_opts=10)
+# Initialize Otter
+import otter
+grader = otter.Notebook("Worksheet_1.ipynb")
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[25], line 1[0m
-[0;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01mpanel[39;00m [38;5;28;01mas[39;00m [38;5;21;01mpn[39;00m
-[1;32m      2[0m [38;5;28;01mfrom[39;00m [38;5;21;01mpanel[39;00m [38;5;28;01mimport[39;00m widgets
-[1;32m      3[0m [38;5;28;01mfrom[39;00m [38;5;21;01mpanel[39;00m[38;5;21;01m.[39;00m[38;5;21;01minteract[39;00m [38;5;28;01mimport[39;00m interact
+Cell [0;32mIn[1], line 2[0m
+[1;32m      1[0m [38;5;66;03m# Initialize Otter[39;00m
+[0;32m----> 2[0m [38;5;28;01mimport[39;00m [38;5;21;01motter[39;00m
+[1;32m      3[0m grader [38;5;241m=[39m otter[38;5;241m.[39mNotebook([38;5;124m"[39m[38;5;124mWorksheet_1.ipynb[39m[38;5;124m"[39m)
 
-[0;31mModuleNotFoundError[0m: No module named 'panel'
+File [0;32m~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/otter/__init__.py:4[0m
+[1;32m      1[0m [38;5;124;03m"""Otter's Python API"""[39;00m
+[1;32m      3[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m api
+[0;32m----> 4[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mcheck[39;00m [38;5;28;01mimport[39;00m logs
+[1;32m      5[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mcheck[39;00m[38;5;21;01m.[39;00m[38;5;21;01mnotebook[39;00m [38;5;28;01mimport[39;00m Notebook
+[1;32m      6[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mversion[39;00m [38;5;28;01mimport[39;00m __version__
+
+File [0;32m~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/otter/check/__init__.py:8[0m
+[1;32m      5[0m [38;5;28;01mfrom[39;00m [38;5;21;01mglob[39;00m [38;5;28;01mimport[39;00m glob
+[1;32m      7[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mlogs[39;00m [38;5;28;01mimport[39;00m LogEntry, EventType
+[0;32m----> 8[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mnotebook[39;00m [38;5;28;01mimport[39;00m _OTTER_LOG_FILENAME
+[1;32m      9[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m [38;5;28;01mimport[39;00m list_test_files
+[1;32m     11[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m.[39;00m[38;5;21;01mexecute[39;00m [38;5;28;01mimport[39;00m grade_notebook
+
+File [0;32m~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/otter/check/notebook.py:15[0m
+[1;32m     12[0m [38;5;28;01mfrom[39;00m [38;5;21;01mtextwrap[39;00m [38;5;28;01mimport[39;00m indent
+[1;32m     14[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mlogs[39;00m [38;5;28;01mimport[39;00m LogEntry, EventType, Log
+[0;32m---> 15[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m [38;5;28;01mimport[39;00m (
+[1;32m     16[0m     display_pdf_confirmation_widget,
+[1;32m     17[0m     grade_zip_file,
+[1;32m     18[0m     grading_mode_disabled,
+[1;32m     19[0m     incompatible_with,
+[1;32m     20[0m     IPythonInterpreter,
+[1;32m     21[0m     list_available_tests,
+[1;32m     22[0m     logs_event,
+[1;32m     23[0m     resolve_test_info,
+[1;32m     24[0m     save_notebook,
+[1;32m     25[0m )
+[1;32m     27[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m.[39;00m[38;5;21;01mexecute[39;00m [38;5;28;01mimport[39;00m Checker
+[1;32m     28[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01m.[39;00m[38;5;21;01mexport[39;00m [38;5;28;01mimport[39;00m export_notebook
+
+File [0;32m~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/otter/check/utils.py:9[0m
+[1;32m      7[0m [38;5;28;01mimport[39;00m [38;5;21;01mtempfile[39;00m
+[1;32m      8[0m [38;5;28;01mimport[39;00m [38;5;21;01mtime[39;00m
+[0;32m----> 9[0m [38;5;28;01mimport[39;00m [38;5;21;01mwrapt[39;00m
+[1;32m     11[0m [38;5;28;01mfrom[39;00m [38;5;21;01menum[39;00m [38;5;28;01mimport[39;00m Enum
+[1;32m     12[0m [38;5;28;01mfrom[39;00m [38;5;21;01mglob[39;00m [38;5;28;01mimport[39;00m glob
+
+[0;31mModuleNotFoundError[0m: No module named 'wrapt'
 

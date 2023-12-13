@@ -180,6 +180,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="21_communication.html">Lecture 21: Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="final-review.html">Final review guiding questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A-Quick-intro-to-LLMs.html">Bonus: A high-level quick introduction to LLMs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Demos</span></p>
 <ul class="nav bd-sidenav">
@@ -194,8 +196,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Appendix-A.html">Appendix A</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Appendix-B.html">Appendix-B</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixA.html">Appendix A: Common features used in text classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixB.html">Appendix B: K-Means customer segmentation case study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixC.html">Appendix C: Representing documents using embeddings</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -901,72 +904,138 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">housing_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/kc_house_data.csv&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">housing_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">HTML</span><span class="p">(</span><span class="n">housing_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:948,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
-<span class="g g-Whitespace">    </span><span class="mi">935</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">936</span>     <span class="n">dialect</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">937</span>     <span class="n">delimiter</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">944</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">945</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">946</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">948</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:611,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">608</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">610</span> <span class="c1"># Create the parser.</span>
-<span class="ne">--&gt; </span><span class="mi">611</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">613</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">614</span>     <span class="k">return</span> <span class="n">parser</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1448,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1445</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1447</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="ne">-&gt; </span><span class="mi">1448</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1705,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1703</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1704</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1705</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1706</span>     <span class="n">f</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1707</span>     <span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1708</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1709</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1710</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1711</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1712</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1713</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1714</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1715</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1716</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/common.py:863,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">858</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">859</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
-<span class="g g-Whitespace">    </span><span class="mi">860</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
-<span class="g g-Whitespace">    </span><span class="mi">861</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">862</span>         <span class="c1"># Encoding</span>
-<span class="ne">--&gt; </span><span class="mi">863</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">864</span>             <span class="n">handle</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">865</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">866</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">867</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">868</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">869</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">870</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">871</span>         <span class="c1"># Binary mode</span>
-<span class="g g-Whitespace">    </span><span class="mi">872</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/kc_house_data.csv&#39;
-</pre></div>
-</div>
-</div>
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>price</th>
+      <th>bedrooms</th>
+      <th>bathrooms</th>
+      <th>sqft_living</th>
+      <th>sqft_lot</th>
+      <th>floors</th>
+      <th>waterfront</th>
+      <th>view</th>
+      <th>condition</th>
+      <th>grade</th>
+      <th>sqft_above</th>
+      <th>sqft_basement</th>
+      <th>yr_built</th>
+      <th>yr_renovated</th>
+      <th>zipcode</th>
+      <th>lat</th>
+      <th>long</th>
+      <th>sqft_living15</th>
+      <th>sqft_lot15</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>221900.0</td>
+      <td>3</td>
+      <td>1.00</td>
+      <td>1180</td>
+      <td>5650</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>7</td>
+      <td>1180</td>
+      <td>0</td>
+      <td>1955</td>
+      <td>0</td>
+      <td>98178</td>
+      <td>47.5112</td>
+      <td>-122.257</td>
+      <td>1340</td>
+      <td>5650</td>
+    </tr>
+    <tr>
+      <td>538000.0</td>
+      <td>3</td>
+      <td>2.25</td>
+      <td>2570</td>
+      <td>7242</td>
+      <td>2.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>7</td>
+      <td>2170</td>
+      <td>400</td>
+      <td>1951</td>
+      <td>1991</td>
+      <td>98125</td>
+      <td>47.7210</td>
+      <td>-122.319</td>
+      <td>1690</td>
+      <td>7639</td>
+    </tr>
+    <tr>
+      <td>180000.0</td>
+      <td>2</td>
+      <td>1.00</td>
+      <td>770</td>
+      <td>10000</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>6</td>
+      <td>770</td>
+      <td>0</td>
+      <td>1933</td>
+      <td>0</td>
+      <td>98028</td>
+      <td>47.7379</td>
+      <td>-122.233</td>
+      <td>2720</td>
+      <td>8062</td>
+    </tr>
+    <tr>
+      <td>604000.0</td>
+      <td>4</td>
+      <td>3.00</td>
+      <td>1960</td>
+      <td>5000</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>5</td>
+      <td>7</td>
+      <td>1050</td>
+      <td>910</td>
+      <td>1965</td>
+      <td>0</td>
+      <td>98136</td>
+      <td>47.5208</td>
+      <td>-122.393</td>
+      <td>1360</td>
+      <td>5000</td>
+    </tr>
+    <tr>
+      <td>510000.0</td>
+      <td>3</td>
+      <td>2.00</td>
+      <td>1680</td>
+      <td>8080</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>8</td>
+      <td>1680</td>
+      <td>0</td>
+      <td>1987</td>
+      <td>0</td>
+      <td>98074</td>
+      <td>47.6168</td>
+      <td>-122.045</td>
+      <td>1800</td>
+      <td>7503</td>
+    </tr>
+  </tbody>
+</table></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2387,7 +2456,7 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/27b8fe0d4d62d25499c6ddda7f29a3ae46adc593094a627fade49043ae1aa3bc.png" src="../_images/27b8fe0d4d62d25499c6ddda7f29a3ae46adc593094a627fade49043ae1aa3bc.png" />
+<img alt="../_images/42ea8ffff5d758f7a3e5fceec4d73125de96abbc1861ca9bbf3e3fbc2f1089a2.png" src="../_images/42ea8ffff5d758f7a3e5fceec4d73125de96abbc1861ca9bbf3e3fbc2f1089a2.png" />
 </div>
 </div>
 </section>
@@ -2472,7 +2541,7 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/27b8fe0d4d62d25499c6ddda7f29a3ae46adc593094a627fade49043ae1aa3bc.png" src="../_images/27b8fe0d4d62d25499c6ddda7f29a3ae46adc593094a627fade49043ae1aa3bc.png" />
+<img alt="../_images/42ea8ffff5d758f7a3e5fceec4d73125de96abbc1861ca9bbf3e3fbc2f1089a2.png" src="../_images/42ea8ffff5d758f7a3e5fceec4d73125de96abbc1861ca9bbf3e3fbc2f1089a2.png" />
 </div>
 </div>
 <p>What’s the prediction for the new example?</p>
@@ -2483,7 +2552,7 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:464: UserWarning: X does not have valid feature names, but DecisionTreeClassifier was fitted with feature names
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:465: UserWarning: X does not have valid feature names, but DecisionTreeClassifier was fitted with feature names
   warnings.warn(
 </pre></div>
 </div>
@@ -2511,7 +2580,7 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d0adf4b56c2706b8011a34d14e889e8b15bb39392045b075c4feb465a9216db9.png" src="../_images/d0adf4b56c2706b8011a34d14e889e8b15bb39392045b075c4feb465a9216db9.png" />
+<img alt="../_images/defc5c3b0e79eeecbc26e0f22fa6433a568a1829894491887b4137c8554208aa.png" src="../_images/defc5c3b0e79eeecbc26e0f22fa6433a568a1829894491887b4137c8554208aa.png" />
 </div>
 </div>
 </section>
@@ -2537,7 +2606,7 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2349f717c311a691e8e562e0b93c097654e03a46a179fcc57f8d2359ddf7eb32.png" src="../_images/2349f717c311a691e8e562e0b93c097654e03a46a179fcc57f8d2359ddf7eb32.png" />
+<img alt="../_images/c03f6cafc4c72237a67f9911c5dc9956f7c014a2ff624f5554515fdf6dab6df5.png" src="../_images/c03f6cafc4c72237a67f9911c5dc9956f7c014a2ff624f5554515fdf6dab6df5.png" />
 </div>
 </div>
 <div class="warning admonition">
@@ -2652,7 +2721,7 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/638e61b45bff256a427fe521b5eb0edf50473ee65c0797395994766a750a87d1.png" src="../_images/638e61b45bff256a427fe521b5eb0edf50473ee65c0797395994766a750a87d1.png" />
+<img alt="../_images/0515defb4dc8be0daab383002676cc80087622d3af65b2cadb36b4a61903baef.png" src="../_images/0515defb4dc8be0daab383002676cc80087622d3af65b2cadb36b4a61903baef.png" />
 </div>
 </div>
 </section>
@@ -2944,7 +3013,7 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b2181d4a902736b3b82995463b289e63ead9a9867909146c84956bb479a947e7.png" src="../_images/b2181d4a902736b3b82995463b289e63ead9a9867909146c84956bb479a947e7.png" />
+<img alt="../_images/9ff2a6b745ccec2a813eb9cb4762a9eccc5412b471dc6ac4e2858403ba10d4b4.png" src="../_images/9ff2a6b745ccec2a813eb9cb4762a9eccc5412b471dc6ac4e2858403ba10d4b4.png" />
 </div>
 </div>
 <ul class="simple">
@@ -3020,7 +3089,7 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2db7e2662407e8da86d445fda6b06129e8fff33eda10df9a0ced27b0a355cb2f.png" src="../_images/2db7e2662407e8da86d445fda6b06129e8fff33eda10df9a0ced27b0a355cb2f.png" />
+<img alt="../_images/bda11592fca949ff099d8d6ae4f499f1708216e97e69b6810d9009275c20c9a7.png" src="../_images/bda11592fca949ff099d8d6ae4f499f1708216e97e69b6810d9009275c20c9a7.png" />
 </div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">max_depth</span></code> is a <strong>hyperparameter</strong> of <code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code>.</p>
@@ -3045,7 +3114,7 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/181557b806a40239a975da4c9436707bc7c1dc66df9aca603d31f1387fcf7e29.png" src="../_images/181557b806a40239a975da4c9436707bc7c1dc66df9aca603d31f1387fcf7e29.png" />
+<img alt="../_images/8a893c4f9da54c0a42d6bfce44ca65e37a98d26f1be12c9774c21bc01a55d168.png" src="../_images/8a893c4f9da54c0a42d6bfce44ca65e37a98d26f1be12c9774c21bc01a55d168.png" />
 </div>
 </div>
 </section>
@@ -3152,7 +3221,7 @@ Name: quiz2, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7c0efe42ca0390465b3489261383c7ff79b68bddf50ccb39ab1df22644cb6edd.png" src="../_images/7c0efe42ca0390465b3489261383c7ff79b68bddf50ccb39ab1df22644cb6edd.png" />
+<img alt="../_images/b8277f07944e722220897912a13af88205a06c0a02f26c3f1d73bc26f398796c.png" src="../_images/b8277f07944e722220897912a13af88205a06c0a02f26c3f1d73bc26f398796c.png" />
 </div>
 </div>
 <p>We assume geometric view of the data. Here, the red region corresponds to “not A+” class and blue region corresponds to “A+” class. And there is a line separating the red region and the blue region which is called the <strong>decision boundary</strong> of the model. Different models have different kinds of decision boundaries.
@@ -3171,7 +3240,7 @@ In decision tree models, when we are working with only two features, the decisio
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/060424261357962a0996f3dfaa0f311e3ed87f763022b187c0ab3eb8174792ae.png" src="../_images/060424261357962a0996f3dfaa0f311e3ed87f763022b187c0ab3eb8174792ae.png" />
+<img alt="../_images/72a804b1e16e5c09e3ff6e85c975d253c0a751dc68048a8e8e7a62ced9d08dec.png" src="../_images/72a804b1e16e5c09e3ff6e85c975d253c0a751dc68048a8e8e7a62ced9d08dec.png" />
 </div>
 </div>
 <p>The decision boundary, i.e., the model gets a bit more complicated.</p>
@@ -3189,7 +3258,7 @@ In decision tree models, when we are working with only two features, the decisio
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c138a98202280223cf8ed445bc539007b6b15dbd1c300a5b123a5f74a73a0274.png" src="../_images/c138a98202280223cf8ed445bc539007b6b15dbd1c300a5b123a5f74a73a0274.png" />
+<img alt="../_images/59289b14d330f796c01cb1a4af5af84ceea8fffab6644485604d0c71fbe21236.png" src="../_images/59289b14d330f796c01cb1a4af5af84ceea8fffab6644485604d0c71fbe21236.png" />
 </div>
 </div>
 <p>The decision boundary, i.e., the model gets even more complicated with <code class="docutils literal notranslate"><span class="pre">max_depth=5</span></code>.</p>
@@ -3326,7 +3395,7 @@ In decision tree models, when we are working with only two features, the decisio
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0b07821b8d17c2af880b0812dffceeec3e07fa0d56bd0e5d476c83b86105ba02.png" src="../_images/0b07821b8d17c2af880b0812dffceeec3e07fa0d56bd0e5d476c83b86105ba02.png" />
+<img alt="../_images/d17f79f23e772a436d1643b47ad4e34dc9d7a22f8a24de880632985998585dd5.png" src="../_images/d17f79f23e772a436d1643b47ad4e34dc9d7a22f8a24de880632985998585dd5.png" />
 </div>
 </div>
 <section id="real-boundary-between-canada-and-usa">
@@ -3355,7 +3424,7 @@ In decision tree models, when we are working with only two features, the decisio
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6027034b2117b332f1fac9fcbf202a833828b6673a0d44464b5e12729af0620a.png" src="../_images/6027034b2117b332f1fac9fcbf202a833828b6673a0d44464b5e12729af0620a.png" />
+<img alt="../_images/df45b66178cc6c3b3b895708f6e2bfa976a65019677ecb058a4da0884444f1c4.png" src="../_images/df45b66178cc6c3b3b895708f6e2bfa976a65019677ecb058a4da0884444f1c4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3377,7 +3446,7 @@ In decision tree models, when we are working with only two features, the decisio
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/95e896d2c95206f5de3d8afd2d6b7194adb8697a7706a83b7fb663681883076d.png" src="../_images/95e896d2c95206f5de3d8afd2d6b7194adb8697a7706a83b7fb663681883076d.png" />
+<img alt="../_images/47bc9b624b248ac4cc0b55599d84d0d7e44f7dee4c8f2a7acccd5be9badfe55c.png" src="../_images/47bc9b624b248ac4cc0b55599d84d0d7e44f7dee4c8f2a7acccd5be9badfe55c.png" />
 </div>
 </div>
 </section>

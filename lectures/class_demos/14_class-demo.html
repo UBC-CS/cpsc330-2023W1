@@ -194,8 +194,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../Appendix-A.html">Appendix A</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Appendix-B.html">Appendix-B</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AppendixA.html">Appendix A: Common features used in text classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AppendixB.html">Appendix B: K-Means customer segmentation case study</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AppendixC.html">Appendix C: Representing documents using embeddings</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
 <ul class="nav bd-sidenav">
@@ -363,7 +364,6 @@ document.write(`
 <h1>Lecture 14: Class demo<a class="headerlink" href="#lecture-14-class-demo" title="Permalink to this heading">#</a></h1>
 <section id="let-s-cluster-images">
 <h2>Let’s cluster images!!<a class="headerlink" href="#let-s-cluster-images" title="Permalink to this heading">#</a></h2>
-<p><img alt="" src="lectures/img/eva-fun-times.png" /></p>
 <p>For this demo, I’m going to use two image datasets:</p>
 <ol class="arabic simple">
 <li><p>A small subset of <a class="reference external" href="https://www.kaggle.com/datasets/veeralakrishna/200-bird-species-with-11788-images">200 Bird Species with 11,788 Images</a> (available <a class="reference download internal" download="" href="../../_downloads/a8e8326c046fcad739997db16e07e422/birds.zip"><span class="xref download myst">here</span></a>)</p></li>
@@ -388,13 +388,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
-</pre></div>
-</div>
-<img alt="../../_images/893194cc01f887947cb588d65be15cb39aa37e6a620f84f118dfb7ba44000b45.png" src="../../_images/893194cc01f887947cb588d65be15cb39aa37e6a620f84f118dfb7ba44000b45.png" />
+<img alt="../../_images/a974a7e2589645b739906afac7b0a02b2e2037749d53221cfed4e36db9aa3ff3.png" src="../../_images/a974a7e2589645b739906afac7b0a02b2e2037749d53221cfed4e36db9aa3ff3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -488,81 +482,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">n_images</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">file_names</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="n">n_images</span>  <span class="c1"># because our dataset is quite small</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">birds_inputs</span><span class="p">,</span> <span class="n">birds_classes</span> <span class="o">=</span> <span class="n">read_img_dataset</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
-
-<span class="nn">Cell In[7], line 11,</span> in <span class="ni">read_img_dataset</span><span class="nt">(data_dir)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">def</span> <span class="nf">read_img_dataset</span><span class="p">(</span><span class="n">data_dir</span><span class="p">):</span>     
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">data_transforms</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>         <span class="p">[</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>             <span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">((</span><span class="n">IMAGE_SIZE</span><span class="p">,</span> <span class="n">IMAGE_SIZE</span><span class="p">)),</span>     
-<span class="g g-Whitespace">      </span><span class="mi">7</span>             <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>             <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]),</span>            
-<span class="g g-Whitespace">      </span><span class="mi">9</span>         <span class="p">])</span>
-<span class="ne">---&gt; </span><span class="mi">11</span>     <span class="n">image_dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ImageFolder</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">data_transforms</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="n">dataloader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span>          <span class="n">image_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span>     <span class="n">dataset_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">image_dataset</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/torchvision/datasets/folder.py:309,</span> in <span class="ni">ImageFolder.__init__</span><span class="nt">(self, root, transform, target_transform, loader, is_valid_file)</span>
-<span class="g g-Whitespace">    </span><span class="mi">301</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">302</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">303</span>     <span class="n">root</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">307</span>     <span class="n">is_valid_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">308</span> <span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">309</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span>         <span class="n">root</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">311</span>         <span class="n">loader</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">312</span>         <span class="n">IMG_EXTENSIONS</span> <span class="k">if</span> <span class="n">is_valid_file</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">314</span>         <span class="n">target_transform</span><span class="o">=</span><span class="n">target_transform</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">315</span>         <span class="n">is_valid_file</span><span class="o">=</span><span class="n">is_valid_file</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">316</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">317</span>     <span class="bp">self</span><span class="o">.</span><span class="n">imgs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">samples</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/torchvision/datasets/folder.py:144,</span> in <span class="ni">DatasetFolder.__init__</span><span class="nt">(self, root, loader, extensions, transform, target_transform, is_valid_file)</span>
-<span class="g g-Whitespace">    </span><span class="mi">134</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">135</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">136</span>     <span class="n">root</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">141</span>     <span class="n">is_valid_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">142</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">143</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span> <span class="n">target_transform</span><span class="o">=</span><span class="n">target_transform</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">144</span>     <span class="n">classes</span><span class="p">,</span> <span class="n">class_to_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_classes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">145</span>     <span class="n">samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_dataset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">class_to_idx</span><span class="p">,</span> <span class="n">extensions</span><span class="p">,</span> <span class="n">is_valid_file</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">147</span>     <span class="bp">self</span><span class="o">.</span><span class="n">loader</span> <span class="o">=</span> <span class="n">loader</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/torchvision/datasets/folder.py:218,</span> in <span class="ni">DatasetFolder.find_classes</span><span class="nt">(self, directory)</span>
-<span class="g g-Whitespace">    </span><span class="mi">191</span> <span class="k">def</span> <span class="nf">find_classes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
-<span class="g g-Whitespace">    </span><span class="mi">192</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Find the class folders in a dataset structured as follows::</span>
-<span class="g g-Whitespace">    </span><span class="mi">193</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">194</span><span class="sd">         directory/</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">216</span><span class="sd">         (Tuple[List[str], Dict[str, int]]): List of all classes and dictionary mapping each class to an index.</span>
-<span class="g g-Whitespace">    </span><span class="mi">217</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">218</span>     <span class="k">return</span> <span class="n">find_classes</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/envs/cpsc330/lib/python3.10/site-packages/torchvision/datasets/folder.py:40,</span> in <span class="ni">find_classes</span><span class="nt">(directory)</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span> <span class="k">def</span> <span class="nf">find_classes</span><span class="p">(</span><span class="n">directory</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
-<span class="g g-Whitespace">     </span><span class="mi">36</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Finds the class folders in a dataset.</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">38</span><span class="sd">     See :class:`DatasetFolder` for details.</span>
-<span class="g g-Whitespace">     </span><span class="mi">39</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="nn">---&gt; 40     classes = sorted(entry.name for entry</span> in <span class="ni">os.scandir(directory) if entry.is_dir</span><span class="nt">())</span>
-<span class="g g-Whitespace">     </span><span class="mi">41</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">classes</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">42</span>         <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Couldn&#39;t find any class folder in </span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;../data/birds&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -578,7 +497,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ca24980f7747342f9e86ea182623a23a7a3912f5035f842e880cead900060eec.png" src="../../_images/ca24980f7747342f9e86ea182623a23a7a3912f5035f842e880cead900060eec.png" />
+<img alt="../../_images/2a995ff0fd1950e65ad05a21c8b672abcf45921ff88df5d42925972dc068bd81.png" src="../../_images/2a995ff0fd1950e65ad05a21c8b672abcf45921ff88df5d42925972dc068bd81.png" />
 </div>
 </div>
 <p>For clustering we need to calculate distances between points. So we need a vector representation for each data point. A simplest way to create a vector representation of an image is by flattening the image.</p>
@@ -626,7 +545,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2d2f4ce362002a36461f319ab948772dec09046e2935222488c43927c61dfe33.png" src="../../_images/2d2f4ce362002a36461f319ab948772dec09046e2935222488c43927c61dfe33.png" />
+<img alt="../../_images/9a0d00eaa197c66f0d2bc696914336957100b92c84fbb0b44d063c69c84331fa.png" src="../../_images/9a0d00eaa197c66f0d2bc696914336957100b92c84fbb0b44d063c69c84331fa.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -695,15 +614,15 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [158  65  48 125  95]
 </pre></div>
 </div>
-<img alt="../../_images/6f6bca60e689b06e8f3753a18d2975fd23217c3d8beb4d8d135b3998cd4a37d3.png" src="../../_images/6f6bca60e689b06e8f3753a18d2975fd23217c3d8beb4d8d135b3998cd4a37d3.png" />
+<img alt="../../_images/1c2664afbfc260dbe121252206197c38cb66a72e1ee98e9c4c096d78b421531b.png" src="../../_images/1c2664afbfc260dbe121252206197c38cb66a72e1ee98e9c4c096d78b421531b.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [165  94  77 152 108]
 </pre></div>
 </div>
-<img alt="../../_images/e14f51d73d0da0766f1a8d473aae09501c217a927ae45c4aa1ce175dc5a3cc24.png" src="../../_images/e14f51d73d0da0766f1a8d473aae09501c217a927ae45c4aa1ce175dc5a3cc24.png" />
+<img alt="../../_images/5df2877600c37a0a1a80739e6a72cd35eb4d969ae51d01346ad3fa834b4c30f2.png" src="../../_images/5df2877600c37a0a1a80739e6a72cd35eb4d969ae51d01346ad3fa834b4c30f2.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [156 100  25 133 121]
 </pre></div>
 </div>
-<img alt="../../_images/e847203a7e7d158e50f740e427ca6693beb907ad09dfa762b370a0ad540e5be3.png" src="../../_images/e847203a7e7d158e50f740e427ca6693beb907ad09dfa762b370a0ad540e5be3.png" />
+<img alt="../../_images/a8496fb8209b72746abcab59d29bab50e56723b79eb08d36bd999e4f9bb7a20c.png" src="../../_images/a8496fb8209b72746abcab59d29bab50e56723b79eb08d36bd999e4f9bb7a20c.png" />
 </div>
 </div>
 <p>We see some mis-categorizations.</p>
@@ -764,7 +683,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-3 {color: black;}#sk-container-id-3 pre{padding: 0;}#sk-container-id-3 div.sk-toggleable {background-color: white;}#sk-container-id-3 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-3 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-3 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-3 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-3 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-3 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-3 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-3 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-3 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-3 div.sk-item {position: relative;z-index: 1;}#sk-container-id-3 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-3 div.sk-item::before, #sk-container-id-3 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-3 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-3 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-3 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-3 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-3 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-3 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-3 div.sk-label-container {text-align: center;}#sk-container-id-3 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-3 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KMeans(n_clusters=3, n_init=&#x27;auto&#x27;, random_state=123)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" checked><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">KMeans</label><div class="sk-toggleable__content"><pre>KMeans(n_clusters=3, n_init=&#x27;auto&#x27;, random_state=123)</pre></div></div></div></div></div></div></div>
+<div class="output text_html"><style>#sk-container-id-2 {color: black;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KMeans(n_clusters=3, n_init=&#x27;auto&#x27;, random_state=123)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">KMeans</label><div class="sk-toggleable__content"><pre>KMeans(n_clusters=3, n_init=&#x27;auto&#x27;, random_state=123)</pre></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -789,15 +708,15 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [ 31  15 171  72  53 174]
 </pre></div>
 </div>
-<img alt="../../_images/4d1ec27a740d708c85e8bdb11faec46d5796726edb25e8edb190918501945b89.png" src="../../_images/4d1ec27a740d708c85e8bdb11faec46d5796726edb25e8edb190918501945b89.png" />
+<img alt="../../_images/bc3993fa940c78cf35a87856d6a6e3dcf3b9d64a91f1a1a56e3b079fdff8f101.png" src="../../_images/bc3993fa940c78cf35a87856d6a6e3dcf3b9d64a91f1a1a56e3b079fdff8f101.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [ 69   5 120  58  36  61]
 </pre></div>
 </div>
-<img alt="../../_images/e053bab4b1433719dde75de18a55e27c1a79cf31265a13d04ddf54d94660a4c4.png" src="../../_images/e053bab4b1433719dde75de18a55e27c1a79cf31265a13d04ddf54d94660a4c4.png" />
+<img alt="../../_images/093c6588f5b5a4eb92e3efbdcc5feff180d608a199f518f649e3461b896d1d6f.png" src="../../_images/093c6588f5b5a4eb92e3efbdcc5feff180d608a199f518f649e3461b896d1d6f.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [162  48  23 134  18 127]
 </pre></div>
 </div>
-<img alt="../../_images/0f6546d58d7ae9a68fe82cec36dac018d4816e9902db7684af26e14569a19d4e.png" src="../../_images/0f6546d58d7ae9a68fe82cec36dac018d4816e9902db7684af26e14569a19d4e.png" />
+<img alt="../../_images/1545a1d222ba252da5a8658077229c3996a10242aee8e5797c513e9f5c6aae84.png" src="../../_images/1545a1d222ba252da5a8658077229c3996a10242aee8e5797c513e9f5c6aae84.png" />
 </div>
 </div>
 <p>KMeans seems to be doing a good job. But cluster centers are not interpretable at all now.
@@ -833,7 +752,7 @@ This dataset seems easier, as the birds have very distinct colors. Let’s try a
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/dca454f8bbb2fa6be32c8c10858d1c74243b0fc4dbf8b84019f1fb2f6f5bb0af.png" src="../../_images/dca454f8bbb2fa6be32c8c10858d1c74243b0fc4dbf8b84019f1fb2f6f5bb0af.png" />
+<img alt="../../_images/9ad382b416ead8ffca75ec01467159b940564e19ae7d0bbf9f9f8e9266806bb0.png" src="../../_images/9ad382b416ead8ffca75ec01467159b940564e19ae7d0bbf9f9f8e9266806bb0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -868,7 +787,7 @@ This dataset seems easier, as the birds have very distinct colors. Let’s try a
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-container-id-5 {color: black;}#sk-container-id-5 pre{padding: 0;}#sk-container-id-5 div.sk-toggleable {background-color: white;}#sk-container-id-5 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-5 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-5 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-5 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-5 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-5 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-5 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-5 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-5 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-5 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-5 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-5 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-5 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-5 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-5 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-5 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-5 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-5 div.sk-item {position: relative;z-index: 1;}#sk-container-id-5 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-5 div.sk-item::before, #sk-container-id-5 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-5 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-5 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-5 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-5 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-5 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-5 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-5 div.sk-label-container {text-align: center;}#sk-container-id-5 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-5 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-5" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KMeans(n_clusters=5, n_init=&#x27;auto&#x27;, random_state=123)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" checked><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">KMeans</label><div class="sk-toggleable__content"><pre>KMeans(n_clusters=5, n_init=&#x27;auto&#x27;, random_state=123)</pre></div></div></div></div></div></div></div>
+<div class="output text_html"><style>#sk-container-id-3 {color: black;}#sk-container-id-3 pre{padding: 0;}#sk-container-id-3 div.sk-toggleable {background-color: white;}#sk-container-id-3 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-3 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-3 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-3 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-3 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-3 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-3 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-3 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-3 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-3 div.sk-item {position: relative;z-index: 1;}#sk-container-id-3 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-3 div.sk-item::before, #sk-container-id-3 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-3 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-3 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-3 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-3 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-3 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-3 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-3 div.sk-label-container {text-align: center;}#sk-container-id-3 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-3 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KMeans(n_clusters=5, n_init=&#x27;auto&#x27;, random_state=123)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" checked><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">KMeans</label><div class="sk-toggleable__content"><pre>KMeans(n_clusters=5, n_init=&#x27;auto&#x27;, random_state=123)</pre></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -893,23 +812,23 @@ This dataset seems easier, as the birds have very distinct colors. Let’s try a
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [339  55  22 273  50 188]
 </pre></div>
 </div>
-<img alt="../../_images/c2209f4473d249c54875daf54f9a25a092c7335e5d4124e4162dabf60d5e7698.png" src="../../_images/c2209f4473d249c54875daf54f9a25a092c7335e5d4124e4162dabf60d5e7698.png" />
+<img alt="../../_images/81486eaa90d10227e59a267ad98c132c8767ae71ec098b93f0b4c3d75d86ddb1.png" src="../../_images/81486eaa90d10227e59a267ad98c132c8767ae71ec098b93f0b4c3d75d86ddb1.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [181 271  80 212 326 325]
 </pre></div>
 </div>
-<img alt="../../_images/5e05539386885fd15dc74cf4c5307ac1092117e8d811baaf58b5acf1501629ce.png" src="../../_images/5e05539386885fd15dc74cf4c5307ac1092117e8d811baaf58b5acf1501629ce.png" />
+<img alt="../../_images/f403c7078282d3db913a322b253353e6925b993598397cb2b3d8f3cb4939da7f.png" src="../../_images/f403c7078282d3db913a322b253353e6925b993598397cb2b3d8f3cb4939da7f.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [253 236  63  60   0 238]
 </pre></div>
 </div>
-<img alt="../../_images/1d8b46ab19a33e185e1f85c1f4d93492e3e7d1879a798ad49564b543f551d137.png" src="../../_images/1d8b46ab19a33e185e1f85c1f4d93492e3e7d1879a798ad49564b543f551d137.png" />
+<img alt="../../_images/e967ecd215dee397ece6468d2553470485d7b1b27de3dbf7a04fa741c5cd8c47.png" src="../../_images/e967ecd215dee397ece6468d2553470485d7b1b27de3dbf7a04fa741c5cd8c47.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [116  29 122 282 201  84]
 </pre></div>
 </div>
-<img alt="../../_images/2f077fc1b5a4a9a6ee06a22ca0eca5c8e4573e2e0fdbcf5471cad5ab0989418a.png" src="../../_images/2f077fc1b5a4a9a6ee06a22ca0eca5c8e4573e2e0fdbcf5471cad5ab0989418a.png" />
+<img alt="../../_images/018930502875e332b8cfefd48dd3ba96615911f473eb78ed7c63df22221a68ac.png" src="../../_images/018930502875e332b8cfefd48dd3ba96615911f473eb78ed7c63df22221a68ac.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image indices:  [223 246 118 154 184 231]
 </pre></div>
 </div>
-<img alt="../../_images/46ea548a9eefe5c51940d4400155095585290060347533d64570c109cf9d6622.png" src="../../_images/46ea548a9eefe5c51940d4400155095585290060347533d64570c109cf9d6622.png" />
+<img alt="../../_images/d59c09eab0ac7cbc0b7f8ba8aba1ea143edbd1b330ad8566953514ee44e9b9b2.png" src="../../_images/d59c09eab0ac7cbc0b7f8ba8aba1ea143edbd1b330ad8566953514ee44e9b9b2.png" />
 </div>
 </div>
 <p>There are some mis-classifications but overall it seems pretty good! You can experiment with</p>
@@ -919,7 +838,7 @@ This dataset seems easier, as the birds have very distinct colors. Let’s try a
 <li><p>Other possible representations</p></li>
 <li><p>Different image datasets</p></li>
 </ul>
-<p>See an example of using K-Means clustering on customer segmentation in <span class="xref myst">AppendixB</span>.</p>
+<p>See an example of using K-Means clustering on customer segmentation in <a class="reference internal" href="../AppendixB.html"><span class="doc std std-doc">AppendixB</span></a>.</p>
 </section>
 </section>
 
