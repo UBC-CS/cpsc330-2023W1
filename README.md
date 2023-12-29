@@ -4,8 +4,8 @@ This is the course homepage for CPSC 330: Applied Machine Learning at the Univer
 
 ## The teaching team  
 ### Instructors
-- [Andrew Roth](andrew.roth@ubc.ca) (Section 101: Tue Thu 15:30 to 17:00 Swing Space 121)
-- [Varada Kolhatkar](kvarada@cs.ubc.ca) (Section 102: Tue Thu 11:00 to 12:30 West Mall Swing Space 221)
+- [Andrew Roth](mailto:andrew.roth@ubc.ca) (Section 101: Tue Thu 15:30 to 17:00 Swing Space 121)
+- [Varada Kolhatkar](mailto:kvarada@cs.ubc.ca) (Section 102: Tue Thu 11:00 to 12:30 West Mall Swing Space 221)
 
 ### Course co-ordinator
 - Michelle Pang (cpsc330-admin@cs.ubc.ca)
